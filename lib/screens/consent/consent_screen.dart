@@ -1,13 +1,13 @@
 import 'package:admin/core/utils/responsive.dart';
+import 'package:admin/screens/consent/widgets/consent_table.dart';
 import 'package:flutter/material.dart';
 
 import '../../style/paddings.dart';
+import '../home/widgets/header.dart';
+import '../home/widgets/user_table.dart';
 import '../widgets/consent_details.dart';
-import 'widgets/header.dart';
 
-import 'widgets/user_table.dart';
-
-class DashboardScreen extends StatelessWidget {
+class ConsentScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -26,7 +26,7 @@ class DashboardScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       SizedBox(height: 10),
-                      UserList(),
+                      ConsentTable(),
                       if (Responsive.isMobile(context))
                         SizedBox(height: defaultPadding),
                       // if (Responsive.isMobile(context)) StarageDetails(),

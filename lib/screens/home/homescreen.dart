@@ -1,5 +1,6 @@
 import 'package:admin/core/controllers/MenuController.dart';
 import 'package:admin/core/utils/responsive.dart';
+import 'package:admin/screens/consent/consent_screen.dart';
 import 'package:admin/screens/home/dashboard_screen.dart';
 import 'package:admin/screens/user/user_history.dart';
 import 'package:admin/screens/user/user_screen.dart';
@@ -23,31 +24,31 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    switch (index) {
-      case 0:
-        {
-          DashboardScreen();
-        }
-        break;
+    // switch (index) {
+    //   case 0:
+    //     {
+    //       DashboardScreen();
+    //     }
+    //     break;
 
-      case 1:
-        {
-          UserScreen();
-        }
-        break;
+    //   case 1:
+    //     {
+    //       UserScreen();
+    //     }
+    //     break;
 
-      case 2:
-        {
-          UserHistoryScreen();
-        }
-        break;
+    //   case 2:
+    //     {
+    //       UserHistoryScreen();
+    //     }
+    //     break;
 
-      default:
-        {
-          DashboardScreen();
-        }
-        break;
-    }
+    //   default:
+    //     {
+    //       DashboardScreen();
+    //     }
+    //     break;
+    // }
 
     return Scaffold(
       key: context.read<MenuController>().scaffoldKey,
@@ -68,7 +69,7 @@ class _MainScreenState extends State<MainScreen> {
               Expanded(
                 // It takes 5/6 part of the screen
                 flex: 5,
-                child: DashboardScreen(),
+                child: ConsentScreen(),
               ),
             ],
           ),
