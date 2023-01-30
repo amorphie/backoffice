@@ -25,12 +25,49 @@ class SideMenu extends StatelessWidget {
               setIndex(0);
             },
           ),
-          DrawerListTile(
-            title: "Users",
-            icon: Icons.group,
-            press: () {
-              setIndex(1);
-            },
+          ExpansionTile(
+            initiallyExpanded: false,
+            textColor: Colors.white54,
+            iconColor: Colors.white,
+            title: Row(
+              children: [
+                Icon(
+                  Icons.edit,
+                  color: Colors.white,
+                ),
+                SizedBox(width: 10),
+                Text("Users"),
+              ],
+            ),
+            children: <Widget>[
+              hoverTile('Create', () {
+                setIndex(1);
+              }),
+              hoverTile('History', () {
+                setIndex(2);
+              }),
+            ],
+          ),
+          ExpansionTile(
+            textColor: Colors.white54,
+            iconColor: Colors.white,
+            initiallyExpanded: false,
+            title: Row(
+              children: [
+                Icon(
+                  Icons.circle,
+                  color: Colors.white,
+                ),
+                SizedBox(width: 10),
+                Text("Consent"),
+              ],
+            ),
+            children: <Widget>[
+              hoverTile('Consents', () {
+                setIndex(3);
+              }),
+              hoverTile('History', () {}),
+            ],
           ),
           DrawerListTile(
             icon: Icons.transform_outlined,
@@ -46,26 +83,7 @@ class SideMenu extends StatelessWidget {
               setIndex(3);
             },
           ),
-          ExpansionTile(
-            initiallyExpanded: false,
-            textColor: Colors.white54,
-            iconColor: Colors.white,
-            title: Row(
-              children: [
-                Icon(
-                  Icons.edit,
-                  color: Colors.white,
-                ),
-                SizedBox(width: 10),
-                Text("Consent"),
-              ],
-            ),
-            children: <Widget>[
-              hoverTile('Local'),
-              hoverTile('Remote'),
-              hoverTile('Api Key'),
-            ],
-          ),
+
           ExpansionTile(
             textColor: Colors.white54,
             iconColor: Colors.white,
@@ -81,10 +99,10 @@ class SideMenu extends StatelessWidget {
               ],
             ),
             children: <Widget>[
-              hoverTile('Resources'),
-              hoverTile('Role Group'),
-              hoverTile('Roles'),
-              hoverTile('Privilages'),
+              hoverTile('Resources', () {}),
+              hoverTile('Role Group', () {}),
+              hoverTile('Roles', () {}),
+              hoverTile('Privilages', () {}),
             ],
           ),
 
@@ -106,13 +124,18 @@ class SideMenu extends StatelessWidget {
     );
   }
 
-  HoverWidget hoverTile(String title) {
+  HoverWidget hoverTile(String title, Function onPress) {
     return HoverWidget(
       onHover: (a) {},
-      hoverChild: ListTile(
-        title: Text(
-          title,
-          style: TextStyle(color: KC.primary),
+      hoverChild: GestureDetector(
+        onTap: (() {
+          onPress();
+        }),
+        child: ListTile(
+          title: Text(
+            title,
+            style: TextStyle(color: KC.primary),
+          ),
         ),
       ),
       child: ListTile(
