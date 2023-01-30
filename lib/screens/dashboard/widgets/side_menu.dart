@@ -1,11 +1,12 @@
-import 'package:admin/screens/user/user_screen.dart';
-import 'package:admin/style/colors.dart';
-import 'package:flutter/material.dart';
-import 'package:hovering/hovering.dart';
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+
+import '../../../core/export/_exporter.dart';
 
 class SideMenu extends StatelessWidget {
+  final Function(int) setIndex;
   const SideMenu({
     Key? key,
+    required this.setIndex,
   }) : super(key: key);
 
   @override
@@ -20,25 +21,30 @@ class SideMenu extends StatelessWidget {
           DrawerListTile(
             icon: Icons.transform_outlined,
             title: "Home",
-            press: () {},
+            press: () {
+              setIndex(0);
+            },
           ),
           DrawerListTile(
             title: "Users",
             icon: Icons.group,
             press: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => UserScreen()));
+              setIndex(1);
             },
           ),
           DrawerListTile(
             icon: Icons.transform_outlined,
             title: "Client",
-            press: () {},
+            press: () {
+              setIndex(2);
+            },
           ),
           DrawerListTile(
             icon: Icons.task,
             title: "Scope",
-            press: () {},
+            press: () {
+              setIndex(3);
+            },
           ),
           ExpansionTile(
             initiallyExpanded: false,
@@ -85,7 +91,9 @@ class SideMenu extends StatelessWidget {
           DrawerListTile(
             icon: Icons.edit,
             title: "Tag",
-            press: () {},
+            press: () {
+              setIndex(4);
+            },
           ),
           SizedBox(height: 50),
           DrawerListTile(

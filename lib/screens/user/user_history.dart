@@ -1,11 +1,11 @@
 import 'package:admin/core/utils/responsive.dart';
-import 'package:admin/screens/home/widgets/header.dart';
+import 'package:admin/screens/dashboard/widgets/header.dart';
 import 'package:admin/screens/widgets/common_button.dart';
 import 'package:admin/style/colors.dart';
 import 'package:flutter/material.dart';
 
 import '../../style/paddings.dart';
-import '../home/widgets/user_table.dart';
+import '../dashboard/widgets/user_table.dart';
 
 class UserHistoryScreen extends StatelessWidget {
   @override

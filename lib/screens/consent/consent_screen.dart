@@ -3,8 +3,8 @@ import 'package:admin/screens/consent/widgets/consent_table.dart';
 import 'package:flutter/material.dart';
 
 import '../../style/paddings.dart';
-import '../home/widgets/header.dart';
-import '../home/widgets/user_table.dart';
+import '../dashboard/widgets/header.dart';
+import '../dashboard/widgets/user_table.dart';
 import '../widgets/consent_details.dart';
 
 class ConsentScreen extends StatelessWidget {

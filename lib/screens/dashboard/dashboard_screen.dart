@@ -1,11 +1,4 @@
-import 'package:admin/core/utils/responsive.dart';
-import 'package:flutter/material.dart';
-
-import '../../style/paddings.dart';
-import '../widgets/consent_details.dart';
-import 'widgets/header.dart';
-
-import 'widgets/user_table.dart';
+import '../../core/export/_exporter.dart';
 
 class DashboardScreen extends StatelessWidget {
   @override

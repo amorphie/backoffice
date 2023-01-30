@@ -58,12 +58,12 @@ class UserList extends StatelessWidget {
                       style: TextStyle(
                           color: Colors.black54, fontWeight: FontWeight.w500)),
                 ),
-                DataColumn(
-                  label: Text("İşlem",
-                      textAlign: TextAlign.end,
-                      style: TextStyle(
-                          color: Colors.black54, fontWeight: FontWeight.w500)),
-                ),
+                // DataColumn(
+                //   label: Text("İşlem",
+                //       textAlign: TextAlign.end,
+                //       style: TextStyle(
+                //           color: Colors.black54, fontWeight: FontWeight.w500)),
+                // ),
               ],
 
               rows: List.generate(
@@ -97,10 +97,10 @@ DataRow recentFileDataRow(UserModel fileInfo) {
       DataCell(Text(fileInfo.tags,
           style:
               TextStyle(color: Colors.black54, fontWeight: FontWeight.w400))),
-      DataCell(Icon(
-        fileInfo.islem,
-        color: Colors.black54,
-      ))
+      // DataCell(Icon(
+      //   fileInfo.islem,
+      //   color: Colors.black54,
+      // ))
     ],
   );
 }

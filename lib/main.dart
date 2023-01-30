@@ -1,5 +1,5 @@
 import 'package:admin/core/controllers/MenuController.dart';
-import 'package:admin/screens/home/homescreen.dart';
+import 'package:admin/screens/dashboard/homescreen.dart';
 import 'package:admin/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';

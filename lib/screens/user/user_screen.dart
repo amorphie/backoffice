@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../style/paddings.dart';
-import '../home/widgets/header.dart';
+import '../dashboard/widgets/header.dart';
 
 class UserScreen extends StatefulWidget {
   @override
