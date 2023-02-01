@@ -1,16 +1,14 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:admin/core/export/_exporter.dart';
 
-class ConsentCard extends StatelessWidget {
-  const ConsentCard({
+class HistoryCard extends StatelessWidget {
+  const HistoryCard({
     Key? key,
     required this.date,
-    required this.amountOfConsents,
-    required this.bankName,
+    required this.infoText,
   }) : super(key: key);
 
-  final String bankName, date;
-  final int amountOfConsents;
+  final String infoText, date;
 
   @override
   Widget build(BuildContext context) {
@@ -34,14 +32,14 @@ class ConsentCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        bankName,
+                        infoText,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                             color: Colors.black87, fontWeight: FontWeight.w600),
                       ),
                       Text(
-                        "$amountOfConsents Consent",
+                        "Content Text",
                         style: Theme.of(context)
                             .textTheme
                             .caption!

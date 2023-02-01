@@ -1,15 +1,15 @@
-import '../../../../core/export/_exporter.dart';
+import '../../../core/export/_exporter.dart';
 
-class UserDetails extends StatefulWidget {
-  const UserDetails({
+class WorkflowScreen extends StatefulWidget {
+  const WorkflowScreen({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<UserDetails> createState() => _UserDetailsState();
+  State<WorkflowScreen> createState() => _WorkflowScreenState();
 }
 
-class _UserDetailsState extends State<UserDetails>
+class _WorkflowScreenState extends State<WorkflowScreen>
     with TickerProviderStateMixin {
   late TabController _tabController;
 
@@ -45,15 +45,15 @@ class _UserDetailsState extends State<UserDetails>
                   icon: Text("History"),
                 ),
                 Tab(
-                  icon: Text("Tab"),
+                  icon: Text("Transactions"),
                 ),
               ],
             ),
           ),
           body: TabBarView(controller: _tabController, children: [
             ConsentTab(),
-            ConsentTab(),
-            ConsentTab(),
+            HistoryTab(),
+            TransactionTab(),
           ])),
     );
   }

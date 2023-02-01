@@ -1,7 +1,9 @@
+import 'package:admin/screens/dashboard/tabs/history/widgets/history_card.dart';
+
 import '../../../../core/export/_exporter.dart';
 
-class ConsentTab extends StatelessWidget {
-  const ConsentTab({
+class HistoryTab extends StatelessWidget {
+  const HistoryTab({
     Key? key,
   }) : super(key: key);
 
@@ -21,7 +23,7 @@ class ConsentTab extends StatelessWidget {
             Align(
               alignment: Alignment.center,
               child: Text(
-                "External Consents",
+                "History",
                 textAlign: TextAlign.left,
                 style: TextStyle(
                     color: Colors.black87,
@@ -32,29 +34,20 @@ class ConsentTab extends StatelessWidget {
             Expanded(
               child: ListView(
                 children: [
-                  ConsentCard(
-                    bankName: "Akbank",
-                    amountOfConsents: 1,
+                  HistoryCard(
+                    infoText: "Logged In",
                     date: "19.02.2021",
                   ),
-                  ConsentCard(
-                    bankName: "Garanti",
-                    amountOfConsents: 2,
+                  HistoryCard(
+                    infoText: "Logged In",
                     date: "19.02.2021",
                   ),
-                  ConsentCard(
-                    bankName: "Garanti",
-                    amountOfConsents: 2,
+                  HistoryCard(
+                    infoText: "Changed Tag",
                     date: "19.02.2021",
                   ),
-                  ConsentCard(
-                    bankName: "Garanti",
-                    amountOfConsents: 2,
-                    date: "19.02.2021",
-                  ),
-                  ConsentCard(
-                    bankName: "TEB",
-                    amountOfConsents: 1,
+                  HistoryCard(
+                    infoText: "Added New Consent",
                     date: "19.02.2021",
                   ),
                 ],

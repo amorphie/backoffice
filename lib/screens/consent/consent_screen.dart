@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../../style/paddings.dart';
 import '../dashboard/widgets/header.dart';
-import '../dashboard/tabs/consent/consent_details.dart';
+import '../dashboard/tabs/controller_screen.dart';
 
 class ConsentScreen extends StatelessWidget {
   @override
@@ -38,7 +38,7 @@ class ConsentScreen extends StatelessWidget {
                 if (!Responsive.isMobile(context))
                   Expanded(
                     flex: 2,
-                    child: UserDetails(),
+                    child: WorkflowScreen(),
                   ),
               ],
             )
