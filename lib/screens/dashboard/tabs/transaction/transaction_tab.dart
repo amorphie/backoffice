@@ -34,9 +34,9 @@ class TransactionTab extends StatelessWidget {
                 children: [
                   listItem(Colors.redAccent, Icons.arrow_circle_down_outlined,
                       "BURGAN", "Withdraw"),
-                  listItem(Colors.teal, Icons.arrow_circle_down_outlined,
+                  listItem(Colors.teal, Icons.arrow_circle_up_outlined,
                       "AKBANK", "Deposit"),
-                  listItem(Colors.teal, Icons.arrow_circle_down_outlined, "TEB",
+                  listItem(Colors.teal, Icons.arrow_circle_up_outlined, "TEB",
                       "Deposit"),
                   listItem(Colors.redAccent, Icons.arrow_circle_down_outlined,
                       "TEB", "Withdraw"),
