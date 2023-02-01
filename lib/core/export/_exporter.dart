@@ -7,6 +7,10 @@ export 'package:flutter/material.dart';
 export 'package:provider/provider.dart';
 export 'package:hovering/hovering.dart';
 
+//Models
+
+export 'package:admin/core/models/user.dart';
+
 //Screen
 
 export 'package:admin/screens/consent/consent_screen.dart';

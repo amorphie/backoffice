@@ -76,21 +76,3 @@ class _WorkflowScreenState extends State<WorkflowScreen>
     );
   }
 }
-
-
-  // Text(
-  //             "User Details",
-  //             style: TextStyle(
-  //               fontSize: 18,
-  //               color: Colors.black,
-  //               fontWeight: FontWeight.w500,
-  //             ),
-  //           ),
-
-  //           Text(
-  //             "Last login   03.01.2023",
-  //             textAlign: TextAlign.left,
-  //             style: TextStyle(color: Colors.black87, fontSize: 11),
-  //           ),
-
-// ConsentTab()

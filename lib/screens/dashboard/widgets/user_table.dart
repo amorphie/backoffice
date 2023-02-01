@@ -1,8 +1,8 @@
-import 'package:admin/core/models/user.dart';
-import 'package:data_table_2/data_table_2.dart';
-import 'package:flutter/material.dart';
+import 'dart:js';
 
-import '../../../style/paddings.dart';
+import 'package:data_table_2/data_table_2.dart';
+
+import '../../../core/export/_exporter.dart';
 
 class UserList extends StatelessWidget {
   const UserList({
@@ -68,7 +68,7 @@ class UserList extends StatelessWidget {
 
               rows: List.generate(
                 users.length,
-                (index) => recentFileDataRow(users[index]),
+                (index) => recentFileDataRow(context, users[index]),
               ),
             ),
           ),
@@ -78,7 +78,7 @@ class UserList extends StatelessWidget {
   }
 }
 
-DataRow recentFileDataRow(UserModel fileInfo) {
+DataRow recentFileDataRow(BuildContext context, UserModel fileInfo) {
   return DataRow(
     cells: [
       DataCell(
@@ -94,13 +94,61 @@ DataRow recentFileDataRow(UserModel fileInfo) {
           style:
               TextStyle(color: Colors.black54, fontWeight: FontWeight.w400))),
       DataCell(fileInfo.durum),
-      DataCell(Text(fileInfo.tags,
-          style:
-              TextStyle(color: Colors.black54, fontWeight: FontWeight.w400))),
-      // DataCell(Icon(
-      //   fileInfo.islem,
-      //   color: Colors.black54,
-      // ))
+      DataCell(
+        HoverWidget(
+          onHover: (a) {},
+          hoverChild: GestureDetector(
+            onTap: (() {
+              _tagPopUp(context);
+            }),
+            child: GestureDetector(
+                child: Text(fileInfo.tags,
+                    style: TextStyle(
+                        color: KC.primary, fontWeight: FontWeight.w400))),
+          ),
+          child: GestureDetector(
+              child: Text(fileInfo.tags,
+                  style: TextStyle(
+                      color: Colors.black54, fontWeight: FontWeight.w400))),
+        ),
+      ),
     ],
+  );
+}
+
+Future<void> _tagPopUp(BuildContext context) {
+  return showDialog<void>(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text('Edit User', style: TextStyle(color: Colors.black)),
+        content: const Text(
+            'Ozan Deniz Demirtaş\n'
+            'retail-customer, bank-staff\n',
+            style: TextStyle(color: Colors.black87, fontSize: 13)),
+        actions: <Widget>[
+          TextButton(
+            style: TextButton.styleFrom(
+              textStyle: Theme.of(context).textTheme.labelLarge,
+            ),
+            child: const Text('Save',
+                style: TextStyle(color: KC.secondary, fontSize: 13)),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+          TextButton(
+            style: TextButton.styleFrom(
+              textStyle: Theme.of(context).textTheme.labelLarge,
+            ),
+            child: const Text('Close',
+                style: TextStyle(color: Colors.redAccent, fontSize: 13)),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
+    },
   );
 }
