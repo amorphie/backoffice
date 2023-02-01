@@ -33,7 +33,7 @@ class _UserScreenState extends State<UserScreen> {
               SizedBox(
                 width: MediaQuery.of(context).size.width / 2,
                 child: CommonTextField(
-                  labelText: "T.C.",
+                  labelText: "ID",
                 ),
               ),
               SizedBox(height: 30),
@@ -41,9 +41,9 @@ class _UserScreenState extends State<UserScreen> {
                 width: MediaQuery.of(context).size.width / 2,
                 child: Row(
                   children: [
-                    Expanded(child: CommonTextField(labelText: "Ad")),
+                    Expanded(child: CommonTextField(labelText: "Name")),
                     SizedBox(width: 10),
-                    Expanded(child: CommonTextField(labelText: "Soyad"))
+                    Expanded(child: CommonTextField(labelText: "Surname"))
                   ],
                 ),
               ),
@@ -52,9 +52,9 @@ class _UserScreenState extends State<UserScreen> {
                 width: MediaQuery.of(context).size.width / 2,
                 child: Row(
                   children: [
-                    Expanded(child: CommonTextField(labelText: "Telefon")),
+                    Expanded(child: CommonTextField(labelText: "Phone")),
                     SizedBox(width: 10),
-                    Expanded(child: CommonTextField(labelText: "E-posta"))
+                    Expanded(child: CommonTextField(labelText: "E-mail"))
                   ],
                 ),
               ),

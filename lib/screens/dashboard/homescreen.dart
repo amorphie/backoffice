@@ -1,3 +1,5 @@
+import 'package:admin/screens/tag/tag_screen.dart';
+
 import '../../core/export/_exporter.dart';
 
 class MainScreen extends StatefulWidget {
@@ -12,7 +14,8 @@ class _MainScreenState extends State<MainScreen> {
     DashboardScreen(),
     UserScreen(),
     UserHistoryScreen(),
-    ConsentScreen()
+    ConsentScreen(),
+    TagScreen(),
   ];
 
   @override

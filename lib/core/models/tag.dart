@@ -1,53 +1,68 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'dart:convert';
+import 'package:flutter/material.dart';
 
-class UserTags {
-  int id;
-  String tag;
-  UserTags({
-    required this.id,
-    required this.tag,
+class TagModel {
+  final String isim, soyIsim;
+  final Icon durum;
+  final String tags;
+  final IconData edit;
+
+  TagModel({
+    required this.isim,
+    required this.soyIsim,
+    required this.tags,
+    required this.durum,
+    required this.edit,
   });
-
-  UserTags copyWith({
-    int? id,
-    String? tag,
-  }) {
-    return UserTags(
-      id: id ?? this.id,
-      tag: tag ?? this.tag,
-    );
-  }
-
-  Map<String, dynamic> toMap() {
-    return <String, dynamic>{
-      'id': id,
-      'tag': tag,
-    };
-  }
-
-  factory UserTags.fromMap(Map<String, dynamic> map) {
-    return UserTags(
-      id: map['id'] as int,
-      tag: map['tag'] as String,
-    );
-  }
-
-  String toJson() => json.encode(toMap());
-
-  factory UserTags.fromJson(String source) =>
-      UserTags.fromMap(json.decode(source) as Map<String, dynamic>);
-
-  @override
-  String toString() => 'UserTags(id: $id, tag: $tag)';
-
-  @override
-  bool operator ==(covariant UserTags other) {
-    if (identical(this, other)) return true;
-
-    return other.id == id && other.tag == tag;
-  }
-
-  @override
-  int get hashCode => id.hashCode ^ tag.hashCode;
 }
+
+List tags = [
+  TagModel(
+    isim: "Ozan Deniz",
+    soyIsim: "Demirtaş",
+    durum: Icon(Icons.check_circle, color: Colors.teal),
+    tags: "retail-customer, bank-staff",
+    edit: Icons.menu,
+  ),
+  TagModel(
+    isim: "Ertuğrul",
+    soyIsim: "Dağlı",
+    durum: Icon(Icons.cancel, color: Colors.redAccent),
+    tags: "retail-customer",
+    edit: Icons.menu,
+  ),
+  TagModel(
+    isim: "Gökhan",
+    soyIsim: "Basut",
+    durum: Icon(Icons.check_circle, color: Colors.teal),
+    tags: "retail-customer",
+    edit: Icons.menu,
+  ),
+  TagModel(
+    isim: "İsmail",
+    soyIsim: "Türüt",
+    durum: Icon(Icons.cancel, color: Colors.redAccent),
+    tags: "bank-staff",
+    edit: Icons.menu,
+  ),
+  TagModel(
+    isim: "Daft",
+    soyIsim: "Punk",
+    durum: Icon(Icons.cancel, color: Colors.redAccent),
+    tags: "bank-staff",
+    edit: Icons.menu,
+  ),
+  TagModel(
+    isim: "Linkin",
+    soyIsim: "Park",
+    durum: Icon(Icons.check_circle, color: Colors.teal),
+    tags: "potential-customer, bank-staff",
+    edit: Icons.menu,
+  ),
+  TagModel(
+    isim: "Orhan",
+    soyIsim: "Gencebay",
+    durum: Icon(Icons.cancel, color: Colors.redAccent),
+    tags: "potential-customer",
+    edit: Icons.menu,
+  ),
+];

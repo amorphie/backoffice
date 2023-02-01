@@ -1,11 +1,11 @@
-import 'package:admin/core/models/user.dart';
+import 'package:admin/core/models/tag.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 
 import '../../../style/paddings.dart';
 
-class UserList extends StatelessWidget {
-  const UserList({
+class TagList extends StatelessWidget {
+  const TagList({
     Key? key,
   }) : super(key: key);
 
@@ -20,7 +20,7 @@ class UserList extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("Users",
+          Text("Tags",
               style:
                   TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
           SizedBox(
@@ -34,41 +34,36 @@ class UserList extends StatelessWidget {
               minWidth: 600,
               columns: [
                 DataColumn(
-                  label: Text("ID",
+                  label: Text("Ad",
                       style: TextStyle(
                           color: Colors.black54, fontWeight: FontWeight.w500)),
                 ),
                 DataColumn(
-                  label: Text("Name",
+                  label: Text("Soyad",
                       style: TextStyle(
                           color: Colors.black54, fontWeight: FontWeight.w500)),
                 ),
-                DataColumn(
-                  label: Text("Surname",
-                      style: TextStyle(
-                          color: Colors.black54, fontWeight: FontWeight.w500)),
-                ),
-                DataColumn(
-                  label: Text("Case",
-                      style: TextStyle(
-                          color: Colors.black54, fontWeight: FontWeight.w500)),
-                ),
+                // DataColumn(
+                //   label: Text("Durum",
+                //       style: TextStyle(
+                //           color: Colors.black54, fontWeight: FontWeight.w500)),
+                // ),
                 DataColumn(
                   label: Text("Tags",
                       style: TextStyle(
                           color: Colors.black54, fontWeight: FontWeight.w500)),
                 ),
-                // DataColumn(
-                //   label: Text("İşlem",
-                //       textAlign: TextAlign.end,
-                //       style: TextStyle(
-                //           color: Colors.black54, fontWeight: FontWeight.w500)),
-                // ),
+                DataColumn(
+                  label: Text("Edit",
+                      textAlign: TextAlign.end,
+                      style: TextStyle(
+                          color: Colors.black54, fontWeight: FontWeight.w500)),
+                ),
               ],
 
               rows: List.generate(
-                users.length,
-                (index) => recentFileDataRow(users[index]),
+                tags.length,
+                (index) => recentFileDataRow(tags[index]),
               ),
             ),
           ),
@@ -78,29 +73,23 @@ class UserList extends StatelessWidget {
   }
 }
 
-DataRow recentFileDataRow(UserModel fileInfo) {
+DataRow recentFileDataRow(TagModel model) {
   return DataRow(
     cells: [
-      DataCell(
-        Text(fileInfo.tc,
-            textAlign: TextAlign.start,
-            style:
-                TextStyle(color: Colors.black54, fontWeight: FontWeight.w400)),
-      ),
-      DataCell(Text(fileInfo.isim,
+      DataCell(Text(model.isim,
           style:
               TextStyle(color: Colors.black54, fontWeight: FontWeight.w400))),
-      DataCell(Text(fileInfo.soyIsim,
+      DataCell(Text(model.soyIsim,
           style:
               TextStyle(color: Colors.black54, fontWeight: FontWeight.w400))),
-      DataCell(fileInfo.durum),
-      DataCell(Text(fileInfo.tags,
+      // DataCell(fileInfo.durum),
+      DataCell(Text(model.tags,
           style:
               TextStyle(color: Colors.black54, fontWeight: FontWeight.w400))),
-      // DataCell(Icon(
-      //   fileInfo.islem,
-      //   color: Colors.black54,
-      // ))
+      DataCell(Icon(
+        model.edit,
+        color: Colors.black54,
+      ))
     ],
   );
 }

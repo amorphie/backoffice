@@ -1,7 +1,6 @@
 //Material
 
 export 'package:flutter/material.dart';
-
 //Packages
 
 export 'package:provider/provider.dart';
@@ -32,3 +31,5 @@ export 'package:admin/screens/dashboard/widgets/header.dart';
 export 'package:admin/screens/dashboard/widgets/user_table.dart';
 export 'package:admin/screens/widgets/consent_details.dart';
 export 'package:admin/screens/dashboard/widgets/side_menu.dart';
+export 'package:admin/screens/widgets/common_button.dart';
+export 'package:admin/screens/widgets/common_textfield.dart';

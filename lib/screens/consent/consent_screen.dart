@@ -39,7 +39,7 @@ class ConsentScreen extends StatelessWidget {
                 if (!Responsive.isMobile(context))
                   Expanded(
                     flex: 2,
-                    child: StarageDetails(),
+                    child: UserDetails(),
                   ),
               ],
             )

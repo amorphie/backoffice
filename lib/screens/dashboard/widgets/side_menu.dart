@@ -63,10 +63,11 @@ class SideMenu extends StatelessWidget {
               ],
             ),
             children: <Widget>[
-              hoverTile('Consents', () {
+              hoverTile('Local', () {
                 setIndex(3);
               }),
-              hoverTile('History', () {}),
+              hoverTile('Remote', () {}),
+              hoverTile('API Key', () {}),
             ],
           ),
           DrawerListTile(
@@ -83,7 +84,6 @@ class SideMenu extends StatelessWidget {
               setIndex(3);
             },
           ),
-
           ExpansionTile(
             textColor: Colors.white54,
             iconColor: Colors.white,
@@ -105,14 +105,27 @@ class SideMenu extends StatelessWidget {
               hoverTile('Privilages', () {}),
             ],
           ),
-
-          DrawerListTile(
-            icon: Icons.edit,
-            title: "Tag",
-            press: () {
-              setIndex(4);
-            },
+          ExpansionTile(
+            textColor: Colors.white54,
+            iconColor: Colors.white,
+            initiallyExpanded: false,
+            title: Row(
+              children: [
+                Icon(
+                  Icons.circle,
+                  color: Colors.white,
+                ),
+                SizedBox(width: 10),
+                Text("Admin"),
+              ],
+            ),
+            children: <Widget>[
+              hoverTile('Tag', () {
+                setIndex(4);
+              }),
+            ],
           ),
+
           SizedBox(height: 50),
           DrawerListTile(
             icon: Icons.exit_to_app,

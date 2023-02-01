@@ -15,7 +15,7 @@ class DashboardScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Expanded(
-                  flex: 5,
+                  flex: 2,
                   child: Column(
                     children: [
                       SizedBox(height: 10),
@@ -32,7 +32,7 @@ class DashboardScreen extends StatelessWidget {
                 if (!Responsive.isMobile(context))
                   Expanded(
                     flex: 2,
-                    child: StarageDetails(),
+                    child: UserDetails(),
                   ),
               ],
             )

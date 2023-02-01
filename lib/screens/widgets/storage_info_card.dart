@@ -1,15 +1,15 @@
-import 'package:admin/style/colors.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:admin/core/export/_exporter.dart';
 
 class ConsentCard extends StatelessWidget {
   const ConsentCard({
     Key? key,
-    required this.bankName,
+    required this.date,
     required this.amountOfConsents,
+    required this.bankName,
   }) : super(key: key);
 
-  final String bankName;
+  final String bankName, date;
   final int amountOfConsents;
 
   @override
@@ -23,30 +23,38 @@ class ConsentCard extends StatelessWidget {
           Radius.circular(14),
         ),
       ),
-      child: Row(
+      child: Column(
         children: [
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 14),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    bankName,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(color: Colors.black87),
+          Row(
+            children: [
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 14),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        bankName,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(color: Colors.black87),
+                      ),
+                      Text(
+                        "$amountOfConsents Consent",
+                        style: Theme.of(context)
+                            .textTheme
+                            .caption!
+                            .copyWith(color: Colors.black87),
+                      ),
+                    ],
                   ),
-                  Text(
-                    "$amountOfConsents Consent",
-                    style: Theme.of(context)
-                        .textTheme
-                        .caption!
-                        .copyWith(color: Colors.black87),
-                  ),
-                ],
+                ),
               ),
-            ),
+              Text(
+                date,
+                style: TextStyle(color: Colors.black87, fontSize: 12),
+              )
+            ],
           ),
         ],
       ),

@@ -22,7 +22,7 @@ List users = [
     isim: "Ozan Deniz",
     soyIsim: "Demirtaş",
     durum: Icon(Icons.check_circle, color: Colors.teal),
-    tags: "customer, staff",
+    tags: "retail-customer, bank-staff",
     islem: Icons.edit,
   ),
   UserModel(
@@ -30,7 +30,7 @@ List users = [
     isim: "Ertuğrul",
     soyIsim: "Dağlı",
     durum: Icon(Icons.cancel, color: Colors.redAccent),
-    tags: "customer",
+    tags: "retail-customer",
     islem: Icons.edit,
   ),
   UserModel(
@@ -38,7 +38,7 @@ List users = [
     isim: "Gökhan",
     soyIsim: "Basut",
     durum: Icon(Icons.check_circle, color: Colors.teal),
-    tags: "staff",
+    tags: "retail-customer",
     islem: Icons.edit,
   ),
   UserModel(
@@ -46,7 +46,7 @@ List users = [
     isim: "İsmail",
     soyIsim: "Türüt",
     durum: Icon(Icons.cancel, color: Colors.redAccent),
-    tags: "user",
+    tags: "bank-staff",
     islem: Icons.edit,
   ),
   UserModel(
@@ -54,7 +54,7 @@ List users = [
     isim: "Daft",
     soyIsim: "Punk",
     durum: Icon(Icons.cancel, color: Colors.redAccent),
-    tags: "admin",
+    tags: "bank-staff",
     islem: Icons.edit,
   ),
   UserModel(
@@ -62,7 +62,7 @@ List users = [
     isim: "Linkin",
     soyIsim: "Park",
     durum: Icon(Icons.check_circle, color: Colors.teal),
-    tags: "customer, staff",
+    tags: "potential-customer, bank-staff",
     islem: Icons.edit,
   ),
   UserModel(
@@ -70,7 +70,7 @@ List users = [
     isim: "Orhan",
     soyIsim: "Gencebay",
     durum: Icon(Icons.cancel, color: Colors.redAccent),
-    tags: "customer",
+    tags: "potential-customer",
     islem: Icons.edit,
   ),
 ];
