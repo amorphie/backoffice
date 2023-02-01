@@ -20,34 +20,12 @@ class SideMenu extends StatelessWidget {
           SizedBox(height: 120),
           DrawerListTile(
             icon: Icons.transform_outlined,
-            title: "Home",
+            title: "Users",
             press: () {
               setIndex(0);
             },
           ),
-          ExpansionTile(
-            initiallyExpanded: false,
-            textColor: Colors.white54,
-            iconColor: Colors.white,
-            title: Row(
-              children: [
-                Icon(
-                  Icons.edit,
-                  color: Colors.white,
-                ),
-                SizedBox(width: 10),
-                Text("Users"),
-              ],
-            ),
-            children: <Widget>[
-              hoverTile('Create', () {
-                setIndex(1);
-              }),
-              hoverTile('History', () {
-                setIndex(2);
-              }),
-            ],
-          ),
+
           ExpansionTile(
             textColor: Colors.white54,
             iconColor: Colors.white,
@@ -123,6 +101,8 @@ class SideMenu extends StatelessWidget {
               hoverTile('Tag', () {
                 setIndex(4);
               }),
+              hoverTile('Domain', () {}),
+              hoverTile('Entity List', () {}),
             ],
           ),
 

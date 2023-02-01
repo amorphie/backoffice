@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:data_table_2/data_table_2.dart';
 
 import '../../../core/export/_exporter.dart';
@@ -34,7 +32,7 @@ class UserList extends StatelessWidget {
               minWidth: 600,
               columns: [
                 DataColumn(
-                  label: Text("ID",
+                  label: Text("Reference",
                       style: TextStyle(
                           color: Colors.black54, fontWeight: FontWeight.w500)),
                 ),
@@ -49,7 +47,7 @@ class UserList extends StatelessWidget {
                           color: Colors.black54, fontWeight: FontWeight.w500)),
                 ),
                 DataColumn(
-                  label: Text("Case",
+                  label: Text("Status",
                       style: TextStyle(
                           color: Colors.black54, fontWeight: FontWeight.w500)),
                 ),
@@ -93,7 +91,7 @@ DataRow recentFileDataRow(BuildContext context, UserModel fileInfo) {
       DataCell(Text(fileInfo.soyIsim,
           style:
               TextStyle(color: Colors.black54, fontWeight: FontWeight.w400))),
-      DataCell(fileInfo.durum),
+      DataCell(fileInfo.status),
       DataCell(
         HoverWidget(
           onHover: (a) {},

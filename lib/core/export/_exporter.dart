@@ -15,9 +15,10 @@ export 'package:admin/core/models/user.dart';
 
 export 'package:admin/screens/consent/consent_screen.dart';
 export 'package:admin/screens/dashboard/dashboard_screen.dart';
-export 'package:admin/screens/user/user_history.dart';
-export 'package:admin/screens/user/user_screen.dart';
 export 'package:admin/screens/dashboard/tabs/consent/consent_tab.dart';
+export 'package:admin/screens/user/user_edit_screen.dart';
+export 'package:admin/screens/user/user_add_screen.dart';
+export 'package:admin/screens/user/user_history.dart';
 
 //Pages
 

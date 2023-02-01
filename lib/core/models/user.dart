@@ -1,9 +1,10 @@
+import 'package:admin/core/export/_exporter.dart';
 import 'package:flutter/material.dart';
 
 class UserModel {
   final String tc, isim, soyIsim;
   final IconData islem;
-  final Icon durum;
+  final Icon status;
   final String tags;
 
   UserModel({
@@ -12,7 +13,7 @@ class UserModel {
     required this.soyIsim,
     required this.islem,
     required this.tags,
-    required this.durum,
+    required this.status,
   });
 }
 
@@ -21,7 +22,7 @@ List users = [
     tc: "000000000 000000 0000 00000",
     isim: "Ozan Deniz",
     soyIsim: "Demirtaş",
-    durum: Icon(Icons.check_circle, color: Colors.teal),
+    status: Icon(Icons.check_circle, color: KC.primary),
     tags: "retail-customer, bank-staff",
     islem: Icons.edit,
   ),
@@ -29,7 +30,7 @@ List users = [
     tc: "000000000 000000 0000 00000",
     isim: "Ertuğrul",
     soyIsim: "Dağlı",
-    durum: Icon(Icons.cancel, color: Colors.redAccent),
+    status: Icon(Icons.timer_sharp, color: Colors.deepOrangeAccent),
     tags: "retail-customer",
     islem: Icons.edit,
   ),
@@ -37,7 +38,7 @@ List users = [
     tc: "000000000 000000 0000 00000",
     isim: "Gökhan",
     soyIsim: "Basut",
-    durum: Icon(Icons.check_circle, color: Colors.teal),
+    status: Icon(Icons.check_circle, color: KC.primary),
     tags: "retail-customer",
     islem: Icons.edit,
   ),
@@ -45,7 +46,7 @@ List users = [
     tc: "000000000 000000 0000 00000",
     isim: "İsmail",
     soyIsim: "Türüt",
-    durum: Icon(Icons.cancel, color: Colors.redAccent),
+    status: Icon(Icons.timer_sharp, color: Colors.deepOrangeAccent),
     tags: "bank-staff",
     islem: Icons.edit,
   ),
@@ -53,7 +54,7 @@ List users = [
     tc: "000000000 000000 0000 00000",
     isim: "Daft",
     soyIsim: "Punk",
-    durum: Icon(Icons.cancel, color: Colors.redAccent),
+    status: Icon(Icons.cancel, color: Colors.redAccent),
     tags: "bank-staff",
     islem: Icons.edit,
   ),
@@ -61,7 +62,7 @@ List users = [
     tc: "000000000 000000 0000 00000",
     isim: "Linkin",
     soyIsim: "Park",
-    durum: Icon(Icons.check_circle, color: Colors.teal),
+    status: Icon(Icons.check_circle, color: KC.primary),
     tags: "potential-customer, bank-staff",
     islem: Icons.edit,
   ),
@@ -69,7 +70,7 @@ List users = [
     tc: "000000000 000000 0000 00000",
     isim: "Orhan",
     soyIsim: "Gencebay",
-    durum: Icon(Icons.cancel, color: Colors.redAccent),
+    status: Icon(Icons.cancel, color: Colors.redAccent),
     tags: "potential-customer",
     islem: Icons.edit,
   ),

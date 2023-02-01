@@ -12,7 +12,7 @@ class _MainScreenState extends State<MainScreen> {
 
   final page = [
     DashboardScreen(),
-    UserScreen(),
+    UserAddScreen(),
     UserHistoryScreen(),
     ConsentScreen(),
     TagScreen(),

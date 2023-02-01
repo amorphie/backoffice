@@ -23,7 +23,7 @@ class HistoryTab extends StatelessWidget {
             Align(
               alignment: Alignment.center,
               child: Text(
-                "History",
+                "Workflow",
                 textAlign: TextAlign.left,
                 style: TextStyle(
                     color: Colors.black87,
@@ -35,11 +35,7 @@ class HistoryTab extends StatelessWidget {
               child: ListView(
                 children: [
                   HistoryCard(
-                    infoText: "Logged In",
-                    date: "19.02.2021",
-                  ),
-                  HistoryCard(
-                    infoText: "Logged In",
+                    infoText: "Reset Password",
                     date: "19.02.2021",
                   ),
                   HistoryCard(
@@ -48,6 +44,10 @@ class HistoryTab extends StatelessWidget {
                   ),
                   HistoryCard(
                     infoText: "Added New Consent",
+                    date: "19.02.2021",
+                  ),
+                  HistoryCard(
+                    infoText: "Status Changed to Active",
                     date: "19.02.2021",
                   ),
                 ],

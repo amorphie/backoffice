@@ -21,7 +21,7 @@ class ConsentTab extends StatelessWidget {
             Align(
               alignment: Alignment.center,
               child: Text(
-                "External Consents",
+                "Consents",
                 textAlign: TextAlign.left,
                 style: TextStyle(
                     color: Colors.black87,
@@ -33,29 +33,34 @@ class ConsentTab extends StatelessWidget {
               child: ListView(
                 children: [
                   ConsentCard(
+                    bankName: "Burgan",
+                    amountOfConsents: 1,
+                    date: "19.02.2021",
+                    consentIcon: Icons.home_rounded,
+                  ),
+                  ConsentCard(
                     bankName: "Akbank",
                     amountOfConsents: 1,
                     date: "19.02.2021",
+                    consentIcon: Icons.extension_rounded,
                   ),
                   ConsentCard(
                     bankName: "Garanti",
                     amountOfConsents: 2,
                     date: "19.02.2021",
+                    consentIcon: Icons.extension_rounded,
                   ),
                   ConsentCard(
-                    bankName: "Garanti",
-                    amountOfConsents: 2,
+                    bankName: "Burgan",
+                    amountOfConsents: 1,
                     date: "19.02.2021",
-                  ),
-                  ConsentCard(
-                    bankName: "Garanti",
-                    amountOfConsents: 2,
-                    date: "19.02.2021",
+                    consentIcon: Icons.home_rounded,
                   ),
                   ConsentCard(
                     bankName: "TEB",
                     amountOfConsents: 1,
                     date: "19.02.2021",
+                    consentIcon: Icons.extension_rounded,
                   ),
                 ],
               ),

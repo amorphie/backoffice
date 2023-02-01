@@ -7,10 +7,12 @@ class ConsentCard extends StatelessWidget {
     required this.date,
     required this.amountOfConsents,
     required this.bankName,
+    required this.consentIcon,
   }) : super(key: key);
 
   final String bankName, date;
   final int amountOfConsents;
+  final IconData consentIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +29,10 @@ class ConsentCard extends StatelessWidget {
         children: [
           Row(
             children: [
+              Icon(
+                consentIcon,
+                color: KC.primary,
+              ),
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 14),

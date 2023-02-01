@@ -22,7 +22,7 @@ class _WorkflowScreenState extends State<WorkflowScreen>
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 10.0),
+      padding: const EdgeInsets.only(top: 5.0),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(10.0),
         child: Container(
@@ -31,18 +31,44 @@ class _WorkflowScreenState extends State<WorkflowScreen>
           child: Scaffold(
               backgroundColor: KC.background,
               appBar: AppBar(
+                toolbarHeight: 90,
                 backgroundColor: KC.secondary,
                 elevation: 1,
                 title: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      "Ozan Deniz Demirtaş",
-                      textAlign: TextAlign.left,
-                      style: TextStyle(color: Colors.white, fontSize: 14),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            Icon(Icons.check_circle, color: Colors.white),
+                            SizedBox(width: 10),
+                            Text(
+                              "Ozan Deniz Demirtaş",
+                              textAlign: TextAlign.left,
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 14),
+                            ),
+                          ],
+                        ),
+                        IconButton(
+                            onPressed: () {
+                              _editUser(context);
+                            },
+                            icon: Icon(Icons.edit))
+                      ],
                     ),
                     Text(
-                      "retail-customer, bank-staff",
+                      "Tags : retail-customer, bank-staff",
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                          color: Colors.white60,
+                          fontSize: 11,
+                          fontWeight: FontWeight.w400),
+                    ),
+                    Text(
+                      "Status : Active",
                       textAlign: TextAlign.left,
                       style: TextStyle(
                           color: Colors.white60,
@@ -58,7 +84,7 @@ class _WorkflowScreenState extends State<WorkflowScreen>
                       icon: Text("Consents"),
                     ),
                     Tab(
-                      icon: Text("History"),
+                      icon: Text("Workflow"),
                     ),
                     Tab(
                       icon: Text("Transactions"),
@@ -75,4 +101,25 @@ class _WorkflowScreenState extends State<WorkflowScreen>
       ),
     );
   }
+}
+
+Future<void> _editUser(BuildContext context) async {
+  return showDialog<void>(
+    context: context,
+    barrierDismissible: true,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        contentPadding: EdgeInsets.zero,
+        titlePadding: EdgeInsets.zero,
+        buttonPadding: EdgeInsets.zero,
+        iconPadding: EdgeInsets.zero,
+        actionsPadding: EdgeInsets.zero,
+        insetPadding: EdgeInsets.zero,
+        title: const Text('AlertDialog Title'),
+        content: SizedBox(
+            width: MediaQuery.of(context).size.width / 2,
+            child: UserEditScreen()),
+      );
+    },
+  );
 }
