@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../../style/paddings.dart';
 import '../dashboard/widgets/header.dart';
-import '../dashboard/widgets/user_table.dart';
-import '../widgets/consent_details.dart';
+import '../dashboard/tabs/consent/consent_details.dart';
 
 class ConsentScreen extends StatelessWidget {
   @override
