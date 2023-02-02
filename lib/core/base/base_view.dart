@@ -1,7 +1,7 @@
 import 'package:admin/core/controllers/app_ccontroller.dart';
 import 'package:get/get.dart';
 
-import '../export/_exporter.dart';
+import '../export/_.dart';
 
 class BaseView extends StatefulWidget {
   final Widget Function(BuildContext context, AppController c) builder;

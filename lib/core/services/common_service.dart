@@ -1,3 +1,3 @@
-import '../export/_exporter.dart';
+import '../export/_.dart';
 
 class CommonServices implements BaseServices {}

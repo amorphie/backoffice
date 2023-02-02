@@ -1,4 +1,4 @@
-import '../../../../core/export/_exporter.dart';
+import '../../../../core/export/_.dart';
 
 class TransactionTab extends StatelessWidget {
   const TransactionTab({

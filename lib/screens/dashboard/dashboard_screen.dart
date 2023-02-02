@@ -1,6 +1,6 @@
 import 'package:admin/screens/user/user_edit_screen.dart';
 
-import '../../core/export/_exporter.dart';
+import '../../core/export/_.dart';
 
 class DashboardScreen extends StatelessWidget {
   @override

@@ -1,5 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:admin/core/export/_exporter.dart';
+import 'package:admin/core/export/_.dart';
 
 class HistoryCard extends StatelessWidget {
   const HistoryCard({

@@ -1,6 +1,6 @@
 import 'package:admin/screens/tag/tag_screen.dart';
 
-import '../../core/export/_exporter.dart';
+import '../../core/export/_.dart';
 
 class MainScreen extends StatefulWidget {
   @override

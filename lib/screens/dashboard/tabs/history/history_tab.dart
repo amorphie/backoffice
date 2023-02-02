@@ -1,6 +1,6 @@
 import 'package:admin/screens/dashboard/tabs/history/widgets/history_card.dart';
 
-import '../../../../core/export/_exporter.dart';
+import '../../../../core/export/_.dart';
 
 class HistoryTab extends StatelessWidget {
   const HistoryTab({

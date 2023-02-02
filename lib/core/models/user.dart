@@ -1,4 +1,4 @@
-import 'package:admin/core/export/_exporter.dart';
+import 'package:admin/core/export/_.dart';
 import 'package:flutter/material.dart';
 
 class UserModel {

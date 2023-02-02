@@ -1,6 +1,6 @@
 import 'package:data_table_2/data_table_2.dart';
 
-import '../../../core/export/_exporter.dart';
+import '../../../core/export/_.dart';
 
 class UserList extends StatelessWidget {
   const UserList({

@@ -6,7 +6,8 @@ export 'package:flutter/material.dart';
 
 export 'package:provider/provider.dart';
 export 'package:hovering/hovering.dart';
-
+export 'package:provider/provider.dart';
+export 'package:google_fonts/google_fonts.dart';
 //Models
 
 export 'package:admin/core/models/user.dart';
@@ -19,6 +20,7 @@ export 'package:admin/screens/dashboard/tabs/consent/consent_tab.dart';
 export 'package:admin/screens/user/user_edit_screen.dart';
 export 'package:admin/screens/user/user_add_screen.dart';
 export 'package:admin/screens/user/user_history.dart';
+export 'package:admin/screens/dashboard/homescreen.dart';
 
 //Pages
 
