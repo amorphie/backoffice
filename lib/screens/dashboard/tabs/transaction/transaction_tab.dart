@@ -1,3 +1,5 @@
+import 'package:admin/screens/dashboard/tabs/transaction/widgets/transaction_card.dart';
+
 import '../../../../core/export/_.dart';
 
 class TransactionTab extends StatelessWidget {
@@ -32,63 +34,18 @@ class TransactionTab extends StatelessWidget {
             Expanded(
               child: ListView(
                 children: [
-                  listItem(Colors.redAccent, Icons.arrow_circle_down_outlined,
-                      "BURGAN", "Withdraw"),
-                  listItem(Colors.teal, Icons.arrow_circle_up_outlined,
-                      "AKBANK", "Deposit"),
-                  listItem(Colors.teal, Icons.arrow_circle_up_outlined, "TEB",
-                      "Deposit"),
-                  listItem(Colors.redAccent, Icons.arrow_circle_down_outlined,
-                      "TEB", "Withdraw"),
-                  listItem(Colors.teal, Icons.arrow_circle_up_outlined,
-                      "Garanti", "Deposit"),
+                  TransactionCard(
+                      cardColor: Colors.redAccent, title: "Withdraw"),
+                  TransactionCard(cardColor: Colors.green, title: "Income"),
+                  TransactionCard(cardColor: Colors.green, title: "Income"),
+                  TransactionCard(
+                      cardColor: Colors.redAccent, title: "Withdraw"),
                 ],
               ),
             ),
           ],
         ),
       ),
-    );
-  }
-
-  ExpansionTile listItem(
-      Color color, IconData icon, String bank, String process) {
-    return ExpansionTile(
-      initiallyExpanded: false,
-      textColor: Colors.black54,
-      iconColor: Colors.black54,
-      collapsedTextColor: Colors.black87,
-      collapsedIconColor: Colors.black87,
-      title: Row(
-        children: [
-          Icon(
-            icon,
-            color: color,
-          ),
-          SizedBox(width: 10),
-          Text(process),
-        ],
-      ),
-      children: <Widget>[
-        HoverWidget(
-          onHover: (a) {},
-          hoverChild: GestureDetector(
-            onTap: (() {}),
-            child: ListTile(
-              title: Text(
-                "19.05.2022",
-                style: TextStyle(color: KC.primary),
-              ),
-            ),
-          ),
-          child: ListTile(
-            title: Text(
-              bank,
-              style: TextStyle(color: Colors.black87),
-            ),
-          ),
-        ),
-      ],
     );
   }
 }
