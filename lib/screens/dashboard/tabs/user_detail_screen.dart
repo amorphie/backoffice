@@ -1,22 +1,25 @@
+import 'package:admin/screens/dashboard/tabs/history/history_tab.dart';
+import 'package:admin/screens/dashboard/tabs/token/token_tab.dart';
+
 import '../../../core/export/_.dart';
 
-class WorkflowScreen extends StatefulWidget {
-  const WorkflowScreen({
+class UserDetailScreen extends StatefulWidget {
+  const UserDetailScreen({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<WorkflowScreen> createState() => _WorkflowScreenState();
+  State<UserDetailScreen> createState() => _UserDetailScreenState();
 }
 
-class _WorkflowScreenState extends State<WorkflowScreen>
+class _UserDetailScreenState extends State<UserDetailScreen>
     with TickerProviderStateMixin {
   late TabController _tabController;
 
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 3, vsync: this);
+    _tabController = TabController(length: 5, vsync: this);
   }
 
   @override
@@ -38,25 +41,15 @@ class _WorkflowScreenState extends State<WorkflowScreen>
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Row(
-                          children: [
-                            Icon(Icons.check_circle, color: Colors.white),
-                            SizedBox(width: 10),
-                            Text(
-                              "Ozan Deniz Demirtaş",
-                              textAlign: TextAlign.left,
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 14),
-                            ),
-                          ],
+                        Icon(Icons.check_circle, color: Colors.white),
+                        SizedBox(width: 10),
+                        Text(
+                          "Ozan Deniz Demirtaş",
+                          textAlign: TextAlign.left,
+                          style: TextStyle(color: Colors.white, fontSize: 14),
                         ),
-                        IconButton(
-                            onPressed: () {
-                              _editUser(context);
-                            },
-                            icon: Icon(Icons.edit))
                       ],
                     ),
                     Text(
@@ -89,13 +82,21 @@ class _WorkflowScreenState extends State<WorkflowScreen>
                     Tab(
                       icon: Text("Transactions"),
                     ),
+                    Tab(
+                      icon: Text("History"),
+                    ),
+                    Tab(
+                      icon: Text("Token"),
+                    ),
                   ],
                 ),
               ),
               body: TabBarView(controller: _tabController, children: [
                 ConsentTab(),
-                HistoryTab(),
+                WorkflowTab(),
                 TransactionTab(),
+                HistoryTab(),
+                TokenTab(),
               ])),
         ),
       ),

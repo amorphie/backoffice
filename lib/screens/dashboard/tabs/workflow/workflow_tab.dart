@@ -1,9 +1,9 @@
-import 'package:admin/screens/dashboard/tabs/history/widgets/history_card.dart';
+import 'package:admin/screens/dashboard/tabs/workflow/widgets/workflow_card.dart';
 
 import '../../../../core/export/_.dart';
 
-class HistoryTab extends StatelessWidget {
-  const HistoryTab({
+class WorkflowTab extends StatelessWidget {
+  const WorkflowTab({
     Key? key,
   }) : super(key: key);
 
@@ -23,7 +23,7 @@ class HistoryTab extends StatelessWidget {
             Align(
               alignment: Alignment.center,
               child: Text(
-                "History",
+                "Workflow",
                 textAlign: TextAlign.left,
                 style: TextStyle(
                     color: Colors.black87,
@@ -34,22 +34,21 @@ class HistoryTab extends StatelessWidget {
             Expanded(
               child: ListView(
                 children: [
-                  HistoryCard(
-                    title: "FlowRetailLoan.LoanApply Başlangıç -> Bitiş",
-                    subtitle: "EBT/U05151 31/01/2023 12:21",
+                  WorkflowCard(
+                    infoText: "Reset Password",
+                    date: "19.02.2021",
                   ),
-                  HistoryCard(
-                    title: "FlowRetailLoan.AutoSmsOtp Başvuru -> Smsotp",
-                    subtitle: "EBT/U05151 14/05/2022 13:13",
+                  WorkflowCard(
+                    infoText: "Changed Tag",
+                    date: "19.02.2021",
                   ),
-                  HistoryCard(
-                    title: "FlowRetailLoan.ValidateOtp Smsotp -> Smsotp",
-                    subtitle: "EBT/U05151 7/01/2023 12:04",
+                  WorkflowCard(
+                    infoText: "Added New Consent",
+                    date: "19.02.2021",
                   ),
-                  HistoryCard(
-                    title:
-                        "FlowRetailLoan.AutoComplateOtp Data -> Değerlendirme",
-                    subtitle: "EBT/U05151 13/03/2023 11:02",
+                  WorkflowCard(
+                    infoText: "Status Changed to Active",
+                    date: "19.02.2021",
                   ),
                 ],
               ),

@@ -4,11 +4,11 @@ import 'package:admin/core/export/_.dart';
 class HistoryCard extends StatelessWidget {
   const HistoryCard({
     Key? key,
-    required this.date,
-    required this.infoText,
+    required this.title,
+    required this.subtitle,
   }) : super(key: key);
 
-  final String infoText, date;
+  final String title, subtitle;
 
   @override
   Widget build(BuildContext context) {
@@ -21,41 +21,29 @@ class HistoryCard extends StatelessWidget {
           Radius.circular(14),
         ),
       ),
-      child: Column(
-        children: [
-          Row(
+      child: Expanded(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 14),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 14),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        infoText,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                            color: Colors.black87, fontWeight: FontWeight.w600),
-                      ),
-                      Text(
-                        "Content Text",
-                        style: Theme.of(context)
-                            .textTheme
-                            .caption!
-                            .copyWith(color: Colors.black54),
-                      ),
-                    ],
-                  ),
-                ),
+              Text(
+                title,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                    color: Colors.black87, fontWeight: FontWeight.w600),
               ),
               Text(
-                date,
-                style: TextStyle(color: Colors.black87, fontSize: 12),
-              )
+                subtitle,
+                style: Theme.of(context)
+                    .textTheme
+                    .caption!
+                    .copyWith(color: Colors.black54),
+              ),
             ],
           ),
-        ],
+        ),
       ),
     );
   }

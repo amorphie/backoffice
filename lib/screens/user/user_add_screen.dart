@@ -18,14 +18,7 @@ class _UserAddScreenState extends State<UserAddScreen> {
     'corporate-customer',
     'loan-partner'
   ];
-  List<String> status = <String>[
-    'New',
-    'Waiting-Authorization',
-    'Waiting-Registration',
-    'Ready',
-    'Active',
-    'Suspended'
-  ];
+  List<String> status = <String>['New', 'InProgress', 'Ready', 'Active'];
   // bool durum = true;
   @override
   Widget build(BuildContext context) {
