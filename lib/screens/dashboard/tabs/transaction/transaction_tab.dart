@@ -36,8 +36,8 @@ class TransactionTab extends StatelessWidget {
                 children: [
                   TransactionCard(
                       cardColor: Colors.redAccent, title: "Withdraw"),
-                  TransactionCard(cardColor: Colors.green, title: "Income"),
-                  TransactionCard(cardColor: Colors.green, title: "Income"),
+                  TransactionCard(cardColor: KC.primary, title: "Income"),
+                  TransactionCard(cardColor: KC.primary, title: "Income"),
                   TransactionCard(
                       cardColor: Colors.redAccent, title: "Withdraw"),
                 ],

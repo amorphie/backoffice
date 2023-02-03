@@ -35,7 +35,7 @@ class _UserDetailScreenState extends State<UserDetailScreen>
               backgroundColor: KC.background,
               appBar: AppBar(
                 toolbarHeight: 90,
-                backgroundColor: KC.secondary,
+                backgroundColor: KC.primary,
                 elevation: 1,
                 title: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -48,20 +48,29 @@ class _UserDetailScreenState extends State<UserDetailScreen>
                         Text(
                           "Ozan Deniz Demirtaş",
                           textAlign: TextAlign.left,
-                          style: TextStyle(color: Colors.white, fontSize: 14),
+                          style: TextStyle(color: Colors.white, fontSize: 15),
                         ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          "Status : Active",
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                              color: Colors.white70,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400),
+                        ),
+                        SizedBox(width: 8),
+                        Icon(
+                          Icons.edit,
+                          size: 18,
+                        )
                       ],
                     ),
                     Text(
                       "Tags : retail-customer, bank-staff",
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                          color: Colors.white60,
-                          fontSize: 11,
-                          fontWeight: FontWeight.w400),
-                    ),
-                    Text(
-                      "Status : Active",
                       textAlign: TextAlign.left,
                       style: TextStyle(
                           color: Colors.white60,
