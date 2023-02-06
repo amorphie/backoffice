@@ -35,7 +35,6 @@ class _UserListState extends State<UserList> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height,
       padding: EdgeInsets.all(defaultPadding),
       decoration: BoxDecoration(
         color: Colors.white,

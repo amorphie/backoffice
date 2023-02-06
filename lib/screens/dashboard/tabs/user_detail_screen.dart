@@ -53,7 +53,7 @@ class _UserDetailScreenState extends State<UserDetailScreen>
                   Row(
                     children: [
                       Text(
-                        "Status : Active",
+                        "Tags : retail-customer, bank-staff",
                         textAlign: TextAlign.left,
                         style: TextStyle(
                             color: Colors.white70,
@@ -68,7 +68,7 @@ class _UserDetailScreenState extends State<UserDetailScreen>
                     ],
                   ),
                   Text(
-                    "Tags : retail-customer, bank-staff",
+                    "Status : Active",
                     textAlign: TextAlign.left,
                     style: TextStyle(
                         color: Colors.white60,

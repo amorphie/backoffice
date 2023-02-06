@@ -1,3 +1,5 @@
+import 'package:admin/screens/dashboard/widgets/my_files.dart';
+
 import '../../core/export/_.dart';
 
 class DashboardScreen extends StatelessWidget {
@@ -18,6 +20,8 @@ class DashboardScreen extends StatelessWidget {
                   flex: 3,
                   child: Column(
                     children: [
+                      MyFiles(),
+                      SizedBox(height: 30),
                       UserList(),
                       if (Responsive.isMobile(context))
                         SizedBox(height: defaultPadding),
