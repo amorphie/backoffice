@@ -51,32 +51,20 @@ class _UserListState extends State<UserList> {
               sortAscending: sort,
               header: Row(
                 children: [
-                  Expanded(
-                    child: Container(
-                      padding: const EdgeInsets.all(5),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12)),
-                      child: TextField(
-                        controller: controller,
-                        decoration: const InputDecoration(
-                            icon: Icon(Icons.search), hintText: "Search"),
-                        onChanged: (value) {
-                          setState(() {
-                            users = filterData!
-                                .where(
-                                    (element) => element.name.contains(value))
-                                .toList();
-                          });
-                        },
-                      ),
-                    ),
-                  ),
+                  search(),
+                  IconButton(
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.filter_alt_rounded,
+                        color: KC.primary,
+                        size: 32,
+                      )),
                   IconButton(
                       onPressed: () {},
                       icon: Icon(
                         Icons.add_circle_outlined,
                         color: KC.primary,
-                        size: 35,
+                        size: 32,
                       ))
                 ],
               ),
@@ -126,6 +114,30 @@ class _UserListState extends State<UserList> {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Expanded search() {
+    return Expanded(
+      child: Container(
+        padding: const EdgeInsets.all(5),
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
+        child: TextField(
+          controller: controller,
+          style: TextStyle(color: Colors.black87),
+          decoration: const InputDecoration(
+              labelStyle: TextStyle(color: KC.primary),
+              icon: Icon(Icons.search),
+              hintText: "Search"),
+          onChanged: (value) {
+            setState(() {
+              users = filterData!
+                  .where((element) => element.name.contains(value))
+                  .toList();
+            });
+          },
+        ),
       ),
     );
   }

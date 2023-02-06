@@ -12,12 +12,33 @@ class SideMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      backgroundColor: KC.primary,
       child: ListView(
         children: [
-          // DrawerHeader(
-          //   child: Image.asset("assets/images/logo.png"),
-          // ),
-          SizedBox(height: 120),
+          Column(
+            children: [
+              SizedBox(height: 25),
+              CircleAvatar(
+                radius: 52,
+                backgroundImage: AssetImage('assets/images/pp.jpeg'),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 20.0, bottom: 3),
+                child:
+                    Text('Ozan Deniz Demirtaş', style: TextStyle(fontSize: 14)),
+              ),
+              Text('Software Specialist',
+                  style: TextStyle(fontSize: 11, color: Colors.white60)),
+            ],
+          ),
+          SizedBox(height: 10),
+          Divider(
+            endIndent: 5,
+            indent: 5,
+            color: Colors.white,
+            thickness: 0.5,
+          ),
+          SizedBox(height: 20),
           DrawerListTile(
             icon: Icons.transform_outlined,
             title: "Users",
@@ -25,10 +46,10 @@ class SideMenu extends StatelessWidget {
               setIndex(0);
             },
           ),
-
           ExpansionTile(
             textColor: Colors.white54,
-            iconColor: Colors.white,
+            iconColor: Colors.white54,
+            collapsedIconColor: Colors.white,
             initiallyExpanded: false,
             title: Row(
               children: [
@@ -64,7 +85,8 @@ class SideMenu extends StatelessWidget {
           ),
           ExpansionTile(
             textColor: Colors.white54,
-            iconColor: Colors.white,
+            iconColor: Colors.white54,
+            collapsedIconColor: Colors.white,
             initiallyExpanded: false,
             title: Row(
               children: [
@@ -85,7 +107,8 @@ class SideMenu extends StatelessWidget {
           ),
           ExpansionTile(
             textColor: Colors.white54,
-            iconColor: Colors.white,
+            iconColor: Colors.white54,
+            collapsedIconColor: Colors.white,
             initiallyExpanded: false,
             title: Row(
               children: [
@@ -105,8 +128,7 @@ class SideMenu extends StatelessWidget {
               hoverTile('Entity List', () {}),
             ],
           ),
-
-          SizedBox(height: 50),
+          SizedBox(height: 150),
           DrawerListTile(
             icon: Icons.exit_to_app,
             title: "Exit",

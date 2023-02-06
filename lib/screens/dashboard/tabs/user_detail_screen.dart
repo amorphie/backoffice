@@ -24,90 +24,87 @@ class _UserDetailScreenState extends State<UserDetailScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 5.0),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(10.0),
-        child: Container(
-          width: MediaQuery.of(context).size.width / 2,
-          height: MediaQuery.of(context).size.height / 1.84,
-          child: Scaffold(
-              backgroundColor: KC.background,
-              appBar: AppBar(
-                toolbarHeight: 90,
-                backgroundColor: KC.primary,
-                elevation: 1,
-                title: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Icon(Icons.check_circle, color: Colors.white),
-                        SizedBox(width: 10),
-                        Text(
-                          "Ozan Deniz Demirtaş",
-                          textAlign: TextAlign.left,
-                          style: TextStyle(color: Colors.white, fontSize: 15),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          "Status : Active",
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                              color: Colors.white70,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400),
-                        ),
-                        SizedBox(width: 8),
-                        Icon(
-                          Icons.edit,
-                          size: 18,
-                        )
-                      ],
-                    ),
-                    Text(
-                      "Tags : retail-customer, bank-staff",
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                          color: Colors.white60,
-                          fontSize: 11,
-                          fontWeight: FontWeight.w400),
-                    ),
-                  ],
-                ),
-                bottom: TabBar(
-                  controller: _tabController,
-                  tabs: const <Widget>[
-                    Tab(
-                      icon: Text("Consents"),
-                    ),
-                    Tab(
-                      icon: Text("Workflow"),
-                    ),
-                    Tab(
-                      icon: Text("Transactions"),
-                    ),
-                    Tab(
-                      icon: Text("History"),
-                    ),
-                    Tab(
-                      icon: Text("Token"),
-                    ),
-                  ],
-                ),
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(10.0),
+      child: Container(
+        width: MediaQuery.of(context).size.width / 2,
+        height: MediaQuery.of(context).size.height,
+        child: Scaffold(
+            backgroundColor: KC.background,
+            appBar: AppBar(
+              toolbarHeight: 90,
+              backgroundColor: KC.primary,
+              elevation: 1,
+              title: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Icon(Icons.check_circle, color: Colors.white),
+                      SizedBox(width: 10),
+                      Text(
+                        "Ozan Deniz Demirtaş",
+                        textAlign: TextAlign.left,
+                        style: TextStyle(color: Colors.white, fontSize: 15),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        "Status : Active",
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                            color: Colors.white70,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400),
+                      ),
+                      SizedBox(width: 8),
+                      Icon(
+                        Icons.edit,
+                        size: 18,
+                      )
+                    ],
+                  ),
+                  Text(
+                    "Tags : retail-customer, bank-staff",
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                        color: Colors.white60,
+                        fontSize: 11,
+                        fontWeight: FontWeight.w400),
+                  ),
+                ],
               ),
-              body: TabBarView(controller: _tabController, children: [
-                ConsentTab(),
-                WorkflowTab(),
-                TransactionTab(),
-                HistoryTab(),
-                TokenTab(),
-              ])),
-        ),
+              bottom: TabBar(
+                controller: _tabController,
+                tabs: const <Widget>[
+                  Tab(
+                    icon: Text("Consents"),
+                  ),
+                  Tab(
+                    icon: Text("Workflow"),
+                  ),
+                  Tab(
+                    icon: Text("Transactions"),
+                  ),
+                  Tab(
+                    icon: Text("History"),
+                  ),
+                  Tab(
+                    icon: Text("Token"),
+                  ),
+                ],
+              ),
+            ),
+            body: TabBarView(controller: _tabController, children: [
+              ConsentTab(),
+              WorkflowTab(),
+              TransactionTab(),
+              HistoryTab(),
+              TokenTab(),
+            ])),
       ),
     );
   }
