@@ -20,20 +20,38 @@ class TransactionTab extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Align(
-              alignment: Alignment.center,
-              child: Text(
-                "Transactions",
-                textAlign: TextAlign.left,
-                style: TextStyle(
-                    color: Colors.black87,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold),
-              ),
-            ),
+            // Align(
+            //   alignment: Alignment.center,
+            //   child: Text(
+            //     "Transactions",
+            //     textAlign: TextAlign.left,
+            //     style: TextStyle(
+            //         color: Colors.black87,
+            //         fontSize: 18,
+            //         fontWeight: FontWeight.bold),
+            //   ),
+            // ),
             Expanded(
               child: ListView(
                 children: [
+                  TransactionCard(
+                      cardColor: Colors.redAccent, title: "Withdraw"),
+                  TransactionCard(cardColor: KC.primary, title: "Income"),
+                  TransactionCard(cardColor: KC.primary, title: "Income"),
+                  TransactionCard(
+                      cardColor: Colors.redAccent, title: "Withdraw"),
+                  TransactionCard(
+                      cardColor: Colors.redAccent, title: "Withdraw"),
+                  TransactionCard(cardColor: KC.primary, title: "Income"),
+                  TransactionCard(cardColor: KC.primary, title: "Income"),
+                  TransactionCard(
+                      cardColor: Colors.redAccent, title: "Withdraw"),
+                  TransactionCard(
+                      cardColor: Colors.redAccent, title: "Withdraw"),
+                  TransactionCard(cardColor: KC.primary, title: "Income"),
+                  TransactionCard(cardColor: KC.primary, title: "Income"),
+                  TransactionCard(
+                      cardColor: Colors.redAccent, title: "Withdraw"),
                   TransactionCard(
                       cardColor: Colors.redAccent, title: "Withdraw"),
                   TransactionCard(cardColor: KC.primary, title: "Income"),

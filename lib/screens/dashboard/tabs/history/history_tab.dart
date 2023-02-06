@@ -20,20 +20,44 @@ class HistoryTab extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Align(
-              alignment: Alignment.center,
-              child: Text(
-                "History",
-                textAlign: TextAlign.left,
-                style: TextStyle(
-                    color: Colors.black87,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold),
-              ),
-            ),
+            // Align(
+            //   alignment: Alignment.center,
+            //   child: Text(
+            //     "History",
+            //     textAlign: TextAlign.left,
+            //     style: TextStyle(
+            //         color: Colors.black87,
+            //         fontSize: 18,
+            //         fontWeight: FontWeight.bold),
+            //   ),
+            // ),
             Expanded(
               child: ListView(
                 children: [
+                  HistoryCard(
+                    title: "FlowRetailLoan.LoanApply Başlangıç -> Bitiş",
+                    subtitle: "EBT/U05151 31/01/2023 12:21",
+                  ),
+                  HistoryCard(
+                    title: "FlowRetailLoan.AutoSmsOtp Başvuru -> Smsotp",
+                    subtitle: "EBT/U05151 14/05/2022 13:13",
+                  ),
+                  HistoryCard(
+                    title: "FlowRetailLoan.ValidateOtp Smsotp -> Smsotp",
+                    subtitle: "EBT/U05151 7/01/2023 12:04",
+                  ),
+                  HistoryCard(
+                    title: "FlowRetailLoan.LoanApply Başlangıç -> Bitiş",
+                    subtitle: "EBT/U05151 31/01/2023 12:21",
+                  ),
+                  HistoryCard(
+                    title: "FlowRetailLoan.AutoSmsOtp Başvuru -> Smsotp",
+                    subtitle: "EBT/U05151 14/05/2022 13:13",
+                  ),
+                  HistoryCard(
+                    title: "FlowRetailLoan.ValidateOtp Smsotp -> Smsotp",
+                    subtitle: "EBT/U05151 7/01/2023 12:04",
+                  ),
                   HistoryCard(
                     title: "FlowRetailLoan.LoanApply Başlangıç -> Bitiş",
                     subtitle: "EBT/U05151 31/01/2023 12:21",

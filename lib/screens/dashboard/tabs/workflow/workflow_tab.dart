@@ -20,20 +20,56 @@ class WorkflowTab extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Align(
-              alignment: Alignment.center,
-              child: Text(
-                "Workflow",
-                textAlign: TextAlign.left,
-                style: TextStyle(
-                    color: Colors.black87,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold),
-              ),
-            ),
+            // Align(
+            //   alignment: Alignment.center,
+            //   child: Text(
+            //     "Workflow",
+            //     textAlign: TextAlign.left,
+            //     style: TextStyle(
+            //         color: Colors.black87,
+            //         fontSize: 18,
+            //         fontWeight: FontWeight.bold),
+            //   ),
+            // ),
             Expanded(
               child: ListView(
                 children: [
+                  WorkflowCard(
+                    infoText: "Reset Password",
+                    date: "19.02.2021",
+                  ),
+                  WorkflowCard(
+                    infoText: "Changed Tag",
+                    date: "19.02.2021",
+                  ),
+                  WorkflowCard(
+                    infoText: "Added New Consent",
+                    date: "19.02.2021",
+                  ),
+                  WorkflowCard(
+                    infoText: "Reset Password",
+                    date: "19.02.2021",
+                  ),
+                  WorkflowCard(
+                    infoText: "Changed Tag",
+                    date: "19.02.2021",
+                  ),
+                  WorkflowCard(
+                    infoText: "Added New Consent",
+                    date: "19.02.2021",
+                  ),
+                  WorkflowCard(
+                    infoText: "Reset Password",
+                    date: "19.02.2021",
+                  ),
+                  WorkflowCard(
+                    infoText: "Changed Tag",
+                    date: "19.02.2021",
+                  ),
+                  WorkflowCard(
+                    infoText: "Added New Consent",
+                    date: "19.02.2021",
+                  ),
                   WorkflowCard(
                     infoText: "Reset Password",
                     date: "19.02.2021",

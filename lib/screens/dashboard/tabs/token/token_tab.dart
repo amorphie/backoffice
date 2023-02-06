@@ -20,20 +20,60 @@ class TokenTab extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Align(
-              alignment: Alignment.center,
-              child: Text(
-                "Token",
-                textAlign: TextAlign.left,
-                style: TextStyle(
-                    color: Colors.black87,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold),
-              ),
-            ),
+            // Align(
+            //   alignment: Alignment.center,
+            //   child: Text(
+            //     "Token",
+            //     textAlign: TextAlign.left,
+            //     style: TextStyle(
+            //         color: Colors.black87,
+            //         fontSize: 18,
+            //         fontWeight: FontWeight.bold),
+            //   ),
+            // ),
             Expanded(
               child: ListView(
                 children: [
+                  WorkflowCard(
+                    infoText: "Acces Token",
+                    date: "19.02.2021",
+                  ),
+                  WorkflowCard(
+                    infoText: "Refresh Token",
+                    date: "19.02.2021",
+                  ),
+                  WorkflowCard(
+                    infoText: "Refresh Token",
+                    date: "19.02.2021",
+                  ),
+                  WorkflowCard(
+                    infoText: "Acces Token",
+                    date: "19.02.2021",
+                  ),
+                  WorkflowCard(
+                    infoText: "Acces Token",
+                    date: "19.02.2021",
+                  ),
+                  WorkflowCard(
+                    infoText: "Refresh Token",
+                    date: "19.02.2021",
+                  ),
+                  WorkflowCard(
+                    infoText: "Acces Token",
+                    date: "19.02.2021",
+                  ),
+                  WorkflowCard(
+                    infoText: "Acces Token",
+                    date: "19.02.2021",
+                  ),
+                  WorkflowCard(
+                    infoText: "Acces Token",
+                    date: "19.02.2021",
+                  ),
+                  WorkflowCard(
+                    infoText: "Refresh Token",
+                    date: "19.02.2021",
+                  ),
                   WorkflowCard(
                     infoText: "Acces Token",
                     date: "19.02.2021",

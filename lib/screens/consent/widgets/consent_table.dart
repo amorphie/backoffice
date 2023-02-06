@@ -1,5 +1,4 @@
 import 'package:admin/core/models/consent.dart';
-import 'package:admin/core/models/user.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 

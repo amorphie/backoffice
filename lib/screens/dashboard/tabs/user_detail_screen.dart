@@ -28,7 +28,7 @@ class _UserDetailScreenState extends State<UserDetailScreen>
       borderRadius: BorderRadius.circular(10.0),
       child: Container(
         width: MediaQuery.of(context).size.width / 2,
-        height: MediaQuery.of(context).size.height,
+        height: MediaQuery.of(context).size.height / 1.14,
         child: Scaffold(
             backgroundColor: KC.background,
             appBar: AppBar(
