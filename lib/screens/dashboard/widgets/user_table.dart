@@ -1,15 +1,41 @@
-import 'package:data_table_2/data_table_2.dart';
-
 import '../../../core/export/_.dart';
+import '../../../core/helpers/dialogs.dart';
 
-class UserList extends StatelessWidget {
+class UserList extends StatefulWidget {
   const UserList({
     Key? key,
   }) : super(key: key);
 
   @override
+  State<UserList> createState() => _UserListState();
+}
+
+class _UserListState extends State<UserList> {
+  bool sort = true;
+  List<UserModel>? filterData;
+
+  onsortColum(int columnIndex, bool ascending) {
+    if (columnIndex == 0) {
+      if (ascending) {
+        filterData!.sort((a, b) => a.name.compareTo(b.name));
+      } else {
+        filterData!.sort((a, b) => b.name.compareTo(a.name));
+      }
+    }
+  }
+
+  @override
+  void initState() {
+    filterData = users;
+    super.initState();
+  }
+
+  TextEditingController controller = TextEditingController();
+
+  @override
   Widget build(BuildContext context) {
     return Container(
+      height: MediaQuery.of(context).size.height,
       padding: EdgeInsets.all(defaultPadding),
       decoration: BoxDecoration(
         color: Colors.white,
@@ -18,18 +44,49 @@ class UserList extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("Users",
-              style:
-                  TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
           SizedBox(
             width: double.infinity,
-            child: DataTable2(
-              dataRowColor: MaterialStateProperty.all(Colors.white),
-              dividerThickness: 2,
-
-              // headingRowColor: MaterialStateProperty.all(Colors.blueGrey),
-              columnSpacing: defaultPadding,
-              minWidth: 600,
+            child: PaginatedDataTable(
+              sortColumnIndex: 0,
+              sortAscending: sort,
+              header: Row(
+                children: [
+                  Expanded(
+                    child: Container(
+                      padding: const EdgeInsets.all(5),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12)),
+                      child: TextField(
+                        controller: controller,
+                        decoration: const InputDecoration(
+                            icon: Icon(Icons.search), hintText: "Search"),
+                        onChanged: (value) {
+                          setState(() {
+                            users = filterData!
+                                .where(
+                                    (element) => element.name.contains(value))
+                                .toList();
+                          });
+                        },
+                      ),
+                    ),
+                  ),
+                  IconButton(
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.add_circle_outlined,
+                        color: KC.primary,
+                        size: 35,
+                      ))
+                ],
+              ),
+              source: RowSource(
+                users: users,
+                count: users.length,
+                context: context,
+              ),
+              rowsPerPage: 8,
+              columnSpacing: 8,
               columns: [
                 DataColumn(
                   label: Text("Reference",
@@ -37,10 +94,18 @@ class UserList extends StatelessWidget {
                           color: Colors.black54, fontWeight: FontWeight.w500)),
                 ),
                 DataColumn(
-                  label: Text("Name",
+                    label: const Text(
+                      "Name",
                       style: TextStyle(
-                          color: Colors.black54, fontWeight: FontWeight.w500)),
-                ),
+                          color: Colors.black54, fontWeight: FontWeight.w500),
+                    ),
+                    onSort: (columnIndex, ascending) {
+                      setState(() {
+                        sort = !sort;
+                      });
+
+                      onsortColum(columnIndex, ascending);
+                    }),
                 DataColumn(
                   label: Text("Surname",
                       style: TextStyle(
@@ -53,21 +118,11 @@ class UserList extends StatelessWidget {
                 ),
                 DataColumn(
                   label: Text("Tags",
+                      textAlign: TextAlign.end,
                       style: TextStyle(
                           color: Colors.black54, fontWeight: FontWeight.w500)),
                 ),
-                // DataColumn(
-                //   label: Text("İşlem",
-                //       textAlign: TextAlign.end,
-                //       style: TextStyle(
-                //           color: Colors.black54, fontWeight: FontWeight.w500)),
-                // ),
               ],
-
-              rows: List.generate(
-                users.length,
-                (index) => recentFileDataRow(context, users[index]),
-              ),
             ),
           ),
         ],
@@ -76,36 +131,36 @@ class UserList extends StatelessWidget {
   }
 }
 
-DataRow recentFileDataRow(BuildContext context, UserModel fileInfo) {
+DataRow recentFileDataRow(BuildContext context, UserModel model) {
   return DataRow(
     cells: [
       DataCell(
-        Text(fileInfo.tc,
+        Text(model.ref,
             textAlign: TextAlign.start,
             style:
                 TextStyle(color: Colors.black54, fontWeight: FontWeight.w400)),
       ),
-      DataCell(Text(fileInfo.isim,
+      DataCell(Text(model.name,
           style:
               TextStyle(color: Colors.black54, fontWeight: FontWeight.w400))),
-      DataCell(Text(fileInfo.soyIsim,
+      DataCell(Text(model.surName,
           style:
               TextStyle(color: Colors.black54, fontWeight: FontWeight.w400))),
-      DataCell(fileInfo.status),
+      DataCell(model.status),
       DataCell(
         HoverWidget(
           onHover: (a) {},
           hoverChild: GestureDetector(
             onTap: (() {
-              _tagPopUp(context);
+              tagPopUp(context);
             }),
             child: GestureDetector(
-                child: Text(fileInfo.tags,
+                child: Text(model.tags,
                     style: TextStyle(
                         color: KC.primary, fontWeight: FontWeight.w400))),
           ),
           child: GestureDetector(
-              child: Text(fileInfo.tags,
+              child: Text(model.tags,
                   style: TextStyle(
                       color: Colors.black54, fontWeight: FontWeight.w400))),
         ),
@@ -114,39 +169,30 @@ DataRow recentFileDataRow(BuildContext context, UserModel fileInfo) {
   );
 }
 
-Future<void> _tagPopUp(BuildContext context) {
-  return showDialog<void>(
-    context: context,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        title: const Text('Edit User', style: TextStyle(color: Colors.black)),
-        content: const Text(
-            'Ozan Deniz Demirtaş\n'
-            'retail-customer, bank-staff\n',
-            style: TextStyle(color: Colors.black87, fontSize: 13)),
-        actions: <Widget>[
-          TextButton(
-            style: TextButton.styleFrom(
-              textStyle: Theme.of(context).textTheme.labelLarge,
-            ),
-            child: const Text('Save',
-                style: TextStyle(color: KC.secondary, fontSize: 13)),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
-          TextButton(
-            style: TextButton.styleFrom(
-              textStyle: Theme.of(context).textTheme.labelLarge,
-            ),
-            child: const Text('Close',
-                style: TextStyle(color: Colors.redAccent, fontSize: 13)),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
-        ],
-      );
-    },
-  );
+class RowSource extends DataTableSource {
+  List<UserModel> users;
+  final count;
+  final BuildContext context;
+  RowSource({
+    required this.users,
+    required this.count,
+    required this.context,
+  });
+
+  @override
+  DataRow? getRow(int index) {
+    if (index < rowCount) {
+      return recentFileDataRow(context, users[index]);
+    } else
+      return null;
+  }
+
+  @override
+  bool get isRowCountApproximate => false;
+
+  @override
+  int get rowCount => count;
+
+  @override
+  int get selectedRowCount => 0;
 }

@@ -1,5 +1,3 @@
-import 'package:admin/screens/user/user_edit_screen.dart';
-
 import '../../core/export/_.dart';
 
 class DashboardScreen extends StatelessWidget {
@@ -20,13 +18,6 @@ class DashboardScreen extends StatelessWidget {
                   flex: 3,
                   child: Column(
                     children: [
-                      CommonButton(
-                          title: "Add User",
-                          onPressed: () {
-                            _addUser(context);
-                          },
-                          color: KC.primary),
-                      SizedBox(height: 10),
                       UserList(),
                       if (Responsive.isMobile(context))
                         SizedBox(height: defaultPadding),
@@ -49,24 +40,4 @@ class DashboardScreen extends StatelessWidget {
       ),
     );
   }
-}
-
-Future<void> _addUser(BuildContext context) async {
-  return showDialog<void>(
-    context: context,
-    barrierDismissible: true,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        contentPadding: EdgeInsets.zero,
-        titlePadding: EdgeInsets.zero,
-        buttonPadding: EdgeInsets.zero,
-        iconPadding: EdgeInsets.zero,
-        actionsPadding: EdgeInsets.zero,
-        insetPadding: EdgeInsets.zero,
-        content: SizedBox(
-            width: MediaQuery.of(context).size.width / 2,
-            child: UserAddScreen()),
-      );
-    },
-  );
 }
