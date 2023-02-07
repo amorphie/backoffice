@@ -1,8 +1,11 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:admin/core/export/_.dart';
 
 class FileInfoCard extends StatelessWidget {
+  final IconData icon;
   const FileInfoCard({
     Key? key,
+    required this.icon,
   }) : super(key: key);
 
   @override
@@ -28,9 +31,12 @@ class FileInfoCard extends StatelessWidget {
                   color: KC.primary.withOpacity(0.1),
                   borderRadius: const BorderRadius.all(Radius.circular(10)),
                 ),
-                child: Icon(Icons.abc),
+                child: Icon(
+                  Icons.file_copy,
+                  color: Colors.white,
+                ),
               ),
-              Icon(Icons.more_vert, color: Colors.white54)
+              Icon(Icons.edit, color: Colors.white54)
             ],
           ),
           Text(

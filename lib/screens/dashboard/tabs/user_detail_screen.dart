@@ -1,3 +1,4 @@
+import 'package:admin/core/helpers/dialogs.dart';
 import 'package:admin/screens/dashboard/tabs/history/history_tab.dart';
 import 'package:admin/screens/dashboard/tabs/token/token_tab.dart';
 
@@ -61,9 +62,14 @@ class _UserDetailScreenState extends State<UserDetailScreen>
                             fontWeight: FontWeight.w400),
                       ),
                       SizedBox(width: 8),
-                      Icon(
-                        Icons.edit,
-                        size: 18,
+                      GestureDetector(
+                        onTap: () {
+                          tagPopUp(context);
+                        },
+                        child: Icon(
+                          Icons.edit,
+                          size: 18,
+                        ),
                       )
                     ],
                   ),
@@ -108,25 +114,4 @@ class _UserDetailScreenState extends State<UserDetailScreen>
       ),
     );
   }
-}
-
-Future<void> _editUser(BuildContext context) async {
-  return showDialog<void>(
-    context: context,
-    barrierDismissible: true,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        contentPadding: EdgeInsets.zero,
-        titlePadding: EdgeInsets.zero,
-        buttonPadding: EdgeInsets.zero,
-        iconPadding: EdgeInsets.zero,
-        actionsPadding: EdgeInsets.zero,
-        insetPadding: EdgeInsets.zero,
-        title: const Text('AlertDialog Title'),
-        content: SizedBox(
-            width: MediaQuery.of(context).size.width / 2,
-            child: UserEditScreen()),
-      );
-    },
-  );
 }

@@ -59,7 +59,9 @@ class _UserListState extends State<UserList> {
                         size: 32,
                       )),
                   IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        addUser(context);
+                      },
                       icon: Icon(
                         Icons.add_circle_outlined,
                         color: KC.primary,

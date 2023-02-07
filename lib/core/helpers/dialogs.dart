@@ -37,8 +37,43 @@ Future<void> tagPopUp(BuildContext context) {
   );
 }
 
-
 Future<void> addUser(BuildContext context) async {
+  return showDialog<void>(
+    context: context,
+    barrierDismissible: true,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        content: SizedBox(
+            width: MediaQuery.of(context).size.width / 2,
+            child: UserAddScreen()),
+        actions: <Widget>[
+          TextButton(
+            style: TextButton.styleFrom(
+              textStyle: Theme.of(context).textTheme.labelLarge,
+            ),
+            child: const Text('Save',
+                style: TextStyle(color: KC.secondary, fontSize: 13)),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+          TextButton(
+            style: TextButton.styleFrom(
+              textStyle: Theme.of(context).textTheme.labelLarge,
+            ),
+            child: const Text('Close',
+                style: TextStyle(color: Colors.redAccent, fontSize: 13)),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
+    },
+  );
+}
+
+Future<void> editUser(BuildContext context) async {
   return showDialog<void>(
     context: context,
     barrierDismissible: true,
@@ -50,9 +85,10 @@ Future<void> addUser(BuildContext context) async {
         iconPadding: EdgeInsets.zero,
         actionsPadding: EdgeInsets.zero,
         insetPadding: EdgeInsets.zero,
+        title: const Text('AlertDialog Title'),
         content: SizedBox(
             width: MediaQuery.of(context).size.width / 2,
-            child: UserAddScreen()),
+            child: UserEditScreen()),
       );
     },
   );
