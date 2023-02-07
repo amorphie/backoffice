@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class TagModel {
-  final String isim, soyIsim;
+  final String isim;
+  final String soyIsim;
   final Icon durum;
   final String tags;
   final IconData edit;

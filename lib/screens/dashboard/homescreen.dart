@@ -1,8 +1,13 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:admin/pages/dashboard/dashboard_page.dart';
 import 'package:admin/screens/tag/tag_screen.dart';
 
 import '../../core/export/_.dart';
 
 class MainScreen extends StatefulWidget {
+  const MainScreen({
+    Key? key,
+  }) : super(key: key);
   @override
   State<MainScreen> createState() => _MainScreenState();
 }
@@ -11,9 +16,8 @@ class _MainScreenState extends State<MainScreen> {
   int index = 0;
 
   final page = [
-    DashboardScreen(),
+    DashboardPage(),
     UserAddScreen(),
-    UserHistoryScreen(),
     ConsentScreen(),
     TagScreen(),
   ];

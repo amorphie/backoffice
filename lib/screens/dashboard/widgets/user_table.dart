@@ -1,9 +1,12 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import '../../../core/export/_.dart';
 import '../../../core/helpers/dialogs.dart';
 
 class UserList extends StatefulWidget {
+  final UserModel model;
   const UserList({
     Key? key,
+    required this.model,
   }) : super(key: key);
 
   @override
@@ -17,9 +20,9 @@ class _UserListState extends State<UserList> {
   onsortColum(int columnIndex, bool ascending) {
     if (columnIndex == 0) {
       if (ascending) {
-        filterData!.sort((a, b) => a.name.compareTo(b.name));
+        filterData!.sort((a, b) => a.firstName.compareTo(b.firstName));
       } else {
-        filterData!.sort((a, b) => b.name.compareTo(a.name));
+        filterData!.sort((a, b) => b.firstName.compareTo(a.firstName));
       }
     }
   }
@@ -134,7 +137,7 @@ class _UserListState extends State<UserList> {
           onChanged: (value) {
             setState(() {
               users = filterData!
-                  .where((element) => element.name.contains(value))
+                  .where((element) => element.firstName.contains(value))
                   .toList();
             });
           },
@@ -148,18 +151,21 @@ DataRow recentFileDataRow(BuildContext context, UserModel model) {
   return DataRow(
     cells: [
       DataCell(
-        Text(model.ref,
+        Text(model.reference,
             textAlign: TextAlign.start,
             style:
                 TextStyle(color: Colors.black54, fontWeight: FontWeight.w400)),
       ),
-      DataCell(Text(model.name,
+      DataCell(Text(model.firstName,
           style:
               TextStyle(color: Colors.black54, fontWeight: FontWeight.w400))),
-      DataCell(Text(model.surName,
+      DataCell(Text(model.lastName,
           style:
               TextStyle(color: Colors.black54, fontWeight: FontWeight.w400))),
-      DataCell(model.status),
+      DataCell(Icon(
+        model.status,
+        color: Colors.black54,
+      )),
       DataCell(
         HoverWidget(
           onHover: (a) {},

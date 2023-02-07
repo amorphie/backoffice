@@ -1,8 +1,14 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:admin/screens/dashboard/widgets/my_files.dart';
 
 import '../../core/export/_.dart';
 
 class DashboardScreen extends StatelessWidget {
+  final UserModel user;
+  const DashboardScreen({
+    Key? key,
+    required this.user,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -22,7 +28,7 @@ class DashboardScreen extends StatelessWidget {
                     children: [
                       MyFiles(),
                       SizedBox(height: 30),
-                      UserList(),
+                      UserList(model: user),
                       if (Responsive.isMobile(context))
                         SizedBox(height: defaultPadding),
                       // if (Responsive.isMobile(context)) StarageDetails(),
