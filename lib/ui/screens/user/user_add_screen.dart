@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
+import 'package:flutter/services.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
 
 import 'package:admin/core/export/_.dart';
@@ -77,8 +78,10 @@ class _UserAddScreenState extends State<UserAddScreen> {
           width: MediaQuery.of(context).size.width / 2,
           child: CommonTextField(
             labelText: "Reference",
+            keyboardType: TextInputType.number,
+            controller: ref,
             onChanged: (val) {
-              val = ref.text;
+              ref.text = val;
             },
           ),
         ),
@@ -90,9 +93,15 @@ class _UserAddScreenState extends State<UserAddScreen> {
               Expanded(
                   child: CommonTextField(
                 labelText: "Name",
+                keyboardType: TextInputType.name,
+                controller: firstName,
+                inputFormatter: <TextInputFormatter>[
+                  FilteringTextInputFormatter.allow(
+                      RegExp("[a-zA-Z]", unicode: true)),
+                ],
                 onChanged: (val) {
                   setState(() {
-                    val = firstName.text;
+                    firstName.text = val;
                   });
                 },
               )),
@@ -100,8 +109,14 @@ class _UserAddScreenState extends State<UserAddScreen> {
               Expanded(
                   child: CommonTextField(
                 labelText: "Surname",
+                inputFormatter: <TextInputFormatter>[
+                  FilteringTextInputFormatter.allow(
+                      RegExp("[a-zA-Z]", unicode: true)),
+                ],
+                keyboardType: TextInputType.name,
+                controller: lastName,
                 onChanged: (val) {
-                  val = lastName.text;
+                  lastName.text = val;
                 },
               ))
             ],
@@ -115,16 +130,20 @@ class _UserAddScreenState extends State<UserAddScreen> {
               Expanded(
                   child: CommonTextField(
                 labelText: "Phone",
+                keyboardType: TextInputType.phone,
+                controller: phone,
                 onChanged: (val) {
-                  val = phone.text;
+                  phone.text = val;
                 },
               )),
               SizedBox(width: 10),
               Expanded(
                   child: CommonTextField(
                 labelText: "E-mail",
+                keyboardType: TextInputType.emailAddress,
+                controller: eMail,
                 onChanged: (val) {
-                  val = eMail.text;
+                  eMail.text = val;
                 },
               ))
             ],
