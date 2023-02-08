@@ -1,5 +1,3 @@
-import 'package:admin/ui/screens/dashboard/tabs/workflow/widgets/workflow_card.dart';
-
 import '../../../../../core/export/_.dart';
 
 class TokenTab extends StatelessWidget {

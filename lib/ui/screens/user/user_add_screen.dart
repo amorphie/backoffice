@@ -6,38 +6,47 @@ import 'package:admin/core/export/_.dart';
 
 class UserAddScreen extends StatefulWidget {
   final UserModel model;
+  final Function(UserModel) addUser;
   const UserAddScreen({
     Key? key,
     required this.model,
+    required this.addUser,
   }) : super(key: key);
   @override
   State<UserAddScreen> createState() => _UserAddScreenState();
 }
 
-class Tags {
-  final int id;
-  final String name;
-
-  Tags({
-    required this.id,
-    required this.name,
-  });
-}
-
 class _UserAddScreenState extends State<UserAddScreen> {
-  static List<Tags?> _tags = [
-    Tags(id: 1, name: "bank-staff"),
-    Tags(id: 2, name: "potential-customer"),
-    Tags(id: 3, name: "retail-customer"),
-    Tags(id: 4, name: "corporate-customer"),
-    Tags(id: 5, name: "loan-partner"),
+  static List<TagsPageModel?> _tags = [
+    TagsPageModel(id: 1, name: "bank-staff"),
+    TagsPageModel(id: 2, name: "potential-customer"),
+    TagsPageModel(id: 3, name: "retail-customer"),
+    TagsPageModel(id: 4, name: "corporate-customer"),
+    TagsPageModel(id: 5, name: "loan-partner"),
   ];
-  final _items =
-      _tags.map((tag) => MultiSelectItem<Tags>(tag!, tag.name)).toList();
+  final _items = _tags
+      .map((tag) => MultiSelectItem<TagsPageModel>(tag!, tag.name))
+      .toList();
 
   List<Object?> selectedtags = [];
   List<String> status = <String>['New', 'InProgress', 'Ready', 'Active'];
-  // bool durum = true;
+
+  late TextEditingController ref;
+  late TextEditingController firstName;
+  late TextEditingController lastName;
+  late TextEditingController phone;
+  late TextEditingController eMail;
+
+  @override
+  void initState() {
+    super.initState();
+    ref = TextEditingController(text: widget.model.reference);
+    firstName = TextEditingController(text: widget.model.firstName);
+    lastName = TextEditingController(text: widget.model.lastName);
+    phone = TextEditingController(text: widget.model.phone);
+    eMail = TextEditingController(text: widget.model.eMail);
+  }
+
   @override
   Widget build(BuildContext context) {
     String statusValue = status.first;
@@ -166,23 +175,42 @@ class _UserAddScreenState extends State<UserAddScreen> {
           ),
         ),
         SizedBox(height: 70),
-        SizedBox(
-            width: MediaQuery.of(context).size.width / 4,
-            child: Expanded(
-              child: CommonButton(
-                  title: "Save", onPressed: () {}, color: KC.primary),
-            )),
-        SizedBox(
-            width: MediaQuery.of(context).size.width / 4,
-            child: Expanded(
-              child: CommonButton(
-                  title: "Close",
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  color: KC.primary),
-            )),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(
+                width: MediaQuery.of(context).size.width / 5,
+                child: Expanded(
+                  child: CommonButton(
+                      title: "Save",
+                      onPressed: () {
+                        widget.addUser(widget.model);
+                      },
+                      color: KC.primary),
+                )),
+            SizedBox(
+                width: MediaQuery.of(context).size.width / 5,
+                child: Expanded(
+                  child: CommonButton(
+                      title: "Close",
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      color: KC.primary),
+                )),
+          ],
+        ),
       ],
     );
   }
+}
+
+class TagsPageModel {
+  final int id;
+  final String name;
+
+  TagsPageModel({
+    required this.id,
+    required this.name,
+  });
 }

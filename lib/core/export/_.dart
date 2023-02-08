@@ -43,6 +43,7 @@ export 'package:admin/ui/screens/dashboard/tabs/token/token_tab.dart';
 export 'package:admin/ui/pages/dashboard/dashboard_page.dart';
 export 'package:admin/ui/pages/user/user_add_page.dart';
 export 'package:admin/app/app.dart';
+export 'package:admin/ui/pages/homepage.dart';
 
 //Core
 

@@ -24,8 +24,8 @@ class SideMenu extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 20.0, bottom: 3),
-                child:
-                    Text('Ozan Deniz Demirtaş', style: TextStyle(fontSize: 14)),
+                child: Text('Ozan Deniz Demirtaş',
+                    style: TextStyle(fontSize: 14, color: Colors.white)),
               ),
               Text('Software Specialist',
                   style: TextStyle(fontSize: 11, color: Colors.white60)),
@@ -50,6 +50,7 @@ class SideMenu extends StatelessWidget {
             textColor: Colors.white54,
             iconColor: Colors.white54,
             collapsedIconColor: Colors.white,
+            collapsedTextColor: Colors.white,
             initiallyExpanded: false,
             title: Row(
               children: [
@@ -58,7 +59,10 @@ class SideMenu extends StatelessWidget {
                   color: Colors.white,
                 ),
                 SizedBox(width: 10),
-                Text("Consent"),
+                Text(
+                  "Consent",
+                  // style: TextStyle(color: Colors.white),
+                ),
               ],
             ),
             children: <Widget>[
@@ -85,6 +89,7 @@ class SideMenu extends StatelessWidget {
             textColor: Colors.white54,
             iconColor: Colors.white54,
             collapsedIconColor: Colors.white,
+            collapsedTextColor: Colors.white,
             initiallyExpanded: false,
             title: Row(
               children: [
@@ -107,6 +112,7 @@ class SideMenu extends StatelessWidget {
             textColor: Colors.white54,
             iconColor: Colors.white54,
             collapsedIconColor: Colors.white,
+            collapsedTextColor: Colors.white,
             initiallyExpanded: false,
             title: Row(
               children: [

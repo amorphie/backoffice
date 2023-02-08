@@ -12,7 +12,7 @@ class App extends StatelessWidget {
       builder: (_, w) => GetMaterialApp(
         initialBinding: StartBinding(),
         title: 'Amorphie',
-        home: Homescreen(),
+        home: Homepage(),
       ),
     );
   }

@@ -1,4 +1,3 @@
-import 'package:admin/core/base/base_view.dart';
 import 'package:admin/core/export/_.dart';
 
 class UserAddPage extends StatelessWidget {
@@ -7,6 +6,9 @@ class UserAddPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseView(
-        builder: (context, c) => UserAddScreen(model: c.user.userModel));
+        builder: (context, c) => UserAddScreen(
+              model: c.user.userModel,
+              addUser: (user) {},
+            ));
   }
 }

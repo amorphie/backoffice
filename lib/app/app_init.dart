@@ -1,6 +1,3 @@
-import 'package:admin/ui/pages/dashboard/dashboard_page.dart';
-
-import '../core/base/base_view.dart';
 import '../core/export/_.dart';
 
 class AppInit extends StatelessWidget {

@@ -8,6 +8,7 @@ class UserModel {
   String lastName;
   String reference;
   String password;
+  String phone;
   String eMail;
   String state;
   DateTime? modifiedAt;
@@ -19,6 +20,7 @@ class UserModel {
     required this.lastName,
     required this.reference,
     required this.password,
+    required this.phone,
     required this.eMail,
     required this.state,
     this.modifiedAt,
@@ -37,7 +39,8 @@ class UserModel {
         state: "state",
         edit: Icons.edit,
         status: Icons.check,
-        tags: "tags");
+        tags: "tags",
+        phone: "0000000000");
   }
 
   UserModel copyWith({
@@ -45,6 +48,7 @@ class UserModel {
     String? lastName,
     String? reference,
     String? password,
+    String? phone,
     String? eMail,
     String? state,
     DateTime? modifiedAt,
@@ -57,6 +61,7 @@ class UserModel {
       lastName: lastName ?? this.lastName,
       reference: reference ?? this.reference,
       password: password ?? this.password,
+      phone: phone ?? this.phone,
       eMail: eMail ?? this.eMail,
       state: state ?? this.state,
       modifiedAt: modifiedAt ?? this.modifiedAt,
@@ -72,6 +77,7 @@ class UserModel {
       'lastName': lastName,
       'reference': reference,
       'password': password,
+      'phone': phone,
       'eMail': eMail,
       'state': state,
       'modifiedAt': modifiedAt?.millisecondsSinceEpoch,
@@ -87,6 +93,7 @@ class UserModel {
       lastName: map['lastName'] as String,
       reference: map['reference'] as String,
       password: map['password'] as String,
+      phone: map['phone'] as String,
       eMail: map['eMail'] as String,
       state: map['state'] as String,
       modifiedAt: map['modifiedAt'] != null
@@ -105,7 +112,7 @@ class UserModel {
 
   @override
   String toString() {
-    return 'UserModel(firstName: $firstName, lastName: $lastName, reference: $reference, password: $password, eMail: $eMail, state: $state, modifiedAt: $modifiedAt, edit: $edit, status: $status, tags: $tags)';
+    return 'UserModel(firstName: $firstName, lastName: $lastName, reference: $reference, password: $password, phone: $phone, eMail: $eMail, state: $state, modifiedAt: $modifiedAt, edit: $edit, status: $status, tags: $tags)';
   }
 
   @override
@@ -116,6 +123,7 @@ class UserModel {
         other.lastName == lastName &&
         other.reference == reference &&
         other.password == password &&
+        other.phone == phone &&
         other.eMail == eMail &&
         other.state == state &&
         other.modifiedAt == modifiedAt &&
@@ -130,6 +138,7 @@ class UserModel {
         lastName.hashCode ^
         reference.hashCode ^
         password.hashCode ^
+        phone.hashCode ^
         eMail.hashCode ^
         state.hashCode ^
         modifiedAt.hashCode ^

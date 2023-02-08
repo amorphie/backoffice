@@ -1,7 +1,5 @@
 import 'package:admin/core/export/_.dart';
 
-import '../models/consent.dart';
-
 List consents = [
   ConsentModel(
     bankName: "Burgan Bank",
