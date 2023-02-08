@@ -73,10 +73,10 @@ class TagList extends StatelessWidget {
 DataRow recentFileDataRow(TagModel model) {
   return DataRow(
     cells: [
-      DataCell(Text(model.isim,
+      DataCell(Text(model.firstName,
           style:
               TextStyle(color: Colors.black54, fontWeight: FontWeight.w400))),
-      DataCell(Text(model.soyIsim,
+      DataCell(Text(model.lastName,
           style:
               TextStyle(color: Colors.black54, fontWeight: FontWeight.w400))),
       // DataCell(fileInfo.durum),

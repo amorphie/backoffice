@@ -1,5 +1,3 @@
-import 'package:admin/ui/screens/dashboard/tabs/workflow/widgets/workflow_card.dart';
-
 import '../../../../../core/export/_.dart';
 
 class WorkflowTab extends StatelessWidget {
@@ -20,17 +18,6 @@ class WorkflowTab extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Align(
-            //   alignment: Alignment.center,
-            //   child: Text(
-            //     "Workflow",
-            //     textAlign: TextAlign.left,
-            //     style: TextStyle(
-            //         color: Colors.black87,
-            //         fontSize: 18,
-            //         fontWeight: FontWeight.bold),
-            //   ),
-            // ),
             Expanded(
               child: ListView(
                 children: [

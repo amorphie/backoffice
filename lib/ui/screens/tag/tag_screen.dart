@@ -1,5 +1,4 @@
 import 'package:admin/core/utils/responsive.dart';
-import 'package:admin/ui/screens/dashboard/widgets/header.dart';
 import 'package:admin/ui/screens/tag/widgets/tag_list.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +15,6 @@ class TagScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Header(),
               SizedBox(height: defaultPadding),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,

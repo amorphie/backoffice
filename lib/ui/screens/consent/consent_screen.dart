@@ -1,10 +1,5 @@
-import 'package:admin/core/utils/responsive.dart';
+import 'package:admin/core/export/_.dart';
 import 'package:admin/ui/screens/consent/widgets/consent_table.dart';
-import 'package:flutter/material.dart';
-
-import '../../style/paddings.dart';
-import '../dashboard/widgets/header.dart';
-import '../dashboard/tabs/user_detail_screen.dart';
 
 class ConsentScreen extends StatelessWidget {
   @override
@@ -15,7 +10,6 @@ class ConsentScreen extends StatelessWidget {
         padding: EdgeInsets.all(defaultPadding),
         child: Column(
           children: [
-            Header(),
             SizedBox(height: defaultPadding),
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,

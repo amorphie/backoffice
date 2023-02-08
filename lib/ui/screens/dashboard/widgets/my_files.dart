@@ -1,5 +1,4 @@
 import 'package:admin/core/export/_.dart';
-import 'package:admin/ui/screens/dashboard/widgets/file_info_card.dart';
 
 class MyFiles extends StatelessWidget {
   const MyFiles({

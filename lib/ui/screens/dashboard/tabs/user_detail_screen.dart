@@ -1,7 +1,3 @@
-import 'package:admin/core/helpers/dialogs.dart';
-import 'package:admin/ui/screens/dashboard/tabs/history/history_tab.dart';
-import 'package:admin/ui/screens/dashboard/tabs/token/token_tab.dart';
-
 import '../../../../core/export/_.dart';
 
 class UserDetailScreen extends StatefulWidget {

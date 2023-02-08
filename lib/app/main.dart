@@ -1,5 +1,3 @@
-import 'package:admin/app/app.dart';
-
 import '../core/export/_.dart';
 
 void main() {

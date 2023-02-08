@@ -1,19 +1,16 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:admin/ui/pages/dashboard/dashboard_page.dart';
-import 'package:admin/ui/pages/user/user_add_page.dart';
-import 'package:admin/ui/screens/tag/tag_screen.dart';
 
 import '../../../core/export/_.dart';
 
-class MainScreen extends StatefulWidget {
-  const MainScreen({
+class Homescreen extends StatefulWidget {
+  const Homescreen({
     Key? key,
   }) : super(key: key);
   @override
-  State<MainScreen> createState() => _MainScreenState();
+  State<Homescreen> createState() => _HomescreenState();
 }
 
-class _MainScreenState extends State<MainScreen> {
+class _HomescreenState extends State<Homescreen> {
   int index = 0;
 
   final page = [

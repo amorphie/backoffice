@@ -1,7 +1,3 @@
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-
-import '../core/binding/start_app_bindings.dart';
 import '../core/export/_.dart';
 
 class App extends StatelessWidget {
@@ -16,7 +12,7 @@ class App extends StatelessWidget {
       builder: (_, w) => GetMaterialApp(
         initialBinding: StartBinding(),
         title: 'Amorphie',
-        home: MainScreen(),
+        home: Homescreen(),
       ),
     );
   }

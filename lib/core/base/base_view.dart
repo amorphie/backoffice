@@ -1,4 +1,4 @@
-import 'package:admin/core/controllers/app_ccontroller.dart';
+import 'package:admin/core/controllers/app_controller.dart';
 import 'package:get/get.dart';
 
 import '../export/_.dart';
