@@ -79,9 +79,7 @@ class SideMenu extends StatelessWidget {
           DrawerListTile(
             icon: Icons.task,
             title: "Scope",
-            press: () {
-              setIndex(3);
-            },
+            press: () {},
           ),
           ExpansionTile(
             textColor: Colors.white54,
@@ -122,7 +120,7 @@ class SideMenu extends StatelessWidget {
             ),
             children: <Widget>[
               hoverTile('Tag', () {
-                setIndex(4);
+                setIndex(3);
               }),
               hoverTile('Domain', () {}),
               hoverTile('Entity List', () {}),
@@ -149,7 +147,7 @@ class SideMenu extends StatelessWidget {
         child: ListTile(
           title: Text(
             title,
-            style: TextStyle(color: KC.primary),
+            style: TextStyle(color: Colors.white54),
           ),
         ),
       ),

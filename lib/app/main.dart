@@ -1,4 +1,6 @@
-import 'core/export/_.dart';
+import 'package:admin/app/app.dart';
+
+import '../core/export/_.dart';
 
 void main() {
   runApp(MyApp());
@@ -21,7 +23,7 @@ class MyApp extends StatelessWidget {
             create: (context) => MenuController(),
           ),
         ],
-        child: MainScreen(),
+        child: App(),
       ),
     );
   }
