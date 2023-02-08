@@ -6,11 +6,12 @@ import 'package:admin/core/export/_.dart';
 
 class UserAddScreen extends StatefulWidget {
   final UserModel model;
-  final Function(UserModel) addUser;
+  final Future Function(String ref, String firstName, String? lastName,
+      String? phone, String eMail) userAddPressed;
   const UserAddScreen({
     Key? key,
     required this.model,
-    required this.addUser,
+    required this.userAddPressed,
   }) : super(key: key);
   @override
   State<UserAddScreen> createState() => _UserAddScreenState();
@@ -76,6 +77,9 @@ class _UserAddScreenState extends State<UserAddScreen> {
           width: MediaQuery.of(context).size.width / 2,
           child: CommonTextField(
             labelText: "Reference",
+            onChanged: (val) {
+              val = ref.text;
+            },
           ),
         ),
         SizedBox(height: 30),
@@ -83,9 +87,23 @@ class _UserAddScreenState extends State<UserAddScreen> {
           width: MediaQuery.of(context).size.width / 2,
           child: Row(
             children: [
-              Expanded(child: CommonTextField(labelText: "Name")),
+              Expanded(
+                  child: CommonTextField(
+                labelText: "Name",
+                onChanged: (val) {
+                  setState(() {
+                    val = firstName.text;
+                  });
+                },
+              )),
               SizedBox(width: 10),
-              Expanded(child: CommonTextField(labelText: "Surname"))
+              Expanded(
+                  child: CommonTextField(
+                labelText: "Surname",
+                onChanged: (val) {
+                  val = lastName.text;
+                },
+              ))
             ],
           ),
         ),
@@ -94,9 +112,21 @@ class _UserAddScreenState extends State<UserAddScreen> {
           width: MediaQuery.of(context).size.width / 2,
           child: Row(
             children: [
-              Expanded(child: CommonTextField(labelText: "Phone")),
+              Expanded(
+                  child: CommonTextField(
+                labelText: "Phone",
+                onChanged: (val) {
+                  val = phone.text;
+                },
+              )),
               SizedBox(width: 10),
-              Expanded(child: CommonTextField(labelText: "E-mail"))
+              Expanded(
+                  child: CommonTextField(
+                labelText: "E-mail",
+                onChanged: (val) {
+                  val = eMail.text;
+                },
+              ))
             ],
           ),
         ),
@@ -183,8 +213,9 @@ class _UserAddScreenState extends State<UserAddScreen> {
                 child: Expanded(
                   child: CommonButton(
                       title: "Save",
-                      onPressed: () {
-                        widget.addUser(widget.model);
+                      onPressed: () async {
+                        await widget.userAddPressed(ref.text, firstName.text,
+                            lastName.text, phone.text, eMail.text);
                       },
                       color: KC.primary),
                 )),

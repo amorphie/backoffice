@@ -59,8 +59,8 @@ class TagList extends StatelessWidget {
               ],
 
               rows: List.generate(
-                tags.length,
-                (index) => recentFileDataRow(tags[index]),
+                tagsMockList.length,
+                (index) => recentFileDataRow(tagsMockList[index]),
               ),
             ),
           ),

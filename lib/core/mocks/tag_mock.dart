@@ -1,6 +1,6 @@
 import '../export/_.dart';
 
-List tags = [
+List<TagModel> tagsMockList = [
   TagModel(
     firstName: "Ozan Deniz",
     lastName: "Demirtaş",

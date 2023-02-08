@@ -28,7 +28,7 @@ class _UserListState extends State<UserList> {
 
   @override
   void initState() {
-    filterData = users;
+    filterData = usersMockList;
     super.initState();
   }
 
@@ -72,8 +72,8 @@ class _UserListState extends State<UserList> {
                 ],
               ),
               source: RowSource(
-                users: users,
-                count: users.length,
+                users: usersMockList,
+                count: usersMockList.length,
                 context: context,
               ),
               rowsPerPage: 8,
@@ -135,7 +135,7 @@ class _UserListState extends State<UserList> {
               hintText: "Search"),
           onChanged: (value) {
             setState(() {
-              users = filterData!
+              usersMockList = filterData!
                   .where((element) => element.firstName.contains(value))
                   .toList();
             });

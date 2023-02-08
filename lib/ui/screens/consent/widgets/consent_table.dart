@@ -59,8 +59,8 @@ class ConsentTable extends StatelessWidget {
               ],
 
               rows: List.generate(
-                consents.length,
-                (index) => recentFileDataRow(consents[index]),
+                consentsMockList.length,
+                (index) => recentFileDataRow(consentsMockList[index]),
               ),
             ),
           ),

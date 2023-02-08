@@ -1,6 +1,6 @@
 import '../export/_.dart';
 
-List<UserModel> users = [
+List<UserModel> usersMockList = [
   UserModel(
       reference: "000000000 000000 0000 00000",
       firstName: "Ozan Deniz",

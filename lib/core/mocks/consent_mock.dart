@@ -1,6 +1,6 @@
 import 'package:admin/core/export/_.dart';
 
-List consents = [
+List consentsMockList = [
   ConsentModel(
     bankName: "Burgan Bank",
     file: "Consent Name",
