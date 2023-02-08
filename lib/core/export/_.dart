@@ -19,7 +19,6 @@ export 'package:admin/screens/dashboard/dashboard_screen.dart';
 export 'package:admin/screens/dashboard/tabs/consent/consent_tab.dart';
 export 'package:admin/screens/user/user_edit_screen.dart';
 export 'package:admin/screens/user/user_add_screen.dart';
-export 'package:admin/screens/user/user_history.dart';
 export 'package:admin/screens/dashboard/homescreen.dart';
 
 //Pages

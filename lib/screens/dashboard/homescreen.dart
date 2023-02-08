@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:admin/pages/dashboard/dashboard_page.dart';
+import 'package:admin/pages/user/user_add_page.dart';
 import 'package:admin/screens/tag/tag_screen.dart';
 
 import '../../core/export/_.dart';
@@ -17,7 +18,7 @@ class _MainScreenState extends State<MainScreen> {
 
   final page = [
     DashboardPage(),
-    UserAddScreen(),
+    UserAddPage(),
     ConsentScreen(),
     TagScreen(),
   ];
@@ -25,7 +26,6 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: context.read<MenuController>().scaffoldKey,
       drawer: SideMenu(
         setIndex: (i) {
           setState(() {

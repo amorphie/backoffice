@@ -1,3 +1,6 @@
+import 'package:admin/pages/user/user_add_page.dart';
+import 'package:admin/pages/user/user_edit_page.dart';
+
 import '../export/_.dart';
 
 Future<void> tagPopUp(BuildContext context) {
@@ -44,8 +47,7 @@ Future<void> addUser(BuildContext context) async {
     builder: (BuildContext context) {
       return AlertDialog(
         content: SizedBox(
-            width: MediaQuery.of(context).size.width / 2,
-            child: UserAddScreen()),
+            width: MediaQuery.of(context).size.width / 2, child: UserAddPage()),
         actions: <Widget>[
           TextButton(
             style: TextButton.styleFrom(
@@ -88,7 +90,7 @@ Future<void> editUser(BuildContext context) async {
         title: const Text('AlertDialog Title'),
         content: SizedBox(
             width: MediaQuery.of(context).size.width / 2,
-            child: UserEditScreen()),
+            child: UserEditPage()),
       );
     },
   );

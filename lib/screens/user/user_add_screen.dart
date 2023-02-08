@@ -1,12 +1,15 @@
-import 'package:admin/screens/widgets/common_button.dart';
-import 'package:admin/screens/widgets/common_textfield.dart';
-import 'package:admin/style/colors.dart';
-import 'package:flutter/material.dart';
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+
 import 'package:multi_select_flutter/multi_select_flutter.dart';
 
-import '../../style/paddings.dart';
+import 'package:admin/core/export/_.dart';
 
 class UserAddScreen extends StatefulWidget {
+  final UserModel model;
+  const UserAddScreen({
+    Key? key,
+    required this.model,
+  }) : super(key: key);
   @override
   State<UserAddScreen> createState() => _UserAddScreenState();
 }
