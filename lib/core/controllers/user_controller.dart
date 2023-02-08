@@ -9,7 +9,7 @@ class UserController extends GetxController {
     _userModel.value = p;
   }
 
-  // List<UserModel> _updatePost(List<UserModel> list, int ref, UserModel post) {
+  // List<UserModel> _updateuser(List<UserModel> list, int ref, UserModel post) {
   //   List<UserModel> _list = List<UserModel>.from(list);
   //   int index = _list.indexWhere((element) => element.reference == ref);
   //   if (index > -1) {
@@ -18,7 +18,7 @@ class UserController extends GetxController {
   //   return _list;
   // }
 
-  // List<UserModel> _deletePost(List<UserModel> list, int ref) {
+  // List<UserModel> _deleteuser(List<UserModel> list, int ref) {
   //   List<UserModel> _list = List<UserModel>.from(list);
   //   int index = _list.indexWhere((element) => element.reference == ref);
   //   if (index > -1) {
