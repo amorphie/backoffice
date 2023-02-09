@@ -11,7 +11,8 @@ class UserDetailScreen extends StatefulWidget {
   State<UserDetailScreen> createState() => _UserDetailScreenState();
 }
 
-class _UserDetailScreenState extends State<UserDetailScreen> with TickerProviderStateMixin {
+class _UserDetailScreenState extends State<UserDetailScreen>
+    with TickerProviderStateMixin {
   late TabController _tabController;
 
   @override
@@ -39,7 +40,7 @@ class _UserDetailScreenState extends State<UserDetailScreen> with TickerProvider
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Icon(Icons.check_circle, color: Colors.white),
+                      Icon(widget.user.status),
                       SizedBox(width: 10),
                       Text(
                         widget.user.fullName,
@@ -48,12 +49,16 @@ class _UserDetailScreenState extends State<UserDetailScreen> with TickerProvider
                       ),
                     ],
                   ),
+                  SizedBox(height: 7),
                   Row(
                     children: [
                       Text(
-                        "Tags : retail-customer, bank-staff",
+                        "Tags : ${widget.user.tags}",
                         textAlign: TextAlign.left,
-                        style: TextStyle(color: Colors.white70, fontSize: 14, fontWeight: FontWeight.w400),
+                        style: TextStyle(
+                            color: Colors.white70,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400),
                       ),
                       SizedBox(width: 8),
                       GestureDetector(
@@ -66,11 +71,6 @@ class _UserDetailScreenState extends State<UserDetailScreen> with TickerProvider
                         ),
                       )
                     ],
-                  ),
-                  Text(
-                    "Status : Active",
-                    textAlign: TextAlign.left,
-                    style: TextStyle(color: Colors.white60, fontSize: 11, fontWeight: FontWeight.w400),
                   ),
                 ],
               ),

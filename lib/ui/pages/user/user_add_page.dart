@@ -8,7 +8,8 @@ class UserAddPage extends StatelessWidget {
     return BaseView(
         builder: (context, c) => UserAddScreen(
               model: c.user.userModel,
-              userAddPressed: (ref, firstName, lastName, phone, emil) async {
+              userAddPressed:
+                  (ref, firstName, lastName, phone, emil, tags) async {
                 // print("object");
                 usersMockList.add(UserModel(
                     firstName: firstName,
@@ -20,7 +21,7 @@ class UserAddPage extends StatelessWidget {
                     state: "state",
                     edit: Icons.edit,
                     status: Icons.check,
-                    tags: "tags"));
+                    tags: tags));
               },
             ));
   }

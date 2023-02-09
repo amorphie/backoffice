@@ -105,9 +105,13 @@ class _UserListState extends State<UserList> {
                 onClick: (index) {
                   widget.select(users[index]);
                 },
-                isSelected: (index) => selectedUsers.firstWhereOrNull((element) => users[index] == element) != null,
+                isSelected: (index) =>
+                    selectedUsers.firstWhereOrNull(
+                        (element) => users[index] == element) !=
+                    null,
                 onSelect: (index) {
-                  UserModel? u = selectedUsers.firstWhereOrNull((element) => users[index] == element);
+                  UserModel? u = selectedUsers
+                      .firstWhereOrNull((element) => users[index] == element);
                   if (u != null) {
                     selectedUsers.remove(users[index]);
                   } else {
@@ -120,12 +124,15 @@ class _UserListState extends State<UserList> {
               columnSpacing: 8,
               columns: [
                 DataColumn(
-                  label: Text("Reference", style: TextStyle(color: Colors.black54, fontWeight: FontWeight.w500)),
+                  label: Text("Reference",
+                      style: TextStyle(
+                          color: Colors.black54, fontWeight: FontWeight.w500)),
                 ),
                 DataColumn(
                     label: const Text(
                       "Name",
-                      style: TextStyle(color: Colors.black54, fontWeight: FontWeight.w500),
+                      style: TextStyle(
+                          color: Colors.black54, fontWeight: FontWeight.w500),
                     ),
                     onSort: (columnIndex, _) {
                       sortTableName(columnIndex);
@@ -134,14 +141,20 @@ class _UserListState extends State<UserList> {
                   onSort: (columnIndex, _) {
                     sortTablelastName(columnIndex);
                   },
-                  label: Text("Surname", style: TextStyle(color: Colors.black54, fontWeight: FontWeight.w500)),
+                  label: Text("Surname",
+                      style: TextStyle(
+                          color: Colors.black54, fontWeight: FontWeight.w500)),
                 ),
                 DataColumn(
-                  label: Text("Status", style: TextStyle(color: Colors.black54, fontWeight: FontWeight.w500)),
+                  label: Text("Status",
+                      style: TextStyle(
+                          color: Colors.black54, fontWeight: FontWeight.w500)),
                 ),
                 DataColumn(
                   label: Text("Tags",
-                      textAlign: TextAlign.end, style: TextStyle(color: Colors.black54, fontWeight: FontWeight.w500)),
+                      textAlign: TextAlign.end,
+                      style: TextStyle(
+                          color: Colors.black54, fontWeight: FontWeight.w500)),
                 ),
               ],
             ),
@@ -159,11 +172,15 @@ class _UserListState extends State<UserList> {
         child: TextField(
           controller: controller,
           style: TextStyle(color: Colors.black87),
-          decoration:
-              const InputDecoration(labelStyle: TextStyle(color: KC.primary), icon: Icon(Icons.search), hintText: "Search"),
+          decoration: const InputDecoration(
+              labelStyle: TextStyle(color: KC.primary),
+              icon: Icon(Icons.search),
+              hintText: "Search"),
           onChanged: (value) {
             setState(() {
-              users = filterData!.where((element) => element.firstName.contains(value)).toList();
+              users = filterData!
+                  .where((element) => element.firstName.contains(value))
+                  .toList();
               //TODO ana liste üzerinden değişiklik uygulandığı için değiştirilecek
             });
           },
@@ -223,10 +240,17 @@ class RowSource extends DataTableSource {
       },
       cells: [
         DataCell(
-          Text(model.reference, textAlign: TextAlign.start, style: TextStyle(color: Colors.black54, fontWeight: FontWeight.w400)),
+          Text(model.reference,
+              textAlign: TextAlign.start,
+              style: TextStyle(
+                  color: Colors.black54, fontWeight: FontWeight.w400)),
         ),
-        DataCell(Text(model.firstName, style: TextStyle(color: Colors.black54, fontWeight: FontWeight.w400))),
-        DataCell(Text(model.lastName, style: TextStyle(color: Colors.black54, fontWeight: FontWeight.w400))),
+        DataCell(Text(model.firstName,
+            style:
+                TextStyle(color: Colors.black54, fontWeight: FontWeight.w400))),
+        DataCell(Text(model.lastName,
+            style:
+                TextStyle(color: Colors.black54, fontWeight: FontWeight.w400))),
         DataCell(Icon(
           model.status,
           color: Colors.black54,
@@ -238,9 +262,15 @@ class RowSource extends DataTableSource {
               onTap: (() {
                 tagPopUp(context);
               }),
-              child: GestureDetector(child: Text(model.tags, style: TextStyle(color: KC.primary, fontWeight: FontWeight.w400))),
+              child: GestureDetector(
+                  child: Text(model.tags.toString(),
+                      style: TextStyle(
+                          color: KC.primary, fontWeight: FontWeight.w400))),
             ),
-            child: GestureDetector(child: Text(model.tags, style: TextStyle(color: Colors.black54, fontWeight: FontWeight.w400))),
+            child: GestureDetector(
+                child: Text(model.tags.toString(),
+                    style: TextStyle(
+                        color: Colors.black54, fontWeight: FontWeight.w400))),
           ),
         ),
       ],

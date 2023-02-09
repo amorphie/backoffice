@@ -1,6 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
+
 import 'package:admin/core/export/_.dart';
 
 class UserModel {
@@ -14,11 +16,10 @@ class UserModel {
   final DateTime? modifiedAt;
   final IconData edit;
   final IconData status;
-  final String tags;
+  final List<String> tags;
 
   String get fullName => "$firstName $lastName";
 
-  bool isSelected;
   UserModel({
     required this.firstName,
     required this.lastName,
@@ -31,21 +32,20 @@ class UserModel {
     required this.edit,
     required this.status,
     required this.tags,
-    this.isSelected = false,
   });
 
   factory UserModel.init() {
     return UserModel(
-        firstName: "firstName",
-        lastName: "lastName",
-        reference: "reference",
-        password: "password",
-        eMail: "eMail",
-        state: "state",
+        firstName: "",
+        lastName: "",
+        reference: "",
+        password: "",
+        eMail: "",
+        state: "",
         edit: Icons.edit,
         status: Icons.check,
-        tags: "tags",
-        phone: "0000000000");
+        tags: [],
+        phone: "");
   }
 
   UserModel copyWith({
@@ -59,7 +59,7 @@ class UserModel {
     DateTime? modifiedAt,
     IconData? edit,
     IconData? status,
-    String? tags,
+    List<String>? tags,
   }) {
     return UserModel(
       firstName: firstName ?? this.firstName,
@@ -94,23 +94,27 @@ class UserModel {
 
   factory UserModel.fromMap(Map<String, dynamic> map) {
     return UserModel(
-      firstName: map['firstName'] as String,
-      lastName: map['lastName'] as String,
-      reference: map['reference'] as String,
-      password: map['password'] as String,
-      phone: map['phone'] as String,
-      eMail: map['eMail'] as String,
-      state: map['state'] as String,
-      modifiedAt: map['modifiedAt'] != null ? DateTime.fromMillisecondsSinceEpoch(map['modifiedAt'] as int) : null,
-      edit: IconData(map['edit'] as int, fontFamily: 'MaterialIcons'),
-      status: IconData(map['status'] as int, fontFamily: 'MaterialIcons'),
-      tags: map['tags'] as String,
-    );
+        firstName: map['firstName'] as String,
+        lastName: map['lastName'] as String,
+        reference: map['reference'] as String,
+        password: map['password'] as String,
+        phone: map['phone'] as String,
+        eMail: map['eMail'] as String,
+        state: map['state'] as String,
+        modifiedAt: map['modifiedAt'] != null
+            ? DateTime.fromMillisecondsSinceEpoch(map['modifiedAt'] as int)
+            : null,
+        edit: IconData(map['edit'] as int, fontFamily: 'MaterialIcons'),
+        status: IconData(map['status'] as int, fontFamily: 'MaterialIcons'),
+        tags: List<String>.from(
+          (map['tags'] as List<String>),
+        ));
   }
 
   String toJson() => json.encode(toMap());
 
-  factory UserModel.fromJson(String source) => UserModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory UserModel.fromJson(String source) =>
+      UserModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
@@ -131,7 +135,7 @@ class UserModel {
         other.modifiedAt == modifiedAt &&
         other.edit == edit &&
         other.status == status &&
-        other.tags == tags;
+        listEquals(other.tags, tags);
   }
 
   @override
