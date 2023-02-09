@@ -4,17 +4,18 @@ import 'dart:convert';
 import 'package:admin/core/export/_.dart';
 
 class UserModel {
-  String firstName;
-  String lastName;
-  String reference;
-  String password;
-  String phone;
-  String eMail;
-  String state;
-  DateTime? modifiedAt;
+  final String firstName;
+  final String lastName;
+  final String reference;
+  final String password;
+  final String phone;
+  final String eMail;
+  final String state;
+  final DateTime? modifiedAt;
   final IconData edit;
   final IconData status;
   final String tags;
+  bool isSelected;
   UserModel({
     required this.firstName,
     required this.lastName,
@@ -27,6 +28,7 @@ class UserModel {
     required this.edit,
     required this.status,
     required this.tags,
+    this.isSelected = false,
   });
 
   factory UserModel.init() {

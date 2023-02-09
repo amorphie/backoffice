@@ -12,19 +12,41 @@ class UserList extends StatefulWidget {
   State<UserList> createState() => _UserListState();
 }
 
+List<UserModel> users = [];
+List<UserModel> selectedUsers = [];
+
 class _UserListState extends State<UserList> {
   bool sort = true;
   List<UserModel>? filterData;
 
-  onsortColum(int columnIndex, bool ascending) {
-    if (columnIndex == 0) {
-      if (ascending) {
-        filterData!.sort((a, b) => a.firstName.compareTo(b.firstName));
+  void sortTableName(int columnIndex) {
+    return setState(() {
+      _currentSortColumn = columnIndex;
+      if (_isAscending == true) {
+        _isAscending = false;
+        filterData!.sort((a, b) => a.lastName.compareTo(b.lastName));
       } else {
-        filterData!.sort((a, b) => b.firstName.compareTo(a.firstName));
+        _isAscending = true;
+        filterData!.sort((a, b) => b.lastName.compareTo(a.lastName));
       }
-    }
+    });
   }
+
+  void sortTablelastName(int columnIndex) {
+    return setState(() {
+      _currentSortColumn = columnIndex;
+      if (_isAscending == true) {
+        _isAscending = false;
+        filterData!.sort((a, b) => a.lastName.compareTo(b.lastName));
+      } else {
+        _isAscending = true;
+        filterData!.sort((a, b) => b.lastName.compareTo(a.lastName));
+      }
+    });
+  }
+
+  int _currentSortColumn = 0;
+  bool _isAscending = true;
 
   @override
   void initState() {
@@ -90,14 +112,13 @@ class _UserListState extends State<UserList> {
                       style: TextStyle(
                           color: Colors.black54, fontWeight: FontWeight.w500),
                     ),
-                    onSort: (columnIndex, ascending) {
-                      setState(() {
-                        sort = !sort;
-                      });
-
-                      onsortColum(columnIndex, ascending);
+                    onSort: (columnIndex, _) {
+                      sortTableName(columnIndex);
                     }),
                 DataColumn(
+                  onSort: (columnIndex, _) {
+                    sortTablelastName(columnIndex);
+                  },
                   label: Text("Surname",
                       style: TextStyle(
                           color: Colors.black54, fontWeight: FontWeight.w500)),
@@ -146,8 +167,27 @@ class _UserListState extends State<UserList> {
   }
 }
 
-DataRow recentFileDataRow(BuildContext context, UserModel model) {
-  return DataRow(
+DataRow recentFileDataRow(
+  BuildContext context,
+  UserModel model,
+  List<UserModel> userList,
+  int index,
+  int selectedCount,
+  // final Function(bool selected) onRowSelected,
+) {
+  return DataRow.byIndex(
+    index: index,
+    selected: userList[index].isSelected,
+    onSelectChanged: (value) {
+      if (userList.contains(model) != value) {
+        selectedCount += value! ? 1 : -1;
+        assert(selectedCount >= 0);
+        userList[index].isSelected = value;
+        // notifyListeners();
+        // onRowSelected();
+        //print('selected rows: $selectedRowCount');
+      }
+    },
     cells: [
       DataCell(
         Text(model.reference,
@@ -188,7 +228,7 @@ DataRow recentFileDataRow(BuildContext context, UserModel model) {
 }
 
 class RowSource extends DataTableSource {
-  List<UserModel> users;
+  final List<UserModel> users;
   final count;
   final BuildContext context;
   RowSource({
@@ -200,7 +240,8 @@ class RowSource extends DataTableSource {
   @override
   DataRow? getRow(int index) {
     if (index < rowCount) {
-      return recentFileDataRow(context, users[index]);
+      return recentFileDataRow(
+          context, users[index], users, index, selectedRowCount);
     } else
       return null;
   }
