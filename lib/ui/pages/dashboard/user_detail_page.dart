@@ -10,6 +10,9 @@ class UserDetailPage extends StatefulWidget {
 class _UserDetailPageState extends State<UserDetailPage> {
   @override
   Widget build(BuildContext context) {
-    return BaseView(builder: (context, c) => UserDetailScreen());
+    return BaseView(
+        builder: (context, c) => UserDetailScreen(
+              user: c.user.userModel,
+            ));
   }
 }

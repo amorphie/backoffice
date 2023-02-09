@@ -9,7 +9,6 @@ export 'package:admin/core/base/base_view.dart';
 //Controllers
 
 export 'package:admin/core/binding/start_app_bindings.dart';
-export 'package:admin/core/controllers/menu_controller.dart';
 
 //State Management
 

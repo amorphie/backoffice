@@ -1,16 +1,17 @@
 import '../../../../core/export/_.dart';
 
 class UserDetailScreen extends StatefulWidget {
+  final UserModel user;
   const UserDetailScreen({
     Key? key,
+    required this.user,
   }) : super(key: key);
 
   @override
   State<UserDetailScreen> createState() => _UserDetailScreenState();
 }
 
-class _UserDetailScreenState extends State<UserDetailScreen>
-    with TickerProviderStateMixin {
+class _UserDetailScreenState extends State<UserDetailScreen> with TickerProviderStateMixin {
   late TabController _tabController;
 
   @override
@@ -41,7 +42,7 @@ class _UserDetailScreenState extends State<UserDetailScreen>
                       Icon(Icons.check_circle, color: Colors.white),
                       SizedBox(width: 10),
                       Text(
-                        "Ozan Deniz Demirtaş",
+                        widget.user.fullName,
                         textAlign: TextAlign.left,
                         style: TextStyle(color: Colors.white, fontSize: 15),
                       ),
@@ -52,10 +53,7 @@ class _UserDetailScreenState extends State<UserDetailScreen>
                       Text(
                         "Tags : retail-customer, bank-staff",
                         textAlign: TextAlign.left,
-                        style: TextStyle(
-                            color: Colors.white70,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400),
+                        style: TextStyle(color: Colors.white70, fontSize: 14, fontWeight: FontWeight.w400),
                       ),
                       SizedBox(width: 8),
                       GestureDetector(
@@ -72,10 +70,7 @@ class _UserDetailScreenState extends State<UserDetailScreen>
                   Text(
                     "Status : Active",
                     textAlign: TextAlign.left,
-                    style: TextStyle(
-                        color: Colors.white60,
-                        fontSize: 11,
-                        fontWeight: FontWeight.w400),
+                    style: TextStyle(color: Colors.white60, fontSize: 11, fontWeight: FontWeight.w400),
                   ),
                 ],
               ),

@@ -4,9 +4,11 @@ import '../../../core/export/_.dart';
 
 class DashboardScreen extends StatelessWidget {
   final UserModel user;
+  final Function(UserModel user) selectUser;
   const DashboardScreen({
     Key? key,
     required this.user,
+    required this.selectUser,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -27,20 +29,20 @@ class DashboardScreen extends StatelessWidget {
                     children: [
                       MyFiles(),
                       SizedBox(height: 30),
-                      UserList(model: user),
-                      if (Responsive.isMobile(context))
-                        SizedBox(height: defaultPadding),
+                      UserList(select: selectUser),
+                      if (Responsive.isMobile(context)) SizedBox(height: defaultPadding),
                       // if (Responsive.isMobile(context)) StarageDetails(),
                     ],
                   ),
                 ),
-                if (!Responsive.isMobile(context))
-                  SizedBox(width: defaultPadding),
+                if (!Responsive.isMobile(context)) SizedBox(width: defaultPadding),
                 // On Mobile means if the screen is less than 850 we dont want to show it
                 if (!Responsive.isMobile(context))
                   Expanded(
                     flex: 2,
-                    child: UserDetailScreen(),
+                    child: UserDetailScreen(
+                      user: user,
+                    ),
                   ),
               ],
             )

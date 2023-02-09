@@ -1,33 +1,35 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:get/get.dart';
+
 import '../../../../core/export/_.dart';
 
 class UserList extends StatefulWidget {
-  final UserModel model;
+  final Function(UserModel user) select;
   const UserList({
     Key? key,
-    required this.model,
+    required this.select,
   }) : super(key: key);
 
   @override
   State<UserList> createState() => _UserListState();
 }
 
-List<UserModel> users = [];
-List<UserModel> selectedUsers = [];
-
 class _UserListState extends State<UserList> {
+// List<UserModel> users = [];
+  late List<UserModel> selectedUsers;
   bool sort = true;
   List<UserModel>? filterData;
+  late List<UserModel> users;
 
   void sortTableName(int columnIndex) {
     return setState(() {
       _currentSortColumn = columnIndex;
-      if (_isAscending == true) {
+      if (_isAscending) {
         _isAscending = false;
-        filterData!.sort((a, b) => a.lastName.compareTo(b.lastName));
+        filterData!.sort((a, b) => a.firstName.compareTo(b.firstName));
       } else {
         _isAscending = true;
-        filterData!.sort((a, b) => b.lastName.compareTo(a.lastName));
+        filterData!.sort((a, b) => b.firstName.compareTo(a.firstName));
       }
     });
   }
@@ -35,7 +37,7 @@ class _UserListState extends State<UserList> {
   void sortTablelastName(int columnIndex) {
     return setState(() {
       _currentSortColumn = columnIndex;
-      if (_isAscending == true) {
+      if (_isAscending) {
         _isAscending = false;
         filterData!.sort((a, b) => a.lastName.compareTo(b.lastName));
       } else {
@@ -50,7 +52,10 @@ class _UserListState extends State<UserList> {
 
   @override
   void initState() {
-    filterData = usersMockList;
+    users = usersMockList;
+    filterData = users;
+    selectedUsers = [];
+
     super.initState();
   }
 
@@ -94,23 +99,33 @@ class _UserListState extends State<UserList> {
                 ],
               ),
               source: RowSource(
-                users: usersMockList,
-                count: usersMockList.length,
+                users: users,
+                count: users.length,
                 context: context,
+                onClick: (index) {
+                  widget.select(users[index]);
+                },
+                isSelected: (index) => selectedUsers.firstWhereOrNull((element) => users[index] == element) != null,
+                onSelect: (index) {
+                  UserModel? u = selectedUsers.firstWhereOrNull((element) => users[index] == element);
+                  if (u != null) {
+                    selectedUsers.remove(users[index]);
+                  } else {
+                    selectedUsers.add(users[index]);
+                  }
+                  setState(() {});
+                },
               ),
               rowsPerPage: 8,
               columnSpacing: 8,
               columns: [
                 DataColumn(
-                  label: Text("Reference",
-                      style: TextStyle(
-                          color: Colors.black54, fontWeight: FontWeight.w500)),
+                  label: Text("Reference", style: TextStyle(color: Colors.black54, fontWeight: FontWeight.w500)),
                 ),
                 DataColumn(
                     label: const Text(
                       "Name",
-                      style: TextStyle(
-                          color: Colors.black54, fontWeight: FontWeight.w500),
+                      style: TextStyle(color: Colors.black54, fontWeight: FontWeight.w500),
                     ),
                     onSort: (columnIndex, _) {
                       sortTableName(columnIndex);
@@ -119,20 +134,14 @@ class _UserListState extends State<UserList> {
                   onSort: (columnIndex, _) {
                     sortTablelastName(columnIndex);
                   },
-                  label: Text("Surname",
-                      style: TextStyle(
-                          color: Colors.black54, fontWeight: FontWeight.w500)),
+                  label: Text("Surname", style: TextStyle(color: Colors.black54, fontWeight: FontWeight.w500)),
                 ),
                 DataColumn(
-                  label: Text("Status",
-                      style: TextStyle(
-                          color: Colors.black54, fontWeight: FontWeight.w500)),
+                  label: Text("Status", style: TextStyle(color: Colors.black54, fontWeight: FontWeight.w500)),
                 ),
                 DataColumn(
                   label: Text("Tags",
-                      textAlign: TextAlign.end,
-                      style: TextStyle(
-                          color: Colors.black54, fontWeight: FontWeight.w500)),
+                      textAlign: TextAlign.end, style: TextStyle(color: Colors.black54, fontWeight: FontWeight.w500)),
                 ),
               ],
             ),
@@ -150,15 +159,12 @@ class _UserListState extends State<UserList> {
         child: TextField(
           controller: controller,
           style: TextStyle(color: Colors.black87),
-          decoration: const InputDecoration(
-              labelStyle: TextStyle(color: KC.primary),
-              icon: Icon(Icons.search),
-              hintText: "Search"),
+          decoration:
+              const InputDecoration(labelStyle: TextStyle(color: KC.primary), icon: Icon(Icons.search), hintText: "Search"),
           onChanged: (value) {
             setState(() {
-              usersMockList = filterData!
-                  .where((element) => element.firstName.contains(value))
-                  .toList();
+              users = filterData!.where((element) => element.firstName.contains(value)).toList();
+              //TODO ana liste üzerinden değişiklik uygulandığı için değiştirilecek
             });
           },
         ),
@@ -167,83 +173,78 @@ class _UserListState extends State<UserList> {
   }
 }
 
-DataRow recentFileDataRow(
-  BuildContext context,
-  UserModel model,
-  List<UserModel> userList,
-  int index,
-  int selectedCount,
-  // final Function(bool selected) onRowSelected,
-) {
-  return DataRow.byIndex(
-    index: index,
-    selected: userList[index].isSelected,
-    onSelectChanged: (value) {
-      if (userList.contains(model) != value) {
-        selectedCount += value! ? 1 : -1;
-        assert(selectedCount >= 0);
-        userList[index].isSelected = value;
-        // notifyListeners();
-        // onRowSelected();
-        //print('selected rows: $selectedRowCount');
-      }
-    },
-    cells: [
-      DataCell(
-        Text(model.reference,
-            textAlign: TextAlign.start,
-            style:
-                TextStyle(color: Colors.black54, fontWeight: FontWeight.w400)),
-      ),
-      DataCell(Text(model.firstName,
-          style:
-              TextStyle(color: Colors.black54, fontWeight: FontWeight.w400))),
-      DataCell(Text(model.lastName,
-          style:
-              TextStyle(color: Colors.black54, fontWeight: FontWeight.w400))),
-      DataCell(Icon(
-        model.status,
-        color: Colors.black54,
-      )),
-      DataCell(
-        HoverWidget(
-          onHover: (a) {},
-          hoverChild: GestureDetector(
-            onTap: (() {
-              tagPopUp(context);
-            }),
-            child: GestureDetector(
-                child: Text(model.tags,
-                    style: TextStyle(
-                        color: KC.primary, fontWeight: FontWeight.w400))),
-          ),
-          child: GestureDetector(
-              child: Text(model.tags,
-                  style: TextStyle(
-                      color: Colors.black54, fontWeight: FontWeight.w400))),
-        ),
-      ),
-    ],
-  );
-}
-
 class RowSource extends DataTableSource {
+  final int count;
   final List<UserModel> users;
-  final count;
   final BuildContext context;
+  final bool Function(int index) isSelected;
+  final Function(int index) onSelect;
+  final Function(int index) onClick;
   RowSource({
-    required this.users,
     required this.count,
+    required this.users,
     required this.context,
+    required this.isSelected,
+    required this.onSelect,
+    required this.onClick,
   });
 
   @override
   DataRow? getRow(int index) {
     if (index < rowCount) {
       return recentFileDataRow(
-          context, users[index], users, index, selectedRowCount);
+        context: context,
+        index: index,
+        isSelected: isSelected,
+        model: users[index],
+        onSelect: onSelect,
+        onClick: onClick,
+      );
     } else
       return null;
+  }
+
+  DataRow recentFileDataRow({
+    required BuildContext context,
+    required UserModel model,
+    required int index,
+    required Function(int index) onSelect,
+    required Function(int index) onClick,
+    required bool Function(int index) isSelected,
+  }) {
+    return DataRow.byIndex(
+      index: index,
+      selected: isSelected(index),
+      onSelectChanged: (value) {
+        if (value != null) {
+          onSelect(index);
+          onClick(index);
+        }
+      },
+      cells: [
+        DataCell(
+          Text(model.reference, textAlign: TextAlign.start, style: TextStyle(color: Colors.black54, fontWeight: FontWeight.w400)),
+        ),
+        DataCell(Text(model.firstName, style: TextStyle(color: Colors.black54, fontWeight: FontWeight.w400))),
+        DataCell(Text(model.lastName, style: TextStyle(color: Colors.black54, fontWeight: FontWeight.w400))),
+        DataCell(Icon(
+          model.status,
+          color: Colors.black54,
+        )),
+        DataCell(
+          HoverWidget(
+            onHover: (a) {},
+            hoverChild: GestureDetector(
+              onTap: (() {
+                tagPopUp(context);
+              }),
+              child: GestureDetector(child: Text(model.tags, style: TextStyle(color: KC.primary, fontWeight: FontWeight.w400))),
+            ),
+            child: GestureDetector(child: Text(model.tags, style: TextStyle(color: Colors.black54, fontWeight: FontWeight.w400))),
+          ),
+        ),
+      ],
+    );
   }
 
   @override

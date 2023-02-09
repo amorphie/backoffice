@@ -15,6 +15,9 @@ class UserModel {
   final IconData edit;
   final IconData status;
   final String tags;
+
+  String get fullName => "$firstName $lastName";
+
   bool isSelected;
   UserModel({
     required this.firstName,
@@ -98,9 +101,7 @@ class UserModel {
       phone: map['phone'] as String,
       eMail: map['eMail'] as String,
       state: map['state'] as String,
-      modifiedAt: map['modifiedAt'] != null
-          ? DateTime.fromMillisecondsSinceEpoch(map['modifiedAt'] as int)
-          : null,
+      modifiedAt: map['modifiedAt'] != null ? DateTime.fromMillisecondsSinceEpoch(map['modifiedAt'] as int) : null,
       edit: IconData(map['edit'] as int, fontFamily: 'MaterialIcons'),
       status: IconData(map['status'] as int, fontFamily: 'MaterialIcons'),
       tags: map['tags'] as String,
@@ -109,8 +110,7 @@ class UserModel {
 
   String toJson() => json.encode(toMap());
 
-  factory UserModel.fromJson(String source) =>
-      UserModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory UserModel.fromJson(String source) => UserModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
