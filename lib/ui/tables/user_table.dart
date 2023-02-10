@@ -1,20 +1,20 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:get/get.dart';
 
-import '../../../../core/export/_.dart';
+import '../../core/export/_.dart';
 
-class UserList extends StatefulWidget {
+class UserTable extends StatefulWidget {
   final Function(UserModel user) select;
-  const UserList({
+  const UserTable({
     Key? key,
     required this.select,
   }) : super(key: key);
 
   @override
-  State<UserList> createState() => _UserListState();
+  State<UserTable> createState() => _UserTableState();
 }
 
-class _UserListState extends State<UserList> {
+class _UserTableState extends State<UserTable> {
 // List<UserModel> users = [];
   late List<UserModel> selectedUsers;
   bool sort = true;

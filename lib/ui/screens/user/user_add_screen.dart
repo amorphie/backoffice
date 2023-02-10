@@ -19,15 +19,8 @@ class UserAddScreen extends StatefulWidget {
 }
 
 class _UserAddScreenState extends State<UserAddScreen> {
-  static List<TagsPageModel?> _tags = [
-    TagsPageModel(id: 1, name: "bank-staff"),
-    TagsPageModel(id: 2, name: "potential-customer"),
-    TagsPageModel(id: 3, name: "retail-customer"),
-    TagsPageModel(id: 4, name: "corporate-customer"),
-    TagsPageModel(id: 5, name: "loan-partner"),
-  ];
-  final _items = _tags
-      .map((tag) => MultiSelectItem<TagsPageModel>(tag!, tag.name))
+  final _items = tagsMockList
+      .map((tag) => MultiSelectItem<TagModel>(tag, tag.tagName))
       .toList();
 
   List<String> selectedtags = [];
@@ -212,14 +205,4 @@ class _UserAddScreenState extends State<UserAddScreen> {
       ],
     );
   }
-}
-
-class TagsPageModel {
-  final int id;
-  final String name;
-
-  TagsPageModel({
-    required this.id,
-    required this.name,
-  });
 }

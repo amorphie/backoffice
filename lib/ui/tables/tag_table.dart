@@ -1,8 +1,8 @@
 import 'package:data_table_2/data_table_2.dart';
-import '../../../../core/export/_.dart';
+import '../../core/export/_.dart';
 
-class TagList extends StatelessWidget {
-  const TagList({
+class TagTable extends StatelessWidget {
+  const TagTable({
     Key? key,
   }) : super(key: key);
 
@@ -31,22 +31,12 @@ class TagList extends StatelessWidget {
               minWidth: 600,
               columns: [
                 DataColumn(
-                  label: Text("Ad",
+                  label: Text("ID",
                       style: TextStyle(
                           color: Colors.black54, fontWeight: FontWeight.w500)),
                 ),
                 DataColumn(
-                  label: Text("Soyad",
-                      style: TextStyle(
-                          color: Colors.black54, fontWeight: FontWeight.w500)),
-                ),
-                // DataColumn(
-                //   label: Text("Durum",
-                //       style: TextStyle(
-                //           color: Colors.black54, fontWeight: FontWeight.w500)),
-                // ),
-                DataColumn(
-                  label: Text("Tags",
+                  label: Text("Tag Name",
                       style: TextStyle(
                           color: Colors.black54, fontWeight: FontWeight.w500)),
                 ),
@@ -73,14 +63,12 @@ class TagList extends StatelessWidget {
 DataRow recentFileDataRow(TagModel model) {
   return DataRow(
     cells: [
-      DataCell(Text(model.firstName,
+      DataCell(Text(model.id,
           style:
               TextStyle(color: Colors.black54, fontWeight: FontWeight.w400))),
-      DataCell(Text(model.lastName,
-          style:
-              TextStyle(color: Colors.black54, fontWeight: FontWeight.w400))),
+
       // DataCell(fileInfo.durum),
-      DataCell(Text(model.tags,
+      DataCell(Text(model.tagName,
           style:
               TextStyle(color: Colors.black54, fontWeight: FontWeight.w400))),
       DataCell(Icon(

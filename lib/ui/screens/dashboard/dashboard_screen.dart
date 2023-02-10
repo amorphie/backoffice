@@ -28,7 +28,7 @@ class DashboardScreen extends StatelessWidget {
                     children: [
                       //MyFiles(),
                       // SizedBox(height: 30),
-                      UserList(select: selectUser),
+                      UserTable(select: selectUser),
                       if (Responsive.isMobile(context))
                         SizedBox(height: defaultPadding),
                       // if (Responsive.isMobile(context)) StarageDetails(),

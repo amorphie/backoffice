@@ -1,5 +1,5 @@
 import 'package:admin/core/export/_.dart';
-import 'package:admin/ui/screens/consent/widgets/consent_table.dart';
+import 'package:admin/ui/tables/consent_table.dart';
 
 class ConsentScreen extends StatelessWidget {
   @override
@@ -20,12 +20,14 @@ class ConsentScreen extends StatelessWidget {
                     children: [
                       SizedBox(height: 10),
                       ConsentTable(),
-                      if (Responsive.isMobile(context)) SizedBox(height: defaultPadding),
+                      if (Responsive.isMobile(context))
+                        SizedBox(height: defaultPadding),
                       // if (Responsive.isMobile(context)) StarageDetails(),
                     ],
                   ),
                 ),
-                if (!Responsive.isMobile(context)) SizedBox(width: defaultPadding),
+                if (!Responsive.isMobile(context))
+                  SizedBox(width: defaultPadding),
                 // On Mobile means if the screen is less than 850 we dont want to show it
                 if (!Responsive.isMobile(context))
                   Expanded(

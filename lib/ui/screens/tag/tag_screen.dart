@@ -1,5 +1,5 @@
 import 'package:admin/core/utils/responsive.dart';
-import 'package:admin/ui/screens/tag/widgets/tag_list.dart';
+import 'package:admin/ui/tables/tag_table.dart';
 import 'package:flutter/material.dart';
 
 import '../../style/paddings.dart';
@@ -24,7 +24,7 @@ class TagScreen extends StatelessWidget {
                     child: Column(
                       children: [
                         SizedBox(height: defaultPadding),
-                        TagList(),
+                        TagTable(),
                         if (Responsive.isMobile(context))
                           SizedBox(height: defaultPadding),
                       ],

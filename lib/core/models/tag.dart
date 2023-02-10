@@ -4,61 +4,44 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 
 class TagModel {
-  final String firstName;
-  final String lastName;
-  final IconData statu;
-  final String tags;
+  final String id;
+  final String tagName;
   final IconData edit;
 
   TagModel({
-    required this.firstName,
-    required this.lastName,
-    required this.statu,
-    required this.tags,
+    required this.id,
+    required this.tagName,
     required this.edit,
   });
 
   factory TagModel.init() {
-    return TagModel(
-        firstName: "Ozan Deniz",
-        lastName: "Demirtas",
-        statu: Icons.check,
-        tags: "tag",
-        edit: Icons.edit);
+    return TagModel(id: "Ozan Deniz", tagName: "tag", edit: Icons.edit);
   }
 
   TagModel copyWith({
-    String? firstName,
-    String? lastName,
-    IconData? statu,
-    String? tags,
+    String? id,
+    String? tagName,
     IconData? edit,
   }) {
     return TagModel(
-      firstName: firstName ?? this.firstName,
-      lastName: lastName ?? this.lastName,
-      statu: statu ?? this.statu,
-      tags: tags ?? this.tags,
+      id: id ?? this.id,
+      tagName: tagName ?? this.tagName,
       edit: edit ?? this.edit,
     );
   }
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'firstName': firstName,
-      'lastName': lastName,
-      'statu': statu.codePoint,
-      'tags': tags,
+      'id': id,
+      'tagName': tagName,
       'edit': edit.codePoint,
     };
   }
 
   factory TagModel.fromMap(Map<String, dynamic> map) {
     return TagModel(
-      firstName: map['firstName'] as String,
-      lastName: map['lastName'] as String,
-      statu: IconData(map['statu'] as int, fontFamily: 'MaterialIcons'),
-      tags: map['tags'] as String,
+      id: map['id'] as String,
+      tagName: map['tagName'] as String,
       edit: IconData(map['edit'] as int, fontFamily: 'MaterialIcons'),
     );
   }
@@ -69,27 +52,15 @@ class TagModel {
       TagModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
-  String toString() {
-    return 'TagModel(firstName: $firstName, lastName: $lastName, statu: $statu, tags: $tags, edit: $edit)';
-  }
+  String toString() => 'TagModel(id: $id, tagName: $tagName, edit: $edit)';
 
   @override
   bool operator ==(covariant TagModel other) {
     if (identical(this, other)) return true;
 
-    return other.firstName == firstName &&
-        other.lastName == lastName &&
-        other.statu == statu &&
-        other.tags == tags &&
-        other.edit == edit;
+    return other.id == id && other.tagName == tagName && other.edit == edit;
   }
 
   @override
-  int get hashCode {
-    return firstName.hashCode ^
-        lastName.hashCode ^
-        statu.hashCode ^
-        tags.hashCode ^
-        edit.hashCode;
-  }
+  int get hashCode => id.hashCode ^ tagName.hashCode ^ edit.hashCode;
 }

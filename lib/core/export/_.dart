@@ -58,7 +58,7 @@ export 'package:admin/ui/style/colors.dart';
 
 //Widgets
 
-export 'package:admin/ui/screens/dashboard/widgets/user_table.dart';
+export 'package:admin/ui/tables/user_table.dart';
 export 'package:admin/ui/screens/dashboard/tabs/user_detail_screen.dart';
 export 'package:admin/ui/screens/dashboard/widgets/side_menu.dart';
 export 'package:admin/ui/screens/widgets/common_button.dart';
