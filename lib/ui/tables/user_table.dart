@@ -23,7 +23,7 @@ class _UserTableState extends State<UserTable> {
 
   void sortTableName(int columnIndex) {
     return setState(() {
-      _currentSortColumn = columnIndex;
+      currentSortColumn = columnIndex;
       if (_isAscending) {
         _isAscending = false;
         filterData!.sort((a, b) => a.firstName.compareTo(b.firstName));
@@ -36,7 +36,7 @@ class _UserTableState extends State<UserTable> {
 
   void sortTablelastName(int columnIndex) {
     return setState(() {
-      _currentSortColumn = columnIndex;
+      currentSortColumn = columnIndex;
       if (_isAscending) {
         _isAscending = false;
         filterData!.sort((a, b) => a.lastName.compareTo(b.lastName));
@@ -47,7 +47,7 @@ class _UserTableState extends State<UserTable> {
     });
   }
 
-  int _currentSortColumn = 0;
+  int currentSortColumn = 0;
   bool _isAscending = true;
 
   @override

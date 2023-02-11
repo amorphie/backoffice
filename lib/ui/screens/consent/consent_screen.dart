@@ -1,5 +1,4 @@
 import 'package:admin/core/export/_.dart';
-import 'package:admin/ui/tables/consent_table.dart';
 
 class ConsentScreen extends StatelessWidget {
   @override
@@ -19,7 +18,7 @@ class ConsentScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       SizedBox(height: 10),
-                      ConsentTable(),
+                      // ConsentTable(),
                       if (Responsive.isMobile(context))
                         SizedBox(height: defaultPadding),
                       // if (Responsive.isMobile(context)) StarageDetails(),
