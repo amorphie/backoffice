@@ -31,6 +31,7 @@ class _TagTableState extends State<TagTable> {
 
   @override
   void initState() {
+    tags = tagsMockList;
     super.initState();
   }
 
@@ -178,24 +179,6 @@ class RowSource extends DataTableSource {
             style:
                 TextStyle(color: Colors.black54, fontWeight: FontWeight.w400))),
         DataCell(Icon(model.edit)),
-        DataCell(
-          HoverWidget(
-            onHover: (a) {},
-            hoverChild: GestureDetector(
-              onTap: (() {
-                tagPopUp(context);
-              }),
-              child: GestureDetector(
-                  child: Text(model.id,
-                      style: TextStyle(
-                          color: KC.primary, fontWeight: FontWeight.w400))),
-            ),
-            child: GestureDetector(
-                child: Text(model.tagName,
-                    style: TextStyle(
-                        color: Colors.black54, fontWeight: FontWeight.w400))),
-          ),
-        ),
       ],
     );
   }
