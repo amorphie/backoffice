@@ -105,23 +105,24 @@ class _UserTableState extends State<UserTable> {
                 onClick: (index) {
                   widget.select(users[index]);
                 },
-                isSelected: (index) =>
-                    selectedUsers.firstWhereOrNull(
-                        (element) => users[index] == element) !=
-                    null,
-                onSelect: (index) {
-                  UserModel? u = selectedUsers
-                      .firstWhereOrNull((element) => users[index] == element);
-                  if (u != null) {
-                    selectedUsers.remove(users[index]);
-                  } else {
-                    selectedUsers.add(users[index]);
-                  }
-                  setState(() {});
-                },
+                // isSelected: (index) =>
+                // selectedUsers.firstWhereOrNull(
+                //      (element) => users[index] == element) !=
+                //    null,
+                //    onSelect: (index) {
+                //    UserModel? u = selectedUsers
+                //        .firstWhereOrNull((element) => users[index] == element);
+                //    if (u != null) {
+                //      selectedUsers.remove(users[index]);
+                //    } else {
+                //      selectedUsers.add(users[index]);
+                //    }
+                //    setState(() {});
+                //  },
               ),
               rowsPerPage: 8,
               columnSpacing: 8,
+              showCheckboxColumn: false,
               columns: [
                 DataColumn(
                   label: Text("Reference",
@@ -194,15 +195,15 @@ class RowSource extends DataTableSource {
   final int count;
   final List<UserModel> users;
   final BuildContext context;
-  final bool Function(int index) isSelected;
-  final Function(int index) onSelect;
+  //final bool Function(int index)? isSelected;
+  //final Function(int index) onSelect;
   final Function(int index) onClick;
   RowSource({
     required this.count,
     required this.users,
     required this.context,
-    required this.isSelected,
-    required this.onSelect,
+    //this.isSelected,
+    // required this.onSelect,
     required this.onClick,
   });
 
@@ -212,9 +213,9 @@ class RowSource extends DataTableSource {
       return recentFileDataRow(
         context: context,
         index: index,
-        isSelected: isSelected,
+        //isSelected: isSelected!,
         model: users[index],
-        onSelect: onSelect,
+        //onSelect: onSelect,
         onClick: onClick,
       );
     } else
@@ -225,16 +226,16 @@ class RowSource extends DataTableSource {
     required BuildContext context,
     required UserModel model,
     required int index,
-    required Function(int index) onSelect,
+    // required Function(int index) onSelect,
     required Function(int index) onClick,
-    required bool Function(int index) isSelected,
+    //required bool Function(int index) isSelected,
   }) {
     return DataRow.byIndex(
       index: index,
-      selected: isSelected(index),
+      //selected: isSelected(index),
       onSelectChanged: (value) {
         if (value != null) {
-          onSelect(index);
+          // onSelect(index);
           onClick(index);
         }
       },
