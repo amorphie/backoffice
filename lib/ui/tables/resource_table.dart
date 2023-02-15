@@ -117,6 +117,13 @@ class _ResourceTableState extends State<ResourceTable> {
                     },
                   ),
                   DataColumn(
+                    label: Text("Url",
+                        textAlign: TextAlign.end,
+                        style: TextStyle(
+                            color: Colors.black54,
+                            fontWeight: FontWeight.w500)),
+                  ),
+                  DataColumn(
                     label: Text("Type",
                         textAlign: TextAlign.end,
                         style: TextStyle(
@@ -203,6 +210,9 @@ class RowSource extends DataTableSource {
                   color: Colors.black54, fontWeight: FontWeight.w400)),
         ),
         DataCell(Text(model.displayName!,
+            style:
+                TextStyle(color: Colors.black54, fontWeight: FontWeight.w400))),
+        DataCell(Text(model.url!,
             style:
                 TextStyle(color: Colors.black54, fontWeight: FontWeight.w400))),
         DataCell(Text(model.type!,

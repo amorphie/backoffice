@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_final_fields
 
+import 'package:admin/core/controllers/privilege_controller.dart';
 import 'package:admin/core/controllers/resource_controller.dart';
+import 'package:admin/core/controllers/role_controller.dart';
 import 'package:admin/core/controllers/tag_controller.dart';
 import 'package:admin/core/controllers/user_controller.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
@@ -13,6 +15,10 @@ class AppController extends GetxController {
   TagController get tag => _tag.value;
   Rx<ResourceController> _resource = ResourceController().obs;
   ResourceController get resource => _resource.value;
+  Rx<PrivilegeController> _privilege = PrivilegeController().obs;
+  PrivilegeController get privilege => _privilege.value;
+  Rx<RoleController> _role = RoleController().obs;
+  RoleController get role => _role.value;
 
   Future init() async {}
 }
