@@ -44,8 +44,6 @@ class _UserAddScreenState extends State<UserAddScreen> {
 
   @override
   Widget build(BuildContext context) {
-    String statusValue = status.first;
-
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -156,21 +154,17 @@ class _UserAddScreenState extends State<UserAddScreen> {
                   style: TextStyle(color: Colors.white),
                 ),
                 headerColor: KC.primary,
+                initialValue: [_items[1]],
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   border: Border.all(color: KC.primary, width: 0.6),
                 ),
                 selectedChipColor: KC.primary,
                 selectedTextStyle: TextStyle(color: Colors.white),
-                onTap: (values) {
-                  values = selectedtags;
-                  selectedtags = widget.model.tags;
-                },
               ),
             ),
           ),
         ),
-        SizedBox(height: 70),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

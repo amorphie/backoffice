@@ -96,7 +96,7 @@ class _TagTableState extends State<TagTable> {
                   // },
                 ),
                 rowsPerPage: 8,
-                columnSpacing: 8,
+                columnSpacing: 3,
                 columns: [
                   DataColumn(
                     label: Text("ID",
@@ -109,6 +109,9 @@ class _TagTableState extends State<TagTable> {
                         style: TextStyle(
                             color: Colors.black54,
                             fontWeight: FontWeight.w500)),
+                    onSort: (columnIndex, _) {
+                      sortTableName(columnIndex);
+                    },
                   ),
                   DataColumn(
                     label: Text("Edit",
