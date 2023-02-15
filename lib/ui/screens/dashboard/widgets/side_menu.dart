@@ -102,7 +102,9 @@ class SideMenu extends StatelessWidget {
               ],
             ),
             children: <Widget>[
-              hoverTile('Resources', () {}),
+              hoverTile('Resources', () {
+                setIndex(4);
+              }),
               hoverTile('Role Group', () {}),
               hoverTile('Roles', () {}),
               hoverTile('Privilages', () {}),
