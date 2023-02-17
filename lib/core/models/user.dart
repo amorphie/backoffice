@@ -5,7 +5,9 @@ import 'package:flutter/foundation.dart';
 
 import 'package:admin/core/export/_.dart';
 
-class UserModel {
+import '../base/base_model.dart';
+
+class UserModel implements BaseModel {
   final String firstName;
   final String lastName;
   final String reference;
@@ -35,17 +37,7 @@ class UserModel {
   });
 
   factory UserModel.init() {
-    return UserModel(
-        firstName: "",
-        lastName: "",
-        reference: "",
-        password: "",
-        eMail: "",
-        state: "",
-        edit: Icons.edit,
-        status: Icons.check,
-        tags: [],
-        phone: "");
+    return UserModel(firstName: "", lastName: "", reference: "", password: "", eMail: "", state: "", edit: Icons.edit, status: Icons.check, tags: [], phone: "");
   }
 
   UserModel copyWith({
@@ -101,9 +93,7 @@ class UserModel {
         phone: map['phone'] as String,
         eMail: map['eMail'] as String,
         state: map['state'] as String,
-        modifiedAt: map['modifiedAt'] != null
-            ? DateTime.fromMillisecondsSinceEpoch(map['modifiedAt'] as int)
-            : null,
+        modifiedAt: map['modifiedAt'] != null ? DateTime.fromMillisecondsSinceEpoch(map['modifiedAt'] as int) : null,
         edit: IconData(map['edit'] as int, fontFamily: 'MaterialIcons'),
         status: IconData(map['status'] as int, fontFamily: 'MaterialIcons'),
         tags: List<String>.from(
@@ -113,8 +103,7 @@ class UserModel {
 
   String toJson() => json.encode(toMap());
 
-  factory UserModel.fromJson(String source) =>
-      UserModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory UserModel.fromJson(String source) => UserModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
@@ -152,4 +141,19 @@ class UserModel {
         status.hashCode ^
         tags.hashCode;
   }
+
+  @override
+  List<String> columns = [
+    "firstName",
+    "lastName",
+    "reference",
+    "password",
+    "phone",
+    "eMail",
+    "status",
+    "tags",
+  ];
+
+  @override
+  var id;
 }
