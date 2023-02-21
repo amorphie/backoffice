@@ -3,6 +3,7 @@
 import 'package:admin/core/controllers/privilege_controller.dart';
 import 'package:admin/core/controllers/resource_controller.dart';
 import 'package:admin/core/controllers/role_controller.dart';
+import 'package:admin/core/controllers/role_group_controller.dart';
 import 'package:admin/core/controllers/tag_controller.dart';
 import 'package:admin/core/controllers/user_controller.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
@@ -19,6 +20,8 @@ class AppController extends GetxController {
   PrivilegeController get privilege => _privilege.value;
   Rx<RoleController> _role = RoleController().obs;
   RoleController get role => _role.value;
+  Rx<RoleGroupController> _roleGroup = RoleGroupController().obs;
+  RoleGroupController get roleGroup => _roleGroup.value;
 
   Future init() async {}
 }

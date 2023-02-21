@@ -10,7 +10,7 @@ mixin TagService {
 
 //Post
 
-  Future<ResponseModel> addTeamEvent(TagModel model) async {
+  Future<ResponseModel> postTag(TagModel model) async {
     ResponseModel response =
         await Executer.post(endpoint: "team-event", data: model.toMap());
     return response;

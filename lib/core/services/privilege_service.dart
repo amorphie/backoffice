@@ -5,7 +5,7 @@ import '../export/_.dart';
 mixin PrivilegeService {
 //Get
 
-  Future<ResponseModel> getPrivilege({required int id}) async {
+  Future<ResponseModel> getPrivilegeById({required String id}) async {
     ResponseModel response = await Executer.get(endpoint: "privilege/$id");
     return response;
   }
@@ -20,7 +20,7 @@ mixin PrivilegeService {
 
   //Delete
 
-  Future<ResponseModel> deletePrivilege(int id) async {
+  Future<ResponseModel> deletePrivilege(String id) async {
     ResponseModel response = await Executer.delete(endpoint: "privilege/$id");
     return response;
   }

@@ -5,12 +5,12 @@ import '../export/_.dart';
 mixin RoleGroupService {
   //Get
 
-  Future<ResponseModel> getRoleGroupById({required int id}) async {
+  Future<ResponseModel> getRoleGroupById({required String id}) async {
     ResponseModel response = await Executer.get(endpoint: "roleGroup/$id");
     return response;
   }
 
-  Future<ResponseModel> getRoleGroup({required int id}) async {
+  Future<ResponseModel> getRoleGroup() async {
     ResponseModel response = await Executer.get(endpoint: "roleGroup");
     return response;
   }
@@ -25,7 +25,7 @@ mixin RoleGroupService {
 
   //Delete
 
-  Future<ResponseModel> deleteRoleGroup(int id) async {
+  Future<ResponseModel> deleteRoleGroup(String id) async {
     ResponseModel response = await Executer.delete(endpoint: "roleGroup/$id");
     return response;
   }

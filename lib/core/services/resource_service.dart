@@ -5,7 +5,7 @@ import '../export/_.dart';
 mixin ResourceService {
   //Get
 
-  Future<ResponseModel> getResourceById({required int id}) async {
+  Future<ResponseModel> getResourceById({required String id}) async {
     ResponseModel response = await Executer.get(endpoint: "resource/$id");
     return response;
   }
@@ -20,7 +20,7 @@ mixin ResourceService {
 
   //Delete
 
-  Future<ResponseModel> deleteResource(int id) async {
+  Future<ResponseModel> deleteResource(String id) async {
     ResponseModel response = await Executer.delete(endpoint: "resource/$id");
     return response;
   }

@@ -1,23 +1,23 @@
-import 'package:admin/core/models/role_group.dart';
+import 'package:admin/core/models/role.dart';
 
 import '../export/_.dart';
 
 mixin RoleService {
   //Get
 
-  Future<ResponseModel> getRoleById({required int id}) async {
+  Future<ResponseModel> getRoleById({required String id}) async {
     ResponseModel response = await Executer.get(endpoint: "role/$id");
     return response;
   }
 
-  Future<ResponseModel> getRole({required int id}) async {
+  Future<ResponseModel> getRole() async {
     ResponseModel response = await Executer.get(endpoint: "role");
     return response;
   }
 
   //Post
 
-  Future<ResponseModel> postRole(RoleGroupModel model) async {
+  Future<ResponseModel> postRole(RoleModel model) async {
     ResponseModel response =
         await Executer.post(endpoint: "role", data: model.toMap());
     return response;
@@ -25,7 +25,7 @@ mixin RoleService {
 
   //Delete
 
-  Future<ResponseModel> deleteRole(int id) async {
+  Future<ResponseModel> deleteRole(String id) async {
     ResponseModel response = await Executer.delete(endpoint: "role/$id");
     return response;
   }

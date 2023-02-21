@@ -27,6 +27,10 @@ class RoleGroupModel {
     this.modifiedByBehalfOf,
   });
 
+  factory RoleGroupModel.init() {
+    return RoleGroupModel(id: "", title: "");
+  }
+
   RoleGroupModel copyWith({
     String? id,
     String? title,
