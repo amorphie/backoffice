@@ -17,7 +17,7 @@ class UserController extends GetxController {
   Future<bool> getUsers() async {
     List<UserModel> _list = [];
 
-    ResponseModel response = await _services.getUser();
+    ResponseModel response = await _services.getUsers();
 
     if (response.success) {
       for (var item in response.data) {

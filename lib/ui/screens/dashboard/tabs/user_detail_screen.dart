@@ -11,8 +11,7 @@ class UserDetailScreen extends StatefulWidget {
   State<UserDetailScreen> createState() => _UserDetailScreenState();
 }
 
-class _UserDetailScreenState extends State<UserDetailScreen>
-    with TickerProviderStateMixin {
+class _UserDetailScreenState extends State<UserDetailScreen> with TickerProviderStateMixin {
   late TabController _tabController;
 
   @override
@@ -40,7 +39,7 @@ class _UserDetailScreenState extends State<UserDetailScreen>
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Icon(widget.user.status),
+                      Icon(Icons.accessibility),
                       SizedBox(width: 10),
                       Text(
                         widget.user.fullName,
@@ -55,10 +54,7 @@ class _UserDetailScreenState extends State<UserDetailScreen>
                       Text(
                         "Tags : ${widget.user.tags}",
                         textAlign: TextAlign.left,
-                        style: TextStyle(
-                            color: Colors.white70,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400),
+                        style: TextStyle(color: Colors.white70, fontSize: 14, fontWeight: FontWeight.w400),
                       ),
                       SizedBox(width: 8),
                       GestureDetector(

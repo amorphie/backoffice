@@ -52,11 +52,11 @@ class _BaseViewState extends State<BaseView> {
         FocusScope.of(context).unfocus();
       },
       child: Stack(children: [
-        widget.builder(context, controller),
-        if (!init)
-          Center(
-            child: CircularProgressIndicator(),
-          ),
+        init
+            ? widget.builder(context, controller)
+            : Center(
+                child: CircularProgressIndicator(),
+              ),
       ]),
     );
   }

@@ -7,8 +7,7 @@ import 'package:admin/core/export/_.dart';
 
 class UserAddScreen extends StatefulWidget {
   final UserModel model;
-  final Future Function(String ref, String firstName, String? lastName,
-      String? phone, String eMail, List<String> tags) userAddPressed;
+  final Future Function(String ref, String firstName, String? lastName, String? phone, String eMail, List<String> tags) userAddPressed;
   const UserAddScreen({
     Key? key,
     required this.model,
@@ -19,9 +18,7 @@ class UserAddScreen extends StatefulWidget {
 }
 
 class _UserAddScreenState extends State<UserAddScreen> {
-  final _items = tagsMockList
-      .map((tag) => MultiSelectItem<TagModel>(tag, tag.tagName))
-      .toList();
+  final _items = tagsMockList.map((tag) => MultiSelectItem<TagModel>(tag, tag.tagName)).toList();
 
   List<String> selectedtags = [];
   List<String> status = <String>['New', 'InProgress', 'Ready', 'Active'];
@@ -38,7 +35,7 @@ class _UserAddScreenState extends State<UserAddScreen> {
     ref = TextEditingController(text: widget.model.reference);
     firstName = TextEditingController(text: widget.model.firstName);
     lastName = TextEditingController(text: widget.model.lastName);
-    phone = TextEditingController(text: widget.model.phone);
+    phone = TextEditingController(text: widget.model.phone.phoneNumber);
     eMail = TextEditingController(text: widget.model.eMail);
   }
 
@@ -55,8 +52,7 @@ class _UserAddScreenState extends State<UserAddScreen> {
             padding: const EdgeInsets.only(left: 20.0),
             child: Text(
               "Add User",
-              style: TextStyle(
-                  color: KC.primary, fontWeight: FontWeight.bold, fontSize: 22),
+              style: TextStyle(color: KC.primary, fontWeight: FontWeight.bold, fontSize: 22),
             ),
           ),
         ),
@@ -85,8 +81,7 @@ class _UserAddScreenState extends State<UserAddScreen> {
                 labelText: "Name",
                 keyboardType: TextInputType.name,
                 inputFormatter: <TextInputFormatter>[
-                  FilteringTextInputFormatter.allow(
-                      RegExp("[a-zA-Z]", unicode: true)),
+                  FilteringTextInputFormatter.allow(RegExp("[a-zA-Z]", unicode: true)),
                 ],
                 onChanged: (val) {
                   setState(() {
@@ -99,8 +94,7 @@ class _UserAddScreenState extends State<UserAddScreen> {
                   child: CommonTextField(
                 labelText: "Surname",
                 inputFormatter: <TextInputFormatter>[
-                  FilteringTextInputFormatter.allow(
-                      RegExp("[a-zA-Z]", unicode: true)),
+                  FilteringTextInputFormatter.allow(RegExp("[a-zA-Z]", unicode: true)),
                 ],
                 keyboardType: TextInputType.name,
                 onChanged: (val) {
@@ -174,13 +168,7 @@ class _UserAddScreenState extends State<UserAddScreen> {
                   child: CommonButton(
                       title: "Save",
                       onPressed: () async {
-                        await widget.userAddPressed(
-                            ref.text,
-                            firstName.text,
-                            lastName.text,
-                            phone.text,
-                            eMail.text,
-                            selectedtags);
+                        await widget.userAddPressed(ref.text, firstName.text, lastName.text, phone.text, eMail.text, selectedtags);
                       },
                       color: KC.primary),
                 )),

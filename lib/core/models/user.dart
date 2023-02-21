@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+import 'package:admin/core/models/common/phone_model.dart';
 import 'package:flutter/foundation.dart';
 
 import 'package:admin/core/export/_.dart';
@@ -12,13 +13,11 @@ class UserModel implements BaseModel {
   final String lastName;
   final String reference;
   final String password;
-  final String phone;
+  final PhoneModel phone;
   final String eMail;
   final String state;
   final DateTime? modifiedAt;
-  final IconData edit;
-  final IconData status;
-  final List<String> tags;
+  final List<TagModel>? tags;
 
   String get fullName => "$firstName $lastName";
 
@@ -31,13 +30,11 @@ class UserModel implements BaseModel {
     required this.eMail,
     required this.state,
     this.modifiedAt,
-    required this.edit,
-    required this.status,
-    required this.tags,
+    this.tags,
   });
 
   factory UserModel.init() {
-    return UserModel(firstName: "", lastName: "", reference: "", password: "", eMail: "", state: "", edit: Icons.edit, status: Icons.check, tags: [], phone: "");
+    return UserModel(firstName: "", lastName: "", reference: "", password: "", eMail: "", state: "", tags: [], phone: PhoneModel());
   }
 
   UserModel copyWith({
@@ -45,13 +42,11 @@ class UserModel implements BaseModel {
     String? lastName,
     String? reference,
     String? password,
-    String? phone,
+    PhoneModel? phone,
     String? eMail,
     String? state,
     DateTime? modifiedAt,
-    IconData? edit,
-    IconData? status,
-    List<String>? tags,
+    List<TagModel>? tags,
   }) {
     return UserModel(
       firstName: firstName ?? this.firstName,
@@ -62,8 +57,6 @@ class UserModel implements BaseModel {
       eMail: eMail ?? this.eMail,
       state: state ?? this.state,
       modifiedAt: modifiedAt ?? this.modifiedAt,
-      edit: edit ?? this.edit,
-      status: status ?? this.status,
       tags: tags ?? this.tags,
     );
   }
@@ -78,27 +71,22 @@ class UserModel implements BaseModel {
       'eMail': eMail,
       'state': state,
       'modifiedAt': modifiedAt?.millisecondsSinceEpoch,
-      'edit': edit.codePoint,
-      'status': status.codePoint,
       'tags': tags,
     };
   }
 
   factory UserModel.fromMap(Map<String, dynamic> map) {
     return UserModel(
-        firstName: map['firstName'] as String,
-        lastName: map['lastName'] as String,
-        reference: map['reference'] as String,
-        password: map['password'] as String,
-        phone: map['phone'] as String,
-        eMail: map['eMail'] as String,
-        state: map['state'] as String,
-        modifiedAt: map['modifiedAt'] != null ? DateTime.fromMillisecondsSinceEpoch(map['modifiedAt'] as int) : null,
-        edit: IconData(map['edit'] as int, fontFamily: 'MaterialIcons'),
-        status: IconData(map['status'] as int, fontFamily: 'MaterialIcons'),
-        tags: List<String>.from(
-          (map['tags'] as List<String>),
-        ));
+      firstName: map['firstName'] as String,
+      lastName: map['lastName'] as String,
+      reference: map['reference'] as String,
+      password: map['password'] as String,
+      phone: PhoneModel.fromMap(map['phone']),
+      eMail: map['eMail'] as String,
+      state: map['state'] as String,
+      modifiedAt: map['modifiedAt'] != null ? DateTime.parse(map['modifiedAt']) : null,
+      tags: List<TagModel>.from([]),
+    );
   }
 
   String toJson() => json.encode(toMap());
@@ -107,7 +95,7 @@ class UserModel implements BaseModel {
 
   @override
   String toString() {
-    return 'UserModel(firstName: $firstName, lastName: $lastName, reference: $reference, password: $password, phone: $phone, eMail: $eMail, state: $state, modifiedAt: $modifiedAt, edit: $edit, status: $status, tags: $tags)';
+    return 'UserModel(firstName: $firstName, lastName: $lastName, reference: $reference, password: $password, phone: $phone, eMail: $eMail, state: $state, modifiedAt: $modifiedAt, tags: $tags)';
   }
 
   @override
@@ -122,24 +110,12 @@ class UserModel implements BaseModel {
         other.eMail == eMail &&
         other.state == state &&
         other.modifiedAt == modifiedAt &&
-        other.edit == edit &&
-        other.status == status &&
         listEquals(other.tags, tags);
   }
 
   @override
   int get hashCode {
-    return firstName.hashCode ^
-        lastName.hashCode ^
-        reference.hashCode ^
-        password.hashCode ^
-        phone.hashCode ^
-        eMail.hashCode ^
-        state.hashCode ^
-        modifiedAt.hashCode ^
-        edit.hashCode ^
-        status.hashCode ^
-        tags.hashCode;
+    return firstName.hashCode ^ lastName.hashCode ^ reference.hashCode ^ password.hashCode ^ phone.hashCode ^ eMail.hashCode ^ state.hashCode ^ modifiedAt.hashCode ^ tags.hashCode;
   }
 
   @override
