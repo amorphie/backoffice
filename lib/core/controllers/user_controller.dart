@@ -14,19 +14,20 @@ class UserController extends GetxController {
 
   //Get
 
-  Future<bool> getUser() async {
+  Future<bool> getUsers() async {
     List<UserModel> _list = [];
 
     ResponseModel response = await _services.getUser();
 
-    if (!response.success) {
+    if (response.success) {
       for (var item in response.data) {
         UserModel model = UserModel.fromMap(item);
         _list.add(model);
       }
       userList.value = _list;
+      // _list.firstWhereOrNull((element) => user.id == element.id);
     }
-    return !response.success;
+    return response.success;
   }
 
   Future<bool> getUserByEmail(String email) async {

@@ -12,7 +12,7 @@ class _UserDetailPageState extends State<UserDetailPage> {
   Widget build(BuildContext context) {
     return BaseView(
         builder: (context, c) => UserDetailScreen(
-              user: c.user.userModel,
+              user: c.user.user,
             ));
   }
 }

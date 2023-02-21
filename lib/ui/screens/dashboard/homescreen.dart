@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
 import 'package:admin/ui/pages/resource/resource_page.dart';
+import 'package:admin/ui/pages/tag/tag_page.dart';
 
 import '../../../core/export/_.dart';
 
@@ -19,7 +20,7 @@ class _HomescreenState extends State<Homescreen> {
     DashboardPage(),
     UserAddPage(),
     ConsentScreen(),
-    TagScreen(),
+    TagPage(),
     ResourcePage(),
   ];
 

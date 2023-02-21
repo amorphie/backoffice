@@ -1,22 +1,21 @@
-import 'package:admin/core/models/tag.dart';
 import 'package:get/get.dart';
 
 import '../export/_.dart';
 
 class TagController extends GetxController {
   Rx<TagModel> _tagModel = TagModel.init().obs;
-  TagModel get tag => _tagModel.value;
+  TagModel get tagModel => _tagModel.value;
   RxList<TagModel> tagList = RxList<TagModel>.from([]);
 
   Services _services = Services();
 
-  set tag(TagModel p) {
+  set tagModel(TagModel p) {
     _tagModel.value = p;
   }
 
   //Get
 
-  Future<bool> getTag() async {
+  Future<bool> getTags() async {
     List<TagModel> _list = [];
 
     ResponseModel response = await _services.getTag();
@@ -45,10 +44,10 @@ class TagController extends GetxController {
   //Delete
 
   Future<bool> deleteResource() async {
-    ResponseModel response = await _services.deleteResource(tag.id);
+    ResponseModel response = await _services.deleteResource(tagModel.id);
 
     if (!response.success) {
-      tagList.removeWhere((e) => e.id == tag.id);
+      tagList.removeWhere((e) => e.id == tagModel.id);
     }
     return !response.success;
   }

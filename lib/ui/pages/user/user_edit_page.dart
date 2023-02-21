@@ -6,6 +6,6 @@ class UserEditPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseView(
-        builder: (context, c) => UserEditScreen(model: c.user.userModel));
+        builder: (context, c) => UserEditScreen(model: c.user.user));
   }
 }
