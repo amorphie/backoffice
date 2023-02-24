@@ -1,14 +1,14 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
-import 'package:admin/core/models/common/phone_model.dart';
 import 'package:flutter/foundation.dart';
 
-import 'package:admin/core/export/_.dart';
+import 'package:admin/core/models/common/phone_model.dart';
 
 import '../base/base_model.dart';
 
 class UserModel implements BaseModel {
+  final String? id;
   final String firstName;
   final String lastName;
   final String reference;
@@ -17,11 +17,12 @@ class UserModel implements BaseModel {
   final String eMail;
   final String state;
   final DateTime? modifiedAt;
-  final List<TagModel>? tags;
+  final List<String>? tags;
 
   String get fullName => "$firstName $lastName";
 
   UserModel({
+    this.id,
     required this.firstName,
     required this.lastName,
     required this.reference,
@@ -34,10 +35,20 @@ class UserModel implements BaseModel {
   });
 
   factory UserModel.init() {
-    return UserModel(firstName: "", lastName: "", reference: "", password: "", eMail: "", state: "", tags: [], phone: PhoneModel());
+    return UserModel(
+        id: "",
+        firstName: "",
+        lastName: "",
+        reference: "",
+        password: "",
+        eMail: "",
+        state: "",
+        // tags: [],
+        phone: PhoneModel());
   }
 
   UserModel copyWith({
+    String? id,
     String? firstName,
     String? lastName,
     String? reference,
@@ -46,9 +57,10 @@ class UserModel implements BaseModel {
     String? eMail,
     String? state,
     DateTime? modifiedAt,
-    List<TagModel>? tags,
+    List<String>? tags,
   }) {
     return UserModel(
+      id: id ?? this.id,
       firstName: firstName ?? this.firstName,
       lastName: lastName ?? this.lastName,
       reference: reference ?? this.reference,
@@ -63,46 +75,54 @@ class UserModel implements BaseModel {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
+      'id': id,
       'firstName': firstName,
       'lastName': lastName,
       'reference': reference,
       'password': password,
-      'phone': phone,
+      'phone': phone.toMap(),
       'eMail': eMail,
       'state': state,
-      'modifiedAt': modifiedAt?.toIso8601String(),
+      'modifiedAt': modifiedAt?.millisecondsSinceEpoch,
       'tags': tags,
     };
   }
 
   factory UserModel.fromMap(Map<String, dynamic> map) {
     return UserModel(
+      id: map['id'] != null ? map['id'] as String : null,
       firstName: map['firstName'] as String,
       lastName: map['lastName'] as String,
       reference: map['reference'] as String,
       password: map['password'] as String,
-      phone: PhoneModel.fromMap(map['phone']),
+      phone: PhoneModel.fromMap(map['phone'] as Map<String, dynamic>),
       eMail: map['eMail'] as String,
       state: map['state'] as String,
-      modifiedAt: map['modifiedAt'] != null ? DateTime.parse(map['modifiedAt']) : null,
-      tags: List<TagModel>.from([]),
+      modifiedAt: map['modifiedAt'] != null
+          ? DateTime.fromMillisecondsSinceEpoch(map['modifiedAt'] as int)
+          : null,
+      tags: map['tags'] != null
+          ? List<String>.from((map['tags'] as List<String>))
+          : [],
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory UserModel.fromJson(String source) => UserModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory UserModel.fromJson(String source) =>
+      UserModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
-    return 'UserModel(firstName: $firstName, lastName: $lastName, reference: $reference, password: $password, phone: $phone, eMail: $eMail, state: $state, modifiedAt: $modifiedAt, tags: $tags)';
+    return 'UserModel(id: $id, firstName: $firstName, lastName: $lastName, reference: $reference, password: $password, phone: $phone, eMail: $eMail, state: $state, modifiedAt: $modifiedAt, tags: $tags)';
   }
 
   @override
   bool operator ==(covariant UserModel other) {
     if (identical(this, other)) return true;
 
-    return other.firstName == firstName &&
+    return other.id == id &&
+        other.firstName == firstName &&
         other.lastName == lastName &&
         other.reference == reference &&
         other.password == password &&
@@ -115,7 +135,16 @@ class UserModel implements BaseModel {
 
   @override
   int get hashCode {
-    return firstName.hashCode ^ lastName.hashCode ^ reference.hashCode ^ password.hashCode ^ phone.hashCode ^ eMail.hashCode ^ state.hashCode ^ modifiedAt.hashCode ^ tags.hashCode;
+    return id.hashCode ^
+        firstName.hashCode ^
+        lastName.hashCode ^
+        reference.hashCode ^
+        password.hashCode ^
+        phone.hashCode ^
+        eMail.hashCode ^
+        state.hashCode ^
+        modifiedAt.hashCode ^
+        tags.hashCode;
   }
 
   @override
@@ -131,5 +160,7 @@ class UserModel implements BaseModel {
   ];
 
   @override
-  var id;
+  set id(String? _id) {
+    // TODO: implement id
+  }
 }

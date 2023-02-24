@@ -8,8 +8,8 @@ class UserAddPage extends StatelessWidget {
     return BaseView(
         builder: (context, c) => UserAddScreen(
               model: c.user.user,
-              userAddPressed: (ref, firstName, lastName, phone, emil, tags) async {
-                // print("object");
+              userAddPressed: (model) async {
+                await c.user.addUser(model);
               },
             ));
   }

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 import 'package:admin/core/models/resource.dart';
 import 'package:admin/core/utils/responsive.dart';
-import 'package:admin/ui/tables/resource_table.dart';
 import 'package:admin/ui/tables/table_base.dart';
 
 import '../../style/paddings.dart';
@@ -44,11 +43,13 @@ class ResourceScreen extends StatelessWidget {
                               selectModel(user as ResourceModel);
                             },
                             onFilter: (item) {}), //!YENİ
-                        if (Responsive.isMobile(context)) SizedBox(height: defaultPadding),
+                        if (Responsive.isMobile(context))
+                          SizedBox(height: defaultPadding),
                       ],
                     ),
                   ),
-                  if (!Responsive.isMobile(context)) SizedBox(width: defaultPadding),
+                  if (!Responsive.isMobile(context))
+                    SizedBox(width: defaultPadding),
                 ],
               )
             ],

@@ -10,7 +10,12 @@ class PhoneModel {
     this.prefix,
     this.number,
   });
-  String get phoneNumber => "${countryCode ?? 0} ${prefix ?? 0} ${number ?? 0} ";
+  String get phoneNumber =>
+      "${countryCode ?? 0} ${prefix ?? 0} ${number ?? 0} ";
+
+  factory PhoneModel.init() {
+    return PhoneModel(countryCode: 90, number: 000000, prefix: 500);
+  }
 
   PhoneModel copyWith({
     int? countryCode,
@@ -34,7 +39,8 @@ class PhoneModel {
 
   factory PhoneModel.fromMap(Map<String, dynamic> map) {
     return PhoneModel(
-      countryCode: map['countryCode'] != null ? map['countryCode'] as int : null,
+      countryCode:
+          map['countryCode'] != null ? map['countryCode'] as int : null,
       prefix: map['prefix'] != null ? map['prefix'] as int : null,
       number: map['number'] != null ? map['number'] as int : null,
     );
@@ -42,16 +48,20 @@ class PhoneModel {
 
   String toJson() => json.encode(toMap());
 
-  factory PhoneModel.fromJson(String source) => PhoneModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory PhoneModel.fromJson(String source) =>
+      PhoneModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
-  String toString() => 'PhoneModel(countryCode: $countryCode, prefix: $prefix, number: $number)';
+  String toString() =>
+      'PhoneModel(countryCode: $countryCode, prefix: $prefix, number: $number)';
 
   @override
   bool operator ==(covariant PhoneModel other) {
     if (identical(this, other)) return true;
 
-    return other.countryCode == countryCode && other.prefix == prefix && other.number == number;
+    return other.countryCode == countryCode &&
+        other.prefix == prefix &&
+        other.number == number;
   }
 
   @override

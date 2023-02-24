@@ -47,8 +47,8 @@ class UserController extends GetxController {
 
   //Post
 
-  Future<bool> addResource(UserModel t) async {
-    ResponseModel response = await _services.postUser(t);
+  Future<bool> addUser(UserModel t) async {
+    ResponseModel response = await _services.addUser(t);
 
     if (!response.success) {
       userList.add(UserModel.fromMap(response.data));

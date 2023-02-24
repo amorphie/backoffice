@@ -11,14 +11,16 @@ mixin ResourceService {
   }
 
   Future<ResponseModel> getAllResources() async {
-    ResponseModel response = await Executer.get(endpoint: "resource");
+    ResponseModel response =
+        await Executer.get(endpoint: "resource?page=0&pageSize=100");
     return response;
   }
 
   //Post
 
   Future<ResponseModel> postResource(ResourceModel model) async {
-    ResponseModel response = await Executer.post(endpoint: "resource", data: model.toMap());
+    ResponseModel response =
+        await Executer.post(endpoint: "resource", data: model.toMap());
     return response;
   }
 

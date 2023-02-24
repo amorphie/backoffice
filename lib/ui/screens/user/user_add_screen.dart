@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
+import 'package:admin/core/models/common/phone_model.dart';
 import 'package:flutter/services.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
 
@@ -7,7 +8,7 @@ import 'package:admin/core/export/_.dart';
 
 class UserAddScreen extends StatefulWidget {
   final UserModel model;
-  final Future Function(String ref, String firstName, String? lastName, String? phone, String eMail, List<String> tags) userAddPressed;
+  final Future Function(UserModel model) userAddPressed;
   const UserAddScreen({
     Key? key,
     required this.model,
@@ -18,7 +19,9 @@ class UserAddScreen extends StatefulWidget {
 }
 
 class _UserAddScreenState extends State<UserAddScreen> {
-  final _items = tagsMockList.map((tag) => MultiSelectItem<TagModel>(tag, tag.tagName)).toList();
+  final _items = tagsMockList
+      .map((tag) => MultiSelectItem<TagModel>(tag, tag.tagName))
+      .toList();
 
   List<String> selectedtags = [];
   List<String> status = <String>['New', 'InProgress', 'Ready', 'Active'];
@@ -52,7 +55,8 @@ class _UserAddScreenState extends State<UserAddScreen> {
             padding: const EdgeInsets.only(left: 20.0),
             child: Text(
               "Add User",
-              style: TextStyle(color: KC.primary, fontWeight: FontWeight.bold, fontSize: 22),
+              style: TextStyle(
+                  color: KC.primary, fontWeight: FontWeight.bold, fontSize: 22),
             ),
           ),
         ),
@@ -66,9 +70,7 @@ class _UserAddScreenState extends State<UserAddScreen> {
           child: CommonTextField(
             labelText: "Reference",
             keyboardType: TextInputType.number,
-            onChanged: (val) {
-              ref.text = val;
-            },
+            controller: ref,
           ),
         ),
         SizedBox(height: 30),
@@ -78,28 +80,24 @@ class _UserAddScreenState extends State<UserAddScreen> {
             children: [
               Expanded(
                   child: CommonTextField(
-                labelText: "Name",
+                labelText: "First Name",
                 keyboardType: TextInputType.name,
+                controller: firstName,
                 inputFormatter: <TextInputFormatter>[
-                  FilteringTextInputFormatter.allow(RegExp("[a-zA-Z]", unicode: true)),
+                  FilteringTextInputFormatter.allow(
+                      RegExp("[a-zA-Z]", unicode: true)),
                 ],
-                onChanged: (val) {
-                  setState(() {
-                    firstName.text = val;
-                  });
-                },
               )),
               SizedBox(width: 10),
               Expanded(
                   child: CommonTextField(
                 labelText: "Surname",
+                controller: lastName,
                 inputFormatter: <TextInputFormatter>[
-                  FilteringTextInputFormatter.allow(RegExp("[a-zA-Z]", unicode: true)),
+                  FilteringTextInputFormatter.allow(
+                      RegExp("[a-zA-Z]", unicode: true)),
                 ],
                 keyboardType: TextInputType.name,
-                onChanged: (val) {
-                  lastName.text = val;
-                },
               ))
             ],
           ),
@@ -112,19 +110,15 @@ class _UserAddScreenState extends State<UserAddScreen> {
               Expanded(
                   child: CommonTextField(
                 labelText: "Phone",
+                controller: phone,
                 keyboardType: TextInputType.phone,
-                onChanged: (val) {
-                  phone.text = val;
-                },
               )),
               SizedBox(width: 10),
               Expanded(
                   child: CommonTextField(
                 labelText: "E-mail",
+                controller: eMail,
                 keyboardType: TextInputType.emailAddress,
-                onChanged: (val) {
-                  eMail.text = val;
-                },
               ))
             ],
           ),
@@ -162,16 +156,27 @@ class _UserAddScreenState extends State<UserAddScreen> {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(
-                width: MediaQuery.of(context).size.width / 5,
-                child: Expanded(
-                  child: CommonButton(
-                      title: "Save",
-                      onPressed: () async {
-                        await widget.userAddPressed(ref.text, firstName.text, lastName.text, phone.text, eMail.text, selectedtags);
-                      },
-                      color: KC.primary),
-                )),
+            GestureDetector(
+              child: SizedBox(
+                  width: MediaQuery.of(context).size.width / 5,
+                  child: Expanded(
+                    child: CommonButton(
+                        title: "Save",
+                        onPressed: () async {
+                          UserModel user = UserModel(
+                              firstName: firstName.text,
+                              lastName: lastName.text,
+                              reference: ref.text,
+                              password: 'password',
+                              phone: PhoneModel.init(),
+                              eMail: eMail.text,
+                              state: 'state',
+                              tags: ['user-list-get']);
+                          await widget.userAddPressed(user);
+                        },
+                        color: KC.primary),
+                  )),
+            ),
             SizedBox(
                 width: MediaQuery.of(context).size.width / 5,
                 child: Expanded(
