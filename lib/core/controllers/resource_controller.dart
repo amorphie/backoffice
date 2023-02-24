@@ -31,6 +31,21 @@ class ResourceController extends GetxController {
     return !response.success;
   }
 
+  Future<bool> getAllResources() async {
+    List<ResourceModel> _list = [];
+
+    ResponseModel response = await _services.getAllResources();
+
+    if (!response.success) {
+      for (var item in response.data) {
+        ResourceModel model = ResourceModel.fromMap(item);
+        _list.add(model);
+      }
+      resourceList.value = _list;
+    }
+    return !response.success;
+  }
+
   //Post
 
   Future<bool> addResource(ResourceModel t) async {
@@ -45,7 +60,7 @@ class ResourceController extends GetxController {
   //Delete
 
   Future<bool> deleteResource() async {
-    ResponseModel response = await _services.deleteResource(resource.id);
+    ResponseModel response = await _services.deleteResource(resource.id!);
 
     if (!response.success) {
       resourceList.removeWhere((e) => e.id == resource.id);

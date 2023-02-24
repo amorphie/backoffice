@@ -57,7 +57,7 @@ class UserController extends GetxController {
   }
 
   Future<bool> updatePassword(UserModel t) async {
-    ResponseModel response = await _services.updatePassword(t, id: user.id);
+    ResponseModel response = await _services.updatePassword(t, id: user.id!);
 
     if (!response.success) {
       userList.add(UserModel.fromMap(response.data));
@@ -66,7 +66,7 @@ class UserController extends GetxController {
   }
 
   Future<bool> updateEmail(UserModel t) async {
-    ResponseModel response = await _services.updateEmail(t, id: user.id);
+    ResponseModel response = await _services.updateEmail(t, id: user.id!);
 
     if (!response.success) {
       userList.add(UserModel.fromMap(response.data));
@@ -75,7 +75,7 @@ class UserController extends GetxController {
   }
 
   Future<bool> updatePhone(UserModel t) async {
-    ResponseModel response = await _services.updatePhone(t, id: user.id);
+    ResponseModel response = await _services.updatePhone(t, id: user.id!);
 
     if (!response.success) {
       userList.add(UserModel.fromMap(response.data));
@@ -86,7 +86,7 @@ class UserController extends GetxController {
   //Delete
 
   Future<bool> deleteResource() async {
-    ResponseModel response = await _services.deleteResource(user.id);
+    ResponseModel response = await _services.deleteResource(user.id!);
 
     if (!response.success) {
       userList.removeWhere((e) => e.id == user.id);

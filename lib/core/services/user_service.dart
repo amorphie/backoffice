@@ -4,8 +4,8 @@ import 'package:http/http.dart' as http;
 class UserService {
   //Get
 
-  Future<ResponseModel> getUsers() async {
-    ResponseModel response = await Executer.get(endpoint: "user?Reference=&page=0&pageSize=100");
+  Future<ResponseModel> getUsers([String reference = ""]) async {
+    ResponseModel response = await Executer.get(endpoint: "user?Reference$reference=&page=0&pageSize=100");
     return response;
   }
 
@@ -19,7 +19,7 @@ class UserService {
     return response;
   }
 
-  Future<ResponseModel> checkPassowrd({required int id, required String password}) async {
+  Future<ResponseModel> checkPassowrd({required String id, required String password}) async {
     ResponseModel response = await Executer.get(endpoint: "user/userId/$id/password/$password");
     return response;
   }
@@ -31,17 +31,17 @@ class UserService {
     return response;
   }
 
-  Future<ResponseModel> updatePassword(UserModel model, {required int id}) async {
+  Future<ResponseModel> updatePassword(UserModel model, {required String id}) async {
     ResponseModel response = await Executer.post(endpoint: "user/$id/updatePassword", data: model.toMap());
     return response;
   }
 
-  Future<ResponseModel> updateEmail(UserModel model, {required int id}) async {
+  Future<ResponseModel> updateEmail(UserModel model, {required String id}) async {
     ResponseModel response = await Executer.post(endpoint: "user/$id/updateEmail", data: model.toMap());
     return response;
   }
 
-  Future<ResponseModel> updatePhone(UserModel model, {required int id}) async {
+  Future<ResponseModel> updatePhone(UserModel model, {required String id}) async {
     ResponseModel response = await Executer.post(endpoint: "user/$id/updatePhone", data: model.toMap());
     return response;
   }

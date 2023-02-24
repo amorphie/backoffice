@@ -1,10 +1,11 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+import 'package:admin/core/base/base_model.dart';
 import 'package:flutter/foundation.dart';
 
-class ResourceModel {
-  String id;
+class ResourceModel implements BaseModel {
+  String? id;
   String? displayName;
   String? type;
   String? url;
@@ -98,38 +99,24 @@ class ResourceModel {
   factory ResourceModel.fromMap(Map<String, dynamic> map) {
     return ResourceModel(
       id: map['id'] as String,
-      displayName:
-          map['displayName'] != null ? map['displayName'] as String : null,
+      displayName: map['displayName'] != null ? map['displayName'] as String : null,
       type: map['type'] != null ? map['type'] as String : null,
       url: map['url'] != null ? map['url'] as String : null,
-      description:
-          map['description'] != null ? map['description'] as String : null,
-      tags: map['tags'] != null
-          ? List<String>.from((map['tags'] as List<String>))
-          : null,
+      description: map['description'] != null ? map['description'] as String : null,
+      tags: map['tags'] != null ? List<String>.from((map['tags'] as List<String>)) : null,
       status: map['status'] != null ? map['status'] as String : null,
-      createdAt: map['createdAt'] != null
-          ? DateTime.fromMillisecondsSinceEpoch(map['createdAt'] as int)
-          : null,
-      modifiedAt: map['modifiedAt'] != null
-          ? DateTime.fromMillisecondsSinceEpoch(map['modifiedAt'] as int)
-          : null,
+      createdAt: map['createdAt'] != null ? DateTime.fromMillisecondsSinceEpoch(map['createdAt'] as int) : null,
+      modifiedAt: map['modifiedAt'] != null ? DateTime.fromMillisecondsSinceEpoch(map['modifiedAt'] as int) : null,
       createdBy: map['createdBy'] != null ? map['createdBy'] as String : null,
-      modifiedBy:
-          map['modifiedBy'] != null ? map['modifiedBy'] as String : null,
-      createdByBehalfOf: map['createdByBehalfOf'] != null
-          ? map['createdByBehalfOf'] as String
-          : null,
-      modifiedByBehalfOf: map['modifiedByBehalfOf'] != null
-          ? map['modifiedByBehalfOf'] as String
-          : null,
+      modifiedBy: map['modifiedBy'] != null ? map['modifiedBy'] as String : null,
+      createdByBehalfOf: map['createdByBehalfOf'] != null ? map['createdByBehalfOf'] as String : null,
+      modifiedByBehalfOf: map['modifiedByBehalfOf'] != null ? map['modifiedByBehalfOf'] as String : null,
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory ResourceModel.fromJson(String source) =>
-      ResourceModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory ResourceModel.fromJson(String source) => ResourceModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
@@ -171,4 +158,17 @@ class ResourceModel {
         createdByBehalfOf.hashCode ^
         modifiedByBehalfOf.hashCode;
   }
+
+  @override
+  List<String> columns = [
+    "displayName",
+    "type",
+    "url",
+    "description",
+    "tags",
+    "status",
+    "createdAt",
+    "modifiedAt",
+    "createdBy",
+  ];
 }

@@ -49,9 +49,7 @@ class _ResourceTableState extends State<ResourceTable> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("Tags",
-              style:
-                  TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+          Text("Tags", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
           SizedBox(
               width: double.infinity,
               child: PaginatedDataTable(
@@ -102,54 +100,28 @@ class _ResourceTableState extends State<ResourceTable> {
                 columnSpacing: 3,
                 columns: [
                   DataColumn(
-                    label: Text("ID",
-                        style: TextStyle(
-                            color: Colors.black54,
-                            fontWeight: FontWeight.w500)),
+                    label: Text("ID", style: TextStyle(color: Colors.black54, fontWeight: FontWeight.w500)),
                   ),
                   DataColumn(
-                    label: Text("Display Name",
-                        style: TextStyle(
-                            color: Colors.black54,
-                            fontWeight: FontWeight.w500)),
+                    label: Text("Display Name", style: TextStyle(color: Colors.black54, fontWeight: FontWeight.w500)),
                     onSort: (columnIndex, _) {
                       sortTableName(columnIndex);
                     },
                   ),
                   DataColumn(
-                    label: Text("Url",
-                        textAlign: TextAlign.end,
-                        style: TextStyle(
-                            color: Colors.black54,
-                            fontWeight: FontWeight.w500)),
+                    label: Text("Url", textAlign: TextAlign.end, style: TextStyle(color: Colors.black54, fontWeight: FontWeight.w500)),
                   ),
                   DataColumn(
-                    label: Text("Type",
-                        textAlign: TextAlign.end,
-                        style: TextStyle(
-                            color: Colors.black54,
-                            fontWeight: FontWeight.w500)),
+                    label: Text("Type", textAlign: TextAlign.end, style: TextStyle(color: Colors.black54, fontWeight: FontWeight.w500)),
                   ),
                   DataColumn(
-                    label: Text("Statu",
-                        textAlign: TextAlign.end,
-                        style: TextStyle(
-                            color: Colors.black54,
-                            fontWeight: FontWeight.w500)),
+                    label: Text("Statu", textAlign: TextAlign.end, style: TextStyle(color: Colors.black54, fontWeight: FontWeight.w500)),
                   ),
                   DataColumn(
-                    label: Text("Tag",
-                        textAlign: TextAlign.end,
-                        style: TextStyle(
-                            color: Colors.black54,
-                            fontWeight: FontWeight.w500)),
+                    label: Text("Tag", textAlign: TextAlign.end, style: TextStyle(color: Colors.black54, fontWeight: FontWeight.w500)),
                   ),
                   DataColumn(
-                    label: Text("Description",
-                        textAlign: TextAlign.end,
-                        style: TextStyle(
-                            color: Colors.black54,
-                            fontWeight: FontWeight.w500)),
+                    label: Text("Description", textAlign: TextAlign.end, style: TextStyle(color: Colors.black54, fontWeight: FontWeight.w500)),
                   ),
                 ],
               )),
@@ -204,29 +176,14 @@ class RowSource extends DataTableSource {
       // },
       cells: [
         DataCell(
-          Text(model.id,
-              textAlign: TextAlign.start,
-              style: TextStyle(
-                  color: Colors.black54, fontWeight: FontWeight.w400)),
+          Text(model.id!, textAlign: TextAlign.start, style: TextStyle(color: Colors.black54, fontWeight: FontWeight.w400)),
         ),
-        DataCell(Text(model.displayName!,
-            style:
-                TextStyle(color: Colors.black54, fontWeight: FontWeight.w400))),
-        DataCell(Text(model.url!,
-            style:
-                TextStyle(color: Colors.black54, fontWeight: FontWeight.w400))),
-        DataCell(Text(model.type!,
-            style:
-                TextStyle(color: Colors.black54, fontWeight: FontWeight.w400))),
-        DataCell(Text(model.status!,
-            style:
-                TextStyle(color: Colors.black54, fontWeight: FontWeight.w400))),
-        DataCell(Text(model.tags!.toString(),
-            style:
-                TextStyle(color: Colors.black54, fontWeight: FontWeight.w400))),
-        DataCell(Text(model.description!,
-            style:
-                TextStyle(color: Colors.black54, fontWeight: FontWeight.w400))),
+        DataCell(Text(model.displayName!, style: TextStyle(color: Colors.black54, fontWeight: FontWeight.w400))),
+        DataCell(Text(model.url!, style: TextStyle(color: Colors.black54, fontWeight: FontWeight.w400))),
+        DataCell(Text(model.type!, style: TextStyle(color: Colors.black54, fontWeight: FontWeight.w400))),
+        DataCell(Text(model.status!, style: TextStyle(color: Colors.black54, fontWeight: FontWeight.w400))),
+        DataCell(Text(model.tags!.toString(), style: TextStyle(color: Colors.black54, fontWeight: FontWeight.w400))),
+        DataCell(Text(model.description!, style: TextStyle(color: Colors.black54, fontWeight: FontWeight.w400))),
       ],
     );
   }

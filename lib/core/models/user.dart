@@ -70,7 +70,7 @@ class UserModel implements BaseModel {
       'phone': phone,
       'eMail': eMail,
       'state': state,
-      'modifiedAt': modifiedAt?.millisecondsSinceEpoch,
+      'modifiedAt': modifiedAt?.toIso8601String(),
       'tags': tags,
     };
   }

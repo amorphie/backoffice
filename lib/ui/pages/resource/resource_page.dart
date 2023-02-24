@@ -1,4 +1,5 @@
 import 'package:admin/core/export/_.dart';
+import 'package:get/get.dart';
 
 import '../../screens/resource/resource_screen.dart';
 
@@ -13,7 +14,16 @@ class _ResourcePageState extends State<ResourcePage> {
   @override
   Widget build(BuildContext context) {
     return BaseView(
-      builder: (context, c) => ResourceScreen(),
+      init: (c) async {
+        await c.resource.getAllResources();
+      },
+      builder: (context, c) => Obx(() {
+        return ResourceScreen(
+          model: c.resource.resource,
+          list: c.resource.resourceList,
+          selectModel: (model) {},
+        );
+      }),
     );
   }
 }
