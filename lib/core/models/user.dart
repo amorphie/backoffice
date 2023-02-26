@@ -17,7 +17,7 @@ class UserModel implements BaseModel {
   final String eMail;
   final String state;
   final DateTime? modifiedAt;
-  final List<String>? tags;
+  final List<dynamic>? tag;
 
   String get fullName => "$firstName $lastName";
 
@@ -31,7 +31,7 @@ class UserModel implements BaseModel {
     required this.eMail,
     required this.state,
     this.modifiedAt,
-    this.tags,
+    this.tag,
   });
 
   factory UserModel.init() {
@@ -43,7 +43,7 @@ class UserModel implements BaseModel {
         password: "",
         eMail: "",
         state: "",
-        // tags: [],
+        // tag: [],
         phone: PhoneModel());
   }
 
@@ -57,7 +57,7 @@ class UserModel implements BaseModel {
     String? eMail,
     String? state,
     DateTime? modifiedAt,
-    List<String>? tags,
+    List<String>? tag,
   }) {
     return UserModel(
       id: id ?? this.id,
@@ -69,7 +69,7 @@ class UserModel implements BaseModel {
       eMail: eMail ?? this.eMail,
       state: state ?? this.state,
       modifiedAt: modifiedAt ?? this.modifiedAt,
-      tags: tags ?? this.tags,
+      tag: tag ?? this.tag,
     );
   }
 
@@ -84,7 +84,7 @@ class UserModel implements BaseModel {
       'eMail': eMail,
       'state': state,
       'modifiedAt': modifiedAt?.millisecondsSinceEpoch,
-      'tags': tags,
+      'tag': tag,
     };
   }
 
@@ -101,8 +101,8 @@ class UserModel implements BaseModel {
       modifiedAt: map['modifiedAt'] != null
           ? DateTime.fromMillisecondsSinceEpoch(map['modifiedAt'] as int)
           : null,
-      tags: map['tags'] != null
-          ? List<String>.from((map['tags'] as List<String>))
+      tag: map['tag'] != null
+          ? List<dynamic>.from((map['tag'] as List<dynamic>))
           : [],
     );
   }
@@ -114,7 +114,7 @@ class UserModel implements BaseModel {
 
   @override
   String toString() {
-    return 'UserModel(id: $id, firstName: $firstName, lastName: $lastName, reference: $reference, password: $password, phone: $phone, eMail: $eMail, state: $state, modifiedAt: $modifiedAt, tags: $tags)';
+    return 'UserModel(id: $id, firstName: $firstName, lastName: $lastName, reference: $reference, password: $password, phone: $phone, eMail: $eMail, state: $state, modifiedAt: $modifiedAt, tag: $tag)';
   }
 
   @override
@@ -130,7 +130,7 @@ class UserModel implements BaseModel {
         other.eMail == eMail &&
         other.state == state &&
         other.modifiedAt == modifiedAt &&
-        listEquals(other.tags, tags);
+        listEquals(other.tag, tag);
   }
 
   @override
@@ -144,7 +144,7 @@ class UserModel implements BaseModel {
         eMail.hashCode ^
         state.hashCode ^
         modifiedAt.hashCode ^
-        tags.hashCode;
+        tag.hashCode;
   }
 
   @override
@@ -156,7 +156,7 @@ class UserModel implements BaseModel {
     "phone",
     "eMail",
     "status",
-    "tags",
+    "tag",
   ];
 
   @override

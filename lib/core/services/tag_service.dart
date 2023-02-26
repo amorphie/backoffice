@@ -5,7 +5,7 @@ mixin TagService {
 
   Future<ResponseModel> getTag([int page = 0, int size = 100]) async {
     ResponseModel response =
-        await Executer.get(endpoint: "tag?page=$page&pageSize=$size");
+        await Executer.get(endpoint: 'tag?page=$page&pageSize=$size');
     return response;
   }
 

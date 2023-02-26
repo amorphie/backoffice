@@ -145,7 +145,7 @@ class _UserAddScreenState extends State<UserAddScreen> {
                   style: TextStyle(color: Colors.white),
                 ),
                 headerColor: KC.primary,
-                initialValue: [_items[1]],
+                initialValue: [],
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   border: Border.all(color: KC.primary, width: 0.6),
@@ -174,7 +174,7 @@ class _UserAddScreenState extends State<UserAddScreen> {
                               phone: PhoneModel.init(),
                               eMail: eMail.text,
                               state: 'state',
-                              tags: ['user-list-get']);
+                              tag: []);
                           await widget.userAddPressed(user);
                         },
                         color: KC.primary),
