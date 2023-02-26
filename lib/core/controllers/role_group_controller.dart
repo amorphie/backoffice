@@ -21,14 +21,14 @@ class RoleGroupController extends GetxController {
 
     ResponseModel response = await _services.getRoleGroupById(id: id);
 
-    if (!response.success) {
+    if (response.success) {
       for (var item in response.data) {
         RoleGroupModel model = RoleGroupModel.fromMap(item);
         _list.add(model);
       }
       roleGroupList.value = _list;
     }
-    return !response.success;
+    return response.success;
   }
 
   Future<bool> getRoleGroup() async {
@@ -36,14 +36,14 @@ class RoleGroupController extends GetxController {
 
     ResponseModel response = await _services.getRoleGroup();
 
-    if (!response.success) {
+    if (response.success) {
       for (var item in response.data) {
         RoleGroupModel model = RoleGroupModel.fromMap(item);
         _list.add(model);
       }
       roleGroupList.value = _list;
     }
-    return !response.success;
+    return response.success;
   }
 
   //Post
@@ -51,10 +51,10 @@ class RoleGroupController extends GetxController {
   Future<bool> addResource(RoleGroupModel t) async {
     ResponseModel response = await _services.postRoleGroup(t);
 
-    if (!response.success) {
+    if (response.success) {
       roleGroupList.add(RoleGroupModel.fromMap(response.data));
     }
-    return !response.success;
+    return response.success;
   }
 
   //Delete
@@ -62,9 +62,9 @@ class RoleGroupController extends GetxController {
   Future<bool> deleteResource() async {
     ResponseModel response = await _services.deleteRoleGroup(roleGroup.id);
 
-    if (!response.success) {
+    if (response.success) {
       roleGroupList.removeWhere((e) => e.id == roleGroup.id);
     }
-    return !response.success;
+    return response.success;
   }
 }

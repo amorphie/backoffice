@@ -34,7 +34,7 @@ class UserService {
 
   //Post
 
-  Future<ResponseModel> addUser(UserModel model) async {
+  Future<ResponseModel> addUpdateUser(UserModel model) async {
     ResponseModel response =
         await Executer.post(endpoint: "user", data: model.toMap());
     return response;

@@ -21,14 +21,14 @@ class RoleController extends GetxController {
 
     ResponseModel response = await _services.getRoleById(id: id);
 
-    if (!response.success) {
+    if (response.success) {
       for (var item in response.data) {
         RoleModel model = RoleModel.fromMap(item);
         _list.add(model);
       }
       resourceList.value = _list;
     }
-    return !response.success;
+    return response.success;
   }
 
   Future<bool> getRole() async {
@@ -36,14 +36,14 @@ class RoleController extends GetxController {
 
     ResponseModel response = await _services.getRole();
 
-    if (!response.success) {
+    if (response.success) {
       for (var item in response.data) {
         RoleModel model = RoleModel.fromMap(item);
         _list.add(model);
       }
       resourceList.value = _list;
     }
-    return !response.success;
+    return response.success;
   }
 
   //Post
@@ -51,10 +51,10 @@ class RoleController extends GetxController {
   Future<bool> addRole(RoleModel t) async {
     ResponseModel response = await _services.postRole(t);
 
-    if (!response.success) {
+    if (response.success) {
       resourceList.add(RoleModel.fromMap(response.data));
     }
-    return !response.success;
+    return response.success;
   }
 
   //Delete
@@ -62,9 +62,9 @@ class RoleController extends GetxController {
   Future<bool> deleteRole() async {
     ResponseModel response = await _services.deleteRole(role.id);
 
-    if (!response.success) {
+    if (response.success) {
       resourceList.removeWhere((e) => e.id == role.id);
     }
-    return !response.success;
+    return response.success;
   }
 }

@@ -35,52 +35,52 @@ class UserController extends GetxController {
 
     ResponseModel response = await _services.getUserEmail(mail: email);
 
-    if (!response.success) {
+    if (response.success) {
       for (var item in response.data) {
         UserModel model = UserModel.fromMap(item);
         _list.add(model);
       }
       userList.value = _list;
     }
-    return !response.success;
+    return response.success;
   }
 
   //Post
 
   Future<bool> addUser(UserModel t) async {
-    ResponseModel response = await _services.addUser(t);
+    ResponseModel response = await _services.addUpdateUser(t);
 
-    if (!response.success) {
+    if (response.success) {
       userList.add(UserModel.fromMap(response.data));
     }
-    return !response.success;
+    return response.success;
   }
 
   Future<bool> updatePassword(UserModel t) async {
     ResponseModel response = await _services.updatePassword(t, id: user.id!);
 
-    if (!response.success) {
+    if (response.success) {
       userList.add(UserModel.fromMap(response.data));
     }
-    return !response.success;
+    return response.success;
   }
 
   Future<bool> updateEmail(UserModel t) async {
     ResponseModel response = await _services.updateEmail(t, id: user.id!);
 
-    if (!response.success) {
+    if (response.success) {
       userList.add(UserModel.fromMap(response.data));
     }
-    return !response.success;
+    return response.success;
   }
 
   Future<bool> updatePhone(UserModel t) async {
     ResponseModel response = await _services.updatePhone(t, id: user.id!);
 
-    if (!response.success) {
+    if (response.success) {
       userList.add(UserModel.fromMap(response.data));
     }
-    return !response.success;
+    return response.success;
   }
 
   //Delete
@@ -88,9 +88,9 @@ class UserController extends GetxController {
   Future<bool> deleteResource() async {
     ResponseModel response = await _services.deleteResource(user.id!);
 
-    if (!response.success) {
+    if (response.success) {
       userList.removeWhere((e) => e.id == user.id);
     }
-    return !response.success;
+    return response.success;
   }
 }

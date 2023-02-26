@@ -20,14 +20,14 @@ class TagController extends GetxController {
 
     ResponseModel response = await _services.getTag();
 
-    if (!response.success) {
+    if (response.success) {
       for (var item in response.data) {
         TagModel model = TagModel.fromMap(item);
         _list.add(model);
       }
       tagList.value = _list;
     }
-    return !response.success;
+    return response.success;
   }
 
   //Post
@@ -35,10 +35,10 @@ class TagController extends GetxController {
   Future<bool> addResource(TagModel t) async {
     ResponseModel response = await _services.postTag(t);
 
-    if (!response.success) {
+    if (response.success) {
       tagList.add(TagModel.fromMap(response.data));
     }
-    return !response.success;
+    return response.success;
   }
 
   //Delete
@@ -46,9 +46,9 @@ class TagController extends GetxController {
   Future<bool> deleteResource() async {
     ResponseModel response = await _services.deleteResource(tagModel.id);
 
-    if (!response.success) {
+    if (response.success) {
       tagList.removeWhere((e) => e.id == tagModel.id);
     }
-    return !response.success;
+    return response.success;
   }
 }

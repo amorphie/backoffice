@@ -3,7 +3,7 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 
-import 'package:admin/core/models/common/phone_model.dart';
+import 'package:admin/core/models/common/user_phone_model.dart';
 
 import '../base/base_model.dart';
 

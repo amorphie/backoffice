@@ -21,14 +21,14 @@ class PrivilegeController extends GetxController {
 
     ResponseModel response = await _services.getPrivilegeById(id: id);
 
-    if (!response.success) {
+    if (response.success) {
       for (var item in response.data) {
         PrivilegeModel model = PrivilegeModel.fromMap(item);
         _list.add(model);
       }
       privilegeList.value = _list;
     }
-    return !response.success;
+    return response.success;
   }
 
   //Post
@@ -36,10 +36,10 @@ class PrivilegeController extends GetxController {
   Future<bool> addPrivilege(PrivilegeModel t) async {
     ResponseModel response = await _services.postPrivilege(t);
 
-    if (!response.success) {
+    if (response.success) {
       privilegeList.add(PrivilegeModel.fromMap(response.data));
     }
-    return !response.success;
+    return response.success;
   }
 
   //Delete
@@ -47,9 +47,9 @@ class PrivilegeController extends GetxController {
   Future<bool> deletePrivilege() async {
     ResponseModel response = await _services.deletePrivilege(privilege.id);
 
-    if (!response.success) {
+    if (response.success) {
       privilegeList.removeWhere((e) => e.id == privilege.id);
     }
-    return !response.success;
+    return response.success;
   }
 }

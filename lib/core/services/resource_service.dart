@@ -10,9 +10,9 @@ mixin ResourceService {
     return response;
   }
 
-  Future<ResponseModel> getAllResources() async {
+  Future<ResponseModel> getAllResources([int page = 0, int size = 100]) async {
     ResponseModel response =
-        await Executer.get(endpoint: "resource?page=0&pageSize=100");
+        await Executer.get(endpoint: "resource?page=$page&pageSize=$size");
     return response;
   }
 
