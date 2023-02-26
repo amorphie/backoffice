@@ -18,7 +18,7 @@ class _TagPageState extends State<TagPage> {
         builder: (context, c) => Obx(
               () => TagScreen(
                 tag: c.tag.tagModel,
-                tagList: c.tag.tagList.value,
+                list: c.tag.tagList,
               ),
             ));
   }

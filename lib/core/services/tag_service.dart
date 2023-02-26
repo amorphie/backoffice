@@ -3,8 +3,9 @@ import '../export/_.dart';
 mixin TagService {
 //Get
 
-  Future<ResponseModel> getTag() async {
-    ResponseModel response = await Executer.get(endpoint: "userTag");
+  Future<ResponseModel> getTag([int page = 0, int size = 100]) async {
+    ResponseModel response =
+        await Executer.get(endpoint: "tag?page=$page&pageSize=$size");
     return response;
   }
 
@@ -12,14 +13,14 @@ mixin TagService {
 
   Future<ResponseModel> postTag(TagModel model) async {
     ResponseModel response =
-        await Executer.post(endpoint: "team-event", data: model.toMap());
+        await Executer.post(endpoint: "tag", data: model.toMap());
     return response;
   }
 
 //Delete
 
-  Future<ResponseModel> deleteTag(int id) async {
-    ResponseModel response = await Executer.delete(endpoint: "userTag/$id");
+  Future<ResponseModel> deleteTag(String tagName) async {
+    ResponseModel response = await Executer.delete(endpoint: "tag/$tagName");
     return response;
   }
 }

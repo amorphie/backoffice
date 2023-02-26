@@ -3,13 +3,14 @@
 import 'package:admin/core/export/_.dart';
 
 import '../../tables/my_data_table/my_data_table.dart';
+import '../../tables/table_base.dart';
 
 class TagScreen extends StatelessWidget {
-  final List<TagModel> tagList;
+  final List<TagModel> list;
   final TagModel tag;
   const TagScreen({
     Key? key,
-    required this.tagList,
+    required this.list,
     required this.tag,
   }) : super(key: key);
 
@@ -32,16 +33,22 @@ class TagScreen extends StatelessWidget {
                     child: Column(
                       children: [
                         SizedBox(height: defaultPadding),
-                        MyDataTable<UserModel>(
-                          items: tagList
+                        //     TableBase(
+                        //   items: list,
+                        //   onSelect: (user) {
+                        //   },
+                        //   onFilter: (item) {}),
+                        MyDataTable<TagModel>(
+                          items: list
                               .map(
-                                (user) => MyDataTableRow<UserModel>(
+                                (tag) => MyDataTableRow<TagModel>(
                                   onPressed: (item) {},
                                   cells: [
                                     // ...user.columns.map((e) => MyDataTableCell(title: e, text: user.toMap()[e].toString())),
-                                    MyDataTableCell.set("Reference", tag.id),
-                                    MyDataTableCell(
-                                        title: "Name", text: tag.tagName),
+                                    MyDataTableCell.set("Name", tag.tagName!),
+                                    MyDataTableCell.set(
+                                        "TTL", tag.ttl!.toStringAsFixed(0)),
+                                    MyDataTableCell.set("Url", tag.url!),
                                   ],
                                 ),
                               )

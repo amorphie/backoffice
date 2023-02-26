@@ -84,7 +84,6 @@ export 'package:admin/core/services/common/service_helper.dart';
 
 //Mocks
 
-export 'package:admin/core/mocks/tag_mock.dart';
 export 'package:admin/core/models/consent.dart';
 
 //Models

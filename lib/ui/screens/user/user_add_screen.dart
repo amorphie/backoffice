@@ -1,27 +1,27 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
-import 'package:admin/core/models/common/user_phone_model.dart';
 import 'package:flutter/services.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
 
 import 'package:admin/core/export/_.dart';
+import 'package:admin/core/models/common/user_phone_model.dart';
 
 class UserAddScreen extends StatefulWidget {
   final UserModel model;
   final Future Function(UserModel model) userAddPressed;
+  final List<TagModel> tagList;
   const UserAddScreen({
     Key? key,
     required this.model,
     required this.userAddPressed,
+    required this.tagList,
   }) : super(key: key);
   @override
   State<UserAddScreen> createState() => _UserAddScreenState();
 }
 
 class _UserAddScreenState extends State<UserAddScreen> {
-  final _items = tagsMockList
-      .map((tag) => MultiSelectItem<TagModel>(tag, tag.tagName))
-      .toList();
+  late final _items;
 
   List<String> selectedtags = [];
   List<String> status = <String>['New', 'InProgress', 'Ready', 'Active'];
@@ -40,6 +40,9 @@ class _UserAddScreenState extends State<UserAddScreen> {
     lastName = TextEditingController(text: widget.model.lastName);
     phone = TextEditingController(text: widget.model.phone.phoneNumber);
     eMail = TextEditingController(text: widget.model.eMail);
+    _items = widget.tagList
+        .map((tag) => MultiSelectItem<TagModel>(tag, tag.tagName!))
+        .toList();
   }
 
   @override
