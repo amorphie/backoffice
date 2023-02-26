@@ -25,6 +25,6 @@ enum BaseUrl {
   const BaseUrl(this.url);
 
   Uri getURl(String endpoint) {
-    return Uri.parse("${ServiceConfig.baseUrl}$endpoint");
+    return Uri.parse("$url$endpoint");
   }
 }

@@ -5,7 +5,7 @@ mixin TagService {
 
   Future<ResponseModel> getTag([int page = 0, int size = 100]) async {
     ResponseModel response = await Executer.get(
-        endpoint: BaseUrl.resource.getURl(
+        endpoint: BaseUrl.tag.getURl(
       "tag?page=$page&pageSize=$size",
     ));
 
@@ -16,7 +16,7 @@ mixin TagService {
 
   Future<ResponseModel> postTag(TagModel model) async {
     ResponseModel response = await Executer.post(
-        endpoint: BaseUrl.resource.getURl(
+        endpoint: BaseUrl.tag.getURl(
       "tag",
     ));
     return response;
@@ -26,7 +26,7 @@ mixin TagService {
 
   Future<ResponseModel> deleteTag(String tagName) async {
     ResponseModel response = await Executer.delete(
-        endpoint: BaseUrl.resource.getURl(
+        endpoint: BaseUrl.tag.getURl(
       "tag/$tagName",
     ));
     return response;
