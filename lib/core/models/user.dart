@@ -16,6 +16,7 @@ class UserModel implements BaseModel {
   final PhoneModel phone;
   final String eMail;
   final String state;
+  final String salt;
   final DateTime? modifiedAt;
   final List<dynamic>? tag;
 
@@ -30,6 +31,7 @@ class UserModel implements BaseModel {
     required this.phone,
     required this.eMail,
     required this.state,
+    required this.salt,
     this.modifiedAt,
     this.tag,
   });
@@ -43,6 +45,7 @@ class UserModel implements BaseModel {
         password: "",
         eMail: "",
         state: "",
+        salt: "",
         // tag: [],
         phone: PhoneModel());
   }
@@ -56,8 +59,9 @@ class UserModel implements BaseModel {
     PhoneModel? phone,
     String? eMail,
     String? state,
+    String? salt,
     DateTime? modifiedAt,
-    List<String>? tag,
+    List<dynamic>? tag,
   }) {
     return UserModel(
       id: id ?? this.id,
@@ -68,6 +72,7 @@ class UserModel implements BaseModel {
       phone: phone ?? this.phone,
       eMail: eMail ?? this.eMail,
       state: state ?? this.state,
+      salt: salt ?? this.salt,
       modifiedAt: modifiedAt ?? this.modifiedAt,
       tag: tag ?? this.tag,
     );
@@ -75,7 +80,7 @@ class UserModel implements BaseModel {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'id': id,
+      // 'id': id,
       'firstName': firstName,
       'lastName': lastName,
       'reference': reference,
@@ -83,8 +88,7 @@ class UserModel implements BaseModel {
       'phone': phone.toMap(),
       'eMail': eMail,
       'state': state,
-      'modifiedAt': modifiedAt?.millisecondsSinceEpoch,
-      'tag': tag,
+      'salt': salt,
     };
   }
 
@@ -98,22 +102,19 @@ class UserModel implements BaseModel {
       phone: PhoneModel.fromMap(map['phone'] as Map<String, dynamic>),
       eMail: map['eMail'] as String,
       state: map['state'] as String,
-      modifiedAt:
-          map['modifiedAt'] != null ? DateTime.parse(map['modifiedAt']) : null,
-      tag: map['tag'] != null
-          ? List<dynamic>.from((map['tag'] as List<dynamic>))
-          : [],
+      salt: map['state'] as String,
+      modifiedAt: map['modifiedAt'] != null ? DateTime.parse(map['modifiedAt']) : null,
+      tag: map['tag'] != null ? List<dynamic>.from((map['tag'] as List<dynamic>)) : [],
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory UserModel.fromJson(String source) =>
-      UserModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory UserModel.fromJson(String source) => UserModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
-    return 'UserModel(id: $id, firstName: $firstName, lastName: $lastName, reference: $reference, password: $password, phone: $phone, eMail: $eMail, state: $state, modifiedAt: $modifiedAt, tag: $tag)';
+    return 'UserModel(id: $id, firstName: $firstName, lastName: $lastName, reference: $reference, password: $password, phone: $phone, eMail: $eMail, state: $state, salt: $salt, modifiedAt: $modifiedAt, tag: $tag)';
   }
 
   @override
@@ -128,6 +129,7 @@ class UserModel implements BaseModel {
         other.phone == phone &&
         other.eMail == eMail &&
         other.state == state &&
+        other.salt == salt &&
         other.modifiedAt == modifiedAt &&
         listEquals(other.tag, tag);
   }
@@ -142,6 +144,7 @@ class UserModel implements BaseModel {
         phone.hashCode ^
         eMail.hashCode ^
         state.hashCode ^
+        salt.hashCode ^
         modifiedAt.hashCode ^
         tag.hashCode;
   }

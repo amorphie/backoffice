@@ -6,22 +6,30 @@ mixin PrivilegeService {
 //Get
 
   Future<ResponseModel> getPrivilegeById({required String id}) async {
-    ResponseModel response = await Executer.get(endpoint: "privilege/$id");
+    ResponseModel response = await Executer.get(
+        endpoint: BaseUrl.resource.getURl(
+      "privilege/$id",
+    ));
     return response;
   }
 
   //Post
 
   Future<ResponseModel> postPrivilege(PrivilegeModel model) async {
-    ResponseModel response =
-        await Executer.post(endpoint: "privilege", data: model.toMap());
+    ResponseModel response = await Executer.post(
+        endpoint: BaseUrl.resource.getURl(
+      "privilege",
+    ));
     return response;
   }
 
   //Delete
 
   Future<ResponseModel> deletePrivilege(String id) async {
-    ResponseModel response = await Executer.delete(endpoint: "privilege/$id");
+    ResponseModel response = await Executer.delete(
+        endpoint: BaseUrl.resource.getURl(
+      "privilege/$id",
+    ));
     return response;
   }
 }
