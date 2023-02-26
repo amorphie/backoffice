@@ -98,9 +98,8 @@ class UserModel implements BaseModel {
       phone: PhoneModel.fromMap(map['phone'] as Map<String, dynamic>),
       eMail: map['eMail'] as String,
       state: map['state'] as String,
-      modifiedAt: map['modifiedAt'] != null
-          ? DateTime.fromMillisecondsSinceEpoch(map['modifiedAt'] as int)
-          : null,
+      modifiedAt:
+          map['modifiedAt'] != null ? DateTime.parse(map['modifiedAt']) : null,
       tag: map['tag'] != null
           ? List<dynamic>.from((map['tag'] as List<dynamic>))
           : [],
