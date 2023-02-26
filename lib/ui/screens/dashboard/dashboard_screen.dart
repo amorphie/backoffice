@@ -55,12 +55,12 @@ class DashboardScreen extends StatelessWidget {
                         onFilter: (value) {},
                       ), //! DAHA YENİ
 
-                      //TableBase(
-                      // items: userList,
-                      // onSelect: (user) {
-                      //   selectUser(user as UserModel);
-                      //  },
-                      //    onFilter: (item) {}), //!YENİ
+                      TableBase(
+                          items: userList,
+                          onSelect: (user) {
+                            selectUser(user as UserModel);
+                          },
+                          onFilter: (item) {}), //!YENİ
 
                       // UserTable(select: selectUser), //!ESKİ
                       if (Responsive.isMobile(context))

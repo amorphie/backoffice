@@ -3,7 +3,6 @@
 import 'package:admin/core/export/_.dart';
 
 import '../../tables/my_data_table/my_data_table.dart';
-import '../../tables/table_base.dart';
 
 class TagScreen extends StatelessWidget {
   final List<TagModel> list;
@@ -45,10 +44,12 @@ class TagScreen extends StatelessWidget {
                                   onPressed: (item) {},
                                   cells: [
                                     // ...user.columns.map((e) => MyDataTableCell(title: e, text: user.toMap()[e].toString())),
-                                    MyDataTableCell.set("Name", tag.tagName!),
+                                    MyDataTableCell.set("Name", tag.name!),
                                     MyDataTableCell.set(
                                         "TTL", tag.ttl!.toStringAsFixed(0)),
                                     MyDataTableCell.set("Url", tag.url!),
+                                    MyDataTableCell.set(
+                                        "Tags", tag.tags!.toString()),
                                   ],
                                 ),
                               )

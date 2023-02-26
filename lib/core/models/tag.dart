@@ -4,51 +4,51 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 
 class TagModel {
-  final String? tagName;
+  final String? name;
   final String? url;
   final int? ttl;
-  final List<String>? tag;
+  final List<dynamic>? tags;
   TagModel({
-    required this.tagName,
+    required this.name,
     this.url,
     this.ttl,
-    this.tag,
+    this.tags,
   });
 
   factory TagModel.init() {
-    return TagModel(tagName: "tag", ttl: 0, url: "", tag: []);
+    return TagModel(name: "tag", ttl: 0, url: "", tags: []);
   }
 
   TagModel copyWith({
-    String? tagName,
+    String? name,
     String? url,
     int? ttl,
-    List<String>? tag,
+    List<dynamic>? tags,
   }) {
     return TagModel(
-      tagName: tagName ?? this.tagName,
+      name: name ?? this.name,
       url: url ?? this.url,
       ttl: ttl ?? this.ttl,
-      tag: tag ?? this.tag,
+      tags: tags ?? this.tags,
     );
   }
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'tagName': tagName,
+      'name': name,
       'url': url,
       'ttl': ttl,
-      'tag': tag,
+      'tags': tags,
     };
   }
 
   factory TagModel.fromMap(Map<String, dynamic> map) {
     return TagModel(
-      tagName: (map['tagName'] as String?) ?? "",
+      name: (map['name'] as String?) ?? "",
       url: (map['url'] as String?) ?? "",
       ttl: (map['ttl'] as int?) ?? 0,
-      tag: map['tag'] != null
-          ? List<String>.from((map['tag'] as List<String>))
+      tags: map['tags'] != null
+          ? List<dynamic>.from((map['tags'] as List<dynamic>))
           : [],
     );
   }
@@ -60,21 +60,30 @@ class TagModel {
 
   @override
   String toString() {
-    return 'TagModel(tagName: $tagName, url: $url, ttl: $ttl, tag: $tag)';
+    return 'TagModel(name: $name, url: $url, ttl: $ttl, tags: $tags)';
   }
 
   @override
   bool operator ==(covariant TagModel other) {
     if (identical(this, other)) return true;
 
-    return other.tagName == tagName &&
+    return other.name == name &&
         other.url == url &&
         other.ttl == ttl &&
-        listEquals(other.tag, tag);
+        listEquals(other.tags, tags);
   }
 
   @override
   int get hashCode {
-    return tagName.hashCode ^ url.hashCode ^ ttl.hashCode ^ tag.hashCode;
+    return name.hashCode ^ url.hashCode ^ ttl.hashCode ^ tags.hashCode;
   }
+
+  @override
+  // ignore: override_on_non_overriding_member
+  List<String> columns = [
+    "name",
+    "ttl",
+    "url",
+    "tags",
+  ];
 }

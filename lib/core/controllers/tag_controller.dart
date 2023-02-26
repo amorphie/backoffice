@@ -44,10 +44,10 @@ class TagController extends GetxController {
   //Delete
 
   Future<bool> deleteResource() async {
-    ResponseModel response = await _services.deleteResource(tagModel.tagName!);
+    ResponseModel response = await _services.deleteResource(tagModel.name!);
 
     if (response.success) {
-      tagList.removeWhere((e) => e.tagName == tagModel.tagName);
+      tagList.removeWhere((e) => e.name == tagModel.name);
     }
     return response.success;
   }

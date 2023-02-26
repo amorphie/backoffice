@@ -41,7 +41,7 @@ class _UserAddScreenState extends State<UserAddScreen> {
     phone = TextEditingController(text: widget.model.phone.phoneNumber);
     eMail = TextEditingController(text: widget.model.eMail);
     _items = widget.tagList
-        .map((tag) => MultiSelectItem<TagModel>(tag, tag.tagName!))
+        .map((tag) => MultiSelectItem<TagModel>(tag, tag.name!))
         .toList();
   }
 
