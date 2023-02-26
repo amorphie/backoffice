@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:admin/core/helpers/logger_helper.dart';
 import "package:http/http.dart" as http;
 
 import '../../export/_.dart';
@@ -18,7 +19,6 @@ class Executer {
     _setData();
   }
 
-  Map<String, String> _map = {};
   late http.Request _request;
 
   static Future<ResponseModel> get({required Uri endpoint, Map<String, dynamic>? data}) async {
@@ -50,11 +50,14 @@ class Executer {
         var result = jsonDecode(resultData);
 
         if (response.statusCode >= 200 && response.statusCode < 300) {
+          appLogger.v("statusCode => " + response.statusCode.toString(), endpoint);
+
           return ResponseModel(code: response.statusCode, errors: {}, success: true, message: "", data: result);
         } else {
           return ResponseModel(code: response.statusCode, success: false, errors: {}, message: result["message"] ?? "", data: result);
         }
       } catch (e) {
+        appLogger.e(e.toString(), endpoint);
         return ResponseModel(code: 0, success: false, errors: {"errors": e}, message: e.toString(), data: null);
       }
     }
@@ -73,10 +76,11 @@ class Executer {
 
   _setData() {
     if (data != null) {
-      data!.forEach((key, value) {
-        if (value != null) _map.addAll({key: value.toString()});
-      });
-      _request.bodyFields = _map;
+      // data!.forEach((key, value) {
+      //   if (value != null) _map.addAll({key: value.toString()});
+      // });
+      // _request.bodyFields = _map;
+      _request.body = json.encode(data);
     }
   }
 }

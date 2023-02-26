@@ -40,9 +40,7 @@ class _UserAddScreenState extends State<UserAddScreen> {
     lastName = TextEditingController(text: widget.model.lastName);
     phone = TextEditingController(text: widget.model.phone.phoneNumber);
     eMail = TextEditingController(text: widget.model.eMail);
-    _items = widget.tagList
-        .map((tag) => MultiSelectItem<TagModel>(tag, tag.name!))
-        .toList();
+    _items = widget.tagList.map((tag) => MultiSelectItem<TagModel>(tag, tag.name!)).toList();
   }
 
   @override
@@ -58,8 +56,7 @@ class _UserAddScreenState extends State<UserAddScreen> {
             padding: const EdgeInsets.only(left: 20.0),
             child: Text(
               "Add User",
-              style: TextStyle(
-                  color: KC.primary, fontWeight: FontWeight.bold, fontSize: 22),
+              style: TextStyle(color: KC.primary, fontWeight: FontWeight.bold, fontSize: 22),
             ),
           ),
         ),
@@ -87,8 +84,7 @@ class _UserAddScreenState extends State<UserAddScreen> {
                 keyboardType: TextInputType.name,
                 controller: firstName,
                 inputFormatter: <TextInputFormatter>[
-                  FilteringTextInputFormatter.allow(
-                      RegExp("[a-zA-Z]", unicode: true)),
+                  FilteringTextInputFormatter.allow(RegExp("[a-zA-Z]", unicode: true)),
                 ],
               )),
               SizedBox(width: 10),
@@ -97,8 +93,7 @@ class _UserAddScreenState extends State<UserAddScreen> {
                 labelText: "Surname",
                 controller: lastName,
                 inputFormatter: <TextInputFormatter>[
-                  FilteringTextInputFormatter.allow(
-                      RegExp("[a-zA-Z]", unicode: true)),
+                  FilteringTextInputFormatter.allow(RegExp("[a-zA-Z]", unicode: true)),
                 ],
                 keyboardType: TextInputType.name,
               ))
@@ -174,6 +169,7 @@ class _UserAddScreenState extends State<UserAddScreen> {
                               phone: PhoneModel.init(),
                               eMail: eMail.text,
                               state: 'state',
+                              salt: '',
                               tag: []);
                           await widget.userAddPressed(user);
                         },

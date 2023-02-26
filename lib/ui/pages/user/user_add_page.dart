@@ -1,4 +1,5 @@
 import 'package:admin/core/export/_.dart';
+import 'package:get/get.dart';
 
 class UserAddPage extends StatelessWidget {
   const UserAddPage({Key? key}) : super(key: key);
@@ -13,8 +14,14 @@ class UserAddPage extends StatelessWidget {
               model: c.user.user,
               tagList: c.tag.tagList,
               userAddPressed: (model) async {
-                await c.user.addUser(model);
-                Navigator.pop(context);
+                bool result = await c.user.addUser(model);
+                if (result) {
+                  c.user.getUsers();
+                  Get.snackbar("Başarılı", "Başardık", backgroundColor: Colors.green);
+                  Navigator.pop(context);
+                } else {
+                  Get.snackbar("Neyi Başaramadın", "Başaramadı", backgroundColor: Colors.red);
+                }
               },
             ));
   }
