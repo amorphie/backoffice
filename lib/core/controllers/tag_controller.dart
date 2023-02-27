@@ -32,7 +32,7 @@ class TagController extends GetxController {
 
   //Post
 
-  Future<bool> addResource(TagModel t) async {
+  Future<bool> addTag(TagModel t) async {
     ResponseModel response = await _services.postTag(t);
 
     if (response.success) {
@@ -43,7 +43,7 @@ class TagController extends GetxController {
 
   //Delete
 
-  Future<bool> deleteResource() async {
+  Future<bool> deleteTag() async {
     ResponseModel response = await _services.deleteResource(tagModel.name!);
 
     if (response.success) {

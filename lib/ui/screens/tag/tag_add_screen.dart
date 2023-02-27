@@ -4,42 +4,36 @@ import 'package:flutter/services.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
 
 import 'package:admin/core/export/_.dart';
-import 'package:admin/core/models/common/user_phone_model.dart';
 
-class UserAddScreen extends StatefulWidget {
-  final UserModel model;
-  final Future Function(UserModel model) userAddPressed;
+class TagAddScreen extends StatefulWidget {
+  final TagModel model;
+  final Future Function(TagModel model) tagAddPressed;
   final List<TagModel> tagList;
-  const UserAddScreen({
+  const TagAddScreen({
     Key? key,
     required this.model,
-    required this.userAddPressed,
+    required this.tagAddPressed,
     required this.tagList,
   }) : super(key: key);
   @override
-  State<UserAddScreen> createState() => _UserAddScreenState();
+  State<TagAddScreen> createState() => _TagAddScreenState();
 }
 
-class _UserAddScreenState extends State<UserAddScreen> {
+class _TagAddScreenState extends State<TagAddScreen> {
   late final _items;
 
   List<String> selectedtags = [];
-  List<String> status = <String>['New', 'InProgress', 'Ready', 'Active'];
 
-  late TextEditingController ref;
-  late TextEditingController firstName;
-  late TextEditingController lastName;
-  late TextEditingController phone;
-  late TextEditingController eMail;
+  late TextEditingController name;
+  late TextEditingController url;
+  late TextEditingController ttl;
 
   @override
   void initState() {
     super.initState();
-    ref = TextEditingController(text: widget.model.reference);
-    firstName = TextEditingController(text: widget.model.firstName);
-    lastName = TextEditingController(text: widget.model.lastName);
-    phone = TextEditingController(text: widget.model.phone.phoneNumber);
-    eMail = TextEditingController(text: widget.model.eMail);
+    name = TextEditingController(text: widget.model.name);
+    url = TextEditingController(text: widget.model.url);
+    ttl = TextEditingController(text: widget.model.ttl.toString());
     _items = widget.tagList
         .map((tag) => MultiSelectItem<TagModel>(tag, tag.name!))
         .toList();
@@ -58,7 +52,7 @@ class _UserAddScreenState extends State<UserAddScreen> {
             child: Padding(
               padding: const EdgeInsets.only(left: 20.0),
               child: Text(
-                "Add User",
+                "Add Tag",
                 style: TextStyle(
                     color: KC.primary,
                     fontWeight: FontWeight.bold,
@@ -74,37 +68,12 @@ class _UserAddScreenState extends State<UserAddScreen> {
           SizedBox(
             width: MediaQuery.of(context).size.width / 2,
             child: CommonTextField(
-              labelText: "Reference",
-              keyboardType: TextInputType.number,
-              controller: ref,
-            ),
-          ),
-          SizedBox(height: 30),
-          SizedBox(
-            width: MediaQuery.of(context).size.width / 2,
-            child: Row(
-              children: [
-                Expanded(
-                    child: CommonTextField(
-                  labelText: "First Name",
-                  keyboardType: TextInputType.name,
-                  controller: firstName,
-                  inputFormatter: <TextInputFormatter>[
-                    FilteringTextInputFormatter.allow(
-                        RegExp("[a-zA-Z]", unicode: true)),
-                  ],
-                )),
-                SizedBox(width: 10),
-                Expanded(
-                    child: CommonTextField(
-                  labelText: "Surname",
-                  controller: lastName,
-                  inputFormatter: <TextInputFormatter>[
-                    FilteringTextInputFormatter.allow(
-                        RegExp("[a-zA-Z]", unicode: true)),
-                  ],
-                  keyboardType: TextInputType.name,
-                ))
+              labelText: "Name",
+              keyboardType: TextInputType.name,
+              controller: name,
+              inputFormatter: <TextInputFormatter>[
+                FilteringTextInputFormatter.allow(
+                    RegExp("[a-zA-Z]", unicode: true)),
               ],
             ),
           ),
@@ -115,21 +84,21 @@ class _UserAddScreenState extends State<UserAddScreen> {
               children: [
                 Expanded(
                     child: CommonTextField(
-                  labelText: "Phone",
-                  controller: phone,
-                  keyboardType: TextInputType.phone,
+                  labelText: "Url",
+                  keyboardType: TextInputType.url,
+                  controller: url,
                 )),
                 SizedBox(width: 10),
                 Expanded(
                     child: CommonTextField(
-                  labelText: "E-mail",
-                  controller: eMail,
-                  keyboardType: TextInputType.emailAddress,
+                  labelText: "TTL",
+                  controller: ttl,
+                  keyboardType: TextInputType.number,
                 ))
               ],
             ),
           ),
-          SizedBox(height: 10),
+          SizedBox(height: 30),
           Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
@@ -169,17 +138,12 @@ class _UserAddScreenState extends State<UserAddScreen> {
                       child: CommonButton(
                           title: "Save",
                           onPressed: () async {
-                            UserModel user = UserModel(
-                                firstName: firstName.text,
-                                lastName: lastName.text,
-                                reference: ref.text,
-                                password: 'password',
-                                phone: PhoneModel.init(),
-                                eMail: eMail.text,
-                                state: 'state',
-                                salt: '',
-                                tag: []);
-                            await widget.userAddPressed(user);
+                            TagModel model = TagModel(
+                              url: url.text,
+                              name: name.text,
+                              ttl: int.parse(ttl.text),
+                            );
+                            await widget.tagAddPressed(model);
                           },
                           color: KC.primary),
                     )),

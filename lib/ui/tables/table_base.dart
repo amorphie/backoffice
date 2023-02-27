@@ -60,7 +60,7 @@ class _TableBaseState extends State<TableBase> {
                       )),
                   IconButton(
                       onPressed: () {
-                        addUser(context);
+                        addUserPopUp(context);
                       },
                       icon: Icon(
                         Icons.add_circle_outlined,
@@ -98,7 +98,10 @@ class _TableBaseState extends State<TableBase> {
                 ...widget.items.first.columns.map(
                   (e) {
                     return DataColumn(
-                      label: Text(e, style: TextStyle(color: Colors.black54, fontWeight: FontWeight.w500)),
+                      label: Text(e,
+                          style: TextStyle(
+                              color: Colors.black54,
+                              fontWeight: FontWeight.w500)),
                     );
                   },
                 )
@@ -118,7 +121,10 @@ class _TableBaseState extends State<TableBase> {
         child: TextField(
           controller: controller,
           style: TextStyle(color: Colors.black87),
-          decoration: const InputDecoration(labelStyle: TextStyle(color: KC.primary), icon: Icon(Icons.search), hintText: "Search"),
+          decoration: const InputDecoration(
+              labelStyle: TextStyle(color: KC.primary),
+              icon: Icon(Icons.search),
+              hintText: "Search"),
           onChanged: (value) {
             widget.onFilter(value);
           },
@@ -179,7 +185,10 @@ class RowSource extends DataTableSource {
       cells: [
         ...model.columns.map(
           (e) => DataCell(
-            Text(model.toMap()[e].toString(), textAlign: TextAlign.start, style: TextStyle(color: Colors.black54, fontWeight: FontWeight.w400)),
+            Text(model.toMap()[e].toString(),
+                textAlign: TextAlign.start,
+                style: TextStyle(
+                    color: Colors.black54, fontWeight: FontWeight.w400)),
           ),
         ),
       ],

@@ -32,11 +32,6 @@ class TagScreen extends StatelessWidget {
                     child: Column(
                       children: [
                         SizedBox(height: defaultPadding),
-                        //     TableBase(
-                        //   items: list,
-                        //   onSelect: (user) {
-                        //   },
-                        //   onFilter: (item) {}),
                         MyDataTable<TagModel>(
                           items: list
                               .map(
@@ -54,8 +49,15 @@ class TagScreen extends StatelessWidget {
                                 ),
                               )
                               .toList(),
-                          onSelect: (a) {},
-                          onFilter: (value) {},
+                          onSelect: (a) {
+                            print(tag.name);
+                          },
+                          onRefresh: (value) {
+                            print('refreshed');
+                          },
+                          addPress: () {
+                            addTagPopUp(context);
+                          },
                         ),
                         //!YENİ
 

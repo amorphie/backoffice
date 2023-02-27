@@ -39,8 +39,8 @@ class ResourceScreen extends StatelessWidget {
 
                         TableBase(
                             items: list,
-                            onSelect: (user) {
-                              selectModel(user as ResourceModel);
+                            onSelect: (c) {
+                              selectModel(c as ResourceModel);
                             },
                             onFilter: (item) {}), //!YENİ
                         if (Responsive.isMobile(context))

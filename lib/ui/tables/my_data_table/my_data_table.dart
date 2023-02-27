@@ -3,19 +3,21 @@
 import '../../../core/export/_.dart';
 import 'my_data_table_row.dart';
 import 'my_row_source.dart';
+
 export 'my_data_table_row.dart';
 export 'my_row_source.dart';
 
 class MyDataTable<T> extends StatefulWidget {
   final List<MyDataTableRow<T>> items;
-
+  final Function addPress;
   final Function(T item) onSelect;
-  final Function(String item) onFilter;
+  final Function(String item) onRefresh;
   const MyDataTable({
     Key? key,
     required this.items,
+    required this.addPress,
     required this.onSelect,
-    required this.onFilter,
+    required this.onRefresh,
   }) : super(key: key);
 
   @override
@@ -57,13 +59,13 @@ class _MyDataTableState extends State<MyDataTable> {
                   IconButton(
                       onPressed: () {},
                       icon: Icon(
-                        Icons.filter_alt_rounded,
+                        Icons.refresh,
                         color: KC.primary,
                         size: 32,
                       )),
                   IconButton(
                       onPressed: () {
-                        addUser(context);
+                        widget.addPress();
                       },
                       icon: Icon(
                         Icons.add_circle_outlined,
@@ -101,7 +103,10 @@ class _MyDataTableState extends State<MyDataTable> {
                 ...widget.items.first.cells.map(
                   (e) {
                     return DataColumn(
-                      label: Text(e.title, style: TextStyle(color: Colors.black54, fontWeight: FontWeight.w500)),
+                      label: Text(e.title,
+                          style: TextStyle(
+                              color: Colors.black54,
+                              fontWeight: FontWeight.w500)),
                     );
                   },
                 )
@@ -121,9 +126,12 @@ class _MyDataTableState extends State<MyDataTable> {
         child: TextField(
           controller: controller,
           style: TextStyle(color: Colors.black87),
-          decoration: const InputDecoration(labelStyle: TextStyle(color: KC.primary), icon: Icon(Icons.search), hintText: "Search"),
+          decoration: const InputDecoration(
+              labelStyle: TextStyle(color: KC.primary),
+              icon: Icon(Icons.search),
+              hintText: "Search"),
           onChanged: (value) {
-            widget.onFilter(value);
+            widget.onRefresh(value);
           },
         ),
       ),

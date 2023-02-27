@@ -17,10 +17,12 @@ class UserAddPage extends StatelessWidget {
                 bool result = await c.user.addUser(model);
                 if (result) {
                   c.user.getUsers();
-                  Get.snackbar("Başarılı", "Başardık", backgroundColor: Colors.green);
+                  Get.snackbar("Başarılı", "Başardık",
+                      backgroundColor: Colors.green);
                   Navigator.pop(context);
                 } else {
-                  Get.snackbar("Neyi Başaramadın", "Başaramadı", backgroundColor: Colors.red);
+                  Get.snackbar("Sıkıntı", "Başaramadı",
+                      backgroundColor: Colors.red);
                 }
               },
             ));
