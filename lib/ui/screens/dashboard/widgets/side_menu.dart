@@ -107,7 +107,9 @@ class SideMenu extends StatelessWidget {
               }),
               hoverTile('Role Group', () {}),
               hoverTile('Roles', () {}),
-              hoverTile('Privilages', () {}),
+              hoverTile('Privilages', () {
+                setIndex(5);
+              }),
             ],
           ),
           ExpansionTile(

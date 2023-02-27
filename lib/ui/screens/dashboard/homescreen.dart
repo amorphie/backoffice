@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
+import 'package:admin/ui/pages/privilege/privilege_page.dart';
 import 'package:admin/ui/pages/resource/resource_page.dart';
 import 'package:admin/ui/pages/tag/tag_page.dart';
 
@@ -22,6 +23,7 @@ class _HomescreenState extends State<Homescreen> {
     ConsentScreen(),
     TagPage(),
     ResourcePage(),
+    PrivilegePage()
   ];
 
   @override

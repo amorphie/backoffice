@@ -16,6 +16,21 @@ class PrivilegeController extends GetxController {
 
   //Get
 
+  Future<bool> getAllPrivileges() async {
+    List<PrivilegeModel> _list = [];
+
+    ResponseModel response = await _services.getPrivileges();
+
+    if (response.success) {
+      for (var item in response.data) {
+        PrivilegeModel model = PrivilegeModel.fromMap(item);
+        _list.add(model);
+      }
+      privilegeList.value = _list;
+    }
+    return response.success;
+  }
+
   Future<bool> getPrivilegeById(String id) async {
     List<PrivilegeModel> _list = [];
 
@@ -45,7 +60,7 @@ class PrivilegeController extends GetxController {
   //Delete
 
   Future<bool> deletePrivilege() async {
-    ResponseModel response = await _services.deletePrivilege(privilege.id);
+    ResponseModel response = await _services.deletePrivilege(privilege.id!);
 
     if (response.success) {
       privilegeList.removeWhere((e) => e.id == privilege.id);

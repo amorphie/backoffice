@@ -1,5 +1,3 @@
-import '_.dart';
-
 class ServiceHelper {
   // static Uri getURl(String endpoint) {
   //   return Uri.parse("${ServiceConfig.baseUrl}$endpoint");

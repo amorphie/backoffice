@@ -18,7 +18,6 @@ export 'package:get/get_navigation/src/root/get_material_app.dart';
 
 export 'package:provider/provider.dart';
 export 'package:hovering/hovering.dart';
-export 'package:provider/provider.dart';
 export 'package:google_fonts/google_fonts.dart';
 export 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -71,8 +70,6 @@ export 'package:admin/ui/screens/dashboard/widgets/file_info_card.dart';
 
 export 'package:admin/ui/screens/dashboard/tabs/workflow/workflow_tab.dart';
 export 'package:admin/ui/screens/dashboard/tabs/transaction/transaction_tab.dart';
-export 'package:admin/ui/screens/dashboard/tabs/consent/consent_tab.dart';
-export 'package:admin/ui/screens/dashboard/tabs/user_detail_screen.dart';
 
 //Services
 

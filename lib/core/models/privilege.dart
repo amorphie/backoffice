@@ -2,10 +2,10 @@
 import 'dart:convert';
 
 class PrivilegeModel {
-  final String id;
-  final String resourceId;
+  final String? id;
+  final String? resourceId;
   final String? url;
-  final int ttl;
+  final int? ttl;
   final String? status;
   final DateTime? createdAt;
   final DateTime? modifiedAt;
@@ -14,10 +14,10 @@ class PrivilegeModel {
   final String? createdByBehalfOf;
   final String? modifiedByBehalfOf;
   PrivilegeModel({
-    required this.id,
-    required this.resourceId,
+    this.id,
+    this.resourceId,
     this.url,
-    required this.ttl,
+    this.ttl,
     this.status,
     this.createdAt,
     this.modifiedAt,
@@ -79,15 +79,13 @@ class PrivilegeModel {
     return PrivilegeModel(
       id: map['id'] as String,
       resourceId: map['resourceId'] as String,
-      url: map['url'] != null ? map['url'] as String : null,
+      url: map['url'] != null ? map['url'] as String : '',
       ttl: map['ttl'] as int,
-      status: map['status'] != null ? map['status'] as String : null,
-      createdAt: map['createdAt'] != null
-          ? DateTime.fromMillisecondsSinceEpoch(map['createdAt'] as int)
-          : null,
-      modifiedAt: map['modifiedAt'] != null
-          ? DateTime.fromMillisecondsSinceEpoch(map['modifiedAt'] as int)
-          : null,
+      status: map['status'] != null ? map['status'] as String : '',
+      createdAt:
+          map['createdAt'] != null ? DateTime.parse(map['createdAt']) : null,
+      modifiedAt:
+          map['modifiedAt'] != null ? DateTime.parse(map['modifiedAt']) : null,
       createdBy: map['createdBy'] != null ? map['createdBy'] as String : null,
       modifiedBy:
           map['modifiedBy'] != null ? map['modifiedBy'] as String : null,

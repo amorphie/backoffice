@@ -2,8 +2,6 @@ import 'package:admin/core/export/_.dart';
 import 'package:admin/ui/screens/resource/resource_add_screen.dart';
 import 'package:get/get.dart';
 
-import '../../screens/resource/resource_screen.dart';
-
 class ResourceAddPage extends StatefulWidget {
   const ResourceAddPage({Key? key}) : super(key: key);
 
