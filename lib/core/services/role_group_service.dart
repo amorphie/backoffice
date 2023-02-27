@@ -13,10 +13,10 @@ mixin RoleGroupService {
     return response;
   }
 
-  Future<ResponseModel> getRoleGroup() async {
+  Future<ResponseModel> getRoleGroups([int page = 0, int size = 100]) async {
     ResponseModel response = await Executer.get(
         endpoint: BaseUrl.resource.getURl(
-      "roleGroup",
+      "roleGroup?page=$page&pageSize=$size",
     ));
     return response;
   }

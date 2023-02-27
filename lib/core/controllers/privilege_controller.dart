@@ -16,7 +16,7 @@ class PrivilegeController extends GetxController {
 
   //Get
 
-  Future<bool> getAllPrivileges() async {
+  Future<bool> getPrivileges() async {
     List<PrivilegeModel> _list = [];
 
     ResponseModel response = await _services.getPrivileges();

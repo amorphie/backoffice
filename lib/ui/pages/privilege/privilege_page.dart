@@ -14,7 +14,7 @@ class _PrivilegePageState extends State<PrivilegePage> {
   Widget build(BuildContext context) {
     return BaseView(
       init: (c) async {
-        await c.privilege.getAllPrivileges();
+        await c.privilege.getPrivileges();
       },
       builder: (context, c) => Obx(() {
         return PrivilegeScreen(

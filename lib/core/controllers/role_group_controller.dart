@@ -31,10 +31,10 @@ class RoleGroupController extends GetxController {
     return response.success;
   }
 
-  Future<bool> getRoleGroup() async {
+  Future<bool> getRoleGroups() async {
     List<RoleGroupModel> _list = [];
 
-    ResponseModel response = await _services.getRoleGroup();
+    ResponseModel response = await _services.getRoleGroups();
 
     if (response.success) {
       for (var item in response.data) {
@@ -60,7 +60,7 @@ class RoleGroupController extends GetxController {
   //Delete
 
   Future<bool> deleteResource() async {
-    ResponseModel response = await _services.deleteRoleGroup(roleGroup.id);
+    ResponseModel response = await _services.deleteRoleGroup(roleGroup.id!);
 
     if (response.success) {
       roleGroupList.removeWhere((e) => e.id == roleGroup.id);

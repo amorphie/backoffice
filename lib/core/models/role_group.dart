@@ -4,9 +4,9 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 
 class RoleGroupModel {
-  final String id;
-  final String title;
-  final List<String>? tags;
+  final String? id;
+  final List<dynamic>? titles;
+  final List<dynamic>? tags;
   final String? status;
   final DateTime? createdAt;
   final DateTime? modifiedAt;
@@ -15,8 +15,8 @@ class RoleGroupModel {
   final String? createdByBehalfOf;
   final String? modifiedByBehalfOf;
   RoleGroupModel({
-    required this.id,
-    required this.title,
+    this.id,
+    this.titles,
     this.tags,
     this.status,
     this.createdAt,
@@ -28,13 +28,13 @@ class RoleGroupModel {
   });
 
   factory RoleGroupModel.init() {
-    return RoleGroupModel(id: "", title: "");
+    return RoleGroupModel(id: "", titles: []);
   }
 
   RoleGroupModel copyWith({
     String? id,
     String? title,
-    List<String>? tags,
+    List<dynamic>? tags,
     String? status,
     DateTime? createdAt,
     DateTime? modifiedAt,
@@ -45,7 +45,7 @@ class RoleGroupModel {
   }) {
     return RoleGroupModel(
       id: id ?? this.id,
-      title: title ?? this.title,
+      titles: titles ?? this.titles,
       tags: tags ?? this.tags,
       status: status ?? this.status,
       createdAt: createdAt ?? this.createdAt,
@@ -60,7 +60,7 @@ class RoleGroupModel {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'id': id,
-      'title': title,
+      'titles': titles,
       'tags': tags,
       'status': status,
       'createdAt': createdAt?.millisecondsSinceEpoch,
@@ -75,26 +75,27 @@ class RoleGroupModel {
   factory RoleGroupModel.fromMap(Map<String, dynamic> map) {
     return RoleGroupModel(
       id: map['id'] as String,
-      title: map['title'] as String,
+      titles: map['titles'] != null
+          ? List<dynamic>.from((map['titles'] as List<dynamic>))
+          : [],
       tags: map['tags'] != null
-          ? List<String>.from((map['tags'] as List<String>))
-          : null,
-      status: map['status'] != null ? map['status'] as String : null,
+          ? List<dynamic>.from((map['tags'] as List<dynamic>))
+          : [],
+      status: map['status'] != null ? map['status'] as String : '',
       createdAt: map['createdAt'] != null
-          ? DateTime.fromMillisecondsSinceEpoch(map['createdAt'] as int)
-          : null,
+          ? DateTime.parse(map['createdAt'])
+          : DateTime.now(),
       modifiedAt: map['modifiedAt'] != null
-          ? DateTime.fromMillisecondsSinceEpoch(map['modifiedAt'] as int)
-          : null,
-      createdBy: map['createdBy'] != null ? map['createdBy'] as String : null,
-      modifiedBy:
-          map['modifiedBy'] != null ? map['modifiedBy'] as String : null,
+          ? DateTime.parse(map['modifiedAt'])
+          : DateTime.now(),
+      createdBy: map['createdBy'] != null ? map['createdBy'] as String : '',
+      modifiedBy: map['modifiedBy'] != null ? map['modifiedBy'] as String : '',
       createdByBehalfOf: map['createdByBehalfOf'] != null
           ? map['createdByBehalfOf'] as String
-          : null,
+          : '',
       modifiedByBehalfOf: map['modifiedByBehalfOf'] != null
           ? map['modifiedByBehalfOf'] as String
-          : null,
+          : '',
     );
   }
 
@@ -105,7 +106,7 @@ class RoleGroupModel {
 
   @override
   String toString() {
-    return 'RoleGroupModel(id: $id, title: $title, tags: $tags, status: $status, createdAt: $createdAt, modifiedAt: $modifiedAt, createdBy: $createdBy, modifiedBy: $modifiedBy, createdByBehalfOf: $createdByBehalfOf, modifiedByBehalfOf: $modifiedByBehalfOf)';
+    return 'RoleGroupModel(id: $id, titles: $titles, tags: $tags, status: $status, createdAt: $createdAt, modifiedAt: $modifiedAt, createdBy: $createdBy, modifiedBy: $modifiedBy, createdByBehalfOf: $createdByBehalfOf, modifiedByBehalfOf: $modifiedByBehalfOf)';
   }
 
   @override
@@ -113,7 +114,7 @@ class RoleGroupModel {
     if (identical(this, other)) return true;
 
     return other.id == id &&
-        other.title == title &&
+        other.titles == titles &&
         listEquals(other.tags, tags) &&
         other.status == status &&
         other.createdAt == createdAt &&
@@ -127,7 +128,7 @@ class RoleGroupModel {
   @override
   int get hashCode {
     return id.hashCode ^
-        title.hashCode ^
+        titles.hashCode ^
         tags.hashCode ^
         status.hashCode ^
         createdAt.hashCode ^
