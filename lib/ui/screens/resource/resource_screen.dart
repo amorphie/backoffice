@@ -5,7 +5,9 @@ import 'package:admin/core/models/resource.dart';
 import 'package:admin/core/utils/responsive.dart';
 import 'package:admin/ui/tables/table_base.dart';
 
+import '../../../core/export/_.dart';
 import '../../style/paddings.dart';
+import '../../tables/my_data_table/my_data_table.dart';
 
 class ResourceScreen extends StatelessWidget {
   final ResourceModel model;
@@ -36,7 +38,30 @@ class ResourceScreen extends StatelessWidget {
                     child: Column(
                       children: [
                         SizedBox(height: defaultPadding),
+                        MyDataTable<ResourceModel>(
+                          items: list
+                              .map(
+                                (resource) => MyDataTableRow<ResourceModel>(
+                                  onPressed: (item) {},
+                                  cells: [
+                                    // ...user.columns.map((e) => MyDataTableCell(title: e, text: user.toMap()[e].toString())),
+                                    MyDataTableCell.set("ID", resource.id!),
 
+                                    MyDataTableCell.set("Url", resource.url!),
+                                    MyDataTableCell.set(
+                                        "Tags", resource.tags!.toString()),
+                                  ],
+                                ),
+                              )
+                              .toList(),
+                          onSelect: (a) {},
+                          onRefresh: (value) {
+                            print('refreshed');
+                          },
+                          addPress: () {
+                            addResourcePopUp(context);
+                          },
+                        ),
                         TableBase(
                             items: list,
                             onSelect: (c) {

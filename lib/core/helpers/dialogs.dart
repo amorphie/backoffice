@@ -1,3 +1,4 @@
+import 'package:admin/ui/pages/resource/resource_add_page.dart';
 import 'package:admin/ui/pages/tag/tag_add_page.dart';
 import 'package:admin/ui/pages/user/user_edit_page.dart';
 
@@ -60,7 +61,8 @@ Future<void> addResourcePopUp(BuildContext context) async {
     builder: (BuildContext context) {
       return AlertDialog(
         content: SizedBox(
-            width: MediaQuery.of(context).size.width / 2, child: UserAddPage()),
+            width: MediaQuery.of(context).size.width / 2,
+            child: ResourceAddPage()),
       );
     },
   );

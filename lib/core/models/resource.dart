@@ -18,7 +18,7 @@ class ResourceModel implements BaseModel {
   String? createdByBehalfOf;
   String? modifiedByBehalfOf;
   ResourceModel({
-    required this.id,
+    this.id,
     this.displayName,
     this.type,
     this.url,
