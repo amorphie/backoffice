@@ -3,6 +3,7 @@
 import 'package:admin/ui/pages/privilege/privilege_page.dart';
 import 'package:admin/ui/pages/resource/resource_page.dart';
 import 'package:admin/ui/pages/role/role_group_page.dart';
+import 'package:admin/ui/pages/role/role_page.dart';
 import 'package:admin/ui/pages/tag/tag_page.dart';
 
 import '../../../core/export/_.dart';
@@ -26,6 +27,7 @@ class _HomescreenState extends State<Homescreen> {
     ResourcePage(),
     PrivilegePage(),
     RoleGroupPage(),
+    RolePage(),
   ];
 
   @override

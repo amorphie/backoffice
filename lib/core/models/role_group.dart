@@ -114,7 +114,7 @@ class RoleGroupModel {
     if (identical(this, other)) return true;
 
     return other.id == id &&
-        other.titles == titles &&
+        listEquals(other.titles, titles) &&
         listEquals(other.tags, tags) &&
         other.status == status &&
         other.createdAt == createdAt &&

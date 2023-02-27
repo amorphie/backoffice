@@ -6,7 +6,7 @@ import '../export/_.dart';
 class RoleController extends GetxController {
   Rx<RoleModel> _roleModel = RoleModel.init().obs;
   RoleModel get role => _roleModel.value;
-  RxList<RoleModel> resourceList = RxList<RoleModel>.from([]);
+  RxList<RoleModel> roleList = RxList<RoleModel>.from([]);
 
   Services _services = Services();
 
@@ -26,22 +26,22 @@ class RoleController extends GetxController {
         RoleModel model = RoleModel.fromMap(item);
         _list.add(model);
       }
-      resourceList.value = _list;
+      roleList.value = _list;
     }
     return response.success;
   }
 
-  Future<bool> getRole() async {
+  Future<bool> getRoles() async {
     List<RoleModel> _list = [];
 
-    ResponseModel response = await _services.getRole();
+    ResponseModel response = await _services.getRoles();
 
     if (response.success) {
       for (var item in response.data) {
         RoleModel model = RoleModel.fromMap(item);
         _list.add(model);
       }
-      resourceList.value = _list;
+      roleList.value = _list;
     }
     return response.success;
   }
@@ -52,7 +52,7 @@ class RoleController extends GetxController {
     ResponseModel response = await _services.postRole(t);
 
     if (response.success) {
-      resourceList.add(RoleModel.fromMap(response.data));
+      roleList.add(RoleModel.fromMap(response.data));
     }
     return response.success;
   }
@@ -60,10 +60,10 @@ class RoleController extends GetxController {
   //Delete
 
   Future<bool> deleteRole() async {
-    ResponseModel response = await _services.deleteRole(role.id);
+    ResponseModel response = await _services.deleteRole(role.id!);
 
     if (response.success) {
-      resourceList.removeWhere((e) => e.id == role.id);
+      roleList.removeWhere((e) => e.id == role.id);
     }
     return response.success;
   }

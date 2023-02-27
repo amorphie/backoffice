@@ -4,9 +4,9 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 
 class RoleModel {
-  final String id;
-  final String title;
-  final List<String>? tags;
+  final String? id;
+  final List<dynamic>? titles;
+  final List<dynamic>? tags;
   final String? status;
   final DateTime? createdAt;
   final DateTime? modifiedAt;
@@ -15,8 +15,8 @@ class RoleModel {
   final String? createdByBehalfOf;
   final String? modifiedByBehalfOf;
   RoleModel({
-    required this.id,
-    required this.title,
+    this.id,
+    this.titles,
     this.tags,
     this.status,
     this.createdAt,
@@ -28,13 +28,13 @@ class RoleModel {
   });
 
   factory RoleModel.init() {
-    return RoleModel(id: "", title: "");
+    return RoleModel(id: "", titles: []);
   }
 
   RoleModel copyWith({
     String? id,
     String? title,
-    List<String>? tags,
+    List<dynamic>? tags,
     String? status,
     DateTime? createdAt,
     DateTime? modifiedAt,
@@ -45,7 +45,7 @@ class RoleModel {
   }) {
     return RoleModel(
       id: id ?? this.id,
-      title: title ?? this.title,
+      titles: titles ?? this.titles,
       tags: tags ?? this.tags,
       status: status ?? this.status,
       createdAt: createdAt ?? this.createdAt,
@@ -60,7 +60,7 @@ class RoleModel {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'id': id,
-      'title': title,
+      'titles': titles,
       'tags': tags,
       'status': status,
       'createdAt': createdAt?.millisecondsSinceEpoch,
@@ -75,26 +75,27 @@ class RoleModel {
   factory RoleModel.fromMap(Map<String, dynamic> map) {
     return RoleModel(
       id: map['id'] as String,
-      title: map['title'] as String,
+      titles: map['titles'] != null
+          ? List<dynamic>.from((map['titles'] as List<dynamic>))
+          : [],
       tags: map['tags'] != null
-          ? List<String>.from((map['tags'] as List<String>))
-          : null,
-      status: map['status'] != null ? map['status'] as String : null,
+          ? List<dynamic>.from((map['tags'] as List<dynamic>))
+          : [],
+      status: map['status'] != null ? map['status'] as String : '',
       createdAt: map['createdAt'] != null
-          ? DateTime.fromMillisecondsSinceEpoch(map['createdAt'] as int)
-          : null,
+          ? DateTime.parse(map['createdAt'])
+          : DateTime.now(),
       modifiedAt: map['modifiedAt'] != null
-          ? DateTime.fromMillisecondsSinceEpoch(map['modifiedAt'] as int)
-          : null,
-      createdBy: map['createdBy'] != null ? map['createdBy'] as String : null,
-      modifiedBy:
-          map['modifiedBy'] != null ? map['modifiedBy'] as String : null,
+          ? DateTime.parse(map['modifiedAt'])
+          : DateTime.now(),
+      createdBy: map['createdBy'] != null ? map['createdBy'] as String : '',
+      modifiedBy: map['modifiedBy'] != null ? map['modifiedBy'] as String : '',
       createdByBehalfOf: map['createdByBehalfOf'] != null
           ? map['createdByBehalfOf'] as String
-          : null,
+          : '',
       modifiedByBehalfOf: map['modifiedByBehalfOf'] != null
           ? map['modifiedByBehalfOf'] as String
-          : null,
+          : '',
     );
   }
 
@@ -105,7 +106,7 @@ class RoleModel {
 
   @override
   String toString() {
-    return 'RoleModel(id: $id, title: $title, tags: $tags, status: $status, createdAt: $createdAt, modifiedAt: $modifiedAt, createdBy: $createdBy, modifiedBy: $modifiedBy, createdByBehalfOf: $createdByBehalfOf, modifiedByBehalfOf: $modifiedByBehalfOf)';
+    return 'RoleModel(id: $id, titles: $titles, tags: $tags, status: $status, createdAt: $createdAt, modifiedAt: $modifiedAt, createdBy: $createdBy, modifiedBy: $modifiedBy, createdByBehalfOf: $createdByBehalfOf, modifiedByBehalfOf: $modifiedByBehalfOf)';
   }
 
   @override
@@ -113,7 +114,7 @@ class RoleModel {
     if (identical(this, other)) return true;
 
     return other.id == id &&
-        other.title == title &&
+        listEquals(other.titles, titles) &&
         listEquals(other.tags, tags) &&
         other.status == status &&
         other.createdAt == createdAt &&
@@ -127,7 +128,7 @@ class RoleModel {
   @override
   int get hashCode {
     return id.hashCode ^
-        title.hashCode ^
+        titles.hashCode ^
         tags.hashCode ^
         status.hashCode ^
         createdAt.hashCode ^

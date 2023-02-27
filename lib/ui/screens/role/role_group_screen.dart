@@ -40,10 +40,11 @@ class RoleGroupScreen extends StatelessWidget {
                                   onPressed: (item) {},
                                   cells: [
                                     // ...user.columns.map((e) => MyDataTableCell(title: e, text: user.toMap()[e].toString())),
-                                    MyDataTableCell.set("Name", model.id!),
+                                    MyDataTableCell.set("ID", model.id!),
                                     MyDataTableCell.set(
-                                        "TTL", model.titles.toString()),
-                                    MyDataTableCell.set("Url", model.status!),
+                                        "Titles", model.titles.toString()),
+                                    MyDataTableCell.set(
+                                        "Status", model.status!),
                                     MyDataTableCell.set(
                                         "Tags", model.tags!.toString()),
                                   ],
