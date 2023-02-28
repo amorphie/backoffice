@@ -13,18 +13,24 @@ import 'package:get/get_state_manager/get_state_manager.dart';
 class AppController extends GetxController {
   Rx<UserController> _user = UserController().obs;
   UserController get user => _user.value;
+
   Rx<TagController> _tag = TagController().obs;
   TagController get tag => _tag.value;
+
   Rx<ResourceController> _resource = ResourceController().obs;
   ResourceController get resource => _resource.value;
+
   Rx<PrivilegeController> _privilege = PrivilegeController().obs;
   PrivilegeController get privilege => _privilege.value;
+
   Rx<RoleController> _role = RoleController().obs;
   RoleController get role => _role.value;
+
   Rx<RoleGroupController> _roleGroup = RoleGroupController().obs;
   RoleGroupController get roleGroup => _roleGroup.value;
+
   Rx<DomainController> _domain = DomainController().obs;
-  RoleGroupController get domain => _roleGroup.value;
+  DomainController get domain => _domain.value;
 
   Future init() async {}
 }

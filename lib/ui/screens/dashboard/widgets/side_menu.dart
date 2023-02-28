@@ -136,7 +136,9 @@ class SideMenu extends StatelessWidget {
               hoverTile('Tag', () {
                 setIndex(3);
               }),
-              hoverTile('Domain', () {}),
+              hoverTile('Domain', () {
+                setIndex(8);
+              }),
               hoverTile('Entity List', () {}),
             ],
           ),

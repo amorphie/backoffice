@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
+import 'package:admin/ui/pages/domain/domain_page.dart';
 import 'package:admin/ui/pages/privilege/privilege_page.dart';
 import 'package:admin/ui/pages/resource/resource_page.dart';
 import 'package:admin/ui/pages/role/role_group_page.dart';
@@ -28,6 +29,7 @@ class _HomescreenState extends State<Homescreen> {
     PrivilegePage(),
     RoleGroupPage(),
     RolePage(),
+    DomainPage()
   ];
 
   @override
