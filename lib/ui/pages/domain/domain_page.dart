@@ -14,7 +14,7 @@ class _DomainPageState extends State<DomainPage> {
   Widget build(BuildContext context) {
     return BaseView(
       init: (c) async {
-        await c.privilege.getPrivileges();
+        await c.domain.getDomains();
       },
       builder: (context, c) => Obx(() {
         return DomainScreen(
