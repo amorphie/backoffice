@@ -42,9 +42,8 @@ class PrivilegeScreen extends StatelessWidget {
                                   cells: [
                                     // ...user.columns.map((e) => MyDataTableCell(title: e, text: user.toMap()[e].toString())),
                                     MyDataTableCell.set("ID", model.id!),
-
                                     MyDataTableCell.set(
-                                        "Url", model.ttl.toString()),
+                                        "TTL", model.ttl.toString()),
                                     MyDataTableCell.set("Url", model.url!),
                                     MyDataTableCell.set(
                                         "Tags", model.status.toString()),
