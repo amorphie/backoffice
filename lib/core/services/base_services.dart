@@ -1,3 +1,4 @@
+import 'package:admin/core/services/domain_service.dart';
 import 'package:admin/core/services/privilege_service.dart';
 import 'package:admin/core/services/resource_service.dart';
 import 'package:admin/core/services/role_group_service.dart';
@@ -12,4 +13,5 @@ class Services
         ResourceService,
         RoleGroupService,
         RoleService,
+        DomainService,
         TagService {}

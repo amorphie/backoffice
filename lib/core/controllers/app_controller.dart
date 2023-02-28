@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_final_fields
 
+import 'package:admin/core/controllers/domain_controller.dart';
 import 'package:admin/core/controllers/privilege_controller.dart';
 import 'package:admin/core/controllers/resource_controller.dart';
 import 'package:admin/core/controllers/role_controller.dart';
@@ -22,6 +23,8 @@ class AppController extends GetxController {
   RoleController get role => _role.value;
   Rx<RoleGroupController> _roleGroup = RoleGroupController().obs;
   RoleGroupController get roleGroup => _roleGroup.value;
+  Rx<DomainController> _domain = DomainController().obs;
+  RoleGroupController get domain => _roleGroup.value;
 
   Future init() async {}
 }
