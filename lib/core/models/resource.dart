@@ -89,28 +89,27 @@ class ResourceModel implements BaseModel {
 
   factory ResourceModel.fromMap(Map<String, dynamic> map) {
     return ResourceModel(
-      id: map['id'] != null ? map['id'] as String : null,
+      id: map['id'] != null ? map['id'] as String : '',
       displayName: map['displayName'] != null
           ? List<dynamic>.from((map['displayName'] as List<dynamic>))
-          : null,
-      type: map['type'] != null ? map['type'] as int : null,
-      url: map['url'] != null ? map['url'] as String : null,
+          : [],
+      type: map['type'] != null ? map['type'] as int : 0,
+      url: map['url'] != null ? map['url'] as String : '',
       description: map['description'] != null
           ? List<dynamic>.from((map['description'] as List<dynamic>))
-          : null,
+          : [],
       tags: map['tags'] != null
           ? List<dynamic>.from((map['tags'] as List<dynamic>))
-          : null,
-      status: map['status'] != null ? map['status'] as String : null,
-      createdBy: map['createdBy'] != null ? map['createdBy'] as String : null,
-      modifiedBy:
-          map['modifiedBy'] != null ? map['modifiedBy'] as String : null,
+          : [],
+      status: map['status'] != null ? map['status'] as String : '',
+      createdBy: map['createdBy'] != null ? map['createdBy'] as String : '',
+      modifiedBy: map['modifiedBy'] != null ? map['modifiedBy'] as String : '',
       createdByBehalfOf: map['createdByBehalfOf'] != null
           ? map['createdByBehalfOf'] as String
-          : null,
+          : '',
       modifiedByBehalfOf: map['modifiedByBehalfOf'] != null
           ? map['modifiedByBehalfOf'] as String
-          : null,
+          : '',
     );
   }
 

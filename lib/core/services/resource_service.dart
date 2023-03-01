@@ -25,9 +25,9 @@ mixin ResourceService {
 
   Future<ResponseModel> postResource(ResourceModel model) async {
     ResponseModel response = await Executer.post(
-        endpoint: BaseUrl.resource.getURl(
-      "resource",
-    ));
+      endpoint: BaseUrl.resource.getURl("resource"),
+      data: model.toMap(),
+    );
     return response;
   }
 

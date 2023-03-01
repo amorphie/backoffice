@@ -16,6 +16,7 @@ class Executer {
     required this.method,
   }) {
     _request = http.Request(method.name, endpoint);
+    appLogger.wtf(data, endpoint, StackTrace.empty);
     _setData();
     _setHeaders();
   }
@@ -56,7 +57,7 @@ class Executer {
         _setHeaders();
         http.StreamedResponse response = await _request.send();
         String resultData = await response.stream.bytesToString();
-        var result = jsonDecode(resultData);
+        var result = json.decode(resultData);
 
         if (response.statusCode >= 200 && response.statusCode < 300) {
           appLogger.v(
@@ -110,8 +111,10 @@ class Executer {
       //  if (value != null) _map.addAll({key: value.toString()});
       //});
       //_request.bodyFields = _map;
-
-      _request.body = json.encode(data);
+      if (_request.body.isNotEmpty) {
+        _request.body = json.encode(data);
+      } else
+        print(_request.body);
     }
   }
 }

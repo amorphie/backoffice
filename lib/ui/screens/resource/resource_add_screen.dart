@@ -23,12 +23,14 @@ class _ResourceAddScreenState extends State<ResourceAddScreen> {
 
   late TextEditingController url;
   late TextEditingController statu;
+  late TextEditingController type;
 
   @override
   void initState() {
     super.initState();
     url = TextEditingController(text: widget.model.url);
     statu = TextEditingController(text: widget.model.status);
+    type = TextEditingController(text: widget.model.type.toString());
   }
 
   @override
@@ -69,8 +71,17 @@ class _ResourceAddScreenState extends State<ResourceAddScreen> {
           SizedBox(
             width: MediaQuery.of(context).size.width / 2,
             child: CommonTextField(
-              labelText: "Statu",
+              labelText: "Status",
               controller: statu,
+              keyboardType: TextInputType.phone,
+            ),
+          ),
+          SizedBox(height: 30),
+          SizedBox(
+            width: MediaQuery.of(context).size.width / 2,
+            child: CommonTextField(
+              labelText: "Type",
+              controller: type,
               keyboardType: TextInputType.phone,
             ),
           ),
@@ -85,8 +96,13 @@ class _ResourceAddScreenState extends State<ResourceAddScreen> {
                           title: "Save",
                           onPressed: () async {
                             ResourceModel user = ResourceModel(
-                              url: url.text,
-                            );
+                                url: url.text,
+                                type: int.parse(type.text),
+                                tags: [],
+                                status: statu.text,
+                                description: [],
+                                displayName: [],
+                                id: '3fa85f64-5717-4562-b3fc-2c963f66afa9');
                             await widget.addPressed(user);
                           },
                           color: KC.primary),

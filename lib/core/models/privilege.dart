@@ -82,19 +82,20 @@ class PrivilegeModel {
       url: map['url'] != null ? map['url'] as String : '',
       ttl: map['ttl'] as int,
       status: map['status'] != null ? map['status'] as String : '',
-      createdAt:
-          map['createdAt'] != null ? DateTime.parse(map['createdAt']) : null,
-      modifiedAt:
-          map['modifiedAt'] != null ? DateTime.parse(map['modifiedAt']) : null,
-      createdBy: map['createdBy'] != null ? map['createdBy'] as String : null,
-      modifiedBy:
-          map['modifiedBy'] != null ? map['modifiedBy'] as String : null,
-      createdByBehalfOf: map['createdByBehalfOf'] != null
+      createdAt: map['createdAt'] != null
+          ? DateTime.parse(map['createdAt'])
+          : DateTime.now(),
+      modifiedAt: map['modifiedAt'] != null
+          ? DateTime.parse(map['modifiedAt'])
+          : DateTime.now(),
+      createdBy: map['createdBy'] != null ? map['createdBy'] as String : '',
+      modifiedBy: map['modifiedBy'] != null ? map['modifiedBy'] as String : '',
+      createdByBehalfOf: map['createdByBehalfOf'] != ''
           ? map['createdByBehalfOf'] as String
-          : null,
-      modifiedByBehalfOf: map['modifiedByBehalfOf'] != null
+          : '',
+      modifiedByBehalfOf: map['modifiedByBehalfOf'] != ''
           ? map['modifiedByBehalfOf'] as String
-          : null,
+          : '',
     );
   }
 
