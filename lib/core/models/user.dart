@@ -3,7 +3,7 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 
-import 'package:admin/core/models/common/user_phone_model.dart';
+import 'package:admin/core/models/common/user/phone.dart';
 
 import '../base/base_model.dart';
 
@@ -103,14 +103,18 @@ class UserModel implements BaseModel {
       eMail: map['eMail'] as String,
       state: map['state'] as String,
       salt: map['state'] as String,
-      modifiedAt: map['modifiedAt'] != null ? DateTime.parse(map['modifiedAt']) : null,
-      tag: map['tag'] != null ? List<dynamic>.from((map['tag'] as List<dynamic>)) : [],
+      modifiedAt:
+          map['modifiedAt'] != null ? DateTime.parse(map['modifiedAt']) : null,
+      tag: map['tag'] != null
+          ? List<dynamic>.from((map['tag'] as List<dynamic>))
+          : [],
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory UserModel.fromJson(String source) => UserModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory UserModel.fromJson(String source) =>
+      UserModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {

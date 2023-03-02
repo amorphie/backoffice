@@ -100,8 +100,8 @@ class _ResourceAddScreenState extends State<ResourceAddScreen> {
                                 type: int.parse(type.text),
                                 tags: [],
                                 status: statu.text,
-                                description: [],
-                                displayName: [],
+                                descriptions: [],
+                                displayNames: [],
                                 id: '3fa85f64-5717-4562-b3fc-2c963f66afa9');
                             await widget.addPressed(user);
                           },

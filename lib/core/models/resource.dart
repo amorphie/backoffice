@@ -1,16 +1,18 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+import 'package:admin/core/models/common/resource/description.dart';
+import 'package:admin/core/models/common/resource/displayname.dart';
 import 'package:flutter/foundation.dart';
 
 import 'package:admin/core/base/base_model.dart';
 
 class ResourceModel implements BaseModel {
   String? id;
-  List<dynamic>? displayName;
+  List<DisplayNameModel>? displayNames;
   int? type;
   String? url;
-  List<dynamic>? description;
+  List<DescriptionModel>? descriptions;
   List<dynamic>? tags;
   String? status;
   String? createdBy;
@@ -19,10 +21,10 @@ class ResourceModel implements BaseModel {
   String? modifiedByBehalfOf;
   ResourceModel({
     this.id,
-    this.displayName,
+    this.displayNames,
     this.type,
     this.url,
-    this.description,
+    this.descriptions,
     this.tags,
     this.status,
     this.createdBy,
@@ -34,9 +36,9 @@ class ResourceModel implements BaseModel {
   factory ResourceModel.init() {
     return ResourceModel(
       id: "",
-      displayName: [],
+      displayNames: [],
       tags: [],
-      description: [],
+      descriptions: [],
       status: "",
       url: "",
       type: 0,
@@ -45,10 +47,10 @@ class ResourceModel implements BaseModel {
 
   ResourceModel copyWith({
     String? id,
-    List<dynamic>? displayName,
+    List<DisplayNameModel>? displayNames,
     int? type,
     String? url,
-    List<dynamic>? description,
+    List<DescriptionModel>? descriptions,
     List<dynamic>? tags,
     String? status,
     String? createdBy,
@@ -58,10 +60,10 @@ class ResourceModel implements BaseModel {
   }) {
     return ResourceModel(
       id: id ?? this.id,
-      displayName: displayName ?? this.displayName,
+      displayNames: displayNames ?? this.displayNames,
       type: type ?? this.type,
       url: url ?? this.url,
-      description: description ?? this.description,
+      descriptions: descriptions ?? this.descriptions,
       tags: tags ?? this.tags,
       status: status ?? this.status,
       createdBy: createdBy ?? this.createdBy,
@@ -74,10 +76,10 @@ class ResourceModel implements BaseModel {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'id': id,
-      'displayName': displayName,
+      'displayNames': displayNames,
       'type': type,
       'url': url,
-      'description': description,
+      'descriptions': descriptions,
       'tags': tags,
       'status': status,
       'createdBy': createdBy,
@@ -90,13 +92,13 @@ class ResourceModel implements BaseModel {
   factory ResourceModel.fromMap(Map<String, dynamic> map) {
     return ResourceModel(
       id: map['id'] != null ? map['id'] as String : '',
-      displayName: map['displayName'] != null
-          ? List<dynamic>.from((map['displayName'] as List<dynamic>))
+      displayNames: map['displayNames'] != null
+          ? List<DisplayNameModel>.from((map['displayNames'] as List<dynamic>))
           : [],
       type: map['type'] != null ? map['type'] as int : 0,
       url: map['url'] != null ? map['url'] as String : '',
-      description: map['description'] != null
-          ? List<dynamic>.from((map['description'] as List<dynamic>))
+      descriptions: map['descriptions'] != null
+          ? List<DescriptionModel>.from((map['descriptions'] as List<dynamic>))
           : [],
       tags: map['tags'] != null
           ? List<dynamic>.from((map['tags'] as List<dynamic>))
@@ -120,7 +122,7 @@ class ResourceModel implements BaseModel {
 
   @override
   String toString() {
-    return 'ResourceModel(id: $id, displayName: $displayName, type: $type, url: $url, description: $description, tags: $tags, status: $status, createdBy: $createdBy, modifiedBy: $modifiedBy, createdByBehalfOf: $createdByBehalfOf, modifiedByBehalfOf: $modifiedByBehalfOf)';
+    return 'ResourceModel(id: $id, displayNames: $displayNames, type: $type, url: $url, descriptions: $descriptions, tags: $tags, status: $status, createdBy: $createdBy, modifiedBy: $modifiedBy, createdByBehalfOf: $createdByBehalfOf, modifiedByBehalfOf: $modifiedByBehalfOf)';
   }
 
   @override
@@ -128,10 +130,10 @@ class ResourceModel implements BaseModel {
     if (identical(this, other)) return true;
 
     return other.id == id &&
-        listEquals(other.displayName, displayName) &&
+        listEquals(other.displayNames, displayNames) &&
         other.type == type &&
         other.url == url &&
-        listEquals(other.description, description) &&
+        listEquals(other.descriptions, descriptions) &&
         listEquals(other.tags, tags) &&
         other.status == status &&
         other.createdBy == createdBy &&
@@ -143,10 +145,10 @@ class ResourceModel implements BaseModel {
   @override
   int get hashCode {
     return id.hashCode ^
-        displayName.hashCode ^
+        displayNames.hashCode ^
         type.hashCode ^
         url.hashCode ^
-        description.hashCode ^
+        descriptions.hashCode ^
         tags.hashCode ^
         status.hashCode ^
         createdBy.hashCode ^
@@ -157,10 +159,10 @@ class ResourceModel implements BaseModel {
 
   @override
   List<String> columns = [
-    "displayName",
+    "displayNames",
     "type",
     "url",
-    "description",
+    "descriptions",
     "tags",
     "status",
     "createdAt",

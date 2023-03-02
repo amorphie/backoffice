@@ -4,7 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
 
 import 'package:admin/core/export/_.dart';
-import 'package:admin/core/models/common/user_phone_model.dart';
+
+import '../../../core/models/common/user/phone.dart';
 
 class UserAddScreen extends StatefulWidget {
   final UserModel model;

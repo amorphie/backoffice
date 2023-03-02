@@ -1,22 +1,22 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
-class ResourceDescriptionModel {
+class DisplayNameModel {
   final String id;
   final String language;
   final String label;
-  ResourceDescriptionModel({
+  DisplayNameModel({
     required this.id,
     required this.language,
     required this.label,
   });
 
-  ResourceDescriptionModel copyWith({
+  DisplayNameModel copyWith({
     String? id,
     String? language,
     String? label,
   }) {
-    return ResourceDescriptionModel(
+    return DisplayNameModel(
       id: id ?? this.id,
       language: language ?? this.language,
       label: label ?? this.label,
@@ -31,8 +31,8 @@ class ResourceDescriptionModel {
     };
   }
 
-  factory ResourceDescriptionModel.fromMap(Map<String, dynamic> map) {
-    return ResourceDescriptionModel(
+  factory DisplayNameModel.fromMap(Map<String, dynamic> map) {
+    return DisplayNameModel(
       id: map['id'] as String,
       language: map['language'] as String,
       label: map['label'] as String,
@@ -41,16 +41,15 @@ class ResourceDescriptionModel {
 
   String toJson() => json.encode(toMap());
 
-  factory ResourceDescriptionModel.fromJson(String source) =>
-      ResourceDescriptionModel.fromMap(
-          json.decode(source) as Map<String, dynamic>);
+  factory DisplayNameModel.fromJson(String source) =>
+      DisplayNameModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() =>
-      'ResourceDescriptionModel(id: $id, language: $language, label: $label)';
+      'ResourceDisplayNameModel(id: $id, language: $language, label: $label)';
 
   @override
-  bool operator ==(covariant ResourceDescriptionModel other) {
+  bool operator ==(covariant DisplayNameModel other) {
     if (identical(this, other)) return true;
 
     return other.id == id && other.language == language && other.label == label;

@@ -6,7 +6,7 @@ import 'package:admin/ui/tables/table_base.dart';
 import '../../../core/export/_.dart';
 import '../../tables/my_data_table/my_data_table.dart';
 
-class ResourceScreen extends StatelessWidget {
+class ResourceScreen extends StatefulWidget {
   final ResourceModel model;
   final List<ResourceModel> list;
   final Function(ResourceModel model) selectModel;
@@ -16,6 +16,20 @@ class ResourceScreen extends StatelessWidget {
     required this.list,
     required this.selectModel,
   }) : super(key: key);
+
+  @override
+  State<ResourceScreen> createState() => _ResourceScreenState();
+}
+
+class _ResourceScreenState extends State<ResourceScreen> {
+  late final _items;
+
+  @override
+  void initState() {
+    super.initState();
+    _items = widget.model.descriptions!.map((a) => (a.label)).toString();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +50,7 @@ class ResourceScreen extends StatelessWidget {
                       children: [
                         SizedBox(height: defaultPadding),
                         MyDataTable<ResourceModel>(
-                          items: list
+                          items: widget.list
                               .map(
                                 (resource) => MyDataTableRow<ResourceModel>(
                                   onPressed: (item) {},
@@ -47,6 +61,9 @@ class ResourceScreen extends StatelessWidget {
                                     MyDataTableCell.set("Url", resource.url!),
                                     MyDataTableCell.set(
                                         "Tags", resource.tags!.toString()),
+                                    MyDataTableCell.set("Description", _items),
+                                    MyDataTableCell.set("Display Name",
+                                        resource.displayNames!.toString()),
                                   ],
                                 ),
                               )
@@ -60,9 +77,9 @@ class ResourceScreen extends StatelessWidget {
                           },
                         ),
                         TableBase(
-                            items: list,
+                            items: widget.list,
                             onSelect: (c) {
-                              selectModel(c as ResourceModel);
+                              widget.selectModel(c as ResourceModel);
                             },
                             onFilter: (item) {}), //!YENİ
                         if (Responsive.isMobile(context))
