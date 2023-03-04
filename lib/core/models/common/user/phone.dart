@@ -1,4 +1,3 @@
-
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
@@ -15,7 +14,7 @@ class PhoneModel {
       "${countryCode ?? 0} ${prefix ?? 0} ${number ?? 0} ";
 
   factory PhoneModel.init() {
-    return PhoneModel(countryCode: 90, number: 000000, prefix: 500);
+    return PhoneModel(countryCode: 90, number: 4324324, prefix: 500);
   }
 
   PhoneModel copyWith({

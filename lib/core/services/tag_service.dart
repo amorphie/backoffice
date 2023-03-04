@@ -16,9 +16,9 @@ mixin TagService {
 
   Future<ResponseModel> postTag(TagModel model) async {
     ResponseModel response = await Executer.post(
-        endpoint: BaseUrl.tag.getURl(
-      "tag",
-    ));
+      endpoint: BaseUrl.tag.getURl("tag"),
+      data: model.toMap(),
+    );
     return response;
   }
 

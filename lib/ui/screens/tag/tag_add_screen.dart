@@ -24,14 +24,14 @@ class _TagAddScreenState extends State<TagAddScreen> {
 
   List<String> selectedtags = [];
 
-  late TextEditingController name;
+  late TextEditingController tag;
   late TextEditingController url;
   late TextEditingController ttl;
 
   @override
   void initState() {
     super.initState();
-    name = TextEditingController(text: widget.model.name);
+    tag = TextEditingController(text: widget.model.name);
     url = TextEditingController(text: widget.model.url);
     ttl = TextEditingController(text: widget.model.ttl.toString());
     _items = widget.tagList
@@ -68,9 +68,9 @@ class _TagAddScreenState extends State<TagAddScreen> {
           SizedBox(
             width: MediaQuery.of(context).size.width / 2,
             child: CommonTextField(
-              labelText: "Name",
+              labelText: "Tag Name",
               keyboardType: TextInputType.name,
-              controller: name,
+              controller: tag,
               inputFormatter: <TextInputFormatter>[
                 FilteringTextInputFormatter.allow(
                     RegExp("[a-zA-Z]", unicode: true)),
@@ -140,7 +140,7 @@ class _TagAddScreenState extends State<TagAddScreen> {
                           onPressed: () async {
                             TagModel model = TagModel(
                               url: url.text,
-                              name: name.text,
+                              name: tag.text,
                               ttl: int.parse(ttl.text),
                             );
                             await widget.tagAddPressed(model);

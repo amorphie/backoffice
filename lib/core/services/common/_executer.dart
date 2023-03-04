@@ -111,10 +111,8 @@ class Executer {
       //  if (value != null) _map.addAll({key: value.toString()});
       //});
       //_request.bodyFields = _map;
-      if (_request.body.isNotEmpty) {
-        _request.body = json.encode(data);
-      } else
-        print(_request.body);
+
+      _request.body = json.encode(data);
     }
   }
 }

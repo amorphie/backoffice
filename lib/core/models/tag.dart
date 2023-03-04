@@ -16,7 +16,7 @@ class TagModel {
   });
 
   factory TagModel.init() {
-    return TagModel(name: "tag", ttl: 0, url: "", tags: []);
+    return TagModel(name: "", ttl: 1, url: "");
   }
 
   TagModel copyWith({
@@ -38,7 +38,7 @@ class TagModel {
       'name': name,
       'url': url,
       'ttl': ttl,
-      'tags': tags,
+      //    'tags': tags,
     };
   }
 
@@ -56,7 +56,7 @@ class TagModel {
   String toJson() => json.encode(toMap());
 
   factory TagModel.fromJson(String source) =>
-      TagModel.fromMap(json.decode(source) as Map<String, dynamic>);
+      TagModel.fromMap(json.decode(source));
 
   @override
   String toString() {
