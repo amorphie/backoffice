@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:admin/core/models/resource.dart';
 import 'package:get/get.dart';
 
@@ -34,13 +36,16 @@ class ResourceController extends GetxController {
   Future<bool> getAllResources() async {
     List<ResourceModel> _list = [];
     ResponseModel response = await _services.getAllResources();
+    print(response.data);
 
     if (response.success) {
-      ResourceModel model = ResourceModel.fromMap(response.data);
-      _list.add(model);
-    }
-    resourceList.value = _list;
+      for (var item in response.data['data']) {
+        ResourceModel model = ResourceModel.fromMap(item);
+        _list.add(model);
+      }
 
+      resourceList.value = _list;
+    }
     return response.success;
   }
 

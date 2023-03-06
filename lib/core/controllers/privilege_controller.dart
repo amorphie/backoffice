@@ -22,7 +22,7 @@ class PrivilegeController extends GetxController {
     ResponseModel response = await _services.getPrivileges();
 
     if (response.success) {
-      for (var item in response.data) {
+      for (var item in response.data['data']) {
         PrivilegeModel model = PrivilegeModel.fromMap(item);
         _list.add(model);
       }

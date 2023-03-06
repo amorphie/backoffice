@@ -58,7 +58,8 @@ class ResponseModel {
 
   String toJson() => json.encode(toMap());
 
-  factory ResponseModel.fromJson(String source) => ResponseModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory ResponseModel.fromJson(String source) =>
+      ResponseModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
@@ -69,11 +70,20 @@ class ResponseModel {
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is ResponseModel && other.code == code && other.success == success && other.errors == errors && other.message == message && mapEquals(other.data, data);
+    return other is ResponseModel &&
+        other.code == code &&
+        other.success == success &&
+        other.errors == errors &&
+        other.message == message &&
+        mapEquals(other.data, data);
   }
 
   @override
   int get hashCode {
-    return code.hashCode ^ success.hashCode ^ message.hashCode ^ data.hashCode ^ errors.hashCode;
+    return code.hashCode ^
+        success.hashCode ^
+        message.hashCode ^
+        data.hashCode ^
+        errors.hashCode;
   }
 }

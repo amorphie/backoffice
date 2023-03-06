@@ -25,7 +25,6 @@ class UserController extends GetxController {
         _list.add(model);
       }
       userList.value = _list;
-      // _list.firstWhereOrNull((element) => user.id == element.id);
     }
     return response.success;
   }

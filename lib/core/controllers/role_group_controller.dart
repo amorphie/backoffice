@@ -37,7 +37,7 @@ class RoleGroupController extends GetxController {
     ResponseModel response = await _services.getRoleGroups();
 
     if (response.success) {
-      for (var item in response.data) {
+      for (var item in response.data['data']) {
         RoleGroupModel model = RoleGroupModel.fromMap(item);
         _list.add(model);
       }

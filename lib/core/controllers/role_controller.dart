@@ -22,10 +22,9 @@ class RoleController extends GetxController {
     ResponseModel response = await _services.getRoleById(id: id);
 
     if (response.success) {
-      for (var item in response.data) {
-        RoleModel model = RoleModel.fromMap(item);
-        _list.add(model);
-      }
+      RoleModel model = RoleModel.fromMap(response.data);
+      _list.add(model);
+
       roleList.value = _list;
     }
     return response.success;
@@ -37,7 +36,7 @@ class RoleController extends GetxController {
     ResponseModel response = await _services.getRoles();
 
     if (response.success) {
-      for (var item in response.data) {
+      for (var item in response.data['data']) {
         RoleModel model = RoleModel.fromMap(item);
         _list.add(model);
       }
