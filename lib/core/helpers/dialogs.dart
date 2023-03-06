@@ -1,4 +1,5 @@
 import 'package:admin/ui/pages/resource/resource_add_page.dart';
+import 'package:admin/ui/pages/role/role_add_page.dart';
 import 'package:admin/ui/pages/tag/tag_add_page.dart';
 import 'package:admin/ui/pages/user/user_edit_page.dart';
 
@@ -76,6 +77,19 @@ Future<void> addTagPopUp(BuildContext context) async {
       return AlertDialog(
         content: SizedBox(
             width: MediaQuery.of(context).size.width / 2, child: TagAddPage()),
+      );
+    },
+  );
+}
+
+Future<void> addRolePopUp(BuildContext context) async {
+  return showDialog<void>(
+    context: context,
+    barrierDismissible: true,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        content: SizedBox(
+            width: MediaQuery.of(context).size.width / 2, child: RoleAddPage()),
       );
     },
   );

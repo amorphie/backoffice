@@ -21,7 +21,7 @@ class _TagAddPageState extends State<TagAddPage> {
             tagAddPressed: (model) async {
               bool result = await c.tag.addTag(model);
               if (result) {
-                c.user.getUsers();
+                c.tag.getTags();
                 Get.snackbar("Başarılı", "Başardık",
                     backgroundColor: Colors.green);
                 Navigator.pop(context);

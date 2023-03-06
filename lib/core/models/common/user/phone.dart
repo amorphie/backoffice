@@ -4,7 +4,7 @@ import 'dart:convert';
 class PhoneModel {
   int? countryCode;
   int? prefix;
-  int? number;
+  String? number;
   PhoneModel({
     this.countryCode,
     this.prefix,
@@ -14,13 +14,13 @@ class PhoneModel {
       "${countryCode ?? 0} ${prefix ?? 0} ${number ?? 0} ";
 
   factory PhoneModel.init() {
-    return PhoneModel(countryCode: 90, number: 4324324, prefix: 500);
+    return PhoneModel(countryCode: 90, number: '4324324', prefix: 500);
   }
 
   PhoneModel copyWith({
     int? countryCode,
     int? prefix,
-    int? number,
+    String? number,
   }) {
     return PhoneModel(
       countryCode: countryCode ?? this.countryCode,
@@ -42,7 +42,7 @@ class PhoneModel {
       countryCode:
           map['countryCode'] != null ? map['countryCode'] as int : null,
       prefix: map['prefix'] != null ? map['prefix'] as int : null,
-      number: map['number'] != null ? map['number'] as int : null,
+      number: map['number'] != null ? map['number'] as String : '',
     );
   }
 

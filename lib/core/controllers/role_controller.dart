@@ -51,7 +51,7 @@ class RoleController extends GetxController {
     ResponseModel response = await _services.postRole(t);
 
     if (response.success) {
-      roleList.add(RoleModel.fromMap(response.data));
+      roleList.add(t);
     }
     return response.success;
   }

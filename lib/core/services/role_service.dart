@@ -25,9 +25,13 @@ mixin RoleService {
 
   Future<ResponseModel> postRole(RoleModel model) async {
     ResponseModel response = await Executer.post(
-        endpoint: BaseUrl.resource.getURl(
-      "role",
-    ));
+      endpoint: BaseUrl.resource.getURl(
+        "role",
+      ),
+      data: {
+        'status': model.status,
+      },
+    );
     return response;
   }
 

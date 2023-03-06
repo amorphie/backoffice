@@ -25,9 +25,11 @@ mixin RoleGroupService {
 
   Future<ResponseModel> postRoleGroup(RoleGroupModel model) async {
     ResponseModel response = await Executer.post(
-        endpoint: BaseUrl.resource.getURl(
-      "roleGroup",
-    ));
+      endpoint: BaseUrl.resource.getURl(
+        "roleGroup",
+      ),
+      data: model.toMap(),
+    );
     return response;
   }
 
