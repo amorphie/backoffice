@@ -105,9 +105,9 @@ class UserModel implements BaseModel {
       salt: map['state'] as String,
       modifiedAt:
           map['modifiedAt'] != null ? DateTime.parse(map['modifiedAt']) : null,
-      tag: map['tag'] != null
-          ? List<dynamic>.from((map['tag'] as List<dynamic>))
-          : [],
+      // tag: map['tag'] != null
+      //     ? List<dynamic>.from((map['tag'] as List<dynamic>))
+      //     : [],
     );
   }
 

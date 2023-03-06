@@ -1,6 +1,6 @@
 import 'package:admin/core/export/_.dart';
 import 'package:admin/ui/screens/tag/tag_add_screen.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:get/get.dart';
 
 class TagAddPage extends StatefulWidget {
   const TagAddPage({Key? key}) : super(key: key);
@@ -19,7 +19,16 @@ class _TagAddPageState extends State<TagAddPage> {
         builder: (context, c) => Obx(() => TagAddScreen(
             model: c.tag.tagModel,
             tagAddPressed: (model) async {
-              await c.tag.addTag(model);
+              bool result = await c.tag.addTag(model);
+              if (result) {
+                c.user.getUsers();
+                Get.snackbar("Başarılı", "Başardık",
+                    backgroundColor: Colors.green);
+                Navigator.pop(context);
+              } else {
+                Get.snackbar("Sıkıntı", "Başaramadı",
+                    backgroundColor: Colors.red);
+              }
             },
             tagList: c.tag.tagList)));
   }

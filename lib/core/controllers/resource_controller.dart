@@ -33,16 +33,14 @@ class ResourceController extends GetxController {
 
   Future<bool> getAllResources() async {
     List<ResourceModel> _list = [];
-
     ResponseModel response = await _services.getAllResources();
 
     if (response.success) {
-      for (var item in response.data) {
-        ResourceModel model = ResourceModel.fromMap(item);
-        _list.add(model);
-      }
-      resourceList.value = _list;
+      ResourceModel model = ResourceModel.fromMap(response.data);
+      _list.add(model);
     }
+    resourceList.value = _list;
+
     return response.success;
   }
 
