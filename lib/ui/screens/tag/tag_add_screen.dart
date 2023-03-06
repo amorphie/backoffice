@@ -142,6 +142,7 @@ class _TagAddScreenState extends State<TagAddScreen> {
                               url: url.text,
                               name: tag.text,
                               ttl: int.parse(ttl.text),
+                              tags: [],
                             );
                             await widget.tagAddPressed(model);
                           },

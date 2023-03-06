@@ -36,7 +36,7 @@ class TagController extends GetxController {
     ResponseModel response = await _services.postTag(t);
 
     if (response.success) {
-      tagList.add(TagModel.fromMap(response.data));
+      tagList.add(t);
     }
     return response.success;
   }
