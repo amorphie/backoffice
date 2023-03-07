@@ -50,7 +50,7 @@ class PrivilegeController extends GetxController {
 
   Future<bool> addPrivilege(PrivilegeModel t) async {
     ResponseModel response = await _services.postPrivilege(t);
-
+    print(response.data);
     if (response.success) {
       privilegeList.add(PrivilegeModel.fromMap(response.data));
     }

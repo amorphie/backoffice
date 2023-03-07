@@ -74,7 +74,7 @@ class RoleGroupModel {
 
   factory RoleGroupModel.fromMap(Map<String, dynamic> map) {
     return RoleGroupModel(
-      id: map['id'] as String,
+      id: map['id'] != null ? map['id'] as String : '',
       titles: map['titles'] != null
           ? List<dynamic>.from((map['titles'] as List<dynamic>))
           : [],

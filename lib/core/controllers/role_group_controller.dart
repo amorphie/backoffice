@@ -48,7 +48,7 @@ class RoleGroupController extends GetxController {
 
   //Post
 
-  Future<bool> addResource(RoleGroupModel t) async {
+  Future<bool> addRoleGroup(RoleGroupModel t) async {
     ResponseModel response = await _services.postRoleGroup(t);
 
     if (response.success) {
@@ -59,7 +59,7 @@ class RoleGroupController extends GetxController {
 
   //Delete
 
-  Future<bool> deleteResource() async {
+  Future<bool> deleteRoleGroup() async {
     ResponseModel response = await _services.deleteRoleGroup(roleGroup.id!);
 
     if (response.success) {

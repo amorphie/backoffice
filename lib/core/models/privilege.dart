@@ -90,10 +90,10 @@ class PrivilegeModel {
           : DateTime.now(),
       createdBy: map['createdBy'] != null ? map['createdBy'] as String : '',
       modifiedBy: map['modifiedBy'] != null ? map['modifiedBy'] as String : '',
-      createdByBehalfOf: map['createdByBehalfOf'] != ''
+      createdByBehalfOf: map['createdByBehalfOf'] != null
           ? map['createdByBehalfOf'] as String
           : '',
-      modifiedByBehalfOf: map['modifiedByBehalfOf'] != ''
+      modifiedByBehalfOf: map['modifiedByBehalfOf'] != null
           ? map['modifiedByBehalfOf'] as String
           : '',
     );

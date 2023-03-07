@@ -28,7 +28,9 @@ mixin RoleGroupService {
       endpoint: BaseUrl.resource.getURl(
         "roleGroup",
       ),
-      data: model.toMap(),
+      data: {
+        'status': model.status,
+      },
     );
     return response;
   }

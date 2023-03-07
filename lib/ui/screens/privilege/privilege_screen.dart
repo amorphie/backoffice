@@ -34,31 +34,34 @@ class PrivilegeScreen extends StatelessWidget {
                     child: Column(
                       children: [
                         SizedBox(height: defaultPadding),
-                        MyDataTable<PrivilegeModel>(
-                          items: list
-                              .map(
-                                (model) => MyDataTableRow<PrivilegeModel>(
-                                  onPressed: (item) {},
-                                  cells: [
-                                    // ...user.columns.map((e) => MyDataTableCell(title: e, text: user.toMap()[e].toString())),
-                                    MyDataTableCell.set("ID", model.id!),
-                                    MyDataTableCell.set(
-                                        "TTL", model.ttl.toString()),
-                                    MyDataTableCell.set("Url", model.url!),
-                                    MyDataTableCell.set(
-                                        "Tags", model.status.toString()),
-                                  ],
-                                ),
+                        list.length > 0
+                            ? MyDataTable<PrivilegeModel>(
+                                items: list
+                                    .map(
+                                      (model) => MyDataTableRow<PrivilegeModel>(
+                                        onPressed: (item) {},
+                                        cells: [
+                                          // ...user.columns.map((e) => MyDataTableCell(title: e, text: user.toMap()[e].toString())),
+
+                                          MyDataTableCell.set(
+                                              "TTL", model.ttl.toString()),
+                                          MyDataTableCell.set(
+                                              "Url", model.url!),
+                                        ],
+                                      ),
+                                    )
+                                    .toList(),
+                                onSelect: (a) {},
+                                onRefresh: (value) {
+                                  print('refreshed');
+                                },
+                                addPress: () {
+                                  privilegeAddPopUp(context);
+                                },
                               )
-                              .toList(),
-                          onSelect: (a) {},
-                          onRefresh: (value) {
-                            print('refreshed');
-                          },
-                          addPress: () {
-                            addResourcePopUp(context);
-                          },
-                        ),
+                            : Center(
+                                child: Text('No Data'),
+                              ),
                         if (Responsive.isMobile(context))
                           SizedBox(height: defaultPadding),
                       ],

@@ -25,9 +25,15 @@ mixin PrivilegeService {
 
   Future<ResponseModel> postPrivilege(PrivilegeModel model) async {
     ResponseModel response = await Executer.post(
-        endpoint: BaseUrl.resource.getURl(
-      "privilege",
-    ));
+      endpoint: BaseUrl.resource.getURl(
+        "privilege",
+      ),
+      data: {
+        'status': model.status,
+        'ttl': model.ttl,
+        'url': model.url,
+      },
+    );
     return response;
   }
 
