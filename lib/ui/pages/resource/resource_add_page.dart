@@ -20,7 +20,16 @@ class _ResourceAddPageState extends State<ResourceAddPage> {
         return ResourceAddScreen(
             model: c.resource.resource,
             addPressed: (model) async {
-              c.resource.addResource(model);
+              bool result = await c.resource.addResource(model);
+              if (result) {
+                c.resource.getAllResources();
+                Get.snackbar("Başarılı", "Başardık",
+                    backgroundColor: Colors.green);
+                Navigator.pop(context);
+              } else {
+                Get.snackbar("Sıkıntı", "Başaramadı",
+                    backgroundColor: Colors.red);
+              }
             },
             list: c.resource.resourceList);
       }),
