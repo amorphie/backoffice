@@ -46,7 +46,7 @@ class PrivilegeScreen extends StatelessWidget {
                                           MyDataTableCell.set(
                                               "TTL", model.ttl.toString()),
                                           MyDataTableCell.set(
-                                              "Url", model.url!),
+                                              "Status", model.status!),
                                         ],
                                       ),
                                     )

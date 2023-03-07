@@ -4,7 +4,6 @@ import 'dart:convert';
 class PrivilegeModel {
   final String? id;
   final String? resourceId;
-  final String? url;
   final int? ttl;
   final String? status;
   final DateTime? createdAt;
@@ -16,7 +15,6 @@ class PrivilegeModel {
   PrivilegeModel({
     this.id,
     this.resourceId,
-    this.url,
     this.ttl,
     this.status,
     this.createdAt,
@@ -34,7 +32,6 @@ class PrivilegeModel {
   PrivilegeModel copyWith({
     String? id,
     String? resourceId,
-    String? url,
     int? ttl,
     String? status,
     DateTime? createdAt,
@@ -47,7 +44,6 @@ class PrivilegeModel {
     return PrivilegeModel(
       id: id ?? this.id,
       resourceId: resourceId ?? this.resourceId,
-      url: url ?? this.url,
       ttl: ttl ?? this.ttl,
       status: status ?? this.status,
       createdAt: createdAt ?? this.createdAt,
@@ -63,7 +59,6 @@ class PrivilegeModel {
     return <String, dynamic>{
       'id': id,
       'resourceId': resourceId,
-      'url': url,
       'ttl': ttl,
       'status': status,
       'createdAt': createdAt?.millisecondsSinceEpoch,
@@ -77,10 +72,9 @@ class PrivilegeModel {
 
   factory PrivilegeModel.fromMap(Map<String, dynamic> map) {
     return PrivilegeModel(
-      id: map['id'] as String,
-      resourceId: map['resourceId'] as String,
-      url: map['url'] != null ? map['url'] as String : '',
-      ttl: map['ttl'] as int,
+      id: map['id'] != null ? map['id'] as String : '',
+      resourceId: map['resourceId'] != null ? map['resourceId'] as String : '',
+      ttl: map['ttl'] != null ? map['ttl'] as int : 0,
       status: map['status'] != null ? map['status'] as String : '',
       createdAt: map['createdAt'] != null
           ? DateTime.parse(map['createdAt'])
@@ -106,7 +100,7 @@ class PrivilegeModel {
 
   @override
   String toString() {
-    return 'PrivilegeModel(id: $id, resourceId: $resourceId, url: $url, ttl: $ttl, status: $status, createdAt: $createdAt, modifiedAt: $modifiedAt, createdBy: $createdBy, modifiedBy: $modifiedBy, createdByBehalfOf: $createdByBehalfOf, modifiedByBehalfOf: $modifiedByBehalfOf)';
+    return 'PrivilegeModel(id: $id, resourceId: $resourceId, ttl: $ttl, status: $status, createdAt: $createdAt, modifiedAt: $modifiedAt, createdBy: $createdBy, modifiedBy: $modifiedBy, createdByBehalfOf: $createdByBehalfOf, modifiedByBehalfOf: $modifiedByBehalfOf)';
   }
 
   @override
@@ -115,7 +109,6 @@ class PrivilegeModel {
 
     return other.id == id &&
         other.resourceId == resourceId &&
-        other.url == url &&
         other.ttl == ttl &&
         other.status == status &&
         other.createdAt == createdAt &&
@@ -130,7 +123,6 @@ class PrivilegeModel {
   int get hashCode {
     return id.hashCode ^
         resourceId.hashCode ^
-        url.hashCode ^
         ttl.hashCode ^
         status.hashCode ^
         createdAt.hashCode ^

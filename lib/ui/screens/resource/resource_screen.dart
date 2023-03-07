@@ -76,12 +76,7 @@ class _ResourceScreenState extends State<ResourceScreen> {
                             addResourcePopUp(context);
                           },
                         ),
-                        TableBase(
-                            items: widget.list,
-                            onSelect: (c) {
-                              widget.selectModel(c as ResourceModel);
-                            },
-                            onFilter: (item) {}), //!YENİ
+                        //!YENİ
                         if (Responsive.isMobile(context))
                           SizedBox(height: defaultPadding),
                       ],

@@ -27,12 +27,10 @@ class _PrivilegeAddScreenState extends State<PrivilegeAddScreen> {
 
   late TextEditingController statu;
   late TextEditingController ttl;
-  late TextEditingController url;
   @override
   void initState() {
     super.initState();
     statu = TextEditingController(text: widget.model.status);
-    url = TextEditingController(text: widget.model.url);
     ttl = TextEditingController(text: widget.model.ttl.toString());
     _items = widget.tagList
         .map((tag) => MultiSelectItem<TagModel>(tag, tag.name!))
@@ -68,11 +66,6 @@ class _PrivilegeAddScreenState extends State<PrivilegeAddScreen> {
             labelText: "Status",
             keyboardType: TextInputType.name,
             controller: statu,
-          ),
-          CommonTextField(
-            labelText: "Url",
-            keyboardType: TextInputType.url,
-            controller: url,
           ),
           CommonTextField(
             labelText: "TTL",
@@ -121,7 +114,6 @@ class _PrivilegeAddScreenState extends State<PrivilegeAddScreen> {
                           onPressed: () async {
                             PrivilegeModel model = PrivilegeModel(
                               status: statu.text,
-                              url: url.text,
                               ttl: int.parse(ttl.text),
                               modifiedByBehalfOf: '',
                               createdByBehalfOf: '',

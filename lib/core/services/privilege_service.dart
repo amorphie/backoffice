@@ -31,7 +31,6 @@ mixin PrivilegeService {
       data: {
         'status': model.status,
         'ttl': model.ttl,
-        'url': model.url,
       },
     );
     return response;
