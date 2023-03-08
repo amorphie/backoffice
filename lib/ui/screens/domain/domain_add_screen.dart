@@ -112,9 +112,9 @@ class _DomainAddScreenState extends State<DomainAddScreen> {
                           title: "Save",
                           onPressed: () async {
                             DomainModel model = DomainModel(
-                              name: name.text,
-                              description: desc.text,
-                            );
+                                name: name.text,
+                                description: desc.text,
+                                entities: []);
                             await widget.addPressed(model);
                           },
                           color: KC.primary),

@@ -35,7 +35,7 @@ class DomainController extends GetxController {
 
   Future<bool> addDomain(DomainModel model) async {
     ResponseModel response = await _services.addDomain(model);
-
+    print(response.data);
     if (response.success) {
       domainList.add(model);
     }

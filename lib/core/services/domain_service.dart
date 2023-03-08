@@ -26,10 +26,11 @@ mixin DomainService {
 
   Future<ResponseModel> addDomain(DomainModel model) async {
     ResponseModel response = await Executer.post(
-        endpoint: BaseUrl.tag.getURl(
-          "addDomain",
-        ),
-        data: model.toMap());
+      endpoint: BaseUrl.tag.getURl(
+        "addDomain",
+      ),
+      data: model.toMap(),
+    );
     return response;
   }
 
