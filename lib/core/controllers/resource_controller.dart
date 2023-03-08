@@ -31,10 +31,8 @@ class ResourceController extends GetxController {
     ResponseModel response = await _services.getResourceById(id: id);
 
     if (response.success) {
-      for (var item in response.data) {
-        ResourceModel model = ResourceModel.fromMap(item);
-        _list.add(model);
-      }
+      ResourceModel model = ResourceModel.fromMap(response.data);
+      _list.add(model);
       resourceList.value = _list;
     }
     return response.success;
@@ -63,22 +61,6 @@ class ResourceController extends GetxController {
 
     if (response.success) {
       resourceList.add(ResourceModel.fromMap(response.data));
-    }
-    return response.success;
-  }
-
-  Future searchResource(String search) async {
-    ResponseModel response = await _services.getResourceById(id: search);
-
-    if (search.isNotEmpty) {
-      _searchResourceList.value = [];
-      if (response.success) {
-        for (var item in response.data["data"]) {
-          _searchResourceList.add(ResourceModel.fromMap(item));
-        }
-      }
-    } else {
-      _searchResourceList.value = [];
     }
     return response.success;
   }
