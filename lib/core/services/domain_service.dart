@@ -1,3 +1,5 @@
+import 'package:admin/core/models/domain.dart';
+
 import '../export/_.dart';
 
 mixin DomainService {
@@ -22,11 +24,12 @@ mixin DomainService {
 
   //Post
 
-  Future<ResponseModel> addDomain() async {
+  Future<ResponseModel> addDomain(DomainModel model) async {
     ResponseModel response = await Executer.post(
         endpoint: BaseUrl.tag.getURl(
-      "addDomain",
-    ));
+          "addDomain",
+        ),
+        data: model.toMap());
     return response;
   }
 

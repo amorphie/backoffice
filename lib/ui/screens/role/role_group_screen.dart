@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
 import 'package:admin/core/export/_.dart';
+import 'package:admin/ui/pages/role/role_group_add_page.dart';
 
 import '../../../core/models/role_group.dart';
 import '../../tables/my_data_table/my_data_table.dart';
@@ -52,11 +53,11 @@ class RoleGroupScreen extends StatelessWidget {
                               )
                               .toList(),
                           onSelect: (a) {},
-                          onRefresh: (value) {
+                          onSearch: (value) {
                             print('refreshed');
                           },
                           addPress: () {
-                            addRoleGroupPopUp(context);
+                            addItemPopUp(context, child: RoleGroupAddPage());
                           },
                         ),
                         //!YENİ

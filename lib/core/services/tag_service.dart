@@ -3,10 +3,19 @@ import '../export/_.dart';
 mixin TagService {
 //Get
 
-  Future<ResponseModel> getTag([int page = 0, int size = 100]) async {
+  Future<ResponseModel> getTags([int page = 0, int size = 100]) async {
     ResponseModel response = await Executer.get(
         endpoint: BaseUrl.tag.getURl(
       "tag?page=$page&pageSize=$size",
+    ));
+
+    return response;
+  }
+
+  Future<ResponseModel> getTagsByName(String name) async {
+    ResponseModel response = await Executer.get(
+        endpoint: BaseUrl.tag.getURl(
+      "tag/$name",
     ));
 
     return response;

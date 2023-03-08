@@ -19,6 +19,14 @@ class _TagPageState extends State<TagPage> {
               () => TagScreen(
                 tag: c.tag.tagModel,
                 list: c.tag.tagList,
+                onSearch: (item) async {
+                  await c.tag.getTagsByName(item);
+                  setState(() {
+                    c.tag.tagList
+                        .where((element) => element.name!.contains(item))
+                        .toList();
+                  });
+                },
               ),
             ));
   }

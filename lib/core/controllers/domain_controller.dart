@@ -33,11 +33,11 @@ class DomainController extends GetxController {
 
   //Post
 
-  Future<bool> addDomain() async {
-    ResponseModel response = await _services.addDomain();
+  Future<bool> addDomain(DomainModel model) async {
+    ResponseModel response = await _services.addDomain(model);
 
     if (response.success) {
-      domainList.add(DomainModel.fromMap(response.data));
+      domainList.add(model);
     }
     return response.success;
   }

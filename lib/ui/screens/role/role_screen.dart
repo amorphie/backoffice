@@ -2,6 +2,7 @@
 
 import 'package:admin/core/export/_.dart';
 import 'package:admin/core/models/role.dart';
+import 'package:admin/ui/pages/role/role_add_page.dart';
 
 import '../../tables/my_data_table/my_data_table.dart';
 
@@ -50,11 +51,11 @@ class RoleScreen extends StatelessWidget {
                               )
                               .toList(),
                           onSelect: (a) {},
-                          onRefresh: (value) {
+                          onSearch: (value) {
                             print('refreshed');
                           },
                           addPress: () {
-                            addRolePopUp(context);
+                            addItemPopUp(context, child: RoleAddPage());
                           },
                         ),
                         //!YENİ

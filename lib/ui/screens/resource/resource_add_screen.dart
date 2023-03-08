@@ -46,7 +46,7 @@ class _ResourceAddScreenState extends State<ResourceAddScreen> {
             child: Padding(
               padding: const EdgeInsets.only(left: 20.0),
               child: Text(
-                "Add User",
+                "Add Resource",
                 style: TextStyle(
                     color: KC.primary,
                     fontWeight: FontWeight.bold,

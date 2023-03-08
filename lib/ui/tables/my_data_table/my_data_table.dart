@@ -11,13 +11,13 @@ class MyDataTable<T> extends StatefulWidget {
   final List<MyDataTableRow<T>> items;
   final Function addPress;
   final Function(T item) onSelect;
-  final Function(String item) onRefresh;
+  final Function(String item) onSearch;
   const MyDataTable({
     Key? key,
     required this.items,
     required this.addPress,
     required this.onSelect,
-    required this.onRefresh,
+    required this.onSearch,
   }) : super(key: key);
 
   @override
@@ -131,7 +131,7 @@ class _MyDataTableState extends State<MyDataTable> {
               icon: Icon(Icons.search),
               hintText: "Search"),
           onChanged: (value) {
-            widget.onRefresh(value);
+            widget.onSearch(value);
           },
         ),
       ),

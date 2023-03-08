@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
 import 'package:admin/core/models/domain.dart';
+import 'package:admin/ui/pages/domain/domain_add_page.dart';
 
 import '../../../core/export/_.dart';
 import '../../tables/my_data_table/my_data_table.dart';
@@ -52,11 +53,11 @@ class DomainScreen extends StatelessWidget {
                               )
                               .toList(),
                           onSelect: (a) {},
-                          onRefresh: (value) {
+                          onSearch: (value) {
                             print('refreshed');
                           },
                           addPress: () {
-                            addResourcePopUp(context);
+                            addItemPopUp(context, child: DomainAddPage());
                           },
                         ),
                         if (Responsive.isMobile(context))

@@ -57,69 +57,14 @@ Future<void> addUserPopUp(BuildContext context) async {
   );
 }
 
-Future<void> addResourcePopUp(BuildContext context) async {
+Future<void> addItemPopUp(BuildContext context, {required Widget child}) async {
   return showDialog<void>(
     context: context,
     barrierDismissible: true,
     builder: (BuildContext context) {
       return AlertDialog(
         content: SizedBox(
-            width: MediaQuery.of(context).size.width / 2,
-            child: ResourceAddPage()),
-      );
-    },
-  );
-}
-
-Future<void> addTagPopUp(BuildContext context) async {
-  return showDialog<void>(
-    context: context,
-    barrierDismissible: true,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        content: SizedBox(
-            width: MediaQuery.of(context).size.width / 2, child: TagAddPage()),
-      );
-    },
-  );
-}
-
-Future<void> addRolePopUp(BuildContext context) async {
-  return showDialog<void>(
-    context: context,
-    barrierDismissible: true,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        content: SizedBox(
-            width: MediaQuery.of(context).size.width / 2, child: RoleAddPage()),
-      );
-    },
-  );
-}
-
-Future<void> addRoleGroupPopUp(BuildContext context) async {
-  return showDialog<void>(
-    context: context,
-    barrierDismissible: true,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        content: SizedBox(
-            width: MediaQuery.of(context).size.width / 2,
-            child: RoleGroupAddPage()),
-      );
-    },
-  );
-}
-
-Future<void> privilegeAddPopUp(BuildContext context) async {
-  return showDialog<void>(
-    context: context,
-    barrierDismissible: true,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        content: SizedBox(
-            width: MediaQuery.of(context).size.width / 2,
-            child: PrivilegeAddPage()),
+            width: MediaQuery.of(context).size.width / 2, child: child),
       );
     },
   );

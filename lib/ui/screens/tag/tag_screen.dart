@@ -1,17 +1,35 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
 import 'package:admin/core/export/_.dart';
+import 'package:admin/ui/pages/tag/tag_add_page.dart';
 
 import '../../tables/my_data_table/my_data_table.dart';
 
-class TagScreen extends StatelessWidget {
+class TagScreen extends StatefulWidget {
   final List<TagModel> list;
   final TagModel tag;
+  final Function(String item) onSearch;
   const TagScreen({
     Key? key,
     required this.list,
     required this.tag,
+    required this.onSearch,
   }) : super(key: key);
+
+  @override
+  State<TagScreen> createState() => _TagScreenState();
+}
+
+class _TagScreenState extends State<TagScreen> {
+  List<TagModel>? filterData;
+  late List<TagModel> tags;
+
+  @override
+  void initState() {
+    super.initState();
+    tags = widget.list;
+    filterData = tags;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +51,7 @@ class TagScreen extends StatelessWidget {
                       children: [
                         SizedBox(height: defaultPadding),
                         MyDataTable<TagModel>(
-                          items: list
+                          items: widget.list
                               .map(
                                 (tag) => MyDataTableRow<TagModel>(
                                   onPressed: (item) {},
@@ -50,13 +68,13 @@ class TagScreen extends StatelessWidget {
                               )
                               .toList(),
                           onSelect: (a) {
-                            print(tag.name);
+                            print(widget.tag.name);
                           },
-                          onRefresh: (value) {
-                            print('refreshed');
+                          onSearch: (value) {
+                            widget.onSearch(value);
                           },
                           addPress: () {
-                            addTagPopUp(context);
+                            addItemPopUp(context, child: TagAddPage());
                           },
                         ),
                         //!YENİ

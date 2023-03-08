@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
 import 'package:admin/core/models/privilege.dart';
+import 'package:admin/ui/pages/privilege/privilege_add_page.dart';
 
 import '../../../core/export/_.dart';
 import '../../tables/my_data_table/my_data_table.dart';
@@ -52,11 +53,12 @@ class PrivilegeScreen extends StatelessWidget {
                                     )
                                     .toList(),
                                 onSelect: (a) {},
-                                onRefresh: (value) {
+                                onSearch: (value) {
                                   print('refreshed');
                                 },
                                 addPress: () {
-                                  privilegeAddPopUp(context);
+                                  addItemPopUp(context,
+                                      child: PrivilegeAddPage());
                                 },
                               )
                             : Center(

@@ -18,7 +18,22 @@ class TagController extends GetxController {
   Future<bool> getTags() async {
     List<TagModel> _list = [];
 
-    ResponseModel response = await _services.getTag();
+    ResponseModel response = await _services.getTags();
+
+    if (response.success) {
+      for (var item in response.data) {
+        TagModel model = TagModel.fromMap(item);
+        _list.add(model);
+      }
+      tagList.value = _list;
+    }
+    return response.success;
+  }
+
+  Future<bool> getTagsByName(String name) async {
+    List<TagModel> _list = [];
+
+    ResponseModel response = await _services.getTagsByName(name);
 
     if (response.success) {
       for (var item in response.data) {
