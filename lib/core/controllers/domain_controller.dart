@@ -8,6 +8,9 @@ class DomainController extends GetxController {
   DomainModel get domainModel => _domainModel.value;
   RxList<DomainModel> domainList = RxList<DomainModel>.from([]);
 
+  RxList<UserModel> _searchDomainList = RxList.of([]);
+  List<UserModel> get searchDomainList => _searchDomainList;
+
   Services _services = Services();
 
   set domainModel(DomainModel p) {

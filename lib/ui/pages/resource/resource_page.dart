@@ -22,6 +22,9 @@ class _ResourcePageState extends State<ResourcePage> {
           model: c.resource.resource,
           list: c.resource.resourceList,
           selectModel: (model) {},
+          onSearch: (value) {
+            c.resource.getResourceById(value);
+          },
         );
       }),
     );

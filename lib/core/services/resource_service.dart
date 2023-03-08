@@ -8,8 +8,9 @@ mixin ResourceService {
   Future<ResponseModel> getResourceById({required String id}) async {
     ResponseModel response = await Executer.get(
         endpoint: BaseUrl.resource.getURl(
-      "resource/$id",
-    ));
+          "resource/$id",
+        ),
+        data: {'id': id});
     return response;
   }
 

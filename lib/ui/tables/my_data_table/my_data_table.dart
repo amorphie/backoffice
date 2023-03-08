@@ -131,6 +131,7 @@ class _MyDataTableState extends State<MyDataTable> {
               icon: Icon(Icons.search),
               hintText: "Search"),
           onChanged: (value) {
+            setState(() {});
             widget.onSearch(value);
           },
         ),
