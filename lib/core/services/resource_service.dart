@@ -29,7 +29,7 @@ mixin ResourceService {
       endpoint: BaseUrl.resource.getURl("resource"),
       data: {
         'url': model.url,
-        'status': model.status,
+        'status': 'new',
         'type': model.type,
       },
     );

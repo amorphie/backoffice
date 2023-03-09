@@ -19,17 +19,13 @@ class ResourceAddScreen extends StatefulWidget {
 }
 
 class _ResourceAddScreenState extends State<ResourceAddScreen> {
-  List<String> status = <String>['New', 'InProgress', 'Ready', 'Active'];
-
   late TextEditingController url;
-  late TextEditingController statu;
   late TextEditingController type;
 
   @override
   void initState() {
     super.initState();
     url = TextEditingController(text: widget.model.url);
-    statu = TextEditingController(text: widget.model.status);
     type = TextEditingController(text: widget.model.type.toString());
   }
 
@@ -71,15 +67,6 @@ class _ResourceAddScreenState extends State<ResourceAddScreen> {
           SizedBox(
             width: MediaQuery.of(context).size.width / 2,
             child: CommonTextField(
-              labelText: "Status",
-              controller: statu,
-              keyboardType: TextInputType.phone,
-            ),
-          ),
-          SizedBox(height: 30),
-          SizedBox(
-            width: MediaQuery.of(context).size.width / 2,
-            child: CommonTextField(
               labelText: "Type",
               controller: type,
               keyboardType: TextInputType.phone,
@@ -98,7 +85,6 @@ class _ResourceAddScreenState extends State<ResourceAddScreen> {
                               url: url.text,
                               type: int.parse(type.text),
                               tags: [],
-                              status: statu.text,
                               descriptions: [],
                               displayNames: [],
                               id: '3fa85f64-5717-4562-b3fc-2c963f66afa9');
