@@ -1,8 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
+import 'package:admin/core/base/base_model.dart';
 import 'package:admin/core/models/resource.dart';
 import 'package:admin/ui/pages/resource/resource_add_page.dart';
-import 'package:admin/ui/tables/table_base.dart';
 
 import '../../../core/export/_.dart';
 import '../../tables/my_data_table/my_data_table.dart';
@@ -52,11 +52,13 @@ class _ResourceScreenState extends State<ResourceScreen> {
                     child: Column(
                       children: [
                         SizedBox(height: defaultPadding),
-                        MyDataTable<ResourceModel>(
+                        MyDataTable(
                           items: widget.list
                               .map(
                                 (resource) => MyDataTableRow<ResourceModel>(
-                                  onPressed: (item) {},
+                                  onPressed: (item) {
+                                    print(item.id);
+                                  },
                                   cells: [
                                     // ...user.columns.map((e) => MyDataTableCell(title: e, text: user.toMap()[e].toString())),
                                     MyDataTableCell.set("ID", resource.id!),
@@ -71,7 +73,9 @@ class _ResourceScreenState extends State<ResourceScreen> {
                                 ),
                               )
                               .toList(),
-                          onSelect: (a) {},
+                          onSelect: (a) {
+                            print(a);
+                          },
                           onSearch: (value) {
                             widget.onSearch(value);
                           },

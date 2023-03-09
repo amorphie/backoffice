@@ -5,7 +5,8 @@ class MyDataTableCell {
     required this.text,
     required this.title,
   });
-  factory MyDataTableCell.set(String title, String text) => MyDataTableCell(text: text, title: title);
+  factory MyDataTableCell.set(String title, String text) =>
+      MyDataTableCell(text: text, title: title);
 }
 
 class MyDataTableRow<T> {

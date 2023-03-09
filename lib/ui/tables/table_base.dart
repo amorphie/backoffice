@@ -76,20 +76,6 @@ class _TableBaseState extends State<TableBase> {
                 onClick: (index) {
                   widget.onSelect(widget.items[index]);
                 },
-                // isSelected: (index) =>
-                // selectedUsers.firstWhereOrNull(
-                //      (element) => users[index] == element) !=
-                //    null,
-                //    onSelect: (index) {
-                //    UserModel? u = selectedUsers
-                //        .firstWhereOrNull((element) => users[index] == element);
-                //    if (u != null) {
-                //      selectedUsers.remove(users[index]);
-                //    } else {
-                //      selectedUsers.add(users[index]);
-                //    }
-                //    setState(() {});
-                //  },
               ),
               rowsPerPage: 8,
               columnSpacing: 8,

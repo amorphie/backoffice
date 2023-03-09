@@ -1,4 +1,4 @@
-import '../../../core/export/_.dart';
+import '../../core/export/_.dart';
 
 class CircularImage extends StatelessWidget {
   final String? img;

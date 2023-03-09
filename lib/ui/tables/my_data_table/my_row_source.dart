@@ -53,7 +53,10 @@ class MyRowSource<T> extends DataTableSource {
       cells: [
         ...model.cells.map(
           (e) => DataCell(
-            Text(e.text, textAlign: TextAlign.start, style: TextStyle(color: Colors.black54, fontWeight: FontWeight.w400)),
+            Text(e.text,
+                textAlign: TextAlign.start,
+                style: TextStyle(
+                    color: Colors.black54, fontWeight: FontWeight.w400)),
           ),
         ),
       ],

@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../../style/colors.dart';
+import '../style/colors.dart';
 
 class CommonTextField extends StatefulWidget {
   final TextEditingController? controller;

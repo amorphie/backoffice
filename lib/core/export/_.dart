@@ -59,8 +59,8 @@ export 'package:admin/ui/style/colors.dart';
 
 export 'package:admin/ui/screens/dashboard/tabs/user_detail_screen.dart';
 export 'package:admin/ui/screens/dashboard/widgets/side_menu.dart';
-export 'package:admin/ui/screens/widgets/common_button.dart';
-export 'package:admin/ui/screens/widgets/common_textfield.dart';
+export 'package:admin/ui/widgets/common_button.dart';
+export 'package:admin/ui/widgets/common_textfield.dart';
 export 'package:admin/ui/screens/dashboard/tabs/consent/widgets/consent_card.dart';
 export 'package:admin/ui/screens/dashboard/widgets/my_files.dart';
 export 'package:admin/ui/screens/dashboard/tabs/workflow/widgets/workflow_card.dart';
