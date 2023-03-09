@@ -39,15 +39,14 @@ class DomainScreen extends StatelessWidget {
                           items: list
                               .map(
                                 (model) => MyDataTableRow<DomainModel>(
+                                  item: model,
                                   onPressed: (item) {},
                                   cells: [
                                     // ...user.columns.map((e) => MyDataTableCell(title: e, text: user.toMap()[e].toString())),
                                     MyDataTableCell.set("ID", model.name!),
 
-                                    MyDataTableCell.set(
-                                        "Url", model.description!),
-                                    MyDataTableCell.set(
-                                        "Url", model.entities!.toString()),
+                                    MyDataTableCell.set("Url", model.description!),
+                                    MyDataTableCell.set("Url", model.entities!.toString()),
                                   ],
                                 ),
                               )
@@ -60,13 +59,11 @@ class DomainScreen extends StatelessWidget {
                             addItemPopUp(context, child: DomainAddPage());
                           },
                         ),
-                        if (Responsive.isMobile(context))
-                          SizedBox(height: defaultPadding),
+                        if (Responsive.isMobile(context)) SizedBox(height: defaultPadding),
                       ],
                     ),
                   ),
-                  if (!Responsive.isMobile(context))
-                    SizedBox(width: defaultPadding),
+                  if (!Responsive.isMobile(context)) SizedBox(width: defaultPadding),
                 ],
               )
             ],

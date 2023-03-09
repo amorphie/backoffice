@@ -55,14 +55,13 @@ class _TagScreenState extends State<TagScreen> {
                               .map(
                                 (tag) => MyDataTableRow<TagModel>(
                                   onPressed: (item) {},
+                                  item: tag,
                                   cells: [
                                     // ...user.columns.map((e) => MyDataTableCell(title: e, text: user.toMap()[e].toString())),
                                     MyDataTableCell.set("Name", tag.name!),
-                                    MyDataTableCell.set(
-                                        "TTL", tag.ttl!.toStringAsFixed(0)),
+                                    MyDataTableCell.set("TTL", tag.ttl!.toStringAsFixed(0)),
                                     MyDataTableCell.set("Url", tag.url!),
-                                    MyDataTableCell.set(
-                                        "Tags", tag.tags!.toString()),
+                                    MyDataTableCell.set("Tags", tag.tags!.toString()),
                                   ],
                                 ),
                               )
@@ -79,13 +78,11 @@ class _TagScreenState extends State<TagScreen> {
                         ),
                         //!YENİ
 
-                        if (Responsive.isMobile(context))
-                          SizedBox(height: defaultPadding),
+                        if (Responsive.isMobile(context)) SizedBox(height: defaultPadding),
                       ],
                     ),
                   ),
-                  if (!Responsive.isMobile(context))
-                    SizedBox(width: defaultPadding),
+                  if (!Responsive.isMobile(context)) SizedBox(width: defaultPadding),
                 ],
               )
             ],

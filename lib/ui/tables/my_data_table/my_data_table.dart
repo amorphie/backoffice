@@ -21,10 +21,10 @@ class MyDataTable<T> extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<MyDataTable> createState() => _MyDataTableState();
+  State<MyDataTable<T>> createState() => _MyDataTableState<T>();
 }
 
-class _MyDataTableState extends State<MyDataTable> {
+class _MyDataTableState<T> extends State<MyDataTable<T>> {
 // List<UserModel> users = [];
   late List<UserModel> selectedUsers;
 
@@ -79,7 +79,7 @@ class _MyDataTableState extends State<MyDataTable> {
                 count: widget.items.length,
                 context: context,
                 onClick: (index) {
-                  widget.onSelect(widget.items[index]);
+                  widget.onSelect(widget.items[index].item);
                 },
               ),
               rowsPerPage: 8,
@@ -89,10 +89,7 @@ class _MyDataTableState extends State<MyDataTable> {
                 ...widget.items.first.cells.map(
                   (e) {
                     return DataColumn(
-                      label: Text(e.title,
-                          style: TextStyle(
-                              color: Colors.black54,
-                              fontWeight: FontWeight.w500)),
+                      label: Text(e.title, style: TextStyle(color: Colors.black54, fontWeight: FontWeight.w500)),
                     );
                   },
                 )
@@ -112,10 +109,7 @@ class _MyDataTableState extends State<MyDataTable> {
         child: TextField(
           controller: controller,
           style: TextStyle(color: Colors.black87),
-          decoration: const InputDecoration(
-              labelStyle: TextStyle(color: KC.primary),
-              icon: Icon(Icons.search),
-              hintText: "Search"),
+          decoration: const InputDecoration(labelStyle: TextStyle(color: KC.primary), icon: Icon(Icons.search), hintText: "Search"),
           onChanged: (value) {
             setState(() {});
             widget.onSearch(value);

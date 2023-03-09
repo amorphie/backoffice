@@ -39,13 +39,12 @@ class RoleScreen extends StatelessWidget {
                               .map(
                                 (model) => MyDataTableRow<RoleModel>(
                                   onPressed: (item) {},
+                                  item: model,
                                   cells: [
                                     // ...user.columns.map((e) => MyDataTableCell(title: e, text: user.toMap()[e].toString())),
                                     MyDataTableCell.set("ID", model.id!),
-                                    MyDataTableCell.set(
-                                        "Status", model.status!),
-                                    MyDataTableCell.set(
-                                        "Tags", model.tags!.toString()),
+                                    MyDataTableCell.set("Status", model.status!),
+                                    MyDataTableCell.set("Tags", model.tags!.toString()),
                                   ],
                                 ),
                               )
@@ -60,13 +59,11 @@ class RoleScreen extends StatelessWidget {
                         ),
                         //!YENİ
 
-                        if (Responsive.isMobile(context))
-                          SizedBox(height: defaultPadding),
+                        if (Responsive.isMobile(context)) SizedBox(height: defaultPadding),
                       ],
                     ),
                   ),
-                  if (!Responsive.isMobile(context))
-                    SizedBox(width: defaultPadding),
+                  if (!Responsive.isMobile(context)) SizedBox(width: defaultPadding),
                 ],
               )
             ],

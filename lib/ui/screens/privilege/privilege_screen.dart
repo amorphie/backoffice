@@ -40,14 +40,13 @@ class PrivilegeScreen extends StatelessWidget {
                                 items: list
                                     .map(
                                       (model) => MyDataTableRow<PrivilegeModel>(
+                                        item: model,
                                         onPressed: (item) {},
                                         cells: [
                                           // ...user.columns.map((e) => MyDataTableCell(title: e, text: user.toMap()[e].toString())),
 
-                                          MyDataTableCell.set(
-                                              "TTL", model.ttl.toString()),
-                                          MyDataTableCell.set(
-                                              "Status", model.status!),
+                                          MyDataTableCell.set("TTL", model.ttl.toString()),
+                                          MyDataTableCell.set("Status", model.status!),
                                         ],
                                       ),
                                     )
@@ -57,20 +56,17 @@ class PrivilegeScreen extends StatelessWidget {
                                   print('refreshed');
                                 },
                                 addPress: () {
-                                  addItemPopUp(context,
-                                      child: PrivilegeAddPage());
+                                  addItemPopUp(context, child: PrivilegeAddPage());
                                 },
                               )
                             : Center(
                                 child: Text('No Data'),
                               ),
-                        if (Responsive.isMobile(context))
-                          SizedBox(height: defaultPadding),
+                        if (Responsive.isMobile(context)) SizedBox(height: defaultPadding),
                       ],
                     ),
                   ),
-                  if (!Responsive.isMobile(context))
-                    SizedBox(width: defaultPadding),
+                  if (!Responsive.isMobile(context)) SizedBox(width: defaultPadding),
                 ],
               )
             ],
