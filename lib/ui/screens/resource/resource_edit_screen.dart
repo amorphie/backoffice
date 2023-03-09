@@ -21,13 +21,14 @@ class _ResourceEditScreenState extends State<ResourceEditScreen> {
   late TextEditingController url;
   late TextEditingController statu;
   late TextEditingController type;
-
+  late ResourceModel rm;
   @override
   void initState() {
     super.initState();
-    url = TextEditingController(text: widget.model.url);
-    statu = TextEditingController(text: widget.model.status);
-    type = TextEditingController(text: widget.model.type.toString());
+    rm = widget.model;
+    url = TextEditingController(text: rm.url);
+    statu = TextEditingController(text: rm.status);
+    type = TextEditingController(text: rm.type.toString());
   }
 
   @override
@@ -90,15 +91,10 @@ class _ResourceEditScreenState extends State<ResourceEditScreen> {
                     child: CommonButton(
                         title: "Save",
                         onPressed: () async {
-                          ResourceModel r = ResourceModel(
-                              url: url.text,
-                              type: int.parse(type.text),
-                              tags: [],
-                              status: statu.text,
-                              descriptions: [],
-                              displayNames: [],
-                              id: '3fa85f64-5717-4562-b3fc-2c963f66afa9');
-                          await widget.editPressed(r);
+                          rm.url = url.text;
+                          rm.type = int.parse(type.text);
+                          rm.status = statu.text;
+                          await widget.editPressed(rm);
                         },
                         color: KC.primary)),
               ),

@@ -36,6 +36,19 @@ mixin ResourceService {
     return response;
   }
 
+  Future<ResponseModel> editResource(String id, ResourceModel model) async {
+    ResponseModel response = await Executer.post(
+      endpoint: BaseUrl.resource.getURl("resource"),
+      data: {
+        'id': id,
+        'url': model.url,
+        'status': model.status,
+        'type': model.type,
+      },
+    );
+    return response;
+  }
+
   //Delete
 
   Future<ResponseModel> deleteResource(String id) async {

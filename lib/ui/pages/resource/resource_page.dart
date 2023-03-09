@@ -29,13 +29,12 @@ class _ResourcePageState extends State<ResourcePage> {
             editPopUp(context,
                 child: ResourceEditScreen(
                   model: model,
-                  editPressed: (model) async {
-                    bool result = await c.resource.addResource(model);
+                  editPressed: (r) async {
+                    bool result = await c.resource.editResource(r.id!, r);
                     if (result) {
                       c.resource.getAllResources();
                       Get.snackbar("Başarılı", "Başardık",
                           backgroundColor: Colors.green);
-                      Navigator.pop(context);
                     } else {
                       Get.snackbar("Sıkıntı", "Başaramadı",
                           backgroundColor: Colors.red);

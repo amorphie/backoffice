@@ -51,6 +51,13 @@ class Executer {
     return await _e.execute();
   }
 
+  static Future<ResponseModel> put(
+      {required Uri endpoint, Map<String, dynamic>? data}) async {
+    Executer _e =
+        Executer(endpoint: endpoint, data: data, method: ResponseMethod.PUT);
+    return await _e.execute();
+  }
+
   Future<ResponseModel> execute() async {
     if (ExecuterManager.control(endpoint.path, data, method)) {
       try {

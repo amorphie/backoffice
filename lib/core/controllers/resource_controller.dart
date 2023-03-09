@@ -54,7 +54,7 @@ class ResourceController extends GetxController {
     return response.success;
   }
 
-  //Post
+  //Add
 
   Future<bool> addResource(ResourceModel t) async {
     ResponseModel response = await _services.postResource(t);
@@ -62,6 +62,19 @@ class ResourceController extends GetxController {
     if (response.success) {
       resourceList.add(ResourceModel.fromMap(response.data));
     }
+    return response.success;
+  }
+
+  //Update
+
+  Future editResource(String id, ResourceModel model) async {
+    ResponseModel response = await _services.editResource(id, model);
+
+    if (response.success) {
+      _resourceModel.value = model;
+      resourceList.value = _update(id, model);
+    }
+
     return response.success;
   }
 
@@ -74,5 +87,14 @@ class ResourceController extends GetxController {
       resourceList.removeWhere((e) => e.id == resource.id);
     }
     return response.success;
+  }
+
+  List<ResourceModel> _update(String id, ResourceModel p) {
+    List<ResourceModel> _list = List<ResourceModel>.from(resourceList);
+    int index = _list.indexWhere((element) => element.id == id);
+    if (index > -1) {
+      _list[index] = p;
+    }
+    return _list;
   }
 }

@@ -25,7 +25,6 @@ class _ResourceEditPageState extends State<ResourceEditPage> {
               c.resource.getAllResources();
               Get.snackbar("Başarılı", "Başardık",
                   backgroundColor: Colors.green);
-              Navigator.pop(context);
             } else {
               Get.snackbar("Sıkıntı", "Başaramadı",
                   backgroundColor: Colors.red);
