@@ -108,31 +108,27 @@ class _PrivilegeAddScreenState extends State<PrivilegeAddScreen> {
               GestureDetector(
                 child: SizedBox(
                     width: MediaQuery.of(context).size.width / 5,
-                    child: Expanded(
-                      child: CommonButton(
-                          title: "Save",
-                          onPressed: () async {
-                            PrivilegeModel model = PrivilegeModel(
-                              status: statu.text,
-                              ttl: int.parse(ttl.text),
-                              modifiedByBehalfOf: '',
-                              createdByBehalfOf: '',
-                            );
-                            await widget.addPressed(model);
-                          },
-                          color: KC.primary),
-                    )),
+                    child: CommonButton(
+                        title: "Save",
+                        onPressed: () async {
+                          PrivilegeModel model = PrivilegeModel(
+                            status: statu.text,
+                            ttl: int.parse(ttl.text),
+                            modifiedByBehalfOf: '',
+                            createdByBehalfOf: '',
+                          );
+                          await widget.addPressed(model);
+                        },
+                        color: KC.primary)),
               ),
               SizedBox(
                   width: MediaQuery.of(context).size.width / 5,
-                  child: Expanded(
-                    child: CommonButton(
-                        title: "Close",
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        color: KC.primary),
-                  )),
+                  child: CommonButton(
+                      title: "Close",
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      color: KC.primary)),
             ],
           ),
         ],

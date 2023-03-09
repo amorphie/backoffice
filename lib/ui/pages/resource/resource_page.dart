@@ -26,7 +26,22 @@ class _ResourcePageState extends State<ResourcePage> {
           list: c.resource.resourceList,
           selectModel: (model) {
             c.resource.resource = model;
-            print(model.id);
+            editPopUp(context,
+                child: ResourceEditScreen(
+                  model: model,
+                  editPressed: (model) async {
+                    bool result = await c.resource.addResource(model);
+                    if (result) {
+                      c.resource.getAllResources();
+                      Get.snackbar("Başarılı", "Başardık",
+                          backgroundColor: Colors.green);
+                      Navigator.pop(context);
+                    } else {
+                      Get.snackbar("Sıkıntı", "Başaramadı",
+                          backgroundColor: Colors.red);
+                    }
+                  },
+                ));
           },
           onSearch: (value) {
             c.resource.getResourceById(value);

@@ -55,7 +55,6 @@ class _ResourceEditScreenState extends State<ResourceEditScreen> {
             color: KC.primary,
             height: 30,
           ),
-          SizedBox(height: defaultPadding),
           SizedBox(
             width: MediaQuery.of(context).size.width / 2,
             child: CommonTextField(
@@ -88,33 +87,29 @@ class _ResourceEditScreenState extends State<ResourceEditScreen> {
               GestureDetector(
                 child: SizedBox(
                     width: MediaQuery.of(context).size.width / 5,
-                    child: Expanded(
-                      child: CommonButton(
-                          title: "Save",
-                          onPressed: () async {
-                            ResourceModel r = ResourceModel(
-                                url: url.text,
-                                type: int.parse(type.text),
-                                tags: [],
-                                status: statu.text,
-                                descriptions: [],
-                                displayNames: [],
-                                id: '3fa85f64-5717-4562-b3fc-2c963f66afa9');
-                            await widget.editPressed(r);
-                          },
-                          color: KC.primary),
-                    )),
+                    child: CommonButton(
+                        title: "Save",
+                        onPressed: () async {
+                          ResourceModel r = ResourceModel(
+                              url: url.text,
+                              type: int.parse(type.text),
+                              tags: [],
+                              status: statu.text,
+                              descriptions: [],
+                              displayNames: [],
+                              id: '3fa85f64-5717-4562-b3fc-2c963f66afa9');
+                          await widget.editPressed(r);
+                        },
+                        color: KC.primary)),
               ),
               SizedBox(
                   width: MediaQuery.of(context).size.width / 5,
-                  child: Expanded(
-                    child: CommonButton(
-                        title: "Close",
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        color: KC.primary),
-                  )),
+                  child: CommonButton(
+                      title: "Close",
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      color: KC.primary)),
             ],
           ),
         ],

@@ -65,15 +65,17 @@ class _ResourceScreenState extends State<ResourceScreen> {
                                     MyDataTableCell.set("ID", resource.id!),
 
                                     MyDataTableCell.set("Url", resource.url!),
-                                    MyDataTableCell.set("Tags", resource.tags!.toString()),
+                                    MyDataTableCell.set(
+                                        "Tags", resource.tags!.toString()),
                                     MyDataTableCell.set("Description", _items),
-                                    MyDataTableCell.set("Display Name", resource.displayNames!.toString()),
+                                    MyDataTableCell.set("Display Name",
+                                        resource.displayNames!.toString()),
                                   ],
                                 ),
                               )
                               .toList(),
                           onSelect: (a) {
-                            print(a);
+                            widget.selectModel(a as ResourceModel);
                           },
                           onSearch: (value) {
                             widget.onSearch(value);
@@ -83,11 +85,13 @@ class _ResourceScreenState extends State<ResourceScreen> {
                           },
                         ),
                         //!YENİ
-                        if (Responsive.isMobile(context)) SizedBox(height: defaultPadding),
+                        if (Responsive.isMobile(context))
+                          SizedBox(height: defaultPadding),
                       ],
                     ),
                   ),
-                  if (!Responsive.isMobile(context)) SizedBox(width: defaultPadding),
+                  if (!Responsive.isMobile(context))
+                    SizedBox(width: defaultPadding),
                 ],
               )
             ],
