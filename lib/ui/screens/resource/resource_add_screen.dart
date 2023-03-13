@@ -25,8 +25,8 @@ class _ResourceAddScreenState extends State<ResourceAddScreen> {
   @override
   void initState() {
     super.initState();
-    url = TextEditingController(text: widget.model.url);
-    type = TextEditingController(text: widget.model.type.toString());
+    url = TextEditingController();
+    type = TextEditingController();
   }
 
   @override
