@@ -163,26 +163,24 @@ class _UserAddScreenState extends State<UserAddScreen> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              GestureDetector(
-                child: SizedBox(
-                    width: MediaQuery.of(context).size.width / 5,
-                    child: CommonButton(
-                        title: "Save",
-                        onPressed: () async {
-                          UserModel user = UserModel(
-                              firstName: firstName.text,
-                              lastName: lastName.text,
-                              reference: ref.text,
-                              password: 'password',
-                              phone: PhoneModel.init(),
-                              eMail: eMail.text,
-                              state: 'state',
-                              salt: '',
-                              tag: []);
-                          await widget.userAddPressed(user);
-                        },
-                        color: KC.primary)),
-              ),
+              SizedBox(
+                  width: MediaQuery.of(context).size.width / 5,
+                  child: CommonButton(
+                      title: "Save",
+                      onPressed: () async {
+                        UserModel user = UserModel(
+                            firstName: firstName.text,
+                            lastName: lastName.text,
+                            reference: ref.text,
+                            password: 'password',
+                            phone: PhoneModel.init(),
+                            eMail: eMail.text,
+                            state: 'state',
+                            salt: '',
+                            tag: []);
+                        await widget.userAddPressed(user);
+                      },
+                      color: KC.primary)),
               SizedBox(
                   width: MediaQuery.of(context).size.width / 5,
                   child: CommonButton(

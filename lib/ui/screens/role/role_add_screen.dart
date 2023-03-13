@@ -97,17 +97,15 @@ class _RoleAddScreenState extends State<RoleAddScreen> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              GestureDetector(
-                child: SizedBox(
-                    width: MediaQuery.of(context).size.width / 5,
-                    child: CommonButton(
-                        title: "Save",
-                        onPressed: () async {
-                          RoleModel model = RoleModel(status: statu.text);
-                          await widget.roleAddPressed(model);
-                        },
-                        color: KC.primary)),
-              ),
+              SizedBox(
+                  width: MediaQuery.of(context).size.width / 5,
+                  child: CommonButton(
+                      title: "Save",
+                      onPressed: () async {
+                        RoleModel model = RoleModel(status: statu.text);
+                        await widget.roleAddPressed(model);
+                      },
+                      color: KC.primary)),
               SizedBox(
                   width: MediaQuery.of(context).size.width / 5,
                   child: CommonButton(

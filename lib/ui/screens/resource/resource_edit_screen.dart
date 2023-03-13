@@ -85,19 +85,17 @@ class _ResourceEditScreenState extends State<ResourceEditScreen> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              GestureDetector(
-                child: SizedBox(
-                    width: MediaQuery.of(context).size.width / 5,
-                    child: CommonButton(
-                        title: "Save",
-                        onPressed: () async {
-                          rm.url = url.text;
-                          rm.type = int.parse(type.text);
-                          rm.status = statu.text;
-                          await widget.editPressed(rm);
-                        },
-                        color: KC.primary)),
-              ),
+              SizedBox(
+                  width: MediaQuery.of(context).size.width / 5,
+                  child: CommonButton(
+                      title: "Save",
+                      onPressed: () async {
+                        rm.url = url.text;
+                        rm.type = int.parse(type.text);
+                        rm.status = statu.text;
+                        await widget.editPressed(rm);
+                      },
+                      color: KC.primary)),
               SizedBox(
                   width: MediaQuery.of(context).size.width / 5,
                   child: CommonButton(

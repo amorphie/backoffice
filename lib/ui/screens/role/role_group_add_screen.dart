@@ -98,18 +98,16 @@ class _RoleGroupAddScreenState extends State<RoleGroupAddScreen> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              GestureDetector(
-                child: SizedBox(
-                    width: MediaQuery.of(context).size.width / 5,
-                    child: CommonButton(
-                        title: "Save",
-                        onPressed: () async {
-                          RoleGroupModel model =
-                              RoleGroupModel(status: statu.text);
-                          await widget.roleAddPressed(model);
-                        },
-                        color: KC.primary)),
-              ),
+              SizedBox(
+                  width: MediaQuery.of(context).size.width / 5,
+                  child: CommonButton(
+                      title: "Save",
+                      onPressed: () async {
+                        RoleGroupModel model =
+                            RoleGroupModel(status: statu.text);
+                        await widget.roleAddPressed(model);
+                      },
+                      color: KC.primary)),
               SizedBox(
                   width: MediaQuery.of(context).size.width / 5,
                   child: CommonButton(

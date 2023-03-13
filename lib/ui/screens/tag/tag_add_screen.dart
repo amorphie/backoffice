@@ -131,22 +131,20 @@ class _TagAddScreenState extends State<TagAddScreen> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              GestureDetector(
-                child: SizedBox(
-                    width: MediaQuery.of(context).size.width / 5,
-                    child: CommonButton(
-                        title: "Save",
-                        onPressed: () async {
-                          TagModel model = TagModel(
-                            url: url.text,
-                            name: tag.text,
-                            ttl: int.parse(ttl.text),
-                            tags: [],
-                          );
-                          await widget.tagAddPressed(model);
-                        },
-                        color: KC.primary)),
-              ),
+              SizedBox(
+                  width: MediaQuery.of(context).size.width / 5,
+                  child: CommonButton(
+                      title: "Save",
+                      onPressed: () async {
+                        TagModel model = TagModel(
+                          url: url.text,
+                          name: tag.text,
+                          ttl: int.parse(ttl.text),
+                          tags: [],
+                        );
+                        await widget.tagAddPressed(model);
+                      },
+                      color: KC.primary)),
               SizedBox(
                   width: MediaQuery.of(context).size.width / 5,
                   child: CommonButton(

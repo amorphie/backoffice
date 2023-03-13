@@ -104,20 +104,18 @@ class _DomainAddScreenState extends State<DomainAddScreen> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              GestureDetector(
-                child: SizedBox(
-                    width: MediaQuery.of(context).size.width / 5,
-                    child: CommonButton(
-                        title: "Save",
-                        onPressed: () async {
-                          DomainModel model = DomainModel(
-                              name: name.text,
-                              description: desc.text,
-                              entities: []);
-                          await widget.addPressed(model);
-                        },
-                        color: KC.primary)),
-              ),
+              SizedBox(
+                  width: MediaQuery.of(context).size.width / 5,
+                  child: CommonButton(
+                      title: "Save",
+                      onPressed: () async {
+                        DomainModel model = DomainModel(
+                            name: name.text,
+                            description: desc.text,
+                            entities: []);
+                        await widget.addPressed(model);
+                      },
+                      color: KC.primary)),
               SizedBox(
                   width: MediaQuery.of(context).size.width / 5,
                   child: CommonButton(
