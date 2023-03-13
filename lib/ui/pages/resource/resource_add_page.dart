@@ -22,7 +22,9 @@ class _ResourceAddPageState extends State<ResourceAddPage> {
             addPressed: (model) async {
               bool result = await c.resource.addResource(model);
               if (result) {
-                await c.resource.getAllResources();
+                setState(() {
+                  c.resource.getAllResources();
+                });
                 Get.snackbar("Başarılı", "Başardık",
                     backgroundColor: Colors.green);
               } else {

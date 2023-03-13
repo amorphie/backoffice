@@ -1,6 +1,5 @@
 import 'package:admin/core/export/_.dart';
-import 'package:admin/core/models/resource.dart';
-import 'package:admin/ui/pages/resource/resource_edit_page.dart';
+import 'package:admin/ui/pages/resource/resource_add_page.dart';
 import 'package:admin/ui/screens/resource/resource_edit_screen.dart';
 import 'package:get/get.dart';
 
@@ -24,6 +23,9 @@ class _ResourcePageState extends State<ResourcePage> {
         return ResourceScreen(
           model: c.resource.resource,
           list: c.resource.resourceList,
+          addPressed: () {
+            addItemPopUp(context, child: ResourceAddPage());
+          },
           selectModel: (model) {
             c.resource.resource = model;
             editPopUp(context,
@@ -32,7 +34,8 @@ class _ResourcePageState extends State<ResourcePage> {
                   editPressed: (r) async {
                     bool result = await c.resource.editResource(r.id!, r);
                     if (result) {
-                      c.resource.getAllResources();
+                      await c.resource.getAllResources();
+                      setState(() {});
                       Get.snackbar("Başarılı", "Başardık",
                           backgroundColor: Colors.green);
                     } else {

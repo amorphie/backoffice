@@ -11,12 +11,14 @@ class ResourceScreen extends StatefulWidget {
   final List<ResourceModel> list;
   final Function(ResourceModel model) selectModel;
   final Function(String item) onSearch;
+  final Function addPressed;
   const ResourceScreen({
     Key? key,
     required this.model,
     required this.list,
     required this.selectModel,
     required this.onSearch,
+    required this.addPressed,
   }) : super(key: key);
 
   @override
@@ -80,7 +82,7 @@ class _ResourceScreenState extends State<ResourceScreen> {
                             widget.onSearch(value);
                           },
                           addPress: () {
-                            addItemPopUp(context, child: ResourceAddPage());
+                            widget.addPressed();
                           },
                         ),
                         //!YENİ

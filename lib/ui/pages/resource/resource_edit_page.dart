@@ -1,9 +1,16 @@
-import 'package:admin/core/export/_.dart';
-import 'package:admin/ui/screens/resource/resource_edit_screen.dart';
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:get/get.dart';
 
+import 'package:admin/core/export/_.dart';
+import 'package:admin/core/models/resource.dart';
+import 'package:admin/ui/screens/resource/resource_edit_screen.dart';
+
 class ResourceEditPage extends StatefulWidget {
-  const ResourceEditPage({Key? key}) : super(key: key);
+  final ResourceModel model;
+  const ResourceEditPage({
+    Key? key,
+    required this.model,
+  }) : super(key: key);
 
   @override
   State<ResourceEditPage> createState() => _ResourceEditPageState();
@@ -18,13 +25,15 @@ class _ResourceEditPageState extends State<ResourceEditPage> {
       },
       builder: (context, c) => Obx(() {
         return ResourceEditScreen(
-          model: c.resource.resource,
-          editPressed: (model) async {
-            bool result = await c.resource.addResource(model);
+          model: widget.model,
+          editPressed: (r) async {
+            bool result = await c.resource.addResource(r);
             if (result) {
-              c.resource.getAllResources();
+              await c.resource.getAllResources();
+              setState(() {});
               Get.snackbar("Başarılı", "Başardık",
                   backgroundColor: Colors.green);
+              Navigator.pop(context);
             } else {
               Get.snackbar("Sıkıntı", "Başaramadı",
                   backgroundColor: Colors.red);

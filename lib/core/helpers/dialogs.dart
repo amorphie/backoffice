@@ -55,7 +55,7 @@ Future<void> addUserPopUp(BuildContext context) async {
 Future<void> editPopUp(BuildContext context, {required Widget child}) async {
   return showDialog<void>(
     context: context,
-    barrierDismissible: true,
+    barrierDismissible: false,
     builder: (BuildContext context) {
       return AlertDialog(
         content: SizedBox(
