@@ -29,30 +29,6 @@ class DashboardScreen extends StatelessWidget {
                   flex: 3,
                   child: Column(
                     children: [
-                      //MyFiles(),
-                      // SizedBox(height: 30),
-
-                      //MyDataTable<UserModel>(
-                      //  items: userList
-                      //      .map(
-                      //        (user) => MyDataTableRow<UserModel>(
-                      //          onPressed: (item) {},
-                      //          cells: [
-                      //            // ...user.columns.map((e) => MyDataTableCell(title: e, text: user.toMap()[e].toString())),
-                      //            MyDataTableCell.set(
-                      //                "Reference", user.reference),
-                      //            MyDataTableCell(
-                      //                title: "Name", text: user.fullName),
-                      //            if (user.tags!.isNotEmpty)
-                      //              MyDataTableCell(
-                      //                  title: "Tags", text: user.tags!.first),
-                      //          ],
-                      //        ),
-                      //      )
-                      //      .toList(),
-                      //  onSelect: selectUser,
-                      //  onFilter: (value) {},
-                      //), //! DAHA YENİ
                       TableBase(
                           items: userList,
                           onSelect: (user) {
@@ -60,7 +36,6 @@ class DashboardScreen extends StatelessWidget {
                           },
                           onFilter: (item) {}), //!YENİ
 
-                      // UserTable(select: selectUser), //!ESKİ
                       if (Responsive.isMobile(context))
                         SizedBox(height: defaultPadding),
                       // if (Responsive.isMobile(context)) StarageDetails(),

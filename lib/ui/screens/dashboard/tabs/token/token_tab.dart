@@ -18,17 +18,6 @@ class TokenTab extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Align(
-            //   alignment: Alignment.center,
-            //   child: Text(
-            //     "Token",
-            //     textAlign: TextAlign.left,
-            //     style: TextStyle(
-            //         color: Colors.black87,
-            //         fontSize: 18,
-            //         fontWeight: FontWeight.bold),
-            //   ),
-            // ),
             Expanded(
               child: ListView(
                 children: [
