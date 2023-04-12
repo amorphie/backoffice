@@ -15,8 +15,6 @@ ENV PATH="${PATH}:/usr/local/flutter/bin:/usr/local/flutter/bin/cache/dart-sdk/b
 #WORKDIR /app
 
 
-RUN useradd -ms /bin/bash amorphie-backoffice
-USER amorphie-backoffice
 
 # Run flutter doctor
 RUN flutter doctor -v
