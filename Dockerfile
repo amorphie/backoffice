@@ -17,7 +17,7 @@ ENV PATH="${PATH}:/usr/local/flutter/bin:/usr/local/flutter/bin/cache/dart-sdk/b
 
 
 # Run flutter doctor
-RUN flutter doctor -v
+RUN flutter doctor -v --no-same-owner
 RUN flutter channel master
 RUN flutter upgrade
 
