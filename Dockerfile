@@ -12,12 +12,12 @@ RUN git clone https://github.com/flutter/flutter.git /usr/local/flutter
 # Set flutter path
 ENV PATH="${PATH}:/usr/local/flutter/bin:/usr/local/flutter/bin/cache/dart-sdk/bin"
 
-#WORKDIR /app
-
-
+WORKDIR /app
+RUN useradd -ms /bin/bash user /app
+USER user
 
 # Run flutter doctor
-RUN flutter doctor -v --no-same-owner
+RUN flutter doctor -v
 RUN flutter channel master
 RUN flutter upgrade
 
