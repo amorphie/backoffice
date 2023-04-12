@@ -1,6 +1,9 @@
 #Stage 1 - Install dependencies and build the app in a build environment
 FROM debian:latest AS build-env
 # Install flutter dependencies
+WORKDIR /app
+RUN adduser -u 5679 --disabled-password --gecos "" amorphie-backoffice && chown -R amorphie-backoffice:amorphie-backoffice /app
+USER amorphie-backoffice
 
 RUN apt-get update
 RUN apt-get install -y curl git wget unzip libgconf-2-4 gdb libstdc++6 libglu1-mesa fonts-droid-fallback lib32stdc++6 python3 sed
@@ -15,8 +18,6 @@ RUN flutter channel master
 RUN flutter upgrade
 # Copy files to container and build
 RUN mkdir /app/
-RUN adduser -u 5679 --disabled-password --gecos "" amorphie-backoffice && chown -R amorphie-backoffice:amorphie-backoffice /app
-USER amorphie-backoffice
 COPY . /app/
 WORKDIR /app/
 RUN flutter build web
