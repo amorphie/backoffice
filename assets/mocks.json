@@ -1,0 +1,52 @@
+{
+    "user": [
+        {
+            "firstName": "Ertugrul",
+            "lastName": "Dagli",
+            "reference": "e",
+            "phone": "0(555)0003834",
+            "eMail": "ertugazi91@gmail.com",
+            "status": "active",
+            "tag": [
+                {
+                    "name": "tag1"
+                },
+                {
+                    "name": "tag2"
+                }
+            ]
+        },
+        {
+            "firstName": "Ertugrul",
+            "lastName": "Dagli",
+            "reference": "e",
+            "phone": "0(555)0003834",
+            "eMail": "ertugazi91@gmail.com",
+            "status": "active",
+            "tag": [
+                {
+                    "name": "tag1"
+                },
+                {
+                    "name": "tag2"
+                }
+            ]
+        },
+        {
+            "firstName": "Ertugrul",
+            "lastName": "Dagli",
+            "reference": "e",
+            "phone": "0(555)0003834",
+            "eMail": "ertugazi91@gmail.com",
+            "status": "active",
+            "tag": [
+                {
+                    "name": "tag1"
+                },
+                {
+                    "name": "tag2"
+                }
+            ]
+        }
+    ]
+}

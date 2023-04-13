@@ -1,0 +1,61 @@
+{
+    "items": [
+        {
+            "type": "profile"
+        },
+        {
+            "type": "divider"
+        },
+        {
+            "type": "group",
+            "title": {
+                "tr-TR": "Yetkilendirme",
+                "en-EN": "IDM"
+            },
+            "items": [
+                {
+                    "type": "group",
+                    "title": {
+                        "tr-TR": "Kullanicilar",
+                        "en-EN": "Users"
+                    },
+                    "items": [
+                        {
+                            "type": "entity",
+                            "entity": "user",
+                            "search-layout": "full",
+                            "display-layout": "compact",
+                            "title": {
+                                "tr-TR": "Kullanıcı Listesi",
+                                "en-EN": "User List"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "entity",
+                    "entity": "consnet",
+                    "search-layout": "full",
+                    "display-layout": "compact",
+                    "title": {
+                        "tr-TR": "Rizalar",
+                        "en-EN": "Consents"
+                    }
+                },
+                {
+                    "type": "divider"
+                },
+                {
+                    "type": "entity",
+                    "entity": "client",
+                    "search-layout": "full",
+                    "display-layout": "compact",
+                    "title": {
+                        "tr-TR": "Istemciler",
+                        "en-EN": "Clients"
+                    }
+                }
+            ]
+        }
+    ]
+}

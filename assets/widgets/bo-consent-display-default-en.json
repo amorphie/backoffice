@@ -1,0 +1,59 @@
+{
+    "type": "container",
+    "args": {
+      "margin": 5,
+      "height": 100,
+      "padding": 14,
+      "decoration": {
+        "border": {"style": "solid", "width": 1},
+        "borderRadius": {"type": "all", "radius": 14}
+      }
+    },
+    "child": {
+      "type": "column",
+      "args": {"crossAxisAlignment": "start"},
+      "children": [
+        {
+          "type": "row",
+          "children": [
+            {
+              "type": "icon",
+              "args": {
+                "icon": {
+                  "codePoint": "0xe5db",
+                  "fontFamily": "MaterialIcons"
+                }
+              }
+            },
+            {
+              "type": "padding",
+              "args": {
+                "padding": {"left": 14, "right": 14}
+              },
+              "child": {
+                "type": "column",
+                "args": {"crossAxisAlignment": "start"},
+                "children": [
+                  {
+                    "type": "text",
+                    "args": {"text": "bankName", "style": {}}
+                  },
+                  {
+                    "type": "text",
+                    "args": {
+                      "text": "amountOfConsents Consent",
+                      "style": {}
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "type": "text",
+              "args": {"text": "date", "style": {}}
+            }
+          ]
+        }
+      ]
+    }
+  }

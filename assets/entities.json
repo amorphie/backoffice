@@ -1,0 +1,143 @@
+{
+    "user": {
+        "search": {
+            "list_url": "https://test-amorphie-fact-user.burgan.com.tr",
+            "search_url": "https://test-amorphie-fact-user.burgan.com.tr/search",
+            "filter": [
+                {
+                    "field": "tag",
+                    "type": "reference"
+                },
+                {
+                    "field": "firstName",
+                    "type": "contain"
+                }
+            ],
+            "columns": [
+                {
+                    "data": "firstName",
+                    "title": {
+                        "tr-TR": "İsim",
+                        "en-EN": "name"
+                    },
+                    "sort": 1
+                },
+                {
+                    "data": "lastName",
+                    "title": {
+                        "tr-TR": "Soyisim",
+                        "en-EN": "Last Name"
+                    },
+                    "sort": 2
+                },
+                {
+                    "data": "reference",
+                    "title": {
+                        "tr-TR": "reference",
+                        "en-EN": "reference"
+                    },
+                    "sort": 3
+                },
+                {
+                    "data": "password",
+                    "title": {
+                        "tr-TR": "password",
+                        "en-EN": "password"
+                    },
+                    "sort": 1
+                },
+                {
+                    "data": "phone",
+                    "title": {
+                        "tr-TR": "phone",
+                        "en-EN": "phone"
+                    },
+                    "sort": 1
+                },
+                {
+                    "data": "eMail",
+                    "title": {
+                        "tr-TR": "eMail",
+                        "en-EN": "eMail"
+                    },
+                    "sort": 1
+                },
+                {
+                    "data": "status",
+                    "title": {
+                        "tr-TR": "status",
+                        "en-EN": "status"
+                    },
+                    "sort": 1
+                },
+                {
+                    "data": "tag",
+                    "title": {
+                        "tr-TR": "tag",
+                        "en-EN": "tag"
+                    },
+                    "sort": 1
+                }
+            ]
+        },
+        "display": {
+            "url": "https://...../consents/@id",
+            "name": "default",
+            "default": true,
+            "title": {
+                "tr-TR": "Kullanici Rizasi",
+                "en-EN": "User Consent"
+            },
+            "summary-template": {
+                "tr-TR": "bo-consent-display-summary-tr",
+                "en-EN": "bo-consent-display-summary-en"
+            },
+            "history": true,
+            "state-manager": true,
+            "running-workflows": true,
+            "availbale-workflows": true,
+            "tabs": [
+                {
+                    "type": "render",
+                    "entity": "consent",
+                    "order": 0,
+                    "id": "$.id",
+                    "template": {
+                        "tr-TR": "bo-consent-display-default-tr",
+                        "en-EN": "bo-consent-display-default-en"
+                    },
+                    "title": {
+                        "tr-TR": "Riza Detaylari",
+                        "en-EN": "Consent Details"
+                    }
+                },
+                {
+                    "type": "search",
+                    "entity": "token",
+                    "layout": "default-for-consent",
+                    "order": 1,
+                    "filter": "token",
+                    "fitler-value": "$.consent.id",
+                    "title": {
+                        "tr-TR": "Anahtarlar",
+                        "en-EN": "Tokens"
+                    }
+                },
+                {
+                    "type": "display",
+                    "entity": "user",
+                    "order": 2,
+                    "id": "$.user.id",
+                    "layout": "minimal",
+                    "title": {
+                        "tr-TR": "Kullanici",
+                        "en-EN": "User"
+                    }
+                }
+            ]
+        },
+        "delete": {
+            "url": "https://test-amorphie-fact-user.burgan.com.tr/users/@id"
+        }
+    }
+}
