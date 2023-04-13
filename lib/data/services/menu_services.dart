@@ -16,13 +16,6 @@ class MenuServices {
     return map;
   }
 
-  Future<Map<String, dynamic>> getMockData() async {
-    var result = await rootBundle.loadString("assets/mocks.json");
-    var data = json.decode(result);
-
-    return data;
-  }
-
   Future<MenuModel> getMenuData() async {
     var result = await rootBundle.loadString("assets/ui.json");
     var data = json.decode(result);

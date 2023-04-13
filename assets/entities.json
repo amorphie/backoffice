@@ -1,8 +1,8 @@
 {
     "user": {
         "search": {
-            "list_url": "https://test-amorphie-fact-user.burgan.com.tr",
-            "search_url": "https://test-amorphie-fact-user.burgan.com.tr/search",
+            "list_url": "https://test-amorphie-fact-user.burgan.com.tr/user/search",
+            "search_url": "https://test-amorphie-fact-user.burgan.com.tr/user/search",
             "filter": [
                 {
                     "field": "tag",
@@ -81,7 +81,7 @@
             ]
         },
         "display": {
-            "url": "https://...../consents/@id",
+            "url": "https://test-amorphie-fact-user.burgan.com.tr/user/search/@id",
             "name": "default",
             "default": true,
             "title": {
@@ -137,7 +137,50 @@
             ]
         },
         "delete": {
-            "url": "https://test-amorphie-fact-user.burgan.com.tr/users/@id"
+            "url": "https://test-amorphie-fact-user.burgan.com.tr/user/@id"
+        }
+    },
+    "tag": {
+        "search": {
+            "list_url": "https://test-amorphie-tag.burgan.com.tr/tag",
+            "search_url": "https://test-amorphie-tag.burgan.com.tr/tag",
+            "columns": [
+                {
+                    "data": "name",
+                    "title": {
+                        "tr-TR": "İsim",
+                        "en-EN": "Name"
+                    },
+                    "sort": 1
+                },
+                {
+                    "data": "tags",
+                    "title": {
+                        "tr-TR": "Tags",
+                        "en-EN": "Tags"
+                    },
+                    "sort": 2
+                },
+                {
+                    "data": "ttl",
+                    "title": {
+                        "tr-TR": "Ttl",
+                        "en-EN": "Ttl"
+                    },
+                    "sort": 3
+                },
+                {
+                    "data": "url",
+                    "title": {
+                        "tr-TR": "Url",
+                        "en-EN": "Url"
+                    },
+                    "sort": 4
+                }
+            ]
+        },
+        "delete": {
+            "url": "https://test-amorphie-tag.burgan.com.tr/tag/@id"
         }
     }
 }

@@ -26,7 +26,6 @@ class EntityController extends GetxController {
 
   Future<void> init() async {
     MenuServices services = MenuServices();
-    mocks = await services.getMockData();
     entities = await services.getEntityData();
   }
 
@@ -35,7 +34,6 @@ class EntityController extends GetxController {
     EntityModel? entityModel = entities[menu.menuItem.value.entity];
     if (entityModel != null) {
       entity = entityModel;
-      await getUserList();
       await getDataList();
       await getTemplates();
     } else {
@@ -45,45 +43,35 @@ class EntityController extends GetxController {
 
   Future<void> getDataList() async {
     loading.value = true;
-    AppMenuController menu = Get.find<AppMenuController>();
 
     await Future.delayed(Duration(seconds: 2));
     dataList.clear();
-    var response = await http.get(Uri.parse(entity.search!.searchUrl));
-    print(entity.search!.searchUrl);
-    var data = mocks[menu.menuItem.value.entity];
-    for (var item in data) {
+    var response = await http.get(Uri.parse(entity.search!.searchUrl + "?page=0&pageSize=100"), headers: {
+      // 'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    });
+    dynamic data = jsonDecode(response.body);
+    var list = data;
+    if (data["data"] != null) {
+      list = data["data"];
+    }
+    for (var item in list) {
       dataList.add(item);
     }
     loading.value = false;
   }
 
-  Future<void> getUserList() async {
-    //dataList.clear();
-    var response = await http.get(Uri.parse('https://test-amorphie-fact-user.burgan.com.tr/user/search?page=0&pageSize=100'), headers: {
-      // 'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    });
-    dynamic data = jsonDecode(response.body);
-
-    if (response.statusCode == 200) {
-      for (var item in data['data']) {
-        userList.add(item);
-      }
-
-      print(userList);
-    } else {
-      throw Exception('Failed to fetch list');
-    }
-  }
-
-  Map<String, String> templates = {};
+  Map<String, dynamic> templates = {};
 
   getTemplates() async {
     templates = {};
+    // templates.addAll({entity.display!.summary_template!.trTR: await rootBundle.loadString("widgets/${entity.display!.summary_template!.trTR}.json")});
+
     for (var tab in entity.display!.tabs!) {
       if (tab.type == "render") {
-        templates.addAll({tab.template!.trTR: await rootBundle.loadString("widgets/${tab.template!.trTR}.json")});
+        String data = await rootBundle.loadString("widgets/${tab.template!.trTR}.json");
+        var template = jsonDecode(data);
+        templates.addAll({tab.template!.trTR: template});
       }
     }
   }

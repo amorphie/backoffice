@@ -8,7 +8,7 @@
             "name": "backoffice",
             "request": "launch",
             "type": "dart",
-            "program": "lib/app/main.dart",
+            "program": "lib/main.dart",
         },
         {
             "name": "backoffice (profile mode)",

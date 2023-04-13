@@ -1,4 +1,3 @@
-import 'package:admin/data/services/user.dart';
 import 'package:admin/ui/components/detail_widget.dart';
 import 'package:admin/ui/controllers/entity_controller.dart';
 import 'package:admin/ui/controllers/home_controller.dart';
@@ -32,7 +31,7 @@ class HomePage extends StatelessWidget {
                   if (menuController.hasSelectedMenuItem) {
                     return AppDataTable(
                       title: menuController.menuItem.value.title!,
-                      data: entityController.userList,
+                      data: entityController.dataList,
                       columns: entityController.entity.search?.columns ?? [],
                       loading: entityController.loading.value,
                       onPressed: (data) {
