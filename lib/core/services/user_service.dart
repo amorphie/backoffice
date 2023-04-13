@@ -5,7 +5,7 @@ class UserService {
 
   Future<ResponseModel> getUsers([String reference = "", int page = 0, int size = 100]) async {
     ResponseModel response = await Executer.get(
-      endpoint: BaseUrl.user.getURl("user?Reference$reference=&page=$page&pageSize=$size"),
+      endpoint: BaseUrl.user.getURl("user/search?page=$page&pageSize=$size"),
     );
     return response;
   }

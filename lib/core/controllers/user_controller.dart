@@ -20,7 +20,7 @@ class UserController extends GetxController {
     ResponseModel response = await _services.getUsers();
 
     if (response.success) {
-      for (var item in response.data) {
+      for (var item in response.data["data"]) {
         UserModel model = UserModel.fromMap(item);
         _list.add(model);
       }
