@@ -39,13 +39,13 @@ class HomePage extends StatelessWidget {
                       },
                     );
                   } else {
-                    return const Expanded(child: FormioPage());
+                    return const FormioPage();
                   }
                 },
               ),
             ),
             // ),
-            if (homeController.hasDisplayView) Expanded(child: DetailWidget()),
+            if (homeController.hasDisplayView) const Expanded(child: DetailWidget()),
           ],
         );
       }),
