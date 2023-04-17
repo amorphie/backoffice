@@ -29,6 +29,13 @@ class FormioModel {
     );
   }
 
+  factory FormioModel.init() {
+    return FormioModel(
+        stateManager: StateManagerModel(),
+        availableWorkflows: [],
+        runningWorkflows: []);
+  }
+
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'stateManager': stateManager.toMap(),
