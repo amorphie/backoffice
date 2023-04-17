@@ -12,7 +12,7 @@ RUN git clone https://github.com/flutter/flutter.git /usr/local/flutter
 ENV PATH="/usr/local/flutter/bin:/usr/local/flutter/bin/cache/dart-sdk/bin:${PATH}"
 
 
-RUN wget -c https://storage.googleapis.com/flutter_infra_release/gradle-wrapper/fd5c1f2c013565a3bea56ada6df9d2b8e96d56aa/gradle-wrapper.tgz
+RUN wget -c https://storage.googleapis.com/flutter_infra_release/gradle-wrapper/fd5c1f2c013565a3bea56ada6df9d2b8e96d56aa/gradle-wrapper.tgz | tar  -zx -C /usr/local/flutter/bin/cache/artifacts/gradle_wrapper
 # Enable flutter web
 RUN flutter channel master
 RUN flutter upgrade
