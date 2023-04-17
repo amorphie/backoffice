@@ -8,51 +8,46 @@ import 'package:admin/data/models/formio/altmodels/running_workflows.dart';
 import 'package:admin/data/models/formio/altmodels/statemanager.dart';
 
 class FormioModel {
-  StateManagerModel stateManagerModel;
-  List<RunningWorkflowsModel> runningWorkflowsModel;
-  List<AvailableWorkflowModel> availableWorkflowsModel;
+  StateManagerModel stateManager;
+  List<RunningWorkflowsModel> availableWorkflows;
+  List<AvailableWorkflowModel> runningWorkflows;
   FormioModel({
-    required this.stateManagerModel,
-    required this.runningWorkflowsModel,
-    required this.availableWorkflowsModel,
+    required this.stateManager,
+    required this.availableWorkflows,
+    required this.runningWorkflows,
   });
 
   FormioModel copyWith({
-    StateManagerModel? stateManagerModel,
-    List<RunningWorkflowsModel>? runningWorkflowsModel,
-    List<AvailableWorkflowModel>? availableWorkflowsModel,
+    StateManagerModel? stateManager,
+    List<RunningWorkflowsModel>? availableWorkflows,
+    List<AvailableWorkflowModel>? runningWorkflows,
   }) {
     return FormioModel(
-      stateManagerModel: stateManagerModel ?? this.stateManagerModel,
-      runningWorkflowsModel:
-          runningWorkflowsModel ?? this.runningWorkflowsModel,
-      availableWorkflowsModel:
-          availableWorkflowsModel ?? this.availableWorkflowsModel,
+      stateManager: stateManager ?? this.stateManager,
+      availableWorkflows: availableWorkflows ?? this.availableWorkflows,
+      runningWorkflows: runningWorkflows ?? this.runningWorkflows,
     );
   }
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'stateManagerModel': stateManagerModel.toMap(),
-      'runningWorkflowsModel':
-          runningWorkflowsModel.map((x) => x.toMap()).toList(),
-      'availableWorkflowsModel':
-          availableWorkflowsModel.map((x) => x.toMap()).toList(),
+      'stateManager': stateManager.toMap(),
+      'availableWorkflows': availableWorkflows.map((x) => x.toMap()).toList(),
+      'runningWorkflows': runningWorkflows.map((x) => x.toMap()).toList(),
     };
   }
 
   factory FormioModel.fromMap(Map<String, dynamic> map) {
     return FormioModel(
-      stateManagerModel: StateManagerModel.fromMap(
-          map['stateManagerModel'] as Map<String, dynamic>),
-      runningWorkflowsModel: List<RunningWorkflowsModel>.from(
-        (map['runningWorkflowsModel'] as List<int>).map<RunningWorkflowsModel>(
+      stateManager: StateManagerModel.fromMap(
+          map['stateManager'] as Map<String, dynamic>),
+      availableWorkflows: List<RunningWorkflowsModel>.from(
+        (map['availableWorkflows'] as List<int>).map<RunningWorkflowsModel>(
           (x) => RunningWorkflowsModel.fromMap(x as Map<String, dynamic>),
         ),
       ),
-      availableWorkflowsModel: List<AvailableWorkflowModel>.from(
-        (map['availableWorkflowsModel'] as List<int>)
-            .map<AvailableWorkflowModel>(
+      runningWorkflows: List<AvailableWorkflowModel>.from(
+        (map['runningWorkflows'] as List<int>).map<AvailableWorkflowModel>(
           (x) => AvailableWorkflowModel.fromMap(x as Map<String, dynamic>),
         ),
       ),
@@ -66,20 +61,20 @@ class FormioModel {
 
   @override
   String toString() =>
-      'FormioModel(stateManagerModel: $stateManagerModel, runningWorkflowsModel: $runningWorkflowsModel, availableWorkflowsModel: $availableWorkflowsModel)';
+      'FormioModel(stateManager: $stateManager, availableWorkflows: $availableWorkflows, runningWorkflows: $runningWorkflows)';
 
   @override
   bool operator ==(covariant FormioModel other) {
     if (identical(this, other)) return true;
 
-    return other.stateManagerModel == stateManagerModel &&
-        listEquals(other.runningWorkflowsModel, runningWorkflowsModel) &&
-        listEquals(other.availableWorkflowsModel, availableWorkflowsModel);
+    return other.stateManager == stateManager &&
+        listEquals(other.availableWorkflows, availableWorkflows) &&
+        listEquals(other.runningWorkflows, runningWorkflows);
   }
 
   @override
   int get hashCode =>
-      stateManagerModel.hashCode ^
-      runningWorkflowsModel.hashCode ^
-      availableWorkflowsModel.hashCode;
+      stateManager.hashCode ^
+      availableWorkflows.hashCode ^
+      runningWorkflows.hashCode;
 }
