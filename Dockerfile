@@ -16,7 +16,7 @@ ENV PATH="/usr/local/flutter/bin:/usr/local/flutter/bin/cache/dart-sdk/bin:${PAT
 #RUN ls -a
 #RUN mkdir /usr/local/flutter/bin/cache/artifacts/gradle_wrapper
 #RUN wget -c https://storage.googleapis.com/flutter_infra_release/gradle-wrapper/fd5c1f2c013565a3bea56ada6df9d2b8e96d56aa/gradle-wrapper.tgz -O - | tar -xz -C /usr/local/flutter/bin/cache/artifacts/gradle_wrapper
-RUN cat /etc/subgid
+RUN echo /etc/subgid
 
 
 # Enable flutter web
