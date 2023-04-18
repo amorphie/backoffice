@@ -4,6 +4,7 @@ import 'package:admin/ui/controllers/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../constants/responsive.dart';
 import '../common/menu.dart';
 import '../components/data_table/data_table.dart';
 import '../controllers/menu_controller.dart';
@@ -24,7 +25,7 @@ class HomePage extends StatelessWidget {
       body: Obx(() {
         return Row(
           children: [
-            AppMenu(),
+            if (Responsive.isDesktop(context)) AppMenu(),
             Expanded(
               child: Obx(
                 () {
@@ -48,7 +49,8 @@ class HomePage extends StatelessWidget {
               ),
             ),
             // ),
-            if (homeController.hasDisplayView) const Expanded(child: DetailWidget()),
+            if (homeController.hasDisplayView)
+              const Expanded(child: DetailWidget()),
           ],
         );
       }),
