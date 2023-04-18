@@ -1,0 +1,57 @@
+{
+    "name": "bo-list-template",
+    "render-data": {},
+    "children-name": "test-amorphie-backoffice-user-display-consent-template",
+    "children": [
+        {
+            "render-data": {
+                "infoText": "Akbank Consent",
+                "contentText": "Consent",
+                "date": "22/01/2023"
+            }
+        },
+        {
+            "render-data": {
+                "infoText": "Garanti Consent",
+                "contentText": "Consent",
+                "date": "21/01/2023"
+            }
+        },
+        {
+            "render-data": {
+                "infoText": "Garanti Consent",
+                "contentText": "Consent",
+                "date": "21/01/2023"
+            }
+        },
+        {
+            "render-data": {
+                "infoText": "Garanti Consent",
+                "contentText": "Consent",
+                "date": "21/01/2023"
+            }
+        },
+        {
+            "render-data": {
+                "infoText": "Garanti Consent",
+                "contentText": "Consent",
+                "date": "21/01/2023"
+            }
+        },
+        {
+            "render-data": {
+                "infoText": "Garanti Consent",
+                "contentText": "Consent",
+                "date": "21/01/2023"
+            }
+        },
+        {
+            "children-name": "bo-consent-display-active-default-tr",
+            "render-data": {
+                "infoText": "Akbank Consent",
+                "contentText": "Consent",
+                "date": "22/01/2023"
+            }
+        }
+    ]
+}

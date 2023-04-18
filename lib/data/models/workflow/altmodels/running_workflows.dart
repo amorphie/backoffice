@@ -5,29 +5,29 @@ import 'package:flutter/foundation.dart';
 
 import 'transitions.dart';
 
-class StateManagerModel {
+class RunningWorkflowsModel {
   String? name;
   String? title;
   List<TransitionsModel>? transitions;
-  String? status;
-  StateManagerModel({
+  String? instanceId;
+  RunningWorkflowsModel({
     this.name,
     this.title,
     this.transitions,
-    this.status,
+    this.instanceId,
   });
 
-  StateManagerModel copyWith({
+  RunningWorkflowsModel copyWith({
     String? name,
     String? title,
     List<TransitionsModel>? transitions,
-    String? status,
+    String? instanceId,
   }) {
-    return StateManagerModel(
+    return RunningWorkflowsModel(
       name: name ?? this.name,
       title: title ?? this.title,
       transitions: transitions ?? this.transitions,
-      status: status ?? this.status,
+      instanceId: instanceId ?? this.instanceId,
     );
   }
 
@@ -36,50 +36,43 @@ class StateManagerModel {
       'name': name,
       'title': title,
       'transitions': transitions!.map((x) => x.toMap()).toList(),
-      'status': status,
+      'instanceId': instanceId,
     };
   }
 
-  factory StateManagerModel.fromMap(Map<String, dynamic> map) {
-    return StateManagerModel(
+  factory RunningWorkflowsModel.fromMap(Map<String, dynamic> map) {
+    return RunningWorkflowsModel(
       name: map['name'] != null ? map['name'] as String : null,
       title: map['title'] != null ? map['title'] as String : null,
       transitions: map['transitions'] != null
           ? List<TransitionsModel>.from(
-              (map['transitions'] as List<int>).map<TransitionsModel?>(
+              (map['transitions']).map<TransitionsModel?>(
                 (x) => TransitionsModel.fromMap(x as Map<String, dynamic>),
               ),
             )
           : null,
-      status: map['status'] != null ? map['status'] as String : null,
+      instanceId: map['instanceId'] != null ? map['instanceId'] as String : null,
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory StateManagerModel.fromJson(String source) =>
-      StateManagerModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory RunningWorkflowsModel.fromJson(String source) => RunningWorkflowsModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
-    return 'StateManagerModel(name: $name, title: $title, transitions: $transitions, status: $status)';
+    return 'RunningWorkflowsModel(name: $name, title: $title, transitions: $transitions, instanceId: $instanceId)';
   }
 
   @override
-  bool operator ==(covariant StateManagerModel other) {
+  bool operator ==(covariant RunningWorkflowsModel other) {
     if (identical(this, other)) return true;
 
-    return other.name == name &&
-        other.title == title &&
-        listEquals(other.transitions, transitions) &&
-        other.status == status;
+    return other.name == name && other.title == title && listEquals(other.transitions, transitions) && other.instanceId == instanceId;
   }
 
   @override
   int get hashCode {
-    return name.hashCode ^
-        title.hashCode ^
-        transitions.hashCode ^
-        status.hashCode;
+    return name.hashCode ^ title.hashCode ^ transitions.hashCode ^ instanceId.hashCode;
   }
 }

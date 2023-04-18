@@ -3,7 +3,9 @@ import 'package:admin/data/models/menu/enums/menu_item_type.dart';
 import 'package:admin/ui/common/menu_button_card.dart';
 import 'package:admin/ui/common/profile.dart';
 import 'package:admin/ui/controllers/entity_controller.dart';
+import 'package:admin/ui/controllers/home_controller.dart';
 import 'package:admin/ui/controllers/menu_controller.dart';
+import 'package:admin/ui/controllers/workflow_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -17,6 +19,7 @@ class MenuItem extends StatelessWidget {
   }) : super(key: key);
 
   final AppMenuController menuController = Get.find<AppMenuController>();
+  final HomeController homeController = Get.find<HomeController>();
   final EntityController entityController = Get.find<EntityController>();
   @override
   Widget build(BuildContext context) {
@@ -52,6 +55,21 @@ class MenuItem extends StatelessWidget {
                   onPressed: () {
                     menuController.menuItem.value = model;
                     entityController.setEntityMenu();
+                  },
+                  isSelected: menuController.menuItem.value == model,
+                );
+              });
+            case MenuItemType.workflow:
+              return Obx(() {
+                return MenuButtonCard(
+                  text: model.title!.trTR,
+                  onPressed: () async {
+                    WorkflowController workflowController = Get.put<WorkflowController>(WorkflowController());
+                    await workflowController.startTransition(
+                      entity: model.entity!,
+                      // recordId: "cf0a00ce-b0e5-4f0e-8c31-7e35cd4d4f5a",
+                    );
+                    menuController.menuItem.value = model;
                   },
                   isSelected: menuController.menuItem.value == model,
                 );

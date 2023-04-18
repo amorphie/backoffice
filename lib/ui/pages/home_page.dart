@@ -29,6 +29,9 @@ class HomePage extends StatelessWidget {
               child: Obx(
                 () {
                   if (menuController.hasSelectedMenuItem) {
+                    if (menuController.isWorkflowItem) {
+                      return FormioPage();
+                    }
                     return AppDataTable(
                       title: menuController.menuItem.value.title!,
                       data: entityController.dataList,
@@ -39,7 +42,7 @@ class HomePage extends StatelessWidget {
                       },
                     );
                   } else {
-                    return const FormioPage();
+                    return Container();
                   }
                 },
               ),

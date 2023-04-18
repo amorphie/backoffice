@@ -1,6 +1,8 @@
 enum MenuItemType {
   none,
   profile,
+  workflow,
+  /*Formio ile çalışacak formları bu sayede tetikleyecek*/
   entity,
   /* Bir modele bağlı ise o modele gidecek. */
   group,
@@ -9,6 +11,8 @@ enum MenuItemType {
 
   factory MenuItemType.fromMap(String value) {
     switch (value) {
+      case "workflow":
+        return MenuItemType.workflow;
       case "entity":
         return MenuItemType.entity;
       case "profile":

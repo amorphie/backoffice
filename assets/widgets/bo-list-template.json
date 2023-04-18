@@ -1,0 +1,6 @@
+{
+  "type": "list_view",
+  "children": [
+    "{{data.children-data}}"
+  ]
+}

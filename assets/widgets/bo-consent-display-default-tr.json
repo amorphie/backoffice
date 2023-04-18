@@ -1,4 +1,3 @@
-
 {
   "type": "list_view",
   "children": [
@@ -9,70 +8,14 @@
         "height": 70,
         "padding": 14,
         "decoration": {
-          "border": {"style": "solid", "width": 1},
-          "borderRadius": {"type": "all", "radius": 14}
-        }
-      },
-      "child": {
-        "type": "column",
-        "children": [
-          {
-            "type": "row",
-            "args": {"mainAxisAlignment": "spaceBetween"},
-            "children": [
-              {
-                "type": "padding",
-                "args": {
-                  "padding": {"left": 14, "right": 14}
-                },
-                "child": {
-                  "type": "column",
-                  "args": {"crossAxisAlignment": "start"},
-                  "children": [
-                    {
-                      "type": "text",
-                      "args": {
-                        "text": "infoText",
-                        "style": {"fontSize": 15, "fontWeight": "bold"}
-                      }
-                    },
-                    {
-                      "type": "sized_box",
-                      "args": {"height": 3}
-                    },
-                    {
-                      "type": "text",
-                      "args": {
-                        "text": "Content Text",
-                        "style": {
-                          "fontSize": 12,
-                          "fontWeight": "w400",
-                          "color": "#9dabe8"
-                        }
-                      }
-                    }
-                  ]
-                }
-              },
-              {
-                "type": "text",
-                "args": {"text": "date", "style": {}}
-              }
-            ]
+          "border": {
+            "style": "solid",
+            "width": 1
+          },
+          "borderRadius": {
+            "type": "all",
+            "radius": 14
           }
-        ]
-      }
-    }
-    ,
-    {
-      "type": "container",
-      "args": {
-        "margin": 5,
-        "height": 70,
-        "padding": 14,
-        "decoration": {
-          "border": {"style": "solid", "width": 1},
-          "borderRadius": {"type": "all", "radius": 14}
         }
       },
       "child": {
@@ -80,27 +23,39 @@
         "children": [
           {
             "type": "row",
-            "args": {"mainAxisAlignment": "spaceBetween"},
+            "args": {
+              "mainAxisAlignment": "spaceBetween"
+            },
             "children": [
               {
                 "type": "padding",
                 "args": {
-                  "padding": {"left": 14, "right": 14}
+                  "padding": {
+                    "left": 14,
+                    "right": 14
+                  }
                 },
                 "child": {
                   "type": "column",
-                  "args": {"crossAxisAlignment": "start"},
+                  "args": {
+                    "crossAxisAlignment": "start"
+                  },
                   "children": [
                     {
                       "type": "text",
                       "args": {
                         "text": "infoText",
-                        "style": {"fontSize": 15, "fontWeight": "bold"}
+                        "style": {
+                          "fontSize": 15,
+                          "fontWeight": "bold"
+                        }
                       }
                     },
                     {
                       "type": "sized_box",
-                      "args": {"height": 3}
+                      "args": {
+                        "height": 3
+                      }
                     },
                     {
                       "type": "text",
@@ -118,7 +73,10 @@
               },
               {
                 "type": "text",
-                "args": {"text": "date", "style": {}}
+                "args": {
+                  "text": "date",
+                  "style": {}
+                }
               }
             ]
           }
@@ -132,8 +90,14 @@
         "height": 70,
         "padding": 14,
         "decoration": {
-          "border": {"style": "solid", "width": 1},
-          "borderRadius": {"type": "all", "radius": 14}
+          "border": {
+            "style": "solid",
+            "width": 1
+          },
+          "borderRadius": {
+            "type": "all",
+            "radius": 14
+          }
         }
       },
       "child": {
@@ -141,27 +105,39 @@
         "children": [
           {
             "type": "row",
-            "args": {"mainAxisAlignment": "spaceBetween"},
+            "args": {
+              "mainAxisAlignment": "spaceBetween"
+            },
             "children": [
               {
                 "type": "padding",
                 "args": {
-                  "padding": {"left": 14, "right": 14}
+                  "padding": {
+                    "left": 14,
+                    "right": 14
+                  }
                 },
                 "child": {
                   "type": "column",
-                  "args": {"crossAxisAlignment": "start"},
+                  "args": {
+                    "crossAxisAlignment": "start"
+                  },
                   "children": [
                     {
                       "type": "text",
                       "args": {
                         "text": "infoText",
-                        "style": {"fontSize": 15, "fontWeight": "bold"}
+                        "style": {
+                          "fontSize": 15,
+                          "fontWeight": "bold"
+                        }
                       }
                     },
                     {
                       "type": "sized_box",
-                      "args": {"height": 3}
+                      "args": {
+                        "height": 3
+                      }
                     },
                     {
                       "type": "text",
@@ -179,13 +155,97 @@
               },
               {
                 "type": "text",
-                "args": {"text": "date", "style": {}}
+                "args": {
+                  "text": "date",
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "type": "container",
+      "args": {
+        "margin": 5,
+        "height": 70,
+        "padding": 14,
+        "decoration": {
+          "border": {
+            "style": "solid",
+            "width": 1
+          },
+          "borderRadius": {
+            "type": "all",
+            "radius": 14
+          }
+        }
+      },
+      "child": {
+        "type": "column",
+        "children": [
+          {
+            "type": "row",
+            "args": {
+              "mainAxisAlignment": "spaceBetween"
+            },
+            "children": [
+              {
+                "type": "padding",
+                "args": {
+                  "padding": {
+                    "left": 14,
+                    "right": 14
+                  }
+                },
+                "child": {
+                  "type": "column",
+                  "args": {
+                    "crossAxisAlignment": "start"
+                  },
+                  "children": [
+                    {
+                      "type": "text",
+                      "args": {
+                        "text": "infoText",
+                        "style": {
+                          "fontSize": 15,
+                          "fontWeight": "bold"
+                        }
+                      }
+                    },
+                    {
+                      "type": "sized_box",
+                      "args": {
+                        "height": 3
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "args": {
+                        "text": "Content Text",
+                        "style": {
+                          "fontSize": 12,
+                          "fontWeight": "w400",
+                          "color": "#9dabe8"
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "text",
+                "args": {
+                  "text": "date",
+                  "style": {}
+                }
               }
             ]
           }
         ]
       }
     }
-    
-
-  ]}
+  ]
+}

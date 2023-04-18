@@ -3,7 +3,7 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 
-import '../transitions.dart';
+import 'transitions.dart';
 
 class AvailableWorkflowModel {
   String? name;
@@ -41,7 +41,7 @@ class AvailableWorkflowModel {
       title: map['title'] != null ? map['title'] as String : null,
       transitions: map['transitions'] != null
           ? List<TransitionsModel>.from(
-              (map['transitions'] as List<int>).map<TransitionsModel?>(
+              (map['transitions']).map<TransitionsModel?>(
                 (x) => TransitionsModel.fromMap(x as Map<String, dynamic>),
               ),
             )
@@ -51,21 +51,16 @@ class AvailableWorkflowModel {
 
   String toJson() => json.encode(toMap());
 
-  factory AvailableWorkflowModel.fromJson(String source) =>
-      AvailableWorkflowModel.fromMap(
-          json.decode(source) as Map<String, dynamic>);
+  factory AvailableWorkflowModel.fromJson(String source) => AvailableWorkflowModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
-  String toString() =>
-      'AvailableWorkflowModel(name: $name, title: $title, transitions: $transitions)';
+  String toString() => 'AvailableWorkflowModel(name: $name, title: $title, transitions: $transitions)';
 
   @override
   bool operator ==(covariant AvailableWorkflowModel other) {
     if (identical(this, other)) return true;
 
-    return other.name == name &&
-        other.title == title &&
-        listEquals(other.transitions, transitions);
+    return other.name == name && other.title == title && listEquals(other.transitions, transitions);
   }
 
   @override

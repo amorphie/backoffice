@@ -1,8 +1,12 @@
+import 'dart:convert';
 import 'dart:math';
 
+import 'package:admin/ui/controllers/workflow_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:webviewx/webviewx.dart';
+
+import '../../../data/models/workflow/altmodels/transitions.dart';
 
 class FormioPage extends StatefulWidget {
   const FormioPage({
@@ -13,11 +17,10 @@ class FormioPage extends StatefulWidget {
   _FormioPageState createState() => _FormioPageState();
 }
 
-late WebViewXController webviewController;
-
 class _FormioPageState extends State<FormioPage> {
-  Size get screenSize => MediaQuery.of(context).size;
+  late WebViewXController webviewController;
 
+  WorkflowController controller = Get.find<WorkflowController>();
   @override
   void dispose() {
     webviewController.dispose();
@@ -29,36 +32,54 @@ class _FormioPageState extends State<FormioPage> {
     return Center(
       child: Container(
         padding: const EdgeInsets.all(10.0),
-        child: Column(
-          children: <Widget>[
-            Expanded(
-              child: Container(
-                decoration: BoxDecoration(
-                  border: Border.all(width: 0.2),
-                ),
-                child: _buildWebViewX(),
-              ),
-            ),
-            TextButton(
-                onPressed: () async {
-                  var d = await webviewController.callJsMethod("onSubmit", []);
+        child: Obx(() {
+          List<TransitionsModel> transitions = controller.workflow.stateManager.transitions!;
+          if (controller.loading)
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          return Row(
+            children: [
+              ...transitions
+                  .map(
+                    (e) => Column(
+                      children: <Widget>[
+                        Expanded(
+                          child: Container(
+                            decoration: BoxDecoration(
+                              border: Border.all(width: 0.2),
+                            ),
+                            child: _buildWebViewX(e),
+                          ),
+                        ),
+                        TextButton(
+                            onPressed: () async {
+                              var d = await webviewController.callJsMethod("onSubmit", []);
 
-                  print(d);
-                },
-                child: Text("onSubmit")),
-          ],
-        ),
+                              print(e.name);
+                              var data = jsonDecode(d);
+                              controller.postTransition(transition: e, entityData: data);
+                            },
+                            child: Tooltip(message: e.name, child: Text(e.title!))),
+                      ],
+                    ),
+                  )
+                  .toList(),
+            ],
+          );
+        }),
       ),
     );
   }
 
-  Widget _buildWebViewX() {
+  Widget _buildWebViewX(TransitionsModel transition) {
     return WebViewX(
       key: const ValueKey('formio'),
-      initialContent: content,
+      initialContent: initialContent(transition.form!),
       initialSourceType: SourceType.html,
       height: double.maxFinite,
-      width: double.maxFinite,
+      width: 400,
+
       // height: screenSize.height / 1.3,
       // width: min(screenSize.width * 0.8, 1024),
       onWebViewCreated: (controller) {
@@ -146,7 +167,7 @@ class _FormioPageState extends State<FormioPage> {
 </head>
 
 <body>
-    <div id="formio"></div>
+    <div id="formio" style="padding: 40px;"></div>
     <script>
         var fr;
         Formio.icons = 'fontawesome';

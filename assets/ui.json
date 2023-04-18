@@ -29,6 +29,45 @@
                                 "tr-TR": "Kullanıcı Listesi",
                                 "en-EN": "User List"
                             }
+                        },
+                        {
+                            "type": "workflow",
+                            "entity": "user",
+                            "search-layout": "full",
+                            "display-layout": "none",
+                            "title": {
+                                "tr-TR": "Kullanıcı Ekle",
+                                "en-EN": "User Add"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "group",
+                    "title": {
+                        "tr-TR": "Resource",
+                        "en-EN": "Resource"
+                    },
+                    "items": [
+                        {
+                            "type": "entity",
+                            "entity": "resource",
+                            "search-layout": "full",
+                            "display-layout": "compact",
+                            "title": {
+                                "tr-TR": "Resource",
+                                "en-EN": "Resource"
+                            }
+                        },
+                        {
+                            "type": "workflow",
+                            "entity": "resource-role",
+                            "search-layout": "full",
+                            "display-layout": "none",
+                            "title": {
+                                "tr-TR": "Role",
+                                "en-EN": "Role"
+                            }
                         }
                     ]
                 },
