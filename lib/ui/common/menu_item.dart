@@ -31,13 +31,13 @@ class MenuItem extends StatelessWidget {
           switch (model.type) {
             case MenuItemType.group:
               return ExpansionTile(
-                backgroundColor: Colors.grey[350],
-                collapsedBackgroundColor: Colors.grey[350],
-                childrenPadding: const EdgeInsets.only(left: 10, bottom: 10, right: 10),
-                collapsedTextColor: Colors.grey.withOpacity(0.3),
+                //backgroundColor: Colors.grey[350],
+                // collapsedBackgroundColor: Colors.grey[350],
+                childrenPadding:
+                    const EdgeInsets.only(left: 10, bottom: 10, right: 10),
                 expandedCrossAxisAlignment: CrossAxisAlignment.start,
-                iconColor: Colors.black,
-                collapsedIconColor: Colors.black,
+                iconColor: Colors.white54,
+                collapsedIconColor: Colors.white70,
                 title: MenuButtonCard(
                   text: model.title!.trTR,
                   isEspanded: false,
@@ -64,7 +64,8 @@ class MenuItem extends StatelessWidget {
                 return MenuButtonCard(
                   text: model.title!.trTR,
                   onPressed: () async {
-                    WorkflowController workflowController = Get.put<WorkflowController>(WorkflowController());
+                    WorkflowController workflowController =
+                        Get.put<WorkflowController>(WorkflowController());
                     await workflowController.startTransition(
                       entity: model.entity!,
                       // recordId: "cf0a00ce-b0e5-4f0e-8c31-7e35cd4d4f5a",

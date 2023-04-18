@@ -24,11 +24,13 @@ class MenuButtonCard extends StatelessWidget {
         padding: const EdgeInsets.all(5),
         decoration: isEspanded
             ? BoxDecoration(
-                // color: Colors.white70,
                 borderRadius: BorderRadius.circular(5),
                 boxShadow: [
-                  BoxShadow(color: Colors.grey.withOpacity(0.4), blurRadius: 1, spreadRadius: 2, offset: Offset(2, 2)),
-                  BoxShadow(color: isSelected ? Colors.white70 : Colors.white30, blurRadius: 2, spreadRadius: 1, offset: Offset(2, 2)),
+                  BoxShadow(
+                      color: isSelected ? Colors.white10 : Colors.transparent,
+                      blurRadius: 2,
+                      spreadRadius: 1,
+                      offset: Offset(2, 2)),
                 ],
               )
             : null,
@@ -36,10 +38,15 @@ class MenuButtonCard extends StatelessWidget {
           children: [
             Text(
               text,
-              style: const TextStyle(color: Colors.black, fontSize: 16),
+              style: const TextStyle(color: Colors.white, fontSize: 16),
             ),
             const Spacer(),
-            if (isEspanded) const Icon(Icons.arrow_forward_ios, size: 15),
+            if (isEspanded)
+              const Icon(
+                Icons.arrow_forward_ios,
+                size: 15,
+                color: Colors.white70,
+              ),
           ],
         ),
       ),

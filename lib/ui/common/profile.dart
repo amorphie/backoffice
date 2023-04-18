@@ -22,7 +22,10 @@ class MenuProfileItem extends StatelessWidget {
           //     ),
           //   ),
           // ),
-          Text("username")
+          Text(
+            "username",
+            style: TextStyle(color: Colors.white70, fontSize: 17),
+          )
         ],
       ),
     );

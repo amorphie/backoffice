@@ -1,3 +1,4 @@
+import 'package:admin/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -10,11 +11,9 @@ class AppMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 250,
-      padding: const EdgeInsets.symmetric(horizontal: 10),
-      color: Colors.grey[200],
-      child: Column(
+    return Drawer(
+      backgroundColor: KC.primary,
+      child: ListView(
         children: [
           ...c.menu.value.items.map((e) => MenuItem(model: e)).toList(),
         ],

@@ -19,34 +19,34 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Home Page"),
-      ),
       body: Obx(() {
         return Row(
           children: [
             if (Responsive.isDesktop(context)) AppMenu(),
-            Expanded(
-              child: Obx(
-                () {
-                  if (menuController.hasSelectedMenuItem) {
-                    if (menuController.isWorkflowItem) {
-                      return FormioPage();
-                    }
-                    return AppDataTable(
-                      title: menuController.menuItem.value.title!,
-                      data: entityController.dataList,
-                      columns: entityController.entity.search?.columns ?? [],
-                      loading: entityController.loading.value,
-                      onPressed: (data) {
-                        homeController.displayView.value = data;
-                      },
-                    );
-                  } else {
-                    return Container();
+            Obx(
+              () {
+                if (menuController.hasSelectedMenuItem) {
+                  if (menuController.isWorkflowItem) {
+                    return FormioPage();
                   }
-                },
-              ),
+                  return Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: AppDataTable(
+                        title: menuController.menuItem.value.title!,
+                        data: entityController.dataList,
+                        columns: entityController.entity.search?.columns ?? [],
+                        loading: entityController.loading.value,
+                        onPressed: (data) {
+                          homeController.displayView.value = data;
+                        },
+                      ),
+                    ),
+                  );
+                } else {
+                  return Container();
+                }
+              },
             ),
             // ),
             if (homeController.hasDisplayView)

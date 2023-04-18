@@ -23,18 +23,19 @@ class AppDataTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return ListView(
       children: [
         Text(title.trTR),
-        Expanded(
-          child: Builder(builder: (context) {
-            if (loading) return Center(child: CircularProgressIndicator());
-            return PaginatedDataTable(
-              columns: columns.map((e) => DataColumn(label: Text(e.title.trTR))).toList(),
-              source: AppDataTableSource(data: data, columns: columns, onPressed: onPressed),
-            );
-          }),
-        ),
+        Builder(builder: (context) {
+          if (loading) return Center(child: CircularProgressIndicator());
+          return PaginatedDataTable(
+            columns: columns
+                .map((e) => DataColumn(label: Text(e.title.trTR)))
+                .toList(),
+            source: AppDataTableSource(
+                data: data, columns: columns, onPressed: onPressed),
+          );
+        }),
       ],
     );
   }
