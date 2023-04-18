@@ -34,6 +34,8 @@ RUN mkdir /app/
 COPY . /app/
 WORKDIR /app/
 
+RUN flutter clean
+RUN flutter pub get
 RUN flutter build web -t /app/lib/app/main.dart
 
 # Record the exposed port
