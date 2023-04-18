@@ -34,6 +34,8 @@ RUN mkdir /app/
 COPY . /app/
 WORKDIR /app/
 RUN pwd
+RUN cd /app
+RUN ls -l
 RUN flutter build web
 
 # Record the exposed port
