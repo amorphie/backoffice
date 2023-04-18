@@ -33,6 +33,7 @@ RUN flutter doctor
 RUN mkdir /app/
 COPY . /app/
 WORKDIR /app/
+RUN pwd
 RUN flutter build web
 
 # Record the exposed port
