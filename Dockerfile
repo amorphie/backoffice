@@ -33,10 +33,8 @@ RUN flutter doctor
 RUN mkdir /app/
 COPY . /app/
 WORKDIR /app/
-RUN pwd
-RUN cd /app
-RUN ls -l
-RUN flutter build web
+
+RUN flutter build web -t /app/lib/app/main.dart
 
 # Record the exposed port
 EXPOSE 5000
