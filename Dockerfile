@@ -11,7 +11,7 @@ RUN git clone https://github.com/flutter/flutter.git /usr/local/flutter
 # Set flutter environment path
 ENV PATH="/usr/local/flutter/bin:/usr/local/flutter/bin/cache/dart-sdk/bin:${PATH}"
 
-ENV TAR_OPTIONS= --no-same-owner
+ENV TAR_OPTIONS=--no-same-owner
 #RUN cd /usr/local/flutter/bin
 #RUN pwd
 #RUN ls -a
