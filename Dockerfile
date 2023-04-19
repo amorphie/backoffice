@@ -36,6 +36,7 @@ WORKDIR /app/
 
 RUN flutter clean
 RUN flutter pub get
+RUN flutter pub cache repair
 RUN flutter build web -t /app/lib/app/main.dart
 
 # Record the exposed port
