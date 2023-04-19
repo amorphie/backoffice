@@ -4,9 +4,6 @@
             "type": "profile"
         },
         {
-            "type": "divider"
-        },
-        {
             "type": "group",
             "title": {
                 "tr-TR": "Yetkilendirme",
@@ -45,7 +42,46 @@
                 {
                     "type": "group",
                     "title": {
-                        "tr-TR": "Resource",
+                        "tr-TR": "Rıza",
+                        "en-EN": "Consent"
+                    },
+                    "items": [
+                        {
+                            "type": "entity",
+                            "entity": "consent",
+                            "search-layout": "full",
+                            "display-layout": "compact",
+                            "title": {
+                                "tr-TR": "Lokal",
+                                "en-EN": "Local"
+                            }
+                        },
+                        {
+                            "type": "entity",
+                            "entity": "consent",
+                            "search-layout": "full",
+                            "display-layout": "none",
+                            "title": {
+                                "tr-TR": "Uzaktan",
+                                "en-EN": "Remote"
+                            }
+                        },
+                        {
+                            "type": "entity",
+                            "entity": "consent",
+                            "search-layout": "full",
+                            "display-layout": "none",
+                            "title": {
+                                "tr-TR": "Api Anahtarı",
+                                "en-EN": "Api Key"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "group",
+                    "title": {
+                        "tr-TR": "Kaynaklar",
                         "en-EN": "Resource"
                     },
                     "items": [
@@ -55,7 +91,7 @@
                             "search-layout": "full",
                             "display-layout": "compact",
                             "title": {
-                                "tr-TR": "Resource",
+                                "tr-TR": "Kaynaklar",
                                 "en-EN": "Resource"
                             }
                         },
@@ -65,44 +101,73 @@
                             "search-layout": "full",
                             "display-layout": "none",
                             "title": {
-                                "tr-TR": "Role",
+                                "tr-TR": "Rol",
                                 "en-EN": "Role"
+                            }
+                        },
+                        {
+                            "type": "workflow",
+                            "entity": "resource-role",
+                            "search-layout": "full",
+                            "display-layout": "none",
+                            "title": {
+                                "tr-TR": "Rol Grup",
+                                "en-EN": "Role Group"
+                            }
+                        },
+                        {
+                            "type": "workflow",
+                            "entity": "resource-role",
+                            "search-layout": "full",
+                            "display-layout": "none",
+                            "title": {
+                                "tr-TR": "Ayrıcalıklar",
+                                "en-EN": "Privilages"
                             }
                         }
                     ]
                 },
                 {
-                    "type": "entity",
-                    "entity": "tag",
-                    "search-layout": "full",
-                    "display-layout": "none",
-                    "title": {
-                        "tr-TR": "Etiketler",
-                        "en-EN": "Tags"
-                    }
-                },
-                {
-                    "type": "entity",
-                    "entity": "consnet",
-                    "search-layout": "full",
-                    "display-layout": "compact",
-                    "title": {
-                        "tr-TR": "Rizalar",
-                        "en-EN": "Consents"
-                    }
-                },
-                {
                     "type": "divider"
                 },
                 {
-                    "type": "entity",
-                    "entity": "client",
-                    "search-layout": "full",
-                    "display-layout": "compact",
+                    "type": "group",
                     "title": {
-                        "tr-TR": "Istemciler",
-                        "en-EN": "Clients"
-                    }
+                        "tr-TR": "Admin",
+                        "en-EN": "Admin"
+                    },
+                    "items": [
+                        {
+                            "type": "entity",
+                            "entity": "tag",
+                            "search-layout": "full",
+                            "display-layout": "compact",
+                            "title": {
+                                "tr-TR": "Etiketler",
+                                "en-EN": "Tags"
+                            }
+                        },
+                        {
+                            "type": "entity",
+                            "entity": "tag",
+                            "search-layout": "full",
+                            "display-layout": "none",
+                            "title": {
+                                "tr-TR": "Domain",
+                                "en-EN": "Domain"
+                            }
+                        },
+                        {
+                            "type": "entity",
+                            "entity": "tag",
+                            "search-layout": "full",
+                            "display-layout": "none",
+                            "title": {
+                                "tr-TR": "Varlıklar",
+                                "en-EN": "Entities"
+                            }
+                        }
+                    ]
                 }
             ]
         }
