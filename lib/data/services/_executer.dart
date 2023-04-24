@@ -1,3 +1,4 @@
+import 'package:admin/data/services/service_config.dart';
 import 'package:flutter/foundation.dart';
 
 import 'common/executer_model.dart';
@@ -36,7 +37,7 @@ class ExecuterModel {
   }
 
   bool get isBeforeNow =>
-      time.add(AppConfig.responseTime).isBefore(DateTime.now());
+      time.add(ServiceConfig.responseTime).isBefore(DateTime.now());
 
   @override
   bool operator ==(covariant ExecuterModel other) {

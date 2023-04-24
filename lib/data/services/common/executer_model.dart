@@ -1,5 +1,7 @@
 import 'package:flutter/foundation.dart';
 
+import '../service_config.dart';
+
 enum ResponseMethod { POST, PATCH, DELETE, GET, PUT }
 
 class ExecuterManager {
