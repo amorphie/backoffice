@@ -14,7 +14,7 @@ dependencies:
 
   cupertino_icons: ^1.0.3
 
-  google_fonts: ^2.1.0
+  google_fonts: ^4.0.3
   provider: ^5.0.0
   multilevel_drawer: ^2.0.0
   hovering: ^1.0.4
