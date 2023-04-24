@@ -89,8 +89,8 @@
                 "en-EN": "User Consent"
             },
             "summary-template": {
-                "tr-TR": "bo-consent-display-summary-tr",
-                "en-EN": "bo-consent-display-summary-en"
+                "tr-TR": "amorphy-backoffice-user-display-summary-tr",
+                "en-EN": "amorphy-backoffice-user-display-summary-en"
             },
             "history": true,
             "state-manager": true,

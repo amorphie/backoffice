@@ -1,12 +1,12 @@
 import 'package:admin/data/models/entity/layout_helpers/title_model.dart';
 import 'package:admin/ui/controllers/entity_controller.dart';
-import 'package:admin/ui/controllers/home_controller.dart';
 import 'package:admin/ui/controllers/menu_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 import '../../style/colors.dart';
+import '../controllers/display_controller.dart';
 
 class DetailWidget extends StatefulWidget {
   const DetailWidget({
@@ -17,20 +17,18 @@ class DetailWidget extends StatefulWidget {
   State<DetailWidget> createState() => _DetailWidgetState();
 }
 
-class _DetailWidgetState extends State<DetailWidget>
-    with TickerProviderStateMixin {
+class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMixin {
   late TabController _tabController;
   final AppMenuController menuController = Get.find<AppMenuController>();
   final EntityController entityController = Get.find<EntityController>();
-  final HomeController homeController = Get.find<HomeController>();
+  final DisplayController displayController = Get.find<DisplayController>();
   List<String> list = <String>['One', 'Two', 'Three', 'Four'];
   late String dropdownValue;
 
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(
-        length: entityController.entity.display!.tabs!.length, vsync: this);
+    _tabController = TabController(length: entityController.entity.display!.tabs!.length, vsync: this);
     dropdownValue = list.first;
   }
 
@@ -61,50 +59,11 @@ class _DetailWidgetState extends State<DetailWidget>
               toolbarHeight: 80,
               backgroundColor: KC.primary,
               elevation: 1,
-              title: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Icon(Icons.accessibility),
-                      SizedBox(width: 10),
-                      Text(
-                        "fullName",
-                        textAlign: TextAlign.left,
-                        style: TextStyle(color: Colors.white, fontSize: 15),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 7),
-                  Row(
-                    children: [
-                      Text(
-                        "Tags : tags",
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                            color: Colors.white70,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400),
-                      ),
-                      SizedBox(width: 8),
-                      GestureDetector(
-                        onTap: () {
-                          // tagPopUp(context);
-                        },
-                        child: Icon(
-                          Icons.edit,
-                          size: 18,
-                        ),
-                      )
-                    ],
-                  ),
-                ],
-              ),
+              title: getRenderWidget(entityController.entity.display!.summary_template!),
               actions: [
                 IconButton(
                     onPressed: () {
-                      homeController.reset();
+                      displayController.reset();
                     },
                     icon: Icon(Icons.close))
               ],
@@ -122,9 +81,7 @@ class _DetailWidgetState extends State<DetailWidget>
                 controller: _tabController,
                 children: entityController.entity.display!.tabs!
                     .map((e) => Container(
-                          child: e.type == "render"
-                              ? getRenderWidget(e.template!)
-                              : Container(),
+                          child: e.type == "render" ? getRenderWidget(e.template!) : Container(),
                         ))
                     .toList())),
       ),
@@ -189,7 +146,7 @@ class _DetailWidgetState extends State<DetailWidget>
   }
 
   getRenderWidget(TitleModel template) {
-    var t = entityController.templates[template.trTR];
+    var t = displayController.templates[template.trTR];
     return JsonWidgetData.fromDynamic(
       t,
       registry: JsonWidgetRegistry.instance,

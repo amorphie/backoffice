@@ -3,7 +3,6 @@
 import 'dart:convert';
 
 import 'package:admin/ui/controllers/menu_controller.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
@@ -35,7 +34,6 @@ class EntityController extends GetxController {
     if (entityModel != null) {
       entity = entityModel;
       await getDataList();
-      await getTemplates();
     } else {
       Get.snackbar("Uyarı", "İsteğe uygun bir model bulunamadı");
     }
@@ -59,20 +57,5 @@ class EntityController extends GetxController {
       dataList.add(item);
     }
     loading.value = false;
-  }
-
-  Map<String, dynamic> templates = {};
-
-  getTemplates() async {
-    templates = {};
-    // templates.addAll({entity.display!.summary_template!.trTR: await rootBundle.loadString("widgets/${entity.display!.summary_template!.trTR}.json")});
-
-    for (var tab in entity.display!.tabs!) {
-      if (tab.type == "render") {
-        String data = await rootBundle.loadString("widgets/${tab.template!.trTR}.json");
-        var template = jsonDecode(data);
-        templates.addAll({tab.template!.trTR: template});
-      }
-    }
   }
 }
