@@ -19,7 +19,7 @@ dependencies:
   multilevel_drawer: ^2.0.0
   hovering: ^1.0.4
   context_menus: ^1.0.2
-  flutter_screenutil: ^5.6.1
+  flutter_screenutil: ^5.7.0
   get: ^4.6.5
   multi_select_flutter: ^4.1.3
 
