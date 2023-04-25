@@ -128,9 +128,6 @@
                     ]
                 },
                 {
-                    "type": "divider"
-                },
-                {
                     "type": "group",
                     "title": {
                         "tr-TR": "Admin",

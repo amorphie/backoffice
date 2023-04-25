@@ -15,12 +15,20 @@
             ],
             "columns": [
                 {
+                    "data": "reference",
+                    "title": {
+                        "tr-TR": "reference",
+                        "en-EN": "reference"
+                    },
+                    "sort": 1
+                },
+                {
                     "data": "firstName",
                     "title": {
                         "tr-TR": "İsim",
                         "en-EN": "name"
                     },
-                    "sort": 1
+                    "sort": 2
                 },
                 {
                     "data": "lastName",
@@ -28,23 +36,7 @@
                         "tr-TR": "Soyisim",
                         "en-EN": "Last Name"
                     },
-                    "sort": 2
-                },
-                {
-                    "data": "reference",
-                    "title": {
-                        "tr-TR": "reference",
-                        "en-EN": "reference"
-                    },
                     "sort": 3
-                },
-                {
-                    "data": "password",
-                    "title": {
-                        "tr-TR": "password",
-                        "en-EN": "password"
-                    },
-                    "sort": 1
                 },
                 {
                     "data": "phone",
@@ -59,14 +51,6 @@
                     "title": {
                         "tr-TR": "eMail",
                         "en-EN": "eMail"
-                    },
-                    "sort": 1
-                },
-                {
-                    "data": "status",
-                    "title": {
-                        "tr-TR": "status",
-                        "en-EN": "status"
                     },
                     "sort": 1
                 },

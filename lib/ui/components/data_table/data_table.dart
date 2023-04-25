@@ -25,7 +25,16 @@ class AppDataTable extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        Text(title.trTR),
+        Padding(
+          padding: const EdgeInsets.only(left: 16.0, top: 10, bottom: 14),
+          child: Text(
+            title.trTR,
+            style: TextStyle(
+              fontSize: 22,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
         Builder(builder: (context) {
           if (loading) return Center(child: CircularProgressIndicator());
           return PaginatedDataTable(
