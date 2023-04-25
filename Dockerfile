@@ -39,7 +39,7 @@ RUN flutter clean
 #RUN flutter packages upgrade
 RUN flutter pub get
 RUN flutter pub cache repair
-RUN flutter build web -t /app/lib/main.dart
+RUN flutter build web -t /app/lib/main.dart --no-tree-shake-icons
 
 # Record the exposed port
 EXPOSE 5000
