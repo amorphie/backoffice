@@ -30,16 +30,20 @@ class AppDataTable extends StatelessWidget {
           child: Text(
             title.trTR,
             style: TextStyle(
-              fontSize: 22,
-              fontWeight: FontWeight.bold,
-            ),
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+                color: Colors.black54),
           ),
         ),
         Builder(builder: (context) {
           if (loading) return Center(child: CircularProgressIndicator());
           return PaginatedDataTable(
             columns: columns
-                .map((e) => DataColumn(label: Text(e.title.trTR)))
+                .map((e) => DataColumn(
+                        label: Text(
+                      e.title.trTR,
+                      style: TextStyle(color: Colors.black87),
+                    )))
                 .toList(),
             source: AppDataTableSource(
                 data: data, columns: columns, onPressed: onPressed),
