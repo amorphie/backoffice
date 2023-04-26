@@ -41,7 +41,7 @@ class DisplayController extends GetxController {
       "render-id": Uuid().v4(),
       "render-data": _displayView.value,
       "render-data-for-log": _displayView.value,
-      "semantic-version": "1.0.2",
+      "semantic-version": "1.0.3",
       "process-name": "string",
       "item-id": "string",
       "action": "string",

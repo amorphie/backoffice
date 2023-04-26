@@ -2,7 +2,10 @@
     "user": {
         "search": {
             "list_url": "https://test-amorphie-fact-user.burgan.com.tr/user/search",
-            "search_url": "https://test-amorphie-fact-user.burgan.com.tr/user/search",
+            "search_query": "searchText",
+            "default_page_size": 100,
+            "default_page_number": 0,
+            "search": true,
             "filter": [
                 {
                     "field": "tag",
@@ -127,7 +130,10 @@
     "tag": {
         "search": {
             "list_url": "https://test-amorphie-tag.burgan.com.tr/tag",
-            "search_url": "https://test-amorphie-tag.burgan.com.tr/tag",
+            "search_query": "searchText",
+            "default_page_size": 100,
+            "default_page_number": 0,
+            "search": false,
             "columns": [
                 {
                     "data": "name",

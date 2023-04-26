@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:admin/ui/components/custom_textfield.dart';
 import 'package:admin/ui/components/data_table/data_table_source.dart';
 import 'package:flutter/material.dart';
 
@@ -7,7 +8,9 @@ import 'package:admin/data/models/entity/layout_helpers/title_model.dart';
 
 class AppDataTable extends StatelessWidget {
   final TitleModel title;
+  final Function(String val) onSearch;
   final bool loading;
+  final bool withSearch;
   final List<SearchColumn> columns;
   final List<Map<String, dynamic>> data;
   final Function(Map<String, dynamic> data) onPressed;
@@ -15,6 +18,8 @@ class AppDataTable extends StatelessWidget {
   const AppDataTable({
     Key? key,
     required this.title,
+    required this.withSearch,
+    required this.onSearch,
     this.loading = false,
     required this.columns,
     required this.data,
@@ -35,14 +40,17 @@ class AppDataTable extends StatelessWidget {
             ),
           ),
         ),
+        if (withSearch)
+          CustomTextField(
+            label: "Search",
+            icon: Icons.search,
+            onSubmit: onSearch,
+          ),
         Builder(builder: (context) {
           if (loading) return Center(child: CircularProgressIndicator());
           return PaginatedDataTable(
-            columns: columns
-                .map((e) => DataColumn(label: Text(e.title.trTR)))
-                .toList(),
-            source: AppDataTableSource(
-                data: data, columns: columns, onPressed: onPressed),
+            columns: columns.map((e) => DataColumn(label: Text(e.title.trTR))).toList(),
+            source: AppDataTableSource(data: data, columns: columns, onPressed: onPressed),
           );
         }),
       ],
