@@ -24,7 +24,10 @@ class AppDataTableSource extends DataTableSource {
     return DataRow(
         cells: columns
             .map((e) => DataCell(
-                  Text(item[e.data].toString()),
+                  Text(
+                    item[e.data].toString(),
+                    style: TextStyle(color: Colors.black54),
+                  ),
                   onTap: () {
                     onPressed(item);
                   },

@@ -34,10 +34,7 @@ class AppDataTable extends StatelessWidget {
           padding: const EdgeInsets.only(left: 16.0, top: 10, bottom: 14),
           child: Text(
             title.trTR,
-            style: TextStyle(
-              fontSize: 22,
-              fontWeight: FontWeight.bold,
-            ),
+            style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.black54),
           ),
         ),
         if (withSearch)
@@ -49,7 +46,13 @@ class AppDataTable extends StatelessWidget {
         Builder(builder: (context) {
           if (loading) return Center(child: CircularProgressIndicator());
           return PaginatedDataTable(
-            columns: columns.map((e) => DataColumn(label: Text(e.title.trTR))).toList(),
+            columns: columns
+                .map((e) => DataColumn(
+                        label: Text(
+                      e.title.trTR,
+                      style: TextStyle(color: Colors.black87),
+                    )))
+                .toList(),
             source: AppDataTableSource(data: data, columns: columns, onPressed: onPressed),
           );
         }),

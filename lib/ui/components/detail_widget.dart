@@ -17,7 +17,8 @@ class DetailWidget extends StatefulWidget {
   State<DetailWidget> createState() => _DetailWidgetState();
 }
 
-class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMixin {
+class _DetailWidgetState extends State<DetailWidget>
+    with TickerProviderStateMixin {
   late TabController _tabController;
   final AppMenuController menuController = Get.find<AppMenuController>();
   final EntityController entityController = Get.find<EntityController>();
@@ -28,7 +29,8 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: entityController.entity.display!.tabs!.length, vsync: this);
+    _tabController = TabController(
+        length: entityController.entity.display!.tabs!.length, vsync: this);
     dropdownValue = list.first;
   }
 
@@ -52,14 +54,14 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
     return Expanded(
       flex: 5,
       child: Container(
-        width: MediaQuery.of(context).size.width / 2,
         child: Scaffold(
             backgroundColor: KC.background,
             appBar: AppBar(
               toolbarHeight: 80,
               backgroundColor: KC.primary,
               elevation: 1,
-              title: getRenderWidget(entityController.entity.display!.summary_template!),
+              title: getRenderWidget(
+                  entityController.entity.display!.summary_template!),
               actions: [
                 IconButton(
                     onPressed: () {
@@ -81,7 +83,9 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
                 controller: _tabController,
                 children: entityController.entity.display!.tabs!
                     .map((e) => Container(
-                          child: e.type == "render" ? getRenderWidget(e.template!) : Container(),
+                          child: e.type == "render"
+                              ? getRenderWidget(e.template!)
+                              : Container(),
                         ))
                     .toList())),
       ),
@@ -92,9 +96,8 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
     return Expanded(
       flex: 2,
       child: Container(
-        width: MediaQuery.of(context).size.width / 2,
         child: Padding(
-          padding: const EdgeInsets.all(5.0),
+          padding: const EdgeInsets.all(1.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

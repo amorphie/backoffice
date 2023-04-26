@@ -3,13 +3,7 @@
         {
             "type": "profile"
         },
-        {
-            "type": "group",
-            "title": {
-                "tr-TR": "Yetkilendirme",
-                "en-EN": "IDM"
-            },
-            "items": [
+       
                 {
                     "type": "group",
                     "title": {
@@ -167,6 +161,4 @@
                     ]
                 }
             ]
-        }
-    ]
 }
