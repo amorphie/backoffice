@@ -23,12 +23,15 @@ class CustomTextField extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: TextField(
         controller: controller,
+        style: TextStyle(color: Colors.black54),
         onChanged: onChanged,
         onSubmitted: onSubmit,
         onEditingComplete: onComplate,
         decoration: InputDecoration(
-          enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.grey[300]!)),
-          focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
+          enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.grey[300]!)),
+          focusedBorder:
+              OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
           hintText: label,
           labelText: label,
           suffixIcon: Icon(icon),
