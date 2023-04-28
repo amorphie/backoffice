@@ -22,31 +22,14 @@ class MenuButtonCard extends StatelessWidget {
         width: double.infinity,
         margin: const EdgeInsets.only(left: 10, top: 5),
         padding: const EdgeInsets.all(5),
-        decoration: isEspanded
-            ? BoxDecoration(
-                borderRadius: BorderRadius.circular(5),
-                boxShadow: [
-                  BoxShadow(
-                      color: isSelected ? Colors.white10 : Colors.transparent,
-                      blurRadius: 2,
-                      spreadRadius: 1,
-                      offset: Offset(2, 2)),
-                ],
-              )
-            : null,
         child: Row(
           children: [
             Text(
               text,
-              style: const TextStyle(color: Colors.white, fontSize: 16),
+              style: TextStyle(
+                  color: isSelected ? Colors.white54 : Colors.white,
+                  fontSize: 16),
             ),
-            const Spacer(),
-            if (isEspanded)
-              const Icon(
-                Icons.arrow_forward_ios,
-                size: 15,
-                color: Colors.white70,
-              ),
           ],
         ),
       ),

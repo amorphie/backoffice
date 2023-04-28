@@ -33,9 +33,13 @@ class HomePage extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: AppDataTable(
+                        withSearch: entityController.entity.search?.search ?? false,
                         title: menuController.menuItem.value.title!,
                         data: entityController.dataList,
                         columns: entityController.entity.search?.columns ?? [],
+                        onSearch: (val) {
+                          entityController.getDataList(searchText: val);
+                        },
                         loading: entityController.loading.value,
                         onPressed: (data) {
                           displayController.setData(data);

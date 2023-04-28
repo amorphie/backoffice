@@ -2,7 +2,7 @@
   "type": "container",
   "args": {
     "margin": 5,
-    "height": 70,
+    "height": 75,
     "padding": 14,
     "decoration": {
       "border": {"style": "solid", "width": 1},

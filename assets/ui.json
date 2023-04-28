@@ -3,13 +3,7 @@
         {
             "type": "profile"
         },
-        {
-            "type": "group",
-            "title": {
-                "tr-TR": "Yetkilendirme",
-                "en-EN": "IDM"
-            },
-            "items": [
+       
                 {
                     "type": "group",
                     "title": {
@@ -96,8 +90,8 @@
                             }
                         },
                         {
-                            "type": "workflow",
-                            "entity": "resource-role",
+                            "type": "entity",
+                            "entity": "resourceRole",
                             "search-layout": "full",
                             "display-layout": "none",
                             "title": {
@@ -106,8 +100,8 @@
                             }
                         },
                         {
-                            "type": "workflow",
-                            "entity": "resource-role",
+                            "type": "entity",
+                            "entity": "roleGroup",
                             "search-layout": "full",
                             "display-layout": "none",
                             "title": {
@@ -116,8 +110,8 @@
                             }
                         },
                         {
-                            "type": "workflow",
-                            "entity": "resource-role",
+                            "type": "entity",
+                            "entity": "privilege",
                             "search-layout": "full",
                             "display-layout": "none",
                             "title": {
@@ -126,9 +120,6 @@
                             }
                         }
                     ]
-                },
-                {
-                    "type": "divider"
                 },
                 {
                     "type": "group",
@@ -149,7 +140,7 @@
                         },
                         {
                             "type": "entity",
-                            "entity": "tag",
+                            "entity": "domain",
                             "search-layout": "full",
                             "display-layout": "none",
                             "title": {
@@ -170,6 +161,4 @@
                     ]
                 }
             ]
-        }
-    ]
 }

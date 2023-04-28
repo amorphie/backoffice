@@ -39,12 +39,17 @@ class EntityController extends GetxController {
     }
   }
 
-  Future<void> getDataList() async {
+  Future<void> getDataList({String? searchText, int? pageSize, int? pageNumber}) async {
     loading.value = true;
 
     await Future.delayed(Duration(seconds: 2));
     dataList.clear();
-    var response = await http.get(Uri.parse(entity.search!.searchUrl + "?page=0&pageSize=100"), headers: {
+    String url = entity.search!.listUrl + "?pageSize=${pageSize ?? entity.search!.defaultPageSize}&page=${pageNumber ?? entity.search!.defaultPageNumber}";
+    if (searchText != null && searchText.length > 3) {
+      url += "&${entity.search!.searchQuery}=$searchText";
+    }
+
+    var response = await http.get(Uri.parse(url), headers: {
       // 'Accept': 'application/json',
       'Content-Type': 'application/json'
     });
@@ -52,6 +57,9 @@ class EntityController extends GetxController {
     var list = data;
     if (data["data"] != null) {
       list = data["data"];
+    }
+    if (list is! List) {
+      list = [];
     }
     for (var item in list) {
       dataList.add(item);
