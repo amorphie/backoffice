@@ -172,5 +172,51 @@
         "delete": {
             "url": "https://test-amorphie-tag.burgan.com.tr/tag/@id"
         }
+    },
+    "resource": {
+        "search": {
+            "list_url": "https://test-amorphie-resource.burgan.com.tr/resource",
+            "search_query": "searchText",
+            "default_page_size": 100,
+            "default_page_number": 0,
+            "search": false,
+            "columns": [
+                {
+                    "data": "displayNames",
+                    "title": {
+                        "tr-TR": "İsim",
+                        "en-EN": "Name"
+                    },
+                    "sort": 1
+                },
+                {
+                    "data": "url",
+                    "title": {
+                        "tr-TR": "Url",
+                        "en-EN": "Url"
+                    },
+                    "sort": 2
+                },
+                {
+                    "data": "status",
+                    "title": {
+                        "tr-TR": "Durum",
+                        "en-EN": "Status"
+                    },
+                    "sort": 2
+                },
+                {
+                    "data": "tags",
+                    "title": {
+                        "tr-TR": "Etiketler",
+                        "en-EN": "Tags"
+                    },
+                    "sort": 4
+                }
+            ]
+        },
+        "delete": {
+            "url": "https://test-amorphie-resource.burgan.com.tr/resource/@resourceId"
+        }
     }
 }
