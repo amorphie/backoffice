@@ -173,6 +173,44 @@
             "url": "https://test-amorphie-tag.burgan.com.tr/tag/@id"
         }
     },
+    "domain": {
+        "search": {
+            "list_url": "https://test-amorphie-resource.burgan.com.tr/domain",
+            "search_query": "searchText",
+            "default_page_size": 100,
+            "default_page_number": 0,
+            "search": false,
+            "columns": [
+                {
+                    "data": "name",
+                    "title": {
+                        "tr-TR": "Isim",
+                        "en-EN": "Name"
+                    },
+                    "sort": 1
+                },
+                {
+                    "data": "description",
+                    "title": {
+                        "tr-TR": "Açıklama",
+                        "en-EN": "Description"
+                    },
+                    "sort": 2
+                },
+                {
+                    "data": "entities",
+                    "title": {
+                        "tr-TR": "Varlıklar",
+                        "en-EN": "Entities"
+                    },
+                    "sort": 3
+                }
+            ]
+        },
+        "delete": {
+            "url": "https://test-amorphie-resource.burgan.com.tr/domain/@domainId"
+        }
+    },
     "resource": {
         "search": {
             "list_url": "https://test-amorphie-resource.burgan.com.tr/resource",
@@ -218,5 +256,128 @@
         "delete": {
             "url": "https://test-amorphie-resource.burgan.com.tr/resource/@resourceId"
         }
+    },
+    "resourceRole": {
+        "search": {
+            "list_url": "https://test-amorphie-resource.burgan.com.tr/resourceRole",
+            "search_query": "searchText",
+            "default_page_size": 100,
+            "default_page_number": 0,
+            "search": false,
+            "columns": [
+                {
+                    "data": "resourceId",
+                    "title": {
+                        "tr-TR": "ID",
+                        "en-EN": "ID"
+                    },
+                    "sort": 1
+                },
+                {
+                    "data": "status",
+                    "title": {
+                        "tr-TR": "Durum",
+                        "en-EN": "Status"
+                    },
+                    "sort": 2
+                }
+            ]
+        },
+        "delete": {
+            "url": "https://test-amorphie-resource.burgan.com.tr/resourceRole/@resourceRoleId"
+        }
+    },
+    "roleGroup": {
+        "search": {
+            "list_url": "https://test-amorphie-resource.burgan.com.tr/roleGroup",
+            "search_query": "searchText",
+            "default_page_size": 100,
+            "default_page_number": 0,
+            "search": false,
+            "columns": [
+                {
+                    "data": "id",
+                    "title": {
+                        "tr-TR": "ID",
+                        "en-EN": "ID"
+                    },
+                    "sort": 1
+                },
+                {
+                    "data": "titles",
+                    "title": {
+                        "tr-TR": "Başlıklar",
+                        "en-EN": "Titles"
+                    },
+                    "sort": 2
+                },
+                {
+                    "data": "status",
+                    "title": {
+                        "tr-TR": "Durum",
+                        "en-EN": "Status"
+                    },
+                    "sort": 3
+                },
+                {
+                    "data": "tags",
+                    "title": {
+                        "tr-TR": "Etiketler",
+                        "en-EN": "Tags"
+                    },
+                    "sort": 4
+                }
+            ]
+        },
+        "delete": {
+            "url": "https://test-amorphie-resource.burgan.com.tr/roleGroup/@roleGroupId"
+        }
+    },
+    "privilege": {
+        "search": {
+            "list_url": "https://test-amorphie-resource.burgan.com.tr/privilege",
+            "search_query": "searchText",
+            "default_page_size": 100,
+            "default_page_number": 0,
+            "search": false,
+            "columns": [
+                {
+                    "data": "resourceId",
+                    "title": {
+                        "tr-TR": "ID",
+                        "en-EN": "ID"
+                    },
+                    "sort": 1
+                },
+                {
+                    "data": "url",
+                    "title": {
+                        "tr-TR": "Url",
+                        "en-EN": "Url"
+                    },
+                    "sort": 2
+                },
+                {
+                    "data": "status",
+                    "title": {
+                        "tr-TR": "Durum",
+                        "en-EN": "Status"
+                    },
+                    "sort": 3
+                },
+                {
+                    "data": "ttl",
+                    "title": {
+                        "tr-TR": "Ttl",
+                        "en-EN": "Ttl"
+                    },
+                    "sort": 4
+                }
+            ]
+        },
+        "delete": {
+            "url": "https://test-amorphie-resource.burgan.com.tr/privilege/@privilegeId"
+        }
     }
+
 }
