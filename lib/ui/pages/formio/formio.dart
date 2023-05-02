@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:math';
 
 import 'package:admin/ui/controllers/workflow_controller.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +32,8 @@ class _FormioPageState extends State<FormioPage> {
       child: Container(
         padding: const EdgeInsets.all(10.0),
         child: Obx(() {
-          List<TransitionsModel> transitions = controller.workflow.stateManager.transitions!;
+          List<TransitionsModel> transitions =
+              controller.workflow.stateManager.transitions!;
           if (controller.loading)
             return Center(
               child: CircularProgressIndicator(),
@@ -54,13 +54,16 @@ class _FormioPageState extends State<FormioPage> {
                         ),
                         TextButton(
                             onPressed: () async {
-                              var d = await webviewController.callJsMethod("onSubmit", []);
+                              var d = await webviewController
+                                  .callJsMethod("onSubmit", []);
 
                               print(e.name);
                               var data = jsonDecode(d);
-                              controller.postTransition(transition: e, entityData: data);
+                              controller.postTransition(
+                                  transition: e, entityData: data);
                             },
-                            child: Tooltip(message: e.name, child: Text(e.title!))),
+                            child: Tooltip(
+                                message: e.name, child: Text(e.title!))),
                       ],
                     ),
                   )
