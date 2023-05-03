@@ -90,8 +90,8 @@
                     "order": 0,
                     "id": "$.id",
                     "template": {
-                        "tr-TR": "bo-consent-display-default-tr",
-                        "en-EN": "bo-consent-display-default-en"
+                        "tr-TR": "amorphy-backoffice-user-consent-listview",
+                        "en-EN": "amorphy-backoffice-user-consent-listview"
                     },
                     "title": {
                         "tr-TR": "Riza Detaylari",
@@ -111,7 +111,7 @@
                     }
                 },
                 {
-                    "type": "display",
+                    "type": "detail",
                     "entity": "user",
                     "order": 2,
                     "id": "$.user.id",
@@ -379,5 +379,4 @@
             "url": "https://test-amorphie-resource.burgan.com.tr/privilege/@privilegeId"
         }
     }
-
 }

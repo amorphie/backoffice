@@ -1,10 +1,10 @@
 import 'dart:convert';
 
+import 'package:admin/data/services/executer_service.dart';
 import 'package:admin/ui/controllers/entity_controller.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';
-import 'package:http/http.dart' as http;
 
 class DisplayController extends GetxController {
   RxMap<String, dynamic> _displayView = <String, dynamic>{}.obs;
@@ -24,41 +24,45 @@ class DisplayController extends GetxController {
     templates = {};
     EntityController entityController = Get.find<EntityController>();
 
-    templates.addAll({entityController.entity.display!.summary_template!.trTR: await getTemplate("${entityController.entity.display!.summary_template!.trTR}")});
+    templates.addAll({
+      entityController.entity.display!.summary_template!.trTR: await getTemplate(
+        "${entityController.entity.display!.summary_template!.trTR}",
+        _displayView.value,
+      ),
+    });
 
     for (var tab in entityController.entity.display!.tabs!) {
       if (tab.type == "render") {
-        String data = await rootBundle.loadString("widgets/${tab.template!.trTR}.json");
-        var template = jsonDecode(data);
-        templates.addAll({tab.template!.trTR: template});
+        templates.addAll({
+          tab.template!.trTR: await getTemplate(
+            "${tab.template!.trTR}",
+            {
+              "consents": List.generate(20, (index) => {"name": "Deneme$index", "description": "text$index"})
+            },
+          )
+        });
       }
     }
   }
 
-  Future<String?> getTemplate(String name) async {
+  Future<String?> getTemplate(String name, Map<String, dynamic> renderData) async {
     var data = {
       "name": name,
       "render-id": Uuid().v4(),
-      "render-data": _displayView.value,
-      "render-data-for-log": _displayView.value,
-      "semantic-version": "1.0.3",
-      "process-name": "string",
-      "item-id": "string",
-      "action": "string",
-      "identity": "string",
-      "customer": "string"
+      "render-data": renderData,
+      "render-data-for-log": renderData,
     };
-    Uri _url = Uri.parse("https://test-template-engine.burgan.com.tr/Template/Render");
-    http.Response response = await http.post(
-      _url,
-      body: json.encode(data),
+    var response = await Executer.post(
+      endpoint: "https://test-template-engine.burgan.com.tr/Template/Render",
+      data: data,
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json",
       },
     );
-    if (response.statusCode >= 200 && response.statusCode < 300) {
-      return jsonDecode(response.body);
+
+    if (response.success) {
+      return response.data;
     }
     return null;
   }

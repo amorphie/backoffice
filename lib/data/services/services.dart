@@ -1,11 +1,13 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
 import 'package:admin/data/models/entity/entity_model.dart';
 import 'package:admin/data/models/menu/menu_model.dart';
 import 'package:flutter/services.dart';
 
-class MenuServices {
+import 'common/response_model.dart';
+import 'executer_service.dart';
+
+class Services {
   Future<Map<String, EntityModel>> getEntityData() async {
     Map<String, EntityModel> map = {};
     var result = await rootBundle.loadString("assets/entities.json");
@@ -22,5 +24,21 @@ class MenuServices {
 
     MenuModel menu = MenuModel.fromMap(data);
     return menu;
+  }
+
+  Future<ResponseModel> search({
+    required String url,
+    required int pageSize,
+    required int pageNumber,
+    String? searchText,
+  }) async {
+    String _url = url + "?pageSize=$pageSize&page=$pageNumber";
+    if (searchText != null && searchText.length > 3) {
+      _url += "&searchText=$searchText";
+    }
+    ResponseModel response = await Executer.get(
+      endpoint: _url,
+    );
+    return response;
   }
 }

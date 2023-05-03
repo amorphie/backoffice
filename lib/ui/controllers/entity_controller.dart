@@ -1,13 +1,11 @@
 //import 'dart:ffi';
 
-import 'dart:convert';
-
+import 'package:admin/data/services/services.dart';
+import 'package:admin/data/services/executer_service.dart';
 import 'package:admin/ui/controllers/menu_controller.dart';
 import 'package:get/get.dart';
-import 'package:http/http.dart' as http;
 
 import '../../data/models/entity/entity_model.dart';
-import '../../data/services/menu_services.dart';
 
 class EntityController extends GetxController {
   Rx<EntityModel> _entity = EntityModel().obs;
@@ -22,9 +20,9 @@ class EntityController extends GetxController {
 
   RxList<Map<String, dynamic>> dataList = <Map<String, dynamic>>[].obs;
   RxList<Map<String, dynamic>> userList = <Map<String, dynamic>>[].obs;
+  Services services = Services();
 
   Future<void> init() async {
-    MenuServices services = MenuServices();
     entities = await services.getEntityData();
   }
 
@@ -39,26 +37,21 @@ class EntityController extends GetxController {
     }
   }
 
-  Future<void> getDataList(
-      {String? searchText, int? pageSize, int? pageNumber}) async {
+  Future<void> getDataList({String? searchText, int? pageSize, int? pageNumber}) async {
     loading.value = true;
 
     await Future.delayed(Duration(seconds: 2));
     dataList.clear();
-    String url = entity.search!.listUrl +
-        "?pageSize=${pageSize ?? entity.search!.defaultPageSize}&page=${pageNumber ?? entity.search!.defaultPageNumber}";
-    if (searchText != null && searchText.length > 3) {
-      url += "&${entity.search!.searchQuery}=$searchText";
-    }
 
-    var response = await http.get(Uri.parse(url), headers: {
-      // 'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    });
-    dynamic data = jsonDecode(response.body);
-    var list = data;
-    if (data["data"] != null) {
-      list = data["data"];
+    var response = await services.search(
+      url: entity.search!.listUrl,
+      pageSize: pageSize ?? entity.search!.defaultPageSize,
+      pageNumber: pageNumber ?? entity.search!.defaultPageNumber,
+      searchText: searchText,
+    );
+    var list = response.data;
+    if (response.data["data"] != null) {
+      list = response.data["data"];
     }
     if (list is! List) {
       list = [];
