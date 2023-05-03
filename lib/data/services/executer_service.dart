@@ -5,7 +5,7 @@ import "package:http/http.dart" as http;
 import 'common/executer_model.dart';
 import 'common/response_model.dart';
 
-import 'package:logger/logger.dart' as appLogger;
+//import 'package:logger/logger.dart' as appLogger;
 
 class Executer {
   final Uri endpoint;
@@ -18,7 +18,7 @@ class Executer {
     required this.method,
   }) {
     _request = http.Request(method.name, endpoint);
-    appLogger.wtf(data, endpoint, StackTrace.empty);
+    //appLogger.wtf(data, endpoint, StackTrace.empty);
     _setData();
     _setHeaders();
   }
@@ -69,8 +69,8 @@ class Executer {
         var result = json.decode(resultData);
 
         if (response.statusCode >= 200 && response.statusCode < 300) {
-          appLogger.v(
-              "statusCode => " + response.statusCode.toString(), endpoint);
+          //        appLogger.v(
+          //          "statusCode => " + response.statusCode.toString(), endpoint);
 
           return ResponseModel(
               code: response.statusCode,
@@ -87,7 +87,7 @@ class Executer {
               data: result);
         }
       } catch (e) {
-        appLogger.e(e.toString(), endpoint);
+        // appLogger.e(e.toString(), endpoint);
         return ResponseModel(
             code: 0,
             success: false,
