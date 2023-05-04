@@ -20,8 +20,8 @@
                 {
                     "data": "reference",
                     "title": {
-                        "tr-TR": "reference",
-                        "en-EN": "reference"
+                        "tr-TR": "Referans",
+                        "en-EN": "Reference"
                     },
                     "sort": 1
                 },
@@ -29,7 +29,7 @@
                     "data": "firstName",
                     "title": {
                         "tr-TR": "İsim",
-                        "en-EN": "name"
+                        "en-EN": "First Name"
                     },
                     "sort": 2
                 },
@@ -42,26 +42,10 @@
                     "sort": 3
                 },
                 {
-                    "data": "phone",
-                    "title": {
-                        "tr-TR": "phone",
-                        "en-EN": "phone"
-                    },
-                    "sort": 1
-                },
-                {
-                    "data": "eMail",
-                    "title": {
-                        "tr-TR": "eMail",
-                        "en-EN": "eMail"
-                    },
-                    "sort": 1
-                },
-                {
                     "data": "tag",
                     "title": {
-                        "tr-TR": "tag",
-                        "en-EN": "tag"
+                        "tr-TR": "Etiketler",
+                        "en-EN": "Tags"
                     },
                     "sort": 1
                 }
