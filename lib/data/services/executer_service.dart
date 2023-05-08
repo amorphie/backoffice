@@ -29,27 +29,27 @@ class Executer {
   late http.Request _request;
 
   static Future<ResponseModel> get({required String endpoint, Map<String, dynamic>? data, Map<String, String>? headers}) async {
-    Executer _e = Executer(endpoint: endpoint, data: data, method: ResponseMethod.GET);
+    Executer _e = Executer(endpoint: endpoint, data: data, method: ResponseMethod.GET, headers: headers);
     return await _e.execute();
   }
 
   static Future<ResponseModel> post({required String endpoint, Map<String, dynamic>? data, Map<String, String>? headers}) async {
-    Executer _e = Executer(endpoint: endpoint, data: data, method: ResponseMethod.POST);
+    Executer _e = Executer(endpoint: endpoint, data: data, method: ResponseMethod.POST, headers: headers);
     return await _e.execute();
   }
 
   static Future<ResponseModel> delete({required String endpoint, Map<String, dynamic>? data, Map<String, String>? headers}) async {
-    Executer _e = Executer(endpoint: endpoint, data: data, method: ResponseMethod.DELETE);
+    Executer _e = Executer(endpoint: endpoint, data: data, method: ResponseMethod.DELETE, headers: headers);
     return await _e.execute();
   }
 
   static Future<ResponseModel> patch({required String endpoint, Map<String, dynamic>? data, Map<String, String>? headers}) async {
-    Executer _e = Executer(endpoint: endpoint, data: data, method: ResponseMethod.PATCH);
+    Executer _e = Executer(endpoint: endpoint, data: data, method: ResponseMethod.PATCH, headers: headers);
     return await _e.execute();
   }
 
   static Future<ResponseModel> put({required String endpoint, Map<String, dynamic>? data, Map<String, String>? headers}) async {
-    Executer _e = Executer(endpoint: endpoint, data: data, method: ResponseMethod.PUT);
+    Executer _e = Executer(endpoint: endpoint, data: data, method: ResponseMethod.PUT, headers: headers);
     return await _e.execute();
   }
 

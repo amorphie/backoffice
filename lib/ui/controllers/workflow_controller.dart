@@ -34,10 +34,13 @@ class WorkflowController extends GetxController {
   getTransitions() async {
     _loading.value = true;
 
-    var response = await Executer.get(endpoint: "https://test-amorphie-workflow.burgan.com.tr/workflow/consumer/${_entity.value}/record/${_recordId.value}/transition", headers: {
-      "Accept": "application/json",
-      "Accept-Language": "en-EN",
-    });
+    var response = await Executer.get(
+      endpoint: "https://test-amorphie-workflow.burgan.com.tr/workflow/consumer/${_entity.value}/record/${_recordId.value}/transition",
+      headers: {
+        "Accept": "application/json",
+        "Accept-Language": "en-EN",
+      },
+    );
     _loading.value = false;
     if (response.success) {
       var result = response.data;
