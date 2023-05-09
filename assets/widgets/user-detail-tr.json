@@ -14,7 +14,7 @@
                 {
                     "type": "text",
                     "args": {
-                      "text": "{{id}}",
+                      "text": "id",
                       "style": {
                         "fontWeight": "w500",
                         "color" : "#1d1f29"
@@ -33,7 +33,7 @@
                     "child":  {
                         "type": "text",
                         "args": {
-                          "text": "{{id}}",
+                          "text": "{{data.id}}",
                           "style": {
                             "fontWeight": "w400",
                             "color": "#1d1f29"
@@ -57,7 +57,7 @@
                 {
                     "type": "text",
                     "args": {
-                      "text": "{{referans}}",
+                      "text": "referans",
                       "style": {
                         "fontWeight": "w500",
                         "color" : "#1d1f29"
@@ -76,7 +76,7 @@
                     "child":  {
                         "type": "text",
                         "args": {
-                          "text": "{{ref}}",
+                          "text": "{{data.ref}}",
                           "style": {
                             "fontWeight": "w400",
                             "color": "#1d1f29"
@@ -101,7 +101,7 @@
                 {
                     "type": "text",
                     "args": {
-                      "text": "{{isim}}",
+                      "text": "isim",
                       "style": {
                         "fontWeight": "w500",
                         "color" : "#1d1f29"
@@ -120,7 +120,7 @@
                     "child":  {
                         "type": "text",
                         "args": {
-                          "text": "{{fullName}}",
+                          "text": "{{data.firstName}} {{data.lastName}}",
                           "style": {
                             "fontWeight": "w400",
                             "color": "#1d1f29"
@@ -144,7 +144,7 @@
                 {
                     "type": "text",
                     "args": {
-                      "text": "{{telefon}}",
+                      "text": "telefon",
                       "style": {
                         "fontWeight": "w500",
                         "color" : "#1d1f29"
@@ -163,7 +163,7 @@
                     "child":  {
                         "type": "text",
                         "args": {
-                          "text": "{{phone}}",
+                          "text": "{{data.phone.countryCode}} {{data.phone.prefix}} {{data.phone.number}}",
                           "style": {
                             "fontWeight": "w400",
                             "color": "#1d1f29"
@@ -188,7 +188,7 @@
                 {
                     "type": "text",
                     "args": {
-                      "text": "{{email}}",
+                      "text": "email",
                       "style": {
                         "fontWeight": "w500",
                         "color" : "#1d1f29"
@@ -207,7 +207,7 @@
                     "child":  {
                         "type": "text",
                         "args": {
-                          "text": "{{email}}",
+                          "text": "{{data.email}}",
                           "style": {
                             "fontWeight": "w400",
                             "color": "#1d1f29"
@@ -232,7 +232,7 @@
                 {
                     "type": "text",
                     "args": {
-                      "text": "{{durum}}",
+                      "text": "durum",
                       "style": {
                         "fontWeight": "w500",
                         "color" : "#1d1f29"
@@ -251,7 +251,7 @@
                     "child":  {
                         "type": "text",
                         "args": {
-                          "text": "{{state}}",
+                          "text": "{{data.state}}",
                           "style": {
                             "fontWeight": "w400",
                             "color": "#1d1f29"
@@ -276,7 +276,7 @@
                 {
                     "type": "text",
                     "args": {
-                      "text": "{{etiketler}}",
+                      "text": "etiketler",
                       "style": {
                         "fontWeight": "w500",
                         "color" : "#1d1f29"
@@ -295,7 +295,7 @@
                     "child":  {
                         "type": "text",
                         "args": {
-                          "text": "{{tags}}",
+                          "text": "{{data.tags}}",
                           "style": {
                             "fontWeight": "w400",
                             "color": "#1d1f29"
