@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+import 'package:admin/ui/components/detail_widget.dart';
 import 'package:flutter/foundation.dart';
 
 import 'package:admin/data/models/entity/layout_helpers/tab_model.dart';
@@ -13,6 +14,7 @@ class DisplayLayoutModel {
   bool? isDefault;
   TitleModel? title;
   TitleModel? summary_template;
+  TitleModel? detail_template;
   bool? history;
   bool? state_manage;
   bool? running_workflows;
@@ -24,6 +26,7 @@ class DisplayLayoutModel {
     this.isDefault,
     this.title,
     this.summary_template,
+    this.detail_template,
     this.history,
     this.state_manage,
     this.running_workflows,
@@ -64,6 +67,7 @@ class DisplayLayoutModel {
       'isDefault': isDefault,
       'title': title?.toMap(),
       'summary_template': summary_template?.toMap(),
+      'detail_template': detail_template?.toMap(),
       'history': history,
       'state_manage': state_manage,
       'running_workflows': running_workflows,
@@ -79,6 +83,7 @@ class DisplayLayoutModel {
       isDefault: map['default'] != null ? map['default'] as bool : false,
       title: map['title'] != null ? TitleModel.fromMap(map['title'] as Map<String, dynamic>) : null,
       summary_template: map['summary-template'] != null ? TitleModel.fromMap(map['summary-template'] as Map<String, dynamic>) : null,
+      detail_template: map['detail-template'] != null ? TitleModel.fromMap(map['detail-template'] as Map<String, dynamic>) : null,
       history: map['history'] != null ? map['history'] as bool : false,
       state_manage: map['state-manager'] != null ? map['state-manager'] as bool : false,
       running_workflows: map['running-workflows'] != null ? map['running-workflows'] as bool : false,
@@ -111,6 +116,7 @@ class DisplayLayoutModel {
         other.isDefault == isDefault &&
         other.title == title &&
         other.summary_template == summary_template &&
+        other.detail_template == detail_template &&
         other.history == history &&
         other.state_manage == state_manage &&
         other.running_workflows == running_workflows &&
@@ -125,6 +131,7 @@ class DisplayLayoutModel {
         isDefault.hashCode ^
         title.hashCode ^
         summary_template.hashCode ^
+        detail_template.hashCode ^
         history.hashCode ^
         state_manage.hashCode ^
         running_workflows.hashCode ^

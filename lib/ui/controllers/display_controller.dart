@@ -1,8 +1,5 @@
-import 'dart:convert';
-
 import 'package:admin/data/services/executer_service.dart';
 import 'package:admin/ui/controllers/entity_controller.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';
 
@@ -23,13 +20,20 @@ class DisplayController extends GetxController {
   getTemplates() async {
     templates = {};
     EntityController entityController = Get.find<EntityController>();
-
-    templates.addAll({
-      entityController.entity.display!.summary_template!.trTR: await getTemplate(
-        "${entityController.entity.display!.summary_template!.trTR}",
-        _displayView.value,
-      ),
-    });
+    if (entityController.entity.display!.summary_template != null)
+      templates.addAll({
+        entityController.entity.display!.summary_template!.trTR: await getTemplate(
+          "${entityController.entity.display!.summary_template!.trTR}",
+          _displayView.value,
+        ),
+      });
+    if (entityController.entity.display!.detail_template != null)
+      templates.addAll({
+        entityController.entity.display!.detail_template!.trTR: await getTemplate(
+          "${entityController.entity.display!.detail_template!.trTR}",
+          _displayView.value,
+        ),
+      });
 
     for (var tab in entityController.entity.display!.tabs!) {
       if (tab.type == "render") {

@@ -17,8 +17,7 @@ class DetailWidget extends StatefulWidget {
   State<DetailWidget> createState() => _DetailWidgetState();
 }
 
-class _DetailWidgetState extends State<DetailWidget>
-    with TickerProviderStateMixin {
+class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMixin {
   late TabController _tabController;
   final AppMenuController menuController = Get.find<AppMenuController>();
   final EntityController entityController = Get.find<EntityController>();
@@ -29,8 +28,7 @@ class _DetailWidgetState extends State<DetailWidget>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(
-        length: entityController.entity.display!.tabs!.length, vsync: this);
+    _tabController = TabController(length: entityController.entity.display!.tabs!.length, vsync: this);
     dropdownValue = list.first;
   }
 
@@ -60,8 +58,7 @@ class _DetailWidgetState extends State<DetailWidget>
               toolbarHeight: 80,
               backgroundColor: KC.primary,
               elevation: 1,
-              title: getRenderWidget(
-                  entityController.entity.display!.summary_template!),
+              title: getRenderWidget(entityController.entity.display!.summary_template!),
               actions: [
                 IconButton(
                     onPressed: () {
@@ -69,25 +66,28 @@ class _DetailWidgetState extends State<DetailWidget>
                     },
                     icon: Icon(Icons.close))
               ],
-              bottom: TabBar(
-                  controller: _tabController,
-                  tabs: entityController.entity.display!.tabs!
-                      .map(
-                        (e) => Tab(
-                          icon: Text(e.title.trTR),
-                        ),
-                      )
-                      .toList()),
+              bottom: TabBar(controller: _tabController, tabs: [
+                if (entityController.entity.display!.detail_template != null)
+                  Tab(
+                    icon: Text("Detay"),
+                  ),
+                ...entityController.entity.display!.tabs!
+                    .map(
+                      (e) => Tab(
+                        icon: Text(e.title.trTR),
+                      ),
+                    )
+                    .toList()
+              ]),
             ),
-            body: TabBarView(
-                controller: _tabController,
-                children: entityController.entity.display!.tabs!
-                    .map((e) => Container(
-                          child: e.type == "render"
-                              ? getRenderWidget(e.template!)
-                              : Container(),
-                        ))
-                    .toList())),
+            body: TabBarView(controller: _tabController, children: [
+              if (entityController.entity.display!.detail_template != null) getRenderWidget(entityController.entity.display!.detail_template!),
+              ...entityController.entity.display!.tabs!
+                  .map((e) => Container(
+                        child: e.type == "render" ? getRenderWidget(e.template!) : Container(),
+                      ))
+                  .toList()
+            ])),
       ),
     );
   }

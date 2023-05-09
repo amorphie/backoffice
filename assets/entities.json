@@ -63,6 +63,10 @@
                 "tr-TR": "amorphy-backoffice-user-display-summary-tr",
                 "en-EN": "amorphy-backoffice-user-display-summary-en"
             },
+            "detail-template": {
+                "tr-TR": "amorphy-backoffice-user-detail-tr",
+                "en-EN": "amorphy-backoffice-user-detail-tr"
+            },
             "history": true,
             "state-manager": true,
             "running-workflows": true,
