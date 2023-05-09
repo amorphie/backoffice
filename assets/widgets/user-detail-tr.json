@@ -1,0 +1,311 @@
+{
+    "type": "list_view",
+    "children": [
+      {
+        "type": "container",
+        "args": {
+          "margin": 5,
+          "height": 75,
+          "padding": 14
+        },
+        "child": {
+              "type": "column",
+              "children": [
+                {
+                    "type": "text",
+                    "args": {
+                      "text": "{{id}}",
+                      "style": {
+                        "fontWeight": "w500",
+                        "color" : "#1d1f29"
+                      }
+                    }
+                  },
+                  {
+                    "type": "padding",
+                    "args": {
+                      "padding": {
+                        "bottom": 15,
+                        "left" : 15,
+                        "top" : 5
+                      }
+                    },
+                    "child":  {
+                        "type": "text",
+                        "args": {
+                          "text": "{{id}}",
+                          "style": {
+                            "fontWeight": "w400",
+                            "color": "#1d1f29"
+                          }
+                        }
+                      }
+                }
+            ]
+         }
+      },
+      {
+        "type": "container",
+        "args": {
+          "margin": 5,
+          "height": 75,
+          "padding": 14
+        },
+        "child": {
+              "type": "column",
+              "children": [
+                {
+                    "type": "text",
+                    "args": {
+                      "text": "{{referans}}",
+                      "style": {
+                        "fontWeight": "w500",
+                        "color" : "#1d1f29"
+                      }
+                    }
+                  },
+                  {
+                    "type": "padding",
+                    "args": {
+                      "padding": {
+                        "bottom": 15,
+                        "left" : 15,
+                        "top" : 5
+                      }
+                    },
+                    "child":  {
+                        "type": "text",
+                        "args": {
+                          "text": "{{ref}}",
+                          "style": {
+                            "fontWeight": "w400",
+                            "color": "#1d1f29"
+                          }
+                        }
+                      }
+                  }
+             
+              ]
+            }
+      },
+      {
+        "type": "container",
+        "args": {
+          "margin": 5,
+          "height": 75,
+          "padding": 14
+        },
+        "child": {
+              "type": "column",
+              "children": [
+                {
+                    "type": "text",
+                    "args": {
+                      "text": "{{isim}}",
+                      "style": {
+                        "fontWeight": "w500",
+                        "color" : "#1d1f29"
+                      }
+                    }
+                  },
+                  {
+                    "type": "padding",
+                    "args": {
+                      "padding": {
+                        "bottom": 15,
+                        "left" : 15,
+                        "top" : 5
+                      }
+                    },
+                    "child":  {
+                        "type": "text",
+                        "args": {
+                          "text": "{{fullName}}",
+                          "style": {
+                            "fontWeight": "w400",
+                            "color": "#1d1f29"
+                          }
+                        }
+                      }
+                  }
+             
+              ]
+            }
+      },{
+        "type": "container",
+        "args": {
+          "margin": 5,
+          "height": 75,
+          "padding": 14
+        },
+        "child": {
+              "type": "column",
+              "children": [
+                {
+                    "type": "text",
+                    "args": {
+                      "text": "{{telefon}}",
+                      "style": {
+                        "fontWeight": "w500",
+                        "color" : "#1d1f29"
+                      }
+                    }
+                  },
+                  {
+                    "type": "padding",
+                    "args": {
+                      "padding": {
+                        "bottom": 15,
+                        "left" : 15,
+                        "top" : 5
+                      }
+                    },
+                    "child":  {
+                        "type": "text",
+                        "args": {
+                          "text": "{{phone}}",
+                          "style": {
+                            "fontWeight": "w400",
+                            "color": "#1d1f29"
+                          }
+                        }
+                      }
+                  }
+             
+              ]
+            }
+      },
+      {
+        "type": "container",
+        "args": {
+          "margin": 5,
+          "height": 75,
+          "padding": 14
+        },
+        "child": {
+              "type": "column",
+              "children": [
+                {
+                    "type": "text",
+                    "args": {
+                      "text": "{{email}}",
+                      "style": {
+                        "fontWeight": "w500",
+                        "color" : "#1d1f29"
+                      }
+                    }
+                  },
+                  {
+                    "type": "padding",
+                    "args": {
+                      "padding": {
+                        "bottom": 15,
+                        "left" : 15,
+                        "top" : 5
+                      }
+                    },
+                    "child":  {
+                        "type": "text",
+                        "args": {
+                          "text": "{{email}}",
+                          "style": {
+                            "fontWeight": "w400",
+                            "color": "#1d1f29"
+                          }
+                        }
+                      }
+                  }
+             
+              ]
+            }
+      },
+      {
+        "type": "container",
+        "args": {
+          "margin": 5,
+          "height": 75,
+          "padding": 14
+        },
+        "child": {
+              "type": "column",
+              "children": [
+                {
+                    "type": "text",
+                    "args": {
+                      "text": "{{durum}}",
+                      "style": {
+                        "fontWeight": "w500",
+                        "color" : "#1d1f29"
+                      }
+                    }
+                  },
+                  {
+                    "type": "padding",
+                    "args": {
+                      "padding": {
+                        "bottom": 15,
+                        "left" : 15,
+                        "top" : 5
+                      }
+                    },
+                    "child":  {
+                        "type": "text",
+                        "args": {
+                          "text": "{{state}}",
+                          "style": {
+                            "fontWeight": "w400",
+                            "color": "#1d1f29"
+                          }
+                        }
+                      }
+                  }
+             
+              ]
+            }
+      },
+      {
+        "type": "container",
+        "args": {
+          "margin": 5,
+          "height": 75,
+          "padding": 14
+        },
+        "child": {
+              "type": "column",
+              "children": [
+                {
+                    "type": "text",
+                    "args": {
+                      "text": "{{etiketler}}",
+                      "style": {
+                        "fontWeight": "w500",
+                        "color" : "#1d1f29"
+                      }
+                    }
+                  },
+                  {
+                    "type": "padding",
+                    "args": {
+                      "padding": {
+                        "bottom": 15,
+                        "left" : 15,
+                        "top" : 5
+                      }
+                    },
+                    "child":  {
+                        "type": "text",
+                        "args": {
+                          "text": "{{tags}}",
+                          "style": {
+                            "fontWeight": "w400",
+                            "color": "#1d1f29"
+                          }
+                        }
+                      }
+                  }
+             
+              ]
+            }
+      }
+    ]
+  }

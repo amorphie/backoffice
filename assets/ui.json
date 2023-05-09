@@ -30,6 +30,16 @@
                                 "tr-TR": "Kullanıcı Ekle",
                                 "en-EN": "User Add"
                             }
+                        },
+                        {
+                            "type": "workflow",
+                            "entity": "user",
+                            "search-layout": "full",
+                            "display-layout": "none",
+                            "title": {
+                                "tr-TR": "Kullanıcı Düzenle",
+                                "en-EN": "User Edit"
+                            }
                         }
                     ]
                 },
