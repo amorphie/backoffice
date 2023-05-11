@@ -85,29 +85,6 @@
                         "tr-TR": "Riza Detaylari",
                         "en-EN": "Consent Details"
                     }
-                },
-                {
-                    "type": "search",
-                    "entity": "token",
-                    "layout": "default-for-consent",
-                    "order": 1,
-                    "filter": "token",
-                    "fitler-value": "$.consent.id",
-                    "title": {
-                        "tr-TR": "Anahtarlar",
-                        "en-EN": "Tokens"
-                    }
-                },
-                {
-                    "type": "detail",
-                    "entity": "user",
-                    "order": 2,
-                    "id": "$.user.id",
-                    "layout": "minimal",
-                    "title": {
-                        "tr-TR": "Kullanici",
-                        "en-EN": "User"
-                    }
                 }
             ]
         },

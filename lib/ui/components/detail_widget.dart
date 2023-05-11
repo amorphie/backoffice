@@ -20,7 +20,6 @@ class DetailWidget extends StatefulWidget {
 class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMixin {
   late TabController _tabController;
   final AppMenuController menuController = Get.find<AppMenuController>();
-  final EntityController entityController = Get.find<EntityController>();
   final DisplayController displayController = Get.find<DisplayController>();
   List<String> list = <String>['One', 'Two', 'Three', 'Four'];
   late String dropdownValue;
@@ -28,7 +27,7 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: entityController.entity.display!.tabs!.length, vsync: this);
+    _tabController = TabController(length: displayController.tabCount, vsync: this);
     dropdownValue = list.first;
   }
 
@@ -58,7 +57,7 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
               toolbarHeight: 80,
               backgroundColor: KC.primary,
               elevation: 1,
-              title: getRenderWidget(entityController.entity.display!.summary_template!),
+              title: getRenderWidget(displayController.displayLayout.summary_template!),
               actions: [
                 IconButton(
                     onPressed: () {
@@ -67,11 +66,11 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
                     icon: Icon(Icons.close))
               ],
               bottom: TabBar(controller: _tabController, tabs: [
-                if (entityController.entity.display!.detail_template != null)
+                if (displayController.displayLayout.detail_template != null)
                   Tab(
                     icon: Text("Detay"),
                   ),
-                ...entityController.entity.display!.tabs!
+                ...displayController.displayLayout.tabs!
                     .map(
                       (e) => Tab(
                         icon: Text(e.title.trTR),
@@ -81,8 +80,8 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
               ]),
             ),
             body: TabBarView(controller: _tabController, children: [
-              if (entityController.entity.display!.detail_template != null) getRenderWidget(entityController.entity.display!.detail_template!),
-              ...entityController.entity.display!.tabs!
+              if (displayController.displayLayout.detail_template != null) getRenderWidget(displayController.displayLayout.detail_template!),
+              ...displayController.displayLayout.tabs!
                   .map((e) => Container(
                         child: e.type == "render" ? getRenderWidget(e.template!) : Container(),
                       ))

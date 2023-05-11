@@ -1,15 +1,21 @@
+import 'package:admin/data/models/entity/layouts/display_layout_model.dart';
 import 'package:admin/data/services/executer_service.dart';
 import 'package:admin/ui/controllers/entity_controller.dart';
 import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';
 
 class DisplayController extends GetxController {
+  Rx<DisplayLayoutModel> _displayLayout = DisplayLayoutModel().obs;
+  DisplayLayoutModel get displayLayout => _displayLayout.value;
+
   RxMap<String, dynamic> _displayView = <String, dynamic>{}.obs;
   Map<String, dynamic> templates = {};
 
   RxBool _hasDisplayView = false.obs;
 
   setData(Map<String, dynamic> data) async {
+    EntityController entityController = Get.find<EntityController>();
+    _displayLayout.value = entityController.entity.display!;
     _hasDisplayView.value = false;
 
     _displayView.value = data;
@@ -17,25 +23,28 @@ class DisplayController extends GetxController {
     _hasDisplayView.value = true;
   }
 
+  int get tabCount {
+    return displayLayout.tabs!.length + (displayLayout.detail_template != null ? 1 : 0);
+  }
+
   getTemplates() async {
     templates = {};
-    EntityController entityController = Get.find<EntityController>();
-    if (entityController.entity.display!.summary_template != null)
+    if (displayLayout.summary_template != null)
       templates.addAll({
-        entityController.entity.display!.summary_template!.trTR: await getTemplate(
-          "${entityController.entity.display!.summary_template!.trTR}",
+        displayLayout.summary_template!.trTR: await getTemplate(
+          "${displayLayout.summary_template!.trTR}",
           _displayView.value,
         ),
       });
-    if (entityController.entity.display!.detail_template != null)
+    if (displayLayout.detail_template != null)
       templates.addAll({
-        entityController.entity.display!.detail_template!.trTR: await getTemplate(
-          "${entityController.entity.display!.detail_template!.trTR}",
+        displayLayout.detail_template!.trTR: await getTemplate(
+          "${displayLayout.detail_template!.trTR}",
           _displayView.value,
         ),
       });
 
-    for (var tab in entityController.entity.display!.tabs!) {
+    for (var tab in displayLayout.tabs!) {
       if (tab.type == "render") {
         templates.addAll({
           tab.template!.trTR: await getTemplate(

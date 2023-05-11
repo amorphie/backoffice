@@ -14,6 +14,7 @@ class EntityModel {
   UpdateLayout? update;
   DeleteLayout? delete;
   DisplayLayoutModel? display;
+
   EntityModel({
     this.search,
     this.create,
