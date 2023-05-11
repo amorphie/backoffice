@@ -6,17 +6,19 @@
         "args": {
           "margin": 5,
           "height": 75,
-          "padding": 14
+          "padding": 8
         },
         "child": {
               "type": "column",
+              "args": {"crossAxisAlignment": "start",
+              "mainAxisAlignment": "start"},
               "children": [
                 {
                     "type": "text",
                     "args": {
                       "text": "id",
                       "style": {
-                        "fontWeight": "w500",
+                        "fontWeight": "bold",
                         "color" : "#1d1f29"
                       }
                     }
@@ -25,8 +27,8 @@
                     "type": "padding",
                     "args": {
                       "padding": {
-                        "bottom": 15,
-                        "left" : 15,
+                        "bottom": 8,
+                        "left" : 8,
                         "top" : 5
                       }
                     },
@@ -49,10 +51,12 @@
         "args": {
           "margin": 5,
           "height": 75,
-          "padding": 14
+          "padding": 8
         },
         "child": {
               "type": "column",
+              "args": {"crossAxisAlignment": "start",
+              "mainAxisAlignment": "start"},
               "children": [
                 {
                     "type": "text",
@@ -68,8 +72,8 @@
                     "type": "padding",
                     "args": {
                       "padding": {
-                        "bottom": 15,
-                        "left" : 15,
+                        "bottom": 8,
+                        "left" : 8,
                         "top" : 5
                       }
                     },
@@ -93,10 +97,12 @@
         "args": {
           "margin": 5,
           "height": 75,
-          "padding": 14
+          "padding": 8
         },
         "child": {
               "type": "column",
+              "args": {"crossAxisAlignment": "start",
+              "mainAxisAlignment": "start"},
               "children": [
                 {
                     "type": "text",
@@ -112,8 +118,8 @@
                     "type": "padding",
                     "args": {
                       "padding": {
-                        "bottom": 15,
-                        "left" : 15,
+                        "bottom": 8,
+                        "left" : 8,
                         "top" : 5
                       }
                     },
@@ -136,10 +142,12 @@
         "args": {
           "margin": 5,
           "height": 75,
-          "padding": 14
+          "padding": 8
         },
         "child": {
               "type": "column",
+              "args": {"crossAxisAlignment": "start",
+              "mainAxisAlignment": "start"},
               "children": [
                 {
                     "type": "text",
@@ -155,8 +163,8 @@
                     "type": "padding",
                     "args": {
                       "padding": {
-                        "bottom": 15,
-                        "left" : 15,
+                        "bottom": 8,
+                        "left" : 8,
                         "top" : 5
                       }
                     },
@@ -180,10 +188,12 @@
         "args": {
           "margin": 5,
           "height": 75,
-          "padding": 14
+          "padding": 8
         },
         "child": {
               "type": "column",
+              "args": {"crossAxisAlignment": "start",
+              "mainAxisAlignment": "start"},
               "children": [
                 {
                     "type": "text",
@@ -199,8 +209,8 @@
                     "type": "padding",
                     "args": {
                       "padding": {
-                        "bottom": 15,
-                        "left" : 15,
+                        "bottom": 8,
+                        "left" : 8,
                         "top" : 5
                       }
                     },
@@ -224,10 +234,12 @@
         "args": {
           "margin": 5,
           "height": 75,
-          "padding": 14
+          "padding": 8
         },
         "child": {
               "type": "column",
+              "args": {"crossAxisAlignment": "start",
+              "mainAxisAlignment": "start"},
               "children": [
                 {
                     "type": "text",
@@ -243,8 +255,8 @@
                     "type": "padding",
                     "args": {
                       "padding": {
-                        "bottom": 15,
-                        "left" : 15,
+                        "bottom": 8,
+                        "left" : 8,
                         "top" : 5
                       }
                     },
@@ -268,10 +280,12 @@
         "args": {
           "margin": 5,
           "height": 75,
-          "padding": 14
+          "padding": 8
         },
         "child": {
               "type": "column",
+              "args": {"crossAxisAlignment": "start",
+              "mainAxisAlignment": "start"},
               "children": [
                 {
                     "type": "text",
@@ -287,8 +301,8 @@
                     "type": "padding",
                     "args": {
                       "padding": {
-                        "bottom": 15,
-                        "left" : 15,
+                        "bottom": 8,
+                        "left" : 8,
                         "top" : 5
                       }
                     },
