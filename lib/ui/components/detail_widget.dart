@@ -1,5 +1,6 @@
 import 'package:admin/data/models/entity/layout_helpers/title_model.dart';
 import 'package:admin/ui/controllers/menu_controller.dart';
+import 'package:admin/ui/pages/user_edit_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
@@ -41,7 +42,7 @@ class _DetailWidgetState extends State<DetailWidget>
         child: Column(
           children: [
             workflowTopTemp(context),
-            workflowBottomTemp(context, dropdownValue),
+            editButton(context),
           ],
         ),
       ),
@@ -97,81 +98,30 @@ class _DetailWidgetState extends State<DetailWidget>
     );
   }
 
-  Expanded workflowBottomTemp(BuildContext context, String dropdownValue) {
+  Expanded editButton(BuildContext context) {
     return Expanded(
       flex: 1,
-      child: Container(
-        child: Padding(
-          padding: const EdgeInsets.all(1.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                width: double.infinity,
-                height: 60,
-                child: TextButton(
-                  onPressed: () {
-                    // do something
-                  },
-                  child: Text(
-                    'Düzenle',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16.0,
-                    ),
-                  ),
-                  style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateProperty.all<Color>(KC.primary),
-                    padding: MaterialStateProperty.all<EdgeInsets>(
-                        EdgeInsets.symmetric(vertical: 3.0, horizontal: 16.0)),
-                  ),
-                ),
-              )
-              //workflowWidgets(dropdownValue, "State"),
-              //workflowWidgets(dropdownValue, "Reset password progress"),
-              //workflowWidgets(dropdownValue, "Available workflows"),
-            ],
+      child: SizedBox(
+        width: double.infinity,
+        height: 60,
+        child: TextButton(
+          onPressed: () {
+            _showMyDialog();
+          },
+          child: Text(
+            'Düzenle',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 16.0,
+            ),
+          ),
+          style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all<Color>(KC.primary),
+            padding: MaterialStateProperty.all<EdgeInsets>(
+                EdgeInsets.symmetric(vertical: 3.0, horizontal: 16.0)),
           ),
         ),
       ),
-    );
-  }
-
-  Row workflowWidgets(String dropdownValue, String title) {
-    return Row(
-      children: [
-        Text(
-          "$title : ",
-          textAlign: TextAlign.left,
-          style: TextStyle(color: Colors.black87, fontSize: 15),
-        ),
-        SizedBox(
-          width: 10,
-        ),
-        DropdownButton<String>(
-          value: dropdownValue,
-          icon: Icon(Icons.arrow_downward),
-          elevation: 1,
-          style: TextStyle(color: Colors.black87),
-          underline: Container(
-            height: 2,
-            color: KC.primary,
-          ),
-          onChanged: (String? value) {
-            // This is called when the user selects an item.
-            setState(() {
-              dropdownValue = value!;
-            });
-          },
-          items: list.map<DropdownMenuItem<String>>((String value) {
-            return DropdownMenuItem<String>(
-              value: value,
-              child: Text(value),
-            );
-          }).toList(),
-        )
-      ],
     );
   }
 
@@ -182,5 +132,36 @@ class _DetailWidgetState extends State<DetailWidget>
       registry: JsonWidgetRegistry.instance,
     )!
         .build(context: context);
+  }
+
+  Future<void> _showMyDialog() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: true, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          actionsPadding: EdgeInsets.zero,
+          insetPadding: EdgeInsets.zero,
+          buttonPadding: EdgeInsets.zero,
+          contentPadding: EdgeInsets.zero,
+          title: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              'Düzenle',
+              style: TextStyle(color: KC.primary),
+            ),
+          ),
+          content: UserEditPage(),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Exit'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 }
