@@ -42,7 +42,13 @@ class _DetailWidgetState extends State<DetailWidget>
         child: Column(
           children: [
             workflowTopTemp(context),
-            editButton(context),
+            Row(
+              children: [
+                editButton(context, "State"),
+                editButton(context, "Workflows"),
+                editButton(context, "Reset Password"),
+              ],
+            ),
           ],
         ),
       ),
@@ -98,27 +104,29 @@ class _DetailWidgetState extends State<DetailWidget>
     );
   }
 
-  Expanded editButton(BuildContext context) {
+  Widget editButton(BuildContext context, String title) {
     return Expanded(
-      flex: 1,
-      child: SizedBox(
-        width: double.infinity,
-        height: 60,
-        child: TextButton(
-          onPressed: () {
-            _showMyDialog();
-          },
-          child: Text(
-            'Düzenle',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 16.0,
+      child: Padding(
+        padding: const EdgeInsets.all(2.0),
+        child: SizedBox(
+          width: double.infinity,
+          height: 60,
+          child: TextButton(
+            onPressed: () {
+              _showMyDialog();
+            },
+            child: Text(
+              title,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 16.0,
+              ),
             ),
-          ),
-          style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all<Color>(KC.primary),
-            padding: MaterialStateProperty.all<EdgeInsets>(
-                EdgeInsets.symmetric(vertical: 3.0, horizontal: 16.0)),
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all<Color>(KC.primary),
+              padding: MaterialStateProperty.all<EdgeInsets>(
+                  EdgeInsets.symmetric(vertical: 3.0, horizontal: 16.0)),
+            ),
           ),
         ),
       ),

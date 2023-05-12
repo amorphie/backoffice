@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:admin/ui/components/custom_textfield.dart';
 import 'package:admin/ui/components/data_table/data_table_source.dart';
+import 'package:admin/ui/pages/formio/formio.dart';
 import 'package:flutter/material.dart';
 
 import 'package:admin/data/models/entity/layout_helpers/search_column_model.dart';
@@ -11,6 +12,7 @@ import '../../../style/colors.dart';
 class AppDataTable extends StatelessWidget {
   final TitleModel title;
   final Function(String val) onSearch;
+  final Function addRessed;
   final bool loading;
   final bool withSearch;
   final List<SearchColumn> columns;
@@ -22,6 +24,7 @@ class AppDataTable extends StatelessWidget {
     required this.title,
     required this.withSearch,
     required this.onSearch,
+    required this.addRessed,
     this.loading = false,
     required this.columns,
     required this.data,
@@ -57,7 +60,7 @@ class AppDataTable extends StatelessWidget {
                     )),
                 IconButton(
                     onPressed: () {
-                      //  widget.addPress();
+                      addRessed();
                     },
                     icon: Icon(
                       Icons.add_circle_outlined,

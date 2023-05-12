@@ -11,7 +11,7 @@ class UserEditPage extends StatefulWidget {
 
 class _UserEditPageState extends State<UserEditPage>
     with TickerProviderStateMixin {
-  List<String> list = <String>['One', 'Two', 'Three', 'Four'];
+  List<String> list = <String>['Active', 'Deactive', 'Suspended', 'Pending'];
   late String dropdownValue;
 
   @override
