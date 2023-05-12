@@ -1,5 +1,4 @@
 import 'package:admin/data/models/entity/layout_helpers/title_model.dart';
-import 'package:admin/ui/controllers/entity_controller.dart';
 import 'package:admin/ui/controllers/menu_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -17,7 +16,8 @@ class DetailWidget extends StatefulWidget {
   State<DetailWidget> createState() => _DetailWidgetState();
 }
 
-class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMixin {
+class _DetailWidgetState extends State<DetailWidget>
+    with TickerProviderStateMixin {
   late TabController _tabController;
   final AppMenuController menuController = Get.find<AppMenuController>();
   final DisplayController displayController = Get.find<DisplayController>();
@@ -27,7 +27,8 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: displayController.tabCount, vsync: this);
+    _tabController =
+        TabController(length: displayController.tabCount, vsync: this);
     dropdownValue = list.first;
   }
 
@@ -57,7 +58,8 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
               toolbarHeight: 80,
               backgroundColor: KC.primary,
               elevation: 1,
-              title: getRenderWidget(displayController.displayLayout.summary_template!),
+              title: getRenderWidget(
+                  displayController.displayLayout.summary_template!),
               actions: [
                 IconButton(
                     onPressed: () {
@@ -80,10 +82,14 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
               ]),
             ),
             body: TabBarView(controller: _tabController, children: [
-              if (displayController.displayLayout.detail_template != null) getRenderWidget(displayController.displayLayout.detail_template!),
+              if (displayController.displayLayout.detail_template != null)
+                getRenderWidget(
+                    displayController.displayLayout.detail_template!),
               ...displayController.displayLayout.tabs!
                   .map((e) => Container(
-                        child: e.type == "render" ? getRenderWidget(e.template!) : Container(),
+                        child: e.type == "render"
+                            ? getRenderWidget(e.template!)
+                            : Container(),
                       ))
                   .toList()
             ])),
@@ -93,16 +99,38 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
 
   Expanded workflowBottomTemp(BuildContext context, String dropdownValue) {
     return Expanded(
-      flex: 2,
+      flex: 1,
       child: Container(
         child: Padding(
           padding: const EdgeInsets.all(1.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              workflowWidgets(dropdownValue, "State"),
-              workflowWidgets(dropdownValue, "Reset password progress"),
-              workflowWidgets(dropdownValue, "Available workflows"),
+              SizedBox(
+                width: double.infinity,
+                height: 60,
+                child: TextButton(
+                  onPressed: () {
+                    // do something
+                  },
+                  child: Text(
+                    'Düzenle',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16.0,
+                    ),
+                  ),
+                  style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(KC.primary),
+                    padding: MaterialStateProperty.all<EdgeInsets>(
+                        EdgeInsets.symmetric(vertical: 3.0, horizontal: 16.0)),
+                  ),
+                ),
+              )
+              //workflowWidgets(dropdownValue, "State"),
+              //workflowWidgets(dropdownValue, "Reset password progress"),
+              //workflowWidgets(dropdownValue, "Available workflows"),
             ],
           ),
         ),
