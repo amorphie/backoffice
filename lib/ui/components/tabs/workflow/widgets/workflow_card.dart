@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 
-import '../../../../../style/colors.dart';
+import '../../../../style/colors.dart';
 
 class WorkflowCard extends StatelessWidget {
   const WorkflowCard({

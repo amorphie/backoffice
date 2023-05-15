@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
-import '../../style/colors.dart';
+import '../style/colors.dart';
 import '../controllers/display_controller.dart';
 
 class DetailWidget extends StatefulWidget {

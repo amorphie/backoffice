@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 
-import '../../../../../style/colors.dart';
+import '../../../../style/colors.dart';
 
 class HistoryCard extends StatelessWidget {
   const HistoryCard({

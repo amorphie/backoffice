@@ -1,8 +1,8 @@
-import 'package:admin/style/colors.dart';
+import 'package:admin/ui/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../controllers/menu_controller.dart';
+import '../../controllers/menu_controller.dart';
 import 'menu_item.dart';
 
 class AppMenu extends StatelessWidget {

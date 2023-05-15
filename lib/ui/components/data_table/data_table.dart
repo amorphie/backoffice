@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:admin/data/models/entity/layout_helpers/search_column_model.dart';
 import 'package:admin/data/models/entity/layout_helpers/title_model.dart';
 
-import '../../../style/colors.dart';
+import '../../style/colors.dart';
 
 class AppDataTable extends StatelessWidget {
   final TitleModel title;

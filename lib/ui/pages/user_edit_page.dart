@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../style/colors.dart';
+import '../style/colors.dart';
 
 class UserEditPage extends StatefulWidget {
   const UserEditPage({super.key});
@@ -9,8 +9,7 @@ class UserEditPage extends StatefulWidget {
   State<UserEditPage> createState() => _UserEditPageState();
 }
 
-class _UserEditPageState extends State<UserEditPage>
-    with TickerProviderStateMixin {
+class _UserEditPageState extends State<UserEditPage> with TickerProviderStateMixin {
   List<String> list = <String>['Active', 'Deactive', 'Suspended', 'Pending'];
   late String dropdownValue;
 

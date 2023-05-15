@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../constants/responsive.dart';
-import '../../style/colors.dart';
-import '../common/menu.dart';
+import '../style/colors.dart';
+import '../components/menu/menu.dart';
 import '../components/data_table/data_table.dart';
 import '../controllers/display_controller.dart';
 import '../controllers/menu_controller.dart';
-import 'formio/formio.dart';
+import '../components/formio.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
@@ -34,8 +34,7 @@ class HomePage extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: AppDataTable(
-                        withSearch:
-                            entityController.entity.search?.search ?? false,
+                        withSearch: entityController.entity.search?.search ?? false,
                         title: menuController.menuItem.value.title!,
                         data: entityController.dataList,
                         columns: entityController.entity.search?.columns ?? [],
@@ -58,8 +57,7 @@ class HomePage extends StatelessWidget {
               },
             ),
             // ),
-            if (displayController.hasDisplayView)
-              const Expanded(child: DetailWidget()),
+            if (displayController.hasDisplayView) const Expanded(child: DetailWidget()),
           ],
         );
       }),
@@ -83,7 +81,7 @@ class HomePage extends StatelessWidget {
               style: TextStyle(color: KC.primary),
             ),
           ),
-          content: Container(),
+          content: FormioPage(),
           actions: <Widget>[
             TextButton(
               child: const Text('Exit'),
