@@ -1,5 +1,4 @@
 import 'package:admin/data/models/entity/layout_helpers/title_model.dart';
-import 'package:admin/ui/controllers/menu_controller.dart';
 import 'package:admin/ui/pages/user_edit_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -17,10 +16,8 @@ class DetailWidget extends StatefulWidget {
   State<DetailWidget> createState() => _DetailWidgetState();
 }
 
-class _DetailWidgetState extends State<DetailWidget>
-    with TickerProviderStateMixin {
+class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMixin {
   late TabController _tabController;
-  final AppMenuController menuController = Get.find<AppMenuController>();
   final DisplayController displayController = Get.find<DisplayController>();
   List<String> list = <String>['One', 'Two', 'Three', 'Four'];
   late String dropdownValue;
@@ -28,8 +25,7 @@ class _DetailWidgetState extends State<DetailWidget>
   @override
   void initState() {
     super.initState();
-    _tabController =
-        TabController(length: displayController.tabCount, vsync: this);
+    _tabController = TabController(length: displayController.tabCount, vsync: this);
     dropdownValue = list.first;
   }
 
@@ -65,8 +61,7 @@ class _DetailWidgetState extends State<DetailWidget>
               toolbarHeight: 80,
               backgroundColor: KC.primary,
               elevation: 1,
-              title: getRenderWidget(
-                  displayController.displayLayout.summary_template!),
+              title: getRenderWidget(displayController.displayLayout.summary_template!),
               actions: [
                 IconButton(
                     onPressed: () {
@@ -89,14 +84,10 @@ class _DetailWidgetState extends State<DetailWidget>
               ]),
             ),
             body: TabBarView(controller: _tabController, children: [
-              if (displayController.displayLayout.detail_template != null)
-                getRenderWidget(
-                    displayController.displayLayout.detail_template!),
+              if (displayController.displayLayout.detail_template != null) getRenderWidget(displayController.displayLayout.detail_template!),
               ...displayController.displayLayout.tabs!
                   .map((e) => Container(
-                        child: e.type == "render"
-                            ? getRenderWidget(e.template!)
-                            : Container(),
+                        child: e.type == "render" ? getRenderWidget(e.template!) : Container(),
                       ))
                   .toList()
             ])),
@@ -124,8 +115,7 @@ class _DetailWidgetState extends State<DetailWidget>
             ),
             style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all<Color>(KC.primary),
-              padding: MaterialStateProperty.all<EdgeInsets>(
-                  EdgeInsets.symmetric(vertical: 3.0, horizontal: 16.0)),
+              padding: MaterialStateProperty.all<EdgeInsets>(EdgeInsets.symmetric(vertical: 3.0, horizontal: 16.0)),
             ),
           ),
         ),

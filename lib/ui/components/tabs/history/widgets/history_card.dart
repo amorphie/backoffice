@@ -34,15 +34,11 @@ class HistoryCard extends StatelessWidget {
                 title,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                    color: Colors.black87, fontWeight: FontWeight.w600),
+                style: TextStyle(color: Colors.black87, fontWeight: FontWeight.w600),
               ),
               Text(
                 subtitle,
-                style: Theme.of(context)
-                    .textTheme
-                    .caption!
-                    .copyWith(color: Colors.black54),
+                style: Theme.of(context).textTheme.bodySmall!.copyWith(color: Colors.black54),
               ),
             ],
           ),

@@ -69,21 +69,17 @@ class DisplayTabModel {
       entity: map['entity'] as String,
       order: map['order'] as int,
       id: map['id'] ?? "",
-      template: map['template'] != null
-          ? TitleModel.fromMap(map['template'] as Map<String, dynamic>)
-          : null,
+      template: map['template'] != null ? TitleModel.fromMap(map['template'] as Map<String, dynamic>) : null,
       title: TitleModel.fromMap(map['title'] as Map<String, dynamic>),
       layout: map['layout'] != null ? map['layout'] as String : null,
       filter: map['filter'] != null ? map['filter'] as String : null,
-      filter_value:
-          map['filter-value'] != null ? map['filter-value'] as String : null,
+      filter_value: map['filter-value'] != null ? map['filter-value'] as String : null,
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory DisplayTabModel.fromJson(String source) =>
-      DisplayTabModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory DisplayTabModel.fromJson(String source) => DisplayTabModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
@@ -107,14 +103,6 @@ class DisplayTabModel {
 
   @override
   int get hashCode {
-    return type.hashCode ^
-        entity.hashCode ^
-        order.hashCode ^
-        id.hashCode ^
-        template.hashCode ^
-        title.hashCode ^
-        layout.hashCode ^
-        filter.hashCode ^
-        filter_value.hashCode;
+    return type.hashCode ^ entity.hashCode ^ order.hashCode ^ id.hashCode ^ template.hashCode ^ title.hashCode ^ layout.hashCode ^ filter.hashCode ^ filter_value.hashCode;
   }
 }

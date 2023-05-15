@@ -1,7 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:admin/ui/components/custom_textfield.dart';
 import 'package:admin/ui/components/data_table/data_table_source.dart';
-import 'package:admin/ui/pages/formio/formio.dart';
 import 'package:flutter/material.dart';
 
 import 'package:admin/data/models/entity/layout_helpers/search_column_model.dart';
@@ -39,10 +37,7 @@ class AppDataTable extends StatelessWidget {
           padding: const EdgeInsets.only(left: 16.0, top: 10, bottom: 14),
           child: Text(
             title.trTR,
-            style: TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
-                color: Colors.black54),
+            style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.black54),
           ),
         ),
         Builder(builder: (context) {
@@ -76,8 +71,7 @@ class AppDataTable extends StatelessWidget {
                       style: TextStyle(color: Colors.black87),
                     )))
                 .toList(),
-            source: AppDataTableSource(
-                data: data, columns: columns, onPressed: onPressed),
+            source: AppDataTableSource(data: data, columns: columns, onPressed: onPressed),
           );
         }),
       ],
@@ -88,11 +82,7 @@ class AppDataTable extends StatelessWidget {
     return Expanded(
       child: TextField(
         onSubmitted: onSearch,
-        decoration: InputDecoration(
-            hintText: "Search",
-            prefixIconColor: KC.primary,
-            prefixIcon: Icon(Icons.search),
-            iconColor: KC.primary),
+        decoration: InputDecoration(hintText: "Search", prefixIconColor: KC.primary, prefixIcon: Icon(Icons.search), iconColor: KC.primary),
       ),
     );
   }

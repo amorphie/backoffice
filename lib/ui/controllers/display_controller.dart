@@ -1,3 +1,5 @@
+// ignore_for_file: invalid_use_of_protected_member
+
 import 'package:admin/data/models/entity/layouts/display_layout_model.dart';
 import 'package:admin/data/services/executer_service.dart';
 import 'package:admin/ui/controllers/entity_controller.dart';

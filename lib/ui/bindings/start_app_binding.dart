@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:get/get.dart';
 
 import '../controllers/display_controller.dart';

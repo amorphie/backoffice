@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:admin/data/models/workflow/altmodels/transitions.dart';
 import 'package:admin/data/models/workflow/workflow_model.dart';
 import 'package:admin/data/services/executer_service.dart';
@@ -7,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';
 
 class WorkflowController extends GetxController {
-  Uri _getUrl(String endpoint) => Uri.parse("https://test-amorphie-workflow.burgan.com.tr/" + endpoint);
   Rx<WorkflowModel> _workflow = WorkflowModel.init().obs;
   WorkflowModel get workflow => _workflow.value;
   set workflow(WorkflowModel _) {
@@ -66,7 +63,7 @@ class WorkflowController extends GetxController {
     var response = await Executer.post(
         endpoint: "https://test-amorphie-workflow.burgan.com.tr/workflow/consumer/${_entity.value}/record/${_recordId.value}/transition/${transition.name}", data: data, headers: headers);
     if (response.success) {
-      var result = response.data;
+      // var result = response.data;
       //TODO snackbar ile gösterim yapılacak
       await getTransitions();
     }
