@@ -11,18 +11,15 @@ class DisplayController extends GetxController {
   DisplayLayoutModel get displayLayout => _displayLayout.value;
 
   RxMap<String, dynamic> _displayView = <String, dynamic>{}.obs;
-  Map<String, dynamic> templates = {};
 
-  RxBool _hasDisplayView = false.obs;
+  Map<String, dynamic> templates = {};
 
   setData(Map<String, dynamic> data) async {
     EntityController entityController = Get.find<EntityController>();
     _displayLayout.value = entityController.entity.display!;
-    _hasDisplayView.value = false;
 
     _displayView.value = data;
     await getTemplates();
-    _hasDisplayView.value = true;
   }
 
   int get tabCount {
@@ -82,12 +79,7 @@ class DisplayController extends GetxController {
     return null;
   }
 
-  bool get hasDisplayView {
-    return _hasDisplayView.value;
-  }
-
   reset() {
     _displayView.value = <String, dynamic>{};
-    _hasDisplayView.value = false;
   }
 }

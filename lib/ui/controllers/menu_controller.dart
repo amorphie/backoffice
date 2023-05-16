@@ -9,7 +9,6 @@ class AppMenuController extends GetxController {
   Rx<MenuModel> menu = MenuModel(items: []).obs;
   Rx<MenuItemModel> menuItem = MenuItemModel(type: MenuItemType.none).obs;
 
-  bool get isWorkflowItem => menuItem.value.type == MenuItemType.workflow;
   bool get isEntityItem => menuItem.value.type == MenuItemType.entity;
   bool get hasSelectedMenuItem => menuItem.value.type != MenuItemType.none;
   Future<void> init() async {

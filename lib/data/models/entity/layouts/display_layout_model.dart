@@ -7,6 +7,7 @@ import 'package:admin/data/models/entity/layout_helpers/tab_model.dart';
 import 'package:admin/data/models/entity/layout_helpers/title_model.dart';
 
 class DisplayLayoutModel {
+  String? workflow;
   String? url;
 
   String? name;
@@ -20,6 +21,7 @@ class DisplayLayoutModel {
   bool? available_workflows;
   List<DisplayTabModel>? tabs;
   DisplayLayoutModel({
+    this.workflow,
     this.url,
     this.name,
     this.isDefault,
@@ -34,6 +36,7 @@ class DisplayLayoutModel {
   });
 
   DisplayLayoutModel copyWith({
+    String? workflow,
     String? url,
     String? name,
     bool? isDefault,
@@ -46,6 +49,7 @@ class DisplayLayoutModel {
     List<DisplayTabModel>? tabs,
   }) {
     return DisplayLayoutModel(
+      workflow: workflow ?? this.workflow,
       url: url ?? this.url,
       name: name ?? this.name,
       isDefault: isDefault ?? this.isDefault,
@@ -61,6 +65,7 @@ class DisplayLayoutModel {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
+      'workflow': workflow,
       'url': url,
       'name': name,
       'isDefault': isDefault,
@@ -77,6 +82,7 @@ class DisplayLayoutModel {
 
   factory DisplayLayoutModel.fromMap(Map<String, dynamic> map) {
     return DisplayLayoutModel(
+      workflow: map['workflow'] != null ? map['workflow'] as String : "",
       url: map['url'] != null ? map['url'] as String : "",
       name: map['name'] != null ? map['name'] as String : "",
       isDefault: map['default'] != null ? map['default'] as bool : false,
@@ -111,6 +117,7 @@ class DisplayLayoutModel {
     if (identical(this, other)) return true;
 
     return other.url == url &&
+        other.workflow == workflow &&
         other.name == name &&
         other.isDefault == isDefault &&
         other.title == title &&
@@ -126,6 +133,7 @@ class DisplayLayoutModel {
   @override
   int get hashCode {
     return url.hashCode ^
+        workflow.hashCode ^
         name.hashCode ^
         isDefault.hashCode ^
         title.hashCode ^

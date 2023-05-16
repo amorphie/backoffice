@@ -1,5 +1,6 @@
 {
     "user": {
+        "name": "user",
         "search": {
             "list_url": "https://test-amorphie-fact-user.burgan.com.tr/user/search",
             "search_query": "searchText",
@@ -52,6 +53,7 @@
             ]
         },
         "display": {
+            "workflow": "user",
             "url": "https://test-amorphie-fact-user.burgan.com.tr/user/search/@id",
             "name": "default",
             "default": true,
@@ -88,11 +90,19 @@
                 }
             ]
         },
+        "create": {
+            "workflow": "user"
+        },
+        "update": {
+            "workflow": "user-update",
+            "dataUrl": "https://test-amorphie-fact-user.burgan.com.tr/user/@id"
+        },
         "delete": {
             "url": "https://test-amorphie-fact-user.burgan.com.tr/user/@id"
         }
     },
     "tag": {
+        "name": "tag",
         "search": {
             "list_url": "https://test-amorphie-tag.burgan.com.tr/tag",
             "search_query": "searchText",
@@ -139,6 +149,7 @@
         }
     },
     "domain": {
+        "name": "domain",
         "search": {
             "list_url": "https://test-amorphie-resource.burgan.com.tr/domain",
             "search_query": "searchText",
@@ -177,6 +188,7 @@
         }
     },
     "resource": {
+        "name": "resource",
         "search": {
             "list_url": "https://test-amorphie-resource.burgan.com.tr/resource",
             "search_query": "searchText",
@@ -223,6 +235,7 @@
         }
     },
     "resourceRole": {
+        "name": "resourceRole",
         "search": {
             "list_url": "https://test-amorphie-resource.burgan.com.tr/resourceRole",
             "search_query": "searchText",
@@ -253,6 +266,7 @@
         }
     },
     "roleGroup": {
+        "name": "roleGroup",
         "search": {
             "list_url": "https://test-amorphie-resource.burgan.com.tr/roleGroup",
             "search_query": "searchText",
@@ -299,6 +313,7 @@
         }
     },
     "privilege": {
+        "name": "privilege",
         "search": {
             "list_url": "https://test-amorphie-resource.burgan.com.tr/privilege",
             "search_query": "searchText",

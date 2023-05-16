@@ -2,7 +2,6 @@
 import 'package:admin/data/models/menu/enums/menu_item_type.dart';
 import 'package:admin/ui/components/menu/menu_button_card.dart';
 import 'package:admin/ui/components/menu/profile.dart';
-import 'package:admin/ui/controllers/display_controller.dart';
 import 'package:admin/ui/controllers/entity_controller.dart';
 import 'package:admin/ui/controllers/menu_controller.dart';
 import 'package:admin/ui/controllers/workflow_controller.dart';
@@ -19,7 +18,6 @@ class MenuItem extends StatelessWidget {
   }) : super(key: key);
 
   final AppMenuController menuController = Get.find<AppMenuController>();
-  final DisplayController displayController = Get.find<DisplayController>();
   final EntityController entityController = Get.find<EntityController>();
   @override
   Widget build(BuildContext context) {

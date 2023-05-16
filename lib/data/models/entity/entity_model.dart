@@ -9,6 +9,7 @@ import 'layouts/search_layout_model.dart';
 import 'layouts/update_layout_model.dart';
 
 class EntityModel {
+  String? name;
   SearchLayout? search;
   CreateLayout? create;
   UpdateLayout? update;
@@ -16,6 +17,7 @@ class EntityModel {
   DisplayLayoutModel? display;
 
   EntityModel({
+    this.name,
     this.search,
     this.create,
     this.update,
@@ -24,6 +26,7 @@ class EntityModel {
   });
 
   EntityModel copyWith({
+    String? name,
     SearchLayout? search,
     CreateLayout? create,
     UpdateLayout? update,
@@ -31,6 +34,7 @@ class EntityModel {
     DisplayLayoutModel? display,
   }) {
     return EntityModel(
+      name: name ?? this.name,
       search: search ?? this.search,
       create: create ?? this.create,
       update: update ?? this.update,
@@ -41,6 +45,7 @@ class EntityModel {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
+      'name': name,
       'search': search?.toMap(),
       'create': create?.toMap(),
       'update': update?.toMap(),
@@ -51,6 +56,7 @@ class EntityModel {
 
   factory EntityModel.fromMap(Map<String, dynamic> map) {
     return EntityModel(
+      name: map['name'] != null ? map['name'] as String : null,
       search: map['search'] != null ? SearchLayout.fromMap(map['search'] as Map<String, dynamic>) : null,
       create: map['create'] != null ? CreateLayout.fromMap(map['create'] as Map<String, dynamic>) : null,
       update: map['update'] != null ? UpdateLayout.fromMap(map['update'] as Map<String, dynamic>) : null,
@@ -65,18 +71,18 @@ class EntityModel {
 
   @override
   String toString() {
-    return 'EntityModel(search: $search, create: $create, update: $update, delete: $delete, display: $display)';
+    return 'EntityModel(name: $name, search: $search, create: $create, update: $update, delete: $delete, display: $display)';
   }
 
   @override
   bool operator ==(covariant EntityModel other) {
     if (identical(this, other)) return true;
 
-    return other.search == search && other.create == create && other.update == update && other.delete == delete && other.display == display;
+    return other.name == name && other.search == search && other.create == create && other.update == update && other.delete == delete && other.display == display;
   }
 
   @override
   int get hashCode {
-    return search.hashCode ^ create.hashCode ^ update.hashCode ^ delete.hashCode ^ display.hashCode;
+    return name.hashCode ^ search.hashCode ^ create.hashCode ^ update.hashCode ^ delete.hashCode ^ display.hashCode;
   }
 }

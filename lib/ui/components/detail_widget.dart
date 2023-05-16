@@ -1,11 +1,14 @@
-import 'package:admin/data/models/entity/layout_helpers/title_model.dart';
-import 'package:admin/ui/pages/user_edit_page.dart';
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
-import '../style/colors.dart';
+import 'package:admin/data/models/entity/layout_helpers/title_model.dart';
+import 'package:admin/ui/controllers/home_controller.dart';
+import 'package:admin/ui/pages/user_edit_page.dart';
+
 import '../controllers/display_controller.dart';
+import '../style/colors.dart';
 
 class DetailWidget extends StatefulWidget {
   const DetailWidget({
@@ -18,13 +21,15 @@ class DetailWidget extends StatefulWidget {
 
 class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMixin {
   late TabController _tabController;
-  final DisplayController displayController = Get.find<DisplayController>();
+  HomeController get homeController => Get.find<HomeController>();
+  DisplayController get displayController => Get.find<DisplayController>(tag: homeController.selectedEntity.value.data["id"]);
   List<String> list = <String>['One', 'Two', 'Three', 'Four'];
   late String dropdownValue;
 
   @override
   void initState() {
     super.initState();
+
     _tabController = TabController(length: displayController.tabCount, vsync: this);
     dropdownValue = list.first;
   }
@@ -61,7 +66,9 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
               toolbarHeight: 80,
               backgroundColor: KC.primary,
               elevation: 1,
-              title: getRenderWidget(displayController.displayLayout.summary_template!),
+              title: Obx(() {
+                return getRenderWidget(displayController.displayLayout.summary_template!);
+              }),
               actions: [
                 IconButton(
                     onPressed: () {
@@ -123,7 +130,7 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
     );
   }
 
-  getRenderWidget(TitleModel template) {
+  Widget getRenderWidget(TitleModel template) {
     var t = displayController.templates[template.trTR];
     return JsonWidgetData.fromDynamic(
       t,

@@ -1,43 +1,29 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
-import 'package:flutter/foundation.dart';
-
-import '../layout_helpers/form_column_model.dart';
-
 class CreateLayout {
-  String url;
-  List<FormColumns> columns;
+  String workflow;
   CreateLayout({
-    required this.url,
-    required this.columns,
+    required this.workflow,
   });
 
   CreateLayout copyWith({
-    String? url,
-    List<FormColumns>? columns,
+    String? workflow,
   }) {
     return CreateLayout(
-      url: url ?? this.url,
-      columns: columns ?? this.columns,
+      workflow: workflow ?? this.workflow,
     );
   }
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'url': url,
-      'columns': columns.map((x) => x.toMap()).toList(),
+      'workflow': workflow,
     };
   }
 
   factory CreateLayout.fromMap(Map<String, dynamic> map) {
     return CreateLayout(
-      url: map['url'] as String,
-      columns: List<FormColumns>.from(
-        (map['columns']).map<FormColumns>(
-          (x) => FormColumns.fromMap(x as Map<String, dynamic>),
-        ),
-      ),
+      workflow: map['workflow'] as String,
     );
   }
 
@@ -46,15 +32,15 @@ class CreateLayout {
   factory CreateLayout.fromJson(String source) => CreateLayout.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
-  String toString() => 'CreateLayout(url: $url, columns: $columns)';
+  String toString() => 'CreateLayout(workflow: $workflow)';
 
   @override
   bool operator ==(covariant CreateLayout other) {
     if (identical(this, other)) return true;
 
-    return other.url == url && listEquals(other.columns, columns);
+    return other.workflow == workflow;
   }
 
   @override
-  int get hashCode => url.hashCode ^ columns.hashCode;
+  int get hashCode => workflow.hashCode;
 }
