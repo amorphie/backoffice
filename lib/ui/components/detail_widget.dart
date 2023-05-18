@@ -59,7 +59,10 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
       color: KC.primary,
       padding: EdgeInsets.all(12),
       child: Column(
-        children: [workflowRow("State Manager : ", workflow.stateManager.transitions!), ...workflow.availableWorkflows!.map((e) => workflowRow(e.title! + " : ", e.transitions!)).toList()],
+        children: [
+          workflowRow(workflow.stateManager.title! + " : ", workflow.stateManager.transitions!),
+          ...workflow.availableWorkflows!.map((e) => workflowRow(e.title! + " : ", e.transitions!)).toList()
+        ],
       ),
     );
   }
