@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:webviewx/webviewx.dart';
 
-import '../../data/models/workflow/altmodels/transitions.dart';
+import '../../../data/models/workflow/altmodels/transitions.dart';
 
 class FormioPage extends StatefulWidget {
   const FormioPage({
@@ -94,61 +94,6 @@ class _FormioPageState extends State<FormioPage> {
       },
     );
   }
-
-  String get content => initialContent("""
-          {
-            components: [
-                {
-                    type: 'textfield',
-                    key: 'firstName',
-                    label: 'First Name',
-                    placeholder: 'Enter your first name.',
-                    input: true,
-                    tooltip: 'Enter your <strong>First Name</strong>',
-                    description: 'Enter your <strong>First Name</strong>'
-                },
-                {
-                    type: 'textfield',
-                    key: 'lastName',
-                    label: 'Last Name',
-                    placeholder: 'Enter your last name',
-                    input: true,
-                    tooltip: 'Enter your <strong>Last Name</strong>',
-                    description: 'Enter your <strong>Last Name</strong>'
-                },
-                {
-                    type: "select",
-                    label: "Favorite Things",
-                    key: "favoriteThings",
-                    placeholder: "These are a few of your favorite things...",
-                    data: {
-                        values: [
-                            {
-                                value: "raindropsOnRoses",
-                                label: "Raindrops on roses"
-                            },
-                            {
-                                value: "whiskersOnKittens",
-                                label: "Whiskers on Kittens"
-                            },
-                            {
-                                value: "brightCopperKettles",
-                                label: "Bright Copper Kettles"
-                            },
-                            {
-                                value: "warmWoolenMittens",
-                                label: "Warm Woolen Mittens"
-                            }
-                        ]
-                    },
-                    dataSrc: "values",
-                    template: "<span>{{ item.label }}</span>",
-                    multiple: true,
-                    input: true
-                }
-            ]
-        }
-""");
 
   String initialContent(String json) => """
 <!DOCTYPE html>

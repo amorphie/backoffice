@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:admin/data/models/display/display_view_model.dart';
+import 'package:admin/ui/components/detail_widget.dart';
 import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';
 
@@ -29,7 +32,7 @@ class HomeController extends GetxController {
     await workflowController.startTransition(entity: entityController.entity.display!.workflow!, recordId: data["id"]);
 
     await displayController.setData(data);
-    DisplayViewModel model = DisplayViewModel(id: Uuid().v4(), entity: entityController.entity.name!, data: data);
+    DisplayViewModel model = DisplayViewModel(id: Uuid().v4(), entity: entityController.entity.name!, data: data, page: DetailWidget());
     selectEntity(model);
     entityList.add(model);
   }

@@ -1,4 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:admin/data/models/workflow/altmodels/transitions.dart';
+import 'package:admin/data/models/workflow/workflow_model.dart';
+import 'package:admin/ui/controllers/workflow_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
@@ -9,6 +12,7 @@ import 'package:admin/ui/pages/user_edit_page.dart';
 
 import '../controllers/display_controller.dart';
 import '../style/colors.dart';
+import 'formio/formio_widget.dart';
 
 class DetailWidget extends StatefulWidget {
   const DetailWidget({
@@ -23,15 +27,13 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
   late TabController _tabController;
   HomeController get homeController => Get.find<HomeController>();
   DisplayController get displayController => Get.find<DisplayController>(tag: homeController.selectedEntity.value.data["id"]);
-  List<String> list = <String>['One', 'Two', 'Three', 'Four'];
-  late String dropdownValue;
+  WorkflowController get workflowController => Get.find<WorkflowController>(tag: homeController.selectedEntity.value.data["id"]);
 
   @override
   void initState() {
     super.initState();
 
     _tabController = TabController(length: displayController.tabCount, vsync: this);
-    dropdownValue = list.first;
   }
 
   @override
@@ -42,21 +44,52 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
         borderRadius: BorderRadius.circular(10.0),
         child: Column(
           children: [
-            workflowTopTemp(context),
-            Row(
-              children: [
-                editButton(context, "State"),
-                editButton(context, "Workflows"),
-                editButton(context, "Reset Password"),
-              ],
-            ),
+            temp(context),
+            Obx(() {
+              return workflowArea(workflowController.workflow);
+            }),
           ],
         ),
       ),
     );
   }
 
-  Expanded workflowTopTemp(BuildContext context) {
+  Widget workflowArea(WorkflowModel workflow) {
+    return Container(
+      color: KC.primary,
+      padding: EdgeInsets.all(12),
+      child: Column(
+        children: [workflowRow("State Manager : ", workflow.stateManager.transitions!), ...workflow.availableWorkflows!.map((e) => workflowRow(e.title! + " : ", e.transitions!)).toList()],
+      ),
+    );
+  }
+
+  Widget workflowRow(String title, List<TransitionsModel> transitions) {
+    return Container(
+      padding: EdgeInsets.all(5),
+      child: Row(
+        children: [
+          Text(title),
+          ...transitions
+              .map(
+                (e) => GestureDetector(
+                  onTap: () {
+                    _showFormio(e);
+                  },
+                  child: Container(
+                      margin: EdgeInsets.all(5),
+                      padding: EdgeInsets.all(4),
+                      decoration: BoxDecoration(color: Colors.white24, borderRadius: BorderRadius.circular(10)),
+                      child: Text(e.title ?? e.name!)),
+                ),
+              )
+              .toList()
+        ],
+      ),
+    );
+  }
+
+  Expanded temp(BuildContext context) {
     return Expanded(
       flex: 5,
       child: Container(
@@ -72,7 +105,8 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
               actions: [
                 IconButton(
                     onPressed: () {
-                      displayController.reset();
+                      homeController.subtractData(homeController.selectedEntity.value);
+                      homeController.deselectEntity();
                     },
                     icon: Icon(Icons.close))
               ],
@@ -102,34 +136,6 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
     );
   }
 
-  Widget editButton(BuildContext context, String title) {
-    return Expanded(
-      child: Padding(
-        padding: const EdgeInsets.all(2.0),
-        child: SizedBox(
-          width: double.infinity,
-          height: 60,
-          child: TextButton(
-            onPressed: () {
-              _showMyDialog();
-            },
-            child: Text(
-              title,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 16.0,
-              ),
-            ),
-            style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(KC.primary),
-              padding: MaterialStateProperty.all<EdgeInsets>(EdgeInsets.symmetric(vertical: 3.0, horizontal: 16.0)),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
   Widget getRenderWidget(TitleModel template) {
     var t = displayController.templates[template.trTR];
     return JsonWidgetData.fromDynamic(
@@ -139,7 +145,7 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
         .build(context: context);
   }
 
-  Future<void> _showMyDialog() async {
+  Future<void> _showFormio(TransitionsModel data) async {
     return showDialog<void>(
       context: context,
       barrierDismissible: true, // user must tap button!
@@ -149,22 +155,13 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
           insetPadding: EdgeInsets.zero,
           buttonPadding: EdgeInsets.zero,
           contentPadding: EdgeInsets.zero,
-          title: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              'Düzenle',
-              style: TextStyle(color: KC.primary),
-            ),
+          content: FormioWidget(
+            data: data,
+            getData: (val) async {
+              await workflowController.postTransition(transition: data, entityData: val);
+              Navigator.pop(context);
+            },
           ),
-          content: UserEditPage(),
-          actions: <Widget>[
-            TextButton(
-              child: const Text('Exit'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
         );
       },
     );

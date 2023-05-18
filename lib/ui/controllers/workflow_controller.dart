@@ -45,7 +45,7 @@ class WorkflowController extends GetxController {
     }
   }
 
-  postTransition({required TransitionsModel transition, required Map<String, dynamic> entityData}) async {
+  Future postTransition({required TransitionsModel transition, required Map<String, dynamic> entityData}) async {
     var data = {
       "entityData": entityData,
       "formData": {},

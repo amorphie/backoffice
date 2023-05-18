@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:admin/data/models/display/display_view_model.dart';
 import 'package:admin/ui/components/detail_widget.dart';
 import 'package:admin/ui/controllers/entity_controller.dart';
@@ -11,7 +13,7 @@ import '../style/colors.dart';
 import '../components/menu/menu.dart';
 import '../components/data_table/data_table.dart';
 import '../controllers/menu_controller.dart';
-import '../components/formio.dart';
+import '../components/formio/formio_page.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
@@ -54,8 +56,10 @@ class HomePage extends StatelessWidget {
                       ),
                       Expanded(
                         child: Obx(() {
+                          log(DateTime.now().toIso8601String(), name: "EntityView");
+
                           if (homeController.hasEntity)
-                            return DetailWidget();
+                            return homeController.selectedEntity.value.page;
                           else
                             return AppDataTable(
                               withSearch: entityController.entity.search?.search ?? false,
@@ -68,6 +72,7 @@ class HomePage extends StatelessWidget {
                               loading: entityController.loading.value,
                               onPressed: (data) async {
                                 await homeController.addData(data);
+                                log(DateTime.now().toIso8601String(), name: "SelectEntityFinal");
                               },
                               addRessed: () async {
                                 WorkflowController workflowController = Get.put<WorkflowController>(WorkflowController());
@@ -97,11 +102,13 @@ class HomePage extends StatelessWidget {
 
   Widget displayButton({DisplayViewModel? model, String? title}) => GestureDetector(
       onTap: () {
+        log(DateTime.now().toIso8601String(), name: "SelectEntityStart");
         if (title == null) {
           homeController.selectEntity(model!);
         } else {
           homeController.deselectEntity();
         }
+        log(DateTime.now().toIso8601String(), name: "SelectEntityEnd");
       },
       child: Container(
         height: 30,
