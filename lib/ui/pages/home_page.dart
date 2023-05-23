@@ -1,7 +1,7 @@
 import 'dart:developer';
 
+import 'package:admin/data/extension/string_extension.dart';
 import 'package:admin/data/models/display/display_view_model.dart';
-import 'package:admin/ui/components/detail_widget.dart';
 import 'package:admin/ui/controllers/entity_controller.dart';
 import 'package:admin/ui/controllers/home_controller.dart';
 import 'package:admin/ui/controllers/workflow_controller.dart';
@@ -118,7 +118,7 @@ class HomePage extends StatelessWidget {
         child: Row(
           children: [
             Text(
-              title ?? model!.data["firstName"],
+              title ?? entityController.entity.display!.title!.templateWithData(model!.data),
               style: TextStyle(color: Colors.black),
             ),
             if (title == null) SizedBox(width: 5.w),

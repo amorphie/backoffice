@@ -12,7 +12,7 @@ class DisplayLayoutModel {
 
   String? name;
   bool? isDefault;
-  TitleModel? title;
+  String? title;
   TitleModel? summary_template;
   TitleModel? detail_template;
   bool? history;
@@ -40,7 +40,7 @@ class DisplayLayoutModel {
     String? url,
     String? name,
     bool? isDefault,
-    TitleModel? title,
+    String? title,
     TitleModel? summary_template,
     bool? history,
     bool? state_manage,
@@ -69,7 +69,7 @@ class DisplayLayoutModel {
       'url': url,
       'name': name,
       'isDefault': isDefault,
-      'title': title?.toMap(),
+      'title': title,
       'summary_template': summary_template?.toMap(),
       'detail_template': detail_template?.toMap(),
       'history': history,
@@ -86,7 +86,7 @@ class DisplayLayoutModel {
       url: map['url'] != null ? map['url'] as String : "",
       name: map['name'] != null ? map['name'] as String : "",
       isDefault: map['default'] != null ? map['default'] as bool : false,
-      title: map['title'] != null ? TitleModel.fromMap(map['title'] as Map<String, dynamic>) : null,
+      title: map['title'] != null ? map['title'] as String : "",
       summary_template: map['summary-template'] != null ? TitleModel.fromMap(map['summary-template'] as Map<String, dynamic>) : null,
       detail_template: map['detail-template'] != null ? TitleModel.fromMap(map['detail-template'] as Map<String, dynamic>) : null,
       history: map['history'] != null ? map['history'] as bool : false,

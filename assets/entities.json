@@ -13,7 +13,7 @@
                     "type": "reference"
                 },
                 {
-                    "field": "firstName",
+                    "field": "reference",
                     "type": "contain"
                 }
             ],
@@ -48,7 +48,7 @@
                         "tr-TR": "Etiketler",
                         "en-EN": "Tags"
                     },
-                    "sort": 1
+                    "sort": 4
                 }
             ]
         },
@@ -57,10 +57,7 @@
             "url": "https://test-amorphie-fact-user.burgan.com.tr/user/search/@id",
             "name": "default",
             "default": true,
-            "title": {
-                "tr-TR": "Kullanici Rizasi",
-                "en-EN": "User Consent"
-            },
+            "title": "{{firstName}} {{lastName}}",
             "summary-template": {
                 "tr-TR": "amorphy-backoffice-user-display-summary-tr",
                 "en-EN": "amorphy-backoffice-user-display-summary-en"
@@ -72,7 +69,7 @@
             "history": true,
             "state-manager": true,
             "running-workflows": true,
-            "availbale-workflows": true,
+            "available-workflows": true,
             "tabs": [
                 {
                     "type": "render",
@@ -86,6 +83,20 @@
                     "title": {
                         "tr-TR": "Riza Detaylari",
                         "en-EN": "Consent Details"
+                    }
+                },
+                {
+                    "type": "search",
+                    "entity": "tag",
+                    "order": 1,
+                    "id": "$.id",
+                    "template": {
+                        "tr-TR": "amorphy-backoffice-user-consent-listview",
+                        "en-EN": "amorphy-backoffice-user-consent-listview"
+                    },
+                    "title": {
+                        "tr-TR": "Etiketler",
+                        "en-EN": "Tags"
                     }
                 }
             ]
