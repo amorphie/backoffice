@@ -10,7 +10,7 @@ import '../../style/colors.dart';
 class AppDataTable extends StatelessWidget {
   final TitleModel title;
   final Function(String val) onSearch;
-  final Function addRessed;
+  final Function addPressed;
   final bool loading;
   final bool withSearch;
   final List<SearchColumn> columns;
@@ -22,7 +22,7 @@ class AppDataTable extends StatelessWidget {
     required this.title,
     required this.withSearch,
     required this.onSearch,
-    required this.addRessed,
+    required this.addPressed,
     this.loading = false,
     required this.columns,
     required this.data,
@@ -37,7 +37,10 @@ class AppDataTable extends StatelessWidget {
           padding: const EdgeInsets.only(left: 16.0, top: 10, bottom: 14),
           child: Text(
             title.trTR,
-            style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.black54),
+            style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+                color: Colors.black54),
           ),
         ),
         Builder(builder: (context) {
@@ -55,7 +58,7 @@ class AppDataTable extends StatelessWidget {
                     )),
                 IconButton(
                     onPressed: () {
-                      addRessed();
+                      addPressed();
                     },
                     icon: Icon(
                       Icons.add_circle_outlined,
@@ -71,7 +74,8 @@ class AppDataTable extends StatelessWidget {
                       style: TextStyle(color: Colors.black87),
                     )))
                 .toList(),
-            source: AppDataTableSource(data: data, columns: columns, onPressed: onPressed),
+            source: AppDataTableSource(
+                data: data, columns: columns, onPressed: onPressed),
           );
         }),
       ],
@@ -82,7 +86,11 @@ class AppDataTable extends StatelessWidget {
     return Expanded(
       child: TextField(
         onSubmitted: onSearch,
-        decoration: InputDecoration(hintText: "Search", prefixIconColor: KC.primary, prefixIcon: Icon(Icons.search), iconColor: KC.primary),
+        decoration: InputDecoration(
+            hintText: "Search",
+            prefixIconColor: KC.primary,
+            prefixIcon: Icon(Icons.search),
+            iconColor: KC.primary),
       ),
     );
   }

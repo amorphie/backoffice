@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:admin/ui/controllers/workflow_controller.dart';
+import 'package:admin/ui/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:webviewx/webviewx.dart';
@@ -32,7 +33,8 @@ class _FormioPageState extends State<FormioPage> {
       child: Container(
         padding: const EdgeInsets.all(10.0),
         child: Obx(() {
-          List<TransitionsModel> transitions = controller.workflow.stateManager.transitions!;
+          List<TransitionsModel> transitions =
+              controller.workflow.stateManager.transitions!;
           if (controller.loading)
             return Center(
               child: CircularProgressIndicator(),
@@ -44,22 +46,33 @@ class _FormioPageState extends State<FormioPage> {
                     (e) => Column(
                       children: <Widget>[
                         Expanded(
-                          child: Container(
-                            decoration: BoxDecoration(
-                              border: Border.all(width: 0.2),
-                            ),
-                            child: _buildWebViewX(e),
+                          child: _buildWebViewX(e),
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                              color: KC.primary,
+                              borderRadius: BorderRadius.circular(20)),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 8, horizontal: 24),
+                            child: TextButton(
+                                onPressed: () async {
+                                  var d = await webviewController
+                                      .callJsMethod("onSubmit", []);
+
+                                  print(e.name);
+                                  var data = jsonDecode(d);
+                                  controller.postTransition(
+                                      transition: e, entityData: data);
+                                },
+                                child: Tooltip(
+                                    message: e.name,
+                                    child: Text(
+                                      e.title!,
+                                      style: TextStyle(color: Colors.white),
+                                    ))),
                           ),
                         ),
-                        TextButton(
-                            onPressed: () async {
-                              var d = await webviewController.callJsMethod("onSubmit", []);
-
-                              print(e.name);
-                              var data = jsonDecode(d);
-                              controller.postTransition(transition: e, entityData: data);
-                            },
-                            child: Tooltip(message: e.name, child: Text(e.title!))),
                       ],
                     ),
                   )
