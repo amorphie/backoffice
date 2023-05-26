@@ -8,7 +8,6 @@ import '../layout_helpers/search_column_model.dart';
 
 class SearchLayout {
   String listUrl;
-  String searchQuery;
   int defaultPageSize;
   int defaultPageNumber;
 
@@ -19,7 +18,6 @@ class SearchLayout {
     required this.listUrl,
     required this.search,
     this.filter,
-    this.searchQuery = "searchText",
     this.defaultPageSize = 100,
     this.defaultPageNumber = 0,
     required this.columns,
@@ -27,7 +25,6 @@ class SearchLayout {
 
   SearchLayout copyWith({
     String? listUrl,
-    String? searchQuery,
     int? defaultPageSize,
     int? defaultPageNumber,
     bool? search,
@@ -36,7 +33,6 @@ class SearchLayout {
   }) {
     return SearchLayout(
       listUrl: listUrl ?? this.listUrl,
-      searchQuery: searchQuery ?? this.searchQuery,
       defaultPageSize: defaultPageSize ?? this.defaultPageSize,
       defaultPageNumber: defaultPageNumber ?? this.defaultPageNumber,
       search: search ?? this.search,
@@ -47,10 +43,9 @@ class SearchLayout {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'list_url': listUrl,
-      'search_query': searchQuery,
-      'default_page_size': defaultPageSize,
-      'default_page_number': defaultPageNumber,
+      'url': listUrl,
+      'defaultPageSize': defaultPageSize,
+      'defaultPageNumber': defaultPageNumber,
       'search': search,
       'filter': filter?.map((x) => x.toMap()).toList(),
       'columns': columns.map((x) => x.toMap()).toList(),
@@ -59,10 +54,9 @@ class SearchLayout {
 
   factory SearchLayout.fromMap(Map<String, dynamic> map) {
     return SearchLayout(
-      listUrl: map['list_url'] as String,
-      searchQuery: map["search_query"] != null ? map["search_query"] : null,
-      defaultPageSize: map["default_page_size"] != null ? map["default_page_size"] : null,
-      defaultPageNumber: map["default_page_number"] != null ? map["default_page_number"] : null,
+      listUrl: map['url'] as String,
+      defaultPageSize: map["defaultPageSize"] != null ? map["defaultPageSize"] : null,
+      defaultPageNumber: map["defaultPageNumber"] != null ? map["defaultPageNumber"] : null,
       search: map['search'] as bool,
       filter: map['filter'] != null
           ? List<FilterLayout>.from(
@@ -85,7 +79,7 @@ class SearchLayout {
 
   @override
   String toString() {
-    return 'SearchLayout(listUrl: $listUrl, searchQuery: $searchQuery, defaultPageSize: $defaultPageSize, defaultPageNumber: $defaultPageNumber, search: $search, filter: $filter, columns: $columns)';
+    return 'SearchLayout(listUrl: $listUrl, defaultPageSize: $defaultPageSize, defaultPageNumber: $defaultPageNumber, search: $search, filter: $filter, columns: $columns)';
   }
 
   @override
@@ -93,7 +87,6 @@ class SearchLayout {
     if (identical(this, other)) return true;
 
     return other.listUrl == listUrl &&
-        other.searchQuery == searchQuery &&
         other.defaultPageSize == defaultPageSize &&
         other.defaultPageNumber == defaultPageNumber &&
         other.search == search &&
@@ -103,6 +96,6 @@ class SearchLayout {
 
   @override
   int get hashCode {
-    return listUrl.hashCode ^ searchQuery.hashCode ^ defaultPageSize.hashCode ^ defaultPageNumber.hashCode ^ search.hashCode ^ filter.hashCode ^ columns.hashCode;
+    return listUrl.hashCode ^ defaultPageSize.hashCode ^ defaultPageNumber.hashCode ^ search.hashCode ^ filter.hashCode ^ columns.hashCode;
   }
 }

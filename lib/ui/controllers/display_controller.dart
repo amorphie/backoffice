@@ -1,7 +1,7 @@
 // ignore_for_file: invalid_use_of_protected_member
 
 import 'package:admin/data/models/entity/layouts/display_layout_model.dart';
-import 'package:admin/data/services/executer_service.dart';
+import 'package:admin/data/services/services.dart';
 import 'package:admin/ui/controllers/entity_controller.dart';
 import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';
@@ -23,22 +23,22 @@ class DisplayController extends GetxController {
   }
 
   int get tabCount {
-    return displayLayout.tabs!.length + (displayLayout.detail_template != null ? 1 : 0);
+    return displayLayout.tabs!.length + (displayLayout.detailTemplate != null ? 1 : 0);
   }
 
   getTemplates() async {
     templates = {};
-    if (displayLayout.summary_template != null)
+    if (displayLayout.summaryTemplate != null)
       templates.addAll({
-        displayLayout.summary_template!.trTR: await getTemplate(
-          "${displayLayout.summary_template!.trTR}",
+        displayLayout.summaryTemplate!.trTR: await getTemplate(
+          "${displayLayout.summaryTemplate!.trTR}",
           _displayView.value,
         ),
       });
-    if (displayLayout.detail_template != null)
+    if (displayLayout.detailTemplate != null)
       templates.addAll({
-        displayLayout.detail_template!.trTR: await getTemplate(
-          "${displayLayout.detail_template!.trTR}",
+        displayLayout.detailTemplate!.trTR: await getTemplate(
+          "${displayLayout.detailTemplate!.trTR}",
           _displayView.value,
         ),
       });
@@ -64,14 +64,7 @@ class DisplayController extends GetxController {
       "render-data": renderData,
       "render-data-for-log": renderData,
     };
-    var response = await Executer.post(
-      endpoint: "https://test-template-engine.burgan.com.tr/Template/Render",
-      data: data,
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-      },
-    );
+    var response = await Services().getTemplate(data: data);
 
     if (response.success) {
       return response.data;

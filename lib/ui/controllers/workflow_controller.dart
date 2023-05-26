@@ -1,6 +1,6 @@
 import 'package:admin/data/models/workflow/altmodels/transitions.dart';
 import 'package:admin/data/models/workflow/workflow_model.dart';
-import 'package:admin/data/services/executer_service.dart';
+import 'package:admin/data/services/services.dart';
 import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';
 
@@ -31,12 +31,9 @@ class WorkflowController extends GetxController {
   getTransitions() async {
     _loading.value = true;
 
-    var response = await Executer.get(
-      endpoint: "https://test-amorphie-workflow.burgan.com.tr/workflow/consumer/${_entity.value}/record/${_recordId.value}/transition",
-      headers: {
-        "Accept": "application/json",
-        "Accept-Language": "en-EN",
-      },
+    var response = await Services().getTransitions(
+      entity: _entity.value,
+      recordId: _recordId.value,
     );
     _loading.value = false;
     if (response.success) {
@@ -55,13 +52,18 @@ class WorkflowController extends GetxController {
       "queryData": {},
     };
     var headers = {
-      "User": "3ce87ad2-0a73-b9be-2999-b0d8188fa4cf",
-      "Behalf-Of-User": "3ce87ad2-0a73-b9be-2999-b0d8188fa4cf",
+      "User": Uuid().v4(),
+      "Behalf-Of-User": Uuid().v4(),
       "Content-Type": "application/json",
       "Accept": "application/json",
     };
-    var response = await Executer.post(
-        endpoint: "https://test-amorphie-workflow.burgan.com.tr/workflow/consumer/${_entity.value}/record/${_recordId.value}/transition/${transition.name}", data: data, headers: headers);
+    var response = await Services().postTransitions(
+      entity: _entity.value,
+      recordId: _recordId.value,
+      transition: transition.name ?? "",
+      data: data,
+      headers: headers,
+    );
     if (response.success) {
       // var result = response.data;
       //TODO snackbar ile gösterim yapılacak

@@ -7,14 +7,13 @@ import 'package:get/get.dart';
 import '../../data/models/entity/entity_model.dart';
 
 class EntityController extends GetxController {
-  Rx<EntityModel> _entity = EntityModel().obs;
+  Rx<EntityModel> _entity = EntityModel.init().obs;
   EntityModel get entity => _entity.value;
   set entity(EntityModel _) {
     _entity.value = _;
   }
 
   Map<String, EntityModel> entities = {};
-  Map<String, dynamic> mocks = {};
   RxBool loading = false.obs;
 
   RxList<Map<String, dynamic>> dataList = <Map<String, dynamic>>[].obs;

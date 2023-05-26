@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:admin/data/models/entity/layout_helpers/search_column_model.dart';
 import 'package:admin/data/models/entity/layout_helpers/title_model.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import '../../style/colors.dart';
 
@@ -31,20 +32,21 @@ class AppDataTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (loading)
+      return Center(
+          child: SpinKitCircle(
+        color: Theme.of(context).primaryColor,
+      ));
     return ListView(
       children: [
         Padding(
           padding: const EdgeInsets.only(left: 16.0, top: 10, bottom: 14),
           child: Text(
             title.trTR,
-            style: TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
-                color: Colors.black54),
+            style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.black54),
           ),
         ),
         Builder(builder: (context) {
-          if (loading) return Center(child: CircularProgressIndicator());
           return PaginatedDataTable(
             header: Row(
               children: [
@@ -74,8 +76,7 @@ class AppDataTable extends StatelessWidget {
                       style: TextStyle(color: Colors.black87),
                     )))
                 .toList(),
-            source: AppDataTableSource(
-                data: data, columns: columns, onPressed: onPressed),
+            source: AppDataTableSource(data: data, columns: columns, onPressed: onPressed),
           );
         }),
       ],
@@ -86,11 +87,7 @@ class AppDataTable extends StatelessWidget {
     return Expanded(
       child: TextField(
         onSubmitted: onSearch,
-        decoration: InputDecoration(
-            hintText: "Search",
-            prefixIconColor: KC.primary,
-            prefixIcon: Icon(Icons.search),
-            iconColor: KC.primary),
+        decoration: InputDecoration(hintText: "Search", prefixIconColor: KC.primary, prefixIcon: Icon(Icons.search), iconColor: KC.primary),
       ),
     );
   }

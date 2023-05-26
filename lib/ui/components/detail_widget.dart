@@ -8,7 +8,6 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 import 'package:admin/data/models/entity/layout_helpers/title_model.dart';
 import 'package:admin/ui/controllers/home_controller.dart';
-import 'package:admin/ui/pages/user_edit_page.dart';
 
 import '../controllers/display_controller.dart';
 import '../style/colors.dart';
@@ -103,7 +102,7 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
               backgroundColor: KC.primary,
               elevation: 1,
               title: Obx(() {
-                return getRenderWidget(displayController.displayLayout.summary_template!);
+                return getRenderWidget(displayController.displayLayout.summaryTemplate!);
               }),
               actions: [
                 IconButton(
@@ -114,7 +113,7 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
                     icon: Icon(Icons.close))
               ],
               bottom: TabBar(controller: _tabController, tabs: [
-                if (displayController.displayLayout.detail_template != null)
+                if (displayController.displayLayout.detailTemplate != null)
                   Tab(
                     icon: Text("Detay"),
                   ),
@@ -128,7 +127,7 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
               ]),
             ),
             body: TabBarView(controller: _tabController, children: [
-              if (displayController.displayLayout.detail_template != null) getRenderWidget(displayController.displayLayout.detail_template!),
+              if (displayController.displayLayout.detailTemplate != null) getRenderWidget(displayController.displayLayout.detailTemplate!),
               ...displayController.displayLayout.tabs!
                   .map((e) => Container(
                         child: e.type == "render" ? getRenderWidget(e.template!) : Container(),

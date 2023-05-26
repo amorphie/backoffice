@@ -1,20 +1,23 @@
 {
     "user": {
         "name": "user",
+        "workflow": "user",
+        "titleTemplate": "{{firstName}} {{lastName}}",
         "search": {
-            "list_url": "https://test-amorphie-fact-user.burgan.com.tr/user/search",
-            "search_query": "searchText",
-            "default_page_size": 100,
-            "default_page_number": 0,
+            "url": "https://test-amorphie-fact-user.burgan.com.tr/user/search",
+            "defaultPageSize": 100,
+            "defaultPageNumber": 0,
             "search": true,
             "filter": [
                 {
-                    "field": "tag",
+                    "data": "tag",
+                    "widget": "dropdown",
                     "type": "reference"
                 },
                 {
-                    "field": "reference",
-                    "type": "contain"
+                    "data": "reference",
+                    "widget": "textField",
+                    "type": "query"
                 }
             ],
             "columns": [
@@ -55,21 +58,18 @@
         "display": {
             "workflow": "user",
             "url": "https://test-amorphie-fact-user.burgan.com.tr/user/search/@id",
-            "name": "default",
-            "default": true,
-            "title": "{{firstName}} {{lastName}}",
-            "summary-template": {
+            "summaryTemplate": {
                 "tr-TR": "amorphy-backoffice-user-display-summary-tr",
                 "en-EN": "amorphy-backoffice-user-display-summary-en"
             },
-            "detail-template": {
+            "detailTemplate": {
                 "tr-TR": "amorphy-backoffice-user-detail-tr",
                 "en-EN": "amorphy-backoffice-user-detail-tr"
             },
             "history": true,
-            "state-manager": true,
-            "running-workflows": true,
-            "available-workflows": true,
+            "stateManager": true,
+            "runningWorkflows": true,
+            "availableWorkflows": true,
             "tabs": [
                 {
                     "type": "render",
@@ -101,24 +101,18 @@
                 }
             ]
         },
-        "create": {
-            "workflow": "user"
-        },
-        "update": {
-            "workflow": "user-update",
-            "dataUrl": "https://test-amorphie-fact-user.burgan.com.tr/user/@id"
-        },
         "delete": {
             "url": "https://test-amorphie-fact-user.burgan.com.tr/user/@id"
         }
     },
     "tag": {
         "name": "tag",
+        "workflow": "tag",
+        "titleTemplate": "{{name}}",
         "search": {
-            "list_url": "https://test-amorphie-tag.burgan.com.tr/tag",
-            "search_query": "searchText",
-            "default_page_size": 100,
-            "default_page_number": 0,
+            "url": "https://test-amorphie-tag.burgan.com.tr/tag",
+            "defaultPageSize": 100,
+            "defaultPageNumber": 0,
             "search": false,
             "columns": [
                 {
@@ -161,11 +155,12 @@
     },
     "domain": {
         "name": "domain",
+        "workflow": "domain",
+        "titleTemplate": "{{name}}",
         "search": {
-            "list_url": "https://test-amorphie-resource.burgan.com.tr/domain",
-            "search_query": "searchText",
-            "default_page_size": 100,
-            "default_page_number": 0,
+            "url": "https://test-amorphie-resource.burgan.com.tr/domain",
+            "defaultPageSize": 100,
+            "defaultPageNumber": 0,
             "search": false,
             "columns": [
                 {
@@ -200,11 +195,12 @@
     },
     "resource": {
         "name": "resource",
+        "workflow": "resource",
+        "titleTemplate": "{{name}}",
         "search": {
-            "list_url": "https://test-amorphie-resource.burgan.com.tr/resource",
-            "search_query": "searchText",
-            "default_page_size": 100,
-            "default_page_number": 0,
+            "url": "https://test-amorphie-resource.burgan.com.tr/resource",
+            "defaultPageSize": 100,
+            "defaultPageNumber": 0,
             "search": false,
             "columns": [
                 {
@@ -247,11 +243,12 @@
     },
     "resourceRole": {
         "name": "resourceRole",
+        "workflow": "resourceRole",
+        "titleTemplate": "{{name}}",
         "search": {
-            "list_url": "https://test-amorphie-resource.burgan.com.tr/resourceRole",
-            "search_query": "searchText",
-            "default_page_size": 100,
-            "default_page_number": 0,
+            "url": "https://test-amorphie-resource.burgan.com.tr/resourceRole",
+            "defaultPageSize": 100,
+            "defaultPageNumber": 0,
             "search": false,
             "columns": [
                 {
@@ -278,11 +275,12 @@
     },
     "roleGroup": {
         "name": "roleGroup",
+        "workflow": "roleGroup",
+        "titleTemplate": "{{name}}",
         "search": {
-            "list_url": "https://test-amorphie-resource.burgan.com.tr/roleGroup",
-            "search_query": "searchText",
-            "default_page_size": 100,
-            "default_page_number": 0,
+            "url": "https://test-amorphie-resource.burgan.com.tr/roleGroup",
+            "defaultPageSize": 100,
+            "defaultPageNumber": 0,
             "search": false,
             "columns": [
                 {
@@ -325,11 +323,12 @@
     },
     "privilege": {
         "name": "privilege",
+        "workflow": "privilege",
+        "titleTemplate": "{{name}}",
         "search": {
-            "list_url": "https://test-amorphie-resource.burgan.com.tr/privilege",
-            "search_query": "searchText",
-            "default_page_size": 100,
-            "default_page_number": 0,
+            "url": "https://test-amorphie-resource.burgan.com.tr/privilege",
+            "defaultPageSize": 100,
+            "defaultPageNumber": 0,
             "search": false,
             "columns": [
                 {
