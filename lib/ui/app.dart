@@ -5,7 +5,7 @@ import 'package:get/route_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../constants/routes.dart';
-import '../style/colors.dart';
+import 'style/colors.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -19,8 +19,7 @@ class App extends StatelessWidget {
       builder: (BuildContext context, Widget? child) => GetMaterialApp(
         theme: ThemeData.light().copyWith(
           scaffoldBackgroundColor: KC.background,
-          textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme)
-              .apply(bodyColor: Colors.white),
+          textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme).apply(bodyColor: Colors.white),
           canvasColor: KC.secondary,
         ),
         initialBinding: StartAppBinding(),

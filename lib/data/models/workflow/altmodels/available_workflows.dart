@@ -5,22 +5,22 @@ import 'package:flutter/foundation.dart';
 
 import 'transitions.dart';
 
-class AvailableWorkflowModel {
+class RunningWorkflowsModel {
   String? name;
   String? title;
   List<TransitionsModel>? transitions;
-  AvailableWorkflowModel({
+  RunningWorkflowsModel({
     this.name,
     this.title,
     this.transitions,
   });
 
-  AvailableWorkflowModel copyWith({
+  RunningWorkflowsModel copyWith({
     String? name,
     String? title,
     List<TransitionsModel>? transitions,
   }) {
-    return AvailableWorkflowModel(
+    return RunningWorkflowsModel(
       name: name ?? this.name,
       title: title ?? this.title,
       transitions: transitions ?? this.transitions,
@@ -35,8 +35,8 @@ class AvailableWorkflowModel {
     };
   }
 
-  factory AvailableWorkflowModel.fromMap(Map<String, dynamic> map) {
-    return AvailableWorkflowModel(
+  factory RunningWorkflowsModel.fromMap(Map<String, dynamic> map) {
+    return RunningWorkflowsModel(
       name: map['name'] != null ? map['name'] as String : null,
       title: map['title'] != null ? map['title'] as String : null,
       transitions: map['transitions'] != null
@@ -51,13 +51,13 @@ class AvailableWorkflowModel {
 
   String toJson() => json.encode(toMap());
 
-  factory AvailableWorkflowModel.fromJson(String source) => AvailableWorkflowModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory RunningWorkflowsModel.fromJson(String source) => RunningWorkflowsModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() => 'AvailableWorkflowModel(name: $name, title: $title, transitions: $transitions)';
 
   @override
-  bool operator ==(covariant AvailableWorkflowModel other) {
+  bool operator ==(covariant RunningWorkflowsModel other) {
     if (identical(this, other)) return true;
 
     return other.name == name && other.title == title && listEquals(other.transitions, transitions);

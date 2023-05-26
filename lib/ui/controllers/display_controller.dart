@@ -1,74 +1,78 @@
-import 'dart:convert';
+// ignore_for_file: invalid_use_of_protected_member
 
+import 'package:admin/data/models/entity/layouts/display_layout_model.dart';
+import 'package:admin/data/services/services.dart';
 import 'package:admin/ui/controllers/entity_controller.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';
-import 'package:http/http.dart' as http;
 
 class DisplayController extends GetxController {
+  Rx<DisplayLayoutModel> _displayLayout = DisplayLayoutModel().obs;
+  DisplayLayoutModel get displayLayout => _displayLayout.value;
+
   RxMap<String, dynamic> _displayView = <String, dynamic>{}.obs;
+
   Map<String, dynamic> templates = {};
 
-  RxBool _hasDisplayView = false.obs;
-
   setData(Map<String, dynamic> data) async {
-    _hasDisplayView.value = false;
+    EntityController entityController = Get.find<EntityController>();
+    _displayLayout.value = entityController.entity.display!;
 
     _displayView.value = data;
     await getTemplates();
-    _hasDisplayView.value = true;
+  }
+
+  int get tabCount {
+    return displayLayout.tabs!.length + (displayLayout.detailTemplate != null ? 1 : 0);
   }
 
   getTemplates() async {
     templates = {};
-    EntityController entityController = Get.find<EntityController>();
+    if (displayLayout.summaryTemplate != null)
+      templates.addAll({
+        displayLayout.summaryTemplate!.trTR: await getTemplate(
+          "${displayLayout.summaryTemplate!.trTR}",
+          _displayView.value,
+        ),
+      });
+    if (displayLayout.detailTemplate != null)
+      templates.addAll({
+        displayLayout.detailTemplate!.trTR: await getTemplate(
+          "${displayLayout.detailTemplate!.trTR}",
+          _displayView.value,
+        ),
+      });
 
-    templates.addAll({entityController.entity.display!.summary_template!.trTR: await getTemplate("${entityController.entity.display!.summary_template!.trTR}")});
-
-    for (var tab in entityController.entity.display!.tabs!) {
+    for (var tab in displayLayout.tabs!) {
       if (tab.type == "render") {
-        String data = await rootBundle.loadString("widgets/${tab.template!.trTR}.json");
-        var template = jsonDecode(data);
-        templates.addAll({tab.template!.trTR: template});
+        templates.addAll({
+          tab.template!.trTR: await getTemplate(
+            "${tab.template!.trTR}",
+            {
+              "consents": List.generate(20, (index) => {"name": "Deneme$index", "description": "text$index"})
+            },
+          )
+        });
       }
     }
   }
 
-  Future<String?> getTemplate(String name) async {
+  Future<String?> getTemplate(String name, Map<String, dynamic> renderData) async {
     var data = {
       "name": name,
       "render-id": Uuid().v4(),
-      "render-data": _displayView.value,
-      "render-data-for-log": _displayView.value,
-      "semantic-version": "1.0.3",
-      "process-name": "string",
-      "item-id": "string",
-      "action": "string",
-      "identity": "string",
-      "customer": "string"
+      "render-data": renderData,
+      "render-data-for-log": renderData,
     };
-    Uri _url = Uri.parse("https://test-template-engine.burgan.com.tr/Template/Render");
-    http.Response response = await http.post(
-      _url,
-      body: json.encode(data),
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-      },
-    );
-    if (response.statusCode >= 200 && response.statusCode < 300) {
-      return jsonDecode(response.body);
+    var response = await Services().getTemplate(data: data);
+
+    if (response.success) {
+      return response.data;
     }
     return null;
   }
 
-  bool get hasDisplayView {
-    return _hasDisplayView.value;
-  }
-
   reset() {
     _displayView.value = <String, dynamic>{};
-    _hasDisplayView.value = false;
   }
 }

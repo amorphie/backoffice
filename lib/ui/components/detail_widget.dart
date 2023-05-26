@@ -1,12 +1,17 @@
-import 'package:admin/data/models/entity/layout_helpers/title_model.dart';
-import 'package:admin/ui/controllers/entity_controller.dart';
-import 'package:admin/ui/controllers/menu_controller.dart';
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:admin/data/models/workflow/altmodels/transitions.dart';
+import 'package:admin/data/models/workflow/workflow_model.dart';
+import 'package:admin/ui/controllers/workflow_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
-import '../../style/colors.dart';
+import 'package:admin/data/models/entity/layout_helpers/title_model.dart';
+import 'package:admin/ui/controllers/home_controller.dart';
+
 import '../controllers/display_controller.dart';
+import '../style/colors.dart';
+import 'formio/formio_widget.dart';
 
 class DetailWidget extends StatefulWidget {
   const DetailWidget({
@@ -17,21 +22,17 @@ class DetailWidget extends StatefulWidget {
   State<DetailWidget> createState() => _DetailWidgetState();
 }
 
-class _DetailWidgetState extends State<DetailWidget>
-    with TickerProviderStateMixin {
+class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMixin {
   late TabController _tabController;
-  final AppMenuController menuController = Get.find<AppMenuController>();
-  final EntityController entityController = Get.find<EntityController>();
-  final DisplayController displayController = Get.find<DisplayController>();
-  List<String> list = <String>['One', 'Two', 'Three', 'Four'];
-  late String dropdownValue;
+  HomeController get homeController => Get.find<HomeController>();
+  DisplayController get displayController => Get.find<DisplayController>(tag: homeController.selectedEntity.value.data["id"]);
+  WorkflowController get workflowController => Get.find<WorkflowController>(tag: homeController.selectedEntity.value.data["id"]);
 
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(
-        length: entityController.entity.display!.tabs!.length, vsync: this);
-    dropdownValue = list.first;
+
+    _tabController = TabController(length: displayController.tabCount, vsync: this);
   }
 
   @override
@@ -42,15 +43,55 @@ class _DetailWidgetState extends State<DetailWidget>
         borderRadius: BorderRadius.circular(10.0),
         child: Column(
           children: [
-            workflowTopTemp(context),
-            workflowBottomTemp(context, dropdownValue),
+            temp(context),
+            Obx(() {
+              return workflowArea(workflowController.workflow);
+            }),
           ],
         ),
       ),
     );
   }
 
-  Expanded workflowTopTemp(BuildContext context) {
+  Widget workflowArea(WorkflowModel workflow) {
+    return Container(
+      color: KC.primary,
+      padding: EdgeInsets.all(12),
+      child: Column(
+        children: [
+          workflowRow(workflow.stateManager.title! + " : ", workflow.stateManager.transitions!),
+          ...workflow.availableWorkflows!.map((e) => workflowRow(e.title! + " : ", e.transitions!)).toList()
+        ],
+      ),
+    );
+  }
+
+  Widget workflowRow(String title, List<TransitionsModel> transitions) {
+    return Container(
+      padding: EdgeInsets.all(5),
+      child: Row(
+        children: [
+          Text(title),
+          ...transitions
+              .map(
+                (e) => GestureDetector(
+                  onTap: () {
+                    _showFormio(e);
+                  },
+                  child: Container(
+                      margin: EdgeInsets.all(5),
+                      padding: EdgeInsets.all(4),
+                      decoration: BoxDecoration(color: Colors.white24, borderRadius: BorderRadius.circular(10)),
+                      child: Text(e.title ?? e.name!)),
+                ),
+              )
+              .toList()
+        ],
+      ),
+    );
+  }
+
+  Expanded temp(BuildContext context) {
     return Expanded(
       flex: 5,
       child: Container(
@@ -60,100 +101,71 @@ class _DetailWidgetState extends State<DetailWidget>
               toolbarHeight: 80,
               backgroundColor: KC.primary,
               elevation: 1,
-              title: getRenderWidget(
-                  entityController.entity.display!.summary_template!),
+              title: Obx(() {
+                return getRenderWidget(displayController.displayLayout.summaryTemplate!);
+              }),
               actions: [
                 IconButton(
                     onPressed: () {
-                      displayController.reset();
+                      homeController.subtractData(homeController.selectedEntity.value);
+                      homeController.deselectEntity();
                     },
                     icon: Icon(Icons.close))
               ],
-              bottom: TabBar(
-                  controller: _tabController,
-                  tabs: entityController.entity.display!.tabs!
-                      .map(
-                        (e) => Tab(
-                          icon: Text(e.title.trTR),
-                        ),
-                      )
-                      .toList()),
+              bottom: TabBar(controller: _tabController, tabs: [
+                if (displayController.displayLayout.detailTemplate != null)
+                  Tab(
+                    icon: Text("Detay"),
+                  ),
+                ...displayController.displayLayout.tabs!
+                    .map(
+                      (e) => Tab(
+                        icon: Text(e.title.trTR),
+                      ),
+                    )
+                    .toList()
+              ]),
             ),
-            body: TabBarView(
-                controller: _tabController,
-                children: entityController.entity.display!.tabs!
-                    .map((e) => Container(
-                          child: e.type == "render"
-                              ? getRenderWidget(e.template!)
-                              : Container(),
-                        ))
-                    .toList())),
+            body: TabBarView(controller: _tabController, children: [
+              if (displayController.displayLayout.detailTemplate != null) getRenderWidget(displayController.displayLayout.detailTemplate!),
+              ...displayController.displayLayout.tabs!
+                  .map((e) => Container(
+                        child: e.type == "render" ? getRenderWidget(e.template!) : Container(),
+                      ))
+                  .toList()
+            ])),
       ),
     );
   }
 
-  Expanded workflowBottomTemp(BuildContext context, String dropdownValue) {
-    return Expanded(
-      flex: 2,
-      child: Container(
-        child: Padding(
-          padding: const EdgeInsets.all(1.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              workflowWidgets(dropdownValue, "State"),
-              workflowWidgets(dropdownValue, "Reset password progress"),
-              workflowWidgets(dropdownValue, "Available workflows"),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  Row workflowWidgets(String dropdownValue, String title) {
-    return Row(
-      children: [
-        Text(
-          "$title : ",
-          textAlign: TextAlign.left,
-          style: TextStyle(color: Colors.black87, fontSize: 15),
-        ),
-        SizedBox(
-          width: 10,
-        ),
-        DropdownButton<String>(
-          value: dropdownValue,
-          icon: Icon(Icons.arrow_downward),
-          elevation: 1,
-          style: TextStyle(color: Colors.black87),
-          underline: Container(
-            height: 2,
-            color: KC.primary,
-          ),
-          onChanged: (String? value) {
-            // This is called when the user selects an item.
-            setState(() {
-              dropdownValue = value!;
-            });
-          },
-          items: list.map<DropdownMenuItem<String>>((String value) {
-            return DropdownMenuItem<String>(
-              value: value,
-              child: Text(value),
-            );
-          }).toList(),
-        )
-      ],
-    );
-  }
-
-  getRenderWidget(TitleModel template) {
+  Widget getRenderWidget(TitleModel template) {
     var t = displayController.templates[template.trTR];
     return JsonWidgetData.fromDynamic(
       t,
       registry: JsonWidgetRegistry.instance,
     )!
         .build(context: context);
+  }
+
+  Future<void> _showFormio(TransitionsModel data) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: true, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          actionsPadding: EdgeInsets.zero,
+          insetPadding: EdgeInsets.zero,
+          buttonPadding: EdgeInsets.zero,
+          contentPadding: EdgeInsets.zero,
+          content: FormioWidget(
+            data: data,
+            getData: (val) async {
+              await workflowController.postTransition(transition: data, entityData: val);
+              Navigator.pop(context);
+            },
+          ),
+        );
+      },
+    );
   }
 }

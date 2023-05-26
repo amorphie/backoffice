@@ -9,8 +9,8 @@ import 'package:admin/data/models/workflow/altmodels/statemanager.dart';
 
 class WorkflowModel {
   StateManagerModel stateManager;
-  List<RunningWorkflowsModel>? availableWorkflows;
-  List<AvailableWorkflowModel>? runningWorkflows;
+  List<AvailableWorkflowModel>? availableWorkflows;
+  List<RunningWorkflowsModel>? runningWorkflows;
   WorkflowModel({
     required this.stateManager,
     this.availableWorkflows,
@@ -23,8 +23,8 @@ class WorkflowModel {
 
   WorkflowModel copyWith({
     StateManagerModel? stateManager,
-    List<RunningWorkflowsModel>? availableWorkflows,
-    List<AvailableWorkflowModel>? runningWorkflows,
+    List<AvailableWorkflowModel>? availableWorkflows,
+    List<RunningWorkflowsModel>? runningWorkflows,
   }) {
     return WorkflowModel(
       stateManager: stateManager ?? this.stateManager,
@@ -45,16 +45,16 @@ class WorkflowModel {
     return WorkflowModel(
       stateManager: StateManagerModel.fromMap(map['stateManager'] as Map<String, dynamic>),
       availableWorkflows: map['availableWorkflows'] != null
-          ? List<RunningWorkflowsModel>.from(
-              (map['availableWorkflows']).map<RunningWorkflowsModel?>(
-                (x) => RunningWorkflowsModel.fromMap(x as Map<String, dynamic>),
+          ? List<AvailableWorkflowModel>.from(
+              (map['availableWorkflows']).map<AvailableWorkflowModel?>(
+                (x) => AvailableWorkflowModel.fromMap(x as Map<String, dynamic>),
               ),
             )
           : null,
       runningWorkflows: map['runningWorkflows'] != null
-          ? List<AvailableWorkflowModel>.from(
-              (map['runningWorkflows']).map<AvailableWorkflowModel?>(
-                (x) => AvailableWorkflowModel.fromMap(x as Map<String, dynamic>),
+          ? List<RunningWorkflowsModel>.from(
+              (map['runningWorkflows']).map<RunningWorkflowsModel?>(
+                (x) => RunningWorkflowsModel.fromMap(x as Map<String, dynamic>),
               ),
             )
           : null,

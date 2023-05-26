@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 
-import '../../../../../style/colors.dart';
+import '../../../../style/colors.dart';
 
 class WorkflowCard extends StatelessWidget {
   const WorkflowCard({
@@ -38,15 +38,11 @@ class WorkflowCard extends StatelessWidget {
                         infoText,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                            color: Colors.black87, fontWeight: FontWeight.w600),
+                        style: TextStyle(color: Colors.black87, fontWeight: FontWeight.w600),
                       ),
                       Text(
                         "Content Text",
-                        style: Theme.of(context)
-                            .textTheme
-                            .caption!
-                            .copyWith(color: Colors.black54),
+                        style: Theme.of(context).textTheme.bodySmall!.copyWith(color: Colors.black54),
                       ),
                     ],
                   ),

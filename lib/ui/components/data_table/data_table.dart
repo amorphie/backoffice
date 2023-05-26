@@ -1,14 +1,17 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:admin/ui/components/custom_textfield.dart';
 import 'package:admin/ui/components/data_table/data_table_source.dart';
 import 'package:flutter/material.dart';
 
 import 'package:admin/data/models/entity/layout_helpers/search_column_model.dart';
 import 'package:admin/data/models/entity/layout_helpers/title_model.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+
+import '../../style/colors.dart';
 
 class AppDataTable extends StatelessWidget {
   final TitleModel title;
   final Function(String val) onSearch;
+  final Function addPressed;
   final bool loading;
   final bool withSearch;
   final List<SearchColumn> columns;
@@ -20,6 +23,7 @@ class AppDataTable extends StatelessWidget {
     required this.title,
     required this.withSearch,
     required this.onSearch,
+    required this.addPressed,
     this.loading = false,
     required this.columns,
     required this.data,
@@ -28,6 +32,11 @@ class AppDataTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (loading)
+      return Center(
+          child: SpinKitCircle(
+        color: Theme.of(context).primaryColor,
+      ));
     return ListView(
       children: [
         Padding(
@@ -37,15 +46,29 @@ class AppDataTable extends StatelessWidget {
             style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.black54),
           ),
         ),
-        if (withSearch)
-          CustomTextField(
-            label: "Search",
-            icon: Icons.search,
-            onSubmit: onSearch,
-          ),
         Builder(builder: (context) {
-          if (loading) return Center(child: CircularProgressIndicator());
           return PaginatedDataTable(
+            header: Row(
+              children: [
+                if (withSearch) search(),
+                IconButton(
+                    onPressed: () {},
+                    icon: Icon(
+                      Icons.filter_alt_rounded,
+                      color: KC.primary,
+                      size: 32,
+                    )),
+                IconButton(
+                    onPressed: () {
+                      addPressed();
+                    },
+                    icon: Icon(
+                      Icons.add_circle_outlined,
+                      color: KC.primary,
+                      size: 32,
+                    ))
+              ],
+            ),
             columns: columns
                 .map((e) => DataColumn(
                         label: Text(
@@ -57,6 +80,15 @@ class AppDataTable extends StatelessWidget {
           );
         }),
       ],
+    );
+  }
+
+  Expanded search() {
+    return Expanded(
+      child: TextField(
+        onSubmitted: onSearch,
+        decoration: InputDecoration(hintText: "Search", prefixIconColor: KC.primary, prefixIcon: Icon(Icons.search), iconColor: KC.primary),
+      ),
     );
   }
 }

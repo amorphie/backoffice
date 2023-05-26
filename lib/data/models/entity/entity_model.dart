@@ -3,36 +3,39 @@ import 'dart:convert';
 
 import 'package:admin/data/models/entity/layouts/display_layout_model.dart';
 
-import 'layouts/create_layout_model.dart';
 import 'layouts/delete_layout_model.dart';
 import 'layouts/search_layout_model.dart';
-import 'layouts/update_layout_model.dart';
 
 class EntityModel {
+  String name;
+  String workflow;
+  String titleTemplate;
   SearchLayout? search;
-  CreateLayout? create;
-  UpdateLayout? update;
   DeleteLayout? delete;
   DisplayLayoutModel? display;
   EntityModel({
+    required this.name,
+    required this.workflow,
+    required this.titleTemplate,
     this.search,
-    this.create,
-    this.update,
     this.delete,
     this.display,
   });
+  factory EntityModel.init() => EntityModel(name: "", workflow: "", titleTemplate: "");
 
   EntityModel copyWith({
+    String? name,
+    String? workflow,
+    String? titleTemplate,
     SearchLayout? search,
-    CreateLayout? create,
-    UpdateLayout? update,
     DeleteLayout? delete,
     DisplayLayoutModel? display,
   }) {
     return EntityModel(
+      name: name ?? this.name,
+      workflow: workflow ?? this.workflow,
+      titleTemplate: titleTemplate ?? this.titleTemplate,
       search: search ?? this.search,
-      create: create ?? this.create,
-      update: update ?? this.update,
       delete: delete ?? this.delete,
       display: display ?? this.display,
     );
@@ -40,9 +43,10 @@ class EntityModel {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
+      'name': name,
+      'workflow': workflow,
+      'titleTemplate': titleTemplate,
       'search': search?.toMap(),
-      'create': create?.toMap(),
-      'update': update?.toMap(),
       'delete': delete?.toMap(),
       'display': display?.toMap(),
     };
@@ -50,9 +54,10 @@ class EntityModel {
 
   factory EntityModel.fromMap(Map<String, dynamic> map) {
     return EntityModel(
+      name: map['name'] as String,
+      workflow: map['workflow'] as String,
+      titleTemplate: map['titleTemplate'] as String,
       search: map['search'] != null ? SearchLayout.fromMap(map['search'] as Map<String, dynamic>) : null,
-      create: map['create'] != null ? CreateLayout.fromMap(map['create'] as Map<String, dynamic>) : null,
-      update: map['update'] != null ? UpdateLayout.fromMap(map['update'] as Map<String, dynamic>) : null,
       delete: map['delete'] != null ? DeleteLayout.fromMap(map['delete'] as Map<String, dynamic>) : null,
       display: map['display'] != null ? DisplayLayoutModel.fromMap(map['display'] as Map<String, dynamic>) : null,
     );
@@ -64,18 +69,18 @@ class EntityModel {
 
   @override
   String toString() {
-    return 'EntityModel(search: $search, create: $create, update: $update, delete: $delete, display: $display)';
+    return 'EntityModel(name: $name, workflow: $workflow, titleTemplate: $titleTemplate, search: $search, delete: $delete, display: $display)';
   }
 
   @override
   bool operator ==(covariant EntityModel other) {
     if (identical(this, other)) return true;
 
-    return other.search == search && other.create == create && other.update == update && other.delete == delete && other.display == display;
+    return other.name == name && other.workflow == workflow && other.titleTemplate == titleTemplate && other.search == search && other.delete == delete && other.display == display;
   }
 
   @override
   int get hashCode {
-    return search.hashCode ^ create.hashCode ^ update.hashCode ^ delete.hashCode ^ display.hashCode;
+    return name.hashCode ^ workflow.hashCode ^ titleTemplate.hashCode ^ search.hashCode ^ delete.hashCode ^ display.hashCode;
   }
 }

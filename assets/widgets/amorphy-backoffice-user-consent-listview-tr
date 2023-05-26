@@ -1,6 +1,7 @@
 {
   "type": "list_view",
   "children": [
+    {{for consent in data.consents}}
     {
       "type": "container",
       "args": {
@@ -19,7 +20,9 @@
         }
       },
       "child": {
-       
+        "type": "column",
+        "children": [
+          {
             "type": "row",
             "args": {
               "mainAxisAlignment": "spaceBetween"
@@ -46,7 +49,7 @@
                         "style": {
                           "fontSize": 15,
                           "fontWeight": "bold",
-                          "color" : "#1d1f29"
+                          "color": "#1d1f29"
                         }
                       }
                     },
@@ -63,7 +66,7 @@
                         "style": {
                           "fontSize": 12,
                           "fontWeight": "w400",
-                          "color": "#1d1f29"
+                          "color": "#9dabe8"
                         }
                       }
                     }
@@ -73,16 +76,18 @@
               {
                 "type": "text",
                 "args": {
-                  "text": "{{consent.date}}",
-                  "style": {
-                    "fontSize": 13,
-                    "fontWeight": "bold",
-                    "color" : "#1d1f29"
-                  }
+                  "text": "date",
+                  "style": {}
                 }
               }
             ]
           }
+        ]
+      }
+    }
+   {
+      { end
+      }
     }
   ]
 }

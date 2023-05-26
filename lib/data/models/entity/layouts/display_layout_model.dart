@@ -8,51 +8,42 @@ import 'package:admin/data/models/entity/layout_helpers/title_model.dart';
 
 class DisplayLayoutModel {
   String? url;
-
-  String? name;
-  bool? isDefault;
-  TitleModel? title;
-  TitleModel? summary_template;
+  TitleModel? summaryTemplate;
+  TitleModel? detailTemplate;
   bool? history;
-  bool? state_manage;
-  bool? running_workflows;
-  bool? available_workflows;
+  bool? stateManager;
+  bool? runningWorkflows;
+  bool? availableWorkflows;
   List<DisplayTabModel>? tabs;
   DisplayLayoutModel({
     this.url,
-    this.name,
-    this.isDefault,
-    this.title,
-    this.summary_template,
+    this.summaryTemplate,
+    this.detailTemplate,
     this.history,
-    this.state_manage,
-    this.running_workflows,
-    this.available_workflows,
+    this.stateManager,
+    this.runningWorkflows,
+    this.availableWorkflows,
     this.tabs,
   });
 
   DisplayLayoutModel copyWith({
     String? url,
-    String? name,
-    bool? isDefault,
-    TitleModel? title,
-    TitleModel? summary_template,
+    TitleModel? summaryTemplate,
+    TitleModel? detailTemplate,
     bool? history,
-    bool? state_manage,
-    bool? running_workflows,
-    bool? available_workflows,
+    bool? stateManager,
+    bool? runningWorkflows,
+    bool? availableWorkflows,
     List<DisplayTabModel>? tabs,
   }) {
     return DisplayLayoutModel(
       url: url ?? this.url,
-      name: name ?? this.name,
-      isDefault: isDefault ?? this.isDefault,
-      title: title ?? this.title,
-      summary_template: summary_template ?? this.summary_template,
+      summaryTemplate: summaryTemplate ?? this.summaryTemplate,
+      detailTemplate: detailTemplate ?? this.detailTemplate,
       history: history ?? this.history,
-      state_manage: state_manage ?? this.state_manage,
-      running_workflows: running_workflows ?? this.running_workflows,
-      available_workflows: available_workflows ?? this.available_workflows,
+      stateManager: stateManager ?? this.stateManager,
+      runningWorkflows: runningWorkflows ?? this.runningWorkflows,
+      availableWorkflows: availableWorkflows ?? this.availableWorkflows,
       tabs: tabs ?? this.tabs,
     );
   }
@@ -60,36 +51,32 @@ class DisplayLayoutModel {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'url': url,
-      'name': name,
-      'isDefault': isDefault,
-      'title': title?.toMap(),
-      'summary_template': summary_template?.toMap(),
+      'summaryTemplate': summaryTemplate?.toMap(),
+      'detailTemplate': detailTemplate?.toMap(),
       'history': history,
-      'state_manage': state_manage,
-      'running_workflows': running_workflows,
-      'available_workflows': available_workflows,
+      'stateManager': stateManager,
+      'runningWorkflows': runningWorkflows,
+      'availableWorkflows': availableWorkflows,
       'tabs': tabs?.map((x) => x.toMap()).toList(),
     };
   }
 
   factory DisplayLayoutModel.fromMap(Map<String, dynamic> map) {
     return DisplayLayoutModel(
-      url: map['url'] != null ? map['url'] as String : "",
-      name: map['name'] != null ? map['name'] as String : "",
-      isDefault: map['default'] != null ? map['default'] as bool : false,
-      title: map['title'] != null ? TitleModel.fromMap(map['title'] as Map<String, dynamic>) : null,
-      summary_template: map['summary-template'] != null ? TitleModel.fromMap(map['summary-template'] as Map<String, dynamic>) : null,
-      history: map['history'] != null ? map['history'] as bool : false,
-      state_manage: map['state-manager'] != null ? map['state-manager'] as bool : false,
-      running_workflows: map['running-workflows'] != null ? map['running-workflows'] as bool : false,
-      available_workflows: map['available-workflows'] != null ? map['available-workflows'] as bool : false,
+      url: map['url'] != null ? map['url'] as String : null,
+      summaryTemplate: map['summaryTemplate'] != null ? TitleModel.fromMap(map['summaryTemplate'] as Map<String, dynamic>) : null,
+      detailTemplate: map['detailTemplate'] != null ? TitleModel.fromMap(map['detailTemplate'] as Map<String, dynamic>) : null,
+      history: map['history'] != null ? map['history'] as bool : null,
+      stateManager: map['stateManager'] != null ? map['stateManager'] as bool : null,
+      runningWorkflows: map['runningWorkflows'] != null ? map['runningWorkflows'] as bool : null,
+      availableWorkflows: map['availableWorkflows'] != null ? map['availableWorkflows'] as bool : null,
       tabs: map['tabs'] != null
           ? List<DisplayTabModel>.from(
               (map['tabs']).map<DisplayTabModel?>(
                 (x) => DisplayTabModel.fromMap(x as Map<String, dynamic>),
               ),
             )
-          : [],
+          : null,
     );
   }
 
@@ -99,7 +86,7 @@ class DisplayLayoutModel {
 
   @override
   String toString() {
-    return 'DisplayLayoutModel(url: $url, name: $name, isDefault: $isDefault, title: $title, summary_template: $summary_template, history: $history, state_manage: $state_manage, running_workflows: $running_workflows, available_workflows: $available_workflows, tabs: $tabs)';
+    return 'DisplayLayoutModel(url: $url, summaryTemplate: $summaryTemplate, detailTemplate: $detailTemplate, history: $history, stateManager: $stateManager, runningWorkflows: $runningWorkflows, availableWorkflows: $availableWorkflows, tabs: $tabs)';
   }
 
   @override
@@ -107,28 +94,24 @@ class DisplayLayoutModel {
     if (identical(this, other)) return true;
 
     return other.url == url &&
-        other.name == name &&
-        other.isDefault == isDefault &&
-        other.title == title &&
-        other.summary_template == summary_template &&
+        other.summaryTemplate == summaryTemplate &&
+        other.detailTemplate == detailTemplate &&
         other.history == history &&
-        other.state_manage == state_manage &&
-        other.running_workflows == running_workflows &&
-        other.available_workflows == available_workflows &&
+        other.stateManager == stateManager &&
+        other.runningWorkflows == runningWorkflows &&
+        other.availableWorkflows == availableWorkflows &&
         listEquals(other.tabs, tabs);
   }
 
   @override
   int get hashCode {
     return url.hashCode ^
-        name.hashCode ^
-        isDefault.hashCode ^
-        title.hashCode ^
-        summary_template.hashCode ^
+        summaryTemplate.hashCode ^
+        detailTemplate.hashCode ^
         history.hashCode ^
-        state_manage.hashCode ^
-        running_workflows.hashCode ^
-        available_workflows.hashCode ^
+        stateManager.hashCode ^
+        runningWorkflows.hashCode ^
+        availableWorkflows.hashCode ^
         tabs.hashCode;
   }
 }

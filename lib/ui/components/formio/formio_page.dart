@@ -1,7 +1,7 @@
 import 'dart:convert';
-import 'dart:math';
 
 import 'package:admin/ui/controllers/workflow_controller.dart';
+import 'package:admin/ui/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:webviewx/webviewx.dart';
@@ -33,7 +33,8 @@ class _FormioPageState extends State<FormioPage> {
       child: Container(
         padding: const EdgeInsets.all(10.0),
         child: Obx(() {
-          List<TransitionsModel> transitions = controller.workflow.stateManager.transitions!;
+          List<TransitionsModel> transitions =
+              controller.workflow.stateManager.transitions!;
           if (controller.loading)
             return Center(
               child: CircularProgressIndicator(),
@@ -45,22 +46,33 @@ class _FormioPageState extends State<FormioPage> {
                     (e) => Column(
                       children: <Widget>[
                         Expanded(
-                          child: Container(
-                            decoration: BoxDecoration(
-                              border: Border.all(width: 0.2),
-                            ),
-                            child: _buildWebViewX(e),
+                          child: _buildWebViewX(e),
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                              color: KC.primary,
+                              borderRadius: BorderRadius.circular(20)),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 8, horizontal: 24),
+                            child: TextButton(
+                                onPressed: () async {
+                                  var d = await webviewController
+                                      .callJsMethod("onSubmit", []);
+
+                                  print(e.name);
+                                  var data = jsonDecode(d);
+                                  controller.postTransition(
+                                      transition: e, entityData: data);
+                                },
+                                child: Tooltip(
+                                    message: e.name,
+                                    child: Text(
+                                      e.title!,
+                                      style: TextStyle(color: Colors.white),
+                                    ))),
                           ),
                         ),
-                        TextButton(
-                            onPressed: () async {
-                              var d = await webviewController.callJsMethod("onSubmit", []);
-
-                              print(e.name);
-                              var data = jsonDecode(d);
-                              controller.postTransition(transition: e, entityData: data);
-                            },
-                            child: Tooltip(message: e.name, child: Text(e.title!))),
                       ],
                     ),
                   )
@@ -95,61 +107,6 @@ class _FormioPageState extends State<FormioPage> {
       },
     );
   }
-
-  String get content => initialContent("""
-          {
-            components: [
-                {
-                    type: 'textfield',
-                    key: 'firstName',
-                    label: 'First Name',
-                    placeholder: 'Enter your first name.',
-                    input: true,
-                    tooltip: 'Enter your <strong>First Name</strong>',
-                    description: 'Enter your <strong>First Name</strong>'
-                },
-                {
-                    type: 'textfield',
-                    key: 'lastName',
-                    label: 'Last Name',
-                    placeholder: 'Enter your last name',
-                    input: true,
-                    tooltip: 'Enter your <strong>Last Name</strong>',
-                    description: 'Enter your <strong>Last Name</strong>'
-                },
-                {
-                    type: "select",
-                    label: "Favorite Things",
-                    key: "favoriteThings",
-                    placeholder: "These are a few of your favorite things...",
-                    data: {
-                        values: [
-                            {
-                                value: "raindropsOnRoses",
-                                label: "Raindrops on roses"
-                            },
-                            {
-                                value: "whiskersOnKittens",
-                                label: "Whiskers on Kittens"
-                            },
-                            {
-                                value: "brightCopperKettles",
-                                label: "Bright Copper Kettles"
-                            },
-                            {
-                                value: "warmWoolenMittens",
-                                label: "Warm Woolen Mittens"
-                            }
-                        ]
-                    },
-                    dataSrc: "values",
-                    template: "<span>{{ item.label }}</span>",
-                    multiple: true,
-                    input: true
-                }
-            ]
-        }
-""");
 
   String initialContent(String json) => """
 <!DOCTYPE html>
