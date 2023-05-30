@@ -22,7 +22,7 @@ class EntityModel {
     this.display,
   });
   factory EntityModel.init() => EntityModel(name: "", workflow: "", titleTemplate: "");
-
+  bool get hasFilter => search?.filter != null;
   EntityModel copyWith({
     String? name,
     String? workflow,

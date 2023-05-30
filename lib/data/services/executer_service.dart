@@ -77,7 +77,6 @@ class Executer {
   }
 
   _setHeaders() {
-    //TODO Set Headers
     var h = {
       // 'Accept': 'application/json',
       'Content-Type': 'application/json',

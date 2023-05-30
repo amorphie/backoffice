@@ -1,5 +1,6 @@
 import 'package:admin/data/models/display/display_view_model.dart';
 import 'package:admin/ui/components/detail_widget.dart';
+import 'package:admin/ui/controllers/filter_controller.dart';
 import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';
 
@@ -8,6 +9,7 @@ import 'entity_controller.dart';
 import 'workflow_controller.dart';
 
 class HomeController extends GetxController {
+  //! DISPLAY BEGIN
   RxList<DisplayViewModel> entityList = <DisplayViewModel>[].obs;
 
   Rx<DisplayViewModel> selectedEntity = DisplayViewModel.init().obs;
@@ -38,4 +40,23 @@ class HomeController extends GetxController {
   Future subtractData(DisplayViewModel model) async {
     entityList.remove(model);
   }
+  //!DISPLAY END
+
+  //! FILTER BEGIN
+  RxBool _filterView = false.obs;
+  bool get filterView => _filterView.value;
+  Future getFilterArea() async {
+    FilterController filterController = Get.put<FilterController>(FilterController());
+    await filterController.getFilterData();
+    _filterView.value = true;
+  }
+
+  filterClose() {
+    final FilterController filterController = Get.find<FilterController>();
+    // filterController.dispose();
+    filterController.onClose();
+    _filterView.value = false;
+  }
+
+  //! FILTER END
 }

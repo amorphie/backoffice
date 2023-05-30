@@ -62,10 +62,19 @@ class HomePage extends StatelessWidget {
                             return homeController.selectedEntity.value.page;
                           else
                             return AppDataTable(
+                              filterView: homeController.filterView,
                               withSearch: entityController.entity.search?.search ?? false,
                               title: menuController.menuItem.value.title!,
                               data: entityController.dataList,
                               columns: entityController.entity.search?.columns ?? [],
+                              hasFilter: entityController.entity.hasFilter,
+                              filterPressed: () async {
+                                if (homeController.filterView) {
+                                  homeController.filterClose();
+                                } else {
+                                  await homeController.getFilterArea();
+                                }
+                              },
                               onSearch: (val) {
                                 entityController.getDataList(searchText: val);
                               },

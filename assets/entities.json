@@ -12,12 +12,29 @@
                 {
                     "data": "tag",
                     "widget": "dropdown",
-                    "type": "reference"
+                    "type": "reference",
+                    "title": {
+                        "tr-TR": "Etiket",
+                        "en-EN": "Tag"
+                    }
+                },
+                {
+                    "data": "resourceRole",
+                    "widget": "dropdown",
+                    "type": "reference",
+                    "title": {
+                        "tr-TR": "Rol",
+                        "en-EN": "Role"
+                    }
                 },
                 {
                     "data": "reference",
                     "widget": "textField",
-                    "type": "query"
+                    "type": "query",
+                    "title": {
+                        "tr-TR": "Referans",
+                        "en-EN": "Reference"
+                    }
                 }
             ],
             "columns": [
