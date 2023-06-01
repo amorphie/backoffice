@@ -5,7 +5,6 @@ import 'package:get/route_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../constants/routes.dart';
-import 'style/colors.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
