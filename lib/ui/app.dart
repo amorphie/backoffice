@@ -17,10 +17,8 @@ class App extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (BuildContext context, Widget? child) => GetMaterialApp(
-        theme: ThemeData.light().copyWith(
-          scaffoldBackgroundColor: KC.background,
-          textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme).apply(bodyColor: Colors.white),
-          canvasColor: KC.secondary,
+        theme: ThemeData(
+          textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme),
         ),
         initialBinding: StartAppBinding(),
         getPages: getPages,

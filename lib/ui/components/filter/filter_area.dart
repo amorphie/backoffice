@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:admin/ui/components/filter/filter_widget.dart';
 import 'package:admin/ui/controllers/entity_controller.dart';
 import 'package:admin/ui/controllers/filter_controller.dart';
+import 'package:admin/ui/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -19,7 +20,8 @@ class FilterArea extends StatefulWidget {
 class _FilterAreaState extends State<FilterArea> {
   EntityController entityController = Get.find<EntityController>();
 
-  List<FilterLayout> get filters => entityController.entity.search!.filter ?? [];
+  List<FilterLayout> get filters =>
+      entityController.entity.search!.filter ?? [];
   @override
   void initState() {
     super.initState();
@@ -31,13 +33,27 @@ class _FilterAreaState extends State<FilterArea> {
       padding: EdgeInsets.all(10.sp),
       child: Column(children: [
         ...filters.map((e) => FilterItem(filter: e)).toList(),
-        TextButton(
-          child: Tooltip(message: "Ara", child: Text("Ara")),
-          onPressed: () async {
-            final FilterController filterController = Get.find<FilterController>();
+        Container(
+          decoration: BoxDecoration(
+              color: KC.primary, borderRadius: BorderRadius.circular(15)),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 22.0, vertical: 5),
+            child: TextButton(
+              child: Tooltip(
+                  message: "Ara",
+                  child: Text(
+                    "Ara",
+                    style: TextStyle(color: Colors.white),
+                  )),
+              onPressed: () async {
+                final FilterController filterController =
+                    Get.find<FilterController>();
 
-            Get.snackbar("Filters", jsonEncode(filterController.filterQueryList));
-          },
+                Get.snackbar(
+                    "Filters", jsonEncode(filterController.filterQueryList));
+              },
+            ),
+          ),
         ),
       ]),
     );
