@@ -89,7 +89,7 @@ class HomePage extends StatelessWidget {
                                   entity: entityController.entity.workflow,
                                   // recordId: "cf0a00ce-b0e5-4f0e-8c31-7e35cd4d4f5a",
                                 );
-                                formioDialog(context);
+                                formioDialog(context, workflowController.workflow.stateManager.title ?? "");
                               },
                             );
                         }),
@@ -143,10 +143,10 @@ class HomePage extends StatelessWidget {
         ),
       ));
 
-  Future<void> formioDialog(BuildContext context) async {
+  Future<void> formioDialog(BuildContext context, String title) async {
     return showDialog<void>(
       context: context,
-      barrierDismissible: true, // user must tap button!
+      barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
         return AlertDialog(
           actionsPadding: EdgeInsets.zero,
@@ -159,12 +159,13 @@ class HomePage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Kullanıcı Ekle',
+                  title,
                   style: TextStyle(color: KC.primary, fontWeight: FontWeight.bold),
                 ),
                 IconButton(
-                    onPressed: () {
-                      Get.back();
+                    onPressed: () async {
+                      Navigator.pop(context);
+                      entityController.getDataList();
                     },
                     icon: Icon(
                       Icons.close_rounded,
