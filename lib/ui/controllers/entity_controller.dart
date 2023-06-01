@@ -38,25 +38,32 @@ class EntityController extends GetxController {
   Future<void> getDataList({String? searchText, int? pageSize, int? pageNumber}) async {
     loading.value = true;
 
-    await Future.delayed(Duration(seconds: 2));
     dataList.clear();
-
-    var response = await services.search(
-      url: entity.search!.listUrl,
-      pageSize: pageSize ?? entity.search!.defaultPageSize,
-      pageNumber: pageNumber ?? entity.search!.defaultPageNumber,
-      searchText: searchText,
-    );
-    var list = response.data;
-    if (response.data["data"] != null) {
-      list = response.data["data"];
-    }
-    if (list is! List) {
-      list = [];
-    }
+    var list = await getData(searchText: searchText, pageSize: pageSize, pageNumber: pageNumber);
     for (var item in list) {
       dataList.add(item);
     }
     loading.value = false;
+  }
+
+  Future<List> getData({EntityModel? entityModel, String? searchText, int? pageSize, int? pageNumber}) async {
+    await Future.delayed(Duration(milliseconds: 200));
+
+    var response = await services.search(
+      url: (entityModel ?? entity).search!.listUrl,
+      pageSize: pageSize ?? (entityModel ?? entity).search!.defaultPageSize,
+      pageNumber: pageNumber ?? (entityModel ?? entity).search!.defaultPageNumber,
+      searchText: searchText,
+    );
+    List list = [];
+    if (response.data is List) {
+      list = response.data;
+    } else if (response.data is Map<String, dynamic>) {
+      if (response.data["data"] != null && response.data["data"] is List) {
+        list = response.data["data"];
+      }
+    }
+
+    return list;
   }
 }

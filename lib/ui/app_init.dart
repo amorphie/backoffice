@@ -18,7 +18,7 @@ class AppInit extends StatelessWidget {
       ),
       curve: Curves.easeIn,
       splashTransition: SplashTransition.fadeTransition,
-      duration: 2000,
+      duration: 100,
       screenRouteFunction: () async {
         AppMenuController menuController = Get.find<AppMenuController>();
         EntityController entityController = Get.find<EntityController>();

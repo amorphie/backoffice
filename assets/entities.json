@@ -107,10 +107,6 @@
                     "entity": "tag",
                     "order": 1,
                     "id": "$.id",
-                    "template": {
-                        "tr-TR": "amorphy-backoffice-user-consent-listview",
-                        "en-EN": "amorphy-backoffice-user-consent-listview"
-                    },
                     "title": {
                         "tr-TR": "Etiketler",
                         "en-EN": "Tags"
@@ -130,7 +126,7 @@
             "url": "https://test-amorphie-tag.burgan.com.tr/tag",
             "defaultPageSize": 100,
             "defaultPageNumber": 0,
-            "search": false,
+            "search": true,
             "columns": [
                 {
                     "data": "name",
