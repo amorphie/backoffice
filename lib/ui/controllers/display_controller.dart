@@ -1,7 +1,6 @@
 // ignore_for_file: invalid_use_of_protected_member
 
 import 'package:admin/data/models/entity/entity_model.dart';
-import 'package:admin/data/models/entity/layout_helpers/tab_model.dart';
 import 'package:admin/data/models/entity/layouts/display_layout_model.dart';
 import 'package:admin/data/services/services.dart';
 import 'package:admin/ui/controllers/entity_controller.dart';
@@ -70,14 +69,14 @@ class DisplayController extends GetxController {
     int? pageSize,
     int? pageNumber,
   }) async {
-    DisplayTabSearchModel searchModel = await getSearchData(entity, searchText: keyword, pageSize: 5); //TODO Şimdilik 5 yaptık
+    DisplayTabSearchModel searchModel = await getSearchData(entity, keyword: keyword, pageSize: 5); //TODO Şimdilik 5 yaptık
     searchModels[entity] = searchModel;
     searchModels.refresh();
   }
 
   Future<DisplayTabSearchModel> getSearchData(
     String entityName, {
-    String? searchText,
+    String? keyword,
     int? pageSize,
     int? pageNumber,
   }) async {
@@ -85,7 +84,7 @@ class DisplayController extends GetxController {
     EntityModel entity = entityController.entities[entityName]!;
     var list = await entityController.getData(
       entityModel: entity,
-      searchText: searchText,
+      keyword: keyword,
       pageSize: pageSize,
       pageNumber: pageNumber,
     );

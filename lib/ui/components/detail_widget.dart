@@ -72,7 +72,10 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
       padding: EdgeInsets.all(5),
       child: Row(
         children: [
-          Text(title),
+          Text(
+            title,
+            style: TextStyle(color: Colors.white),
+          ),
           ...transitions
               .map(
                 (e) => GestureDetector(
@@ -83,7 +86,10 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
                       margin: EdgeInsets.all(5),
                       padding: EdgeInsets.all(4),
                       decoration: BoxDecoration(color: Colors.white24, borderRadius: BorderRadius.circular(10)),
-                      child: Text(e.title ?? e.name!)),
+                      child: Text(
+                        e.title ?? e.name!,
+                        style: TextStyle(color: Colors.white),
+                      )),
                 ),
               )
               .toList()

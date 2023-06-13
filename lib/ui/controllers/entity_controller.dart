@@ -13,6 +13,27 @@ class EntityController extends GetxController {
     _entity.value = _;
   }
 
+  String _keyword = "";
+
+  int? pageSize;
+  int? pageNumber;
+  setPage(int p) {
+    pageNumber = p;
+    getDataList(isSearch: true);
+  }
+
+  setPageSize(int ps) {
+    pageSize = ps;
+    getDataList(isSearch: true);
+  }
+
+  setFilter(String filter) {
+    _keyword = filter;
+    if (_keyword == "" || _keyword.length > 3) {
+      getDataList(isSearch: true);
+    }
+  }
+
   Map<String, EntityModel> entities = {};
   RxBool loading = false.obs;
 
@@ -35,26 +56,42 @@ class EntityController extends GetxController {
     }
   }
 
-  Future<void> getDataList({String? searchText, int? pageSize, int? pageNumber}) async {
-    loading.value = true;
+  Future<void> getDataList({
+    Map<String, String>? queries,
+    bool isSearch = false,
+  }) async {
+    isSearch = false;
+    if (!isSearch) loading.value = true;
 
     dataList.clear();
-    var list = await getData(searchText: searchText, pageSize: pageSize, pageNumber: pageNumber);
+    var list = await getData(
+      keyword: _keyword == "" || _keyword.length > 3 ? _keyword : null,
+      pageSize: pageSize,
+      pageNumber: pageNumber,
+      queries: queries,
+    );
     for (var item in list) {
       dataList.add(item);
     }
-    loading.value = false;
+    if (!isSearch) loading.value = false;
+    dataList.refresh();
   }
 
-  Future<List> getData({EntityModel? entityModel, String? searchText, int? pageSize, int? pageNumber}) async {
+  Future<List> getData({
+    EntityModel? entityModel,
+    String? keyword,
+    int? pageSize,
+    int? pageNumber,
+    Map<String, String>? queries,
+  }) async {
     await Future.delayed(Duration(milliseconds: 200));
 
     var response = await services.search(
-      url: (entityModel ?? entity).search!.listUrl,
-      pageSize: pageSize ?? (entityModel ?? entity).search!.defaultPageSize,
-      pageNumber: pageNumber ?? (entityModel ?? entity).search!.defaultPageNumber,
-      searchText: searchText,
-    );
+        url: (entityModel ?? entity).search!.listUrl,
+        pageSize: pageSize ?? (entityModel ?? entity).search!.defaultPageSize,
+        pageNumber: pageNumber ?? (entityModel ?? entity).search!.defaultPageNumber,
+        keyword: keyword,
+        queries: queries);
     List list = [];
     if (response.data is List) {
       list = response.data;

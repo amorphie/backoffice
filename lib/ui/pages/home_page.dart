@@ -56,8 +56,6 @@ class HomePage extends StatelessWidget {
                       ),
                       Expanded(
                         child: Obx(() {
-                          log(DateTime.now().toIso8601String(), name: "EntityView");
-
                           if (homeController.hasEntity)
                             return homeController.selectedEntity.value.page;
                           else
@@ -76,7 +74,7 @@ class HomePage extends StatelessWidget {
                                 }
                               },
                               onSearch: (val) {
-                                entityController.getDataList(searchText: val);
+                                entityController.setFilter(val);
                               },
                               loading: entityController.loading.value,
                               onPressed: (data) async {

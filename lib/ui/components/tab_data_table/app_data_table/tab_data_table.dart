@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:admin/data/models/entity/layout_helpers/search_column_model.dart';
-import 'package:admin/data/models/entity/layout_helpers/title_model.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import '../../../style/colors.dart';
