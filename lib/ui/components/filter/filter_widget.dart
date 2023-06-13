@@ -22,7 +22,7 @@ class FilterItem extends StatelessWidget {
     switch (filter.widget) {
       case FilterWidget.textField:
         return CustomTextField(
-          label: filter.title.trTR,
+          label: filter.title.enEN,
           onChanged: (val) {
             if (val.isNotEmpty) {
               filterController.addFilter(filter, val);
@@ -35,14 +35,12 @@ class FilterItem extends StatelessWidget {
         return Obx(() {
           String? filterQuery = filterController.filterQueryList[filter.entity];
           var data = filterController.filterDataList[filter.entity]!.firstWhereOrNull((element) => element[filter.data] == filterQuery);
-          //TODO Şimdilik name alındı sonrasında değiştirilecek
 
           return FilterDropdown(
             filter: filter,
             value: data,
             onSelected: (val) {
               filterController.addFilter(filter, val[filter.data]);
-              //TODO Şimdilik name alındı sonrasında değiştirilecek
             },
           );
         });

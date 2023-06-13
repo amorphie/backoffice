@@ -53,7 +53,7 @@ class TabDataTable extends StatelessWidget {
             columns: columns
                 .map((e) => DataColumn(
                         label: Text(
-                      e.title.trTR,
+                      e.title.enEN,
                       style: TextStyle(color: Colors.black87),
                     )))
                 .toList(),
@@ -66,11 +66,7 @@ class TabDataTable extends StatelessWidget {
   Widget search() {
     return TextField(
       onSubmitted: onSearch,
-      decoration: InputDecoration(
-          hintText: "Search",
-          prefixIconColor: KC.primary,
-          prefixIcon: Icon(Icons.search),
-          iconColor: KC.primary),
+      decoration: InputDecoration(hintText: "Search", prefixIconColor: KC.primary, prefixIcon: Icon(Icons.search), iconColor: KC.primary),
     );
   }
 }

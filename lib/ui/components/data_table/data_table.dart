@@ -44,7 +44,7 @@ class AppDataTable extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(left: 16.0, top: 10, bottom: 14),
           child: Text(
-            title.trTR,
+            title.enEN,
             style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.black54),
           ),
         ),
@@ -86,7 +86,7 @@ class AppDataTable extends StatelessWidget {
                   columns: columns
                       .map((e) => DataColumn(
                               label: Text(
-                            e.title.trTR,
+                            e.title.enEN,
                             style: TextStyle(color: Colors.black87),
                           )))
                       .toList(),

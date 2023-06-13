@@ -41,7 +41,7 @@ class HomePage extends StatelessWidget {
                         height: 30,
                         child: Row(
                           children: [
-                            displayButton(title: menuController.menuItem.value.title!.trTR),
+                            displayButton(title: menuController.menuItem.value.title!.enEN),
                             Expanded(
                               child: Obx(() {
                                 return ListView.builder(

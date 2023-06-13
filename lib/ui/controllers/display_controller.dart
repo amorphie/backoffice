@@ -34,15 +34,15 @@ class DisplayController extends GetxController {
     templates = {};
     if (displayLayout.summaryTemplate != null)
       templates.addAll({
-        displayLayout.summaryTemplate!.trTR: await getTemplate(
-          "${displayLayout.summaryTemplate!.trTR}",
+        displayLayout.summaryTemplate!.enEN: await getTemplate(
+          "${displayLayout.summaryTemplate!.enEN}",
           _displayView.value,
         ),
       });
     if (displayLayout.detailTemplate != null)
       templates.addAll({
-        displayLayout.detailTemplate!.trTR: await getTemplate(
-          "${displayLayout.detailTemplate!.trTR}",
+        displayLayout.detailTemplate!.enEN: await getTemplate(
+          "${displayLayout.detailTemplate!.enEN}",
           _displayView.value,
         ),
       });
@@ -50,8 +50,8 @@ class DisplayController extends GetxController {
     for (var tab in displayLayout.tabs!) {
       if (tab.type == "render") {
         templates.addAll({
-          tab.template!.trTR: await getTemplate(
-            "${tab.template!.trTR}",
+          tab.template!.enEN: await getTemplate(
+            "${tab.template!.enEN}",
             {
               "consents": List.generate(20, (index) => {"name": "Deneme$index", "description": "text$index"})
             },
@@ -69,14 +69,14 @@ class DisplayController extends GetxController {
     int? pageSize,
     int? pageNumber,
   }) async {
-    DisplayTabSearchModel searchModel = await getSearchData(entity, searchText: keyword, pageSize: 5); //TODO Şimdilik 5 yaptık
+    DisplayTabSearchModel searchModel = await getSearchData(entity, keyword: keyword, pageSize: 5); //TODO Şimdilik 5 yaptık
     searchModels[entity] = searchModel;
     searchModels.refresh();
   }
 
   Future<DisplayTabSearchModel> getSearchData(
     String entityName, {
-    String? searchText,
+    String? keyword,
     int? pageSize,
     int? pageNumber,
   }) async {
@@ -84,7 +84,7 @@ class DisplayController extends GetxController {
     EntityModel entity = entityController.entities[entityName]!;
     var list = await entityController.getData(
       entityModel: entity,
-      searchText: searchText,
+      keyword: keyword,
       pageSize: pageSize,
       pageNumber: pageNumber,
     );

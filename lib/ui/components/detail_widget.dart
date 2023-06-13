@@ -128,7 +128,7 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
                 ...displayController.displayLayout.tabs!
                     .map(
                       (e) => Tab(
-                        icon: Text(e.title.trTR),
+                        icon: Text(e.title.enEN),
                       ),
                     )
                     .toList()
@@ -161,7 +161,7 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
   }
 
   Widget getRenderWidget(TitleModel template) {
-    var t = displayController.templates[template.trTR];
+    var t = displayController.templates[template.enEN];
     return JsonWidgetData.fromDynamic(
       t,
       registry: JsonWidgetRegistry.instance,

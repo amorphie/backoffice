@@ -26,7 +26,7 @@ class FilterDropdown extends StatelessWidget {
     return Row(
       children: [
         Text(
-          filter.title.trTR,
+          filter.title.enEN,
           style: TextStyle(color: Colors.black),
         ),
         SizedBox(width: 10),
