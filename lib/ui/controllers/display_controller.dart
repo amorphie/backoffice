@@ -1,7 +1,6 @@
 // ignore_for_file: invalid_use_of_protected_member
 
 import 'package:admin/data/models/entity/entity_model.dart';
-import 'package:admin/data/models/entity/layout_helpers/tab_model.dart';
 import 'package:admin/data/models/entity/layouts/display_layout_model.dart';
 import 'package:admin/data/services/services.dart';
 import 'package:admin/ui/controllers/entity_controller.dart';
@@ -17,7 +16,8 @@ class DisplayController extends GetxController {
   RxMap<String, dynamic> _displayView = <String, dynamic>{}.obs;
 
   Map<String, dynamic> templates = {};
-  RxMap<String, DisplayTabSearchModel> searchModels = <String, DisplayTabSearchModel>{}.obs;
+  RxMap<String, DisplayTabSearchModel> searchModels =
+      <String, DisplayTabSearchModel>{}.obs;
 
   setData(Map<String, dynamic> data) async {
     EntityController entityController = Get.find<EntityController>();
@@ -28,7 +28,8 @@ class DisplayController extends GetxController {
   }
 
   int get tabCount {
-    return displayLayout.tabs!.length + (displayLayout.detailTemplate != null ? 1 : 0);
+    return displayLayout.tabs!.length +
+        (displayLayout.detailTemplate != null ? 1 : 0);
   }
 
   getTemplates() async {
@@ -54,7 +55,10 @@ class DisplayController extends GetxController {
           tab.template!.trTR: await getTemplate(
             "${tab.template!.trTR}",
             {
-              "consents": List.generate(20, (index) => {"name": "Deneme$index", "description": "text$index"})
+              "consents": List.generate(
+                  20,
+                  (index) =>
+                      {"name": "Deneme$index", "description": "text$index"})
             },
           )
         });
@@ -70,7 +74,8 @@ class DisplayController extends GetxController {
     int? pageSize,
     int? pageNumber,
   }) async {
-    DisplayTabSearchModel searchModel = await getSearchData(entity, searchText: keyword, pageSize: 5); //TODO Şimdilik 5 yaptık
+    DisplayTabSearchModel searchModel = await getSearchData(entity,
+        searchText: keyword, pageSize: 5); //TODO Şimdilik 5 yaptık
     searchModels[entity] = searchModel;
     searchModels.refresh();
   }
@@ -96,7 +101,8 @@ class DisplayController extends GetxController {
     );
   }
 
-  Future<String?> getTemplate(String name, Map<String, dynamic> renderData) async {
+  Future<String?> getTemplate(
+      String name, Map<String, dynamic> renderData) async {
     var data = {
       "name": name,
       "render-id": Uuid().v4(),
