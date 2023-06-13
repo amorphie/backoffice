@@ -66,7 +66,11 @@ class TabDataTable extends StatelessWidget {
   Widget search() {
     return TextField(
       onSubmitted: onSearch,
-      decoration: InputDecoration(hintText: "Search", prefixIconColor: KC.primary, prefixIcon: Icon(Icons.search), iconColor: KC.primary),
+      decoration: InputDecoration(
+          hintText: "Search",
+          prefixIconColor: KC.primary,
+          prefixIcon: Icon(Icons.search),
+          iconColor: KC.primary),
     );
   }
 }

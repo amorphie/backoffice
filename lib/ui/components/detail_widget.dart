@@ -4,6 +4,7 @@ import 'package:admin/data/models/workflow/workflow_model.dart';
 import 'package:admin/ui/components/tab_data_table/app_data_table/tab_data_table.dart';
 import 'package:admin/ui/controllers/workflow_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
@@ -84,11 +85,11 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
                   },
                   child: Container(
                       margin: EdgeInsets.all(5),
-                      padding: EdgeInsets.all(4),
-                      decoration: BoxDecoration(color: Colors.white24, borderRadius: BorderRadius.circular(10)),
+                      padding: EdgeInsets.symmetric(horizontal: 9, vertical: 4),
+                      decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10)),
                       child: Text(
                         e.title ?? e.name!,
-                        style: TextStyle(color: Colors.white),
+                        style: TextStyle(fontSize: 14.sp),
                       )),
                 ),
               )

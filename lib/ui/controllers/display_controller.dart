@@ -69,14 +69,14 @@ class DisplayController extends GetxController {
     int? pageSize,
     int? pageNumber,
   }) async {
-    DisplayTabSearchModel searchModel = await getSearchData(entity, keyword: keyword, pageSize: 5); //TODO Şimdilik 5 yaptık
+    DisplayTabSearchModel searchModel = await getSearchData(entity, searchText: keyword, pageSize: 5); //TODO Şimdilik 5 yaptık
     searchModels[entity] = searchModel;
     searchModels.refresh();
   }
 
   Future<DisplayTabSearchModel> getSearchData(
     String entityName, {
-    String? keyword,
+    String? searchText,
     int? pageSize,
     int? pageNumber,
   }) async {
@@ -84,7 +84,7 @@ class DisplayController extends GetxController {
     EntityModel entity = entityController.entities[entityName]!;
     var list = await entityController.getData(
       entityModel: entity,
-      keyword: keyword,
+      searchText: searchText,
       pageSize: pageSize,
       pageNumber: pageNumber,
     );
