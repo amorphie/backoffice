@@ -36,11 +36,11 @@ class FilterDropdown extends StatelessWidget {
             child: DropdownButton<dynamic>(
               isExpanded: true,
               value: value,
-              items: filterController.filterDataList[filter.data]!
+              items: filterController.filterDataList[filter.entity]!
                   .map((e) => DropdownMenuItem<dynamic>(
                       value: e,
                       child: Text(
-                        entityController.entities[filter.data]!.titleTemplate.templateWithData(e),
+                        entityController.entities[filter.entity]!.titleTemplate.templateWithData(e),
                       )))
                   .toList(),
               onChanged: (val) {

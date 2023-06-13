@@ -10,17 +10,17 @@ class FilterController extends GetxController {
   RxMap<String, String> filterQueryList = <String, String>{}.obs;
 
   addFilter(FilterLayout filter, dynamic data) {
-    if (filterQueryList[filter.data] != null) {
-      filterQueryList[filter.data] = data.toString();
+    if (filterQueryList[filter.entity] != null) {
+      filterQueryList[filter.entity] = data.toString();
     } else {
-      filterQueryList.addAll({filter.data: data.toString()});
+      filterQueryList.addAll({filter.entity: data.toString()});
     }
     filterQueryList.refresh();
   }
 
   removeFilter(FilterLayout filter) {
-    if (filterQueryList[filter.data] != null) {
-      filterQueryList.remove(filter.data);
+    if (filterQueryList[filter.entity] != null) {
+      filterQueryList.remove(filter.entity);
     }
     filterQueryList.refresh();
   }
@@ -31,16 +31,21 @@ class FilterController extends GetxController {
     for (var filter in entityController.entity.search!.filter!) {
       if (filter.type == FilterType.reference) {
         var response = await Services().search(
-          url: entityController.entities[filter.data]!.search!.listUrl,
-          pageSize: entityController.entities[filter.data]!.search!.defaultPageSize,
-          pageNumber: entityController.entities[filter.data]!.search!.defaultPageNumber,
+          url: entityController.entities[filter.entity]!.search!.listUrl,
+          pageSize: entityController.entities[filter.entity]!.search!.defaultPageSize,
+          pageNumber: entityController.entities[filter.entity]!.search!.defaultPageNumber,
         );
         var list = response.data;
         if (list is! List) {
           list = [];
         }
-        filterDataList.addAll({filter.data: list});
+        filterDataList.addAll({filter.entity: list});
       }
     }
+  }
+
+  Future onFilter() async {
+    EntityController entityController = Get.find<EntityController>();
+    entityController.getDataList(queries: filterQueryList, isSearch: true);
   }
 }

@@ -10,7 +10,8 @@
             "search": true,
             "filter": [
                 {
-                    "data": "tag",
+                    "data": "name",
+                    "entity": "tag",
                     "widget": "dropdown",
                     "type": "reference",
                     "title": {
@@ -19,16 +20,7 @@
                     }
                 },
                 {
-                    "data": "resourceRole",
-                    "widget": "dropdown",
-                    "type": "reference",
-                    "title": {
-                        "tr-TR": "Rol",
-                        "en-EN": "Role"
-                    }
-                },
-                {
-                    "data": "reference",
+                    "entity": "reference",
                     "widget": "textField",
                     "type": "query",
                     "title": {
@@ -69,6 +61,14 @@
                         "en-EN": "Tags"
                     },
                     "sort": 4
+                },
+                {
+                    "data": "state",
+                    "title": {
+                        "tr-TR": "Durum",
+                        "en-EN": "State"
+                    },
+                    "sort": 5
                 }
             ]
         },

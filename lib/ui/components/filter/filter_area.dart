@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:admin/ui/components/filter/filter_widget.dart';
 import 'package:admin/ui/controllers/entity_controller.dart';
 import 'package:admin/ui/controllers/filter_controller.dart';
@@ -20,8 +18,7 @@ class FilterArea extends StatefulWidget {
 class _FilterAreaState extends State<FilterArea> {
   EntityController entityController = Get.find<EntityController>();
 
-  List<FilterLayout> get filters =>
-      entityController.entity.search!.filter ?? [];
+  List<FilterLayout> get filters => entityController.entity.search!.filter ?? [];
   @override
   void initState() {
     super.initState();
@@ -34,8 +31,7 @@ class _FilterAreaState extends State<FilterArea> {
       child: Column(children: [
         ...filters.map((e) => FilterItem(filter: e)).toList(),
         Container(
-          decoration: BoxDecoration(
-              color: KC.primary, borderRadius: BorderRadius.circular(15)),
+          decoration: BoxDecoration(color: KC.primary, borderRadius: BorderRadius.circular(15)),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 22.0, vertical: 5),
             child: TextButton(
@@ -46,11 +42,8 @@ class _FilterAreaState extends State<FilterArea> {
                     style: TextStyle(color: Colors.white),
                   )),
               onPressed: () async {
-                final FilterController filterController =
-                    Get.find<FilterController>();
-
-                Get.snackbar(
-                    "Filters", jsonEncode(filterController.filterQueryList));
+                final FilterController filterController = Get.find<FilterController>();
+                await filterController.onFilter();
               },
             ),
           ),

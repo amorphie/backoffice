@@ -49,6 +49,7 @@ class _FormioWidgetState extends State<FormioWidget> {
             ),
             SizedBox(height: 5),
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 if (widget.isBack)
                   CustomButton(

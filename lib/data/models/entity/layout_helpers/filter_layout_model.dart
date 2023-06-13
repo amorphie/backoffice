@@ -6,12 +6,14 @@ import 'package:admin/data/models/entity/enums/filter_widget.dart';
 import 'package:admin/data/models/entity/layout_helpers/title_model.dart';
 
 class FilterLayout {
-  String data;
+  String? data;
+  String entity;
   FilterType type;
   FilterWidget widget;
   TitleModel title;
   FilterLayout({
-    required this.data,
+    this.data,
+    required this.entity,
     required this.type,
     required this.widget,
     required this.title,
@@ -19,12 +21,14 @@ class FilterLayout {
 
   FilterLayout copyWith({
     String? data,
+    String? entity,
     FilterType? type,
     FilterWidget? widget,
     TitleModel? title,
   }) {
     return FilterLayout(
       data: data ?? this.data,
+      entity: entity ?? this.entity,
       type: type ?? this.type,
       widget: widget ?? this.widget,
       title: title ?? this.title,
@@ -33,6 +37,7 @@ class FilterLayout {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
+      'entity': entity,
       'data': data,
       'type': type.toMap(),
       'widget': widget.toMap(),
@@ -42,7 +47,8 @@ class FilterLayout {
 
   factory FilterLayout.fromMap(Map<String, dynamic> map) {
     return FilterLayout(
-      data: map['data'] as String,
+      data: map['data'] != null ? map['data'] as String : null,
+      entity: map['entity'] as String,
       type: FilterType.fromMap(map['type']),
       widget: FilterWidget.fromMap(map['widget']),
       title: TitleModel.fromMap(map['title'] as Map<String, dynamic>),
@@ -55,18 +61,18 @@ class FilterLayout {
 
   @override
   String toString() {
-    return 'FilterLayout(data: $data, type: $type, widget: $widget, title: $title)';
+    return 'FilterLayout(data: $data, entity: $entity, type: $type, widget: $widget, title: $title)';
   }
 
   @override
   bool operator ==(covariant FilterLayout other) {
     if (identical(this, other)) return true;
 
-    return other.data == data && other.type == type && other.widget == widget && other.title == title;
+    return other.data == data && other.entity == entity && other.type == type && other.widget == widget && other.title == title;
   }
 
   @override
   int get hashCode {
-    return data.hashCode ^ type.hashCode ^ widget.hashCode ^ title.hashCode;
+    return data.hashCode ^ entity.hashCode ^ type.hashCode ^ widget.hashCode ^ title.hashCode;
   }
 }

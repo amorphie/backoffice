@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:admin/data/models/display/display_view_model.dart';
 import 'package:admin/ui/components/detail_widget.dart';
 import 'package:admin/ui/controllers/filter_controller.dart';
@@ -9,6 +11,14 @@ import 'entity_controller.dart';
 import 'workflow_controller.dart';
 
 class HomeController extends GetxController {
+  @override
+  onInit() {
+    super.onInit();
+    ever(selectedEntity, (callback) {
+      log(DateTime.now().toIso8601String(), name: "ChangedEntity");
+    });
+  }
+
   //! DISPLAY BEGIN
   RxList<DisplayViewModel> entityList = <DisplayViewModel>[].obs;
 
@@ -16,6 +26,7 @@ class HomeController extends GetxController {
 
   selectEntity(DisplayViewModel model) {
     selectedEntity.value = model;
+    log(DateTime.now().toIso8601String(), name: "SelectEntity");
   }
 
   deselectEntity() {

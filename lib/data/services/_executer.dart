@@ -1,58 +1,102 @@
-import 'package:admin/data/services/service_config.dart';
-import 'package:flutter/foundation.dart';
+import 'dart:convert';
+import 'package:admin/helpers/logger.dart';
+import "package:http/http.dart" as http;
 
 import 'common/executer_model.dart';
+import 'common/response_model.dart';
 
-class ExecuterManager {
-  static List<ExecuterModel> list = [];
-  static bool control(
-    String endpoint,
-    Map<String, dynamic>? data,
-    ResponseMethod method,
-  ) {
-    list.removeWhere((element) => element.isBeforeNow);
-    ExecuterModel model =
-        ExecuterModel(endpoint: endpoint, data: data, method: method);
-    if (list.contains(model)) {
-      print("responseTimeOverflow");
-      return false;
-    } else {
-      list.add(model);
-      return true;
-    }
-  }
-}
+//import 'package:logger/logger.dart' as appLogger;
 
-class ExecuterModel {
-  String endpoint;
-  Map<String, dynamic>? data;
-  ResponseMethod method;
-  late DateTime time;
-  ExecuterModel({
+class Executer {
+  final String endpoint;
+  final Map<String, dynamic>? data;
+  final ResponseMethod method;
+  final Map<String, String>? headers;
+
+  Executer({
     required this.endpoint,
     this.data,
+    this.headers,
     required this.method,
   }) {
-    this.time = DateTime.now();
+    _request = http.Request(method.name, Uri.parse(endpoint));
+
+    appLogger.wtf(data, endpoint, StackTrace.empty);
+    _setData();
+    _setHeaders();
+  }
+  //Map<String, String> _map = {};
+  late http.Request _request;
+
+  static Future<ResponseModel> get({required String endpoint, Map<String, dynamic>? data, Map<String, String>? headers}) async {
+    Executer _e = Executer(endpoint: endpoint, data: data, method: ResponseMethod.GET, headers: headers);
+    return await _e.execute();
   }
 
-  bool get isBeforeNow =>
-      time.add(ServiceConfig.responseTime).isBefore(DateTime.now());
-
-  @override
-  bool operator ==(covariant ExecuterModel other) {
-    if (identical(this, other)) return true;
-
-    return other.endpoint == endpoint &&
-        mapEquals(other.data, data) &&
-        other.method == method;
+  static Future<ResponseModel> post({required String endpoint, Map<String, dynamic>? data, Map<String, String>? headers}) async {
+    Executer _e = Executer(endpoint: endpoint, data: data, method: ResponseMethod.POST, headers: headers);
+    return await _e.execute();
   }
 
-  @override
-  int get hashCode => endpoint.hashCode ^ data.hashCode ^ method.hashCode;
+  static Future<ResponseModel> delete({required String endpoint, Map<String, dynamic>? data, Map<String, String>? headers}) async {
+    Executer _e = Executer(endpoint: endpoint, data: data, method: ResponseMethod.DELETE, headers: headers);
+    return await _e.execute();
+  }
 
-  @override
-  String toString() {
-    return 'ExecuterModel(endpoint: $endpoint, data: $data, method: $method, time: $time)';
+  static Future<ResponseModel> patch({required String endpoint, Map<String, dynamic>? data, Map<String, String>? headers}) async {
+    Executer _e = Executer(endpoint: endpoint, data: data, method: ResponseMethod.PATCH, headers: headers);
+    return await _e.execute();
+  }
+
+  static Future<ResponseModel> put({required String endpoint, Map<String, dynamic>? data, Map<String, String>? headers}) async {
+    Executer _e = Executer(endpoint: endpoint, data: data, method: ResponseMethod.PUT, headers: headers);
+    return await _e.execute();
+  }
+
+  Future<ResponseModel> execute() async {
+    if (ExecuterManager.control(endpoint, data, method)) {
+      try {
+        _setHeaders();
+
+        http.StreamedResponse response = await _request.send();
+        String resultData = await response.stream.bytesToString();
+        var result = json.decode(resultData);
+
+        if (response.statusCode >= 200 && response.statusCode < 300) {
+          appLogger.v("statusCode => " + response.statusCode.toString(), endpoint);
+
+          return ResponseModel(code: response.statusCode, errors: {}, success: true, message: "", data: result);
+        } else {
+          return ResponseModel(code: response.statusCode, success: false, errors: {}, message: result["message"] ?? "", data: result);
+        }
+      } catch (e) {
+        appLogger.e(e.toString(), endpoint);
+        return ResponseModel(code: 0, success: false, errors: {"errors": e}, message: e.toString(), data: null);
+      }
+    }
+    return ResponseModel(code: 0, success: false, errors: {"errors": "responseTime"}, message: "responseTime", data: null);
+  }
+
+  _setHeaders() {
+    var h = {
+      // 'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      // 'Authorization': 'Bearer  ${Token.token}',
+
+      // "Access-Control-Allow-Origin": "*",
+      // "Access-Control-Allow-Methods": "POST, GET, OPTIONS, PUT, DELETE, HEAD",
+    };
+    _request.headers.addAll(headers ?? h);
+  }
+
+  _setData() {
+    if (data != null) {
+      // data!.forEach((key, value) {
+      //  if (value != null) _map.addAll({key: value.toString()});
+      //});
+      //_request.bodyFields = _map;
+
+      _request.body = json.encode(data);
+    }
   }
 }

@@ -39,11 +39,6 @@ class AppDataTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (loading)
-      return Center(
-          child: SpinKitCircle(
-        color: Theme.of(context).primaryColor,
-      ));
     return ListView(
       children: [
         Padding(
@@ -81,16 +76,22 @@ class AppDataTable extends StatelessWidget {
                 ],
               ),
               if (filterView) FilterArea(),
-              PaginatedDataTable(
-                columns: columns
-                    .map((e) => DataColumn(
-                            label: Text(
-                          e.title.trTR,
-                          style: TextStyle(color: Colors.black87),
-                        )))
-                    .toList(),
-                source: AppDataTableSource(data: data, columns: columns, onPressed: onPressed),
-              ),
+              if (loading)
+                Center(
+                    child: SpinKitCircle(
+                  color: Theme.of(context).primaryColor,
+                ))
+              else
+                PaginatedDataTable(
+                  columns: columns
+                      .map((e) => DataColumn(
+                              label: Text(
+                            e.title.trTR,
+                            style: TextStyle(color: Colors.black87),
+                          )))
+                      .toList(),
+                  source: AppDataTableSource(data: data, columns: columns, onPressed: onPressed),
+                ),
             ],
           );
         }),
@@ -102,6 +103,9 @@ class AppDataTable extends StatelessWidget {
     return Expanded(
       child: TextField(
         onSubmitted: onSearch,
+        // onChanged: (value) {
+        //   onSearch(value);
+        // },
         decoration: InputDecoration(hintText: "Search", prefixIconColor: KC.primary, prefixIcon: Icon(Icons.search), iconColor: KC.primary),
       ),
     );
