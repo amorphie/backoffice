@@ -24,17 +24,21 @@ class DetailWidget extends StatefulWidget {
   State<DetailWidget> createState() => _DetailWidgetState();
 }
 
-class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMixin {
+class _DetailWidgetState extends State<DetailWidget>
+    with TickerProviderStateMixin {
   late TabController _tabController;
   HomeController get homeController => Get.find<HomeController>();
-  DisplayController get displayController => Get.find<DisplayController>(tag: homeController.selectedEntity.value.data["id"]);
-  WorkflowController get workflowController => Get.find<WorkflowController>(tag: homeController.selectedEntity.value.data["id"]);
+  DisplayController get displayController => Get.find<DisplayController>(
+      tag: homeController.selectedEntity.value.data["id"]);
+  WorkflowController get workflowController => Get.find<WorkflowController>(
+      tag: homeController.selectedEntity.value.data["id"]);
 
   @override
   void initState() {
     super.initState();
 
-    _tabController = TabController(length: displayController.tabCount, vsync: this);
+    _tabController =
+        TabController(length: displayController.tabCount, vsync: this);
   }
 
   @override
@@ -61,8 +65,11 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
       padding: EdgeInsets.all(12),
       child: Column(
         children: [
-          workflowRow(workflow.stateManager.title! + " : ", workflow.stateManager.transitions!),
-          ...workflow.availableWorkflows!.map((e) => workflowRow(e.title! + " : ", e.transitions!)).toList()
+          workflowRow(workflow.stateManager.title! + " : ",
+              workflow.stateManager.transitions!),
+          ...workflow.availableWorkflows!
+              .map((e) => workflowRow(e.title! + " : ", e.transitions!))
+              .toList()
         ],
       ),
     );
@@ -86,7 +93,9 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
                   child: Container(
                       margin: EdgeInsets.all(5),
                       padding: EdgeInsets.symmetric(horizontal: 9, vertical: 4),
-                      decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10)),
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10)),
                       child: Text(
                         e.title ?? e.name!,
                         style: TextStyle(fontSize: 14.sp),
@@ -110,12 +119,14 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
               backgroundColor: KC.primary,
               elevation: 1,
               title: Obx(() {
-                return getRenderWidget(displayController.displayLayout.summaryTemplate!);
+                return getRenderWidget(
+                    displayController.displayLayout.summaryTemplate!);
               }),
               actions: [
                 IconButton(
                     onPressed: () {
-                      homeController.subtractData(homeController.selectedEntity.value);
+                      homeController
+                          .subtractData(homeController.selectedEntity.value);
                       homeController.deselectEntity();
                     },
                     icon: Icon(Icons.close))
@@ -135,7 +146,9 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
               ]),
             ),
             body: TabBarView(controller: _tabController, children: [
-              if (displayController.displayLayout.detailTemplate != null) getRenderWidget(displayController.displayLayout.detailTemplate!),
+              if (displayController.displayLayout.detailTemplate != null)
+                getRenderWidget(
+                    displayController.displayLayout.detailTemplate!),
               ...displayController.displayLayout.tabs!
                   .map((e) => Container(
                         child: e.type == "render"
@@ -143,12 +156,22 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
                             : e.type == "search"
                                 ? Obx(
                                     () => TabDataTable(
-                                      withSearch: displayController.searchModels[e.entity]!.entity.search!.search,
+                                      withSearch: displayController
+                                          .searchModels[e.entity]!
+                                          .entity
+                                          .search!
+                                          .search,
                                       onSearch: (val) {
-                                        displayController.search(entity: e.entity, keyword: val);
+                                        displayController.search(
+                                            entity: e.entity, keyword: val);
                                       },
-                                      columns: displayController.searchModels[e.entity]!.entity.search!.columns,
-                                      data: displayController.searchModels[e.entity]!.data,
+                                      columns: displayController
+                                          .searchModels[e.entity]!
+                                          .entity
+                                          .search!
+                                          .columns,
+                                      data: displayController
+                                          .searchModels[e.entity]!.data,
                                       onPressed: (data) {},
                                     ),
                                   )
@@ -181,7 +204,8 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
             insetPadding: EdgeInsets.zero,
             buttonPadding: EdgeInsets.zero,
             contentPadding: EdgeInsets.zero,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
             title: Container(
               padding: const EdgeInsets.all(10.0),
               child: Row(
@@ -189,7 +213,8 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
                 children: [
                   Text(
                     data.title ?? "",
-                    style: TextStyle(color: KC.primary, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        color: KC.primary, fontWeight: FontWeight.bold),
                   ),
                   IconButton(
                       onPressed: () async {
@@ -206,7 +231,8 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
             content: FormioWidget(
               data: data,
               getData: (val) async {
-                await workflowController.postTransition(transition: data, entityData: val);
+                await workflowController.postTransition(
+                    transition: data, entityData: val);
                 Navigator.pop(context);
               },
             ),

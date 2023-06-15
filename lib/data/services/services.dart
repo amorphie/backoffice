@@ -48,7 +48,8 @@ class Services {
     return response;
   }
 
-  Future<ResponseModel> getTemplate({required Map<String, dynamic> data}) async {
+  Future<ResponseModel> getTemplate(
+      {required Map<String, dynamic> data}) async {
     return await Executer.post(
       endpoint: "https://test-template-engine.burgan.com.tr/Template/Render",
       data: data,
@@ -59,9 +60,23 @@ class Services {
     );
   }
 
-  Future<ResponseModel> getTransitions({required String entity, required String recordId}) async {
+  Future<ResponseModel> getHistory(
+      {required String entity, required String recordId}) async {
+    return await Executer.post(
+      endpoint:
+          "https://test-template-engine.burgan.com.tr/workflow/consumer/${entity}/record/${recordId}/history",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+      },
+    );
+  }
+
+  Future<ResponseModel> getTransitions(
+      {required String entity, required String recordId}) async {
     return await Executer.get(
-      endpoint: "https://test-amorphie-workflow.burgan.com.tr/workflow/consumer/${entity}/record/${recordId}/transition",
+      endpoint:
+          "https://test-amorphie-workflow.burgan.com.tr/workflow/consumer/${entity}/record/${recordId}/transition",
       headers: {
         "Accept": "application/json",
         "Accept-Language": "en-EN",
@@ -77,7 +92,8 @@ class Services {
     required Map<String, String> headers,
   }) async {
     return await Executer.post(
-      endpoint: "https://test-amorphie-workflow.burgan.com.tr/workflow/consumer/${entity}/record/${recordId}/transition/${transition}",
+      endpoint:
+          "https://test-amorphie-workflow.burgan.com.tr/workflow/consumer/${entity}/record/${recordId}/transition/${transition}",
       data: data,
       headers: headers,
     );
