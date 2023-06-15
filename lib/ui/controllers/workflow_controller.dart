@@ -4,9 +4,15 @@ import 'package:admin/data/services/services.dart';
 import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';
 
+import 'display_controller.dart';
+
 class WorkflowController extends GetxController {
   Rx<WorkflowModel> _workflow = WorkflowModel.init().obs;
   WorkflowModel get workflow => _workflow.value;
+
+  String? _tag;
+  WorkflowController([this._tag]);
+
   set workflow(WorkflowModel _) {
     _workflow.value = _;
   }
@@ -43,6 +49,8 @@ class WorkflowController extends GetxController {
   }
 
   Future postTransition({required TransitionsModel transition, required Map<String, dynamic> entityData}) async {
+    _loading.value = true;
+
     var data = {
       "entityData": entityData,
       "formData": {},
@@ -65,6 +73,10 @@ class WorkflowController extends GetxController {
       headers: headers,
     );
     if (response.success) {
+      if (_tag != null) {
+        DisplayController displayController = Get.find<DisplayController>(tag: _tag);
+        await displayController.detailTemplateRefresh();
+      }
       // var result = response.data;
       //TODO snackbar ile gösterim yapılacak
       await getTransitions();

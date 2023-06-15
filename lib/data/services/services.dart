@@ -48,6 +48,8 @@ class Services {
     return response;
   }
 
+  Future<ResponseModel> getById(String url, String id) => Executer.get(endpoint: url + "/$id");
+
   Future<ResponseModel> getTemplate({required Map<String, dynamic> data}) async {
     return await Executer.post(
       endpoint: "https://test-template-engine.burgan.com.tr/Template/Render",

@@ -36,8 +36,8 @@ class HomeController extends GetxController {
   bool get hasEntity => !selectedEntity.value.isBlank;
 
   Future addData(Map<String, dynamic> data) async {
-    DisplayController displayController = Get.put<DisplayController>(DisplayController(), tag: data["id"]);
-    WorkflowController workflowController = Get.put<WorkflowController>(WorkflowController(), tag: data["id"]);
+    DisplayController displayController = Get.put<DisplayController>(DisplayController(data["id"]), tag: data["id"]);
+    WorkflowController workflowController = Get.put<WorkflowController>(WorkflowController(data["id"]), tag: data["id"]);
     final EntityController entityController = Get.find<EntityController>();
 
     await workflowController.startTransition(entity: entityController.entity.workflow, recordId: data["id"]);

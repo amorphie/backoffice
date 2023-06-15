@@ -64,6 +64,7 @@ class Executer {
 
         if (response.statusCode >= 200 && response.statusCode < 300) {
           appLogger.v("statusCode => " + response.statusCode.toString(), endpoint);
+          appLogger.v(result, endpoint);
 
           return ResponseModel(code: response.statusCode, errors: {}, success: true, message: "", data: result);
         } else {

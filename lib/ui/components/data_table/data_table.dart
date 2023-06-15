@@ -1,11 +1,11 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:admin/ui/components/data_table/data_table_source.dart';
 import 'package:admin/ui/components/filter/filter_area.dart';
+import 'package:admin/ui/components/indicator.dart';
 import 'package:flutter/material.dart';
 
 import 'package:admin/data/models/entity/layout_helpers/search_column_model.dart';
 import 'package:admin/data/models/entity/layout_helpers/title_model.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import '../../style/colors.dart';
 
@@ -77,10 +77,7 @@ class AppDataTable extends StatelessWidget {
               ),
               if (filterView) FilterArea(),
               if (loading)
-                Center(
-                    child: SpinKitCircle(
-                  color: Theme.of(context).primaryColor,
-                ))
+                AppIndicator()
               else
                 PaginatedDataTable(
                   columns: columns

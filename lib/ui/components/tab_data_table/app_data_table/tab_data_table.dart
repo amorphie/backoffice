@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:admin/data/models/entity/layout_helpers/search_column_model.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import '../../../style/colors.dart';
+import '../../indicator.dart';
 
 class TabDataTable extends StatelessWidget {
   final Function(String val) onSearch;
@@ -25,11 +25,8 @@ class TabDataTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (loading)
-      return Center(
-          child: SpinKitCircle(
-        color: Theme.of(context).primaryColor,
-      ));
+    if (loading) return AppIndicator();
+
     return Column(
       children: [
         if (withSearch) search(),

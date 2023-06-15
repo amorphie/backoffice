@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:admin/data/models/workflow/altmodels/transitions.dart';
 import 'package:admin/data/models/workflow/workflow_model.dart';
+import 'package:admin/ui/components/indicator.dart';
 import 'package:admin/ui/components/tab_data_table/app_data_table/tab_data_table.dart';
 import 'package:admin/ui/controllers/workflow_controller.dart';
 import 'package:flutter/material.dart';
@@ -177,40 +178,42 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
         return Padding(
           padding: const EdgeInsets.all(10.0),
           child: AlertDialog(
-            actionsPadding: EdgeInsets.zero,
-            insetPadding: EdgeInsets.zero,
-            buttonPadding: EdgeInsets.zero,
-            contentPadding: EdgeInsets.zero,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-            title: Container(
-              padding: const EdgeInsets.all(10.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    data.title ?? "",
-                    style: TextStyle(color: KC.primary, fontWeight: FontWeight.bold),
-                  ),
-                  IconButton(
-                      onPressed: () async {
-                        Navigator.pop(context);
-                        //TODO  entityController.getDataList(); getById Eklenecek
-                      },
-                      icon: Icon(
-                        Icons.close_rounded,
-                        color: KC.primary,
-                      ))
-                ],
+              actionsPadding: EdgeInsets.zero,
+              insetPadding: EdgeInsets.zero,
+              buttonPadding: EdgeInsets.zero,
+              contentPadding: EdgeInsets.zero,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+              title: Container(
+                padding: const EdgeInsets.all(10.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      data.title ?? "",
+                      style: TextStyle(color: KC.primary, fontWeight: FontWeight.bold),
+                    ),
+                    IconButton(
+                        onPressed: () async {
+                          Navigator.pop(context);
+                          //TODO  entityController.getDataList(); getById Eklenecek
+                        },
+                        icon: Icon(
+                          Icons.close_rounded,
+                          color: KC.primary,
+                        ))
+                  ],
+                ),
               ),
-            ),
-            content: FormioWidget(
-              data: data,
-              getData: (val) async {
-                await workflowController.postTransition(transition: data, entityData: val);
-                Navigator.pop(context);
-              },
-            ),
-          ),
+              content: Obx(() {
+                if (workflowController.loading) AppIndicator();
+                return FormioWidget(
+                  data: data,
+                  getData: (val) async {
+                    await workflowController.postTransition(transition: data, entityData: val);
+                    Navigator.pop(context);
+                  },
+                );
+              })),
         );
       },
     );

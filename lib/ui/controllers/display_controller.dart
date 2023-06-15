@@ -2,6 +2,7 @@
 
 import 'package:admin/data/models/entity/entity_model.dart';
 import 'package:admin/data/models/entity/layouts/display_layout_model.dart';
+import 'package:admin/data/services/common/response_model.dart';
 import 'package:admin/data/services/services.dart';
 import 'package:admin/ui/controllers/entity_controller.dart';
 import 'package:get/get.dart';
@@ -10,6 +11,9 @@ import 'package:uuid/uuid.dart';
 import '../../data/models/display/display_tab_search_model.dart';
 
 class DisplayController extends GetxController {
+  DisplayController([this._tag]);
+  String? _tag;
+
   Rx<DisplayLayoutModel> _displayLayout = DisplayLayoutModel().obs;
   DisplayLayoutModel get displayLayout => _displayLayout.value;
 
@@ -28,6 +32,19 @@ class DisplayController extends GetxController {
 
   int get tabCount {
     return displayLayout.tabs!.length + (displayLayout.detailTemplate != null ? 1 : 0);
+  }
+
+  Future _getById() async {
+    EntityController entityController = Get.find<EntityController>();
+    ResponseModel response = await Services().getById(entityController.entity.url, _displayView.value["id"]);
+    _displayView.value = response.data;
+  }
+
+  Future detailTemplateRefresh() async {
+    if (displayLayout.detailTemplate != null && templates[displayLayout.detailTemplate!.enEN] != null) {
+      await _getById();
+      templates[displayLayout.detailTemplate!.enEN] = await getTemplate("${displayLayout.detailTemplate!.enEN}", _displayView.value);
+    }
   }
 
   getTemplates() async {
@@ -69,7 +86,7 @@ class DisplayController extends GetxController {
     int? pageSize,
     int? pageNumber,
   }) async {
-    DisplayTabSearchModel searchModel = await getSearchData(entity, keyword: keyword, pageSize: 5); //TODO Şimdilik 5 yaptık
+    DisplayTabSearchModel searchModel = await getSearchData(entity, keyword: keyword);
     searchModels[entity] = searchModel;
     searchModels.refresh();
   }
@@ -82,12 +99,12 @@ class DisplayController extends GetxController {
   }) async {
     EntityController entityController = Get.find<EntityController>();
     EntityModel entity = entityController.entities[entityName]!;
-    var list = await entityController.getData(
+    var list = await entityController.getAllData(
       entityModel: entity,
       keyword: keyword,
       pageSize: pageSize,
       pageNumber: pageNumber,
-    );
+    ); //TODO tag a search eklenince burası search diye değişecek
     return DisplayTabSearchModel(
       tag: entityName,
       data: list,

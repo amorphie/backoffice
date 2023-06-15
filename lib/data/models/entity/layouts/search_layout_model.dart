@@ -7,7 +7,6 @@ import '../layout_helpers/filter_layout_model.dart';
 import '../layout_helpers/search_column_model.dart';
 
 class SearchLayout {
-  String listUrl;
   int defaultPageSize;
   int defaultPageNumber;
 
@@ -15,7 +14,6 @@ class SearchLayout {
   List<FilterLayout>? filter;
   List<SearchColumn> columns;
   SearchLayout({
-    required this.listUrl,
     required this.search,
     this.filter,
     this.defaultPageSize = 100,
@@ -24,7 +22,6 @@ class SearchLayout {
   });
 
   SearchLayout copyWith({
-    String? listUrl,
     int? defaultPageSize,
     int? defaultPageNumber,
     bool? search,
@@ -32,7 +29,6 @@ class SearchLayout {
     List<SearchColumn>? columns,
   }) {
     return SearchLayout(
-      listUrl: listUrl ?? this.listUrl,
       defaultPageSize: defaultPageSize ?? this.defaultPageSize,
       defaultPageNumber: defaultPageNumber ?? this.defaultPageNumber,
       search: search ?? this.search,
@@ -43,7 +39,6 @@ class SearchLayout {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'url': listUrl,
       'defaultPageSize': defaultPageSize,
       'defaultPageNumber': defaultPageNumber,
       'search': search,
@@ -54,7 +49,6 @@ class SearchLayout {
 
   factory SearchLayout.fromMap(Map<String, dynamic> map) {
     return SearchLayout(
-      listUrl: map['url'] as String,
       defaultPageSize: map["defaultPageSize"] != null ? map["defaultPageSize"] : null,
       defaultPageNumber: map["defaultPageNumber"] != null ? map["defaultPageNumber"] : null,
       search: map['search'] as bool,
@@ -79,15 +73,14 @@ class SearchLayout {
 
   @override
   String toString() {
-    return 'SearchLayout(listUrl: $listUrl, defaultPageSize: $defaultPageSize, defaultPageNumber: $defaultPageNumber, search: $search, filter: $filter, columns: $columns)';
+    return 'SearchLayout(defaultPageSize: $defaultPageSize, defaultPageNumber: $defaultPageNumber, search: $search, filter: $filter, columns: $columns)';
   }
 
   @override
   bool operator ==(covariant SearchLayout other) {
     if (identical(this, other)) return true;
 
-    return other.listUrl == listUrl &&
-        other.defaultPageSize == defaultPageSize &&
+    return other.defaultPageSize == defaultPageSize &&
         other.defaultPageNumber == defaultPageNumber &&
         other.search == search &&
         listEquals(other.filter, filter) &&
@@ -96,6 +89,6 @@ class SearchLayout {
 
   @override
   int get hashCode {
-    return listUrl.hashCode ^ defaultPageSize.hashCode ^ defaultPageNumber.hashCode ^ search.hashCode ^ filter.hashCode ^ columns.hashCode;
+    return defaultPageSize.hashCode ^ defaultPageNumber.hashCode ^ search.hashCode ^ filter.hashCode ^ columns.hashCode;
   }
 }

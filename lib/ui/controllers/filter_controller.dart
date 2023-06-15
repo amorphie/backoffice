@@ -10,17 +10,17 @@ class FilterController extends GetxController {
   RxMap<String, String> filterQueryList = <String, String>{}.obs;
 
   addFilter(FilterLayout filter, dynamic data) {
-    if (filterQueryList[filter.entity] != null) {
-      filterQueryList[filter.entity] = data.toString();
+    if (filterQueryList[filter.query] != null) {
+      filterQueryList[filter.query] = data.toString();
     } else {
-      filterQueryList.addAll({filter.entity: data.toString()});
+      filterQueryList.addAll({filter.query: data.toString()});
     }
     filterQueryList.refresh();
   }
 
   removeFilter(FilterLayout filter) {
-    if (filterQueryList[filter.entity] != null) {
-      filterQueryList.remove(filter.entity);
+    if (filterQueryList[filter.query] != null) {
+      filterQueryList.remove(filter.query);
     }
     filterQueryList.refresh();
   }
@@ -31,7 +31,7 @@ class FilterController extends GetxController {
     for (var filter in entityController.entity.search!.filter!) {
       if (filter.type == FilterType.reference) {
         var response = await Services().search(
-          url: entityController.entities[filter.entity]!.search!.listUrl,
+          url: entityController.entities[filter.entity]!.url,
           pageSize: entityController.entities[filter.entity]!.search!.defaultPageSize,
           pageNumber: entityController.entities[filter.entity]!.search!.defaultPageNumber,
         );

@@ -8,12 +8,14 @@ import 'package:admin/data/models/entity/layout_helpers/title_model.dart';
 class FilterLayout {
   String? data;
   String entity;
+  String query;
   FilterType type;
   FilterWidget widget;
   TitleModel title;
   FilterLayout({
     this.data,
     required this.entity,
+    required this.query,
     required this.type,
     required this.widget,
     required this.title,
@@ -22,6 +24,7 @@ class FilterLayout {
   FilterLayout copyWith({
     String? data,
     String? entity,
+    String? query,
     FilterType? type,
     FilterWidget? widget,
     TitleModel? title,
@@ -29,6 +32,7 @@ class FilterLayout {
     return FilterLayout(
       data: data ?? this.data,
       entity: entity ?? this.entity,
+      query: query ?? this.query,
       type: type ?? this.type,
       widget: widget ?? this.widget,
       title: title ?? this.title,
@@ -39,6 +43,7 @@ class FilterLayout {
     return <String, dynamic>{
       'entity': entity,
       'data': data,
+      'query': query,
       'type': type.toMap(),
       'widget': widget.toMap(),
       'title': title.toMap(),
@@ -49,6 +54,7 @@ class FilterLayout {
     return FilterLayout(
       data: map['data'] != null ? map['data'] as String : null,
       entity: map['entity'] as String,
+      query: map['query'] as String,
       type: FilterType.fromMap(map['type']),
       widget: FilterWidget.fromMap(map['widget']),
       title: TitleModel.fromMap(map['title'] as Map<String, dynamic>),

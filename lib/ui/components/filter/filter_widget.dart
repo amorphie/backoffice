@@ -33,7 +33,7 @@ class FilterItem extends StatelessWidget {
         );
       case FilterWidget.dropdown:
         return Obx(() {
-          String? filterQuery = filterController.filterQueryList[filter.entity];
+          String? filterQuery = filterController.filterQueryList[filter.query];
           var data = filterController.filterDataList[filter.entity]!.firstWhereOrNull((element) => element[filter.data] == filterQuery);
 
           return FilterDropdown(

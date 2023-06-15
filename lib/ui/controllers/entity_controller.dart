@@ -60,24 +60,31 @@ class EntityController extends GetxController {
     Map<String, String>? queries,
     bool isSearch = false,
   }) async {
-    isSearch = false;
-    if (!isSearch) loading.value = true;
+    loading.value = true;
 
     dataList.clear();
-    var list = await getData(
-      keyword: _keyword == "" || _keyword.length > 3 ? _keyword : null,
-      pageSize: pageSize,
-      pageNumber: pageNumber,
-      queries: queries,
-    );
+    List list;
+    if (!isSearch) {
+      list = await getAllData(
+        pageSize: pageSize,
+        pageNumber: pageNumber,
+      );
+    } else {
+      list = await getSearchData(
+        keyword: _keyword == "" || _keyword.length > 3 ? _keyword : null,
+        pageSize: pageSize,
+        pageNumber: pageNumber,
+        queries: queries,
+      );
+    }
     for (var item in list) {
       dataList.add(item);
     }
-    if (!isSearch) loading.value = false;
+    loading.value = false;
     dataList.refresh();
   }
 
-  Future<List> getData({
+  Future<List> getAllData({
     EntityModel? entityModel,
     String? keyword,
     int? pageSize,
@@ -87,7 +94,34 @@ class EntityController extends GetxController {
     await Future.delayed(Duration(milliseconds: 200));
 
     var response = await services.search(
-        url: (entityModel ?? entity).search!.listUrl,
+        url: (entityModel ?? entity).url,
+        pageSize: pageSize ?? (entityModel ?? entity).search!.defaultPageSize,
+        pageNumber: pageNumber ?? (entityModel ?? entity).search!.defaultPageNumber,
+        keyword: keyword,
+        queries: queries);
+    List list = [];
+    if (response.data is List) {
+      list = response.data;
+    } else if (response.data is Map<String, dynamic>) {
+      if (response.data["data"] != null && response.data["data"] is List) {
+        list = response.data["data"];
+      }
+    }
+
+    return list;
+  }
+
+  Future<List> getSearchData({
+    EntityModel? entityModel,
+    String? keyword,
+    int? pageSize,
+    int? pageNumber,
+    Map<String, String>? queries,
+  }) async {
+    await Future.delayed(Duration(milliseconds: 200));
+
+    var response = await services.search(
+        url: (entityModel ?? entity).url + "/search",
         pageSize: pageSize ?? (entityModel ?? entity).search!.defaultPageSize,
         pageNumber: pageNumber ?? (entityModel ?? entity).search!.defaultPageNumber,
         keyword: keyword,

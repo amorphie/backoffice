@@ -1,4 +1,5 @@
 import 'package:admin/ui/components/formio/formio_widget.dart';
+import 'package:admin/ui/components/indicator.dart';
 import 'package:admin/ui/controllers/workflow_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -30,11 +31,8 @@ class _FormioPageState extends State<FormioPage> {
       return Container(
         padding: const EdgeInsets.all(10.0),
         height: transitions.length > 1 ? 200 : null,
-        child: Builder(builder: (context) {
-          if (controller.loading)
-            return Center(
-              child: CircularProgressIndicator(),
-            );
+        child: Obx(() {
+          if (controller.loading) return AppIndicator();
           if (transitions.length == 1) {
             return FormioWidget(
               data: transitions.first,
