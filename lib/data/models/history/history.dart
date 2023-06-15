@@ -1,0 +1,143 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:convert';
+
+import 'package:flutter/foundation.dart';
+
+import 'package:admin/data/models/history/alt_models/event_model.dart';
+import 'package:admin/data/models/history/alt_models/response_data.dart';
+import 'package:admin/data/models/history/alt_models/submit_data_model.dart';
+
+class HistoryModel {
+  String id;
+  String name;
+  String fromState;
+  String toState;
+  String formSchema;
+  List<HistoryEventsModel> events;
+  HistorySubmitDataModel submitData;
+  HistoryResponseDataModel responseData;
+  String calledAt;
+  String completedAt;
+  String calledBy;
+  HistoryModel({
+    required this.id,
+    required this.name,
+    required this.fromState,
+    required this.toState,
+    required this.formSchema,
+    required this.events,
+    required this.submitData,
+    required this.responseData,
+    required this.calledAt,
+    required this.completedAt,
+    required this.calledBy,
+  });
+
+  HistoryModel copyWith({
+    String? id,
+    String? name,
+    String? fromState,
+    String? toState,
+    String? formSchema,
+    List<HistoryEventsModel>? events,
+    HistorySubmitDataModel? submitData,
+    HistoryResponseDataModel? responseData,
+    String? calledAt,
+    String? completedAt,
+    String? calledBy,
+  }) {
+    return HistoryModel(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      fromState: fromState ?? this.fromState,
+      toState: toState ?? this.toState,
+      formSchema: formSchema ?? this.formSchema,
+      events: events ?? this.events,
+      submitData: submitData ?? this.submitData,
+      responseData: responseData ?? this.responseData,
+      calledAt: calledAt ?? this.calledAt,
+      completedAt: completedAt ?? this.completedAt,
+      calledBy: calledBy ?? this.calledBy,
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'id': id,
+      'name': name,
+      'fromState': fromState,
+      'toState': toState,
+      'formSchema': formSchema,
+      'events': events.map((x) => x.toMap()).toList(),
+      'submitData': submitData.toMap(),
+      'responseData': responseData.toMap(),
+      'calledAt': calledAt,
+      'completedAt': completedAt,
+      'calledBy': calledBy,
+    };
+  }
+
+  factory HistoryModel.fromMap(Map<String, dynamic> map) {
+    return HistoryModel(
+      id: map['id'] as String,
+      name: map['name'] as String,
+      fromState: map['fromState'] as String,
+      toState: map['toState'] as String,
+      formSchema: map['formSchema'] as String,
+      events: List<HistoryEventsModel>.from(
+        (map['events'] as List<int>).map<HistoryEventsModel>(
+          (x) => HistoryEventsModel.fromMap(x as Map<String, dynamic>),
+        ),
+      ),
+      submitData: HistorySubmitDataModel.fromMap(
+          map['submitData'] as Map<String, dynamic>),
+      responseData: HistoryResponseDataModel.fromMap(
+          map['responseData'] as Map<String, dynamic>),
+      calledAt: map['calledAt'] as String,
+      completedAt: map['completedAt'] as String,
+      calledBy: map['calledBy'] as String,
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory HistoryModel.fromJson(String source) =>
+      HistoryModel.fromMap(json.decode(source) as Map<String, dynamic>);
+
+  @override
+  String toString() {
+    return 'HistoryModel(id: $id, name: $name, fromState: $fromState, toState: $toState, formSchema: $formSchema, events: $events, submitData: $submitData, responseData: $responseData, calledAt: $calledAt, completedAt: $completedAt, calledBy: $calledBy)';
+  }
+
+  @override
+  bool operator ==(covariant HistoryModel other) {
+    if (identical(this, other)) return true;
+
+    return other.id == id &&
+        other.name == name &&
+        other.fromState == fromState &&
+        other.toState == toState &&
+        other.formSchema == formSchema &&
+        listEquals(other.events, events) &&
+        other.submitData == submitData &&
+        other.responseData == responseData &&
+        other.calledAt == calledAt &&
+        other.completedAt == completedAt &&
+        other.calledBy == calledBy;
+  }
+
+  @override
+  int get hashCode {
+    return id.hashCode ^
+        name.hashCode ^
+        fromState.hashCode ^
+        toState.hashCode ^
+        formSchema.hashCode ^
+        events.hashCode ^
+        submitData.hashCode ^
+        responseData.hashCode ^
+        calledAt.hashCode ^
+        completedAt.hashCode ^
+        calledBy.hashCode;
+  }
+}
