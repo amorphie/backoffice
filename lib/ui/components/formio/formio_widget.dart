@@ -1,9 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:admin/ui/components/custom_button.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:webviewx/webviewx.dart';
 
 import '../../../data/models/workflow/altmodels/transitions.dart';
@@ -94,7 +94,7 @@ class _FormioWidgetState extends State<FormioWidget> {
         DartCallback(
           name: 'submit',
           callBack: (msg) {
-            Get.snackbar("GetData", msg);
+            log(msg);
           },
         )
       },

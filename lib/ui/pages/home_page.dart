@@ -146,33 +146,37 @@ class HomePage extends StatelessWidget {
       context: context,
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
-        return AlertDialog(
-          actionsPadding: EdgeInsets.zero,
-          insetPadding: EdgeInsets.zero,
-          buttonPadding: EdgeInsets.zero,
-          contentPadding: EdgeInsets.zero,
-          title: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  title,
-                  style: TextStyle(color: KC.primary, fontWeight: FontWeight.bold),
-                ),
-                IconButton(
-                    onPressed: () async {
-                      Navigator.pop(context);
-                      entityController.getDataList();
-                    },
-                    icon: Icon(
-                      Icons.close_rounded,
-                      color: KC.primary,
-                    ))
-              ],
+        return Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: AlertDialog(
+            actionsPadding: EdgeInsets.zero,
+            insetPadding: EdgeInsets.zero,
+            buttonPadding: EdgeInsets.zero,
+            contentPadding: EdgeInsets.zero,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+            title: Container(
+              padding: const EdgeInsets.all(10.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    title,
+                    style: TextStyle(color: KC.primary, fontWeight: FontWeight.bold),
+                  ),
+                  IconButton(
+                      onPressed: () async {
+                        Navigator.pop(context);
+                        entityController.getDataList();
+                      },
+                      icon: Icon(
+                        Icons.close_rounded,
+                        color: KC.primary,
+                      ))
+                ],
+              ),
             ),
+            content: FormioPage(),
           ),
-          content: FormioPage(),
         );
       },
     );

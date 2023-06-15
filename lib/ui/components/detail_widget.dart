@@ -174,17 +174,42 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
       context: context,
       barrierDismissible: true, // user must tap button!
       builder: (BuildContext context) {
-        return AlertDialog(
-          actionsPadding: EdgeInsets.zero,
-          insetPadding: EdgeInsets.zero,
-          buttonPadding: EdgeInsets.zero,
-          contentPadding: EdgeInsets.zero,
-          content: FormioWidget(
-            data: data,
-            getData: (val) async {
-              await workflowController.postTransition(transition: data, entityData: val);
-              Navigator.pop(context);
-            },
+        return Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: AlertDialog(
+            actionsPadding: EdgeInsets.zero,
+            insetPadding: EdgeInsets.zero,
+            buttonPadding: EdgeInsets.zero,
+            contentPadding: EdgeInsets.zero,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+            title: Container(
+              padding: const EdgeInsets.all(10.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    data.title ?? "",
+                    style: TextStyle(color: KC.primary, fontWeight: FontWeight.bold),
+                  ),
+                  IconButton(
+                      onPressed: () async {
+                        Navigator.pop(context);
+                        //TODO  entityController.getDataList(); getById Eklenecek
+                      },
+                      icon: Icon(
+                        Icons.close_rounded,
+                        color: KC.primary,
+                      ))
+                ],
+              ),
+            ),
+            content: FormioWidget(
+              data: data,
+              getData: (val) async {
+                await workflowController.postTransition(transition: data, entityData: val);
+                Navigator.pop(context);
+              },
+            ),
           ),
         );
       },
