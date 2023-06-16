@@ -62,8 +62,8 @@ class Services {
   }
 
   Future<ResponseModel> getHistory({required String entity, required String recordId}) async {
-    return await Executer.post(
-      endpoint: "https://test-template-engine.burgan.com.tr/workflow/consumer/${entity}/record/${recordId}/history",
+    return await Executer.get(
+      endpoint: "https://test-amorphie-workflow.burgan.com.tr/workflow/consumer/${entity}/record/${recordId}/history",
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json",

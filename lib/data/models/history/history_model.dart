@@ -8,28 +8,28 @@ import 'package:admin/data/models/history/alt_models/response_data.dart';
 import 'package:admin/data/models/history/alt_models/submit_data_model.dart';
 
 class HistoryModel {
-  String id;
+  String? id;
   String name;
   String fromState;
   String toState;
-  String formSchema;
-  List<HistoryEventsModel> events;
-  HistorySubmitDataModel submitData;
-  HistoryResponseDataModel responseData;
-  String calledAt;
-  String completedAt;
+  String? formSchema;
+  List<HistoryEventsModel>? events;
+  HistorySubmitDataModel? submitData;
+  HistoryResponseDataModel? responseData;
+  DateTime calledAt;
+  String? completedAt;
   String calledBy;
   HistoryModel({
-    required this.id,
+    this.id,
     required this.name,
     required this.fromState,
     required this.toState,
-    required this.formSchema,
-    required this.events,
-    required this.submitData,
-    required this.responseData,
+    this.formSchema,
+    this.events,
+    this.submitData,
+    this.responseData,
     required this.calledAt,
-    required this.completedAt,
+    this.completedAt,
     required this.calledBy,
   });
 
@@ -42,7 +42,7 @@ class HistoryModel {
     List<HistoryEventsModel>? events,
     HistorySubmitDataModel? submitData,
     HistoryResponseDataModel? responseData,
-    String? calledAt,
+    DateTime? calledAt,
     String? completedAt,
     String? calledBy,
   }) {
@@ -68,10 +68,10 @@ class HistoryModel {
       'fromState': fromState,
       'toState': toState,
       'formSchema': formSchema,
-      'events': events.map((x) => x.toMap()).toList(),
-      'submitData': submitData.toMap(),
-      'responseData': responseData.toMap(),
-      'calledAt': calledAt,
+      'events': events?.map((x) => x.toMap()).toList(),
+      'submitData': submitData?.toMap(),
+      'responseData': responseData?.toMap(),
+      'calledAt': calledAt.toIso8601String(),
       'completedAt': completedAt,
       'calledBy': calledBy,
     };
@@ -79,30 +79,29 @@ class HistoryModel {
 
   factory HistoryModel.fromMap(Map<String, dynamic> map) {
     return HistoryModel(
-      id: map['id'] as String,
+      id: map['id'] != null ? map['id'] as String : null,
       name: map['name'] as String,
       fromState: map['fromState'] as String,
       toState: map['toState'] as String,
-      formSchema: map['formSchema'] as String,
-      events: List<HistoryEventsModel>.from(
-        (map['events'] as List<int>).map<HistoryEventsModel>(
-          (x) => HistoryEventsModel.fromMap(x as Map<String, dynamic>),
-        ),
-      ),
-      submitData: HistorySubmitDataModel.fromMap(
-          map['submitData'] as Map<String, dynamic>),
-      responseData: HistoryResponseDataModel.fromMap(
-          map['responseData'] as Map<String, dynamic>),
-      calledAt: map['calledAt'] as String,
-      completedAt: map['completedAt'] as String,
+      formSchema: map['formSchema'] != null ? map['formSchema'] as String : null,
+      events: map['events'] != null
+          ? List<HistoryEventsModel>.from(
+              (map['events']).map<HistoryEventsModel?>(
+                (x) => HistoryEventsModel.fromMap(x as Map<String, dynamic>),
+              ),
+            )
+          : null,
+      submitData: map['submitData'] != null ? HistorySubmitDataModel.fromMap(map['submitData'] as Map<String, dynamic>) : null,
+      responseData: map['responseData'] != null ? HistoryResponseDataModel.fromMap(map['responseData'] as Map<String, dynamic>) : null,
+      calledAt: DateTime.parse(map['calledAt']),
+      completedAt: map['completedAt'] != null ? map['completedAt'] as String : null,
       calledBy: map['calledBy'] as String,
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory HistoryModel.fromJson(String source) =>
-      HistoryModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory HistoryModel.fromJson(String source) => HistoryModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {

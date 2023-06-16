@@ -1,8 +1,10 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:admin/data/models/workflow/altmodels/transitions.dart';
 import 'package:admin/data/models/workflow/workflow_model.dart';
+import 'package:admin/ui/components/history_list.dart';
 import 'package:admin/ui/components/indicator.dart';
 import 'package:admin/ui/components/tab_data_table/app_data_table/tab_data_table.dart';
+import 'package:admin/ui/controllers/entity_controller.dart';
 import 'package:admin/ui/controllers/workflow_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -28,6 +30,7 @@ class DetailWidget extends StatefulWidget {
 class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMixin {
   late TabController _tabController;
   HomeController get homeController => Get.find<HomeController>();
+  EntityController get entityController => Get.find<EntityController>();
   DisplayController get displayController => Get.find<DisplayController>(tag: homeController.selectedEntity.value.data["id"]);
   WorkflowController get workflowController => Get.find<WorkflowController>(tag: homeController.selectedEntity.value.data["id"]);
 
@@ -124,7 +127,7 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
               bottom: TabBar(controller: _tabController, tabs: [
                 if (displayController.displayLayout.detailTemplate != null)
                   Tab(
-                    icon: Text("Detay"),
+                    icon: Text("Detail"),
                   ),
                 ...displayController.displayLayout.tabs!
                     .map(
@@ -132,7 +135,11 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
                         icon: Text(e.title.enEN),
                       ),
                     )
-                    .toList()
+                    .toList(),
+                if (entityController.entity.display!.history!)
+                  Tab(
+                    icon: Text("History"),
+                  ),
               ]),
             ),
             body: TabBarView(controller: _tabController, children: [
@@ -155,7 +162,8 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
                                   )
                                 : Container(),
                       ))
-                  .toList()
+                  .toList(),
+              if (entityController.entity.display!.history!) Obx(() => HistoryListWidget(histories: displayController.historyWorkflows)),
             ])),
       ),
     );
@@ -205,7 +213,9 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
                 ),
               ),
               content: Obx(() {
-                if (workflowController.loading) AppIndicator();
+                WorkflowController controller = Get.find<WorkflowController>(tag: homeController.selectedEntity.value.data["id"]);
+
+                if (controller.loading) return AppIndicator();
                 return FormioWidget(
                   data: data,
                   getData: (val) async {

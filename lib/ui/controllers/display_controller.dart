@@ -2,6 +2,7 @@
 
 import 'package:admin/data/models/entity/entity_model.dart';
 import 'package:admin/data/models/entity/layouts/display_layout_model.dart';
+import 'package:admin/data/models/history/history_workflow_model.dart';
 import 'package:admin/data/services/common/response_model.dart';
 import 'package:admin/data/services/services.dart';
 import 'package:admin/ui/controllers/entity_controller.dart';
@@ -22,16 +23,21 @@ class DisplayController extends GetxController {
   Map<String, dynamic> templates = {};
   RxMap<String, DisplayTabSearchModel> searchModels = <String, DisplayTabSearchModel>{}.obs;
 
+  RxList<HistoryWorkflowModel> historyWorkflows = <HistoryWorkflowModel>[].obs;
+
   setData(Map<String, dynamic> data) async {
     EntityController entityController = Get.find<EntityController>();
     _displayLayout.value = entityController.entity.display!;
 
     _displayView.value = data;
     await getTemplates();
+    await getHistories();
   }
 
   int get tabCount {
-    return displayLayout.tabs!.length + (displayLayout.detailTemplate != null ? 1 : 0);
+    EntityController entityController = Get.find<EntityController>();
+
+    return displayLayout.tabs!.length + (displayLayout.detailTemplate != null ? 1 : 0) + (entityController.entity.display!.history! ? 1 : 0);
   }
 
   Future _getById() async {
@@ -125,6 +131,22 @@ class DisplayController extends GetxController {
       return response.data;
     }
     return null;
+  }
+
+  Future getHistories() async {
+    EntityController entityController = Get.find<EntityController>();
+
+    ResponseModel response = await Services().getHistory(entity: entityController.entity.workflow, recordId: _displayView.value["id"]);
+    historyWorkflows.clear();
+    if (response.success) {
+      var data = response.data["data"];
+      var runningWorkflows = data["runningWorkflows"];
+
+      for (var element in runningWorkflows) {
+        HistoryWorkflowModel historyWorkflowModel = HistoryWorkflowModel.fromMap(element);
+        historyWorkflows.add(historyWorkflowModel);
+      }
+    }
   }
 
   reset() {
