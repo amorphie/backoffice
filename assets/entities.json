@@ -83,7 +83,7 @@
             },
             "detailTemplate": {
                 "tr-TR": "amorphy-backoffice-user-detail-tr",
-                "en-EN": "amorphy-backoffice-user-detail-tr"
+                "en-EN": "amorphy-backoffice-user-detail-en"
             },
             "history": true,
             "stateManager": true,

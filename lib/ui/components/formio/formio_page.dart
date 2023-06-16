@@ -1,5 +1,4 @@
 import 'package:admin/ui/components/formio/formio_widget.dart';
-import 'package:admin/ui/components/indicator.dart';
 import 'package:admin/ui/controllers/workflow_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -28,17 +27,18 @@ class _FormioPageState extends State<FormioPage> {
   Widget build(BuildContext context) {
     return Obx(() {
       List<TransitionsModel> transitions = controller.workflow.stateManager.transitions!;
+      bool loading = controller.loading;
       return Container(
         padding: const EdgeInsets.all(10.0),
         height: transitions.length > 1 ? 200 : null,
-        child: Obx(() {
-          if (controller.loading) return AppIndicator();
+        child: Builder(builder: (context) {
           if (transitions.length == 1) {
             return FormioWidget(
               data: transitions.first,
               getData: (data) async {
                 controller.postTransition(transition: transitions.first, entityData: data);
               },
+              loading: loading,
             );
           }
 
@@ -98,14 +98,17 @@ class _FormioPageState extends State<FormioPage> {
               ],
             ),
           ),
-          content: FormioWidget(
-            data: transition,
-            isBack: true,
-            getData: (val) async {
-              await controller.postTransition(transition: transition, entityData: val);
-              Navigator.pop(context);
-            },
-          ),
+          content: Obx(() {
+            return FormioWidget(
+              data: transition,
+              isBack: true,
+              loading: controller.loading,
+              getData: (val) async {
+                await controller.postTransition(transition: transition, entityData: val);
+                Navigator.pop(context);
+              },
+            );
+          }),
         );
       },
     );

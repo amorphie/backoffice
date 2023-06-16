@@ -1,0 +1,334 @@
+{
+    "type": "list_view",
+    "children": [
+        {
+            "type": "container",
+            "args": {
+                "margin": 5,
+                "height": 75,
+                "padding": 8
+            },
+            "child": {
+                "type": "column",
+                "args": {
+                    "crossAxisAlignment": "start",
+                    "mainAxisAlignment": "start"
+                },
+                "children": [
+                    {
+                        "type": "text",
+                        "args": {
+                            "text": "id",
+                            "style": {
+                                "fontWeight": "bold",
+                                "color": "#1d1f29"
+                            }
+                        }
+                    },
+                    {
+                        "type": "padding",
+                        "args": {
+                            "padding": {
+                                "bottom": 8,
+                                "left": 8,
+                                "top": 5
+                            }
+                        },
+                        "child": {
+                            "type": "text",
+                            "args": {
+                                "text": "fef0851d-0ca4-46b6-9023-8da307f40659",
+                                "style": {
+                                    "fontWeight": "w400",
+                                    "color": "#1d1f29"
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "type": "container",
+            "args": {
+                "margin": 5,
+                "height": 75,
+                "padding": 8
+            },
+            "child": {
+                "type": "column",
+                "args": {
+                    "crossAxisAlignment": "start",
+                    "mainAxisAlignment": "start"
+                },
+                "children": [
+                    {
+                        "type": "text",
+                        "args": {
+                            "text": "referans",
+                            "style": {
+                                "fontWeight": "w500",
+                                "color": "#1d1f29"
+                            }
+                        }
+                    },
+                    {
+                        "type": "padding",
+                        "args": {
+                            "padding": {
+                                "bottom": 8,
+                                "left": 8,
+                                "top": 5
+                            }
+                        },
+                        "child": {
+                            "type": "text",
+                            "args": {
+                                "text": "",
+                                "style": {
+                                    "fontWeight": "w400",
+                                    "color": "#1d1f29"
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "type": "container",
+            "args": {
+                "margin": 5,
+                "height": 75,
+                "padding": 8
+            },
+            "child": {
+                "type": "column",
+                "args": {
+                    "crossAxisAlignment": "start",
+                    "mainAxisAlignment": "start"
+                },
+                "children": [
+                    {
+                        "type": "text",
+                        "args": {
+                            "text": "isim",
+                            "style": {
+                                "fontWeight": "w500",
+                                "color": "#1d1f29"
+                            }
+                        }
+                    },
+                    {
+                        "type": "padding",
+                        "args": {
+                            "padding": {
+                                "bottom": 8,
+                                "left": 8,
+                                "top": 5
+                            }
+                        },
+                        "child": {
+                            "type": "text",
+                            "args": {
+                                "text": "CristianoRonnaldo",
+                                "style": {
+                                    "fontWeight": "w400",
+                                    "color": "#1d1f29"
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "type": "container",
+            "args": {
+                "margin": 5,
+                "height": 75,
+                "padding": 8
+            },
+            "child": {
+                "type": "column",
+                "args": {
+                    "crossAxisAlignment": "start",
+                    "mainAxisAlignment": "start"
+                },
+                "children": [
+                    {
+                        "type": "text",
+                        "args": {
+                            "text": "telefon",
+                            "style": {
+                                "fontWeight": "w500",
+                                "color": "#1d1f29"
+                            }
+                        }
+                    },
+                    {
+                        "type": "padding",
+                        "args": {
+                            "padding": {
+                                "bottom": 8,
+                                "left": 8,
+                                "top": 5
+                            }
+                        },
+                        "child": {
+                            "type": "text",
+                            "args": {
+                                "text": "905550003838",
+                                "style": {
+                                    "fontWeight": "w400",
+                                    "color": "#1d1f29"
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "type": "container",
+            "args": {
+                "margin": 5,
+                "height": 75,
+                "padding": 8
+            },
+            "child": {
+                "type": "column",
+                "args": {
+                    "crossAxisAlignment": "start",
+                    "mainAxisAlignment": "start"
+                },
+                "children": [
+                    {
+                        "type": "text",
+                        "args": {
+                            "text": "email",
+                            "style": {
+                                "fontWeight": "w500",
+                                "color": "#1d1f29"
+                            }
+                        }
+                    },
+                    {
+                        "type": "padding",
+                        "args": {
+                            "padding": {
+                                "bottom": 8,
+                                "left": 8,
+                                "top": 5
+                            }
+                        },
+                        "child": {
+                            "type": "text",
+                            "args": {
+                                "text": "",
+                                "style": {
+                                    "fontWeight": "w400",
+                                    "color": "#1d1f29"
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "type": "container",
+            "args": {
+                "margin": 5,
+                "height": 75,
+                "padding": 8
+            },
+            "child": {
+                "type": "column",
+                "args": {
+                    "crossAxisAlignment": "start",
+                    "mainAxisAlignment": "start"
+                },
+                "children": [
+                    {
+                        "type": "text",
+                        "args": {
+                            "text": "durum",
+                            "style": {
+                                "fontWeight": "w500",
+                                "color": "#1d1f29"
+                            }
+                        }
+                    },
+                    {
+                        "type": "padding",
+                        "args": {
+                            "padding": {
+                                "bottom": 8,
+                                "left": 8,
+                                "top": 5
+                            }
+                        },
+                        "child": {
+                            "type": "text",
+                            "args": {
+                                "text": "New",
+                                "style": {
+                                    "fontWeight": "w400",
+                                    "color": "#1d1f29"
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "type": "container",
+            "args": {
+                "margin": 5,
+                "height": 75,
+                "padding": 8
+            },
+            "child": {
+                "type": "column",
+                "args": {
+                    "crossAxisAlignment": "start",
+                    "mainAxisAlignment": "start"
+                },
+                "children": [
+                    {
+                        "type": "text",
+                        "args": {
+                            "text": "etiketler",
+                            "style": {
+                                "fontWeight": "w500",
+                                "color": "#1d1f29"
+                            }
+                        }
+                    },
+                    {
+                        "type": "padding",
+                        "args": {
+                            "padding": {
+                                "bottom": 8,
+                                "left": 8,
+                                "top": 5
+                            }
+                        },
+                        "child": {
+                            "type": "text",
+                            "args": {
+                                "text": "[idm, loan-partner, client-customers, burgan-bank-turkey, burgan-staff, retail-loan, loan-partner-staff, corporate-customer, retail-customer]",
+                                "style": {
+                                    "fontWeight": "w400",
+                                    "color": "#1d1f29"
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}

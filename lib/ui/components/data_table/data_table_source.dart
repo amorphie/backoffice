@@ -25,7 +25,7 @@ class AppDataTableSource extends DataTableSource {
         cells: columns
             .map((e) => DataCell(
                   Text(
-                    item[e.data].toString(),
+                    _print(item[e.data]),
                     style: TextStyle(color: Colors.black54),
                   ),
                   onTap: () {
@@ -33,5 +33,12 @@ class AppDataTableSource extends DataTableSource {
                   },
                 ))
             .toList());
+  }
+
+  String _print(dynamic item) {
+    if (item is List)
+      return item.join(", ");
+    else
+      return item.toString();
   }
 }

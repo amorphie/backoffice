@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 
-import '../../../../style/colors.dart';
+import '../../style/colors.dart';
 
 class HistoryCard extends StatelessWidget {
   const HistoryCard({
@@ -37,15 +37,11 @@ class HistoryCard extends StatelessWidget {
                         title,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                            color: Colors.black87, fontWeight: FontWeight.w600),
+                        style: TextStyle(color: Colors.black87, fontWeight: FontWeight.w600),
                       ),
                       Text(
                         subTitle,
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodySmall!
-                            .copyWith(color: Colors.black54),
+                        style: Theme.of(context).textTheme.bodySmall!.copyWith(color: Colors.black54),
                       ),
                     ],
                   ),

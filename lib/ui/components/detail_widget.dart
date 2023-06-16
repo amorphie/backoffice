@@ -1,8 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:admin/data/models/workflow/altmodels/transitions.dart';
 import 'package:admin/data/models/workflow/workflow_model.dart';
-import 'package:admin/ui/components/history_list.dart';
-import 'package:admin/ui/components/indicator.dart';
+import 'package:admin/ui/components/history/history_list.dart';
 import 'package:admin/ui/components/tab_data_table/app_data_table/tab_data_table.dart';
 import 'package:admin/ui/controllers/entity_controller.dart';
 import 'package:admin/ui/controllers/workflow_controller.dart';
@@ -142,40 +141,44 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
                   ),
               ]),
             ),
-            body: TabBarView(controller: _tabController, children: [
-              if (displayController.displayLayout.detailTemplate != null) getRenderWidget(displayController.displayLayout.detailTemplate!),
-              ...displayController.displayLayout.tabs!
-                  .map((e) => Container(
-                        child: e.type == "render"
-                            ? getRenderWidget(e.template!)
-                            : e.type == "search"
-                                ? Obx(
-                                    () => TabDataTable(
-                                      withSearch: displayController.searchModels[e.entity]!.entity.search!.search,
-                                      onSearch: (val) {
-                                        displayController.search(entity: e.entity, keyword: val);
-                                      },
-                                      columns: displayController.searchModels[e.entity]!.entity.search!.columns,
-                                      data: displayController.searchModels[e.entity]!.data,
-                                      onPressed: (data) {},
-                                    ),
-                                  )
-                                : Container(),
-                      ))
-                  .toList(),
-              if (entityController.entity.display!.history!) Obx(() => HistoryListWidget(histories: displayController.historyWorkflows)),
-            ])),
+            body: Obx(() {
+              return TabBarView(controller: _tabController, children: [
+                if (displayController.displayLayout.detailTemplate != null) getRenderWidget(displayController.displayLayout.detailTemplate!),
+                ...displayController.displayLayout.tabs!
+                    .map((e) => Container(
+                          child: e.type == "render"
+                              ? getRenderWidget(e.template!)
+                              : e.type == "search"
+                                  ? Obx(
+                                      () => TabDataTable(
+                                        withSearch: displayController.searchModels[e.entity]!.entity.search!.search,
+                                        onSearch: (val) {
+                                          displayController.search(entity: e.entity, keyword: val);
+                                        },
+                                        columns: displayController.searchModels[e.entity]!.entity.search!.columns,
+                                        data: displayController.searchModels[e.entity]!.data,
+                                        onPressed: (data) {},
+                                      ),
+                                    )
+                                  : Container(),
+                        ))
+                    .toList(),
+                if (entityController.entity.display!.history!) Obx(() => HistoryListWidget(histories: displayController.historyWorkflows)),
+              ]);
+            })),
       ),
     );
   }
 
   Widget getRenderWidget(TitleModel template) {
-    var t = displayController.templates[template.enEN];
-    return JsonWidgetData.fromDynamic(
-      t,
-      registry: JsonWidgetRegistry.instance,
-    )!
-        .build(context: context);
+    return Obx(() {
+      var t = displayController.templates[template.enEN];
+      return JsonWidgetData.fromDynamic(
+        t,
+        registry: JsonWidgetRegistry.instance,
+      )!
+          .build(context: context);
+    });
   }
 
   Future<void> _showFormio(TransitionsModel data) async {
@@ -215,9 +218,9 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
               content: Obx(() {
                 WorkflowController controller = Get.find<WorkflowController>(tag: homeController.selectedEntity.value.data["id"]);
 
-                if (controller.loading) return AppIndicator();
                 return FormioWidget(
                   data: data,
+                  loading: controller.loading,
                   getData: (val) async {
                     await workflowController.postTransition(transition: data, entityData: val);
                     Navigator.pop(context);

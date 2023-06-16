@@ -21,9 +21,8 @@ class DisplayController extends GetxController {
 
   RxMap<String, dynamic> _displayView = <String, dynamic>{}.obs;
 
-  Map<String, dynamic> templates = {};
-  RxMap<String, DisplayTabSearchModel> searchModels =
-      <String, DisplayTabSearchModel>{}.obs;
+  RxMap<String, dynamic> templates = <String, dynamic>{}.obs;
+  RxMap<String, DisplayTabSearchModel> searchModels = <String, DisplayTabSearchModel>{}.obs;
 
   RxList<HistoryWorkflowModel> historyWorkflows = <HistoryWorkflowModel>[].obs;
 
@@ -39,29 +38,27 @@ class DisplayController extends GetxController {
   int get tabCount {
     EntityController entityController = Get.find<EntityController>();
 
-    return displayLayout.tabs!.length +
-        (displayLayout.detailTemplate != null ? 1 : 0) +
-        (entityController.entity.display!.history! ? 1 : 0);
+    return displayLayout.tabs!.length + (displayLayout.detailTemplate != null ? 1 : 0) + (entityController.entity.display!.history! ? 1 : 0);
   }
 
   Future _getById() async {
     EntityController entityController = Get.find<EntityController>();
-    ResponseModel response = await Services()
-        .getById(entityController.entity.url, _displayView.value["id"]);
+    ResponseModel response = await Services().getById(entityController.entity.url, _displayView.value["id"]);
+    entityController.getDataList();
     _displayView.value = response.data;
   }
 
   Future detailTemplateRefresh() async {
-    if (displayLayout.detailTemplate != null &&
-        templates[displayLayout.detailTemplate!.enEN] != null) {
+    if (displayLayout.detailTemplate != null && templates[displayLayout.detailTemplate!.enEN] != null) {
       await _getById();
-      templates[displayLayout.detailTemplate!.enEN] = await getTemplate(
-          "${displayLayout.detailTemplate!.enEN}", _displayView.value);
+      templates[displayLayout.detailTemplate!.enEN] = await getTemplate("${displayLayout.detailTemplate!.enEN}", _displayView.value);
+      templates[displayLayout.summaryTemplate!.enEN] = await getTemplate("${displayLayout.summaryTemplate!.enEN}", _displayView.value);
     }
+    templates.refresh();
   }
 
   getTemplates() async {
-    templates = {};
+    templates.clear();
     if (displayLayout.summaryTemplate != null)
       templates.addAll({
         displayLayout.summaryTemplate!.enEN: await getTemplate(
@@ -83,10 +80,7 @@ class DisplayController extends GetxController {
           tab.template!.enEN: await getTemplate(
             "${tab.template!.enEN}",
             {
-              "consents": List.generate(
-                  20,
-                  (index) =>
-                      {"name": "Deneme$index", "description": "text$index"})
+              "consents": List.generate(20, (index) => {"name": "Deneme$index", "description": "text$index"})
             },
           )
         });
@@ -102,8 +96,7 @@ class DisplayController extends GetxController {
     int? pageSize,
     int? pageNumber,
   }) async {
-    DisplayTabSearchModel searchModel =
-        await getSearchData(entity, keyword: keyword);
+    DisplayTabSearchModel searchModel = await getSearchData(entity, keyword: keyword);
     searchModels[entity] = searchModel;
     searchModels.refresh();
   }
@@ -129,8 +122,7 @@ class DisplayController extends GetxController {
     );
   }
 
-  Future<String?> getTemplate(
-      String name, Map<String, dynamic> renderData) async {
+  Future<String?> getTemplate(String name, Map<String, dynamic> renderData) async {
     var data = {
       "name": name,
       "render-id": Uuid().v4(),
@@ -148,17 +140,14 @@ class DisplayController extends GetxController {
   Future getHistories() async {
     EntityController entityController = Get.find<EntityController>();
 
-    ResponseModel response = await Services().getHistory(
-        entity: entityController.entity.workflow,
-        recordId: _displayView.value["id"]);
+    ResponseModel response = await Services().getHistory(entity: entityController.entity.workflow, recordId: _displayView.value["id"]);
     historyWorkflows.clear();
     if (response.success) {
       var data = response.data["data"];
       var runningWorkflows = data["runningWorkflows"];
 
       for (var element in runningWorkflows) {
-        HistoryWorkflowModel historyWorkflowModel =
-            HistoryWorkflowModel.fromMap(element);
+        HistoryWorkflowModel historyWorkflowModel = HistoryWorkflowModel.fromMap(element);
         historyWorkflows.add(historyWorkflowModel);
       }
     }

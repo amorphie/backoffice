@@ -7,15 +7,18 @@ import 'package:flutter/material.dart';
 import 'package:webviewx/webviewx.dart';
 
 import '../../../data/models/workflow/altmodels/transitions.dart';
+import '../indicator.dart';
 
 class FormioWidget extends StatefulWidget {
   final TransitionsModel data;
   final Function(dynamic val) getData;
   final bool isBack;
+  final bool loading;
   const FormioWidget({
     Key? key,
     required this.data,
     required this.getData,
+    required this.loading,
     this.isBack = false,
   }) : super(key: key);
 
@@ -35,44 +38,49 @@ class _FormioWidgetState extends State<FormioWidget> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Container(
-        padding: const EdgeInsets.all(10.0),
-        child: Column(
-          children: <Widget>[
-            Expanded(
-              child: Container(
-                decoration: BoxDecoration(
-                  border: Border.all(width: 0.2),
-                ),
-                child: _buildWebViewX(widget.data),
-              ),
-            ),
-            SizedBox(height: 5),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                if (widget.isBack)
-                  CustomButton(
-                    title: "Back",
-                    tooltip: "Back",
-                    onPressed: () async {
-                      Navigator.pop(context);
-                    },
+      child: Stack(
+        children: [
+          Container(
+            padding: const EdgeInsets.all(10.0),
+            child: Column(
+              children: <Widget>[
+                Expanded(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(width: 0.2),
+                    ),
+                    child: _buildWebViewX(widget.data),
                   ),
-                CustomButton(
-                  title: widget.data.title!,
-                  tooltip: widget.data.title,
-                  onPressed: () async {
-                    var d = await webviewController.callJsMethod("onSubmit", []);
+                ),
+                SizedBox(height: 5),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    if (widget.isBack)
+                      CustomButton(
+                        title: "Back",
+                        tooltip: "Back",
+                        onPressed: () async {
+                          Navigator.pop(context);
+                        },
+                      ),
+                    CustomButton(
+                      title: widget.data.title!,
+                      tooltip: widget.data.title,
+                      onPressed: () async {
+                        var d = await webviewController.callJsMethod("onSubmit", []);
 
-                    var data = jsonDecode(d);
-                    widget.getData(data);
-                  },
+                        var data = jsonDecode(d);
+                        widget.getData(data);
+                      },
+                    ),
+                  ],
                 ),
               ],
             ),
-          ],
-        ),
+          ),
+          if (widget.loading) AppIndicator(),
+        ],
       ),
     );
   }

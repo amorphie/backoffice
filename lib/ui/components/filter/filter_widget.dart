@@ -40,7 +40,11 @@ class FilterItem extends StatelessWidget {
             filter: filter,
             value: data,
             onSelected: (val) {
-              filterController.addFilter(filter, val[filter.data]);
+              if (val != null) {
+                filterController.addFilter(filter, val[filter.data]);
+              } else {
+                filterController.removeFilter(filter);
+              }
             },
           );
         });
