@@ -7,7 +7,6 @@ import 'package:admin/data/models/entity/layout_helpers/tab_model.dart';
 import 'package:admin/data/models/entity/layout_helpers/title_model.dart';
 
 class DisplayLayoutModel {
-  String? url;
   TitleModel? summaryTemplate;
   TitleModel? detailTemplate;
   bool? history;
@@ -16,7 +15,6 @@ class DisplayLayoutModel {
   bool? availableWorkflows;
   List<DisplayTabModel>? tabs;
   DisplayLayoutModel({
-    this.url,
     this.summaryTemplate,
     this.detailTemplate,
     this.history,
@@ -27,7 +25,6 @@ class DisplayLayoutModel {
   });
 
   DisplayLayoutModel copyWith({
-    String? url,
     TitleModel? summaryTemplate,
     TitleModel? detailTemplate,
     bool? history,
@@ -37,7 +34,6 @@ class DisplayLayoutModel {
     List<DisplayTabModel>? tabs,
   }) {
     return DisplayLayoutModel(
-      url: url ?? this.url,
       summaryTemplate: summaryTemplate ?? this.summaryTemplate,
       detailTemplate: detailTemplate ?? this.detailTemplate,
       history: history ?? this.history,
@@ -50,7 +46,6 @@ class DisplayLayoutModel {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'url': url,
       'summaryTemplate': summaryTemplate?.toMap(),
       'detailTemplate': detailTemplate?.toMap(),
       'history': history,
@@ -63,7 +58,6 @@ class DisplayLayoutModel {
 
   factory DisplayLayoutModel.fromMap(Map<String, dynamic> map) {
     return DisplayLayoutModel(
-      url: map['url'] != null ? map['url'] as String : null,
       summaryTemplate: map['summaryTemplate'] != null ? TitleModel.fromMap(map['summaryTemplate'] as Map<String, dynamic>) : null,
       detailTemplate: map['detailTemplate'] != null ? TitleModel.fromMap(map['detailTemplate'] as Map<String, dynamic>) : null,
       history: map['history'] != null ? map['history'] as bool : null,
@@ -86,15 +80,14 @@ class DisplayLayoutModel {
 
   @override
   String toString() {
-    return 'DisplayLayoutModel(url: $url, summaryTemplate: $summaryTemplate, detailTemplate: $detailTemplate, history: $history, stateManager: $stateManager, runningWorkflows: $runningWorkflows, availableWorkflows: $availableWorkflows, tabs: $tabs)';
+    return 'DisplayLayoutModel( summaryTemplate: $summaryTemplate, detailTemplate: $detailTemplate, history: $history, stateManager: $stateManager, runningWorkflows: $runningWorkflows, availableWorkflows: $availableWorkflows, tabs: $tabs)';
   }
 
   @override
   bool operator ==(covariant DisplayLayoutModel other) {
     if (identical(this, other)) return true;
 
-    return other.url == url &&
-        other.summaryTemplate == summaryTemplate &&
+    return other.summaryTemplate == summaryTemplate &&
         other.detailTemplate == detailTemplate &&
         other.history == history &&
         other.stateManager == stateManager &&
@@ -105,8 +98,7 @@ class DisplayLayoutModel {
 
   @override
   int get hashCode {
-    return url.hashCode ^
-        summaryTemplate.hashCode ^
+    return summaryTemplate.hashCode ^
         detailTemplate.hashCode ^
         history.hashCode ^
         stateManager.hashCode ^

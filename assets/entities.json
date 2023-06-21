@@ -120,6 +120,77 @@
             "url": "https://test-amorphie-fact-user.burgan.com.tr/user/@id"
         }
     },
+    "client": {
+        "name": "client",
+        "workflow": "client",
+        "titleTemplate": "{{name}}",
+        "url": "https://test-amorphie-fact-client.burgan.com.tr/client",
+        "search": {
+            "defaultPageSize": 100,
+            "defaultPageNumber": 0,
+            "search": true,
+            "columns": [
+                {
+                    "data": "name",
+                    "title": {
+                        "tr-TR": "Client Name",
+                        "en-EN": "Client Name"
+                    },
+                    "sort": 1
+                },
+                {
+                    "data": "client-secret",
+                    "title": {
+                        "tr-TR": "Client Secret",
+                        "en-EN": "Client Secret"
+                    },
+                    "sort": 2
+                },
+                {
+                    "data": "flows",
+                    "title": {
+                        "tr-TR": "Flows",
+                        "en-EN": "Flows"
+                    },
+                    "sort": 3
+                },
+                {
+                    "data": "status",
+                    "title": {
+                        "tr-TR": "Status",
+                        "en-EN": "Status"
+                    },
+                    "sort": 4
+                },
+                {
+                    "data": "jws.mode",
+                    "title": {
+                        "tr-TR": "JWS Mode",
+                        "en-EN": "JWS Mode"
+                    },
+                    "sort": 4
+                }
+            ]
+        },
+        "display": {
+            "summaryTemplate": {
+                "tr-TR": "amorphy-backoffice-user-display-summary-tr",
+                "en-EN": "amorphy-backoffice-user-display-summary-en"
+            },
+            "detailTemplate": {
+                "tr-TR": "amorphy-backoffice-user-detail-tr",
+                "en-EN": "amorphy-backoffice-user-detail-en"
+            },
+            "history": true,
+            "stateManager": true,
+            "runningWorkflows": true,
+            "availableWorkflows": true,
+            "tabs": []
+        },
+        "delete": {
+            "url": "https://test-amorphie-fact-user.burgan.com.tr/user/@id"
+        }
+    },
     "tag": {
         "name": "tag",
         "workflow": "tag",

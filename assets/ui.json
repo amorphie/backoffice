@@ -23,6 +23,16 @@
             ]
         },
         {
+            "type": "entity",
+            "entity": "client",
+            "search-layout": "full",
+            "display-layout": "compact",
+            "title": {
+                "tr-TR": "İstemci Listesi",
+                "en-EN": "Client List"
+            }
+        },
+        {
             "type": "group",
             "title": {
                 "tr-TR": "Rıza",

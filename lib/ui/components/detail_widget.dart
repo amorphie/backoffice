@@ -1,4 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:convert';
+
 import 'package:admin/data/models/workflow/altmodels/transitions.dart';
 import 'package:admin/data/models/workflow/workflow_model.dart';
 import 'package:admin/ui/components/history/history_list.dart';
@@ -112,9 +114,7 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
               toolbarHeight: 80,
               backgroundColor: KC.primary,
               elevation: 1,
-              title: Obx(() {
-                return getRenderWidget(displayController.displayLayout.summaryTemplate!);
-              }),
+              title: getRenderWidget(displayController.displayLayout.summaryTemplate!),
               actions: [
                 IconButton(
                     onPressed: () {
@@ -143,7 +143,8 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
             ),
             body: Obx(() {
               return TabBarView(controller: _tabController, children: [
-                if (displayController.displayLayout.detailTemplate != null) getRenderWidget(displayController.displayLayout.detailTemplate!),
+                if (displayController.displayLayout.detailTemplate != null)
+                  getRenderWidget(displayController.displayLayout.detailTemplate!),
                 ...displayController.displayLayout.tabs!
                     .map((e) => Container(
                           child: e.type == "render"
@@ -163,7 +164,8 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
                                   : Container(),
                         ))
                     .toList(),
-                if (entityController.entity.display!.history!) Obx(() => HistoryListWidget(histories: displayController.historyWorkflows)),
+                if (entityController.entity.display!.history!)
+                  Obx(() => HistoryListWidget(histories: displayController.historyWorkflows)),
               ]);
             })),
       ),
@@ -171,15 +173,56 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
   }
 
   Widget getRenderWidget(TitleModel template) {
+    JsonWidgetRegistry registry = JsonWidgetRegistry.instance;
+    registry.registerFunction(
+        "tag_pressed",
+        ({args, required registry}) => () {
+              var message = 'This is a simple print message';
+              if (args?.isEmpty == false) {
+                for (var arg in args!) {
+                  message += ' $arg';
+                }
+              }
+              // ignore: avoid_print
+              print(message);
+            });
+    // var t = json.decode(tmp);
+    // return JsonWidgetData.fromDynamic(
+    //   t,
+    //   registry: registry,
+    // )!
+    //     .build(context: context);
+
     return Obx(() {
       var t = displayController.templates[template.enEN];
       return JsonWidgetData.fromDynamic(
         t,
-        registry: JsonWidgetRegistry.instance,
+        registry: registry,
       )!
           .build(context: context);
     });
   }
+
+  String tmp = """{
+              "type": "text_button",
+              "args": {
+                "onPressed": "\${tag_pressed('{{tag}}')}",
+                "style": {
+                  "foregroundColor": {
+                    "pressed": "FF2196F3",
+                    "focused": "FF2196F3",
+                    "empty": "FFF44336"
+                  }
+                }
+              },
+              "child": {
+                "type": "text",
+                "args": {
+                  "text": "retail_loan"
+                }
+              }
+            }
+""";
 
   Future<void> _showFormio(TransitionsModel data) async {
     return showDialog<void>(
