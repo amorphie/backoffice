@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:admin/data/extension/string_extension.dart';
 import 'package:admin/data/models/display/display_view_model.dart';
+import 'package:admin/ui/components/indicator.dart';
 import 'package:admin/ui/controllers/entity_controller.dart';
 import 'package:admin/ui/controllers/home_controller.dart';
 import 'package:admin/ui/controllers/workflow_controller.dart';
@@ -142,42 +143,47 @@ class HomePage extends StatelessWidget {
       ));
 
   Future<void> formioDialog(BuildContext context, String title) async {
+    WorkflowController controller = Get.find<WorkflowController>();
+
     return showDialog<void>(
       context: context,
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
-        return Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: AlertDialog(
-            actionsPadding: EdgeInsets.zero,
-            insetPadding: EdgeInsets.zero,
-            buttonPadding: EdgeInsets.zero,
-            contentPadding: EdgeInsets.zero,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-            title: Container(
-              padding: const EdgeInsets.all(10.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    title,
-                    style: TextStyle(color: KC.primary, fontWeight: FontWeight.bold),
-                  ),
-                  IconButton(
-                      onPressed: () async {
-                        Navigator.pop(context);
-                        entityController.getDataList();
-                      },
-                      icon: Icon(
-                        Icons.close_rounded,
-                        color: KC.primary,
-                      ))
-                ],
+        return Obx(() {
+          if (controller.loading) return AppIndicator();
+          return Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: AlertDialog(
+              actionsPadding: EdgeInsets.zero,
+              insetPadding: EdgeInsets.zero,
+              buttonPadding: EdgeInsets.zero,
+              contentPadding: EdgeInsets.zero,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+              title: Container(
+                padding: const EdgeInsets.all(10.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      title,
+                      style: TextStyle(color: KC.primary, fontWeight: FontWeight.bold),
+                    ),
+                    IconButton(
+                        onPressed: () async {
+                          Navigator.pop(context);
+                          entityController.getDataList();
+                        },
+                        icon: Icon(
+                          Icons.close_rounded,
+                          color: KC.primary,
+                        ))
+                  ],
+                ),
               ),
+              content: FormioPage(),
             ),
-            content: FormioPage(),
-          ),
-        );
+          );
+        });
       },
     );
   }

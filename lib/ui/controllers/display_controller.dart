@@ -151,6 +151,7 @@ class DisplayController extends GetxController {
         historyWorkflows.add(historyWorkflowModel);
       }
     }
+    historyWorkflows.refresh();
   }
 
   reset() {

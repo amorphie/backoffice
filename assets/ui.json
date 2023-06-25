@@ -23,14 +23,23 @@
             ]
         },
         {
-            "type": "entity",
-            "entity": "client",
-            "search-layout": "full",
-            "display-layout": "compact",
+            "type": "group",
             "title": {
-                "tr-TR": "İstemci Listesi",
-                "en-EN": "Client List"
-            }
+                "tr-TR": "İstemciler",
+                "en-EN": "Clients"
+            },
+            "items": [
+                {
+                    "type": "entity",
+                    "entity": "client",
+                    "search-layout": "full",
+                    "display-layout": "compact",
+                    "title": {
+                        "tr-TR": "İstemci Listesi",
+                        "en-EN": "Client List"
+                    }
+                }
+            ]
         },
         {
             "type": "group",

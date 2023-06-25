@@ -76,6 +76,7 @@ class WorkflowController extends GetxController {
       if (_tag != null) {
         DisplayController displayController = Get.find<DisplayController>(tag: _tag);
         await displayController.detailTemplateRefresh();
+        await displayController.getHistories();
       }
       // var result = response.data;
       //TODO snackbar ile gösterim yapılacak
