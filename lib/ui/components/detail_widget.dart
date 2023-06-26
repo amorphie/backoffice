@@ -143,8 +143,7 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
             ),
             body: Obx(() {
               return TabBarView(controller: _tabController, children: [
-                if (displayController.displayLayout.detailTemplate != null)
-                  getRenderWidget(displayController.displayLayout.detailTemplate!),
+                if (displayController.displayLayout.detailTemplate != null) getRenderWidget(displayController.displayLayout.detailTemplate!),
                 ...displayController.displayLayout.tabs!
                     .map((e) => Container(
                           child: e.type == "render"
@@ -164,8 +163,7 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
                                   : Container(),
                         ))
                     .toList(),
-                if (entityController.entity.display!.history!)
-                  Obx(() => HistoryListWidget(histories: displayController.historyWorkflows)),
+                if (entityController.entity.display!.history!) Obx(() => HistoryListWidget(histories: displayController.historyWorkflows)),
               ]);
             })),
       ),
@@ -203,25 +201,455 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
     });
   }
 
-  String tmp = """{
-              "type": "text_button",
+  String tmp = """
+{
+  "type": "list_view",
+  "children": [
+    {
+      "type": "container",
+      "args": {
+        "margin": 5,
+        "height": 75,
+        "padding": 8
+      },
+      "child": {
+        "type": "column",
+        "args": {
+          "crossAxisAlignment": "start",
+          "mainAxisAlignment": "start"
+        },
+        "children": [
+          {
+            "type": "text",
+            "args": {
+              "text": "Login Url",
+              "style": {
+                "fontWeight": "bold",
+                "color": "#1d1f29"
+              }
+            }
+          },
+          {
+            "type": "padding",
+            "args": {
+              "padding": {
+                "bottom": 8,
+                "left": 8,
+                "top": 5
+              }
+            },
+            "child": {
+              "type": "text",
               "args": {
-                "onPressed": "\${tag_pressed('{{tag}}')}",
+                "text": "{{data.login-url}}",
                 "style": {
-                  "foregroundColor": {
-                    "pressed": "FF2196F3",
-                    "focused": "FF2196F3",
-                    "empty": "FFF44336"
-                  }
-                }
-              },
-              "child": {
-                "type": "text",
-                "args": {
-                  "text": "retail_loan"
+                  "fontWeight": "w400",
+                  "color": "#1d1f29"
                 }
               }
             }
+          }
+        ]
+      }
+    },
+    {
+      "type": "container",
+      "args": {
+        "margin": 5,
+        "height": 75,
+        "padding": 8
+      },
+      "child": {
+        "type": "column",
+        "args": {
+          "crossAxisAlignment": "start",
+          "mainAxisAlignment": "start"
+        },
+        "children": [
+          {
+            "type": "text",
+            "args": {
+              "text": "Return Url",
+              "style": {
+                "fontWeight": "bold",
+                "color": "#1d1f29"
+              }
+            }
+          },
+          {
+            "type": "padding",
+            "args": {
+              "padding": {
+                "bottom": 8,
+                "left": 8,
+                "top": 5
+              }
+            },
+            "child": {
+              "type": "text",
+              "args": {
+                "text": "{{data.return-url}}",
+                "style": {
+                  "fontWeight": "w400",
+                  "color": "#1d1f29"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "container",
+      "args": {
+        "margin": 5,
+        "height": 75,
+        "padding": 8
+      },
+      "child": {
+        "type": "column",
+        "args": {
+          "crossAxisAlignment": "start",
+          "mainAxisAlignment": "start"
+        },
+        "children": [
+          {
+            "type": "text",
+            "args": {
+              "text": "Logout Url",
+              "style": {
+                "fontWeight": "bold",
+                "color": "#1d1f29"
+              }
+            }
+          },
+          {
+            "type": "padding",
+            "args": {
+              "padding": {
+                "bottom": 8,
+                "left": 8,
+                "top": 5
+              }
+            },
+            "child": {
+              "type": "text",
+              "args": {
+                "text": "{{data.logout-url}}",
+                "style": {
+                  "fontWeight": "w400",
+                  "color": "#1d1f29"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "container",
+      "args": {
+        "margin": 5,
+        "height": 75,
+        "padding": 8
+      },
+      "child": {
+        "type": "column",
+        "args": {
+          "crossAxisAlignment": "start",
+          "mainAxisAlignment": "start"
+        },
+        "children": [
+          {
+            "type": "text",
+            "args": {
+              "text": "Client Secret",
+              "style": {
+                "fontWeight": "bold",
+                "color": "#1d1f29"
+              }
+            }
+          },
+          {
+            "type": "padding",
+            "args": {
+              "padding": {
+                "bottom": 8,
+                "left": 8,
+                "top": 5
+              }
+            },
+            "child": {
+              "type": "text",
+              "args": {
+                "text": "{{data.client-secret}}",
+                "style": {
+                  "fontWeight": "w400",
+                  "color": "#1d1f29"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "container",
+      "args": {
+        "margin": 5,
+        "height": 75,
+        "padding": 8
+      },
+      "child": {
+        "type": "column",
+        "args": {
+          "crossAxisAlignment": "start",
+          "mainAxisAlignment": "start"
+        },
+        "children": [
+          {
+            "type": "text",
+            "args": {
+              "text": "Allowed Grant Types",
+              "style": {
+                "fontWeight": "bold",
+                "color": "#1d1f29"
+              }
+            }
+          },
+          {
+            "type": "padding",
+            "args": {
+              "padding": {
+                "bottom": 8,
+                "left": 8,
+                "top": 5
+              }
+            },
+            "child": {
+              "type": "text",
+              "args": {
+                "text": "{{ comma=null }}{{ for types in data.allowed-grant-types }}{{ if comma }}, {{ else }} {{ end }} {{ comma=1 }} {{types.grantType}} {{end}}",
+                "style": {
+                  "fontWeight": "w400",
+                  "color": "#1d1f29"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "container",
+      "args": {
+        "margin": 5,
+        "height": 75,
+        "padding": 8
+      },
+      "child": {
+        "type": "column",
+        "args": {
+          "crossAxisAlignment": "start",
+          "mainAxisAlignment": "start"
+        },
+        "children": [
+          {
+            "type": "text",
+            "args": {
+              "text": "Allowed Scope Tags",
+              "style": {
+                "fontWeight": "bold",
+                "color": "#1d1f29"
+              }
+            }
+          },
+          {
+            "type": "padding",
+            "args": {
+              "padding": {
+                "bottom": 8,
+                "left": 8,
+                "top": 5
+              }
+            },
+            "child": {
+              "type": "text",
+              "args": {
+                "text": "{{ comma=null }}{{ for scope in data.allowed-scope-tags }}{{ if comma }}, {{ else }} {{ end }} {{ comma=1 }} {{scope}} {{end}}",
+                "style": {
+                  "fontWeight": "w400",
+                  "color": "#1d1f29"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "container",
+      "args": {
+        "margin": 5,
+        "height": 75,
+        "padding": 8
+      },
+      "child": {
+        "type": "column",
+        "args": {
+          "crossAxisAlignment": "start",
+          "mainAxisAlignment": "start"
+        },
+        "children": [
+          {
+            "type": "text",
+            "args": {
+              "text": "Flows",
+              "style": {
+                "fontWeight": "bold",
+                "color": "#1d1f29"
+              }
+            }
+          },
+          {
+            "type": "padding",
+            "args": {
+              "padding": {
+                "bottom": 8,
+                "left": 8,
+                "top": 5
+              }
+            },
+            "child": {
+              "type": "row",
+              "children": [
+                {
+                  "type": "expanded",
+                  "child": {
+                    "type": "text",
+                    "args": {
+                      "text": "Type",
+                      "style": {
+                        "fontWeight": "bold",
+                        "color": "#1d1f29"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "expanded",
+                  "child": {
+                    "type": "text",
+                    "args": {
+                      "text": "Workflow",
+                      "style": {
+                        "fontWeight": "bold",
+                        "color": "#1d1f29"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "expanded",
+                  "child": {
+                    "type": "text",
+                    "args": {
+                      "text": "Token",
+                      "style": {
+                        "fontWeight": "bold",
+                        "color": "#1d1f29"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "expanded",
+                  "child": {
+                    "type": "text",
+                    "args": {
+                      "text": "Token Duration",
+                      "style": {
+                        "fontWeight": "bold",
+                        "color": "#1d1f29"
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "padding",
+            "args": {
+              "padding": {
+                "bottom": 8,
+                "left": 8,
+                "top": 5
+              }
+            },
+            "child": {
+              "type": "row",
+              "children": [
+                {
+                  "type": "expanded",
+                  "child": {
+                    "type": "text",
+                    "args": {
+                      "text": "{{flow.type}}",
+                      "style": {
+                        "fontWeight": "w400",
+                        "color": "#1d1f29"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "expanded",
+                  "child": {
+                    "type": "text",
+                    "args": {
+                      "text": "{{flow.workflow}}",
+                      "style": {
+                        "fontWeight": "w400",
+                        "color": "#1d1f29"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "expanded",
+                  "child": {
+                    "type": "text",
+                    "args": {
+                      "text": "{{flow.token}}",
+                      "style": {
+                        "fontWeight": "w400",
+                        "color": "#1d1f29"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "expanded",
+                  "child": {
+                    "type": "text",
+                    "args": {
+                      "text": "{{flow.tokenDuration}}",
+                      "style": {
+                        "fontWeight": "w400",
+                        "color": "#1d1f29"
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
 """;
 
   Future<void> _showFormio(TransitionsModel data) async {

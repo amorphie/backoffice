@@ -140,7 +140,7 @@ class DisplayController extends GetxController {
   Future getHistories() async {
     EntityController entityController = Get.find<EntityController>();
 
-    ResponseModel response = await Services().getHistory(entity: entityController.entity.workflow, recordId: _displayView.value["id"]);
+    ResponseModel response = await Services().getHistory(entity: entityController.entity.workflow, recordId: _displayView.value["id"] ?? "");
     historyWorkflows.clear();
     if (response.success) {
       var data = response.data["data"];

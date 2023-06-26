@@ -19,16 +19,6 @@
                         "tr-TR": "Etiket",
                         "en-EN": "Tag"
                     }
-                },
-                {
-                    "entity": "reference",
-                    "query": "reference",
-                    "widget": "textField",
-                    "type": "query",
-                    "title": {
-                        "tr-TR": "Referans",
-                        "en-EN": "Reference"
-                    }
                 }
             ],
             "columns": [
@@ -122,7 +112,7 @@
     },
     "client": {
         "name": "client",
-        "workflow": "client",
+        "workflow": "client-wizard",
         "titleTemplate": "{{name}}",
         "url": "https://test-amorphie-fact-client.burgan.com.tr/client",
         "search": {
@@ -161,25 +151,17 @@
                         "en-EN": "Status"
                     },
                     "sort": 4
-                },
-                {
-                    "data": "jws.mode",
-                    "title": {
-                        "tr-TR": "JWS Mode",
-                        "en-EN": "JWS Mode"
-                    },
-                    "sort": 4
                 }
             ]
         },
         "display": {
             "summaryTemplate": {
-                "tr-TR": "amorphy-backoffice-user-display-summary-tr",
-                "en-EN": "amorphy-backoffice-user-display-summary-en"
+                "tr-TR": "amorphy-backoffice-summary-name-template",
+                "en-EN": "amorphy-backoffice-summary-name-template"
             },
             "detailTemplate": {
-                "tr-TR": "amorphy-backoffice-user-detail-tr",
-                "en-EN": "amorphy-backoffice-user-detail-en"
+                "tr-TR": "amorphy-backoffice-client-detail-tr",
+                "en-EN": "amorphy-backoffice-client-detail-en"
             },
             "history": true,
             "stateManager": true,
@@ -188,7 +170,7 @@
             "tabs": []
         },
         "delete": {
-            "url": "https://test-amorphie-fact-user.burgan.com.tr/user/@id"
+            "url": "https://test-amorphie-fact-client.burgan.com.tr/client/@id"
         }
     },
     "tag": {
