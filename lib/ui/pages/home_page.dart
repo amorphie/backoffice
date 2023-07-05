@@ -98,7 +98,11 @@ class HomePage extends StatelessWidget {
                 ),
               );
             } else {
-              return Container();
+              return Container(
+                child: Center(
+                  child: Text("Select Menu"),
+                ),
+              );
             }
           },
         ),
@@ -147,7 +151,7 @@ class HomePage extends StatelessWidget {
 
     return showDialog<void>(
       context: context,
-      barrierDismissible: false, // user must tap button!
+      barrierDismissible: false,
       builder: (BuildContext context) {
         return Obx(() {
           if (controller.loading) return AppIndicator();

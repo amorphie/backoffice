@@ -1,5 +1,4 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'dart:convert';
 
 import 'package:admin/data/models/workflow/altmodels/transitions.dart';
 import 'package:admin/data/models/workflow/workflow_model.dart';
@@ -163,7 +162,16 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
                                   : Container(),
                         ))
                     .toList(),
-                if (entityController.entity.display!.history!) Obx(() => HistoryListWidget(histories: displayController.historyWorkflows)),
+                if (entityController.entity.display!.history!)
+                  Obx(() => HistoryListWidget(
+                        historyDetail: displayController.historyDetail.value,
+                        histories: displayController.historyWorkflows,
+                        onTap: (model) async {
+                          await displayController.getHistoryDetail();
+                          model = displayController.historyDetail.value;
+                          print(model);
+                        },
+                      )),
               ]);
             })),
       ),
@@ -671,7 +679,7 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      data.title ?? "",
+                      data.name ?? "",
                       style: TextStyle(color: KC.primary, fontWeight: FontWeight.bold),
                     ),
                     IconButton(

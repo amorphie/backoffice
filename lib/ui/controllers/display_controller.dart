@@ -2,6 +2,7 @@
 
 import 'package:admin/data/models/entity/entity_model.dart';
 import 'package:admin/data/models/entity/layouts/display_layout_model.dart';
+import 'package:admin/data/models/history/history_detail_model.dart';
 import 'package:admin/data/models/history/history_workflow_model.dart';
 import 'package:admin/data/services/common/response_model.dart';
 import 'package:admin/data/services/services.dart';
@@ -25,6 +26,7 @@ class DisplayController extends GetxController {
   RxMap<String, DisplayTabSearchModel> searchModels = <String, DisplayTabSearchModel>{}.obs;
 
   RxList<HistoryWorkflowModel> historyWorkflows = <HistoryWorkflowModel>[].obs;
+  Rx<HistoryDetailModel> historyDetail = HistoryDetailModel().obs;
 
   setData(Map<String, dynamic> data) async {
     EntityController entityController = Get.find<EntityController>();
@@ -152,6 +154,22 @@ class DisplayController extends GetxController {
       }
     }
     historyWorkflows.refresh();
+  }
+
+  Future getHistoryDetail() async {
+    EntityController entityController = Get.find<EntityController>();
+
+    ResponseModel response = await Services().getHistory(entity: entityController.entity.workflow, recordId: _displayView.value["id"] ?? "");
+    historyWorkflows.clear();
+    if (response.success) {
+      var data = response.data["data"];
+
+      for (var element in data) {
+        HistoryDetailModel historyDetailModel = HistoryDetailModel.fromMap(element);
+        historyDetailModel = HistoryDetailModel.fromMap(response.data["data"]);
+        historyDetail.value = historyDetailModel;
+      }
+    }
   }
 
   reset() {
