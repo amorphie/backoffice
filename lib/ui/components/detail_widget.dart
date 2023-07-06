@@ -166,7 +166,6 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
                     .toList(),
                 if (entityController.entity.display!.history!)
                   Obx(() => HistoryListWidget(
-                        historyDetail: displayController.historyDetail.value,
                         histories: displayController.historyWorkflows,
                         onTap: (model) async {
                           print(model);

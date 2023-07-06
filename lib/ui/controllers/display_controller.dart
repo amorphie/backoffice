@@ -2,7 +2,6 @@
 
 import 'package:admin/data/models/entity/entity_model.dart';
 import 'package:admin/data/models/entity/layouts/display_layout_model.dart';
-import 'package:admin/data/models/history/history_detail_model.dart';
 import 'package:admin/data/models/history/history_workflow_model.dart';
 import 'package:admin/data/services/common/response_model.dart';
 import 'package:admin/data/services/services.dart';
@@ -26,7 +25,6 @@ class DisplayController extends GetxController {
   RxMap<String, DisplayTabSearchModel> searchModels = <String, DisplayTabSearchModel>{}.obs;
 
   RxList<HistoryWorkflowModel> historyWorkflows = <HistoryWorkflowModel>[].obs;
-  Rx<HistoryDetailModel> historyDetail = HistoryDetailModel().obs;
 
   setData(Map<String, dynamic> data) async {
     EntityController entityController = Get.find<EntityController>();
