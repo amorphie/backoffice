@@ -1,26 +1,32 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:admin/ui/components/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:webviewx/webviewx.dart';
 
+import '../../../data/models/workflow/altmodels/transitions.dart';
 import '../indicator.dart';
 
-class FormioWidget extends StatefulWidget {
-  final String schema;
+class TransitionWidget extends StatefulWidget {
+  final TransitionsModel data;
+  final Function(dynamic val) getData;
+  final bool isBack;
   final bool loading;
-  const FormioWidget({
+  const TransitionWidget({
     Key? key,
-    required this.schema,
-    this.loading = false,
+    required this.data,
+    required this.getData,
+    required this.loading,
+    this.isBack = false,
   }) : super(key: key);
 
   @override
-  _FormioWidgetState createState() => _FormioWidgetState();
+  _TransitionWidgetState createState() => _TransitionWidgetState();
 }
 
-class _FormioWidgetState extends State<FormioWidget> {
+class _TransitionWidgetState extends State<TransitionWidget> {
   late WebViewXController webviewController;
 
   @override
@@ -43,18 +49,29 @@ class _FormioWidgetState extends State<FormioWidget> {
                     decoration: BoxDecoration(
                       border: Border.all(width: 0.2),
                     ),
-                    child: _buildWebViewX(widget.schema),
+                    child: _buildWebViewX(widget.data),
                   ),
                 ),
                 SizedBox(height: 5),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    if (widget.isBack)
+                      CustomButton(
+                        title: "Back",
+                        tooltip: "Back",
+                        onPressed: () async {
+                          Navigator.pop(context);
+                        },
+                      ),
                     CustomButton(
-                      title: "Back",
-                      tooltip: "Back",
+                      title: widget.data.title!,
+                      tooltip: widget.data.title,
                       onPressed: () async {
-                        Navigator.pop(context);
+                        var d = await webviewController.callJsMethod("onSubmit", []);
+
+                        var data = jsonDecode(d);
+                        widget.getData(data);
                       },
                     ),
                   ],
@@ -68,10 +85,10 @@ class _FormioWidgetState extends State<FormioWidget> {
     );
   }
 
-  Widget _buildWebViewX(String schema) {
+  Widget _buildWebViewX(TransitionsModel transition) {
     return WebViewX(
       key: const ValueKey('formio'),
-      initialContent: initialContent(schema),
+      initialContent: initialContent(transition.form!),
       initialSourceType: SourceType.html,
       height: double.maxFinite,
       width: MediaQuery.of(context).size.width * 0.7,

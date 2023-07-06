@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:admin/data/models/history/history_detail_model.dart';
+import 'package:admin/data/models/history/history_model.dart';
 import 'package:admin/data/models/history/history_workflow_model.dart';
 import 'package:flutter/material.dart';
 
@@ -8,7 +9,7 @@ import '../../style/colors.dart';
 class HistoryListWidget extends StatelessWidget {
   final List<HistoryWorkflowModel> histories;
   final HistoryDetailModel historyDetail;
-  final Function(HistoryDetailModel model) onTap;
+  final Function(HistoryModel model) onTap;
   const HistoryListWidget({
     Key? key,
     required this.histories,
@@ -26,7 +27,7 @@ class HistoryListWidget extends StatelessWidget {
         subTitle: histories.first.transitions[index].calledBy,
         date: histories.first.transitions[index].calledAt.toString(),
         onTap: () async {
-          onTap(historyDetail);
+          onTap(histories.first.transitions[index]);
         },
       ),
     );

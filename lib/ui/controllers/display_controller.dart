@@ -156,22 +156,6 @@ class DisplayController extends GetxController {
     historyWorkflows.refresh();
   }
 
-  Future getHistoryDetail() async {
-    EntityController entityController = Get.find<EntityController>();
-
-    ResponseModel response = await Services().getHistory(entity: entityController.entity.workflow, recordId: _displayView.value["id"] ?? "");
-    historyWorkflows.clear();
-    if (response.success) {
-      var data = response.data["data"];
-
-      for (var element in data) {
-        HistoryDetailModel historyDetailModel = HistoryDetailModel.fromMap(element);
-        historyDetailModel = HistoryDetailModel.fromMap(response.data["data"]);
-        historyDetail.value = historyDetailModel;
-      }
-    }
-  }
-
   reset() {
     _displayView.value = <String, dynamic>{};
   }

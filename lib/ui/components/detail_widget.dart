@@ -1,7 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
+import 'package:admin/data/models/history/history_model.dart';
 import 'package:admin/data/models/workflow/altmodels/transitions.dart';
 import 'package:admin/data/models/workflow/workflow_model.dart';
+import 'package:admin/ui/components/formio/formio_widget.dart';
 import 'package:admin/ui/components/history/history_list.dart';
 import 'package:admin/ui/components/tab_data_table/app_data_table/tab_data_table.dart';
 import 'package:admin/ui/controllers/entity_controller.dart';
@@ -16,7 +18,7 @@ import 'package:admin/ui/controllers/home_controller.dart';
 
 import '../controllers/display_controller.dart';
 import '../style/colors.dart';
-import 'formio/formio_widget.dart';
+import 'formio/transition_widget.dart';
 
 class DetailWidget extends StatefulWidget {
   const DetailWidget({
@@ -85,7 +87,7 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
               .map(
                 (e) => GestureDetector(
                   onTap: () {
-                    _showFormio(e);
+                    _showDetailFormio(e);
                   },
                   child: Container(
                       margin: EdgeInsets.all(5),
@@ -167,9 +169,8 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
                         historyDetail: displayController.historyDetail.value,
                         histories: displayController.historyWorkflows,
                         onTap: (model) async {
-                          await displayController.getHistoryDetail();
-                          model = displayController.historyDetail.value;
                           print(model);
+                          if ((model.formSchema ?? "").isNotEmpty) _showHistoryWidget(model);
                         },
                       )),
               ]);
@@ -210,457 +211,10 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
   }
 
   String tmp = """
-{
-  "type": "list_view",
-  "children": [
-    {
-      "type": "container",
-      "args": {
-        "margin": 5,
-        "height": 75,
-        "padding": 8
-      },
-      "child": {
-        "type": "column",
-        "args": {
-          "crossAxisAlignment": "start",
-          "mainAxisAlignment": "start"
-        },
-        "children": [
-          {
-            "type": "text",
-            "args": {
-              "text": "Login Url",
-              "style": {
-                "fontWeight": "bold",
-                "color": "#1d1f29"
-              }
-            }
-          },
-          {
-            "type": "padding",
-            "args": {
-              "padding": {
-                "bottom": 8,
-                "left": 8,
-                "top": 5
-              }
-            },
-            "child": {
-              "type": "text",
-              "args": {
-                "text": "{{data.login-url}}",
-                "style": {
-                  "fontWeight": "w400",
-                  "color": "#1d1f29"
-                }
-              }
-            }
-          }
-        ]
-      }
-    },
-    {
-      "type": "container",
-      "args": {
-        "margin": 5,
-        "height": 75,
-        "padding": 8
-      },
-      "child": {
-        "type": "column",
-        "args": {
-          "crossAxisAlignment": "start",
-          "mainAxisAlignment": "start"
-        },
-        "children": [
-          {
-            "type": "text",
-            "args": {
-              "text": "Return Url",
-              "style": {
-                "fontWeight": "bold",
-                "color": "#1d1f29"
-              }
-            }
-          },
-          {
-            "type": "padding",
-            "args": {
-              "padding": {
-                "bottom": 8,
-                "left": 8,
-                "top": 5
-              }
-            },
-            "child": {
-              "type": "text",
-              "args": {
-                "text": "{{data.return-url}}",
-                "style": {
-                  "fontWeight": "w400",
-                  "color": "#1d1f29"
-                }
-              }
-            }
-          }
-        ]
-      }
-    },
-    {
-      "type": "container",
-      "args": {
-        "margin": 5,
-        "height": 75,
-        "padding": 8
-      },
-      "child": {
-        "type": "column",
-        "args": {
-          "crossAxisAlignment": "start",
-          "mainAxisAlignment": "start"
-        },
-        "children": [
-          {
-            "type": "text",
-            "args": {
-              "text": "Logout Url",
-              "style": {
-                "fontWeight": "bold",
-                "color": "#1d1f29"
-              }
-            }
-          },
-          {
-            "type": "padding",
-            "args": {
-              "padding": {
-                "bottom": 8,
-                "left": 8,
-                "top": 5
-              }
-            },
-            "child": {
-              "type": "text",
-              "args": {
-                "text": "{{data.logout-url}}",
-                "style": {
-                  "fontWeight": "w400",
-                  "color": "#1d1f29"
-                }
-              }
-            }
-          }
-        ]
-      }
-    },
-    {
-      "type": "container",
-      "args": {
-        "margin": 5,
-        "height": 75,
-        "padding": 8
-      },
-      "child": {
-        "type": "column",
-        "args": {
-          "crossAxisAlignment": "start",
-          "mainAxisAlignment": "start"
-        },
-        "children": [
-          {
-            "type": "text",
-            "args": {
-              "text": "Client Secret",
-              "style": {
-                "fontWeight": "bold",
-                "color": "#1d1f29"
-              }
-            }
-          },
-          {
-            "type": "padding",
-            "args": {
-              "padding": {
-                "bottom": 8,
-                "left": 8,
-                "top": 5
-              }
-            },
-            "child": {
-              "type": "text",
-              "args": {
-                "text": "{{data.client-secret}}",
-                "style": {
-                  "fontWeight": "w400",
-                  "color": "#1d1f29"
-                }
-              }
-            }
-          }
-        ]
-      }
-    },
-    {
-      "type": "container",
-      "args": {
-        "margin": 5,
-        "height": 75,
-        "padding": 8
-      },
-      "child": {
-        "type": "column",
-        "args": {
-          "crossAxisAlignment": "start",
-          "mainAxisAlignment": "start"
-        },
-        "children": [
-          {
-            "type": "text",
-            "args": {
-              "text": "Allowed Grant Types",
-              "style": {
-                "fontWeight": "bold",
-                "color": "#1d1f29"
-              }
-            }
-          },
-          {
-            "type": "padding",
-            "args": {
-              "padding": {
-                "bottom": 8,
-                "left": 8,
-                "top": 5
-              }
-            },
-            "child": {
-              "type": "text",
-              "args": {
-                "text": "{{ comma=null }}{{ for types in data.allowed-grant-types }}{{ if comma }}, {{ else }} {{ end }} {{ comma=1 }} {{types.grantType}} {{end}}",
-                "style": {
-                  "fontWeight": "w400",
-                  "color": "#1d1f29"
-                }
-              }
-            }
-          }
-        ]
-      }
-    },
-    {
-      "type": "container",
-      "args": {
-        "margin": 5,
-        "height": 75,
-        "padding": 8
-      },
-      "child": {
-        "type": "column",
-        "args": {
-          "crossAxisAlignment": "start",
-          "mainAxisAlignment": "start"
-        },
-        "children": [
-          {
-            "type": "text",
-            "args": {
-              "text": "Allowed Scope Tags",
-              "style": {
-                "fontWeight": "bold",
-                "color": "#1d1f29"
-              }
-            }
-          },
-          {
-            "type": "padding",
-            "args": {
-              "padding": {
-                "bottom": 8,
-                "left": 8,
-                "top": 5
-              }
-            },
-            "child": {
-              "type": "text",
-              "args": {
-                "text": "{{ comma=null }}{{ for scope in data.allowed-scope-tags }}{{ if comma }}, {{ else }} {{ end }} {{ comma=1 }} {{scope}} {{end}}",
-                "style": {
-                  "fontWeight": "w400",
-                  "color": "#1d1f29"
-                }
-              }
-            }
-          }
-        ]
-      }
-    },
-    {
-      "type": "container",
-      "args": {
-        "margin": 5,
-        "height": 75,
-        "padding": 8
-      },
-      "child": {
-        "type": "column",
-        "args": {
-          "crossAxisAlignment": "start",
-          "mainAxisAlignment": "start"
-        },
-        "children": [
-          {
-            "type": "text",
-            "args": {
-              "text": "Flows",
-              "style": {
-                "fontWeight": "bold",
-                "color": "#1d1f29"
-              }
-            }
-          },
-          {
-            "type": "padding",
-            "args": {
-              "padding": {
-                "bottom": 8,
-                "left": 8,
-                "top": 5
-              }
-            },
-            "child": {
-              "type": "row",
-              "children": [
-                {
-                  "type": "expanded",
-                  "child": {
-                    "type": "text",
-                    "args": {
-                      "text": "Type",
-                      "style": {
-                        "fontWeight": "bold",
-                        "color": "#1d1f29"
-                      }
-                    }
-                  }
-                },
-                {
-                  "type": "expanded",
-                  "child": {
-                    "type": "text",
-                    "args": {
-                      "text": "Workflow",
-                      "style": {
-                        "fontWeight": "bold",
-                        "color": "#1d1f29"
-                      }
-                    }
-                  }
-                },
-                {
-                  "type": "expanded",
-                  "child": {
-                    "type": "text",
-                    "args": {
-                      "text": "Token",
-                      "style": {
-                        "fontWeight": "bold",
-                        "color": "#1d1f29"
-                      }
-                    }
-                  }
-                },
-                {
-                  "type": "expanded",
-                  "child": {
-                    "type": "text",
-                    "args": {
-                      "text": "Token Duration",
-                      "style": {
-                        "fontWeight": "bold",
-                        "color": "#1d1f29"
-                      }
-                    }
-                  }
-                }
-              ]
-            }
-          },
-          {
-            "type": "padding",
-            "args": {
-              "padding": {
-                "bottom": 8,
-                "left": 8,
-                "top": 5
-              }
-            },
-            "child": {
-              "type": "row",
-              "children": [
-                {
-                  "type": "expanded",
-                  "child": {
-                    "type": "text",
-                    "args": {
-                      "text": "{{flow.type}}",
-                      "style": {
-                        "fontWeight": "w400",
-                        "color": "#1d1f29"
-                      }
-                    }
-                  }
-                },
-                {
-                  "type": "expanded",
-                  "child": {
-                    "type": "text",
-                    "args": {
-                      "text": "{{flow.workflow}}",
-                      "style": {
-                        "fontWeight": "w400",
-                        "color": "#1d1f29"
-                      }
-                    }
-                  }
-                },
-                {
-                  "type": "expanded",
-                  "child": {
-                    "type": "text",
-                    "args": {
-                      "text": "{{flow.token}}",
-                      "style": {
-                        "fontWeight": "w400",
-                        "color": "#1d1f29"
-                      }
-                    }
-                  }
-                },
-                {
-                  "type": "expanded",
-                  "child": {
-                    "type": "text",
-                    "args": {
-                      "text": "{{flow.tokenDuration}}",
-                      "style": {
-                        "fontWeight": "w400",
-                        "color": "#1d1f29"
-                      }
-                    }
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
-    }
-  ]
-}
+
 """;
 
-  Future<void> _showFormio(TransitionsModel data) async {
+  Future<void> _showDetailFormio(TransitionsModel data) async {
     return showDialog<void>(
       context: context,
       barrierDismissible: true, // user must tap button!
@@ -697,7 +251,7 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
               content: Obx(() {
                 WorkflowController controller = Get.find<WorkflowController>(tag: homeController.selectedEntity.value.data["id"]);
 
-                return FormioWidget(
+                return TransitionWidget(
                   data: data,
                   loading: controller.loading,
                   getData: (val) async {
@@ -706,6 +260,27 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
                   },
                 );
               })),
+        );
+      },
+    );
+  }
+
+  Future<void> _showHistoryWidget(HistoryModel data) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: true, // user must tap button!
+      builder: (BuildContext context) {
+        return Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: AlertDialog(
+              actionsPadding: EdgeInsets.zero,
+              insetPadding: EdgeInsets.zero,
+              buttonPadding: EdgeInsets.zero,
+              contentPadding: EdgeInsets.zero,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+              content: FormioWidget(
+                schema: data.formSchema ?? "",
+              )),
         );
       },
     );

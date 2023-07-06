@@ -1,4 +1,4 @@
-import 'package:admin/ui/components/formio/formio_widget.dart';
+import 'package:admin/ui/components/formio/transition_widget.dart';
 import 'package:admin/ui/controllers/workflow_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -33,7 +33,7 @@ class _FormioPageState extends State<FormioPage> {
         height: transitions.length > 1 ? 200 : null,
         child: Builder(builder: (context) {
           if (transitions.length == 1) {
-            return FormioWidget(
+            return TransitionWidget(
               data: transitions.first,
               getData: (data) async {
                 controller.postTransition(transition: transitions.first, entityData: data);
@@ -99,7 +99,7 @@ class _FormioPageState extends State<FormioPage> {
             ),
           ),
           content: Obx(() {
-            return FormioWidget(
+            return TransitionWidget(
               data: transition,
               isBack: true,
               loading: controller.loading,
