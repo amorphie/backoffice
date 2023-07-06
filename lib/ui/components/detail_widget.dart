@@ -679,7 +679,7 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      data.name ?? "",
+                      data.title ?? "",
                       style: TextStyle(color: KC.primary, fontWeight: FontWeight.bold),
                     ),
                     IconButton(

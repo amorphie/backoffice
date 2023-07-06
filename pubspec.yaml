@@ -19,7 +19,7 @@ dependencies:
   page_transition: ^2.0.9
   http: ^0.13.5
   webviewx: ^0.2.2
-  json_dynamic_widget: ^6.0.4+4
+  json_dynamic_widget: ^6.0.6+5
   uuid: ^3.0.7
   flutter_screenutil: ^5.7.0
   google_fonts: ^4.0.3
