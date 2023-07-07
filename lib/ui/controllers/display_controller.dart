@@ -1,6 +1,7 @@
 // ignore_for_file: invalid_use_of_protected_member
 
 import 'package:admin/data/models/entity/entity_model.dart';
+import 'package:admin/data/models/entity/layout_helpers/tab_model.dart';
 import 'package:admin/data/models/entity/layouts/display_layout_model.dart';
 import 'package:admin/data/models/history/history_workflow_model.dart';
 import 'package:admin/data/services/common/response_model.dart';
@@ -85,38 +86,49 @@ class DisplayController extends GetxController {
           )
         });
       } else if (tab.type == "search") {
-        searchModels.addAll({tab.entity: await getSearchData(tab.entity)});
+        searchModels.addAll({tab.entity: await getSearchData(tab)});
       }
     }
   }
 
   Future search({
-    required String entity,
+    required DisplayTabModel tab,
     required String keyword,
     int? pageSize,
     int? pageNumber,
   }) async {
-    DisplayTabSearchModel searchModel = await getSearchData(entity, keyword: keyword);
-    searchModels[entity] = searchModel;
+    DisplayTabSearchModel searchModel = await getSearchData(tab, keyword: keyword);
+    searchModels[tab.entity] = searchModel;
     searchModels.refresh();
   }
 
   Future<DisplayTabSearchModel> getSearchData(
-    String entityName, {
+    DisplayTabModel tab, {
     String? keyword,
     int? pageSize,
     int? pageNumber,
   }) async {
+    await Future.delayed(Duration(milliseconds: 200));
+
     EntityController entityController = Get.find<EntityController>();
-    EntityModel entity = entityController.entities[entityName]!;
-    var list = await entityController.getAllData(
-      entityModel: entity,
+    EntityModel entity = entityController.entities[tab.entity]!;
+    var response = await Services().search(
+      url: tab.url!.replaceAll("@id", _displayView.value[tab.id]),
+      pageSize: pageSize ?? entity.search!.defaultPageSize,
+      pageNumber: pageNumber ?? entity.search!.defaultPageNumber,
       keyword: keyword,
-      pageSize: pageSize,
-      pageNumber: pageNumber,
-    ); //TODO tag a search eklenince burası search diye değişecek
+    );
+    List list = [];
+    if (response.data is List) {
+      list = response.data;
+    } else if (response.data is Map<String, dynamic>) {
+      if (response.data["data"] != null && response.data["data"] is List) {
+        list = response.data["data"];
+      }
+    }
+
     return DisplayTabSearchModel(
-      tag: entityName,
+      tag: tab.entity,
       data: list,
       entity: entity,
     );

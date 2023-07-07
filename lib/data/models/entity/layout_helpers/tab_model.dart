@@ -7,7 +7,8 @@ class DisplayTabModel {
   String type;
   String entity;
   int order;
-  String id;
+  String? id;
+  String? url;
   TitleModel? template;
   TitleModel title;
   String? layout;
@@ -17,7 +18,8 @@ class DisplayTabModel {
     required this.type,
     required this.entity,
     required this.order,
-    required this.id,
+    this.id,
+    this.url,
     this.template,
     required this.title,
     this.layout,
@@ -35,6 +37,7 @@ class DisplayTabModel {
     String? layout,
     String? filter,
     String? filter_value,
+    String? url,
   }) {
     return DisplayTabModel(
       type: type ?? this.type,
@@ -46,6 +49,7 @@ class DisplayTabModel {
       layout: layout ?? this.layout,
       filter: filter ?? this.filter,
       filter_value: filter_value ?? this.filter_value,
+      url: url ?? this.url,
     );
   }
 
@@ -60,6 +64,7 @@ class DisplayTabModel {
       'layout': layout,
       'filter': filter,
       'filter_value': filter_value,
+      'url': url,
     };
   }
 
@@ -68,11 +73,12 @@ class DisplayTabModel {
       type: map['type'] as String,
       entity: map['entity'] as String,
       order: map['order'] as int,
-      id: map['id'] ?? "",
+      id: map['id'] != null ? map['id'] as String : null,
       template: map['template'] != null ? TitleModel.fromMap(map['template'] as Map<String, dynamic>) : null,
       title: TitleModel.fromMap(map['title'] as Map<String, dynamic>),
       layout: map['layout'] != null ? map['layout'] as String : null,
       filter: map['filter'] != null ? map['filter'] as String : null,
+      url: map['url'] != null ? map['url'] as String : null,
       filter_value: map['filter-value'] != null ? map['filter-value'] as String : null,
     );
   }
@@ -98,11 +104,21 @@ class DisplayTabModel {
         other.title == title &&
         other.layout == layout &&
         other.filter == filter &&
+        url == other.url &&
         other.filter_value == filter_value;
   }
 
   @override
   int get hashCode {
-    return type.hashCode ^ entity.hashCode ^ order.hashCode ^ id.hashCode ^ template.hashCode ^ title.hashCode ^ layout.hashCode ^ filter.hashCode ^ filter_value.hashCode;
+    return type.hashCode ^
+        url.hashCode ^
+        entity.hashCode ^
+        order.hashCode ^
+        id.hashCode ^
+        template.hashCode ^
+        title.hashCode ^
+        layout.hashCode ^
+        filter.hashCode ^
+        filter_value.hashCode;
   }
 }

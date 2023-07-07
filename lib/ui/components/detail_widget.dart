@@ -154,7 +154,7 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
                                       () => TabDataTable(
                                         withSearch: displayController.searchModels[e.entity]!.entity.search!.search,
                                         onSearch: (val) {
-                                          displayController.search(entity: e.entity, keyword: val);
+                                          displayController.search(tab: e, keyword: val);
                                         },
                                         columns: displayController.searchModels[e.entity]!.entity.search!.columns,
                                         data: displayController.searchModels[e.entity]!.data,

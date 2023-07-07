@@ -80,7 +80,18 @@
             "runningWorkflows": true,
             "availableWorkflows": true,
             "tabs": [
+                
                 {
+                    "type": "search",
+                    "entity": "token",
+                    "order": 0,
+                    "id": "id",
+                    "url":"https://test-amorphie-token.apps.nonprod.ebt.bank/Tokens/User/@id",
+                    "title": {
+                        "tr-TR": "Tokenlar",
+                        "en-EN": "Tokens"
+                    }
+                },  {
                     "type": "render",
                     "entity": "consent",
                     "order": 0,
@@ -92,16 +103,6 @@
                     "title": {
                         "tr-TR": "Riza Detaylari",
                         "en-EN": "Consent Details"
-                    }
-                },
-                {
-                    "type": "search",
-                    "entity": "tag",
-                    "order": 1,
-                    "id": "$.id",
-                    "title": {
-                        "tr-TR": "Etiketler",
-                        "en-EN": "Tags"
                     }
                 }
             ]
@@ -435,6 +436,64 @@
         },
         "delete": {
             "url": "https://test-amorphie-resource.burgan.com.tr/privilege/@privilegeId"
+        }
+    }, 
+    "token": {
+        "name": "token",
+        "workflow": "token",
+        "titleTemplate": "{{name}}",
+        "url": "https://test-amorphie-token.apps.nonprod.ebt.bank/Tokens/User",
+        "search": {
+            "defaultPageSize": 100,
+            "defaultPageNumber": 0,
+            "search": true,
+            "columns": [
+                {
+                    "data": "reference",
+                    "title": {
+                        "tr-TR": "ID",
+                        "en-EN": "ID"
+                    },
+                    "sort": 1
+                },                {
+                    "data": "scopes",
+                    "title": {
+                        "tr-TR": "scopes",
+                        "en-EN": "scopes"
+                    },
+                    "sort": 2
+                },                {
+                    "data": "issuedAt",
+                    "title": {
+                        "tr-TR": "issuedAt",
+                        "en-EN": "issuedAt"
+                    },
+                    "sort": 3
+                },                {
+                    "data": "expiredAt",
+                    "title": {
+                        "tr-TR": "expiredAt",
+                        "en-EN": "expiredAt"
+                    },
+                    "sort": 4
+                },                {
+                    "data": "isActive",
+                    "title": {
+                        "tr-TR": "isActive",
+                        "en-EN": "isActive"
+                    },
+                    "sort": 5
+                },                {
+                    "data": "jwt",
+                    "title": {
+                        "tr-TR": "jwt",
+                        "en-EN": "jwt"
+                    },
+                    "sort": 6
+                }
+
+
+            ]
         }
     }
 }

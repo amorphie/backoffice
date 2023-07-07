@@ -1,3 +1,4 @@
+import 'package:admin/data/extension/date_extension.dart';
 import 'package:flutter/material.dart';
 
 import 'package:admin/data/models/entity/layout_helpers/search_column_model.dart';
@@ -36,10 +37,12 @@ class TabDataTable extends StatelessWidget {
                 .map((c) => DataRow(
                       cells: columns
                           .map((e) => DataCell(
-                                Text(
-                                  c[e.data].toString(),
-                                  style: TextStyle(color: Colors.black54),
-                                ),
+                                c[e.data] is bool
+                                    ? _icon(c[e.data] as bool)
+                                    : Text(
+                                        _print(c[e.data]),
+                                        style: TextStyle(color: Colors.black54),
+                                      ),
                                 onTap: () {
                                   onPressed(c);
                                 },
@@ -66,4 +69,20 @@ class TabDataTable extends StatelessWidget {
       decoration: InputDecoration(hintText: "Search", prefixIconColor: KC.primary, prefixIcon: Icon(Icons.search), iconColor: KC.primary),
     );
   }
+
+  String _print(dynamic item) {
+    if (item is List)
+      return item.join(", ");
+    else {
+      try {
+        DateTime? dt = DateTime.tryParse(item);
+        if (dt != null) {
+          return dt.showDateTime;
+        }
+      } catch (e) {}
+    }
+    return item.toString();
+  }
+
+  Widget _icon(bool value) => Icon(value ? Icons.check_circle_rounded : Icons.close, color: value ? Colors.green : Colors.red);
 }
