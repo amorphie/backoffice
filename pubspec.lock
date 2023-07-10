@@ -258,7 +258,7 @@ packages:
       sha256: e4226d9ac83e4b9a14d307e8839eb716ea0a07169f131c673eb1f9d223f8774d
       url: "https://pub.dev"
     source: hosted
-    version: "6.0.6+5"
+    version: "6.0.4+5"
   json_path:
     dependency: transitive
     description:
