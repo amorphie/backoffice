@@ -21,7 +21,7 @@ ENV TAR_OPTIONS=--no-same-owner
 
 
 # Enable flutter web
-RUN flutter channel master
+RUN flutter channel stable
 RUN flutter upgrade
 RUN flutter config --enable-web
 
