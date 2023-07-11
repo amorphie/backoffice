@@ -4,8 +4,8 @@ import 'package:admin/data/models/entity/entity_model.dart';
 import 'package:admin/data/models/menu/menu_model.dart';
 import 'package:flutter/services.dart';
 
+import '_executer.dart';
 import 'common/response_model.dart';
-import 'executer_service.dart';
 
 class Services {
   Future<Map<String, EntityModel>> getEntityData() async {
@@ -30,17 +30,25 @@ class Services {
     required String url,
     required int pageSize,
     required int pageNumber,
-    String? searchText,
+    String? keyword,
+    Map<String, String>? queries,
   }) async {
     String _url = url + "?pageSize=$pageSize&page=$pageNumber";
-    if (searchText != null && searchText.length > 3) {
-      _url += "&searchText=$searchText";
+    if (keyword != null && keyword.length > 3) {
+      _url += "&keyword=$keyword";
+    }
+    if (queries != null) {
+      queries.forEach((key, value) {
+        _url += "&$key=$value";
+      });
     }
     ResponseModel response = await Executer.get(
       endpoint: _url,
     );
     return response;
   }
+
+  Future<ResponseModel> getById(String url, String id) => Executer.get(endpoint: url + "/$id");
 
   Future<ResponseModel> getTemplate({required Map<String, dynamic> data}) async {
     return await Executer.post(
@@ -49,6 +57,17 @@ class Services {
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json",
+      },
+    );
+  }
+
+  Future<ResponseModel> getHistory({required String entity, required String recordId}) async {
+    return await Executer.get(
+      endpoint: "https://test-amorphie-workflow.burgan.com.tr/workflow/consumer/${entity}/record/${recordId}/history",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Accept-Language": "en-EN",
       },
     );
   }

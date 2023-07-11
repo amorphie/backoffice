@@ -36,7 +36,7 @@ class MenuItem extends StatelessWidget {
                 iconColor: Colors.white54,
                 collapsedIconColor: Colors.white70,
                 title: MenuButtonCard(
-                  text: model.title!.trTR,
+                  text: model.title!.enEN,
                   isEspanded: false,
                 ),
                 children: model.items!
@@ -48,7 +48,7 @@ class MenuItem extends StatelessWidget {
             case MenuItemType.entity:
               return Obx(() {
                 return MenuButtonCard(
-                  text: model.title!.trTR,
+                  text: model.title!.enEN,
                   onPressed: () {
                     menuController.menuItem.value = model;
                     entityController.setEntityMenu();
@@ -59,7 +59,7 @@ class MenuItem extends StatelessWidget {
             case MenuItemType.workflow:
               return Obx(() {
                 return MenuButtonCard(
-                  text: model.title!.trTR,
+                  text: model.title!.enEN,
                   onPressed: () async {
                     WorkflowController workflowController = Get.put<WorkflowController>(WorkflowController());
                     await workflowController.startTransition(
@@ -76,7 +76,7 @@ class MenuItem extends StatelessWidget {
             case MenuItemType.divider:
               return Divider();
             default:
-              return MenuButtonCard(text: model.title!.trTR);
+              return MenuButtonCard(text: model.title!.enEN);
           }
         }),
       ),

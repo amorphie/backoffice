@@ -7,6 +7,7 @@ import 'layouts/delete_layout_model.dart';
 import 'layouts/search_layout_model.dart';
 
 class EntityModel {
+  String url;
   String name;
   String workflow;
   String titleTemplate;
@@ -14,6 +15,7 @@ class EntityModel {
   DeleteLayout? delete;
   DisplayLayoutModel? display;
   EntityModel({
+    required this.url,
     required this.name,
     required this.workflow,
     required this.titleTemplate,
@@ -21,9 +23,10 @@ class EntityModel {
     this.delete,
     this.display,
   });
-  factory EntityModel.init() => EntityModel(name: "", workflow: "", titleTemplate: "");
-
+  factory EntityModel.init() => EntityModel(name: "", workflow: "", titleTemplate: "", url: "");
+  bool get hasFilter => search?.filter != null;
   EntityModel copyWith({
+    String? url,
     String? name,
     String? workflow,
     String? titleTemplate,
@@ -32,6 +35,7 @@ class EntityModel {
     DisplayLayoutModel? display,
   }) {
     return EntityModel(
+      url: url ?? this.url,
       name: name ?? this.name,
       workflow: workflow ?? this.workflow,
       titleTemplate: titleTemplate ?? this.titleTemplate,
@@ -43,6 +47,7 @@ class EntityModel {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
+      'url': url,
       'name': name,
       'workflow': workflow,
       'titleTemplate': titleTemplate,
@@ -54,6 +59,7 @@ class EntityModel {
 
   factory EntityModel.fromMap(Map<String, dynamic> map) {
     return EntityModel(
+      url: map['url'] as String,
       name: map['name'] as String,
       workflow: map['workflow'] as String,
       titleTemplate: map['titleTemplate'] as String,
@@ -69,18 +75,24 @@ class EntityModel {
 
   @override
   String toString() {
-    return 'EntityModel(name: $name, workflow: $workflow, titleTemplate: $titleTemplate, search: $search, delete: $delete, display: $display)';
+    return 'EntityModel(url: $url, name: $name, workflow: $workflow, titleTemplate: $titleTemplate, search: $search, delete: $delete, display: $display)';
   }
 
   @override
   bool operator ==(covariant EntityModel other) {
     if (identical(this, other)) return true;
 
-    return other.name == name && other.workflow == workflow && other.titleTemplate == titleTemplate && other.search == search && other.delete == delete && other.display == display;
+    return other.url == url &&
+        other.name == name &&
+        other.workflow == workflow &&
+        other.titleTemplate == titleTemplate &&
+        other.search == search &&
+        other.delete == delete &&
+        other.display == display;
   }
 
   @override
   int get hashCode {
-    return name.hashCode ^ workflow.hashCode ^ titleTemplate.hashCode ^ search.hashCode ^ delete.hashCode ^ display.hashCode;
+    return url.hashCode ^ name.hashCode ^ workflow.hashCode ^ titleTemplate.hashCode ^ search.hashCode ^ delete.hashCode ^ display.hashCode;
   }
 }

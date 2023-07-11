@@ -1,14 +1,74 @@
+import 'dart:developer';
+
 extension MatchsExtension on String {
-  String templateWithData(Map<String, dynamic> data, [bool nullStringAdd = false]) {
-    RegExp desen = RegExp(r'{{(.*?)}}');
+  dynamic jsWithData(Map<String, dynamic> data, [String Function(String key)? nullString]) {
+    String txt = replaceAll(" ", "");
+    dynamic result;
+    if (txt.contains(".")) {
+      /*
+      . jsonda alt modellere ulaşmak için kullanılır
+      data["user"]["name"] gibi bir değere ulaşabilmek 
+      için {{user.name}} yazmak yeterli olacaktır.
+       */
+      var txtData = txt.split(".");
+      var d = data;
+
+      for (var txtWord in txtData) {
+        if (txtWord == txtData.last) {
+          result = (d[txtWord] ?? "").toString();
+          d = data;
+        } else {
+          try {
+            if (d[txtWord] != null) {
+              if (d[txtWord] is Map) {
+                d = d[txtWord];
+              }
+              // else if (d[txtWord] is String) {
+              //   changeWord = d[txtWord].toString();
+              // }
+              /*
+                eğer ki bir modelin en altındaki kısma ulaştıysak 
+                ve daha aşağısını arıyorsak, ancak bu bir map değilse
+                muhtemelen istediğimiz dataya erişmişizdir. 
+                bu datayı almak risklidir ve tam istenen datayı bize vermeyebilir.
+                yorum satırını kaldırmak riskli olabilir.
+                 */
+            } else {
+              log("${d.keys.join(",")} in not match key '$txtWord'", name: "MatchsExtension");
+            }
+          } catch (e) {
+            log(e.toString() + "\n" + d.toString() + "\n" + d[txtWord], name: "MatchsExtension");
+          }
+        }
+      }
+    } else {
+      result = data[txt];
+    }
+    return result;
+  }
+
+  String templateWithData(Map<String, dynamic> data, [String Function(String key)? nullString]) {
+    RegExp pattern = RegExp(r'{{(.*?)}}');
     String result = this;
 
-    Iterable<Match> eslesenler = desen.allMatches(result);
+    Iterable<Match> matches = pattern.allMatches(result);
 
-    for (Match eslesen in eslesenler) {
-      String txt = substring(eslesen.start + 2, eslesen.end - 2).trim();
-      String changed = substring(eslesen.start, eslesen.end);
-      result = result.replaceAll(changed, data[txt] ?? (nullStringAdd ? txt : ""));
+    for (Match matchItem in matches) {
+      String txt = substring(matchItem.start + 2, matchItem.end - 2).replaceAll(" ", "");
+      //patternleri almak için kullanıyoruz
+      String changed = substring(matchItem.start, matchItem.end);
+      /*
+      patternleri aldıktan sonra değiştireceğimiz string kısmı 
+      buradan geliyor örn: "{{name}}" stringini dışarıdan gelen 
+      string ile replace etmemizi sağlıyor
+       */
+      String changeWord = txt.jsWithData(data);
+
+      if (changeWord.isEmpty && nullString != null) {
+        changeWord = nullString(txt);
+        //Eğer ki text boş ise eşleşmeyen datayı geri dönderip debug etme şansımız oluşur.
+      }
+      result = result.replaceAll(changed, changeWord);
     }
     return result;
   }

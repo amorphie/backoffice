@@ -3,21 +3,22 @@
         "name": "user",
         "workflow": "user",
         "titleTemplate": "{{firstName}} {{lastName}}",
+        "url": "https://test-amorphie-fact-user.burgan.com.tr/user",
         "search": {
-            "url": "https://test-amorphie-fact-user.burgan.com.tr/user/search",
             "defaultPageSize": 100,
             "defaultPageNumber": 0,
             "search": true,
             "filter": [
                 {
-                    "data": "tag",
+                    "data": "name",
+                    "entity": "tag",
+                    "query": "UserTag",
                     "widget": "dropdown",
-                    "type": "reference"
-                },
-                {
-                    "data": "reference",
-                    "widget": "textField",
-                    "type": "query"
+                    "type": "reference",
+                    "title": {
+                        "tr-TR": "Etiket",
+                        "en-EN": "Tag"
+                    }
                 }
             ],
             "columns": [
@@ -52,6 +53,14 @@
                         "en-EN": "Tags"
                     },
                     "sort": 4
+                },
+                {
+                    "data": "state",
+                    "title": {
+                        "tr-TR": "Durum",
+                        "en-EN": "State"
+                    },
+                    "sort": 5
                 }
             ]
         },
@@ -64,14 +73,25 @@
             },
             "detailTemplate": {
                 "tr-TR": "amorphy-backoffice-user-detail-tr",
-                "en-EN": "amorphy-backoffice-user-detail-tr"
+                "en-EN": "amorphy-backoffice-user-detail-en"
             },
             "history": true,
             "stateManager": true,
             "runningWorkflows": true,
             "availableWorkflows": true,
             "tabs": [
+                
                 {
+                    "type": "search",
+                    "entity": "token",
+                    "order": 0,
+                    "id": "id",
+                    "url":"https://test-amorphie-token.apps.nonprod.ebt.bank/Tokens/User/@id",
+                    "title": {
+                        "tr-TR": "Tokenlar",
+                        "en-EN": "Tokens"
+                    }
+                },  {
                     "type": "render",
                     "entity": "consent",
                     "order": 0,
@@ -84,20 +104,6 @@
                         "tr-TR": "Riza Detaylari",
                         "en-EN": "Consent Details"
                     }
-                },
-                {
-                    "type": "search",
-                    "entity": "tag",
-                    "order": 1,
-                    "id": "$.id",
-                    "template": {
-                        "tr-TR": "amorphy-backoffice-user-consent-listview",
-                        "en-EN": "amorphy-backoffice-user-consent-listview"
-                    },
-                    "title": {
-                        "tr-TR": "Etiketler",
-                        "en-EN": "Tags"
-                    }
                 }
             ]
         },
@@ -105,15 +111,78 @@
             "url": "https://test-amorphie-fact-user.burgan.com.tr/user/@id"
         }
     },
+    "client": {
+        "name": "client",
+        "workflow": "client-wizard",
+        "titleTemplate": "{{name}}",
+        "url": "https://test-amorphie-fact-client.burgan.com.tr/client",
+        "search": {
+            "defaultPageSize": 100,
+            "defaultPageNumber": 0,
+            "search": true,
+            "columns": [
+                {
+                    "data": "name",
+                    "title": {
+                        "tr-TR": "Client Name",
+                        "en-EN": "Client Name"
+                    },
+                    "sort": 1
+                },
+                {
+                    "data": "client-secret",
+                    "title": {
+                        "tr-TR": "Client Secret",
+                        "en-EN": "Client Secret"
+                    },
+                    "sort": 2
+                },
+                {
+                    "data": "flows",
+                    "title": {
+                        "tr-TR": "Flows",
+                        "en-EN": "Flows"
+                    },
+                    "sort": 3
+                },
+                {
+                    "data": "status",
+                    "title": {
+                        "tr-TR": "Status",
+                        "en-EN": "Status"
+                    },
+                    "sort": 4
+                }
+            ]
+        },
+        "display": {
+            "summaryTemplate": {
+                "tr-TR": "amorphy-backoffice-summary-name-template",
+                "en-EN": "amorphy-backoffice-summary-name-template"
+            },
+            "detailTemplate": {
+                "tr-TR": "amorphy-backoffice-client-detail-tr",
+                "en-EN": "amorphy-backoffice-client-detail-en"
+            },
+            "history": true,
+            "stateManager": true,
+            "runningWorkflows": true,
+            "availableWorkflows": true,
+            "tabs": []
+        },
+        "delete": {
+            "url": "https://test-amorphie-fact-client.burgan.com.tr/client/@id"
+        }
+    },
     "tag": {
         "name": "tag",
         "workflow": "tag",
         "titleTemplate": "{{name}}",
+        "url": "https://test-amorphie-tag.burgan.com.tr/tag",
         "search": {
-            "url": "https://test-amorphie-tag.burgan.com.tr/tag",
             "defaultPageSize": 100,
             "defaultPageNumber": 0,
-            "search": false,
+            "search": true,
             "columns": [
                 {
                     "data": "name",
@@ -157,8 +226,8 @@
         "name": "domain",
         "workflow": "domain",
         "titleTemplate": "{{name}}",
+        "url": "https://test-amorphie-resource.burgan.com.tr/domain",
         "search": {
-            "url": "https://test-amorphie-resource.burgan.com.tr/domain",
             "defaultPageSize": 100,
             "defaultPageNumber": 0,
             "search": false,
@@ -197,8 +266,8 @@
         "name": "resource",
         "workflow": "resource",
         "titleTemplate": "{{name}}",
+        "url": "https://test-amorphie-resource.burgan.com.tr/resource",
         "search": {
-            "url": "https://test-amorphie-resource.burgan.com.tr/resource",
             "defaultPageSize": 100,
             "defaultPageNumber": 0,
             "search": false,
@@ -245,8 +314,8 @@
         "name": "resourceRole",
         "workflow": "resourceRole",
         "titleTemplate": "{{name}}",
+        "url": "https://test-amorphie-resource.burgan.com.tr/resourceRole",
         "search": {
-            "url": "https://test-amorphie-resource.burgan.com.tr/resourceRole",
             "defaultPageSize": 100,
             "defaultPageNumber": 0,
             "search": false,
@@ -277,8 +346,8 @@
         "name": "roleGroup",
         "workflow": "roleGroup",
         "titleTemplate": "{{name}}",
+        "url": "https://test-amorphie-resource.burgan.com.tr/roleGroup",
         "search": {
-            "url": "https://test-amorphie-resource.burgan.com.tr/roleGroup",
             "defaultPageSize": 100,
             "defaultPageNumber": 0,
             "search": false,
@@ -325,8 +394,8 @@
         "name": "privilege",
         "workflow": "privilege",
         "titleTemplate": "{{name}}",
+        "url": "https://test-amorphie-resource.burgan.com.tr/privilege",
         "search": {
-            "url": "https://test-amorphie-resource.burgan.com.tr/privilege",
             "defaultPageSize": 100,
             "defaultPageNumber": 0,
             "search": false,
@@ -367,6 +436,64 @@
         },
         "delete": {
             "url": "https://test-amorphie-resource.burgan.com.tr/privilege/@privilegeId"
+        }
+    }, 
+    "token": {
+        "name": "token",
+        "workflow": "token",
+        "titleTemplate": "{{name}}",
+        "url": "https://test-amorphie-token.apps.nonprod.ebt.bank/Tokens/User",
+        "search": {
+            "defaultPageSize": 100,
+            "defaultPageNumber": 0,
+            "search": true,
+            "columns": [
+                {
+                    "data": "reference",
+                    "title": {
+                        "tr-TR": "ID",
+                        "en-EN": "ID"
+                    },
+                    "sort": 1
+                },                {
+                    "data": "scopes",
+                    "title": {
+                        "tr-TR": "scopes",
+                        "en-EN": "scopes"
+                    },
+                    "sort": 2
+                },                {
+                    "data": "issuedAt",
+                    "title": {
+                        "tr-TR": "issuedAt",
+                        "en-EN": "issuedAt"
+                    },
+                    "sort": 3
+                },                {
+                    "data": "expiredAt",
+                    "title": {
+                        "tr-TR": "expiredAt",
+                        "en-EN": "expiredAt"
+                    },
+                    "sort": 4
+                },                {
+                    "data": "isActive",
+                    "title": {
+                        "tr-TR": "isActive",
+                        "en-EN": "isActive"
+                    },
+                    "sort": 5
+                },                {
+                    "data": "jwt",
+                    "title": {
+                        "tr-TR": "jwt",
+                        "en-EN": "jwt"
+                    },
+                    "sort": 6
+                }
+
+
+            ]
         }
     }
 }

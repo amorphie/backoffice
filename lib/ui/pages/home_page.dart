@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:admin/data/extension/string_extension.dart';
 import 'package:admin/data/models/display/display_view_model.dart';
+import 'package:admin/ui/components/indicator.dart';
 import 'package:admin/ui/controllers/entity_controller.dart';
 import 'package:admin/ui/controllers/home_controller.dart';
 import 'package:admin/ui/controllers/workflow_controller.dart';
@@ -41,7 +42,7 @@ class HomePage extends StatelessWidget {
                         height: 30,
                         child: Row(
                           children: [
-                            displayButton(title: menuController.menuItem.value.title!.trTR),
+                            displayButton(title: menuController.menuItem.value.title!.enEN),
                             Expanded(
                               child: Obx(() {
                                 return ListView.builder(
@@ -56,18 +57,25 @@ class HomePage extends StatelessWidget {
                       ),
                       Expanded(
                         child: Obx(() {
-                          log(DateTime.now().toIso8601String(), name: "EntityView");
-
                           if (homeController.hasEntity)
                             return homeController.selectedEntity.value.page;
                           else
                             return AppDataTable(
+                              filterView: homeController.filterView,
                               withSearch: entityController.entity.search?.search ?? false,
                               title: menuController.menuItem.value.title!,
                               data: entityController.dataList,
                               columns: entityController.entity.search?.columns ?? [],
+                              hasFilter: entityController.entity.hasFilter,
+                              filterPressed: () async {
+                                if (homeController.filterView) {
+                                  homeController.filterClose();
+                                } else {
+                                  await homeController.getFilterArea();
+                                }
+                              },
                               onSearch: (val) {
-                                entityController.getDataList(searchText: val);
+                                entityController.setFilter(val);
                               },
                               loading: entityController.loading.value,
                               onPressed: (data) async {
@@ -80,7 +88,7 @@ class HomePage extends StatelessWidget {
                                   entity: entityController.entity.workflow,
                                   // recordId: "cf0a00ce-b0e5-4f0e-8c31-7e35cd4d4f5a",
                                 );
-                                formioDialog(context);
+                                formioDialog(context, workflowController.workflow.stateManager.title ?? "");
                               },
                             );
                         }),
@@ -90,7 +98,11 @@ class HomePage extends StatelessWidget {
                 ),
               );
             } else {
-              return Container();
+              return Container(
+                child: Center(
+                  child: Text("Select Menu"),
+                ),
+              );
             }
           },
         ),
@@ -134,38 +146,48 @@ class HomePage extends StatelessWidget {
         ),
       ));
 
-  Future<void> formioDialog(BuildContext context) async {
+  Future<void> formioDialog(BuildContext context, String title) async {
+    WorkflowController controller = Get.find<WorkflowController>();
+
     return showDialog<void>(
       context: context,
-      barrierDismissible: true, // user must tap button!
+      barrierDismissible: false,
       builder: (BuildContext context) {
-        return AlertDialog(
-          actionsPadding: EdgeInsets.zero,
-          insetPadding: EdgeInsets.zero,
-          buttonPadding: EdgeInsets.zero,
-          contentPadding: EdgeInsets.zero,
-          title: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Kullanıcı Ekle',
-                  style: TextStyle(color: KC.primary, fontWeight: FontWeight.bold),
+        return Obx(() {
+          if (controller.loading) return AppIndicator();
+          return Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: AlertDialog(
+              actionsPadding: EdgeInsets.zero,
+              insetPadding: EdgeInsets.zero,
+              buttonPadding: EdgeInsets.zero,
+              contentPadding: EdgeInsets.zero,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+              title: Container(
+                padding: const EdgeInsets.all(10.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      title,
+                      style: TextStyle(color: KC.primary, fontWeight: FontWeight.bold),
+                    ),
+                    IconButton(
+                        onPressed: () async {
+                          Navigator.pop(context);
+                          entityController.getDataList();
+                        },
+                        icon: Icon(
+                          Icons.close_rounded,
+                          color: KC.primary,
+                        ))
+                  ],
                 ),
-                IconButton(
-                    onPressed: () {
-                      Get.back();
-                    },
-                    icon: Icon(
-                      Icons.close_rounded,
-                      color: KC.primary,
-                    ))
-              ],
+              ),
+              content: FormioPage(),
             ),
-          ),
-          content: FormioPage(),
-        );
+          );
+        });
       },
     );
   }

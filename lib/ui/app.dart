@@ -5,7 +5,6 @@ import 'package:get/route_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../constants/routes.dart';
-import 'style/colors.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -17,10 +16,8 @@ class App extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (BuildContext context, Widget? child) => GetMaterialApp(
-        theme: ThemeData.light().copyWith(
-          scaffoldBackgroundColor: KC.background,
-          textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme).apply(bodyColor: Colors.white),
-          canvasColor: KC.secondary,
+        theme: ThemeData(
+          textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme),
         ),
         initialBinding: StartAppBinding(),
         getPages: getPages,

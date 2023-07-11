@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:admin/data/extension/string_extension.dart';
 import 'package:flutter/material.dart';
 
 import 'package:admin/data/models/entity/layout_helpers/search_column_model.dart';
@@ -25,7 +26,7 @@ class AppDataTableSource extends DataTableSource {
         cells: columns
             .map((e) => DataCell(
                   Text(
-                    item[e.data].toString(),
+                    _print(e.data.jsWithData(item)),
                     style: TextStyle(color: Colors.black54),
                   ),
                   onTap: () {
@@ -33,5 +34,12 @@ class AppDataTableSource extends DataTableSource {
                   },
                 ))
             .toList());
+  }
+
+  String _print(dynamic item) {
+    if (item is List)
+      return item.join(", ");
+    else
+      return item.toString();
   }
 }

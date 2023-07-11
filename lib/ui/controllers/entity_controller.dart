@@ -13,6 +13,27 @@ class EntityController extends GetxController {
     _entity.value = _;
   }
 
+  String _keyword = "";
+
+  int? pageSize;
+  int? pageNumber;
+  setPage(int p) {
+    pageNumber = p;
+    getDataList(isSearch: true);
+  }
+
+  setPageSize(int ps) {
+    pageSize = ps;
+    getDataList(isSearch: true);
+  }
+
+  setFilter(String filter) {
+    _keyword = filter;
+    if (_keyword == "" || _keyword.length > 3) {
+      getDataList(isSearch: true);
+    }
+  }
+
   Map<String, EntityModel> entities = {};
   RxBool loading = false.obs;
 
@@ -35,28 +56,85 @@ class EntityController extends GetxController {
     }
   }
 
-  Future<void> getDataList({String? searchText, int? pageSize, int? pageNumber}) async {
+  Future<void> getDataList({
+    Map<String, String>? queries,
+    bool isSearch = false,
+  }) async {
     loading.value = true;
 
-    await Future.delayed(Duration(seconds: 2));
     dataList.clear();
-
-    var response = await services.search(
-      url: entity.search!.listUrl,
-      pageSize: pageSize ?? entity.search!.defaultPageSize,
-      pageNumber: pageNumber ?? entity.search!.defaultPageNumber,
-      searchText: searchText,
-    );
-    var list = response.data;
-    if (response.data["data"] != null) {
-      list = response.data["data"];
-    }
-    if (list is! List) {
-      list = [];
+    List list;
+    if (!isSearch) {
+      list = await getAllData(
+        pageSize: pageSize,
+        pageNumber: pageNumber,
+      );
+    } else {
+      list = await getSearchData(
+        keyword: _keyword == "" || _keyword.length > 3 ? _keyword : null,
+        pageSize: pageSize,
+        pageNumber: pageNumber,
+        queries: queries,
+      );
     }
     for (var item in list) {
       dataList.add(item);
     }
     loading.value = false;
+    dataList.refresh();
+  }
+
+  Future<List> getAllData({
+    EntityModel? entityModel,
+    String? keyword,
+    int? pageSize,
+    int? pageNumber,
+    Map<String, String>? queries,
+  }) async {
+    await Future.delayed(Duration(milliseconds: 200));
+
+    var response = await services.search(
+        url: (entityModel ?? entity).url,
+        pageSize: pageSize ?? (entityModel ?? entity).search!.defaultPageSize,
+        pageNumber: pageNumber ?? (entityModel ?? entity).search!.defaultPageNumber,
+        keyword: keyword,
+        queries: queries);
+    List list = [];
+    if (response.data is List) {
+      list = response.data;
+    } else if (response.data is Map<String, dynamic>) {
+      if (response.data["data"] != null && response.data["data"] is List) {
+        list = response.data["data"];
+      }
+    }
+
+    return list;
+  }
+
+  Future<List> getSearchData({
+    EntityModel? entityModel,
+    String? keyword,
+    int? pageSize,
+    int? pageNumber,
+    Map<String, String>? queries,
+  }) async {
+    await Future.delayed(Duration(milliseconds: 200));
+
+    var response = await services.search(
+        url: (entityModel ?? entity).url + "/search",
+        pageSize: pageSize ?? (entityModel ?? entity).search!.defaultPageSize,
+        pageNumber: pageNumber ?? (entityModel ?? entity).search!.defaultPageNumber,
+        keyword: keyword,
+        queries: queries);
+    List list = [];
+    if (response.data is List) {
+      list = response.data;
+    } else if (response.data is Map<String, dynamic>) {
+      if (response.data["data"] != null && response.data["data"] is List) {
+        list = response.data["data"];
+      }
+    }
+
+    return list;
   }
 }
