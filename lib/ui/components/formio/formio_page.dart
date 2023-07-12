@@ -37,6 +37,7 @@ class _FormioPageState extends State<FormioPage> {
               data: transitions.first,
               getData: (data) async {
                 controller.postTransition(transition: transitions.first, entityData: data);
+                Navigator.pop(context);
               },
               loading: loading,
             );
@@ -105,6 +106,7 @@ class _FormioPageState extends State<FormioPage> {
               loading: controller.loading,
               getData: (val) async {
                 await controller.postTransition(transition: transition, entityData: val);
+                Navigator.pop(context);
                 Navigator.pop(context);
               },
             );

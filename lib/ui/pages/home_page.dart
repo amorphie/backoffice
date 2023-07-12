@@ -83,12 +83,7 @@ class HomePage extends StatelessWidget {
                                 log(DateTime.now().toIso8601String(), name: "SelectEntityFinal");
                               },
                               addPressed: () async {
-                                WorkflowController workflowController = Get.put<WorkflowController>(WorkflowController());
-                                await workflowController.startTransition(
-                                  entity: entityController.entity.workflow,
-                                  // recordId: "cf0a00ce-b0e5-4f0e-8c31-7e35cd4d4f5a",
-                                );
-                                formioDialog(context, workflowController.workflow.stateManager.title ?? "");
+                                formioDialog(context);
                               },
                             );
                         }),
@@ -146,8 +141,12 @@ class HomePage extends StatelessWidget {
         ),
       ));
 
-  Future<void> formioDialog(BuildContext context, String title) async {
-    WorkflowController controller = Get.find<WorkflowController>();
+  Future<void> formioDialog(BuildContext context, [String? recordId]) async {
+    WorkflowController controller = Get.put<WorkflowController>(WorkflowController());
+    await controller.startTransition(
+      entity: entityController.entity.workflow,
+      recordId: recordId,
+    );
 
     return showDialog<void>(
       context: context,
@@ -169,7 +168,7 @@ class HomePage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      title,
+                      controller.workflow.stateManager.title ?? "",
                       style: TextStyle(color: KC.primary, fontWeight: FontWeight.bold),
                     ),
                     IconButton(
