@@ -1,27 +1,477 @@
 {
-    "type": "expanded",
-    "child": {
-      "type": "center",
+  "type": "list_view",
+  "children": [
+    {
+      "type": "container",
+      "args": {
+        "margin": 5,
+        "height": 75,
+        "padding": 8
+      },
       "child": {
-        "type": "icon_button",
+        "type": "column",
         "args": {
-          "icon": {
-            "type": "icon",
+          "crossAxisAlignment": "start",
+          "mainAxisAlignment": "start"
+        },
+        "children": [
+          {
+            "type": "text",
             "args": {
-              "icon": {
-                "codePoint": 58712,
-                "fontFamily": "MaterialIcons"
+              "text": "Login Url",
+              "style": {
+                "fontWeight": "bold",
+                "color": "#1d1f29"
               }
             }
           },
-          "onPressed": "\${simplePrintMessage()}"
-        },
-        "child": {
-          "type": "text",
-          "args": {
-            "text": "OutlinedButton"
+          {
+            "type": "padding",
+            "args": {
+              "padding": {
+                "bottom": 8,
+                "left": 8,
+                "top": 5
+              }
+            },
+            "child": {
+              "type": "text",
+              "args": {
+                "text": "{{data.login-url}}",
+                "style": {
+                  "fontWeight": "w400",
+                  "color": "#1d1f29"
+                }
+              }
+            }
           }
-        }
+        ]
+      }
+    },
+    {
+      "type": "container",
+      "args": {
+        "margin": 5,
+        "height": 75,
+        "padding": 8
+      },
+      "child": {
+        "type": "column",
+        "args": {
+          "crossAxisAlignment": "start",
+          "mainAxisAlignment": "start"
+        },
+        "children": [
+          {
+            "type": "text",
+            "args": {
+              "text": "Return Url",
+              "style": {
+                "fontWeight": "bold",
+                "color": "#1d1f29"
+              }
+            }
+          },
+          {
+            "type": "padding",
+            "args": {
+              "padding": {
+                "bottom": 8,
+                "left": 8,
+                "top": 5
+              }
+            },
+            "child": {
+              "type": "text",
+              "args": {
+                "text": "{{data.return-url}}",
+                "style": {
+                  "fontWeight": "w400",
+                  "color": "#1d1f29"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "container",
+      "args": {
+        "margin": 5,
+        "height": 75,
+        "padding": 8
+      },
+      "child": {
+        "type": "column",
+        "args": {
+          "crossAxisAlignment": "start",
+          "mainAxisAlignment": "start"
+        },
+        "children": [
+          {
+            "type": "text",
+            "args": {
+              "text": "Logout Url",
+              "style": {
+                "fontWeight": "bold",
+                "color": "#1d1f29"
+              }
+            }
+          },
+          {
+            "type": "padding",
+            "args": {
+              "padding": {
+                "bottom": 8,
+                "left": 8,
+                "top": 5
+              }
+            },
+            "child": {
+              "type": "text",
+              "args": {
+                "text": "{{data.logout-url}}",
+                "style": {
+                  "fontWeight": "w400",
+                  "color": "#1d1f29"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "container",
+      "args": {
+        "margin": 5,
+        "height": 75,
+        "padding": 8
+      },
+      "child": {
+        "type": "column",
+        "args": {
+          "crossAxisAlignment": "start",
+          "mainAxisAlignment": "start"
+        },
+        "children": [
+          {
+            "type": "text",
+            "args": {
+              "text": "Client Secret",
+              "style": {
+                "fontWeight": "bold",
+                "color": "#1d1f29"
+              }
+            }
+          },
+          {
+            "type": "padding",
+            "args": {
+              "padding": {
+                "bottom": 8,
+                "left": 8,
+                "top": 5
+              }
+            },
+            "child": {
+              "type": "text",
+              "args": {
+                "text": "{{data.client-secret}}",
+                "style": {
+                  "fontWeight": "w400",
+                  "color": "#1d1f29"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "container",
+      "args": {
+        "margin": 5,
+        "height": 75,
+        "padding": 8
+      },
+      "child": {
+        "type": "column",
+        "args": {
+          "crossAxisAlignment": "start",
+          "mainAxisAlignment": "start"
+        },
+        "children": [
+          {
+            "type": "text",
+            "args": {
+              "text": "Allowed Grant Types",
+              "style": {
+                "fontWeight": "bold",
+                "color": "#1d1f29"
+              }
+            }
+          },
+          {
+            "type": "padding",
+            "args": {
+              "padding": {
+                "bottom": 8,
+                "left": 8,
+                "top": 5
+              }
+            },
+            "child": {
+              "type": "text",
+              "args": {
+                "text": "{{ comma=null }}{{ for types in data.allowed-grant-types }}{{ if comma }}, {{ else }} {{ end }} {{ comma=1 }} {{types.grantType}} {{end}}",
+                "style": {
+                  "fontWeight": "w400",
+                  "color": "#1d1f29"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "container",
+      "args": {
+        "margin": 5,
+        "height": 75,
+        "padding": 8
+      },
+      "child": {
+        "type": "column",
+        "args": {
+          "crossAxisAlignment": "start",
+          "mainAxisAlignment": "start"
+        },
+        "children": [
+          {
+            "type": "text",
+            "args": {
+              "text": "Allowed Scope Tags",
+              "style": {
+                "fontWeight": "bold",
+                "color": "#1d1f29"
+              }
+            }
+          },
+          {
+            "type": "padding",
+            "args": {
+              "padding": {
+                "bottom": 8,
+                "left": 8,
+                "top": 5
+              }
+            },
+            "child": {
+              "type": "text",
+              "args": {
+                "text": "{{ comma=null }}{{ for scope in data.allowed-scope-tags }}{{ if comma }}, {{ else }} {{ end }} {{ comma=1 }} {{scope}} {{end}}",
+                "style": {
+                  "fontWeight": "w400",
+                  "color": "#1d1f29"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "container",
+      "args": {
+        "margin": 5,
+        "padding": 8
+      },
+      "child": {
+        "type": "column",
+        "args": {
+          "crossAxisAlignment": "start",
+          "mainAxisAlignment": "start"
+        },
+        "children": [
+          {
+            "type": "text",
+            "args": {
+              "text": "Flows",
+              "style": {
+                "fontWeight": "bold",
+                "color": "#1d1f29"
+              }
+            }
+          },
+          {
+            "type": "padding",
+            "args": {
+              "padding": {
+                "bottom": 8,
+                "left": 8,
+                "top": 5
+              }
+            },
+            "child": {
+              "type": "row",
+              "children": [
+                {
+                  "type": "expanded",
+                  "child": {
+                    "type": "text",
+                    "args": {
+                      "text": "Type",
+                      "style": {
+                        "fontWeight": "bold",
+                        "color": "#1d1f29"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "expanded",
+                  "child": {
+                    "type": "text",
+                    "args": {
+                      "text": "Workflow",
+                      "style": {
+                        "fontWeight": "bold",
+                        "color": "#1d1f29"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "expanded",
+                  "child": {
+                    "type": "text",
+                    "args": {
+                      "text": "Token",
+                      "style": {
+                        "fontWeight": "bold",
+                        "color": "#1d1f29"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "expanded",
+                  "child": {
+                    "type": "text",
+                    "args": {
+                      "text": "Token Duration",
+                      "style": {
+                        "fontWeight": "bold",
+                        "color": "#1d1f29"
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            { comma=null
+            }
+          }{
+            { for flow in data.flows
+            }
+          }{
+            { if comma
+            }
+          },
+          {
+            { else
+            }
+          } {
+            { end
+            }
+          } {
+            { comma=1
+            }
+          }
+          {
+            "type": "padding",
+            "args": {
+              "padding": {
+                "bottom": 8,
+                "left": 8,
+                "top": 5
+              }
+            },
+            "child": {
+              "type": "row",
+              "children": [
+                {
+                  "type": "expanded",
+                  "child": {
+                    "type": "text",
+                    "args": {
+                      "text": "{{flow.type}}",
+                      "style": {
+                        "fontWeight": "w400",
+                        "color": "#1d1f29"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "expanded",
+                  "child": {
+                    "type": "text",
+                    "args": {
+                      "text": "{{flow.workflow}}",
+                      "style": {
+                        "fontWeight": "w400",
+                        "color": "#1d1f29"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "expanded",
+                  "child": {
+                    "type": "text",
+                    "args": {
+                      "text": "{{flow.token}}",
+                      "style": {
+                        "fontWeight": "w400",
+                        "color": "#1d1f29"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "expanded",
+                  "child": {
+                    "type": "text",
+                    "args": {
+                      "text": "{{flow.tokenDuration}}",
+                      "style": {
+                        "fontWeight": "w400",
+                        "color": "#1d1f29"
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          }
+    {
+            {end
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "sized_box",
+      "args": {
+        "height": 30.0
       }
     }
-  }
+  ]
+}

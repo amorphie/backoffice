@@ -1,3 +1,4 @@
+import 'package:admin/helpers/hub.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -20,6 +21,8 @@ class AppInit extends StatelessWidget {
       splashTransition: SplashTransition.fadeTransition,
       duration: 100,
       screenRouteFunction: () async {
+        await Hub.shared.start();
+
         AppMenuController menuController = Get.find<AppMenuController>();
         EntityController entityController = Get.find<EntityController>();
         await menuController.init();
