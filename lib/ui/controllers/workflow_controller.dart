@@ -80,8 +80,9 @@ class WorkflowController extends GetxController {
         //  await displayController.getHistoryDetail();
       }
       // var result = response.data;
-      //TODO snackbar ile gösterim yapılacak
-      await getTransitions();
+      if (_tag != null) {
+        await getTransitions();
+      }
     }
   }
 }
