@@ -29,6 +29,7 @@ class TabDataTable extends StatelessWidget {
     if (loading) return AppIndicator();
 
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         if (withSearch) search(),
         Expanded(

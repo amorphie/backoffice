@@ -248,7 +248,6 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
               ),
               content: Obx(() {
                 WorkflowController controller = Get.find<WorkflowController>(tag: homeController.selectedEntity.value.data["id"]);
-
                 return TransitionWidget(
                   data: data,
                   loading: controller.loading,

@@ -6,17 +6,7 @@
       "args": {
         "margin": 5,
         "height": 75,
-        "padding": 14,
-        "decoration": {
-          "border": {
-            "style": "solid",
-            "width": 1
-          },
-          "borderRadius": {
-            "type": "all",
-            "radius": 14
-          }
-        }
+        "padding": 14
       },
       "child": {
        
