@@ -80,18 +80,18 @@
             "runningWorkflows": true,
             "availableWorkflows": true,
             "tabs": [
-                
                 {
                     "type": "search",
                     "entity": "token",
                     "order": 0,
                     "id": "id",
-                    "url":"https://test-amorphie-token.apps.nonprod.ebt.bank/Tokens/User/@id",
+                    "url": "https://test-amorphie-token.apps.nonprod.ebt.bank/Tokens/User/@id",
                     "title": {
                         "tr-TR": "Tokenlar",
                         "en-EN": "Tokens"
                     }
-                },  {
+                },
+                {
                     "type": "render",
                     "entity": "consent",
                     "order": 0,
@@ -130,7 +130,7 @@
                     "sort": 1
                 },
                 {
-                    "data": "client-secret",
+                    "data": "clientSecret",
                     "title": {
                         "tr-TR": "Client Secret",
                         "en-EN": "Client Secret"
@@ -437,7 +437,7 @@
         "delete": {
             "url": "https://test-amorphie-resource.burgan.com.tr/privilege/@privilegeId"
         }
-    }, 
+    },
     "token": {
         "name": "token",
         "workflow": "token",
@@ -455,35 +455,40 @@
                         "en-EN": "ID"
                     },
                     "sort": 1
-                },                {
+                },
+                {
                     "data": "scopes",
                     "title": {
                         "tr-TR": "scopes",
                         "en-EN": "scopes"
                     },
                     "sort": 2
-                },                {
+                },
+                {
                     "data": "issuedAt",
                     "title": {
                         "tr-TR": "issuedAt",
                         "en-EN": "issuedAt"
                     },
                     "sort": 3
-                },                {
+                },
+                {
                     "data": "expiredAt",
                     "title": {
                         "tr-TR": "expiredAt",
                         "en-EN": "expiredAt"
                     },
                     "sort": 4
-                },                {
+                },
+                {
                     "data": "isActive",
                     "title": {
                         "tr-TR": "isActive",
                         "en-EN": "isActive"
                     },
                     "sort": 5
-                },                {
+                },
+                {
                     "data": "jwt",
                     "title": {
                         "tr-TR": "jwt",
@@ -491,8 +496,6 @@
                     },
                     "sort": 6
                 }
-
-
             ]
         }
     }

@@ -45,15 +45,19 @@ class Hub {
   Future start() async {
     connection.on("sendMessage", (arguments) {
       Logger.root.config(arguments.toString(), "sendMessage");
-      appLogger.d(json.decode(arguments.toString()));
+      appLogger.d(json.decode(arguments.toString()), "sendMessage");
       var d = json.decode(arguments.toString());
       HubModel model;
-      if (d is List)
+      if (d is List) {
         model = HubModel.fromMap(d.first);
-      else
+      } else {
         model = HubModel.fromMap(d);
-      if (model.eventInfo == "worker-completed") {
+      }
+      appLogger.wtf(model.toString(), "sendMessageend");
+
+      if (model.page != null && model.page!.operation == "Open" && model.page!.type == "Popup") {
         log("showHubFormio", name: "showHubFormio");
+
         formioDialog(Get.context!, null, model.recordId);
       }
     });
