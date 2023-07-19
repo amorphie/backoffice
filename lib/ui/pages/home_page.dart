@@ -135,7 +135,7 @@ class HomePage extends StatelessWidget {
                   homeController.subtractData(model!);
                   homeController.deselectEntity();
                 },
-                child: Icon(Icons.close),
+                child: Icon(Icons.close, size: 19),
               )
           ],
         ),
