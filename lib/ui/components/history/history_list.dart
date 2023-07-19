@@ -13,18 +13,26 @@ class HistoryListWidget extends StatelessWidget {
     required this.histories,
     required this.onTap,
   }) : super(key: key);
+  List<HistoryModel> get transitions {
+    List<HistoryModel> t = [];
+    histories.forEach((e) {
+      t.addAll(e.transitions);
+    });
+    t.sort((a, b) => a.calledAt.compareTo(b.calledAt));
+    return t;
+  }
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: histories.first.transitions.length,
+      itemCount: transitions.length,
       itemBuilder: (context, index) => historyCard(
         context,
-        title: histories.first.transitions[index].name,
-        subTitle: histories.first.transitions[index].calledBy,
-        date: histories.first.transitions[index].calledAt.toString(),
+        title: transitions[index].name,
+        subTitle: transitions[index].calledBy,
+        date: transitions[index].calledAt.toString(),
         onTap: () async {
-          onTap(histories.first.transitions[index]);
+          onTap(transitions[index]);
         },
       ),
     );

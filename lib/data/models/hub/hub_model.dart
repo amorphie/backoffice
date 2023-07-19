@@ -1,6 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+import 'hub_navigation_page.dart';
+
 class HubModel {
   String userId;
   String recordId;
@@ -11,7 +13,7 @@ class HubModel {
   String state;
   String transition;
   num baseStatus;
-  String? page;
+  HubNavigationPageModel? page;
   HubModel({
     required this.userId,
     required this.recordId,
@@ -35,7 +37,7 @@ class HubModel {
     String? state,
     String? transition,
     num? baseStatus,
-    String? page,
+    HubNavigationPageModel? page,
   }) {
     return HubModel(
       userId: userId ?? this.userId,
@@ -62,23 +64,38 @@ class HubModel {
       'state': state,
       'transition': transition,
       'baseStatus': baseStatus,
-      'page': page,
+      'page': page?.toMap(),
     };
   }
 
   factory HubModel.fromMap(Map<String, dynamic> map) {
-    return HubModel(
-      userId: map['UserId'] as String,
-      recordId: map['recordId'] as String,
-      eventInfo: map['eventInfo'] as String,
-      instanceId: map['instanceId'] as String,
-      data: map['data'] as dynamic,
-      time: DateTime.parse(map['time']),
-      state: map['state'] as String,
-      transition: map['transition'] as String,
-      baseStatus: map['baseStatus'] as num,
-      page: map['page'] != null ? map['page'] as String : null,
-    );
+    try {
+      return HubModel(
+        userId: map['UserId'] as String,
+        recordId: map['recordId'] as String,
+        eventInfo: map['eventInfo'] as String,
+        instanceId: map['instanceId'] as String,
+        data: map['data'] as dynamic,
+        time: DateTime.parse(map['time']),
+        state: map['state'] as String,
+        transition: map['transition'] as String,
+        baseStatus: map['baseStatus'] as num,
+        page: map['page'] != null ? HubNavigationPageModel.fromMap(map['page']) : null,
+      );
+    } catch (e) {
+      return HubModel(
+        userId: map['UserId'] as String,
+        recordId: map['recordId'] as String,
+        eventInfo: map['eventInfo'] as String,
+        instanceId: map['instanceId'] as String,
+        data: map['data'] as dynamic,
+        time: DateTime.parse(map['time']),
+        state: map['state'] as String,
+        transition: map['transition'] as String,
+        baseStatus: map['baseStatus'] as num,
+        page: map['page'] != null ? HubNavigationPageModel.fromMap(map['page']) : null,
+      );
+    }
   }
 
   String toJson() => json.encode(toMap());

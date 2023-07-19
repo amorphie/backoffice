@@ -9,7 +9,6 @@ import 'package:admin/ui/components/tab_data_table/app_data_table/tab_data_table
 import 'package:admin/ui/controllers/entity_controller.dart';
 import 'package:admin/ui/controllers/workflow_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
@@ -95,7 +94,7 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
                       decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10)),
                       child: Text(
                         e.title ?? e.name!,
-                        style: TextStyle(fontSize: 14.sp),
+                        style: TextStyle(fontSize: 14),
                       )),
                 ),
               )

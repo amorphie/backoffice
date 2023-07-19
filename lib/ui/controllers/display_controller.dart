@@ -81,7 +81,7 @@ class DisplayController extends GetxController {
           tab.template!.enEN: await getTemplate(
             "${tab.template!.enEN}",
             {
-              "consents": List.generate(20, (index) => {"name": "Deneme$index", "description": "text$index"})
+              "consents": List.generate(1, (index) => {"name": "Deneme$index", "description": "text$index"})
             },
           )
         });
