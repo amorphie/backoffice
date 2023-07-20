@@ -54,22 +54,6 @@
                         }
                     }
                 ]
-            },
-            {
-                "type": "sized_box",
-                "args": {
-                    "height": 5
-                }
-            },
-            {
-                "type": "text",
-                "args": {
-                    "text": "Tags: {{tags}}",
-                    "style": {
-                        "fontSize": 12,
-                        "fontWeight": "w400"
-                    }
-                }
             }
         ]
     }

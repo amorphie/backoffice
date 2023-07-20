@@ -80,7 +80,7 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
         children: [
           Text(
             title,
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(color: Colors.white, fontSize: 13),
           ),
           ...transitions
               .map(
@@ -90,11 +90,11 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
                   },
                   child: Container(
                       margin: EdgeInsets.all(5),
-                      padding: EdgeInsets.symmetric(horizontal: 9, vertical: 4),
+                      padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
                       decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10)),
                       child: Text(
                         e.title ?? e.name!,
-                        style: TextStyle(fontSize: 14),
+                        style: TextStyle(fontSize: 12),
                       )),
                 ),
               )
@@ -248,7 +248,6 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
               ),
               content: Obx(() {
                 WorkflowController controller = Get.find<WorkflowController>(tag: homeController.selectedEntity.value.data["id"]);
-
                 return TransitionWidget(
                   data: data,
                   loading: controller.loading,
