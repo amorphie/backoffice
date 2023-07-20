@@ -4,6 +4,7 @@ import 'dart:developer';
 
 import 'package:admin/data/models/hub/hub_model.dart';
 import 'package:admin/helpers/logger.dart';
+import 'package:admin/ui/controllers/entity_controller.dart';
 import 'package:get/get.dart';
 import 'package:logging/logging.dart';
 import 'package:signalr_netcore/signalr_client.dart';
@@ -54,7 +55,10 @@ class Hub {
         model = HubModel.fromMap(d);
       }
       appLogger.wtf(model.toString(), "sendMessageend");
-
+      if ((model.eventInfo == "worker-completed" || model.eventInfo == "transition-completed") && (model.page != null && model.page!.type != "Popup")) {
+        EntityController c = Get.find<EntityController>();
+        c.getDataList();
+      }
       if (model.page != null && model.page!.operation == "Open" && model.page!.type == "Popup") {
         log("showHubFormio", name: "showHubFormio");
 
