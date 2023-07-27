@@ -3,7 +3,6 @@ import 'package:admin/ui/controllers/entity_controller.dart';
 import 'package:admin/ui/controllers/filter_controller.dart';
 import 'package:admin/ui/style/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../data/models/entity/layout_helpers/filter_layout_model.dart';
@@ -27,7 +26,7 @@ class _FilterAreaState extends State<FilterArea> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(10.sp),
+      padding: EdgeInsets.all(10),
       child: Column(children: [
         ...filters.map((e) => FilterItem(filter: e)).toList(),
         Container(

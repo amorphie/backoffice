@@ -21,7 +21,6 @@ dependencies:
   webviewx: ^0.2.2
   json_dynamic_widget: ^6.0.6+5
   uuid: ^3.0.7
-  flutter_screenutil: ^5.7.0
   google_fonts: ^4.0.3
   flutter_spinkit: ^5.2.0
   flutter_quill: ^7.2.4
