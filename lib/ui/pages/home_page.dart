@@ -7,7 +7,6 @@ import 'package:admin/ui/controllers/entity_controller.dart';
 import 'package:admin/ui/controllers/home_controller.dart';
 import 'package:admin/ui/controllers/workflow_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../style/colors.dart';
@@ -128,7 +127,7 @@ class HomePage extends StatelessWidget {
               title ?? entityController.entity.titleTemplate.templateWithData(model!.data),
               style: TextStyle(color: Colors.black),
             ),
-            if (title == null) SizedBox(width: 5.w),
+            if (title == null) SizedBox(width: 5),
             if (title == null)
               GestureDetector(
                 onTap: () {
