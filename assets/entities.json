@@ -270,7 +270,7 @@
         "search": {
             "defaultPageSize": 100,
             "defaultPageNumber": 0,
-            "search": false,
+            "search": true,
             "columns": [
                 {
                     "data": "displayNames",
@@ -294,7 +294,7 @@
                         "tr-TR": "Durum",
                         "en-EN": "Status"
                     },
-                    "sort": 2
+                    "sort": 3
                 },
                 {
                     "data": "tags",

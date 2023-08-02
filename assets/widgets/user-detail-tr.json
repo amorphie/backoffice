@@ -4,9 +4,9 @@
     {
       "type": "container",
       "args": {
-        "margin": 5,
-        "height": 75,
-        "padding": 8
+        "margin": 2,
+       
+        "padding": 4
       },
       "child": {
         "type": "column",
@@ -30,8 +30,8 @@
             "args": {
               "padding": {
                 "bottom": 8,
-                "left": 8,
-                "top": 5
+               
+                "top": 10
               }
             },
             "child": {
@@ -51,9 +51,9 @@
     {
       "type": "container",
       "args": {
-        "margin": 5,
-        "height": 75,
-        "padding": 8
+        "margin": 2,
+       
+        "padding": 4
       },
       "child": {
         "type": "column",
@@ -63,28 +63,52 @@
         },
         "children": [
           {
-            "type": "text",
-            "args": {
-              "text": "referans",
-              "style": {
-                "fontWeight": "w500",
-                "color": "#1d1f29"
+            "type" : "row",
+            "args" : {
+              "mainAxisAlignment": "start"
+            },
+            "children" : [
+              {
+                "type": "text",
+                "args": {
+                  "text": "Reference",
+                  "style": {
+                    "fontWeight": "bold",
+                    "color": "#1d1f29"
+                  }
+                }
+              },
+              {
+                "type": "icon_button",
+              "args": {
+                "icon": {
+                  "type": "icon",
+                  "args": {
+                    "icon": {
+                      "codePoint": 63084,
+                      "fontFamily": "MaterialIcons"
+                    }
+                  }
+                },
+                "onPressed": "${() => {}}"
               }
             }
+            ]
           },
+         
           {
             "type": "padding",
             "args": {
               "padding": {
                 "bottom": 8,
-                "left": 8,
-                "top": 5
+               
+                "top": 10
               }
             },
             "child": {
               "type": "text",
               "args": {
-                "text": "{{data.ref}}",
+                "text": "{{data.reference}}",
                 "style": {
                   "fontWeight": "w400",
                   "color": "#1d1f29"
@@ -98,9 +122,9 @@
     {
       "type": "container",
       "args": {
-        "margin": 5,
-        "height": 75,
-        "padding": 8
+        "margin": 2,
+       
+        "padding": 4
       },
       "child": {
         "type": "column",
@@ -112,9 +136,9 @@
           {
             "type": "text",
             "args": {
-              "text": "isim",
+              "text": "Full Name",
               "style": {
-                "fontWeight": "w500",
+                "fontWeight": "bold",
                 "color": "#1d1f29"
               }
             }
@@ -124,8 +148,8 @@
             "args": {
               "padding": {
                 "bottom": 8,
-                "left": 8,
-                "top": 5
+               
+                "top": 10
               }
             },
             "child": {
@@ -145,9 +169,9 @@
     {
       "type": "container",
       "args": {
-        "margin": 5,
-        "height": 75,
-        "padding": 8
+        "margin": 2,
+       
+        "padding": 4
       },
       "child": {
         "type": "column",
@@ -159,9 +183,9 @@
           {
             "type": "text",
             "args": {
-              "text": "telefon",
+              "text": "Phone Number",
               "style": {
-                "fontWeight": "w500",
+                "fontWeight": "bold",
                 "color": "#1d1f29"
               }
             }
@@ -171,14 +195,14 @@
             "args": {
               "padding": {
                 "bottom": 8,
-                "left": 8,
-                "top": 5
+               
+                "top": 10
               }
             },
             "child": {
               "type": "text",
               "args": {
-                "text": "{{data.phone.countryCode}} {{data.phone.prefix}} {{data.phone.number}}",
+                "text": "{{data.phone.countryCode}} ({{data.phone.prefix}}) {{data.phone.number}}",
                 "style": {
                   "fontWeight": "w400",
                   "color": "#1d1f29"
@@ -192,9 +216,9 @@
     {
       "type": "container",
       "args": {
-        "margin": 5,
-        "height": 75,
-        "padding": 8
+        "margin": 2,
+       
+        "padding": 4
       },
       "child": {
         "type": "column",
@@ -206,9 +230,9 @@
           {
             "type": "text",
             "args": {
-              "text": "email",
+              "text": "E-mail Address",
               "style": {
-                "fontWeight": "w500",
+                "fontWeight": "bold",
                 "color": "#1d1f29"
               }
             }
@@ -218,14 +242,14 @@
             "args": {
               "padding": {
                 "bottom": 8,
-                "left": 8,
-                "top": 5
+               
+                "top": 10
               }
             },
             "child": {
               "type": "text",
               "args": {
-                "text": "{{data.email}}",
+                "text": "{{data.eMail}}",
                 "style": {
                   "fontWeight": "w400",
                   "color": "#1d1f29"
@@ -239,9 +263,9 @@
     {
       "type": "container",
       "args": {
-        "margin": 5,
-        "height": 75,
-        "padding": 8
+        "margin": 2,
+       
+        "padding": 4
       },
       "child": {
         "type": "column",
@@ -253,9 +277,9 @@
           {
             "type": "text",
             "args": {
-              "text": "durum",
+              "text": "Status",
               "style": {
-                "fontWeight": "w500",
+                "fontWeight": "bold",
                 "color": "#1d1f29"
               }
             }
@@ -265,8 +289,8 @@
             "args": {
               "padding": {
                 "bottom": 8,
-                "left": 8,
-                "top": 5
+               
+                "top": 10
               }
             },
             "child": {
@@ -286,9 +310,9 @@
     {
       "type": "container",
       "args": {
-        "margin": 5,
-        "height": 75,
-        "padding": 8
+        "margin": 2,
+       
+        "padding": 4
       },
       "child": {
         "type": "column",
@@ -300,9 +324,9 @@
           {
             "type": "text",
             "args": {
-              "text": "etiketler",
+              "text": "Tags",
               "style": {
-                "fontWeight": "w500",
+                "fontWeight": "bold",
                 "color": "#1d1f29"
               }
             }
@@ -312,14 +336,14 @@
             "args": {
               "padding": {
                 "bottom": 8,
-                "left": 8,
-                "top": 5
+               
+                "top": 10
               }
             },
             "child": {
               "type": "text",
               "args": {
-                "text": "{{data.tags}}",
+                "text": "{{ comma=null }}{{ for tag in data.tag }}{{ if comma }}, {{ else }} {{ end }} {{ comma=1 }} {{tag}} {{end}}",
                 "style": {
                   "fontWeight": "w400",
                   "color": "#1d1f29"
@@ -330,6 +354,5 @@
         ]
       }
     }
-  ],
-  "tags": "{{ comma=null }}{{ for tag in data.tag }}{{ if comma }}, {{ else }} {{ end }} {{ comma=1 }} {{tag}} {{end}}"
+  ]
 }
