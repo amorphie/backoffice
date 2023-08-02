@@ -1,5 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
+import 'dart:convert';
+
 import 'package:admin/data/models/history/history_model.dart';
 import 'package:admin/data/models/workflow/altmodels/transitions.dart';
 import 'package:admin/data/models/workflow/workflow_model.dart';
@@ -9,6 +11,7 @@ import 'package:admin/ui/components/tab_data_table/app_data_table/tab_data_table
 import 'package:admin/ui/controllers/entity_controller.dart';
 import 'package:admin/ui/controllers/workflow_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
@@ -34,11 +37,19 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
   EntityController get entityController => Get.find<EntityController>();
   DisplayController get displayController => Get.find<DisplayController>(tag: homeController.selectedEntity.value.data["id"]);
   WorkflowController get workflowController => Get.find<WorkflowController>(tag: homeController.selectedEntity.value.data["id"]);
+  JsonWidgetRegistry registry = JsonWidgetRegistry.instance;
 
   @override
   void initState() {
     super.initState();
-
+    registry.registerFunction(
+        "copy",
+        ({args, required registry}) => () async {
+              if (args != null && args.length > 0) {
+                await Clipboard.setData(ClipboardData(text: args.first.toString()));
+                Get.snackbar("Info", "Data copied to clipboard");
+              }
+            });
     _tabController = TabController(length: displayController.tabCount, vsync: this);
   }
 
@@ -178,19 +189,6 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
   }
 
   Widget getRenderWidget(TitleModel template) {
-    JsonWidgetRegistry registry = JsonWidgetRegistry.instance;
-    registry.registerFunction(
-        "tag_pressed",
-        ({args, required registry}) => () {
-              var message = 'This is a simple print message';
-              if (args?.isEmpty == false) {
-                for (var arg in args!) {
-                  message += ' $arg';
-                }
-              }
-              // ignore: avoid_print
-              print(message);
-            });
     // var t = json.decode(tmp);
     // return JsonWidgetData.fromDynamic(
     //   t,
