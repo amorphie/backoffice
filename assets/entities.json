@@ -176,7 +176,7 @@
     },
     "tag": {
         "name": "tag",
-        "workflow": "tag",
+        "workflow": "tag-register",
         "titleTemplate": "{{name}}",
         "url": "https://test-amorphie-tag.burgan.com.tr/tag",
         "search": {
