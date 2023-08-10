@@ -218,6 +218,21 @@
                 }
             ]
         },
+        "display": {
+            "summaryTemplate": {
+                "tr-TR": "amorphy-backoffice-summary-name-template",
+                "en-EN": "amorphy-backoffice-summary-name-template"
+            },
+            "detailTemplate": {
+                "tr-TR": "amorphie-backoffice-tag-detail-tr",
+                "en-EN": "amorphie-backoffice-tag-detail-en"
+            },
+            "history": true,
+            "stateManager": true,
+            "runningWorkflows": true,
+            "availableWorkflows": true,
+            "tabs": []
+        },
         "delete": {
             "url": "https://test-amorphie-tag.burgan.com.tr/tag/@id"
         }
@@ -305,6 +320,21 @@
                     "sort": 4
                 }
             ]
+        },
+        "display": {
+            "summaryTemplate": {
+                "tr-TR": "amorphy-backoffice-summary-name-template",
+                "en-EN": "amorphy-backoffice-summary-name-template"
+            },
+            "detailTemplate": {
+                "tr-TR": "amorphie-backoffice-resource-detail-tr",
+                "en-EN": "amorphie-backoffice-resource-detail-en"
+            },
+            "history": true,
+            "stateManager": true,
+            "runningWorkflows": true,
+            "availableWorkflows": true,
+            "tabs": []
         },
         "delete": {
             "url": "https://test-amorphie-resource.burgan.com.tr/resource/@resourceId"
