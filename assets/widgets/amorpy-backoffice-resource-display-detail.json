@@ -17,7 +17,7 @@
           {
             "type": "text",
             "args": {
-              "text": "Tag Name",
+              "text": "Resource",
               "style": {
                 "fontWeight": "bold",
                 "color": "#1d1f29"
@@ -35,7 +35,7 @@
             "child": {
               "type": "text",
               "args": {
-                "text": "{{tag.name}}",
+                "text": "{{resource.name}}",
                 "style": {
                   "fontWeight": "w400",
                   "color": "#1d1f29"
@@ -63,7 +63,7 @@
           {
             "type": "text",
             "args": {
-              "text": "Tags",
+              "text": "Resource URL",
               "style": {
                 "fontWeight": "bold",
                 "color": "#1d1f29"
@@ -81,7 +81,7 @@
             "child": {
               "type": "text",
               "args": {
-                "text": "{{tag.url}}",
+                "text": "{{resource.url}}",
                 "style": {
                   "fontWeight": "w400",
                   "color": "#1d1f29"

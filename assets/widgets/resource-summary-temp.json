@@ -1,0 +1,17 @@
+{
+  "type": "container",
+  "args": {
+      "margin": 5,
+      "padding": 14
+  },
+  "child": { 
+      "type": "text",
+      "args": {
+          "text": "{{resource.name}}",
+          "style": {
+              "fontSize": 15,
+              "fontWeight": "bold"
+          }
+      }
+  }
+}

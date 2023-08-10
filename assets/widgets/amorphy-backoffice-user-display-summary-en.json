@@ -2,59 +2,16 @@
     "type": "container",
     "args": {
         "margin": 5,
-        "height": 70,
-        "padding": 14,
-        "decoration": {
-            "border": {
-                "style": "solid",
-                "width": 1
-            },
-            "borderRadius": {
-                "type": "all",
-                "radius": 14
+        "padding": 14
+    },
+    "child": { 
+        "type": "text",
+        "args": {
+            "text": "{{resource.name}}",
+            "style": {
+                "fontSize": 15,
+                "fontWeight": "bold"
             }
         }
-    },
-    "child": {
-        "type": "column",
-        "args": {
-            "crossAxisAlignment": "start"
-        },
-        "children": [
-            {
-                "type": "row",
-                "args": {
-                    "mainAxisAlignment": "start"
-                },
-                "children": [
-                    {
-                        "type": "text",
-                        "args": {
-                            "text": "{{firstName}}",
-                            "style": {
-                                "fontSize": 15,
-                                "fontWeight": "bold"
-                            }
-                        }
-                    },
-                    {
-                        "type": "sized_box",
-                        "args": {
-                            "width": 2
-                        }
-                    },
-                    {
-                        "type": "text",
-                        "args": {
-                            "text": "{{lastName}}",
-                            "style": {
-                                "fontSize": 15,
-                                "fontWeight": "bold"
-                            }
-                        }
-                    }
-                ]
-            }
-        ]
     }
 }
