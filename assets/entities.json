@@ -92,23 +92,65 @@
                     }
                 },
                 {
-                    "type": "render",
+                    "type": "search",
                     "entity": "consent",
                     "order": 0,
-                    "id": "$.id",
-                    "template": {
-                        "tr-TR": "amorphy-backoffice-user-consent-listview",
-                        "en-EN": "amorphy-backoffice-user-consent-listview"
-                    },
+                    "id": "id",
+                    "url": "https://test-amorphie-consent.burgan.com.tr/OpenBankingConsent/getByUserId/@id",
                     "title": {
-                        "tr-TR": "Riza Detaylari",
-                        "en-EN": "Consent Details"
+                        "tr-TR": "Rızalar",
+                        "en-EN": "Consents"
                     }
                 }
             ]
         },
         "delete": {
             "url": "https://test-amorphie-fact-user.burgan.com.tr/user/@id"
+        }
+    },
+    "consent": {
+        "name": "consent",
+        "workflow": "consent",
+        "titleTemplate": "{{name}}",
+        "url": "https://test-amorphie-consent.burgan.com.tr/Consent/",
+        "search": {
+            "defaultPageSize": 100,
+            "defaultPageNumber": 0,
+            "search": true,
+            "columns": [
+                {
+                    "data": "id",
+                    "title": {
+                        "tr-TR": "ID",
+                        "en-EN": "ID"
+                    },
+                    "sort": 1
+                },
+                {
+                    "data": "description",
+                    "title": {
+                        "tr-TR": "Açıklama",
+                        "en-EN": "Description"
+                    },
+                    "sort": 1
+                },
+                {
+                    "data": "consentType",
+                    "title": {
+                        "tr-TR": "Tip",
+                        "en-EN": "Type"
+                    },
+                    "sort": 1
+                },
+                {
+                    "data": "state",
+                    "title": {
+                        "tr-TR": "Durum",
+                        "en-EN": "State"
+                    },
+                    "sort": 1
+                }
+            ]
         }
     },
     "client": {
