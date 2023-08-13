@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:admin/data/models/display/display_view_model.dart';
-import 'package:admin/ui/components/detail_widget.dart';
+import 'package:admin/ui/pages/detail_page.dart';
 import 'package:admin/ui/controllers/filter_controller.dart';
 import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';

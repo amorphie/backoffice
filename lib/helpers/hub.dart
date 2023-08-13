@@ -62,7 +62,7 @@ class Hub {
       if (model.page != null && model.page!.operation == "Open" && model.page!.type == "Popup") {
         log("showHubFormio", name: "showHubFormio");
 
-        formioDialog(Get.context!, null, model.recordId);
+        formioDialog(Get.context!, model.entityName, model.recordId);
       }
     });
     connection.on("ClientConnected", (arguments) {
