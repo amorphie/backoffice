@@ -25,7 +25,7 @@ class MenuButtonCard extends StatelessWidget {
           children: [
             Text(
               text,
-              style: TextStyle(color: isSelected ? Colors.white54 : Colors.white, fontSize: 16),
+              style: TextStyle(color: isSelected ? Colors.deepOrangeAccent : Colors.white, fontSize: 16),
             ),
           ],
         ),
