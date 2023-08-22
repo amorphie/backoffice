@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:admin/data/extension/string_extension.dart';
 import 'package:admin/data/models/display/display_view_model.dart';
-import 'package:admin/ui/components/indicator.dart';
+import 'package:admin/ui/widgets/indicator.dart';
 import 'package:admin/ui/controllers/entity_controller.dart';
 import 'package:admin/ui/controllers/home_controller.dart';
 import 'package:admin/ui/controllers/workflow_controller.dart';
@@ -10,10 +10,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../style/colors.dart';
-import '../components/menu/menu.dart';
-import '../components/data_table/data_table.dart';
+import '../widgets/menu/menu.dart';
+import '../widgets/data_table/data_table.dart';
 import '../controllers/menu_controller.dart';
-import '../components/formio/formio_page.dart';
+import '../widgets/formio/formio_page.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
@@ -28,7 +28,6 @@ class HomePage extends StatelessWidget {
       children: [
         // if (Responsive.isDesktop(context))
         AppMenu(),
-
         Obx(
           () {
             if (menuController.hasSelectedMenuItem) {

@@ -2,7 +2,7 @@
 import 'dart:convert';
 import 'dart:developer';
 
-import 'package:admin/ui/components/custom_button.dart';
+import 'package:admin/ui/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:webviewx/webviewx.dart';
 

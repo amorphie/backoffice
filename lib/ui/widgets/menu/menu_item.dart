@@ -1,7 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:admin/data/models/menu/enums/menu_item_type.dart';
-import 'package:admin/ui/components/menu/menu_button_card.dart';
-import 'package:admin/ui/components/menu/profile.dart';
+import 'package:admin/ui/style/colors.dart';
+import 'package:admin/ui/widgets/menu/menu_button_card.dart';
+import 'package:admin/ui/widgets/menu/profile.dart';
 import 'package:admin/ui/controllers/entity_controller.dart';
 import 'package:admin/ui/controllers/menu_controller.dart';
 import 'package:admin/ui/controllers/workflow_controller.dart';
@@ -29,11 +30,11 @@ class MenuItem extends StatelessWidget {
           switch (model.type) {
             case MenuItemType.group:
               return ExpansionTile(
-                //backgroundColor: Colors.grey[350],
-                // collapsedBackgroundColor: Colors.grey[350],
-                childrenPadding: const EdgeInsets.only(left: 29, bottom: 10, right: 10),
+                backgroundColor: Colors.black12,
+                collapsedBackgroundColor: KC.primary,
+                childrenPadding: const EdgeInsets.only(left: 30, bottom: 10),
                 expandedCrossAxisAlignment: CrossAxisAlignment.start,
-                iconColor: Colors.white54,
+                iconColor: Colors.deepOrangeAccent,
                 collapsedIconColor: Colors.white70,
                 title: MenuButtonCard(
                   text: model.title!.enEN,

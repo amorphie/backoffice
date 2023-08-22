@@ -20,8 +20,7 @@ class MenuButtonCard extends StatelessWidget {
       onPressed: onPressed,
       child: Container(
         width: double.infinity,
-        margin: const EdgeInsets.only(left: 10, top: 5),
-        padding: const EdgeInsets.all(5),
+        margin: const EdgeInsets.only(left: 5, top: 5),
         child: Row(
           children: [
             Text(

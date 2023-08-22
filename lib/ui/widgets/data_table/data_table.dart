@@ -1,7 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:admin/ui/components/data_table/data_table_source.dart';
-import 'package:admin/ui/components/filter/filter_area.dart';
-import 'package:admin/ui/components/indicator.dart';
+import 'package:admin/ui/widgets/data_table/data_table_source.dart';
+import 'package:admin/ui/widgets/filter/filter_area.dart';
+import 'package:admin/ui/widgets/indicator.dart';
 import 'package:flutter/material.dart';
 
 import 'package:admin/data/models/entity/layout_helpers/search_column_model.dart';

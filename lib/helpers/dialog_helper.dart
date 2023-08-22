@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../ui/components/formio/formio_page.dart';
-import '../ui/components/indicator.dart';
+import '../ui/widgets/formio/formio_page.dart';
+import '../ui/widgets/indicator.dart';
 import '../ui/controllers/entity_controller.dart';
 import '../ui/controllers/workflow_controller.dart';
 import '../ui/style/colors.dart';

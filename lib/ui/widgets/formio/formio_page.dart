@@ -1,4 +1,4 @@
-import 'package:admin/ui/components/formio/transition_widget.dart';
+import 'package:admin/ui/widgets/formio/transition_widget.dart';
 import 'package:admin/ui/controllers/workflow_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

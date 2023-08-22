@@ -1,4 +1,4 @@
-import 'package:admin/ui/components/filter/filter_widget.dart';
+import 'package:admin/ui/widgets/filter/filter_widget.dart';
 import 'package:admin/ui/controllers/entity_controller.dart';
 import 'package:admin/ui/controllers/filter_controller.dart';
 import 'package:admin/ui/style/colors.dart';

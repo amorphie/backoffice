@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 
 import 'package:admin/data/models/workflow/altmodels/transitions.dart';
 import 'package:admin/data/models/workflow/workflow_model.dart';
-import 'package:admin/ui/components/formio/transition_widget.dart';
+import 'package:admin/ui/widgets/formio/transition_widget.dart';
 import 'package:admin/ui/controllers/workflow_controller.dart';
 import 'package:admin/ui/style/colors.dart';
 
