@@ -109,12 +109,28 @@ class AppDataTable extends StatelessWidget {
 
   Expanded search() {
     return Expanded(
-      child: TextField(
-        onSubmitted: onSearch,
-        // onChanged: (value) {
-        //   onSearch(value);
-        // },
-        decoration: InputDecoration(hintText: "Search", prefixIconColor: KC.primary, prefixIcon: Icon(Icons.search), iconColor: KC.primary),
+      child: Padding(
+        padding: const EdgeInsets.all(4),
+        child: TextField(
+          cursorColor: Colors.deepOrangeAccent,
+          onSubmitted: onSearch,
+          // onChanged: (value) {
+          //   onSearch(value);
+          // },
+          decoration: InputDecoration(
+            hintText: "Search",
+            prefixIconColor: KC.primary,
+            prefixIcon: Icon(Icons.search),
+            iconColor: KC.primary,
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.deepOrangeAccent, width: 1.5),
+            ),
+            focusColor: Colors.redAccent,
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+          ),
+        ),
       ),
     );
   }
