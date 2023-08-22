@@ -123,11 +123,12 @@ class AppDataTable extends StatelessWidget {
             prefixIcon: Icon(Icons.search),
             iconColor: KC.primary,
             focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(15),
               borderSide: BorderSide(color: Colors.deepOrangeAccent, width: 1.5),
             ),
             focusColor: Colors.redAccent,
             border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(8),
             ),
           ),
         ),
