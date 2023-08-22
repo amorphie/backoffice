@@ -28,37 +28,34 @@ class TabDataTable extends StatelessWidget {
   Widget build(BuildContext context) {
     if (loading) return AppIndicator();
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+    return ListView(
       children: [
         if (withSearch) search(),
-        Expanded(
-          child: DataTable(
-            rows: data
-                .map((c) => DataRow(
-                      cells: columns
-                          .map((e) => DataCell(
-                                c[e.data] is bool
-                                    ? _icon(c[e.data] as bool)
-                                    : Text(
-                                        _print(c[e.data]),
-                                        style: TextStyle(color: Colors.black54),
-                                      ),
-                                onTap: () {
-                                  onPressed(c);
-                                },
-                              ))
-                          .toList(),
-                    ))
-                .toList(),
-            columns: columns
-                .map((e) => DataColumn(
-                        label: Text(
-                      e.title.enEN,
-                      style: TextStyle(color: Colors.black87),
-                    )))
-                .toList(),
-          ),
+        DataTable(
+          rows: data
+              .map((c) => DataRow(
+                    cells: columns
+                        .map((e) => DataCell(
+                              c[e.data] is bool
+                                  ? _icon(c[e.data] as bool)
+                                  : Text(
+                                      _print(c[e.data]),
+                                      style: TextStyle(color: Colors.black54),
+                                    ),
+                              onTap: () {
+                                onPressed(c);
+                              },
+                            ))
+                        .toList(),
+                  ))
+              .toList(),
+          columns: columns
+              .map((e) => DataColumn(
+                      label: Text(
+                    e.title.enEN,
+                    style: TextStyle(color: Colors.black87),
+                  )))
+              .toList(),
         ),
       ],
     );

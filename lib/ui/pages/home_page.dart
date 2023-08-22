@@ -117,24 +117,30 @@ class HomePage extends StatelessWidget {
         log(DateTime.now().toIso8601String(), name: "SelectEntityEnd");
       },
       child: Container(
-        height: 30,
-        decoration: model == homeController.selectedEntity.value ? BoxDecoration(borderRadius: BorderRadius.circular(10), border: Border.all(color: Colors.black)) : null,
+        decoration: model == homeController.selectedEntity.value ? BoxDecoration(borderRadius: BorderRadius.circular(20), color: KC.primary) : null,
         alignment: Alignment.center,
-        padding: EdgeInsets.all(5),
+        padding: EdgeInsets.symmetric(horizontal: 15),
         child: Row(
           children: [
             Text(
               title ?? entityController.entity.titleTemplate.templateWithData(model!.data),
-              style: TextStyle(color: Colors.black),
+              style: model == homeController.selectedEntity.value ? TextStyle(color: Colors.white) : TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 16),
             ),
             if (title == null) SizedBox(width: 5),
             if (title == null)
-              GestureDetector(
-                onTap: () {
-                  homeController.subtractData(model!);
-                  homeController.deselectEntity();
-                },
-                child: Icon(Icons.close, size: 19),
+              Padding(
+                padding: const EdgeInsets.only(left: 5),
+                child: GestureDetector(
+                  onTap: () {
+                    homeController.subtractData(model!);
+                    homeController.deselectEntity();
+                  },
+                  child: Icon(
+                    Icons.close,
+                    size: 18,
+                    color: Colors.white,
+                  ),
+                ),
               )
           ],
         ),

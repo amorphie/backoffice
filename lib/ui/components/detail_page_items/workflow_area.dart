@@ -53,21 +53,16 @@ class _WorkflowAreaState extends State<WorkflowArea> {
             style: TextStyle(color: Colors.white, fontSize: 13),
           ),
           ...transitions
-              .map(
-                (e) => GestureDetector(
-                  onTap: () {
-                    _showDetailFormio(e);
-                  },
-                  child: Container(
-                      margin: EdgeInsets.all(5),
-                      padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                      decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10)),
-                      child: Text(
-                        e.title ?? e.name!,
-                        style: TextStyle(fontSize: 12),
-                      )),
-                ),
-              )
+              .map((e) => GestureDetector(
+                    onTap: () {
+                      _showDetailFormio(e);
+                    },
+                    child: Container(
+                        margin: EdgeInsets.all(5),
+                        padding: EdgeInsets.symmetric(horizontal: 15, vertical: 4),
+                        decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(20)),
+                        child: Text(e.title ?? e.name!, style: TextStyle(fontSize: 13, fontWeight: FontWeight.w500, color: KC.primary))),
+                  ))
               .toList()
         ],
       ),

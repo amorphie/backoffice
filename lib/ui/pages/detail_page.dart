@@ -84,7 +84,7 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
                     },
                     icon: Icon(Icons.close))
               ],
-              bottom: TabBar(controller: _tabController, tabs: [
+              bottom: TabBar(controller: _tabController, indicatorColor: Colors.deepOrangeAccent, indicatorPadding: EdgeInsets.all(1), tabs: [
                 if (displayController.displayLayout.detailTemplate != null)
                   Tab(
                     icon: Text("Detail"),
