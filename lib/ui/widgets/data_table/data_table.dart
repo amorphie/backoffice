@@ -1,7 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:admin/ui/components/data_table/data_table_source.dart';
-import 'package:admin/ui/components/filter/filter_area.dart';
-import 'package:admin/ui/components/indicator.dart';
+import 'package:admin/ui/widgets/data_table/data_table_source.dart';
+import 'package:admin/ui/widgets/filter/filter_area.dart';
+import 'package:admin/ui/widgets/indicator.dart';
 import 'package:flutter/material.dart';
 
 import 'package:admin/data/models/entity/layout_helpers/search_column_model.dart';
@@ -109,12 +109,29 @@ class AppDataTable extends StatelessWidget {
 
   Expanded search() {
     return Expanded(
-      child: TextField(
-        onSubmitted: onSearch,
-        // onChanged: (value) {
-        //   onSearch(value);
-        // },
-        decoration: InputDecoration(hintText: "Search", prefixIconColor: KC.primary, prefixIcon: Icon(Icons.search), iconColor: KC.primary),
+      child: Padding(
+        padding: const EdgeInsets.all(4),
+        child: TextField(
+          cursorColor: Colors.deepOrangeAccent,
+          onSubmitted: onSearch,
+          // onChanged: (value) {
+          //   onSearch(value);
+          // },
+          decoration: InputDecoration(
+            hintText: "Search",
+            prefixIconColor: KC.primary,
+            prefixIcon: Icon(Icons.search),
+            iconColor: KC.primary,
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(15),
+              borderSide: BorderSide(color: Colors.deepOrangeAccent, width: 1.5),
+            ),
+            focusColor: Colors.redAccent,
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
+          ),
+        ),
       ),
     );
   }

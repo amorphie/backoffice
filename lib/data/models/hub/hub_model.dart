@@ -7,6 +7,7 @@ class HubModel {
   String userId;
   String recordId;
   String eventInfo;
+  String? entityName;
   String instanceId;
   dynamic data;
   DateTime time;
@@ -18,6 +19,7 @@ class HubModel {
     required this.userId,
     required this.recordId,
     required this.eventInfo,
+    this.entityName,
     required this.instanceId,
     required this.data,
     required this.time,
@@ -31,6 +33,7 @@ class HubModel {
     String? userId,
     String? recordId,
     String? eventInfo,
+    String? entityName,
     String? instanceId,
     dynamic data,
     DateTime? time,
@@ -43,6 +46,7 @@ class HubModel {
       userId: userId ?? this.userId,
       recordId: recordId ?? this.recordId,
       eventInfo: eventInfo ?? this.eventInfo,
+      entityName: entityName ?? this.entityName,
       instanceId: instanceId ?? this.instanceId,
       data: data ?? this.data,
       time: time ?? this.time,
@@ -58,6 +62,7 @@ class HubModel {
       'UserId': userId,
       'recordId': recordId,
       'eventInfo': eventInfo,
+      'entityName': entityName,
       'instanceId': instanceId,
       'data': data,
       'time': time.toIso8601String(),
@@ -75,6 +80,7 @@ class HubModel {
         recordId: map['recordId'] as String,
         eventInfo: map['eventInfo'] as String,
         instanceId: map['instanceId'] as String,
+        entityName: map['entityName'],
         data: map['data'] as dynamic,
         time: DateTime.parse(map['time']),
         state: map['state'] as String,
@@ -87,6 +93,7 @@ class HubModel {
         userId: map['UserId'] as String,
         recordId: map['recordId'] as String,
         eventInfo: map['eventInfo'] as String,
+        entityName: map['entityName'],
         instanceId: map['instanceId'] as String,
         data: map['data'] as dynamic,
         time: DateTime.parse(map['time']),
@@ -104,7 +111,7 @@ class HubModel {
 
   @override
   String toString() {
-    return 'HubModel(UserId: $userId, recordId: $recordId, eventInfo: $eventInfo, instanceId: $instanceId, data: $data, time: $time, state: $state, transition: $transition, baseStatus: $baseStatus, page: $page)';
+    return 'HubModel(UserId: $userId, recordId: $recordId, eventInfo: $eventInfo, entityName: $entityName, instanceId: $instanceId, data: $data, time: $time, state: $state, transition: $transition, baseStatus: $baseStatus, page: $page)';
   }
 
   @override
@@ -115,6 +122,7 @@ class HubModel {
         other.recordId == recordId &&
         other.eventInfo == eventInfo &&
         other.instanceId == instanceId &&
+        other.entityName == entityName &&
         other.data == data &&
         other.time == time &&
         other.state == state &&
@@ -129,6 +137,7 @@ class HubModel {
         recordId.hashCode ^
         eventInfo.hashCode ^
         instanceId.hashCode ^
+        entityName.hashCode ^
         data.hashCode ^
         time.hashCode ^
         state.hashCode ^

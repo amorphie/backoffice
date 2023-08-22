@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:admin/data/extension/string_extension.dart';
 import 'package:admin/data/models/display/display_view_model.dart';
-import 'package:admin/ui/components/indicator.dart';
+import 'package:admin/ui/widgets/indicator.dart';
 import 'package:admin/ui/controllers/entity_controller.dart';
 import 'package:admin/ui/controllers/home_controller.dart';
 import 'package:admin/ui/controllers/workflow_controller.dart';
@@ -10,10 +10,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../style/colors.dart';
-import '../components/menu/menu.dart';
-import '../components/data_table/data_table.dart';
+import '../widgets/menu/menu.dart';
+import '../widgets/data_table/data_table.dart';
 import '../controllers/menu_controller.dart';
-import '../components/formio/formio_page.dart';
+import '../widgets/formio/formio_page.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
@@ -28,7 +28,6 @@ class HomePage extends StatelessWidget {
       children: [
         // if (Responsive.isDesktop(context))
         AppMenu(),
-
         Obx(
           () {
             if (menuController.hasSelectedMenuItem) {
@@ -117,24 +116,30 @@ class HomePage extends StatelessWidget {
         log(DateTime.now().toIso8601String(), name: "SelectEntityEnd");
       },
       child: Container(
-        height: 30,
-        decoration: model == homeController.selectedEntity.value ? BoxDecoration(borderRadius: BorderRadius.circular(10), border: Border.all(color: Colors.black)) : null,
+        decoration: model == homeController.selectedEntity.value ? BoxDecoration(borderRadius: BorderRadius.circular(20), color: KC.primary) : null,
         alignment: Alignment.center,
-        padding: EdgeInsets.all(5),
+        padding: EdgeInsets.symmetric(horizontal: 15),
         child: Row(
           children: [
             Text(
               title ?? entityController.entity.titleTemplate.templateWithData(model!.data),
-              style: TextStyle(color: Colors.black),
+              style: model == homeController.selectedEntity.value ? TextStyle(color: Colors.white) : TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 16),
             ),
             if (title == null) SizedBox(width: 5),
             if (title == null)
-              GestureDetector(
-                onTap: () {
-                  homeController.subtractData(model!);
-                  homeController.deselectEntity();
-                },
-                child: Icon(Icons.close, size: 19),
+              Padding(
+                padding: const EdgeInsets.only(left: 5),
+                child: GestureDetector(
+                  onTap: () {
+                    homeController.subtractData(model!);
+                    homeController.deselectEntity();
+                  },
+                  child: Icon(
+                    Icons.close,
+                    size: 18,
+                    color: Colors.white,
+                  ),
+                ),
               )
           ],
         ),

@@ -9,7 +9,7 @@ class AppIndicator extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
         child: SpinKitCircle(
-      color: KC.primary,
+      color: KC.secondary,
     ));
   }
 }
