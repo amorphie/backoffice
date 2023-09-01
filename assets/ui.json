@@ -158,7 +158,7 @@
                 },
                 {
                     "type": "entity",
-                    "entity": "tag",
+                    "entity": "tagEntity",
                     "search-layout": "full",
                     "display-layout": "none",
                     "title": {

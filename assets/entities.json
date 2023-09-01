@@ -319,6 +319,54 @@
             "url": "https://test-amorphie-resource.burgan.com.tr/domain/@domainId"
         }
     },
+    "tagEntity": {
+        "name": "tag-entity",
+        "workflow": "tag-entity",
+        "titleTemplate": "{{name}}",
+        "url": "https://test-amorphie-resource.burgan.com.tr/entity",
+        "search": {
+            "defaultPageSize": 100,
+            "defaultPageNumber": 0,
+            "search": false,
+            "columns": [
+                {
+                    "data": "id",
+                    "title": {
+                        "tr-TR": "ID",
+                        "en-EN": "ID"
+                    },
+                    "sort": 1
+                },
+                {
+                    "data": "name",
+                    "title": {
+                        "tr-TR": "Isim",
+                        "en-EN": "Name"
+                    },
+                    "sort": 2
+                },
+                {
+                    "data": "domainId",
+                    "title": {
+                        "tr-TR": "Domain ID",
+                        "en-EN": "Domain ID"
+                    },
+                    "sort": 3
+                },
+                {
+                    "data": "description",
+                    "title": {
+                        "tr-TR": "Açıklama",
+                        "en-EN": "Description"
+                    },
+                    "sort": 4
+                }
+            ]
+        },
+        "delete": {
+            "url": "https://test-amorphie-resource.burgan.com.tr/domain/@domainId"
+        }
+    },
     "resource": {
         "name": "resource",
         "workflow": "resource",
@@ -383,7 +431,7 @@
         }
     },
     "resourceRole": {
-        "name": "resourceRole",
+        "name": "resource-role",
         "workflow": "resourceRole",
         "titleTemplate": "{{name}}",
         "url": "https://test-amorphie-resource.burgan.com.tr/resourceRole",
