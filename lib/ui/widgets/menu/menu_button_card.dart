@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:admin/ui/style/colors.dart';
 import 'package:flutter/material.dart';
 
 class MenuButtonCard extends StatelessWidget {
@@ -25,7 +26,7 @@ class MenuButtonCard extends StatelessWidget {
           children: [
             Text(
               text,
-              style: TextStyle(color: isSelected ? Colors.deepOrangeAccent : Colors.white, fontSize: 16),
+              style: TextStyle(color: isSelected ? KC.secondary : Colors.white, fontSize: 16),
             ),
           ],
         ),

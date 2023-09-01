@@ -116,30 +116,34 @@ class HomePage extends StatelessWidget {
         log(DateTime.now().toIso8601String(), name: "SelectEntityEnd");
       },
       child: Container(
-        decoration: model == homeController.selectedEntity.value ? BoxDecoration(borderRadius: BorderRadius.circular(20), color: KC.primary) : null,
+        decoration: model == homeController.selectedEntity.value ? BoxDecoration(borderRadius: BorderRadius.circular(20), color: KC.secondary) : null,
         alignment: Alignment.center,
-        padding: EdgeInsets.symmetric(horizontal: 15),
+        padding: EdgeInsets.symmetric(horizontal: 5),
         child: Row(
           children: [
-            Text(
-              title ?? entityController.entity.titleTemplate.templateWithData(model!.data),
-              style: model == homeController.selectedEntity.value ? TextStyle(color: Colors.white) : TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 16),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              child: Text(
+                title ?? entityController.entity.titleTemplate.templateWithData(model!.data),
+                style: model == homeController.selectedEntity.value ? TextStyle(color: Colors.white) : TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 16),
+              ),
             ),
             if (title == null) SizedBox(width: 5),
             if (title == null)
               Padding(
                 padding: const EdgeInsets.only(left: 5),
                 child: GestureDetector(
-                  onTap: () {
-                    homeController.subtractData(model!);
-                    homeController.deselectEntity();
-                  },
-                  child: Icon(
-                    Icons.close,
-                    size: 18,
-                    color: Colors.white,
-                  ),
-                ),
+                    onTap: () {
+                      homeController.subtractData(model!);
+                      homeController.deselectEntity();
+                    },
+                    child: model == homeController.selectedEntity.value
+                        ? Icon(
+                            Icons.close,
+                            size: 18,
+                            color: Colors.white,
+                          )
+                        : SizedBox(width: 0)),
               )
           ],
         ),

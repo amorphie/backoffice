@@ -112,7 +112,7 @@ class AppDataTable extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(4),
         child: TextField(
-          cursorColor: Colors.deepOrangeAccent,
+          cursorColor: KC.secondary,
           onSubmitted: onSearch,
           // onChanged: (value) {
           //   onSearch(value);
@@ -124,7 +124,7 @@ class AppDataTable extends StatelessWidget {
             iconColor: KC.primary,
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(15),
-              borderSide: BorderSide(color: Colors.deepOrangeAccent, width: 1.5),
+              borderSide: BorderSide(color: KC.secondary, width: 1.5),
             ),
             focusColor: Colors.redAccent,
             border: OutlineInputBorder(

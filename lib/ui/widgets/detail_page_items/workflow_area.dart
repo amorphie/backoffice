@@ -60,8 +60,8 @@ class _WorkflowAreaState extends State<WorkflowArea> {
                     child: Container(
                         margin: EdgeInsets.all(5),
                         padding: EdgeInsets.symmetric(horizontal: 15, vertical: 4),
-                        decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(20)),
-                        child: Text(e.title ?? e.name!, style: TextStyle(fontSize: 13, fontWeight: FontWeight.w500, color: KC.primary))),
+                        decoration: BoxDecoration(color: KC.secondary, borderRadius: BorderRadius.circular(20)),
+                        child: Text(e.title ?? e.name!, style: TextStyle(fontSize: 13, fontWeight: FontWeight.w500, color: Colors.white))),
                   ))
               .toList()
         ],

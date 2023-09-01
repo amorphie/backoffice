@@ -28,7 +28,7 @@ class AppMenu extends StatelessWidget {
                     )),
                 Icon(
                   Icons.language_outlined,
-                  color: Colors.deepOrangeAccent,
+                  color: KC.secondary,
                 ),
                 //  Text(
                 //    "English",
