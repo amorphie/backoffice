@@ -1,5 +1,7 @@
 import 'package:admin/ui/style/colors.dart';
+import 'package:admin/ui/widgets/search_textfield.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class MenuProfileItem extends StatelessWidget {
   const MenuProfileItem({super.key});
@@ -26,6 +28,14 @@ class MenuProfileItem extends StatelessWidget {
           Text(
             "username",
             style: TextStyle(color: KC.secondary, fontSize: 17),
+          ),
+          Searchtf(
+            inputFormatters: [
+              FilteringTextInputFormatter.allow(RegExp('[0-9.,]')),
+            ],
+            labelText: "TCKN",
+            hintText: "TR00 0000 0000 0000 0000 00",
+            textInputType: TextInputType.number,
           )
         ],
       ),

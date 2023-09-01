@@ -280,8 +280,8 @@
         }
     },
     "domain": {
-        "name": "domain",
-        "workflow": "domain",
+        "name": "tag-domain",
+        "workflow": "tag-domain",
         "titleTemplate": "{{name}}",
         "url": "https://test-amorphie-resource.burgan.com.tr/domain",
         "search": {
@@ -415,8 +415,8 @@
         }
     },
     "roleGroup": {
-        "name": "roleGroup",
-        "workflow": "roleGroup",
+        "name": "resource-roleGroup",
+        "workflow": "resource-roleGroup",
         "titleTemplate": "{{name}}",
         "url": "https://test-amorphie-resource.burgan.com.tr/roleGroup",
         "search": {
@@ -463,8 +463,8 @@
         }
     },
     "privilege": {
-        "name": "privilege",
-        "workflow": "privilege",
+        "name": "resource-privilege",
+        "workflow": "resource-privilege",
         "titleTemplate": "{{name}}",
         "url": "https://test-amorphie-resource.burgan.com.tr/privilege",
         "search": {
