@@ -432,7 +432,7 @@
     },
     "resourceRole": {
         "name": "resource-role",
-        "workflow": "resourceRole",
+        "workflow": "esource-role",
         "titleTemplate": "{{name}}",
         "url": "https://test-amorphie-resource.burgan.com.tr/resourceRole",
         "search": {
