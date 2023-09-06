@@ -13,6 +13,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 import 'package:admin/data/models/entity/layout_helpers/title_model.dart';
 import 'package:admin/ui/controllers/home_controller.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../controllers/display_controller.dart';
 import '../style/colors.dart';
@@ -42,6 +43,20 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
               if (args != null && args.length > 0) {
                 await Clipboard.setData(ClipboardData(text: args.first.toString()));
                 Get.snackbar("Info", "Data copied to clipboard");
+              }
+            });
+    registry.registerFunction(
+        "url",
+        ({args, required registry}) => () async {
+              if (args != null && args.length > 0) {
+                Future<void> _launchInBrowser(Uri url) async {
+                  if (!await launchUrl(
+                    url,
+                    mode: LaunchMode.externalApplication,
+                  )) {
+                    throw Exception('Could not launch $url');
+                  }
+                }
               }
             });
     _tabController = TabController(length: displayController.tabCount, vsync: this);
@@ -84,23 +99,30 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
                     },
                     icon: Icon(Icons.close))
               ],
-              bottom: TabBar(controller: _tabController, indicatorColor: Colors.deepOrangeAccent, indicatorPadding: EdgeInsets.all(1), isScrollable: false, tabs: [
-                if (displayController.displayLayout.detailTemplate != null)
-                  Tab(
-                    icon: Text("Detail"),
-                  ),
-                ...displayController.displayLayout.tabs!
-                    .map(
-                      (e) => Tab(
-                        icon: Text(e.title.enEN),
+              bottom: TabBar(
+                  unselectedLabelColor: Colors.white,
+                  labelColor: KC.secondary,
+                  controller: _tabController,
+                  indicatorColor: KC.secondary,
+                  indicatorPadding: EdgeInsets.all(1),
+                  isScrollable: false,
+                  tabs: [
+                    if (displayController.displayLayout.detailTemplate != null)
+                      Tab(
+                        icon: Text("Detail"),
                       ),
-                    )
-                    .toList(),
-                if (entityController.entity.display!.history!)
-                  Tab(
-                    icon: Text("History"),
-                  ),
-              ]),
+                    ...displayController.displayLayout.tabs!
+                        .map(
+                          (e) => Tab(
+                            icon: Text(e.title.enEN),
+                          ),
+                        )
+                        .toList(),
+                    if (entityController.entity.display!.history!)
+                      Tab(
+                        icon: Text("History"),
+                      ),
+                  ]),
             ),
             body: Obx(() {
               return TabBarView(controller: _tabController, children: [

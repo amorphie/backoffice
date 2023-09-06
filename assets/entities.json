@@ -280,8 +280,8 @@
         }
     },
     "domain": {
-        "name": "domain",
-        "workflow": "domain",
+        "name": "tag-domain",
+        "workflow": "tag-domain",
         "titleTemplate": "{{name}}",
         "url": "https://test-amorphie-resource.burgan.com.tr/domain",
         "search": {
@@ -312,6 +312,54 @@
                         "en-EN": "Entities"
                     },
                     "sort": 3
+                }
+            ]
+        },
+        "delete": {
+            "url": "https://test-amorphie-resource.burgan.com.tr/domain/@domainId"
+        }
+    },
+    "tagEntity": {
+        "name": "tag-entity",
+        "workflow": "tag-entity",
+        "titleTemplate": "{{name}}",
+        "url": "https://test-amorphie-resource.burgan.com.tr/entity",
+        "search": {
+            "defaultPageSize": 100,
+            "defaultPageNumber": 0,
+            "search": false,
+            "columns": [
+                {
+                    "data": "id",
+                    "title": {
+                        "tr-TR": "ID",
+                        "en-EN": "ID"
+                    },
+                    "sort": 1
+                },
+                {
+                    "data": "name",
+                    "title": {
+                        "tr-TR": "Isim",
+                        "en-EN": "Name"
+                    },
+                    "sort": 2
+                },
+                {
+                    "data": "domainId",
+                    "title": {
+                        "tr-TR": "Domain ID",
+                        "en-EN": "Domain ID"
+                    },
+                    "sort": 3
+                },
+                {
+                    "data": "description",
+                    "title": {
+                        "tr-TR": "Açıklama",
+                        "en-EN": "Description"
+                    },
+                    "sort": 4
                 }
             ]
         },
@@ -383,8 +431,8 @@
         }
     },
     "resourceRole": {
-        "name": "resourceRole",
-        "workflow": "resourceRole",
+        "name": "resource-role",
+        "workflow": "esource-role",
         "titleTemplate": "{{name}}",
         "url": "https://test-amorphie-resource.burgan.com.tr/resourceRole",
         "search": {
@@ -415,8 +463,8 @@
         }
     },
     "roleGroup": {
-        "name": "roleGroup",
-        "workflow": "roleGroup",
+        "name": "resource-roleGroup",
+        "workflow": "resource-roleGroup",
         "titleTemplate": "{{name}}",
         "url": "https://test-amorphie-resource.burgan.com.tr/roleGroup",
         "search": {
@@ -463,8 +511,8 @@
         }
     },
     "privilege": {
-        "name": "privilege",
-        "workflow": "privilege",
+        "name": "resource-privilege",
+        "workflow": "resource-privilege",
         "titleTemplate": "{{name}}",
         "url": "https://test-amorphie-resource.burgan.com.tr/privilege",
         "search": {

@@ -55,7 +55,7 @@ class AppDataTable extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      if (withSearch) search(),
+                      if (withSearch) SerachTextfield(onSearch: onSearch),
                       if (hasFilter)
                         SizedBox(
                           width: 50,
@@ -106,14 +106,25 @@ class AppDataTable extends StatelessWidget {
       ],
     );
   }
+}
 
-  Expanded search() {
+class SerachTextfield extends StatelessWidget {
+  const SerachTextfield({
+    super.key,
+    required this.onSearch,
+  });
+
+  final Function(String val) onSearch;
+
+  @override
+  Widget build(BuildContext context) {
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.all(4),
         child: TextField(
-          cursorColor: Colors.deepOrangeAccent,
+          cursorColor: KC.secondary,
           onSubmitted: onSearch,
+          inputFormatters: [],
           // onChanged: (value) {
           //   onSearch(value);
           // },
@@ -124,7 +135,7 @@ class AppDataTable extends StatelessWidget {
             iconColor: KC.primary,
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(15),
-              borderSide: BorderSide(color: Colors.deepOrangeAccent, width: 1.5),
+              borderSide: BorderSide(color: KC.secondary, width: 1.5),
             ),
             focusColor: Colors.redAccent,
             border: OutlineInputBorder(

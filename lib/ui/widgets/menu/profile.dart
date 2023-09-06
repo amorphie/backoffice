@@ -1,3 +1,4 @@
+import 'package:admin/ui/style/colors.dart';
 import 'package:flutter/material.dart';
 
 class MenuProfileItem extends StatelessWidget {
@@ -24,8 +25,8 @@ class MenuProfileItem extends StatelessWidget {
           // ),
           Text(
             "username",
-            style: TextStyle(color: Colors.white70, fontSize: 17),
-          )
+            style: TextStyle(color: KC.secondary, fontSize: 17),
+          ),
         ],
       ),
     );

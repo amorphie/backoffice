@@ -34,7 +34,7 @@ class MenuItem extends StatelessWidget {
                 collapsedBackgroundColor: KC.primary,
                 childrenPadding: const EdgeInsets.only(left: 30, bottom: 10),
                 expandedCrossAxisAlignment: CrossAxisAlignment.start,
-                iconColor: Colors.deepOrangeAccent,
+                iconColor: KC.secondary,
                 collapsedIconColor: Colors.white70,
                 title: MenuButtonCard(
                   text: model.title!.enEN,
