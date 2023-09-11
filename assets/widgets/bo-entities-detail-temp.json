@@ -1,0 +1,141 @@
+{
+  "type": "list_view",
+  "children": [
+    {
+      "type": "container",
+      "args": {
+        "margin": 2,
+        "padding": 4
+      },
+      "child": {
+        "type": "column",
+        "args": {
+          "crossAxisAlignment": "start",
+          "mainAxisAlignment": "start"
+        },
+        "children": [
+          {
+            "type": "text",
+            "args": {
+              "text": "ID",
+              "style": {
+                "fontWeight": "bold",
+                "color": "#1d1f29"
+              }
+            }
+          },
+          {
+            "type": "padding",
+            "args": {
+              "padding": {
+                "bottom": 8,   
+                "top": 10
+              }
+            },
+            "child": {
+              "type": "text",
+              "args": {
+                "text": "{{entity.id}}",
+                "style": {
+                  "fontWeight": "w400",
+                  "color": "#1d1f29"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "container",
+      "args": {
+        "margin": 2,
+        "padding": 4
+      },
+      "child": {
+        "type": "column",
+        "args": {
+          "crossAxisAlignment": "start",
+          "mainAxisAlignment": "start"
+        },
+        "children": [
+          {
+            "type": "text",
+            "args": {
+              "text": "Entity",
+              "style": {
+                "fontWeight": "bold",
+                "color": "#1d1f29"
+              }
+            }
+          },
+          {
+            "type": "padding",
+            "args": {
+              "padding": {
+                "bottom": 8,   
+                "top": 10
+              }
+            },
+            "child": {
+              "type": "text",
+              "args": {
+                "text": "{{entity.name}}",
+                "style": {
+                  "fontWeight": "w400",
+                  "color": "#1d1f29"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "container",
+      "args": {
+        "margin": 2,
+       
+        "padding": 4
+      },
+      "child": {
+        "type": "column",
+        "args": {
+          "crossAxisAlignment": "start",
+          "mainAxisAlignment": "start"
+        },
+        "children": [
+          {
+            "type": "text",
+            "args": {
+              "text": "Description",
+              "style": {
+                "fontWeight": "bold",
+                "color": "#1d1f29"
+              }
+            }
+          },
+          {
+            "type": "padding",
+            "args": {
+              "padding": {
+                "bottom": 8,
+                "top": 10
+              }
+            },
+            "child": {
+              "type": "text",
+              "args": {
+                "text": "{{entity.description}}",
+                "style": {
+                  "fontWeight": "w400",
+                  "color": "#1d1f29"
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
