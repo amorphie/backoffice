@@ -35,7 +35,7 @@
             "child": {
               "type": "text",
               "args": {
-                "text": "{{domain.id}}",
+                "text": "{{data.id}}",
                 "style": {
                   "fontWeight": "w400",
                   "color": "#1d1f29"
@@ -80,7 +80,7 @@
             "child": {
               "type": "text",
               "args": {
-                "text": "{{domain.name}}",
+                "text": "{{data.name}}",
                 "style": {
                   "fontWeight": "w400",
                   "color": "#1d1f29"
@@ -126,7 +126,7 @@
             "child": {
               "type": "text",
               "args": {
-                "text": "{{domain.description}}",
+                "text": "{{data.description}}",
                 "style": {
                   "fontWeight": "w400",
                   "color": "#1d1f29"

@@ -35,7 +35,7 @@
             "child": {
               "type": "text",
               "args": {
-                "text": "{{privilege.id}}",
+                "text": "{{data.id}}",
                 "style": {
                   "fontWeight": "w400",
                   "color": "#1d1f29"
@@ -80,7 +80,7 @@
             "child": {
               "type": "text",
               "args": {
-                "text": "{{privilege.resourceId}}",
+                "text": "{{data.resourceId}}",
                 "style": {
                   "fontWeight": "w400",
                   "color": "#1d1f29"
@@ -126,7 +126,7 @@
             "child": {
               "type": "text",
               "args": {
-                "text": "{{privilege.url}}",
+                "text": "{{data.url}}",
                 "style": {
                   "fontWeight": "w400",
                   "color": "#1d1f29"
@@ -172,7 +172,7 @@
             "child": {
               "type": "text",
               "args": {
-                "text": "{{privilege.ttl}}",
+                "text": "{{data.ttl}}",
                 "style": {
                   "fontWeight": "w400",
                   "color": "#1d1f29"
