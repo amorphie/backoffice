@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:admin/data/extension/string_extension.dart';
 import 'package:admin/data/models/display/display_view_model.dart';
-import 'package:admin/ui/pages/dashboard/dashboard.dart';
+import 'package:admin/ui/pages/dashboard.dart';
 import 'package:admin/ui/widgets/indicator.dart';
 import 'package:admin/ui/controllers/entity_controller.dart';
 import 'package:admin/ui/controllers/home_controller.dart';

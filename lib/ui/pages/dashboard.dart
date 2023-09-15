@@ -2,7 +2,7 @@ import 'package:admin/ui/widgets/dashboard/dashboard_item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../controllers/ui_controller.dart';
+import '../controllers/ui_controller.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
