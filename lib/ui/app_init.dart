@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'controllers/entity_controller.dart';
-import 'controllers/menu_controller.dart';
+import 'controllers/ui_controller.dart';
 
 class AppInit extends StatelessWidget {
   const AppInit({super.key});
@@ -23,7 +23,7 @@ class AppInit extends StatelessWidget {
       screenRouteFunction: () async {
         await Hub.shared.start();
 
-        AppMenuController menuController = Get.find<AppMenuController>();
+        AppUiController menuController = Get.find<AppUiController>();
         EntityController entityController = Get.find<EntityController>();
         await menuController.init();
         await entityController.init();

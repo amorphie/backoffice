@@ -4,7 +4,7 @@ import 'package:admin/ui/style/colors.dart';
 import 'package:admin/ui/widgets/menu/menu_button_card.dart';
 import 'package:admin/ui/widgets/menu/profile.dart';
 import 'package:admin/ui/controllers/entity_controller.dart';
-import 'package:admin/ui/controllers/menu_controller.dart';
+import 'package:admin/ui/controllers/ui_controller.dart';
 import 'package:admin/ui/controllers/workflow_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -18,7 +18,7 @@ class MenuItem extends StatelessWidget {
     required this.model,
   }) : super(key: key);
 
-  final AppMenuController menuController = Get.find<AppMenuController>();
+  final AppUiController menuController = Get.find<AppUiController>();
   final EntityController entityController = Get.find<EntityController>();
   @override
   Widget build(BuildContext context) {

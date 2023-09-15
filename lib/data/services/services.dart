@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:admin/data/models/entity/entity_model.dart';
 import 'package:admin/data/models/menu/menu_model.dart';
+import 'package:admin/data/models/ui/ui_model.dart';
 import 'package:flutter/services.dart';
 
 import '_executer.dart';
@@ -18,11 +19,11 @@ class Services {
     return map;
   }
 
-  Future<MenuModel> getMenuData() async {
+  Future<UIModel> getUiData() async {
     var result = await rootBundle.loadString("assets/ui.json");
     var data = json.decode(result);
 
-    MenuModel menu = MenuModel.fromMap(data);
+    UIModel menu = UIModel.fromMap(data);
     return menu;
   }
 

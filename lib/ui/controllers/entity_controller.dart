@@ -1,7 +1,7 @@
 //import 'dart:ffi';
 
 import 'package:admin/data/services/services.dart';
-import 'package:admin/ui/controllers/menu_controller.dart';
+import 'package:admin/ui/controllers/ui_controller.dart';
 import 'package:get/get.dart';
 
 import '../../data/models/entity/entity_model.dart';
@@ -46,7 +46,7 @@ class EntityController extends GetxController {
   }
 
   Future<void> setEntityMenu() async {
-    AppMenuController menu = Get.find<AppMenuController>();
+    AppUiController menu = Get.find<AppUiController>();
     EntityModel? entityModel = entities[menu.menuItem.value.entity];
     if (entityModel != null) {
       entity = entityModel;
