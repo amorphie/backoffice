@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:admin/data/models/entity/entity_model.dart';
-import 'package:admin/data/models/menu/menu_model.dart';
 import 'package:admin/data/models/ui/ui_model.dart';
 import 'package:flutter/services.dart';
 
