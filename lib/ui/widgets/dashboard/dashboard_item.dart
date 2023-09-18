@@ -10,6 +10,8 @@ import 'package:flutter/material.dart';
 import 'package:admin/data/models/dashboard/dashboard_item_model.dart';
 import 'package:get/get.dart';
 
+import 'dashboard_chart/dashboard_chart.dart';
+
 class DashboardItem extends StatelessWidget {
   final DashboardItemModel item;
   const DashboardItem({
@@ -25,6 +27,8 @@ class DashboardItem extends StatelessWidget {
           return DashboardCounter(item: item);
         case DashboardType.tab:
           return DashboardTab(item: item);
+        case DashboardType.chart:
+          return DashboardChart(item: item);
         case DashboardType.list:
           EntityController entityController = Get.find<EntityController>();
           AppUiController uiController = Get.find<AppUiController>();

@@ -5,6 +5,7 @@ import 'dart:developer';
 import 'package:admin/data/models/hub/hub_model.dart';
 import 'package:admin/helpers/logger.dart';
 import 'package:admin/ui/controllers/entity_controller.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:logging/logging.dart';
 import 'package:signalr_netcore/signalr_client.dart';
@@ -64,6 +65,7 @@ class Hub {
 
         formioDialog(Get.context!, model.entityName, model.recordId);
       }
+      if (model.message != null && model.message!.isNotEmpty) Get.snackbar("Result", model.message!, backgroundColor: Colors.black, colorText: Colors.white);
     });
     connection.on("ClientConnected", (arguments) {
       Logger.root.config(arguments.toString(), "ClientConnected");

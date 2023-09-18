@@ -29,7 +29,7 @@
                 },
                 "data": {
                     "url": "chart-data-api",
-                    "type": "pie",
+                    "chartType": "pie",
                     "list": [
                         {
                             "title": "name",
