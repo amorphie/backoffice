@@ -16,6 +16,7 @@ class DashboardItemModel {
   TitleModel? title;
   List<DashboardItemModel>? items;
   int count;
+
   DashboardItemModel({required this.type, this.entity, this.dataUrl, this.data, this.title, this.items, this.count = 5});
 
   DashboardItemModel copyWith({

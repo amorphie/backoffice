@@ -15,6 +15,9 @@ class HubModel {
   String transition;
   num baseStatus;
   HubNavigationPageModel? page;
+  String? message;
+  dynamic additionalData;
+
   HubModel({
     required this.userId,
     required this.recordId,
@@ -27,6 +30,8 @@ class HubModel {
     required this.transition,
     required this.baseStatus,
     this.page,
+    this.message,
+    this.additionalData,
   });
 
   HubModel copyWith({
@@ -41,6 +46,8 @@ class HubModel {
     String? transition,
     num? baseStatus,
     HubNavigationPageModel? page,
+    String? message,
+    dynamic additionalData,
   }) {
     return HubModel(
       userId: userId ?? this.userId,
@@ -54,6 +61,8 @@ class HubModel {
       transition: transition ?? this.transition,
       baseStatus: baseStatus ?? this.baseStatus,
       page: page ?? this.page,
+      message: message ?? this.message,
+      additionalData: additionalData ?? this.additionalData,
     );
   }
 
@@ -70,6 +79,8 @@ class HubModel {
       'transition': transition,
       'baseStatus': baseStatus,
       'page': page?.toMap(),
+      'message': message,
+      'additionalData': additionalData,
     };
   }
 
@@ -87,6 +98,8 @@ class HubModel {
         transition: map['transition'] as String,
         baseStatus: map['baseStatus'] as num,
         page: map['page'] != null ? HubNavigationPageModel.fromMap(map['page']) : null,
+        message: map["message"] != null ? map["message"] : null,
+        additionalData: map["additionalData"] != null ? map["additionalData"] : null,
       );
     } catch (e) {
       return HubModel(
@@ -101,6 +114,8 @@ class HubModel {
         transition: map['transition'] as String,
         baseStatus: map['baseStatus'] as num,
         page: map['page'] != null ? HubNavigationPageModel.fromMap(map['page']) : null,
+        message: map["message"] != null ? map["message"] : null,
+        additionalData: map["additionalData"] != null ? map["additionalData"] : null,
       );
     }
   }
