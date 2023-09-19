@@ -218,7 +218,7 @@
     },
     "tag": {
         "name": "tag",
-        "workflow": "tag-register",
+        "workflow": "workflowStatus",
         "titleTemplate": "{{name}}",
         "url": "https://test-amorphie-tag.burgan.com.tr/tag",
         "search": {
@@ -281,7 +281,7 @@
     },
     "domain": {
         "name": "tag-domain",
-        "workflow": "tag-domain",
+        "workflow": "saveDomainWithWorkFlow",
         "titleTemplate": "{{name}}",
         "url": "https://test-amorphie-resource.burgan.com.tr/domain",
         "search": {
@@ -321,7 +321,7 @@
     },
     "tagEntity": {
         "name": "tag-entity",
-        "workflow": "tag-entity",
+        "workflow": "SaveEntityWithWorkflow",
         "titleTemplate": "{{name}}",
         "url": "https://test-amorphie-resource.burgan.com.tr/entity",
         "search": {
