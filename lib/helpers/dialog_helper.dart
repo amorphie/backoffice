@@ -1,6 +1,8 @@
+import 'package:admin/ui/widgets/formio/formio_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../data/models/history/history_model.dart';
 import '../ui/widgets/formio/formio_page.dart';
 import '../ui/widgets/indicator.dart';
 import '../ui/controllers/entity_controller.dart';
@@ -36,7 +38,7 @@ Future<void> formioDialog(BuildContext context, [String? entity, String? recordI
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    controller.workflow.stateManager.title ?? "",
+                    controller.workflow.stateManager?.title ?? "",
                     style: TextStyle(color: KC.primary, fontWeight: FontWeight.bold),
                   ),
                   IconButton(
@@ -55,6 +57,27 @@ Future<void> formioDialog(BuildContext context, [String? entity, String? recordI
           ),
         );
       });
+    },
+  );
+}
+
+Future<void> showHistoryWidget(BuildContext context, HistoryModel data) async {
+  return showDialog<void>(
+    context: context,
+    barrierDismissible: true, // user must tap button!
+    builder: (BuildContext context) {
+      return Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: AlertDialog(
+            actionsPadding: EdgeInsets.zero,
+            insetPadding: EdgeInsets.zero,
+            buttonPadding: EdgeInsets.zero,
+            contentPadding: EdgeInsets.zero,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+            content: FormioWidget(
+              schema: data.formSchema ?? "",
+            )),
+      );
     },
   );
 }

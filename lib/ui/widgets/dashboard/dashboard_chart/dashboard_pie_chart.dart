@@ -18,15 +18,12 @@ class DashboardPieChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 300,
+      // width: 300,
       height: 300,
       child: PieChart(
         PieChartData(
             pieTouchData: PieTouchData(
-              touchCallback: (event, response) {
-                print(event.toString());
-                print(response.toString());
-              },
+              touchCallback: (event, response) {},
             ),
             centerSpaceRadius: 0,
             sections: item.data!.list.map(
@@ -35,7 +32,7 @@ class DashboardPieChart extends StatelessWidget {
                   color: Colors.primaries[Random().nextInt(Colors.primaries.length)],
                   title: e.title,
                   value: e.value * 1.0,
-                  radius: 60,
+                  radius: 120,
                 );
               },
             ).toList()),

@@ -39,7 +39,7 @@ class DisplayController extends GetxController {
   int get tabCount {
     EntityController entityController = Get.find<EntityController>();
 
-    return displayLayout.tabs!.length + (displayLayout.detailTemplate != null ? 1 : 0) + (entityController.entity.display!.history! ? 1 : 0);
+    return (displayLayout.tabs?.length ?? 0) + (displayLayout.detailTemplate != null ? 1 : 0) + (entityController.entity.display!.history! ? 1 : 0);
   }
 
   Future _getById() async {
@@ -74,19 +74,20 @@ class DisplayController extends GetxController {
           _displayView.value,
         ),
       });
-
-    for (var tab in displayLayout.tabs!) {
-      if (tab.type == "render") {
-        templates.addAll({
-          tab.template!.enEN: await getTemplate(
-            "${tab.template!.enEN}",
-            {
-              "consents": List.generate(1, (index) => {"name": "Deneme$index", "description": "text$index"})
-            },
-          )
-        });
-      } else if (tab.type == "search") {
-        searchModels.addAll({tab.entity: await getSearchData(tab)});
+    if (displayLayout.tabs != null) {
+      for (var tab in displayLayout.tabs!) {
+        if (tab.type == "render") {
+          templates.addAll({
+            tab.template!.enEN: await getTemplate(
+              "${tab.template!.enEN}",
+              {
+                "consents": List.generate(1, (index) => {"name": "Deneme$index", "description": "text$index"})
+              },
+            )
+          });
+        } else if (tab.type == "search") {
+          searchModels.addAll({tab.entity: await getSearchData(tab)});
+        }
       }
     }
   }

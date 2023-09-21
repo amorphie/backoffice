@@ -3,58 +3,59 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 
-import 'package:admin/data/models/workflow/altmodels/available_workflows.dart';
-import 'package:admin/data/models/workflow/altmodels/running_workflows.dart';
-import 'package:admin/data/models/workflow/altmodels/statemanager.dart';
+import 'state_manager_model.dart';
 
 class WorkflowModel {
-  StateManagerModel stateManager;
-  List<AvailableWorkflowModel>? availableWorkflows;
-  List<RunningWorkflowsModel>? runningWorkflows;
+  StateManager? stateManager;
+  List<StateManager>? runningWorkflows;
+  List<StateManager>? availableWorkflows;
+
+  bool get isEmpty => stateManagerEmpty && runningWorkflowsEmpty && availableWorkflowsEmpty;
+
+  bool get stateManagerEmpty => stateManager == null;
+  bool get runningWorkflowsEmpty => runningWorkflows == null || runningWorkflows!.length == 0;
+  bool get availableWorkflowsEmpty => availableWorkflows == null || availableWorkflows!.length == 0;
+
   WorkflowModel({
-    required this.stateManager,
-    this.availableWorkflows,
+    this.stateManager,
     this.runningWorkflows,
+    this.availableWorkflows,
   });
 
-  factory WorkflowModel.init() {
-    return WorkflowModel(stateManager: StateManagerModel());
-  }
-
   WorkflowModel copyWith({
-    StateManagerModel? stateManager,
-    List<AvailableWorkflowModel>? availableWorkflows,
-    List<RunningWorkflowsModel>? runningWorkflows,
+    StateManager? stateManager,
+    List<StateManager>? runningWorkflows,
+    List<StateManager>? availableWorkflows,
   }) {
     return WorkflowModel(
       stateManager: stateManager ?? this.stateManager,
-      availableWorkflows: availableWorkflows ?? this.availableWorkflows,
       runningWorkflows: runningWorkflows ?? this.runningWorkflows,
+      availableWorkflows: availableWorkflows ?? this.availableWorkflows,
     );
   }
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'stateManager': stateManager.toMap(),
-      'availableWorkflows': availableWorkflows?.map((x) => x.toMap()).toList(),
+      'stateManager': stateManager?.toMap(),
       'runningWorkflows': runningWorkflows?.map((x) => x.toMap()).toList(),
+      'availableWorkflows': availableWorkflows?.map((x) => x.toMap()).toList(),
     };
   }
 
   factory WorkflowModel.fromMap(Map<String, dynamic> map) {
     return WorkflowModel(
-      stateManager: StateManagerModel.fromMap(map['stateManager'] as Map<String, dynamic>),
-      availableWorkflows: map['availableWorkflows'] != null
-          ? List<AvailableWorkflowModel>.from(
-              (map['availableWorkflows']).map<AvailableWorkflowModel?>(
-                (x) => AvailableWorkflowModel.fromMap(x as Map<String, dynamic>),
+      stateManager: map['stateManager'] != null ? StateManager.fromMap(map['stateManager'] as Map<String, dynamic>) : null,
+      runningWorkflows: map['runningWorkflows'] != null
+          ? List<StateManager>.from(
+              (map['runningWorkflows']).map<StateManager?>(
+                (x) => StateManager.fromMap(x as Map<String, dynamic>),
               ),
             )
           : null,
-      runningWorkflows: map['runningWorkflows'] != null
-          ? List<RunningWorkflowsModel>.from(
-              (map['runningWorkflows']).map<RunningWorkflowsModel?>(
-                (x) => RunningWorkflowsModel.fromMap(x as Map<String, dynamic>),
+      availableWorkflows: map['availableWorkflows'] != null
+          ? List<StateManager>.from(
+              (map['availableWorkflows']).map<StateManager?>(
+                (x) => StateManager.fromMap(x as Map<String, dynamic>),
               ),
             )
           : null,
@@ -66,15 +67,15 @@ class WorkflowModel {
   factory WorkflowModel.fromJson(String source) => WorkflowModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
-  String toString() => 'WorkflowModel(stateManager: $stateManager, availableWorkflows: $availableWorkflows, runningWorkflows: $runningWorkflows)';
+  String toString() => 'WorkflowModel(stateManager: $stateManager, runningWorkflows: $runningWorkflows, availableWorkflows: $availableWorkflows)';
 
   @override
   bool operator ==(covariant WorkflowModel other) {
     if (identical(this, other)) return true;
 
-    return other.stateManager == stateManager && listEquals(other.availableWorkflows, availableWorkflows) && listEquals(other.runningWorkflows, runningWorkflows);
+    return other.stateManager == stateManager && listEquals(other.runningWorkflows, runningWorkflows) && listEquals(other.availableWorkflows, availableWorkflows);
   }
 
   @override
-  int get hashCode => stateManager.hashCode ^ availableWorkflows.hashCode ^ runningWorkflows.hashCode;
+  int get hashCode => stateManager.hashCode ^ runningWorkflows.hashCode ^ availableWorkflows.hashCode;
 }

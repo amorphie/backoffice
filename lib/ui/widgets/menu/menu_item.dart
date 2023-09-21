@@ -73,7 +73,11 @@ class MenuItem extends StatelessWidget {
                 );
               });
             case MenuItemType.profile:
-              return MenuProfileItem();
+              return MenuProfileItem(
+                logoPressed: () {
+                  menuController.menuReset();
+                },
+              );
             case MenuItemType.divider:
               return Divider();
             default:

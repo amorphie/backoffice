@@ -16,6 +16,11 @@ class AppUiController extends GetxController {
   bool get isEntityItem => menuItem.value.type == MenuItemType.entity;
   bool get hasSelectedMenuItem => menuItem.value.type != MenuItemType.none;
   RxMap<String, dynamic> dashboardListData = <String, dynamic>{}.obs;
+
+  menuReset() {
+    menuItem.value = MenuItemModel(type: MenuItemType.none);
+  }
+
   Future<void> init() async {
     Services services = Services();
     ui = await services.getUiData();

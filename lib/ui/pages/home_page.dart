@@ -41,7 +41,7 @@ class HomePage extends StatelessWidget {
                         height: 30,
                         child: Row(
                           children: [
-                            displayButton(title: menuController.menuItem.value.title!.enEN),
+                            if (homeController.hasEntity) displayButton(title: menuController.menuItem.value.title!.enEN),
                             Expanded(
                               child: Obx(() {
                                 return ListView.builder(
@@ -92,7 +92,11 @@ class HomePage extends StatelessWidget {
                 ),
               );
             } else {
-              return Expanded(child: Dashboard());
+              return Expanded(
+                  child: Center(
+                child: Text("HomePage"),
+              ));
+              // return Expanded(child: Dashboard());
             }
           },
         ),
@@ -173,7 +177,7 @@ class HomePage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      controller.workflow.stateManager.title ?? "",
+                      controller.workflow.stateManager?.title ?? "",
                       style: TextStyle(color: KC.primary, fontWeight: FontWeight.bold),
                     ),
                     IconButton(

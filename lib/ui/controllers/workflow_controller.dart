@@ -1,4 +1,4 @@
-import 'package:admin/data/models/workflow/altmodels/transitions.dart';
+import 'package:admin/data/models/workflow/transition_model.dart';
 import 'package:admin/data/models/workflow/workflow_model.dart';
 import 'package:admin/data/services/services.dart';
 import 'package:get/get.dart';
@@ -7,7 +7,7 @@ import 'package:uuid/uuid.dart';
 import 'display_controller.dart';
 
 class WorkflowController extends GetxController {
-  Rx<WorkflowModel> _workflow = WorkflowModel.init().obs;
+  Rx<WorkflowModel> _workflow = WorkflowModel().obs;
   WorkflowModel get workflow => _workflow.value;
 
   String? _tag;
@@ -48,7 +48,7 @@ class WorkflowController extends GetxController {
     }
   }
 
-  Future postTransition({required TransitionsModel transition, required Map<String, dynamic> entityData}) async {
+  Future postTransition({required TransitionModel transition, required Map<String, dynamic> entityData}) async {
     _loading.value = true;
 
     var data = {
@@ -68,7 +68,7 @@ class WorkflowController extends GetxController {
     var response = await Services().postTransitions(
       entity: _entity.value,
       recordId: _recordId.value,
-      transition: transition.name ?? "",
+      transition: transition.name,
       data: data,
       headers: headers,
     );

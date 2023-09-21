@@ -1,17 +1,28 @@
-import 'package:admin/ui/style/colors.dart';
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
+import 'package:admin/ui/style/colors.dart';
+
 class MenuProfileItem extends StatelessWidget {
-  const MenuProfileItem({super.key});
+  final Function logoPressed;
+  const MenuProfileItem({
+    Key? key,
+    required this.logoPressed,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Column(
-        children: const [
-          Icon(
-            Icons.person_4,
-            size: 150,
+        children: [
+          GestureDetector(
+            onTap: () {
+              logoPressed();
+            },
+            child: Icon(
+              Icons.person_4,
+              size: 150,
+            ),
           ),
           // Container(
           //   width: 150,
