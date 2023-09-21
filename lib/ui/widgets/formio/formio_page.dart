@@ -1,9 +1,9 @@
+import 'package:admin/data/models/workflow/transition_model.dart';
 import 'package:admin/ui/widgets/formio/transition_widget.dart';
 import 'package:admin/ui/controllers/workflow_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../data/models/workflow/altmodels/transitions.dart';
 import '../../style/colors.dart';
 import '../custom_button.dart';
 
@@ -26,7 +26,7 @@ class _FormioPageState extends State<FormioPage> {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      List<TransitionsModel> transitions = controller.workflow.stateManager.transitions!;
+      List<TransitionModel> transitions = controller.workflow.stateManager!.transitions!;
       bool loading = controller.loading;
       return Container(
         padding: const EdgeInsets.all(10.0),
@@ -52,7 +52,7 @@ class _FormioPageState extends State<FormioPage> {
                       (e) => Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: CustomButton(
-                          title: e.title!,
+                          title: e.title,
                           tooltip: e.name,
                           onPressed: () async {
                             formioDialog(context, e);
@@ -69,7 +69,7 @@ class _FormioPageState extends State<FormioPage> {
     });
   }
 
-  Future<void> formioDialog(BuildContext context, TransitionsModel transition) async {
+  Future<void> formioDialog(BuildContext context, TransitionModel transition) async {
     return showDialog<void>(
       context: context,
       barrierDismissible: false, // user must tap button!
@@ -85,7 +85,7 @@ class _FormioPageState extends State<FormioPage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  transition.title ?? "",
+                  transition.title,
                   style: TextStyle(color: KC.primary, fontWeight: FontWeight.bold),
                 ),
                 IconButton(

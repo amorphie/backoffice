@@ -2,15 +2,15 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:admin/data/models/workflow/transition_model.dart';
 import 'package:admin/ui/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:webviewx/webviewx.dart';
 
-import '../../../data/models/workflow/altmodels/transitions.dart';
 import '../indicator.dart';
 
 class TransitionWidget extends StatefulWidget {
-  final TransitionsModel data;
+  final TransitionModel data;
   final Function(dynamic val) getData;
   final bool isBack;
   final bool loading;
@@ -65,7 +65,7 @@ class _TransitionWidgetState extends State<TransitionWidget> {
                         },
                       ),
                     CustomButton(
-                      title: widget.data.title!,
+                      title: widget.data.title,
                       tooltip: widget.data.title,
                       onPressed: () async {
                         var d = await webviewController.callJsMethod("onSubmit", []);
@@ -85,10 +85,10 @@ class _TransitionWidgetState extends State<TransitionWidget> {
     );
   }
 
-  Widget _buildWebViewX(TransitionsModel transition) {
+  Widget _buildWebViewX(TransitionModel transition) {
     return WebViewX(
       key: const ValueKey('formio'),
-      initialContent: initialContent(transition.form!),
+      initialContent: initialContent(transition.form),
       initialSourceType: SourceType.html,
       height: double.maxFinite,
       width: MediaQuery.of(context).size.width * 0.7,

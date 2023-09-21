@@ -1,172 +1,248 @@
 {
-    "items": [
-        {
-            "type": "profile"
-        },
-        {
-            "type": "group",
-            "title": {
-                "tr-TR": "Kullanicilar",
-                "en-EN": "Users"
-            },
-            "items": [
-                {
-                    "type": "entity",
-                    "entity": "user",
-                    "search-layout": "full",
-                    "display-layout": "compact",
-                    "title": {
-                        "tr-TR": "Kullanıcı Listesi",
-                        "en-EN": "User List"
-                    }
+    "dashboard": {
+        "items": [
+            {
+                "type": "counters",
+                "data": {
+                    "url": "counter-api",
+                    "list": [
+                        {
+                            "title": "Kullanıcı Sayısı",
+                            "value": 10
+                        },
+                        {
+                            "title": "Client Sayısı",
+                            "value": 20
+                        },
+                        {
+                            "title": "Tag Sayısı",
+                            "value": 20
+                        }
+                    ]
                 }
-            ]
-        },
-        {
-            "type": "group",
-            "title": {
-                "tr-TR": "İstemciler",
-                "en-EN": "Clients"
             },
-            "items": [
-                {
-                    "type": "entity",
-                    "entity": "client",
-                    "search-layout": "full",
-                    "display-layout": "compact",
-                    "title": {
-                        "tr-TR": "İstemci Listesi",
-                        "en-EN": "Client List"
-                    }
+            {
+                "type": "chart",
+                "title": {
+                    "tr-TR": "Kullanıcılar",
+                    "en-EN": "Users"
+                },
+                "data": {
+                    "url": "chart-data-api",
+                    "chartType": "pie",
+                    "list": [
+                        {
+                            "title": "name",
+                            "value": 10
+                        },
+                        {
+                            "title": "name",
+                            "value": 20
+                        }
+                    ]
                 }
-            ]
-        },
-        {
-            "type": "group",
-            "title": {
-                "tr-TR": "Rıza",
-                "en-EN": "Consent"
             },
-            "items": [
-                {
-                    "type": "entity",
-                    "entity": "consent",
-                    "search-layout": "full",
-                    "display-layout": "compact",
-                    "title": {
-                        "tr-TR": "Lokal",
-                        "en-EN": "Local"
-                    }
+            {
+                "type": "tab",
+                "title": {
+                    "tr-TR": "Son Eklenenler",
+                    "en-EN": "Last Added"
                 },
-                {
-                    "type": "entity",
-                    "entity": "consent",
-                    "search-layout": "full",
-                    "display-layout": "none",
-                    "title": {
-                        "tr-TR": "Uzaktan",
-                        "en-EN": "Remote"
+                "items": [
+                    {
+                        "type": "list",
+                        "entity": "user",
+                        "title": {
+                            "tr-TR": "Son Kullanicilar",
+                            "en-EN": "Last Users"
+                        },
+                        "data-url": "https://test-amorphie-fact-user.burgan.com.tr/user",
+                        "count": 5
+                    },
+                    {
+                        "type": "list",
+                        "entity": "client",
+                        "title": {
+                            "tr-TR": "Son İstemciler",
+                            "en-EN": "Last Clients"
+                        },
+                        "data-url": "https://test-amorphie-fact-client.burgan.com.tr/client",
+                        "count": 5
                     }
-                },
-                {
-                    "type": "entity",
-                    "entity": "consent",
-                    "search-layout": "full",
-                    "display-layout": "none",
-                    "title": {
-                        "tr-TR": "Api Anahtarı",
-                        "en-EN": "Api Key"
-                    }
-                }
-            ]
-        },
-        {
-            "type": "group",
-            "title": {
-                "tr-TR": "Kaynaklar",
-                "en-EN": "Resource"
+                ]
+            }
+        ]
+    },
+    "left_sidebar": {
+        "items": [
+            {
+                "type": "profile"
             },
-            "items": [
-                {
-                    "type": "entity",
-                    "entity": "resource",
-                    "search-layout": "full",
-                    "display-layout": "compact",
-                    "title": {
-                        "tr-TR": "Kaynaklar",
-                        "en-EN": "Resource"
-                    }
+            {
+                "type": "group",
+                "title": {
+                    "tr-TR": "Kullanicilar",
+                    "en-EN": "Users"
                 },
-                {
-                    "type": "entity",
-                    "entity": "resourceRole",
-                    "search-layout": "full",
-                    "display-layout": "none",
-                    "title": {
-                        "tr-TR": "Rol",
-                        "en-EN": "Role"
+                "items": [
+                    {
+                        "type": "entity",
+                        "entity": "user",
+                        "search-layout": "full",
+                        "display-layout": "compact",
+                        "title": {
+                            "tr-TR": "Kullanıcı Listesi",
+                            "en-EN": "User List"
+                        }
                     }
-                },
-                {
-                    "type": "entity",
-                    "entity": "roleGroup",
-                    "search-layout": "full",
-                    "display-layout": "none",
-                    "title": {
-                        "tr-TR": "Rol Grup",
-                        "en-EN": "Role Group"
-                    }
-                },
-                {
-                    "type": "entity",
-                    "entity": "privilege",
-                    "search-layout": "full",
-                    "display-layout": "none",
-                    "title": {
-                        "tr-TR": "Ayrıcalıklar",
-                        "en-EN": "Privilages"
-                    }
-                }
-            ]
-        },
-        {
-            "type": "group",
-            "title": {
-                "tr-TR": "Admin",
-                "en-EN": "Admin"
+                ]
             },
-            "items": [
-                {
-                    "type": "entity",
-                    "entity": "tag",
-                    "search-layout": "full",
-                    "display-layout": "compact",
-                    "title": {
-                        "tr-TR": "Etiketler",
-                        "en-EN": "Tags"
-                    }
+            {
+                "type": "group",
+                "title": {
+                    "tr-TR": "İstemciler",
+                    "en-EN": "Clients"
                 },
-                {
-                    "type": "entity",
-                    "entity": "domain",
-                    "search-layout": "full",
-                    "display-layout": "none",
-                    "title": {
-                        "tr-TR": "Domain",
-                        "en-EN": "Domain"
+                "items": [
+                    {
+                        "type": "entity",
+                        "entity": "client",
+                        "search-layout": "full",
+                        "display-layout": "compact",
+                        "title": {
+                            "tr-TR": "İstemci Listesi",
+                            "en-EN": "Client List"
+                        }
                     }
+                ]
+            },
+            {
+                "type": "group",
+                "title": {
+                    "tr-TR": "Rıza",
+                    "en-EN": "Consent"
                 },
-                {
-                    "type": "entity",
-                    "entity": "tagEntity",
-                    "search-layout": "full",
-                    "display-layout": "none",
-                    "title": {
-                        "tr-TR": "Varlıklar",
-                        "en-EN": "Entities"
+                "items": [
+                    {
+                        "type": "entity",
+                        "entity": "consent",
+                        "search-layout": "full",
+                        "display-layout": "compact",
+                        "title": {
+                            "tr-TR": "Lokal",
+                            "en-EN": "Local"
+                        }
+                    },
+                    {
+                        "type": "entity",
+                        "entity": "consent",
+                        "search-layout": "full",
+                        "display-layout": "none",
+                        "title": {
+                            "tr-TR": "Uzaktan",
+                            "en-EN": "Remote"
+                        }
+                    },
+                    {
+                        "type": "entity",
+                        "entity": "consent",
+                        "search-layout": "full",
+                        "display-layout": "none",
+                        "title": {
+                            "tr-TR": "Api Anahtarı",
+                            "en-EN": "Api Key"
+                        }
                     }
-                }
-            ]
-        }
-    ]
+                ]
+            },
+            {
+                "type": "group",
+                "title": {
+                    "tr-TR": "Kaynaklar",
+                    "en-EN": "Resource"
+                },
+                "items": [
+                    {
+                        "type": "entity",
+                        "entity": "resource",
+                        "search-layout": "full",
+                        "display-layout": "compact",
+                        "title": {
+                            "tr-TR": "Kaynaklar",
+                            "en-EN": "Resource"
+                        }
+                    },
+                    {
+                        "type": "entity",
+                        "entity": "resourceRole",
+                        "search-layout": "full",
+                        "display-layout": "none",
+                        "title": {
+                            "tr-TR": "Rol",
+                            "en-EN": "Role"
+                        }
+                    },
+                    {
+                        "type": "entity",
+                        "entity": "roleGroup",
+                        "search-layout": "full",
+                        "display-layout": "none",
+                        "title": {
+                            "tr-TR": "Rol Grup",
+                            "en-EN": "Role Group"
+                        }
+                    },
+                    {
+                        "type": "entity",
+                        "entity": "privilege",
+                        "search-layout": "full",
+                        "display-layout": "none",
+                        "title": {
+                            "tr-TR": "Ayrıcalıklar",
+                            "en-EN": "Privilages"
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "group",
+                "title": {
+                    "tr-TR": "Admin",
+                    "en-EN": "Admin"
+                },
+                "items": [
+                    {
+                        "type": "entity",
+                        "entity": "tag",
+                        "search-layout": "full",
+                        "display-layout": "compact",
+                        "title": {
+                            "tr-TR": "Etiketler",
+                            "en-EN": "Tags"
+                        }
+                    },
+                    {
+                        "type": "entity",
+                        "entity": "domain",
+                        "search-layout": "full",
+                        "display-layout": "none",
+                        "title": {
+                            "tr-TR": "Domain",
+                            "en-EN": "Domain"
+                        }
+                    },
+                    {
+                        "type": "entity",
+                        "entity": "tagEntity",
+                        "search-layout": "full",
+                        "display-layout": "none",
+                        "title": {
+                            "tr-TR": "Varlıklar",
+                            "en-EN": "Entities"
+                        }
+                    }
+                ]
+            }
+        ]
+    }
 }

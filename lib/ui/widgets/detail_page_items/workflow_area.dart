@@ -1,9 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
+import 'package:admin/data/models/workflow/transition_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:admin/data/models/workflow/altmodels/transitions.dart';
 import 'package:admin/data/models/workflow/workflow_model.dart';
 import 'package:admin/ui/widgets/formio/transition_widget.dart';
 import 'package:admin/ui/controllers/workflow_controller.dart';
@@ -25,6 +25,7 @@ class _WorkflowAreaState extends State<WorkflowArea> {
 
   @override
   Widget build(BuildContext context) {
+    if (workflowController.workflow.isEmpty) return Container();
     return Obx(() {
       return workflowArea(workflowController.workflow);
     });
@@ -36,14 +37,15 @@ class _WorkflowAreaState extends State<WorkflowArea> {
       padding: EdgeInsets.all(12),
       child: Column(
         children: [
-          workflowRow(workflow.stateManager.title! + " : ", workflow.stateManager.transitions!),
-          ...workflow.availableWorkflows!.map((e) => workflowRow(e.title! + " : ", e.transitions!)).toList()
+          if (!workflowController.workflow.stateManagerEmpty) workflowRow(workflow.stateManager!.title + " : ", workflow.stateManager!.transitions!),
+          if (!workflowController.workflow.availableWorkflowsEmpty) ...workflow.availableWorkflows!.map((e) => workflowRow(e.title + " : ", e.transitions!)).toList(),
+          // if (!workflowController.workflow.runningWorkflowsEmpty) ...workflow.runningWorkflows!.map((e) => workflowRow(e.title + " : ", e.transitions!)).toList(),
         ],
       ),
     );
   }
 
-  Widget workflowRow(String title, List<TransitionsModel> transitions) {
+  Widget workflowRow(String title, List<TransitionModel> transitions) {
     return Container(
       padding: EdgeInsets.all(5),
       child: Row(
@@ -61,7 +63,7 @@ class _WorkflowAreaState extends State<WorkflowArea> {
                         margin: EdgeInsets.all(5),
                         padding: EdgeInsets.symmetric(horizontal: 15, vertical: 4),
                         decoration: BoxDecoration(color: KC.secondary, borderRadius: BorderRadius.circular(20)),
-                        child: Text(e.title ?? e.name!, style: TextStyle(fontSize: 13, fontWeight: FontWeight.w500, color: Colors.white))),
+                        child: Text(e.title, style: TextStyle(fontSize: 13, fontWeight: FontWeight.w500, color: Colors.white))),
                   ))
               .toList()
         ],
@@ -69,7 +71,7 @@ class _WorkflowAreaState extends State<WorkflowArea> {
     );
   }
 
-  Future<void> _showDetailFormio(TransitionsModel data) async {
+  Future<void> _showDetailFormio(TransitionModel data) async {
     return showDialog<void>(
       context: context,
       barrierDismissible: true, // user must tap button!
@@ -88,7 +90,7 @@ class _WorkflowAreaState extends State<WorkflowArea> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      data.title ?? "",
+                      data.title,
                       style: TextStyle(color: KC.primary, fontWeight: FontWeight.bold),
                     ),
                     IconButton(

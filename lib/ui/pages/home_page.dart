@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:admin/data/extension/string_extension.dart';
 import 'package:admin/data/models/display/display_view_model.dart';
+import 'package:admin/ui/pages/dashboard.dart';
 import 'package:admin/ui/widgets/indicator.dart';
 import 'package:admin/ui/controllers/entity_controller.dart';
 import 'package:admin/ui/controllers/home_controller.dart';
@@ -12,13 +13,13 @@ import 'package:get/get.dart';
 import '../style/colors.dart';
 import '../widgets/menu/menu.dart';
 import '../widgets/data_table/data_table.dart';
-import '../controllers/menu_controller.dart';
+import '../controllers/ui_controller.dart';
 import '../widgets/formio/formio_page.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
 
-  final AppMenuController menuController = Get.find<AppMenuController>();
+  final AppUiController menuController = Get.find<AppUiController>();
   final EntityController entityController = Get.find<EntityController>();
   final HomeController homeController = Get.find<HomeController>();
   @override
@@ -40,7 +41,7 @@ class HomePage extends StatelessWidget {
                         height: 30,
                         child: Row(
                           children: [
-                            displayButton(title: menuController.menuItem.value.title!.enEN),
+                            if (homeController.hasEntity) displayButton(title: menuController.menuItem.value.title!.enEN),
                             Expanded(
                               child: Obx(() {
                                 return ListView.builder(
@@ -91,11 +92,11 @@ class HomePage extends StatelessWidget {
                 ),
               );
             } else {
-              return Container(
-                child: Center(
-                  child: Text("Select Menu"),
-                ),
-              );
+              return Expanded(
+                  child: Center(
+                child: Text("HomePage"),
+              ));
+              // return Expanded(child: Dashboard());
             }
           },
         ),
@@ -176,7 +177,7 @@ class HomePage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      controller.workflow.stateManager.title ?? "",
+                      controller.workflow.stateManager?.title ?? "",
                       style: TextStyle(color: KC.primary, fontWeight: FontWeight.bold),
                     ),
                     IconButton(

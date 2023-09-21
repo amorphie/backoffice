@@ -1,28 +1,29 @@
 import 'dart:convert';
 
 import 'package:admin/data/models/entity/entity_model.dart';
-import 'package:admin/data/models/menu/menu_model.dart';
-import 'package:flutter/services.dart';
+import 'package:admin/data/models/ui/ui_model.dart';
 
 import '_executer.dart';
 import 'common/response_model.dart';
 
+import 'package:http/http.dart' as http;
+
 class Services {
   Future<Map<String, EntityModel>> getEntityData() async {
     Map<String, EntityModel> map = {};
-    var result = await rootBundle.loadString("assets/entities.json");
-    var data = json.decode(result);
+    var response = await http.get(Uri.parse("https://amorphie-backoffice-default-rtdb.europe-west1.firebasedatabase.app/entities.json"));
+    var data = json.decode(response.body);
     for (var item in data.keys) {
       map.addAll({item: EntityModel.fromMap(data[item])});
     }
     return map;
   }
 
-  Future<MenuModel> getMenuData() async {
-    var result = await rootBundle.loadString("assets/ui.json");
-    var data = json.decode(result);
+  Future<UIModel> getUiData() async {
+    var response = await http.get(Uri.parse("https://amorphie-backoffice-default-rtdb.europe-west1.firebasedatabase.app/ui.json"));
+    var data = json.decode(response.body);
 
-    MenuModel menu = MenuModel.fromMap(data);
+    UIModel menu = UIModel.fromMap(data);
     return menu;
   }
 

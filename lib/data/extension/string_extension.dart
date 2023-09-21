@@ -62,7 +62,7 @@ extension MatchsExtension on String {
       buradan geliyor örn: "{{name}}" stringini dışarıdan gelen 
       string ile replace etmemizi sağlıyor
        */
-      String changeWord = txt.jsWithData(data);
+      String changeWord = txt.jsWithData(data).toString();
 
       if (changeWord.isEmpty && nullString != null) {
         changeWord = nullString(txt);
