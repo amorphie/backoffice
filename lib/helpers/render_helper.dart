@@ -17,13 +17,11 @@ appRenderInit() {
       "url",
       ({args, required registry}) => () async {
             if (args != null && args.length > 0) {
-              Future<void> _launchInBrowser(Uri url) async {
-                if (!await launchUrl(
-                  url,
-                  mode: LaunchMode.externalApplication,
-                )) {
-                  throw Exception('Could not launch $url');
-                }
+              if (!await launchUrl(
+                Uri.parse(args.first.toString()),
+                mode: LaunchMode.externalApplication,
+              )) {
+                throw Exception('Could not launch ${args.first.toString()}');
               }
             }
           });

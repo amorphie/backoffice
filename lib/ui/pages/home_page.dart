@@ -92,11 +92,16 @@ class HomePage extends StatelessWidget {
                 ),
               );
             } else {
-              return Expanded(
-                  child: Center(
-                child: Text("HomePage"),
-              ));
               // return Expanded(child: Dashboard());
+              return Expanded(
+                child: Column(
+                  children: [
+                    // Expanded(child: Dashboard()),
+                    Expanded(child: Center(child: Text("HomePage"))),
+                    Text("v1.0.0"),
+                  ],
+                ),
+              );
             }
           },
         ),
