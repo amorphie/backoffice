@@ -68,10 +68,7 @@ class _TransitionWidgetState extends State<TransitionWidget> {
                       title: widget.data.title,
                       tooltip: widget.data.title,
                       onPressed: () async {
-                        var d = await webviewController.callJsMethod("onSubmit", []);
-
-                        var data = jsonDecode(d);
-                        widget.getData(data);
+                        await webviewController.callJsMethod("onSubmit", []);
                       },
                     ),
                   ],
@@ -92,9 +89,6 @@ class _TransitionWidgetState extends State<TransitionWidget> {
       initialSourceType: SourceType.html,
       height: double.maxFinite,
       width: MediaQuery.of(context).size.width * 0.7,
-
-      // height: screenSize.height / 1.3,
-      // width: min(screenSize.width * 0.8, 1024),
       onWebViewCreated: (controller) {
         return webviewController = controller;
       },
@@ -102,7 +96,14 @@ class _TransitionWidgetState extends State<TransitionWidget> {
         DartCallback(
           name: 'submit',
           callBack: (msg) {
-            log(msg);
+            var data = jsonDecode(msg);
+            widget.getData(data);
+          },
+        ),
+        DartCallback(
+          name: 'error',
+          callBack: (error) {
+            log(error);
           },
         )
       },
@@ -136,8 +137,18 @@ class _TransitionWidgetState extends State<TransitionWidget> {
         });
 
         function onSubmit() {
-            submit(JSON.stringify(fr.data));
-            return JSON.stringify(fr.data);
+          
+            fr.submit().then(
+                function (value) { 
+                    submit(JSON.stringify(value.data));
+                    return JSON.stringify(value.data);
+                 },
+                function (error) { 
+                    error(error);
+                    return error;
+                }
+            );
+
         }
     </script>
 </body>

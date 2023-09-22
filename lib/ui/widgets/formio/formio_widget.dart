@@ -1,5 +1,4 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'dart:developer';
 
 import 'package:admin/ui/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
@@ -81,14 +80,6 @@ class _FormioWidgetState extends State<FormioWidget> {
       onWebViewCreated: (controller) {
         return webviewController = controller;
       },
-      dartCallBacks: {
-        DartCallback(
-          name: 'submit',
-          callBack: (msg) {
-            log(msg);
-          },
-        )
-      },
     );
   }
 
@@ -118,10 +109,6 @@ class _FormioWidgetState extends State<FormioWidget> {
             fr = form;
         });
 
-        function onSubmit() {
-            submit(JSON.stringify(fr.data));
-            return JSON.stringify(fr.data);
-        }
     </script>
 </body>
 
