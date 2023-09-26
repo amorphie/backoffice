@@ -47,4 +47,4 @@ EXPOSE 5000
 # make server startup script executable and start the web server
 RUN ["chmod", "u+x", "/app/server/server.sh"]
 
-ENTRYPOINT [ "/app/server/server.sh"]
+ENTRYPOINT ["sh", "/app/server/server.sh"]
