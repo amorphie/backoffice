@@ -64,10 +64,11 @@ class HomeController extends GetxController {
 
   filterClose() {
     final FilterController filterController = Get.find<FilterController>();
-    // filterController.dispose();
+    //filterController.dispose();
     filterController.onClose();
     _filterView.value = false;
-  }
+    //filterController.filterDataList.isNotEmpty ? filterController.filterDataList.clear() : null;
 
-  //! FILTER END
+    //! FILTER END
+  }
 }
