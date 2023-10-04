@@ -45,6 +45,10 @@ class EntityController extends GetxController {
     entities = await services.getEntityData();
   }
 
+  Future refreshList() async {
+    await getDataList();
+  }
+
   Future<void> setEntityMenu() async {
     AppUiController menu = Get.find<AppUiController>();
     EntityModel? entityModel = entities[menu.menuItem.value.entity];

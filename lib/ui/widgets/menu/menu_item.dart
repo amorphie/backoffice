@@ -51,8 +51,7 @@ class MenuItem extends StatelessWidget {
                 return MenuButtonCard(
                   text: model.title!.enEN,
                   onPressed: () {
-                    menuController.menuItem.value = model;
-                    entityController.setEntityMenu();
+                    menuController.setMenuItem(model);
                   },
                   isSelected: menuController.menuItem.value == model,
                 );
