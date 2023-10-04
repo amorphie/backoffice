@@ -1,6 +1,31 @@
 import 'dart:convert';
 
 String _testRenderTemplate = """
-{"type": "list_view","children": [{"type": "container","args": {"margin": 2,"padding": 4},"child": {"type": "column","args": {"crossAxisAlignment": "start","mainAxisAlignment": "start"},"children": [{"type": "text","args": {"text": "ID","style": {"fontWeight": "bold","color": "#1d1f29"}}},{"type": "padding","args": {"padding": {"bottom": 8,   "top": 10}},"child": {"type": "text","args": {"text": "05862ebe-9a9f-42bf-92ad-10de40dfda37","style": {"fontWeight": "w400","color": "#1d1f29"}}}}]}},{"type": "container","args": {"margin": 2"padding": 4},"child": {"type": "column","args": {"crossAxisAlignment": "start","mainAxisAlignment": "start"},"children": [{"type": "text","args": {"text": "Status","style": {"fontWeight": "bold","color": "#1d1f29"}}},{"type": "padding","args": {"padding": {"bottom": 8,"top": 10}},"child": {"type": "text","args": {"text": "DeActive","style": {"fontWeight": "w400","color": "#1d1f29"}}}}]}},{"type": "container","args": {"margin": 2"padding": 4},"child": {"type": "column","args": {"crossAxisAlignment": "start","mainAxisAlignment": "start"},"children": [{"type": "text","args": {"text": "Tags","style": {"fontWeight": "bold","color": "#1d1f29"}}},{"type": "padding","args": {"padding": {"bottom": 8,"top": 10}},"child": {"type": "text","args": {"text": "","style": {"fontWeight": "w400","color": "#1d1f29"}}}}]}}}
+{
+  "type": "rich_text",
+  "args": {
+    "text": {
+      "children": [
+        {
+          "text": "Deneme "
+        },
+        {
+          "style": {
+            "fontSize": 20.0,
+            "fontWeight": "bold"
+          },
+          "text": "Render "
+        },
+        {
+          "text": " Widget"
+        }
+      ],
+      "style": {
+        "color": "#000000",
+        "fontSize": 12.0
+      }
+    }
+  }
+}
 """;
 dynamic get testRenderTemplateData => json.decode(_testRenderTemplate);

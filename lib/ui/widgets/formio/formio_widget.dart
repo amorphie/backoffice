@@ -9,10 +9,12 @@ import '../indicator.dart';
 class FormioWidget extends StatefulWidget {
   final String schema;
   final bool loading;
+  final bool withBackButton;
   const FormioWidget({
     Key? key,
     required this.schema,
     this.loading = false,
+    this.withBackButton = true,
   }) : super(key: key);
 
   @override
@@ -45,19 +47,20 @@ class _FormioWidgetState extends State<FormioWidget> {
                     child: _buildWebViewX(widget.schema),
                   ),
                 ),
-                SizedBox(height: 5),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    CustomButton(
-                      title: "Back",
-                      tooltip: "Back",
-                      onPressed: () async {
-                        Navigator.pop(context);
-                      },
-                    ),
-                  ],
-                ),
+                if (widget.withBackButton) SizedBox(height: 5),
+                if (widget.withBackButton)
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CustomButton(
+                        title: "Back",
+                        tooltip: "Back",
+                        onPressed: () async {
+                          Navigator.pop(context);
+                        },
+                      ),
+                    ],
+                  ),
               ],
             ),
           ),

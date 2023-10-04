@@ -3,7 +3,7 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 
-import 'package:admin/data/models/entity/layout_helpers/tab_model.dart';
+import 'package:admin/data/models/entity/layout_helpers/display_tab_model.dart';
 import 'package:admin/data/models/entity/layout_helpers/title_model.dart';
 
 class DisplayLayoutModel {
@@ -98,12 +98,6 @@ class DisplayLayoutModel {
 
   @override
   int get hashCode {
-    return summaryTemplate.hashCode ^
-        detailTemplate.hashCode ^
-        history.hashCode ^
-        stateManager.hashCode ^
-        runningWorkflows.hashCode ^
-        availableWorkflows.hashCode ^
-        tabs.hashCode;
+    return summaryTemplate.hashCode ^ detailTemplate.hashCode ^ history.hashCode ^ stateManager.hashCode ^ runningWorkflows.hashCode ^ availableWorkflows.hashCode ^ tabs.hashCode;
   }
 }

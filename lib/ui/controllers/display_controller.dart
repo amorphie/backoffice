@@ -1,7 +1,7 @@
 // ignore_for_file: invalid_use_of_protected_member
 
 import 'package:admin/data/models/entity/entity_model.dart';
-import 'package:admin/data/models/entity/layout_helpers/tab_model.dart';
+import 'package:admin/data/models/entity/layout_helpers/display_tab_model.dart';
 import 'package:admin/data/models/entity/layouts/display_layout_model.dart';
 import 'package:admin/data/models/history/history_workflow_model.dart';
 import 'package:admin/data/services/common/response_model.dart';
@@ -86,7 +86,7 @@ class DisplayController extends GetxController {
             )
           });
         } else if (tab.type == "search") {
-          searchModels.addAll({tab.entity: await getSearchData(tab)});
+          searchModels.addAll({tab.entity!: await getSearchData(tab)});
         }
       }
     }
@@ -99,7 +99,7 @@ class DisplayController extends GetxController {
     int? pageNumber,
   }) async {
     DisplayTabSearchModel searchModel = await getSearchData(tab, keyword: keyword);
-    searchModels[tab.entity] = searchModel;
+    searchModels[tab.entity!] = searchModel;
     searchModels.refresh();
   }
 
@@ -129,7 +129,7 @@ class DisplayController extends GetxController {
     }
 
     return DisplayTabSearchModel(
-      tag: tab.entity,
+      tag: tab.entity!,
       data: list,
       entity: entity,
     );
