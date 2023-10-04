@@ -14,6 +14,7 @@ import '../widgets/menu/menu.dart';
 import '../widgets/data_table/data_table.dart';
 import '../controllers/ui_controller.dart';
 import '../widgets/formio/formio_page.dart';
+import 'dashboard.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
@@ -96,9 +97,9 @@ class HomePage extends StatelessWidget {
               return Expanded(
                 child: Column(
                   children: [
-                    // Expanded(child: Dashboard()),
-                    Expanded(child: Center(child: Text("HomePage"))),
-                    Text("v1.0.0"),
+                    Expanded(child: Dashboard()),
+                    // Expanded(child: Center(child: Text("HomePage"))),
+                    Text("v1.0.1"),
                   ],
                 ),
               );
