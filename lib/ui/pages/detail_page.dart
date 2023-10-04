@@ -1,9 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
+import 'package:admin/ui/widgets/detail_page_items/display_item.dart';
 import 'package:admin/ui/widgets/detail_page_items/workflow_area.dart';
 import 'package:admin/ui/widgets/history/history_list.dart';
 import 'package:admin/ui/widgets/render/render_widget.dart';
-import 'package:admin/ui/widgets/tab_data_table/app_data_table/tab_data_table.dart';
 import 'package:admin/ui/controllers/entity_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -56,7 +56,6 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
 
   Expanded temp(BuildContext context) {
     return Expanded(
-      flex: 5,
       child: Container(
         child: Scaffold(
             backgroundColor: KC.background,
@@ -102,24 +101,9 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
               return TabBarView(controller: _tabController, children: [
                 if (displayController.displayLayout.detailTemplate != null) getRenderWidget(displayController.displayLayout.detailTemplate!),
                 ...(displayController.displayLayout.tabs ?? []).map((e) {
-                  switch (e.type) {
-                    case "render":
-                      return getRenderWidget(e.template!);
-                    case "search":
-                      return Obx(
-                        () => TabDataTable(
-                          withSearch: displayController.searchModels[e.entity]!.entity.search!.search,
-                          onSearch: (val) {
-                            displayController.search(tab: e, keyword: val);
-                          },
-                          columns: displayController.searchModels[e.entity]!.entity.search!.columns,
-                          data: displayController.searchModels[e.entity]!.data,
-                          onPressed: (data) {},
-                        ),
-                      );
-                    default:
-                      return Container();
-                  }
+                  return DisplayTabItemWidget(
+                    value: e,
+                  );
                 }).toList(),
                 if (entityController.entity.display!.history!)
                   Obx(() => HistoryListWidget(
