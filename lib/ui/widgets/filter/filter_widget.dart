@@ -27,7 +27,7 @@ class FilterItem extends StatelessWidget {
             if (val.isNotEmpty) {
               filterController.addFilter(filter, val);
             } else {
-              filterController.removeFilter(filter);
+              filterController.addFilter(filter, "All");
             }
           },
         );

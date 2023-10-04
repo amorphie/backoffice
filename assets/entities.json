@@ -508,6 +508,21 @@
         },
         "delete": {
             "url": "https://test-amorphie-resource.burgan.com.tr/roleGroup/@roleGroupId"
+        },
+        "display": {
+            "summaryTemplate": {
+                "tr-TR": "amorphy-backoffice-summary-name-template",
+                "en-EN": "amorphy-backoffice-summary-name-template"
+            },
+            "detailTemplate": {
+                "tr-TR": "amorphie-backoffice-role-group-detail-tr",
+                "en-EN": "amorphie-backoffice-role-group-detail-en"
+            },
+            "history": true,
+            "stateManager": true,
+            "runningWorkflows": true,
+            "availableWorkflows": true,
+            "tabs": []
         }
     },
     "privilege": {
@@ -556,6 +571,21 @@
         },
         "delete": {
             "url": "https://test-amorphie-resource.burgan.com.tr/privilege/@privilegeId"
+        },
+        "display": {
+            "summaryTemplate": {
+                "tr-TR": "amorphy-backoffice-summary-name-template",
+                "en-EN": "amorphy-backoffice-summary-name-template"
+            },
+            "detailTemplate": {
+                "tr-TR": "amorphie-backoffice-privilege-detail-tr",
+                "en-EN": "amorphie-backoffice-privilege-detail-en"
+            },
+            "history": true,
+            "stateManager": true,
+            "runningWorkflows": true,
+            "availableWorkflows": true,
+            "tabs": []
         }
     },
     "token": {
