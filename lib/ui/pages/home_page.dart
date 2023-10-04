@@ -67,6 +67,7 @@ class HomePage extends StatelessWidget {
                               hasFilter: entityController.entity.hasFilter,
                               filterPressed: () async {
                                 if (homeController.filterView) {
+                                  await entityController.refreshList();
                                   homeController.filterClose();
                                 } else {
                                   await homeController.getFilterArea();

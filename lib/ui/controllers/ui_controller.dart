@@ -4,6 +4,8 @@ import 'package:admin/data/models/menu/enums/menu_item_type.dart';
 import 'package:admin/data/models/menu/menu_item_model.dart';
 import 'package:admin/data/models/ui/ui_model.dart';
 import 'package:admin/data/services/services.dart';
+import 'package:admin/ui/controllers/entity_controller.dart';
+import 'package:admin/ui/controllers/home_controller.dart';
 import 'package:get/get.dart';
 
 import '../../data/models/menu/menu_model.dart';
@@ -16,6 +18,17 @@ class AppUiController extends GetxController {
   bool get isEntityItem => menuItem.value.type == MenuItemType.entity;
   bool get hasSelectedMenuItem => menuItem.value.type != MenuItemType.none;
   RxMap<String, dynamic> dashboardListData = <String, dynamic>{}.obs;
+
+  Future setMenuItem(MenuItemModel _) async {
+    menuItem.value = _;
+    EntityController entityController = Get.find<EntityController>();
+    entityController.setEntityMenu();
+
+    HomeController homeController = Get.find<HomeController>();
+    if (homeController.filterView) {
+      homeController.filterClose();
+    }
+  }
 
   menuReset() {
     menuItem.value = MenuItemModel(type: MenuItemType.none);

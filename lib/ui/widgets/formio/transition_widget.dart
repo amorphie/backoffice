@@ -143,9 +143,9 @@ class _TransitionWidgetState extends State<TransitionWidget> {
                     submit(JSON.stringify(value.data));
                     return JSON.stringify(value.data);
                  },
-                function (error) { 
-                    error(error);
-                    return error;
+                function (err) { 
+                    error(err);
+                    return err;
                 }
             );
 

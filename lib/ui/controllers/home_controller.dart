@@ -62,7 +62,7 @@ class HomeController extends GetxController {
     _filterView.value = true;
   }
 
-  filterClose() {
+  filterClose() async {
     final FilterController filterController = Get.find<FilterController>();
     // filterController.dispose();
     filterController.onClose();
