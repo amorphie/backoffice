@@ -648,5 +648,50 @@
                 }
             ]
         }
+    },
+    "workflow": {
+        "name": "workflow",
+        "workflow": "workflow",
+        "titleTemplate": "{{name}}",
+        "url": "https://test-amorphie-workflow.burgan.com.tr/workflow/definition/search",
+        "search": {
+            "defaultPageSize": 100,
+            "defaultPageNumber": 0,
+            "search": true,
+            "columns": [
+                {
+                    "data": "name",
+                    "title": {
+                        "tr-TR": "Isim",
+                        "en-EN": "Name"
+                    },
+                    "sort": 1
+                },
+                {
+                    "data": "title",
+                    "title": {
+                        "tr-TR": "Başlıklar",
+                        "en-EN": "Title"
+                    },
+                    "sort": 1
+                },
+                {
+                    "data": "entities",
+                    "title": {
+                        "tr-TR": "Varlıklar",
+                        "en-EN": "Entities"
+                    },
+                    "sort": 1
+                },
+                {
+                    "data": "tag",
+                    "title": {
+                        "tr-TR": "Etiketler",
+                        "en-EN": "Tags"
+                    },
+                    "sort": 4
+                }
+            ]
+        }
     }
 }
