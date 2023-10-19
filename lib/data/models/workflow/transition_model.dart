@@ -1,25 +1,31 @@
 import 'dart:convert';
 
+import 'transition_type.dart';
+
 class TransitionModel {
   String name;
   String title;
   String form;
+  TransitionType type;
 
   TransitionModel({
     required this.name,
     required this.title,
     required this.form,
+    required this.type,
   });
 
   TransitionModel copyWith({
     String? name,
     String? title,
     String? form,
+    TransitionType? type,
   }) {
     return TransitionModel(
       name: name ?? this.name,
       title: title ?? this.title,
       form: form ?? this.form,
+      type: type ?? this.type,
     );
   }
 
@@ -28,6 +34,7 @@ class TransitionModel {
       'name': name,
       'title': title,
       'form': form,
+      'type': type.name,
     };
   }
 
@@ -36,6 +43,7 @@ class TransitionModel {
       name: map['name'] as String,
       title: map['title'] as String,
       form: map['form'] as String,
+      type: TransitionType.fromMap(map["type"] ?? ""),
     );
   }
 

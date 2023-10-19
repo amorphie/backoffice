@@ -3,6 +3,7 @@ enum DisplayTabType {
   render,
   search,
   formio,
+  pdf,
   splitRow,
   splitColumn;
 
@@ -18,6 +19,8 @@ enum DisplayTabType {
         return DisplayTabType.search;
       case "splitRow":
         return DisplayTabType.splitRow;
+      case "pdf":
+        return DisplayTabType.pdf;
       case "formio":
         return DisplayTabType.formio;
       case "splitColumn":
@@ -27,6 +30,7 @@ enum DisplayTabType {
     }
   }
   bool get isNone => this == DisplayTabType.none;
+  bool get isPdf => this == DisplayTabType.pdf;
   bool get isRender => this == DisplayTabType.render;
   bool get isSearch => this == DisplayTabType.search;
   bool get isFormio => this == DisplayTabType.formio;

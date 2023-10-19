@@ -4,6 +4,7 @@ import 'package:admin/ui/controllers/display_controller.dart';
 import 'package:admin/ui/controllers/home_controller.dart';
 import 'package:admin/ui/widgets/formio/formio_test_json.dart';
 import 'package:admin/ui/widgets/formio/formio_widget.dart';
+import 'package:admin/ui/widgets/pdf/pdf.dart';
 import 'package:admin/ui/widgets/render/render_widget.dart';
 import 'package:admin/ui/widgets/tab_data_table/app_data_table/tab_data_table.dart';
 import 'package:flutter/material.dart';
@@ -66,6 +67,8 @@ class DisplayTabItemWidget extends StatelessWidget {
           schema: formioTestJson,
           withBackButton: false,
         );
+      case DisplayTabType.pdf:
+        return PdfWidget();
       default:
         return Container();
     }
