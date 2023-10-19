@@ -31,17 +31,20 @@ dependencies:
   mask_text_input_formatter: ^2.5.0
   fl_chart: ^0.63.0
   syncfusion_flutter_pdfviewer: ^20.4.54
+  flutter_dotenv: ^5.1.0
 
 dev_dependencies:
   logger: ^1.1.0
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.1
+  build_runner: ^2.4.6
 
 flutter:
   uses-material-design: true
 
   assets:
+    - .env
     - assets/
     - assets/images/
     - assets/icons/

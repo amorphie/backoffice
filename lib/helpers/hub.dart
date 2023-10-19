@@ -6,14 +6,12 @@ import 'package:admin/data/models/hub/hub_model.dart';
 import 'package:admin/helpers/logger.dart';
 import 'package:admin/ui/controllers/entity_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:logging/logging.dart';
 import 'package:signalr_netcore/signalr_client.dart';
 
 import 'dialog_helper.dart';
-
-// String hubConnectionUrl = "wss://amorphie-mocks.da6eaae914f4424ea721.westeurope.aksapp.io/hubs/messageHub";
-String hubConnectionUrl = "https://test-amorphie-workflow-hub.burgan.com.tr/hubs/workflow";
 
 class Hub {
   static Hub shared = Hub();
@@ -26,6 +24,7 @@ class Hub {
     Logger.root.onRecord.listen((LogRecord rec) {
       log("[${rec.time}][${rec.level.name}]\t${rec.message}", name: "SIGNALR-HUB");
     });
+    String hubConnectionUrl = dotenv.env["HUB_CONNECTION_URL"] ?? "";
 
     connection = HubConnectionBuilder()
         .withUrl(
