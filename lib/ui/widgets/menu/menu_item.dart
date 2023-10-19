@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:admin/data/models/menu/enums/menu_item_type.dart';
+import 'package:admin/ui/widgets/pdf/pdf.dart';
 import 'package:admin/ui/style/colors.dart';
 import 'package:admin/ui/widgets/menu/menu_button_card.dart';
 import 'package:admin/ui/widgets/menu/profile.dart';
@@ -74,7 +75,8 @@ class MenuItem extends StatelessWidget {
             case MenuItemType.profile:
               return MenuProfileItem(
                 logoPressed: () {
-                  menuController.menuReset();
+                  // menuController.menuReset();
+                  Get.to(PdfWidget());
                 },
               );
             case MenuItemType.divider:

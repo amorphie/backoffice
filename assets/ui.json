@@ -56,7 +56,6 @@
                             "tr-TR": "Son Kullanicilar",
                             "en-EN": "Last Users"
                         },
-                        "data-url": "https://test-amorphie-fact-user.burgan.com.tr/user",
                         "count": 5
                     },
                     {
@@ -66,7 +65,6 @@
                             "tr-TR": "Son İstemciler",
                             "en-EN": "Last Clients"
                         },
-                        "data-url": "https://test-amorphie-fact-client.burgan.com.tr/client",
                         "count": 5
                     }
                 ]

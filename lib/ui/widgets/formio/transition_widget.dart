@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:admin/data/models/workflow/transition_model.dart';
+import 'package:admin/data/models/workflow/transition_type.dart';
 import 'package:admin/ui/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:webviewx/webviewx.dart';
@@ -85,7 +86,7 @@ class _TransitionWidgetState extends State<TransitionWidget> {
   Widget _buildWebViewX(TransitionModel transition) {
     return WebViewX(
       key: const ValueKey('formio'),
-      initialContent: initialContent(transition.form),
+      initialContent: transition.type == TransitionType.formio ? initialContent(transition.form) : transition.form,
       initialSourceType: SourceType.html,
       height: double.maxFinite,
       width: MediaQuery.of(context).size.width * 0.7,
