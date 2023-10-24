@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
 import 'package:admin/ui/widgets/detail_page_items/display_item.dart';
+import 'package:admin/ui/widgets/detail_page_items/display_tag_item.dart';
 import 'package:admin/ui/widgets/detail_page_items/workflow_area.dart';
 import 'package:admin/ui/widgets/history/history_list.dart';
 import 'package:admin/ui/widgets/render/render_widget.dart';
@@ -45,6 +46,9 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
         child: Column(
           children: [
             temp(context),
+            DisplayTagList(
+              id: homeController.selectedEntity.value.data["id"],
+            ),
             WorkflowArea(
               id: homeController.selectedEntity.value.data["id"],
             ),

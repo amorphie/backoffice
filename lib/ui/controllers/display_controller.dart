@@ -21,6 +21,7 @@ class DisplayController extends GetxController {
   DisplayLayoutModel get displayLayout => _displayLayout.value;
 
   RxMap<String, dynamic> _displayView = <String, dynamic>{}.obs;
+  Map<String, dynamic> get displayView => _displayView.value;
 
   RxMap<String, dynamic> templates = <String, dynamic>{}.obs;
   RxMap<String, DisplayTabSearchModel> searchModels = <String, DisplayTabSearchModel>{}.obs;

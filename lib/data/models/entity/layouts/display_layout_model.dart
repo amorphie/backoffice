@@ -14,6 +14,7 @@ class DisplayLayoutModel {
   bool? runningWorkflows;
   bool? availableWorkflows;
   List<DisplayTabModel>? tabs;
+  bool withTabs;
   DisplayLayoutModel({
     this.summaryTemplate,
     this.detailTemplate,
@@ -22,6 +23,7 @@ class DisplayLayoutModel {
     this.runningWorkflows,
     this.availableWorkflows,
     this.tabs,
+    this.withTabs = true,
   });
 
   DisplayLayoutModel copyWith({
@@ -31,6 +33,7 @@ class DisplayLayoutModel {
     bool? stateManager,
     bool? runningWorkflows,
     bool? availableWorkflows,
+    bool? withTabs,
     List<DisplayTabModel>? tabs,
   }) {
     return DisplayLayoutModel(

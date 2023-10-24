@@ -110,6 +110,9 @@ class EntityController extends GetxController {
       if (response.data["data"] != null && response.data["data"] is List) {
         list = response.data["data"];
       }
+      if (response.data["checking"] != null && response.data["checking"] is List) {
+        list = response.data["checking"];
+      }
     }
 
     return list;

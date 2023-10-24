@@ -13,8 +13,9 @@ extension MatchsExtension on String {
       var txtData = txt.split(".");
       var d = data;
 
-      for (var txtWord in txtData) {
-        if (txtWord == txtData.last) {
+      for (int i = 0; i < txtData.length; i++) {
+        String txtWord = txtData[i];
+        if (i == 0) {
           result = (d[txtWord] ?? "").toString();
           d = data;
         } else {
@@ -23,6 +24,8 @@ extension MatchsExtension on String {
               if (d[txtWord] is Map) {
                 d = d[txtWord];
               }
+              result = (d[txtWord] ?? "").toString();
+
               // else if (d[txtWord] is String) {
               //   changeWord = d[txtWord].toString();
               // }
