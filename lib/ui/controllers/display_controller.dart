@@ -1,6 +1,9 @@
 // ignore_for_file: invalid_use_of_protected_member
 
+import 'dart:developer';
+
 import 'package:admin/data/models/entity/entity_model.dart';
+import 'package:admin/data/models/entity/enums/display_tab_type.dart';
 import 'package:admin/data/models/entity/layout_helpers/display_tab_model.dart';
 import 'package:admin/data/models/entity/layouts/display_layout_model.dart';
 import 'package:admin/data/models/history/history_workflow_model.dart';
@@ -77,19 +80,37 @@ class DisplayController extends GetxController {
       });
     if (displayLayout.tabs != null) {
       for (var tab in displayLayout.tabs!) {
-        if (tab.type == "render") {
-          templates.addAll({
-            tab.template!.enEN: await getTemplate(
-              "${tab.template!.enEN}",
-              {
-                "consents": List.generate(1, (index) => {"name": "Deneme$index", "description": "text$index"})
-              },
-            )
-          });
-        } else if (tab.type == "search") {
-          searchModels.addAll({tab.entity!: await getSearchData(tab)});
-        }
+        await getTabTemplates(tab);
       }
+    }
+  }
+
+  Future getTabTemplates([DisplayTabModel? tab]) async {
+    if (tab != null) {
+      if (tab.type.isSplit) {
+        for (var item in tab.items!) {
+          await getTabTemplates(item);
+        }
+      } else
+        await addTabTemplate(tab);
+    }
+  }
+
+  Future addTabTemplate(DisplayTabModel tab) async {
+    switch (tab.type) {
+      case DisplayTabType.render:
+        templates.addAll({
+          tab.template!.enEN: await getTemplate(
+            "${tab.template!.enEN}",
+            _displayView.value,
+          )
+        });
+        break;
+      case DisplayTabType.search:
+        searchModels.addAll({tab.entity!: await getSearchData(tab)});
+
+        break;
+      default:
     }
   }
 
@@ -143,6 +164,8 @@ class DisplayController extends GetxController {
       "render-data": renderData,
       "render-data-for-log": renderData,
     };
+    log(name, name: "templateget");
+
     var response = await Services().getTemplate(data: data);
 
     if (response.success) {

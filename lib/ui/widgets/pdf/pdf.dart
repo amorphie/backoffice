@@ -31,7 +31,7 @@ class _Pdfex2 extends State<PdfWidget> {
     return Stack(
       children: [
         SfPdfViewer.memory(
-          testPdf,
+          widget.bytes ?? testPdf,
           key: _pdfViewerKey,
         ),
         Align(

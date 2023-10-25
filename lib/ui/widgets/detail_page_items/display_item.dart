@@ -1,10 +1,14 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:typed_data';
+
+import 'package:admin/data/extension/string_extension.dart';
 import 'package:admin/data/models/entity/enums/display_tab_type.dart';
 import 'package:admin/ui/controllers/display_controller.dart';
 import 'package:admin/ui/controllers/home_controller.dart';
 import 'package:admin/ui/widgets/formio/formio_test_json.dart';
 import 'package:admin/ui/widgets/formio/formio_widget.dart';
 import 'package:admin/ui/widgets/pdf/pdf.dart';
+import 'package:admin/ui/widgets/pdf/pdf_file.dart';
 import 'package:admin/ui/widgets/render/render_widget.dart';
 import 'package:admin/ui/widgets/tab_data_table/app_data_table/tab_data_table.dart';
 import 'package:flutter/material.dart';
@@ -68,7 +72,14 @@ class DisplayTabItemWidget extends StatelessWidget {
           withBackButton: false,
         );
       case DisplayTabType.pdf:
-        return PdfWidget();
+        Uint8List? bytes;
+        if (value.source == "data") {
+          String? data = value.data?.jsWithData(displayController.displayView);
+          if (data != null) bytes = getPdfFile(data);
+        }
+        return PdfWidget(
+          bytes: bytes,
+        );
       default:
         return Container();
     }
