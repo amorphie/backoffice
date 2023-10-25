@@ -17,7 +17,7 @@ extension MatchsExtension on String {
         String txtWord = txtData[i];
         if (i == 0) {
           result = (d[txtWord] ?? "").toString();
-          d = data;
+          d = d[txtWord];
         } else {
           try {
             if (d[txtWord] != null) {

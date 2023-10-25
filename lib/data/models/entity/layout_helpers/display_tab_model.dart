@@ -15,10 +15,13 @@ class DisplayTabModel {
   String? url;
   TitleModel? template;
   TitleModel title;
+  String? source;
+  String? data;
   String? layout;
   String? filter;
   String? filter_value;
   List<DisplayTabModel>? items;
+
   DisplayTabModel({
     required this.type,
     this.entity,
@@ -27,6 +30,8 @@ class DisplayTabModel {
     this.url,
     this.template,
     required this.title,
+    this.source,
+    this.data,
     this.layout,
     this.filter,
     this.filter_value,
@@ -41,6 +46,8 @@ class DisplayTabModel {
     String? url,
     TitleModel? template,
     TitleModel? title,
+    String? source,
+    String? data,
     String? layout,
     String? filter,
     String? filter_value,
@@ -54,6 +61,8 @@ class DisplayTabModel {
       url: url ?? this.url,
       template: template ?? this.template,
       title: title ?? this.title,
+      source: source ?? this.source,
+      data: data ?? this.data,
       layout: layout ?? this.layout,
       filter: filter ?? this.filter,
       filter_value: filter_value ?? this.filter_value,
@@ -70,6 +79,8 @@ class DisplayTabModel {
       'url': url,
       'template': template?.toMap(),
       'title': title.toMap(),
+      'source': source,
+      'data': data,
       'layout': layout,
       'filter': filter,
       'filter_value': filter_value,
@@ -86,6 +97,8 @@ class DisplayTabModel {
       url: map['url'] != null ? map['url'] as String : null,
       template: map['template'] != null ? TitleModel.fromMap(map['template'] as Map<String, dynamic>) : null,
       title: TitleModel.fromMap(map['title'] as Map<String, dynamic>),
+      source: map['source'] != null ? map['source'] as String : null,
+      data: map['data'] != null ? map['data'] as String : null,
       layout: map['layout'] != null ? map['layout'] as String : null,
       filter: map['filter'] != null ? map['filter'] as String : null,
       filter_value: map['filter_value'] != null ? map['filter_value'] as String : null,
@@ -119,6 +132,8 @@ class DisplayTabModel {
         other.url == url &&
         other.template == template &&
         other.title == title &&
+        other.source == source &&
+        other.data == data &&
         other.layout == layout &&
         other.filter == filter &&
         other.filter_value == filter_value &&
