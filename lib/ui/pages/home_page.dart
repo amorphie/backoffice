@@ -58,34 +58,34 @@ class HomePage extends StatelessWidget {
                         child: Obx(() {
                           if (homeController.hasEntity)
                             return homeController.selectedEntity.value.page;
-                          else if (entityController.loading.value) return Container();
-                          return AppDataTable(
-                            filterView: homeController.filterView,
-                            withSearch: entityController.entity.search?.search ?? false,
-                            title: menuController.menuItem.value.title!,
-                            data: entityController.dataList,
-                            columns: entityController.entity.search?.columns ?? [],
-                            hasFilter: entityController.entity.hasFilter,
-                            filterPressed: () async {
-                              if (homeController.filterView) {
-                                await entityController.refreshList();
-                                homeController.filterClose();
-                              } else {
-                                await homeController.getFilterArea();
-                              }
-                            },
-                            onSearch: (val) {
-                              entityController.setFilter(val);
-                            },
-                            loading: entityController.loading.value,
-                            onPressed: (data) async {
-                              await homeController.addData(data);
-                              log(DateTime.now().toIso8601String(), name: "SelectEntityFinal");
-                            },
-                            addPressed: () async {
-                              formioDialog(context);
-                            },
-                          );
+                          else
+                            return AppDataTable(
+                              filterView: homeController.filterView,
+                              withSearch: entityController.entity.search?.search ?? false,
+                              title: menuController.menuItem.value.title!,
+                              data: entityController.dataList,
+                              columns: entityController.entity.search?.columns ?? [],
+                              hasFilter: entityController.entity.hasFilter,
+                              filterPressed: () async {
+                                if (homeController.filterView) {
+                                  await entityController.refreshList();
+                                  homeController.filterClose();
+                                } else {
+                                  await homeController.getFilterArea();
+                                }
+                              },
+                              onSearch: (val) {
+                                entityController.setFilter(val);
+                              },
+                              loading: entityController.loading.value,
+                              onPressed: (data) async {
+                                await homeController.addData(data);
+                                log(DateTime.now().toIso8601String(), name: "SelectEntityFinal");
+                              },
+                              addPressed: () async {
+                                formioDialog(context);
+                              },
+                            );
                         }),
                       )
                     ],
