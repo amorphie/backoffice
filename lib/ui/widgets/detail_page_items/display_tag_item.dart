@@ -1,14 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
-import 'package:admin/data/models/workflow/transition_model.dart';
 import 'package:admin/ui/controllers/display_controller.dart';
-import 'package:admin/ui/controllers/entity_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:admin/data/models/workflow/workflow_model.dart';
-import 'package:admin/ui/widgets/formio/transition_widget.dart';
-import 'package:admin/ui/controllers/workflow_controller.dart';
 import 'package:admin/ui/style/colors.dart';
 import 'package:webviewx/webviewx.dart';
 
