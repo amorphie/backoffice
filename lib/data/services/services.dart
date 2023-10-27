@@ -50,6 +50,13 @@ class Services {
 
   Future<ResponseModel> getById(String url, String id) => Executer.get(endpoint: url + "/$id");
 
+  Future<ResponseModel> getTag(String name) async {
+    return await Executer.get(
+      endpoint: "https://test-amorphie-tag.${dotenv.env["PROJECT_BASE_URL"]}/Tag/getTag/$name",
+      headers: {'accept': '*/*'},
+    );
+  }
+
   Future<ResponseModel> getTemplate({required Map<String, dynamic> data}) async {
     return await Executer.post(
       endpoint: "https://test-template-engine.${dotenv.env["PROJECT_BASE_URL"]}/Template/Render",

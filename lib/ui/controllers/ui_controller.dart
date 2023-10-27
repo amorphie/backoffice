@@ -28,6 +28,7 @@ class AppUiController extends GetxController {
     if (homeController.filterView) {
       homeController.filterClose();
     }
+    homeController.closeAll();
   }
 
   menuReset() {
