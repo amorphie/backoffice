@@ -1,6 +1,7 @@
 import 'package:admin/ui/widgets/formio/formio_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:webviewx/webviewx.dart';
 
 import '../data/models/history/history_model.dart';
 import '../ui/widgets/formio/formio_page.dart';
@@ -79,5 +80,42 @@ Future<void> showHistoryWidget(BuildContext context, HistoryModel data) async {
             )),
       );
     },
+  );
+}
+
+showTag(String tag) async {
+  // var tagResponse = await Services().getTag(tag);
+// tagResponse.data["url"]??""
+  return showDialog<void>(
+    context: Get.context!,
+    barrierDismissible: true, // user must tap button!
+    builder: (BuildContext context) {
+      return Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: AlertDialog(
+          actionsPadding: EdgeInsets.zero,
+          insetPadding: EdgeInsets.zero,
+          buttonPadding: EdgeInsets.zero,
+          contentPadding: EdgeInsets.zero,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+          title: Text(tag),
+          content: _buildWebViewX(""), //TODO url null control eklenecek
+        ),
+      );
+    },
+  );
+}
+
+Widget _buildWebViewX(String data) {
+  return WebViewX(
+    key: const ValueKey('urldata'),
+    initialContent: "https://google.com.tr",
+    initialSourceType: SourceType.url,
+    height: double.maxFinite,
+    width: MediaQuery.of(Get.context!).size.width * 0.7,
+
+    // height: screenSize.height / 1.3,
+    // width: min(screenSize.width * 0.8, 1024),
+    onWebViewCreated: (controller) {},
   );
 }

@@ -51,6 +51,11 @@ class HomeController extends GetxController {
   Future subtractData(DisplayViewModel model) async {
     entityList.remove(model);
   }
+
+  closeAll() {
+    entityList.value = <DisplayViewModel>[];
+    deselectEntity();
+  }
   //!DISPLAY END
 
   //! FILTER BEGIN
