@@ -54,7 +54,6 @@ class Hub {
       } else {
         model = HubModel.fromMap(d);
       }
-      appLogger.wtf(model.toString(), "sendMessageend");
       if ((model.eventInfo == "worker-completed" || model.eventInfo == "transition-completed") && (model.page != null && model.page!.type != "Popup")) {
         EntityController c = Get.find<EntityController>();
         c.getDataList();
