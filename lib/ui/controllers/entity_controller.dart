@@ -14,6 +14,7 @@ class EntityController extends GetxController {
   }
 
   String _keyword = "";
+  String _endpointSuffix = "";
 
   int? pageSize;
   int? pageNumber;
@@ -31,6 +32,16 @@ class EntityController extends GetxController {
     _keyword = filter;
     if (_keyword == "" || _keyword.length > 3) {
       getDataList(isSearch: true);
+    }
+  }
+
+  setEndpointSuffix(String sf) {
+    if (sf == "")
+      _endpointSuffix = "";
+    else
+      _endpointSuffix = "/" + sf;
+    if (_endpointSuffix == "" || _endpointSuffix.length > 3) {
+      getDataList(isSearch: false);
     }
   }
 
@@ -98,7 +109,7 @@ class EntityController extends GetxController {
     await Future.delayed(Duration(milliseconds: 200));
 
     var response = await services.search(
-        url: (entityModel ?? entity).url,
+        url: (entityModel ?? entity).url + _endpointSuffix,
         pageSize: pageSize ?? (entityModel ?? entity).search!.defaultPageSize,
         pageNumber: pageNumber ?? (entityModel ?? entity).search!.defaultPageNumber,
         keyword: keyword,
@@ -109,9 +120,11 @@ class EntityController extends GetxController {
     } else if (response.data is Map<String, dynamic>) {
       if (response.data["data"] != null && response.data["data"] is List) {
         list = response.data["data"];
-      }
-      if (response.data["checking"] != null && response.data["checking"] is List) {
-        list = response.data["checking"];
+      } else if ((entityModel ?? entity).search!.subDataField != null) {
+        //TODO Alt alta gelen modelleri listeleme yapılacak
+        if (response.data[(entityModel ?? entity).search!.subDataField] != null && response.data[(entityModel ?? entity).search!.subDataField] is List) {
+          list = response.data[(entityModel ?? entity).search!.subDataField];
+        }
       }
     }
 
@@ -128,7 +141,7 @@ class EntityController extends GetxController {
     await Future.delayed(Duration(milliseconds: 200));
 
     var response = await services.search(
-        url: (entityModel ?? entity).url + "/search",
+        url: (entityModel ?? entity).url + _endpointSuffix + "/search",
         pageSize: pageSize ?? (entityModel ?? entity).search!.defaultPageSize,
         pageNumber: pageNumber ?? (entityModel ?? entity).search!.defaultPageNumber,
         keyword: keyword,
@@ -139,6 +152,11 @@ class EntityController extends GetxController {
     } else if (response.data is Map<String, dynamic>) {
       if (response.data["data"] != null && response.data["data"] is List) {
         list = response.data["data"];
+      }
+    } else if ((entityModel ?? entity).search!.subDataField != null) {
+      //TODO Alt alta gelen modelleri listeleme yapılacak
+      if (response.data[(entityModel ?? entity).search!.subDataField] != null && response.data[(entityModel ?? entity).search!.subDataField] is List) {
+        list = response.data[(entityModel ?? entity).search!.subDataField];
       }
     }
 

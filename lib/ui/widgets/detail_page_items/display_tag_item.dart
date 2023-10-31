@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:admin/ui/style/colors.dart';
-import 'package:webviewx/webviewx.dart';
 
 class DisplayTagList extends StatefulWidget {
   final String id;
@@ -21,7 +20,6 @@ class DisplayTagList extends StatefulWidget {
 
 class _DisplayTagListState extends State<DisplayTagList> {
   DisplayController get controller => Get.find<DisplayController>(tag: widget.id);
-  WebViewXController? webViewXController;
   @override
   Widget build(BuildContext context) {
     if ((controller.displayView["tag"] ?? controller.displayView["tags"]) == null) return Container();
