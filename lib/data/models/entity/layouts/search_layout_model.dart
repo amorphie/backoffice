@@ -13,9 +13,13 @@ class SearchLayout {
   bool search;
   List<FilterLayout>? filter;
   List<SearchColumn> columns;
+  String? subDataField;
+  bool? endpointSuffix;
   SearchLayout({
     required this.search,
     this.filter,
+    this.subDataField,
+    this.endpointSuffix,
     this.defaultPageSize = 100,
     this.defaultPageNumber = 0,
     required this.columns,
@@ -25,6 +29,8 @@ class SearchLayout {
     int? defaultPageSize,
     int? defaultPageNumber,
     bool? search,
+    String? subDataField,
+    bool? endpointSuffix,
     List<FilterLayout>? filter,
     List<SearchColumn>? columns,
   }) {
@@ -34,6 +40,8 @@ class SearchLayout {
       search: search ?? this.search,
       filter: filter ?? this.filter,
       columns: columns ?? this.columns,
+      subDataField: subDataField ?? this.subDataField,
+      endpointSuffix: endpointSuffix ?? this.endpointSuffix,
     );
   }
 
@@ -42,6 +50,8 @@ class SearchLayout {
       'defaultPageSize': defaultPageSize,
       'defaultPageNumber': defaultPageNumber,
       'search': search,
+      'subDataField': subDataField,
+      'endpointSuffix': endpointSuffix,
       'filter': filter?.map((x) => x.toMap()).toList(),
       'columns': columns.map((x) => x.toMap()).toList(),
     };
@@ -52,6 +62,8 @@ class SearchLayout {
       defaultPageSize: map["defaultPageSize"] != null ? map["defaultPageSize"] : null,
       defaultPageNumber: map["defaultPageNumber"] != null ? map["defaultPageNumber"] : null,
       search: map['search'] as bool,
+      subDataField: map['subDataField'] != null ? map['subDataField'] as String : null,
+      endpointSuffix: map['endpointSuffix'] != null ? map['endpointSuffix'] as bool : null,
       filter: map['filter'] != null
           ? List<FilterLayout>.from(
               (map['filter']).map<FilterLayout?>(
@@ -73,7 +85,7 @@ class SearchLayout {
 
   @override
   String toString() {
-    return 'SearchLayout(defaultPageSize: $defaultPageSize, defaultPageNumber: $defaultPageNumber, search: $search, filter: $filter, columns: $columns)';
+    return 'SearchLayout(defaultPageSize: $defaultPageSize, defaultPageNumber: $defaultPageNumber, search: $search, filter: $filter, columns: $columns, subDataField: $subDataField, endpointSuffix: $endpointSuffix)';
   }
 
   @override
@@ -84,11 +96,13 @@ class SearchLayout {
         other.defaultPageNumber == defaultPageNumber &&
         other.search == search &&
         listEquals(other.filter, filter) &&
-        listEquals(other.columns, columns);
+        listEquals(other.columns, columns) &&
+        other.subDataField == subDataField &&
+        other.endpointSuffix == endpointSuffix;
   }
 
   @override
   int get hashCode {
-    return defaultPageSize.hashCode ^ defaultPageNumber.hashCode ^ search.hashCode ^ filter.hashCode ^ columns.hashCode;
+    return defaultPageSize.hashCode ^ defaultPageNumber.hashCode ^ search.hashCode ^ filter.hashCode ^ columns.hashCode ^ subDataField.hashCode ^ endpointSuffix.hashCode;
   }
 }

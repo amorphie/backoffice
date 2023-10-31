@@ -38,10 +38,10 @@ class HomePage extends StatelessWidget {
                   child: Column(
                     children: [
                       SizedBox(
-                        height: 30,
+                        height: 50,
                         child: Row(
                           children: [
-                            if (homeController.hasEntity) displayButton(title: menuController.menuItem.value.title!.enEN),
+                            displayButton(title: menuController.menuItem.value.title!.enEN),
                             Expanded(
                               child: Obx(() {
                                 return ListView.builder(
@@ -60,12 +60,14 @@ class HomePage extends StatelessWidget {
                             return homeController.selectedEntity.value.page;
                           else
                             return AppDataTable(
+                              withEndpointSuffix: entityController.entity.search?.endpointSuffix ?? false,
                               filterView: homeController.filterView,
                               withSearch: entityController.entity.search?.search ?? false,
                               title: menuController.menuItem.value.title!,
                               data: entityController.dataList,
                               columns: entityController.entity.search?.columns ?? [],
                               hasFilter: entityController.entity.hasFilter,
+                              entityLoading: homeController.addDataLoading,
                               filterPressed: () async {
                                 if (homeController.filterView) {
                                   await entityController.refreshList();
@@ -76,6 +78,9 @@ class HomePage extends StatelessWidget {
                               },
                               onSearch: (val) {
                                 entityController.setFilter(val);
+                              },
+                              onEndpointSuffix: (val) {
+                                entityController.setEndpointSuffix(val);
                               },
                               loading: entityController.loading.value,
                               onPressed: (data) async {
@@ -112,49 +117,56 @@ class HomePage extends StatelessWidget {
     ));
   }
 
-  Widget displayButton({DisplayViewModel? model, String? title}) => GestureDetector(
-      onTap: () {
-        log(DateTime.now().toIso8601String(), name: "SelectEntityStart");
-        if (title == null) {
-          homeController.selectEntity(model!);
-        } else {
-          homeController.deselectEntity();
-        }
-        log(DateTime.now().toIso8601String(), name: "SelectEntityEnd");
-      },
-      child: Container(
-        decoration: model == homeController.selectedEntity.value ? BoxDecoration(borderRadius: BorderRadius.circular(20), color: KC.secondary) : null,
-        alignment: Alignment.center,
-        padding: EdgeInsets.symmetric(horizontal: 5),
-        child: Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              child: Text(
-                title ?? entityController.entity.titleTemplate.templateWithData(model!.data),
-                style: model == homeController.selectedEntity.value ? TextStyle(color: Colors.white) : TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 16),
-              ),
-            ),
-            if (title == null) SizedBox(width: 5),
-            if (title == null)
-              Padding(
-                padding: const EdgeInsets.only(left: 5),
-                child: GestureDetector(
-                    onTap: () {
-                      homeController.subtractData(model!);
-                      homeController.deselectEntity();
-                    },
-                    child: model == homeController.selectedEntity.value
-                        ? Icon(
-                            Icons.close,
-                            size: 18,
-                            color: Colors.white,
-                          )
-                        : SizedBox(width: 0)),
-              )
-          ],
+  Widget displayButton({DisplayViewModel? model, String? title}) => Padding(
+        padding: EdgeInsets.symmetric(horizontal: 1, vertical: 4),
+        child: Tooltip(
+          message: model?.entity ?? "",
+          // message: menuController.menuItem.value.title!.enEN,
+
+          child: GestureDetector(
+              onTap: () {
+                if (title == null) {
+                  homeController.selectEntity(model!);
+                } else {
+                  homeController.deselectEntity();
+                }
+              },
+              child: Card(
+                elevation: 2,
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                child: Container(
+                  decoration: model == homeController.selectedEntity.value
+                      ? BoxDecoration(borderRadius: BorderRadius.circular(20), color: KC.secondary)
+                      : title == null
+                          ? BoxDecoration(borderRadius: BorderRadius.circular(20), border: Border.all(), color: Colors.transparent)
+                          : null,
+                  alignment: Alignment.center,
+                  padding: EdgeInsets.symmetric(horizontal: 5),
+                  child: Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8),
+                        child: Text(
+                          title ?? entityController.entities[model!.entity]?.titleTemplate.templateWithData(model.data) ?? model!.id,
+                          style: TextStyle(color: model == homeController.selectedEntity.value ? Colors.white : Colors.black, fontSize: 16),
+                        ),
+                      ),
+                      if (title == null) SizedBox(width: 5),
+                      if (title == null)
+                        Padding(
+                          padding: const EdgeInsets.only(left: 5),
+                          child: GestureDetector(
+                              onTap: () {
+                                homeController.subtractData(model!);
+                              },
+                              child: Icon(Icons.close, size: 18, color: model == homeController.selectedEntity.value ? KC.background : KC.primary)),
+                        )
+                    ],
+                  ),
+                ),
+              )),
         ),
-      ));
+      );
 
   Future<void> formioDialog(BuildContext context, [String? recordId]) async {
     WorkflowController controller = Get.put<WorkflowController>(WorkflowController());

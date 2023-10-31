@@ -35,27 +35,38 @@ class HomeController extends GetxController {
 
   bool get hasEntity => !selectedEntity.value.isBlank;
 
+  RxBool _addDataLoading = false.obs;
+  bool get addDataLoading => _addDataLoading.value;
+
   Future addData(Map<String, dynamic> data) async {
-    DisplayController displayController = Get.put<DisplayController>(DisplayController(data["id"]), tag: data["id"]);
-    WorkflowController workflowController = Get.put<WorkflowController>(WorkflowController(data["id"]), tag: data["id"]);
-    final EntityController entityController = Get.find<EntityController>();
+    _addDataLoading.value = true;
+    try {
+      DisplayController displayController = Get.put<DisplayController>(DisplayController(data["id"]), tag: data["id"]);
+      WorkflowController workflowController = Get.put<WorkflowController>(WorkflowController(data["id"]), tag: data["id"]);
+      final EntityController entityController = Get.find<EntityController>();
 
-    await workflowController.startTransition(entity: entityController.entity.workflow, recordId: data["id"]);
+      await workflowController.startTransition(entity: entityController.entity.workflow, recordId: data["id"]);
 
-    await displayController.setData(data);
-    DisplayViewModel model = DisplayViewModel(id: Uuid().v4(), entity: entityController.entity.name, data: data, page: DetailWidget());
-    selectEntity(model);
-    entityList.add(model);
+      await displayController.setData(data);
+      DisplayViewModel model = DisplayViewModel(id: Uuid().v4(), entity: entityController.entity.name, data: data, page: DetailWidget());
+      selectEntity(model);
+      entityList.add(model);
+    } catch (e) {}
+    _addDataLoading.value = false;
   }
 
   Future subtractData(DisplayViewModel model) async {
+    int index = entityList.indexWhere((element) => element == model);
+    if (hasEntity) {
+      if (index > -1 && entityList.length > 1) {
+        if (model == selectedEntity.value) selectEntity(entityList[index - 1]);
+      } else {
+        deselectEntity();
+      }
+    }
     entityList.remove(model);
   }
 
-  closeAll() {
-    entityList.value = <DisplayViewModel>[];
-    deselectEntity();
-  }
   //!DISPLAY END
 
   //! FILTER BEGIN

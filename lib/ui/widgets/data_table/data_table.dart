@@ -1,21 +1,24 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:admin/ui/widgets/data_table/data_table_source.dart';
-import 'package:admin/ui/widgets/filter/filter_area.dart';
-import 'package:admin/ui/widgets/indicator.dart';
 import 'package:flutter/material.dart';
 
 import 'package:admin/data/models/entity/layout_helpers/search_column_model.dart';
 import 'package:admin/data/models/entity/layout_helpers/title_model.dart';
+import 'package:admin/ui/widgets/data_table/data_table_source.dart';
+import 'package:admin/ui/widgets/filter/filter_area.dart';
+import 'package:admin/ui/widgets/indicator.dart';
 
 import '../../style/colors.dart';
 
 class AppDataTable extends StatelessWidget {
   final TitleModel title;
   final Function(String val) onSearch;
+  final Function(String val) onEndpointSuffix;
   final Function addPressed;
   final Function filterPressed;
   final bool loading;
+  final bool entityLoading;
   final bool withSearch;
+  final bool withEndpointSuffix;
   final bool hasFilter;
   final bool filterView;
   final List<SearchColumn> columns;
@@ -26,10 +29,13 @@ class AppDataTable extends StatelessWidget {
     Key? key,
     required this.title,
     required this.withSearch,
+    required this.withEndpointSuffix,
     required this.onSearch,
+    required this.onEndpointSuffix,
     required this.addPressed,
     required this.filterPressed,
     this.loading = false,
+    this.entityLoading = false,
     this.hasFilter = false,
     this.filterView = false,
     required this.columns,
@@ -43,19 +49,24 @@ class AppDataTable extends StatelessWidget {
       children: [
         ListView(
           children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 16.0, top: 10, bottom: 14),
-              child: Text(
-                title.enEN,
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.black54),
-              ),
-            ),
+            // Padding(
+            //   padding: const EdgeInsets.only(left: 16.0, top: 10, bottom: 14),
+            //   child: Text(
+            //     title.enEN,
+            //     style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.black54),
+            //   ),
+            // ),
             Builder(builder: (context) {
               return Column(
                 children: [
                   Row(
                     children: [
-                      if (withSearch) SerachTextfield(onSearch: onSearch),
+                      if (withSearch) SerachTextfield(flex: 4, onSearch: onSearch),
+                      if (withEndpointSuffix)
+                        SerachTextfield(
+                          onSearch: onEndpointSuffix,
+                          hintText: "Identity Number",
+                        ),
                       if (hasFilter)
                         SizedBox(
                           width: 50,
@@ -93,6 +104,7 @@ class AppDataTable extends StatelessWidget {
                                   label: Text(
                                 e.title.enEN,
                                 style: TextStyle(color: Colors.black87),
+                                overflow: TextOverflow.ellipsis,
                               )))
                           .toList(),
                       source: AppDataTableSource(data: data, columns: columns, onPressed: onPressed),
@@ -102,23 +114,29 @@ class AppDataTable extends StatelessWidget {
             }),
           ],
         ),
-        if (loading) AppIndicator()
+        if (loading) AppIndicator(),
+        if (entityLoading) AbsorbPointer(child: AppIndicator()),
       ],
     );
   }
 }
 
 class SerachTextfield extends StatelessWidget {
+  final String? hintText;
+  final int flex;
   const SerachTextfield({
-    super.key,
+    Key? key,
+    this.hintText = "Search",
+    this.flex = 1,
     required this.onSearch,
-  });
+  }) : super(key: key);
 
   final Function(String val) onSearch;
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
+      flex: flex,
       child: Padding(
         padding: const EdgeInsets.all(4),
         child: TextField(
@@ -129,7 +147,7 @@ class SerachTextfield extends StatelessWidget {
           //   onSearch(value);
           // },
           decoration: InputDecoration(
-            hintText: "Search",
+            hintText: hintText,
             prefixIconColor: KC.primary,
             prefixIcon: Icon(Icons.search),
             iconColor: KC.primary,

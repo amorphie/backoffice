@@ -25,10 +25,10 @@ class AppUiController extends GetxController {
     entityController.setEntityMenu();
 
     HomeController homeController = Get.find<HomeController>();
+    homeController.deselectEntity();
     if (homeController.filterView) {
       homeController.filterClose();
     }
-    homeController.closeAll();
   }
 
   menuReset() {
