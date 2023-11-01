@@ -48,7 +48,14 @@ class HomeController extends GetxController {
       await workflowController.startTransition(entity: entityController.entity.workflow, recordId: data["id"]);
 
       await displayController.setData(data);
-      DisplayViewModel model = DisplayViewModel(id: Uuid().v4(), entity: entityController.entity.name, data: data, page: DetailWidget());
+      DisplayViewModel model = DisplayViewModel(
+          id: Uuid().v4(),
+          entity: entityController.entity.name,
+          data: data,
+          page: DetailWidget(
+            entity: entityController.entity.name,
+            id: data["id"],
+          ));
       selectEntity(model);
       entityList.add(model);
     } catch (e) {}

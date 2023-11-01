@@ -1,23 +1,28 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import 'package:admin/data/models/entity/entity_model.dart';
+import 'package:admin/data/models/entity/layout_helpers/title_model.dart';
+import 'package:admin/ui/controllers/entity_controller.dart';
+import 'package:admin/ui/controllers/home_controller.dart';
 import 'package:admin/ui/widgets/detail_page_items/display_item.dart';
 import 'package:admin/ui/widgets/detail_page_items/display_tag_item.dart';
 import 'package:admin/ui/widgets/detail_page_items/workflow_area.dart';
 import 'package:admin/ui/widgets/history/history_list.dart';
 import 'package:admin/ui/widgets/render/render_widget.dart';
-import 'package:admin/ui/controllers/entity_controller.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
-import 'package:admin/data/models/entity/layout_helpers/title_model.dart';
-import 'package:admin/ui/controllers/home_controller.dart';
 
 import '../controllers/display_controller.dart';
 import '../style/colors.dart';
 
 class DetailWidget extends StatefulWidget {
+  final String id;
+  final String entity;
   const DetailWidget({
     Key? key,
+    required this.id,
+    required this.entity,
   }) : super(key: key);
 
   @override
@@ -28,7 +33,7 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
   late TabController _tabController;
   HomeController get homeController => Get.find<HomeController>();
   EntityController get entityController => Get.find<EntityController>();
-  DisplayController get displayController => Get.find<DisplayController>(tag: homeController.selectedEntity.value.data["id"]);
+  DisplayController get displayController => Get.find<DisplayController>(tag: widget.id);
 
   @override
   void initState() {
@@ -36,6 +41,8 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
 
     _tabController = TabController(length: displayController.tabCount, vsync: this);
   }
+
+  EntityModel get entity => entityController.entities[widget.entity]!;
 
   @override
   Widget build(BuildContext context) {
@@ -95,7 +102,7 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
                           ),
                         )
                         .toList(),
-                    if (entityController.entity.display!.history!)
+                    if (entity.display!.history!)
                       Tab(
                         icon: Text("History"),
                       ),
@@ -109,10 +116,10 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
                     value: e,
                   );
                 }).toList(),
-                if (entityController.entity.display!.history!)
-                  Obx(() => HistoryListWidget(
-                        histories: displayController.historyWorkflows,
-                      )),
+                if (entity.display!.history!)
+                  HistoryListWidget(
+                    histories: displayController.historyWorkflows,
+                  )
               ]);
             })),
       ),

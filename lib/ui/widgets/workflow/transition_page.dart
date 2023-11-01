@@ -1,4 +1,6 @@
+import 'package:admin/data/models/workflow/state_manager_model.dart';
 import 'package:admin/data/models/workflow/transition_model.dart';
+import 'package:admin/ui/widgets/workflow/multi_transition_widget.dart';
 import 'package:admin/ui/widgets/workflow/transition_widget.dart';
 import 'package:admin/ui/controllers/workflow_controller.dart';
 import 'package:flutter/material.dart';
@@ -7,16 +9,16 @@ import 'package:get/get.dart';
 import '../../style/colors.dart';
 import '../custom_button.dart';
 
-class FormioPage extends StatefulWidget {
-  const FormioPage({
+class TransitionPage extends StatefulWidget {
+  const TransitionPage({
     Key? key,
   }) : super(key: key);
 
   @override
-  _FormioPageState createState() => _FormioPageState();
+  _TransitionPageState createState() => _TransitionPageState();
 }
 
-class _FormioPageState extends State<FormioPage> {
+class _TransitionPageState extends State<TransitionPage> {
   WorkflowController controller = Get.find<WorkflowController>();
   @override
   void dispose() {
@@ -26,13 +28,22 @@ class _FormioPageState extends State<FormioPage> {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      List<TransitionModel> transitions = controller.workflow.stateManager!.transitions!;
+      StateManager stateManager = controller.workflow.stateManager!;
+      List<TransitionModel> transitions = stateManager.transitions!;
       bool loading = controller.loading;
       return Container(
         padding: const EdgeInsets.all(10.0),
-        height: transitions.length > 1 ? 200 : null,
+        height: !stateManager.isPublicForm && transitions.length > 1 ? 200 : null,
         child: Builder(builder: (context) {
-          if (transitions.length == 1) {
+          if (stateManager.isPublicForm) {
+            return MultiTransitionWidget(
+                data: stateManager,
+                getData: (val, transition) {
+                  controller.postTransition(transition: transitions.first, entityData: val);
+                  Navigator.pop(context);
+                },
+                loading: loading);
+          } else if (transitions.length == 1) {
             return TransitionWidget(
               data: transitions.first,
               getData: (data) async {

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../data/models/history/history_model.dart';
-import '../ui/widgets/formio/formio_page.dart';
+import '../ui/widgets/workflow/transition_page.dart';
 import '../ui/widgets/indicator.dart';
 import '../ui/controllers/entity_controller.dart';
 import '../ui/controllers/workflow_controller.dart';
@@ -54,7 +54,7 @@ Future<void> formioDialog(BuildContext context, [String? entity, String? recordI
                 ],
               ),
             ),
-            content: FormioPage(),
+            content: TransitionPage(),
           ),
         );
       });
