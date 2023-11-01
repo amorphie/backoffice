@@ -13,7 +13,7 @@ import '../style/colors.dart';
 import '../widgets/menu/menu.dart';
 import '../widgets/data_table/data_table.dart';
 import '../controllers/ui_controller.dart';
-import '../widgets/formio/formio_page.dart';
+import '../widgets/workflow/transition_page.dart';
 import 'dashboard.dart';
 
 class HomePage extends StatelessWidget {
@@ -104,7 +104,7 @@ class HomePage extends StatelessWidget {
                   children: [
                     Expanded(child: Dashboard()),
                     // Expanded(child: Center(child: Text("HomePage"))),
-                    Text("v1.0.1"),
+                    Text("v1.0.2"),
                   ],
                 ),
               );
@@ -173,6 +173,7 @@ class HomePage extends StatelessWidget {
     await controller.startTransition(
       entity: entityController.entity.workflow,
       recordId: recordId,
+      //TODO TEst ederken buraya record id elle yazılabilir
     );
 
     return showDialog<void>(
@@ -210,7 +211,7 @@ class HomePage extends StatelessWidget {
                   ],
                 ),
               ),
-              content: FormioPage(),
+              content: TransitionPage(),
             ),
           );
         });

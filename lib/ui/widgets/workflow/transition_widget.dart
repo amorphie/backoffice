@@ -88,13 +88,15 @@ class _TransitionWidgetState extends State<TransitionWidget> {
 
                               final valid = Form.of(context).validate();
                               jsonWidgetRegistry.setValue('form_validation', valid);
-
+                              Map<String, dynamic> d = {};
                               for (var element in data.keys) {
                                 var item = data[element];
                                 if (item is! Key && item is! BuildContext) {
                                   log("$element => ${data[element]}", name: "LOG");
+                                  d.addAll({element: item});
                                 }
                               }
+                              widget.getData(d);
                             };
                             return SizedBox(width: 400, height: MediaQuery.of(context).size.height * 0.4, child: RenderWidget(template: json.decode(widget.data.form)));
 
@@ -132,50 +134,4 @@ class _TransitionWidgetState extends State<TransitionWidget> {
       ),
     );
   }
-
-  String initialContent(String json) => """
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.form.io/formiojs/formio.full.min.css">
-    <script src="https://cdn.form.io/formiojs/formio.full.min.js"></script>
-</head>
-
-<body>
-    <div id="formio" style="padding: 40px;"></div>
-    <script>
-        var fr;
-        Formio.icons = 'fontawesome';
-        Formio.createForm(document.getElementById('formio'),
-            $json
-        ).then(function (form) {
-            fr = form;
-        });
-
-        function onSubmit() {
-          
-            fr.submit().then(
-                function (value) { 
-                    submit(JSON.stringify(value.data));
-                    return JSON.stringify(value.data);
-                 },
-                function (err) { 
-                    error(err);
-                    return err;
-                }
-            );
-
-        }
-    </script>
-</body>
-
-</html>
-""";
 }

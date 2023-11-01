@@ -10,11 +10,11 @@ enum TransitionType {
     switch (val) {
       case "Formio":
         return TransitionType.formio;
-      case "Page Url":
+      case "PageUrl":
         return TransitionType.pageUrl;
       case "Html":
         return TransitionType.html;
-      case "Flutter Widget":
+      case "FlutterWidget":
         return TransitionType.flutterWidget;
       default:
         return TransitionType.formio;

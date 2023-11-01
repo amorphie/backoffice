@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
@@ -8,22 +9,33 @@ class StateManager {
   String name;
   String title;
   List<TransitionModel>? transitions;
-
+  String? status;
+  bool isPublicForm;
+  String? publicForm;
   StateManager({
     required this.name,
     required this.title,
     this.transitions,
+    this.status,
+    this.isPublicForm = false,
+    this.publicForm,
   });
 
   StateManager copyWith({
     String? name,
     String? title,
     List<TransitionModel>? transitions,
+    String? status,
+    bool? isPublicForm,
+    String? publicForm,
   }) {
     return StateManager(
       name: name ?? this.name,
       title: title ?? this.title,
       transitions: transitions ?? this.transitions,
+      status: status ?? this.status,
+      isPublicForm: isPublicForm ?? this.isPublicForm,
+      publicForm: publicForm ?? this.publicForm,
     );
   }
 
@@ -32,6 +44,9 @@ class StateManager {
       'name': name,
       'title': title,
       'transitions': transitions?.map((x) => x.toMap()).toList(),
+      'status': status,
+      'isPublicForm': isPublicForm,
+      'publicForm': publicForm,
     };
   }
 
@@ -41,11 +56,14 @@ class StateManager {
       title: map['title'] as String,
       transitions: map['transitions'] != null
           ? List<TransitionModel>.from(
-              (map['transitions']).map<TransitionModel>(
+              (map['transitions']).map<TransitionModel?>(
                 (x) => TransitionModel.fromMap(x as Map<String, dynamic>),
               ),
             )
           : null,
+      status: map['status'] != null ? map['status'] as String : null,
+      isPublicForm: map['isPublicForm'] ?? false,
+      publicForm: map['publicForm'] != null ? map['publicForm'] as String : null,
     );
   }
 
@@ -54,15 +72,24 @@ class StateManager {
   factory StateManager.fromJson(String source) => StateManager.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
-  String toString() => 'StateManager(name: $name, title: $title, transitions: $transitions)';
+  String toString() {
+    return 'StateManager(name: $name, title: $title, transitions: $transitions, status: $status, isPublicForm: $isPublicForm, publicForm: $publicForm)';
+  }
 
   @override
   bool operator ==(covariant StateManager other) {
     if (identical(this, other)) return true;
 
-    return other.name == name && other.title == title && listEquals(other.transitions, transitions);
+    return other.name == name &&
+        other.title == title &&
+        listEquals(other.transitions, transitions) &&
+        other.status == status &&
+        other.isPublicForm == isPublicForm &&
+        other.publicForm == publicForm;
   }
 
   @override
-  int get hashCode => name.hashCode ^ title.hashCode ^ transitions.hashCode;
+  int get hashCode {
+    return name.hashCode ^ title.hashCode ^ transitions.hashCode ^ status.hashCode ^ isPublicForm.hashCode ^ publicForm.hashCode;
+  }
 }
