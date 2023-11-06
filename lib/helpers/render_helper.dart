@@ -1,12 +1,16 @@
 import 'package:admin/helpers/dialog_helper.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:admin/ui/widgets/render/register_widgets/title_description_render_widget.dart';
 import 'package:get/get.dart';
+import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../ui/widgets/render/render_widget.dart';
 
 appRenderInit() {
+  jsonWidgetRegistry.registerCustomBuilder(
+    TitleDescriptionRenderWidget().type,
+    JsonWidgetBuilderContainer(builder: TitleDescriptionRenderWidget.fromDynamic),
+  );
   jsonWidgetRegistry.registerFunctions({
     "copy": ({args, required registry}) => () async {
           if (args != null && args.length > 0) {
