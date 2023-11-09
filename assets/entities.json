@@ -1,0 +1,1131 @@
+{
+    "checking_account": {
+        "name": "test",
+        "search": {
+            "columns": [
+                {
+                    "data": "accountInternetName",
+                    "sort": 1,
+                    "title": {
+                        "en-EN": "Name",
+                        "tr-TR": "Name"
+                    }
+                },
+                {
+                    "data": "balance.balance",
+                    "sort": 1,
+                    "title": {
+                        "en-EN": "Balance",
+                        "tr-TR": "Bakiye"
+                    }
+                },
+                {
+                    "data": "branch.name",
+                    "sort": 1,
+                    "title": {
+                        "en-EN": "Branch Name",
+                        "tr-TR": "Branch Name"
+                    }
+                },
+                {
+                    "data": "iban",
+                    "sort": 1,
+                    "title": {
+                        "en-EN": "Iban",
+                        "tr-TR": "Iban"
+                    }
+                },
+                {
+                    "data": "startDate",
+                    "sort": 1,
+                    "title": {
+                        "en-EN": "Start Date",
+                        "tr-TR": "Start Date"
+                    }
+                }
+            ],
+            "defaultPageNumber": 0,
+            "defaultPageSize": 100,
+            "endpointSuffix": true,
+            "search": false,
+            "subDataField": "checking"
+        },
+        "titleTemplate": "{{accountInternetName}}",
+        "url": "https://test-integration-apisix-gw.apps.nonprod.ebt.bank/neobank/accounts/list",
+        "workflow": "account-create"
+    },
+    "client": {
+        "delete": {
+            "url": "https://test-amorphie-fact-client.burgan.com.tr/client/@idd"
+        },
+        "display": {
+            "availableWorkflows": true,
+            "detailTemplate": {
+                "en-EN": "amorphy-backoffice-client-detail-en",
+                "tr-TR": "amorphy-backoffice-client-detail-tr"
+            },
+            "history": true,
+            "runningWorkflows": true,
+            "stateManager": true,
+            "summaryTemplate": {
+                "en-EN": "amorphy-backoffice-summary-name-template",
+                "tr-TR": "amorphy-backoffice-summary-name-template"
+            }
+        },
+        "name": "client",
+        "search": {
+            "columns": [
+                {
+                    "data": "name",
+                    "sort": 1,
+                    "title": {
+                        "en-EN": "Client Name",
+                        "tr-TR": "Client Name"
+                    }
+                },
+                {
+                    "data": "clientSecret",
+                    "sort": 2,
+                    "title": {
+                        "en-EN": "Client Secret",
+                        "tr-TR": "Client Secret"
+                    }
+                },
+                {
+                    "data": "flows",
+                    "sort": 3,
+                    "title": {
+                        "en-EN": "Flows",
+                        "tr-TR": "Flows"
+                    }
+                },
+                {
+                    "data": "status",
+                    "sort": 4,
+                    "title": {
+                        "en-EN": "Status",
+                        "tr-TR": "Status"
+                    }
+                }
+            ],
+            "defaultPageNumber": 0,
+            "defaultPageSize": 100,
+            "search": true
+        },
+        "titleTemplate": "{{name}}",
+        "url": "https://test-amorphie-fact-client.burgan.com.tr/client",
+        "workflow": "client-wizard"
+    },
+    "consent": {
+        "display": {
+            "availableWorkflows": false,
+            "detailTemplate": {
+                "en-EN": "amorphie-backoffice-consent-detail-en",
+                "tr-TR": "amorphie-backoffice-consent-detail-tr"
+            },
+            "history": false,
+            "runningWorkflows": false,
+            "stateManager": false,
+            "summaryTemplate": {
+                "en-EN": "amorphy-backoffice-summary-name-template",
+                "tr-TR": "amorphy-backoffice-summary-name-template"
+            },
+            "tabs": [
+                {
+                    "items": [
+                        {
+                            "items": [
+                                {
+                                    "order": 0,
+                                    "template": {
+                                        "en-EN": "amorphie-backoffice-consent-detail-en",
+                                        "tr-TR": "amorphie-backoffice-consent-detail-en"
+                                    },
+                                    "title": {
+                                        "en-EN": "Render Test Widget",
+                                        "tr-TR": "Render Test Widget"
+                                    },
+                                    "type": "render"
+                                },
+                                {
+                                    "order": 0,
+                                    "title": {
+                                        "en-EN": "Formio Test Widget",
+                                        "tr-TR": "Formio Test Widget"
+                                    },
+                                    "type": "formio"
+                                }
+                            ],
+                            "order": 0,
+                            "title": {
+                                "en-EN": "Split Test",
+                                "tr-TR": "Split Test"
+                            },
+                            "type": "splitColumn"
+                        },
+                        {
+                            "order": 0,
+                            "title": {
+                                "en-EN": "Pdf Test",
+                                "tr-TR": "Pdf Test"
+                            },
+                            "type": "pdf"
+                        }
+                    ],
+                    "order": 0,
+                    "title": {
+                        "en-EN": "Split Test",
+                        "tr-TR": "Split Test"
+                    },
+                    "type": "splitRow"
+                }
+            ],
+            "workflow": "consent"
+        },
+        "name": "consent",
+        "search": {
+            "columns": [
+                {
+                    "data": "id",
+                    "sort": 1,
+                    "title": {
+                        "en-EN": "ID",
+                        "tr-TR": "ID"
+                    }
+                },
+                {
+                    "data": "description",
+                    "sort": 1,
+                    "title": {
+                        "en-EN": "Description",
+                        "tr-TR": "Açıklama"
+                    }
+                },
+                {
+                    "data": "consentType",
+                    "sort": 1,
+                    "title": {
+                        "en-EN": "Type",
+                        "tr-TR": "Tip"
+                    }
+                },
+                {
+                    "data": "state",
+                    "sort": 1,
+                    "title": {
+                        "en-EN": "State",
+                        "tr-TR": "Durum"
+                    }
+                }
+            ],
+            "defaultPageNumber": 0,
+            "defaultPageSize": 100,
+            "search": true
+        },
+        "titleTemplate": "{{name}}",
+        "url": "https://test-amorphie-consent.burgan.com.tr/Consent",
+        "workflow": "consent"
+    },
+    "contract": {
+        "delete": {
+            "url": "https://test-amorphie-contract.burgan.com.tr/contract-definition/@id"
+        },
+        "name": "contract",
+        "search": {
+            "columns": [
+                {
+                    "data": "id",
+                    "sort": 1,
+                    "title": {
+                        "en-EN": "ID",
+                        "tr-TR": "ID"
+                    }
+                }
+            ],
+            "defaultPageNumber": 0,
+            "defaultPageSize": 100,
+            "search": false
+        },
+        "titleTemplate": "{{id}}",
+        "url": "https://test-amorphie-contract.burgan.com.tr/document-contract",
+        "workflow": "upload-contract"
+    },
+    "contract-status": {
+        "delete": {
+            "url": "https://test-amorphie-contract.burgan.com.tr/Common-Status/@privilegeId"
+        },
+        "name": "contract-status",
+        "search": {
+            "columns": [
+                {
+                    "data": "id",
+                    "sort": 1,
+                    "title": {
+                        "en-EN": "ID",
+                        "tr-TR": "ID"
+                    }
+                },
+                {
+                    "data": "code",
+                    "sort": 1,
+                    "title": {
+                        "en-EN": "Code",
+                        "tr-TR": "Code"
+                    }
+                }
+            ],
+            "defaultPageNumber": 0,
+            "defaultPageSize": 100,
+            "search": false
+        },
+        "titleTemplate": "{{code}}",
+        "url": "https://test-amorphie-contract.burgan.com.tr/Common-Status",
+        "workflow": "contract-status"
+    },
+    "document": {
+        "delete": {
+            "url": "https://test-amorphie-contract.burgan.com.tr/document-definition/@id"
+        },
+        "name": "document",
+        "search": {
+            "columns": [
+                {
+                    "data": "id",
+                    "sort": 1,
+                    "title": {
+                        "en-EN": "ID",
+                        "tr-TR": "ID"
+                    }
+                }
+            ],
+            "defaultPageNumber": 0,
+            "defaultPageSize": 100,
+            "search": false
+        },
+        "titleTemplate": "{{id}}",
+        "url": "https://test-amorphie-contract.burgan.com.tr/document-definition",
+        "workflow": "document-definition"
+    },
+    "document-definition": {
+        "delete": {
+            "url": "https://test-amorphie-contract.burgan.com.tr/document-definition/@id"
+        },
+        "display": {
+            "availableWorkflows": true,
+            "detailTemplate": {
+                "en-EN": "amorphie-bo-document-definition-detail-en",
+                "tr-TR": "amorphie-bo-document-definition-detail-en"
+            },
+            "history": true,
+            "runningWorkflows": true,
+            "stateManager": true,
+            "summaryTemplate": {
+                "en-EN": "amorphy-backoffice-summary-name-template",
+                "tr-TR": "amorphy-backoffice-summary-name-template"
+            }
+        },
+        "name": "document-definition",
+        "search": {
+            "columns": [
+                {
+                    "data": "id",
+                    "sort": 1,
+                    "title": {
+                        "en-EN": "ID",
+                        "tr-TR": "ID"
+                    }
+                },
+                {
+                    "data": "createdAt",
+                    "sort": 1,
+                    "title": {
+                        "en-EN": "Created At",
+                        "tr-TR": "Created At"
+                    }
+                },
+                {
+                    "data": "status.code",
+                    "sort": 1,
+                    "title": {
+                        "en-EN": "Status",
+                        "tr-TR": "Status"
+                    }
+                },
+                {
+                    "data": "baseStatus.code",
+                    "sort": 1,
+                    "title": {
+                        "en-EN": "Base Status",
+                        "tr-TR": "Base Status"
+                    }
+                }
+            ],
+            "defaultPageNumber": 0,
+            "defaultPageSize": 100,
+            "search": false
+        },
+        "titleTemplate": "{{code}}",
+        "url": "https://test-amorphie-contract.burgan.com.tr/document-definition",
+        "workflow": "document-definition"
+    },
+    "domain": {
+        "delete": {
+            "url": "https://test-amorphie-resource.burgan.com.tr/domain/@domainId"
+        },
+        "display": {
+            "availableWorkflows": true,
+            "detailTemplate": {
+                "en-EN": "amorphie-backoffice-domain-detail-en",
+                "tr-TR": "amorphie-backoffice-domain-detail-tr"
+            },
+            "history": true,
+            "runningWorkflows": true,
+            "stateManager": true,
+            "summaryTemplate": {
+                "en-EN": "amorphy-backoffice-summary-name-template",
+                "tr-TR": "amorphy-backoffice-summary-name-template"
+            }
+        },
+        "name": "tag-domain",
+        "search": {
+            "columns": [
+                {
+                    "data": "name",
+                    "sort": 1,
+                    "title": {
+                        "en-EN": "Name",
+                        "tr-TR": "Isim"
+                    }
+                },
+                {
+                    "data": "description",
+                    "sort": 2,
+                    "title": {
+                        "en-EN": "Description",
+                        "tr-TR": "Açıklama"
+                    }
+                },
+                {
+                    "data": "entities",
+                    "sort": 3,
+                    "title": {
+                        "en-EN": "Entities",
+                        "tr-TR": "Varlıklar"
+                    }
+                }
+            ],
+            "defaultPageNumber": 0,
+            "defaultPageSize": 100,
+            "search": false
+        },
+        "titleTemplate": "{{name}}",
+        "url": "https://test-amorphie-tag.burgan.com.tr/domain",
+        "workflow": "tag-domain"
+    },
+    "privilege": {
+        "delete": {
+            "url": "https://test-amorphie-resource.burgan.com.tr/privilege/@privilegeId"
+        },
+        "display": {
+            "availableWorkflows": true,
+            "detailTemplate": {
+                "en-EN": "amorphie-backoffice-privilege-detail-en",
+                "tr-TR": "amorphie-backoffice-privilege-detail-tr"
+            },
+            "history": true,
+            "runningWorkflows": true,
+            "stateManager": true,
+            "summaryTemplate": {
+                "en-EN": "amorphy-backoffice-summary-name-template",
+                "tr-TR": "amorphy-backoffice-summary-name-template"
+            }
+        },
+        "name": "resource-privilege",
+        "search": {
+            "columns": [
+                {
+                    "data": "resourceId",
+                    "sort": 1,
+                    "title": {
+                        "en-EN": "ID",
+                        "tr-TR": "ID"
+                    }
+                },
+                {
+                    "data": "url",
+                    "sort": 2,
+                    "title": {
+                        "en-EN": "Url",
+                        "tr-TR": "Url"
+                    }
+                },
+                {
+                    "data": "status",
+                    "sort": 3,
+                    "title": {
+                        "en-EN": "Status",
+                        "tr-TR": "Durum"
+                    }
+                },
+                {
+                    "data": "ttl",
+                    "sort": 4,
+                    "title": {
+                        "en-EN": "Ttl",
+                        "tr-TR": "Ttl"
+                    }
+                }
+            ],
+            "defaultPageNumber": 0,
+            "defaultPageSize": 100,
+            "search": false
+        },
+        "titleTemplate": "{{name}}",
+        "url": "https://test-amorphie-resource.burgan.com.tr/privilege",
+        "workflow": "resource-privilege"
+    },
+    "resource": {
+        "delete": {
+            "url": "https://test-amorphie-resource.burgan.com.tr/resource/@resourceId"
+        },
+        "display": {
+            "availableWorkflows": true,
+            "detailTemplate": {
+                "en-EN": "amorphie-backoffice-resource-detail-en",
+                "tr-TR": "amorphie-backoffice-resource-detail-tr"
+            },
+            "history": true,
+            "runningWorkflows": true,
+            "stateManager": true,
+            "summaryTemplate": {
+                "en-EN": "amorphy-backoffice-summary-name-template",
+                "tr-TR": "amorphy-backoffice-summary-name-template"
+            }
+        },
+        "name": "resource",
+        "search": {
+            "columns": [
+                {
+                    "data": "displayNames",
+                    "sort": 1,
+                    "title": {
+                        "en-EN": "Name",
+                        "tr-TR": "İsim"
+                    }
+                },
+                {
+                    "data": "url",
+                    "sort": 2,
+                    "title": {
+                        "en-EN": "Url",
+                        "tr-TR": "Url"
+                    }
+                },
+                {
+                    "data": "status",
+                    "sort": 3,
+                    "title": {
+                        "en-EN": "Status",
+                        "tr-TR": "Durum"
+                    }
+                },
+                {
+                    "data": "tags",
+                    "sort": 4,
+                    "title": {
+                        "en-EN": "Tags",
+                        "tr-TR": "Etiketler"
+                    }
+                }
+            ],
+            "defaultPageNumber": 0,
+            "defaultPageSize": 100,
+            "search": true
+        },
+        "titleTemplate": "{{url}}",
+        "url": "https://test-amorphie-resource.burgan.com.tr/resource",
+        "workflow": "resource"
+    },
+    "role": {
+        "delete": {
+            "url": "https://test-amorphie-resource.burgan.com.tr/resourceRole/@resourceRoleId"
+        },
+        "display": {
+            "availableWorkflows": true,
+            "detailTemplate": {
+                "en-EN": "amorphie-backoffice-role-detail-en",
+                "tr-TR": "amorphie-backoffice-role-detail-tr"
+            },
+            "history": true,
+            "runningWorkflows": true,
+            "stateManager": true,
+            "summaryTemplate": {
+                "en-EN": "amorphy-backoffice-summary-name-template",
+                "tr-TR": "amorphy-backoffice-summary-name-template"
+            }
+        },
+        "name": "resource-role",
+        "search": {
+            "columns": [
+                {
+                    "data": "id",
+                    "sort": 1,
+                    "title": {
+                        "en-EN": "ID",
+                        "tr-TR": "ID"
+                    }
+                },
+                {
+                    "data": "titles",
+                    "sort": 2,
+                    "title": {
+                        "en-EN": "Titles",
+                        "tr-TR": "Başlıklar"
+                    }
+                },
+                {
+                    "data": "tags",
+                    "sort": 2,
+                    "title": {
+                        "en-EN": "Tags",
+                        "tr-TR": "Etiketler"
+                    }
+                },
+                {
+                    "data": "status",
+                    "sort": 2,
+                    "title": {
+                        "en-EN": "Status",
+                        "tr-TR": "Durum"
+                    }
+                }
+            ],
+            "defaultPageNumber": 0,
+            "defaultPageSize": 100,
+            "search": false
+        },
+        "titleTemplate": "{{titles}}",
+        "url": "https://test-amorphie-resource.burgan.com.tr/role",
+        "workflow": "resource-role"
+    },
+    "roleGroup": {
+        "delete": {
+            "url": "https://test-amorphie-resource.burgan.com.tr/roleGroup/@roleGroupId"
+        },
+        "display": {
+            "availableWorkflows": true,
+            "detailTemplate": {
+                "en-EN": "amorphie-backoffice-role-group-detail-en",
+                "tr-TR": "amorphie-backoffice-role-group-detail-tr"
+            },
+            "history": true,
+            "runningWorkflows": true,
+            "stateManager": true,
+            "summaryTemplate": {
+                "en-EN": "amorphy-backoffice-summary-name-template",
+                "tr-TR": "amorphy-backoffice-summary-name-template"
+            }
+        },
+        "name": "resource-roleGroup",
+        "search": {
+            "columns": [
+                {
+                    "data": "id",
+                    "sort": 1,
+                    "title": {
+                        "en-EN": "ID",
+                        "tr-TR": "ID"
+                    }
+                },
+                {
+                    "data": "titles",
+                    "sort": 2,
+                    "title": {
+                        "en-EN": "Titles",
+                        "tr-TR": "Başlıklar"
+                    }
+                },
+                {
+                    "data": "status",
+                    "sort": 3,
+                    "title": {
+                        "en-EN": "Status",
+                        "tr-TR": "Durum"
+                    }
+                },
+                {
+                    "data": "tags",
+                    "sort": 4,
+                    "title": {
+                        "en-EN": "Tags",
+                        "tr-TR": "Etiketler"
+                    }
+                }
+            ],
+            "defaultPageNumber": 0,
+            "defaultPageSize": 100,
+            "search": false
+        },
+        "titleTemplate": "{{name}}",
+        "url": "https://test-amorphie-resource.burgan.com.tr/roleGroup",
+        "workflow": "resource-roleGroup"
+    },
+    "tag": {
+        "delete": {
+            "url": "https://test-amorphie-tag.burgan.com.tr/tag/@id"
+        },
+        "display": {
+            "availableWorkflows": true,
+            "detailTemplate": {
+                "en-EN": "amorphie-backoffice-tag-detail-en",
+                "tr-TR": "amorphie-backoffice-tag-detail-tr"
+            },
+            "history": true,
+            "runningWorkflows": true,
+            "stateManager": true,
+            "summaryTemplate": {
+                "en-EN": "amorphy-backoffice-summary-name-template",
+                "tr-TR": "amorphy-backoffice-summary-name-template"
+            }
+        },
+        "name": "tag",
+        "search": {
+            "columns": [
+                {
+                    "data": "name",
+                    "sort": 1,
+                    "title": {
+                        "en-EN": "Name",
+                        "tr-TR": "İsim"
+                    }
+                },
+                {
+                    "data": "tags",
+                    "sort": 2,
+                    "title": {
+                        "en-EN": "Tags",
+                        "tr-TR": "Tags"
+                    }
+                },
+                {
+                    "data": "ttl",
+                    "sort": 3,
+                    "title": {
+                        "en-EN": "Ttl",
+                        "tr-TR": "Ttl"
+                    }
+                },
+                {
+                    "data": "url",
+                    "sort": 4,
+                    "title": {
+                        "en-EN": "Url",
+                        "tr-TR": "Url"
+                    }
+                }
+            ],
+            "defaultPageNumber": 0,
+            "defaultPageSize": 100,
+            "search": true
+        },
+        "titleTemplate": "{{name}}",
+        "url": "https://test-amorphie-tag.burgan.com.tr/tag",
+        "workflow": "tag-register"
+    },
+    "tagEntity": {
+        "delete": {
+            "url": "https://test-amorphie-resource.burgan.com.tr/domain/@domainId"
+        },
+        "display": {
+            "availableWorkflows": true,
+            "detailTemplate": {
+                "en-EN": "amorphie-backoffice-entity-detail-en",
+                "tr-TR": "amorphie-backoffice-entity-detail-tr"
+            },
+            "history": true,
+            "runningWorkflows": true,
+            "stateManager": true,
+            "summaryTemplate": {
+                "en-EN": "amorphy-backoffice-summary-name-template",
+                "tr-TR": "amorphy-backoffice-summary-name-template"
+            }
+        },
+        "name": "tag-entity",
+        "search": {
+            "columns": [
+                {
+                    "data": "id",
+                    "sort": 1,
+                    "title": {
+                        "en-EN": "ID",
+                        "tr-TR": "ID"
+                    }
+                },
+                {
+                    "data": "name",
+                    "sort": 2,
+                    "title": {
+                        "en-EN": "Name",
+                        "tr-TR": "Isim"
+                    }
+                },
+                {
+                    "data": "domainId",
+                    "sort": 3,
+                    "title": {
+                        "en-EN": "Domain ID",
+                        "tr-TR": "Domain ID"
+                    }
+                },
+                {
+                    "data": "description",
+                    "sort": 4,
+                    "title": {
+                        "en-EN": "Description",
+                        "tr-TR": "Açıklama"
+                    }
+                }
+            ],
+            "defaultPageNumber": 0,
+            "defaultPageSize": 100,
+            "search": false
+        },
+        "titleTemplate": "{{name}}",
+        "url": "https://test-amorphie-tag.burgan.com.tr/entity",
+        "workflow": "tag-entity"
+    },
+    "test": {
+        "name": "test",
+        "search": {
+            "columns": [
+                {
+                    "data": "id",
+                    "sort": 1,
+                    "title": {
+                        "en-EN": "ID",
+                        "tr-TR": "ID"
+                    }
+                }
+            ],
+            "defaultPageNumber": 0,
+            "defaultPageSize": 100,
+            "search": false
+        },
+        "titleTemplate": "{{name}}",
+        "url": "https://test-amorphie-workflow.burgan.com.tr/workflow/definition/search",
+        "workflow": "account-create"
+    },
+    "token": {
+        "name": "token",
+        "search": {
+            "columns": [
+                {
+                    "data": "reference",
+                    "sort": 1,
+                    "title": {
+                        "en-EN": "ID",
+                        "tr-TR": "ID"
+                    }
+                },
+                {
+                    "data": "scopes",
+                    "sort": 2,
+                    "title": {
+                        "en-EN": "scopes",
+                        "tr-TR": "scopes"
+                    }
+                },
+                {
+                    "data": "issuedAt",
+                    "sort": 3,
+                    "title": {
+                        "en-EN": "issuedAt",
+                        "tr-TR": "issuedAt"
+                    }
+                },
+                {
+                    "data": "expiredAt",
+                    "sort": 4,
+                    "title": {
+                        "en-EN": "expiredAt",
+                        "tr-TR": "expiredAt"
+                    }
+                },
+                {
+                    "data": "isActive",
+                    "sort": 5,
+                    "title": {
+                        "en-EN": "isActive",
+                        "tr-TR": "isActive"
+                    }
+                },
+                {
+                    "data": "jwt",
+                    "sort": 6,
+                    "title": {
+                        "en-EN": "jwt",
+                        "tr-TR": "jwt"
+                    }
+                }
+            ],
+            "defaultPageNumber": 0,
+            "defaultPageSize": 100,
+            "search": true
+        },
+        "titleTemplate": "{{name}}",
+        "url": "https://test-amorphie-token.apps.nonprod.ebt.bank/Tokens/User",
+        "workflow": "token"
+    },
+    "upload-document": {
+        "delete": {
+            "url": "https://test-amorphie-contract.burgan.com.tr/document-upload/@id"
+        },
+        "display": {
+            "availableWorkflows": true,
+            "history": true,
+            "runningWorkflows": true,
+            "stateManager": true,
+            "summaryTemplate": {
+                "en-EN": "amorphie-bo-contract-name-en",
+                "tr-TR": "amorphie-bo-contract-name-tr"
+            },
+            "tabs": [
+                {
+                    "items": [
+                        {
+                            "data": "documentContent.contentData",
+                            "order": 0,
+                            "source": "data",
+                            "title": {
+                                "en-EN": "Pdf View",
+                                "tr-TR": "Pdf View"
+                            },
+                            "type": "pdf"
+                        },
+                        {
+                            "order": 0,
+                            "source": "template",
+                            "template": {
+                                "en-EN": "amorphie-bo-tag-button-test-tr",
+                                "tr-TR": "amorphie-bo-tag-button-test-tr"
+                            },
+                            "title": {
+                                "en-EN": "Detail",
+                                "tr-TR": "Detail"
+                            },
+                            "type": "render"
+                        }
+                    ],
+                    "order": 0,
+                    "title": {
+                        "en-EN": "Document Detail",
+                        "tr-TR": "Document Detail"
+                    },
+                    "type": "splitRow"
+                }
+            ]
+        },
+        "name": "upload-document",
+        "search": {
+            "columns": [
+                {
+                    "data": "id",
+                    "sort": 1,
+                    "title": {
+                        "en-EN": "ID",
+                        "tr-TR": "ID"
+                    }
+                },
+                {
+                    "data": "documentContent.name",
+                    "sort": 1,
+                    "title": {
+                        "en-EN": "Name",
+                        "tr-TR": "İsim"
+                    }
+                },
+                {
+                    "data": "statuCode",
+                    "sort": 1,
+                    "title": {
+                        "en-EN": "Status",
+                        "tr-TR": "Durum"
+                    }
+                }
+            ],
+            "defaultPageNumber": 0,
+            "defaultPageSize": 100,
+            "filter": [
+                {
+                    "data": "code",
+                    "entity": "contract-status",
+                    "query": "Keyword",
+                    "title": {
+                        "en-EN": "Status",
+                        "tr-TR": "Durum"
+                    },
+                    "type": "reference",
+                    "widget": "dropdown"
+                }
+            ],
+            "search": false
+        },
+        "titleTemplate": "{{id}}",
+        "url": "https://test-amorphie-contract.burgan.com.tr/document",
+        "workflow": "upload-document"
+    },
+    "user": {
+        "delete": {
+            "url": "https://test-amorphie-fact-user.burgan.com.tr/user/@id"
+        },
+        "display": {
+            "availableWorkflows": true,
+            "detailTemplate": {
+                "en-EN": "amorphy-backoffice-user-detail-en",
+                "tr-TR": "amorphy-backoffice-user-detail-tr"
+            },
+            "history": true,
+            "runningWorkflows": true,
+            "stateManager": true,
+            "summaryTemplate": {
+                "en-EN": "amorphy-backoffice-user-display-summary-en",
+                "tr-TR": "amorphy-backoffice-user-display-summary-tr"
+            },
+            "tabs": [
+                {
+                    "entity": "token",
+                    "id": "id",
+                    "order": 0,
+                    "title": {
+                        "en-EN": "Tokens",
+                        "tr-TR": "Tokenlar"
+                    },
+                    "type": "search",
+                    "url": "https://test-amorphie-token.apps.nonprod.ebt.bank/Tokens/User/@id"
+                },
+                {
+                    "entity": "consent",
+                    "id": "id",
+                    "order": 0,
+                    "title": {
+                        "en-EN": "Consents",
+                        "tr-TR": "Rızalar"
+                    },
+                    "type": "search",
+                    "url": "https://test-amorphie-consent.burgan.com.tr/consent/user/@id"
+                }
+            ],
+            "url": "https://test-amorphie-fact-user.burgan.com.tr/user/search/@id",
+            "workflow": "user"
+        },
+        "name": "user",
+        "search": {
+            "columns": [
+                {
+                    "data": "reference",
+                    "sort": 1,
+                    "title": {
+                        "en-EN": "Reference",
+                        "tr-TR": "Referans"
+                    }
+                },
+                {
+                    "data": "firstName",
+                    "sort": 2,
+                    "title": {
+                        "en-EN": "First Name",
+                        "tr-TR": "İsim"
+                    }
+                },
+                {
+                    "data": "lastName",
+                    "sort": 3,
+                    "title": {
+                        "en-EN": "Last Name",
+                        "tr-TR": "Soyisim"
+                    }
+                },
+                {
+                    "data": "tag",
+                    "sort": 4,
+                    "title": {
+                        "en-EN": "Tags",
+                        "tr-TR": "Etiketler"
+                    }
+                },
+                {
+                    "data": "state",
+                    "sort": 5,
+                    "title": {
+                        "en-EN": "State",
+                        "tr-TR": "Durum"
+                    }
+                }
+            ],
+            "defaultPageNumber": 0,
+            "defaultPageSize": 100,
+            "filter": [
+                {
+                    "data": "name",
+                    "entity": "tag",
+                    "query": "UserTag",
+                    "title": {
+                        "en-EN": "Tag",
+                        "tr-TR": "Etiket"
+                    },
+                    "type": "reference",
+                    "widget": "dropdown"
+                }
+            ],
+            "search": true
+        },
+        "titleTemplate": "{{firstName}} {{lastName}}",
+        "url": "https://test-amorphie-fact-user.burgan.com.tr/user",
+        "workflow": "user"
+    },
+    "workflow": {
+        "name": "workflow",
+        "search": {
+            "columns": [
+                {
+                    "data": "name",
+                    "sort": 1,
+                    "title": {
+                        "en-EN": "Name",
+                        "tr-TR": "Isim"
+                    }
+                },
+                {
+                    "data": "title",
+                    "sort": 1,
+                    "title": {
+                        "en-EN": "Title",
+                        "tr-TR": "Başlıklar"
+                    }
+                },
+                {
+                    "data": "entities",
+                    "sort": 1,
+                    "title": {
+                        "en-EN": "Entities",
+                        "tr-TR": "Varlıklar"
+                    }
+                },
+                {
+                    "data": "tag",
+                    "sort": 4,
+                    "title": {
+                        "en-EN": "Tags",
+                        "tr-TR": "Etiketler"
+                    }
+                }
+            ],
+            "defaultPageNumber": 0,
+            "defaultPageSize": 100,
+            "search": true
+        },
+        "titleTemplate": "{{name}}",
+        "url": "https://test-amorphie-workflow.burgan.com.tr/workflow/definition",
+        "workflow": "workflow-create-with-flow"
+    }
+}

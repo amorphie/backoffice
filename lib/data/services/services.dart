@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:admin/data/models/entity/entity_model.dart';
 import 'package:admin/data/models/ui/ui_model.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 import '_executer.dart';
 import 'common/response_model.dart';
@@ -10,10 +11,16 @@ import 'common/response_model.dart';
 import 'package:http/http.dart' as http;
 
 class Services {
+  Future<String> getJson(String name) async {
+    return await rootBundle.loadString("assets/$name.json");
+  }
+
   Future<Map<String, EntityModel>> getEntityData() async {
     Map<String, EntityModel> map = {};
-    var response = await http.get(Uri.parse(dotenv.env["ENTITIES_URL"] ?? ""));
-    var data = json.decode(response.body);
+    // var response = await http.get(Uri.parse(dotenv.env["ENTITIES_URL"] ?? ""));
+    // var data = json.decode(response.body);
+    var response = await getJson("entities");
+    var data = json.decode(response);
     for (var item in data.keys) {
       map.addAll({item: EntityModel.fromMap(data[item])});
     }
@@ -21,9 +28,11 @@ class Services {
   }
 
   Future<UIModel> getUiData() async {
-    var response = await http.get(Uri.parse(dotenv.env["UI_URL"] ?? ""));
-    var data = json.decode(response.body);
+    // var response = await http.get(Uri.parse(dotenv.env["UI_URL"] ?? ""));
+    // var data = json.decode(response.body);
 
+    var response = await getJson("ui");
+    var data = json.decode(response);
     UIModel menu = UIModel.fromMap(data);
     return menu;
   }
