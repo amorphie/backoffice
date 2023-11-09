@@ -1,0 +1,56 @@
+{
+    "type": "list_view",
+    "args": {
+        "children": [
+            {
+                "type": "title_description_area_widget",
+                "args": {
+                    "title": "Name",
+                    "text": "{{for lang in data.documentDefinitionLanguageDetails}}{{if lang.multiLanguage.languageType.code=='en-EN'}} {{lang.multiLanguage.name}}{{end}}{{end}}"
+                }
+            },
+            {
+                "type": "title_description_area_widget",
+                "args": {
+                    "title": "Tags",
+                    "text": "{{comma=null}}{{for tag in data.documentTagsDetails}} {{if comma}},{{end}} {{tag.tags.code}}{{comma=1}}{{end}}"
+                }
+            },
+            {
+                "type": "title_description_area_widget",
+                "args": {
+                    "title": "Document Operations",
+                    "text": "{{if data.documentOperations.documentManuelControl}}OK{{else}}None{{end}}{{ comma=null }}{{ for tag in data.documentOperations.documentOperationsTagsDetail }}{{ if comma }}, {{ else }}{{ end }}{{ comma=1 }}{{tag.tags.code}}{{end}}"
+                }
+            },
+            {
+                "type": "title_description_area_widget",
+                "args": {
+                    "title": "Formats",
+                    "text": "{{ comma=null }}{{ for format in data.documentUpload.documentFormatDetails }}{{ if comma }}, {{ else }}{{ end }}{{ comma=1 }}{{format.documentFormat.documentFormatType.code}}{{end}}"
+                }
+            },
+            {
+                "type": "title_description_area_widget",
+                "args": {
+                    "title": "Allowed Client Details",
+                    "text": "{{ comma=null }}{{ for format in data.documentUpload.documentAllowedClientDetails }}{{ if comma }}, {{ else }}{{ end }}{{ comma=1 }}{{format.documentAllowedClients.code}}{{end}}"
+                }
+            },
+            {
+                "type": "title_description_area_widget",
+                "args": {
+                    "title": "Optimize Size",
+                    "text": "{{if data.documentOptimize.size}}Ok{{else}}None{{end}}"
+                }
+            },
+            {
+                "type": "title_description_area_widget",
+                "args": {
+                    "title": "Document Optimize Type",
+                    "text": "{{data.documentOptimize.documentOptimizeType.code}}"
+                }
+            }
+        ]
+    }
+}
