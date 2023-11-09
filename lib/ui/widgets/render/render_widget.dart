@@ -1,5 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
+import 'dart:convert';
+
 import 'package:admin/ui/widgets/render/test_render_template.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
@@ -14,7 +16,7 @@ class RenderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return testRender(context);
+    // return testRender(context);
     return render(context);
   }
 
@@ -26,8 +28,9 @@ class RenderWidget extends StatelessWidget {
   }
 
   Widget render(BuildContext context) {
+    var temp = json.decode(template);
     return JsonWidgetData.fromDynamic(
-      template,
+      temp,
       registry: jsonWidgetRegistry,
     ).build(context: context);
   }

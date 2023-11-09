@@ -21,12 +21,12 @@ class TitleDescriptionAreaWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(title, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
+          Text(title, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14, color: Colors.black)),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(4.0),
             child: Row(
               children: [
-                Text(text, style: TextStyle(fontWeight: FontWeight.w400, fontSize: 14)),
+                Text(text, style: TextStyle(fontWeight: FontWeight.w400, fontSize: 14, color: Colors.black)),
                 if (copyValue)
                   IconButton(
                     onPressed: () async {

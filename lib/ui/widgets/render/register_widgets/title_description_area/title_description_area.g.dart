@@ -59,6 +59,7 @@ class TitleDescriptionArea extends _TitleDescriptionArea {
       childBuilder: childBuilder,
       data: data,
     );
+    print(model);
 
     return TitleDescriptionAreaWidget(
       copyValue: model.copyValue,
@@ -190,8 +191,7 @@ class TitleDescriptionAreaModel extends JsonWidgetBuilderModel {
 }
 
 class TitleDescriptionAreaWidgetSchema {
-  static const id =
-      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/admin/title_description_area_widget.json';
+  static const id = 'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/admin/title_description_area_widget.json';
 
   static final schema = <String, Object>{
     r'$schema': 'http://json-schema.org/draft-07/schema#',

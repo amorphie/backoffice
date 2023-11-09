@@ -981,8 +981,8 @@
         "display": {
             "availableWorkflows": true,
             "detailTemplate": {
-                "en-EN": "amorphy-backoffice-user-detail-en",
-                "tr-TR": "amorphy-backoffice-user-detail-tr"
+                "en-EN": "bo-user-detail-en",
+                "tr-TR": "bo-user-detail-tr"
             },
             "history": true,
             "runningWorkflows": true,
