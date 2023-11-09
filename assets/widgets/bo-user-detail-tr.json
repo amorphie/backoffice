@@ -1,0 +1,45 @@
+{
+    "type": "list_view",
+    "children": [
+        {
+            "type": "title_description_area_widget",
+            "args": {
+                "title": "ID",
+                "text": "{{data.id}}",
+                "copyValue": true
+            }
+        },
+        {
+            "type": "title_description_area_widget",
+            "args": {
+                "title": "Referans",
+                "text": "{{data.reference}}",
+                "copyValue": true
+            }
+        },
+        {
+            "type": "title_description_area_widget",
+            "args": {
+                "title": "Telefon Numarası",
+                "text": "{{data.countryCode}} ({{data.prefix}}) {{data.number}}",
+                "copyValue": true
+            }
+        },
+        {
+            "type": "title_description_area_widget",
+            "args": {
+                "title": "E-posta Adresi",
+                "text": "{{data.eMail}}",
+                "copyValue": true
+            }
+        },
+        {
+            "type": "title_description_area_widget",
+            "args": {
+                "title": "Durumu",
+                "text": "{{data.status}}",
+                "copyValue": true
+            }
+        }
+    ]
+}

@@ -68,8 +68,8 @@
             "runningWorkflows": true,
             "stateManager": true,
             "summaryTemplate": {
-                "en-EN": "amorphy-backoffice-summary-name-template",
-                "tr-TR": "amorphy-backoffice-summary-name-template"
+                "en-EN": "bo-name",
+                "tr-TR": "bo-name"
             }
         },
         "name": "client",
@@ -127,8 +127,8 @@
             "runningWorkflows": false,
             "stateManager": false,
             "summaryTemplate": {
-                "en-EN": "amorphy-backoffice-summary-name-template",
-                "tr-TR": "amorphy-backoffice-summary-name-template"
+                "en-EN": "bo-name",
+                "tr-TR": "bo-name"
             },
             "tabs": [
                 {
@@ -320,8 +320,8 @@
             "runningWorkflows": true,
             "stateManager": true,
             "summaryTemplate": {
-                "en-EN": "amorphy-backoffice-summary-name-template",
-                "tr-TR": "amorphy-backoffice-summary-name-template"
+                "en-EN": "bo-name",
+                "tr-TR": "bo-name"
             }
         },
         "name": "document-definition",
@@ -382,8 +382,8 @@
             "runningWorkflows": true,
             "stateManager": true,
             "summaryTemplate": {
-                "en-EN": "amorphy-backoffice-summary-name-template",
-                "tr-TR": "amorphy-backoffice-summary-name-template"
+                "en-EN": "bo-name",
+                "tr-TR": "bo-name"
             }
         },
         "name": "tag-domain",
@@ -436,8 +436,8 @@
             "runningWorkflows": true,
             "stateManager": true,
             "summaryTemplate": {
-                "en-EN": "amorphy-backoffice-summary-name-template",
-                "tr-TR": "amorphy-backoffice-summary-name-template"
+                "en-EN": "bo-name",
+                "tr-TR": "bo-name"
             }
         },
         "name": "resource-privilege",
@@ -498,8 +498,8 @@
             "runningWorkflows": true,
             "stateManager": true,
             "summaryTemplate": {
-                "en-EN": "amorphy-backoffice-summary-name-template",
-                "tr-TR": "amorphy-backoffice-summary-name-template"
+                "en-EN": "bo-name",
+                "tr-TR": "bo-name"
             }
         },
         "name": "resource",
@@ -560,8 +560,8 @@
             "runningWorkflows": true,
             "stateManager": true,
             "summaryTemplate": {
-                "en-EN": "amorphy-backoffice-summary-name-template",
-                "tr-TR": "amorphy-backoffice-summary-name-template"
+                "en-EN": "bo-name",
+                "tr-TR": "bo-name"
             }
         },
         "name": "resource-role",
@@ -622,8 +622,8 @@
             "runningWorkflows": true,
             "stateManager": true,
             "summaryTemplate": {
-                "en-EN": "amorphy-backoffice-summary-name-template",
-                "tr-TR": "amorphy-backoffice-summary-name-template"
+                "en-EN": "bo-name",
+                "tr-TR": "bo-name"
             }
         },
         "name": "resource-roleGroup",
@@ -684,8 +684,8 @@
             "runningWorkflows": true,
             "stateManager": true,
             "summaryTemplate": {
-                "en-EN": "amorphy-backoffice-summary-name-template",
-                "tr-TR": "amorphy-backoffice-summary-name-template"
+                "en-EN": "bo-name",
+                "tr-TR": "bo-name"
             }
         },
         "name": "tag",
@@ -746,8 +746,8 @@
             "runningWorkflows": true,
             "stateManager": true,
             "summaryTemplate": {
-                "en-EN": "amorphy-backoffice-summary-name-template",
-                "tr-TR": "amorphy-backoffice-summary-name-template"
+                "en-EN": "bo-name",
+                "tr-TR": "bo-name"
             }
         },
         "name": "tag-entity",
@@ -988,8 +988,8 @@
             "runningWorkflows": true,
             "stateManager": true,
             "summaryTemplate": {
-                "en-EN": "amorphy-backoffice-user-display-summary-en",
-                "tr-TR": "amorphy-backoffice-user-display-summary-tr"
+                "en-EN": "bo-user-name",
+                "tr-TR": "bo-user-name"
             },
             "tabs": [
                 {
