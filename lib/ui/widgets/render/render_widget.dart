@@ -14,7 +14,7 @@ class RenderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // return testRender(context);
+    return testRender(context);
     return render(context);
   }
 

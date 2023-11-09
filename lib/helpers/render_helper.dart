@@ -1,15 +1,22 @@
 import 'package:admin/helpers/dialog_helper.dart';
-import 'package:admin/ui/widgets/render/register_widgets/title_description_render_widget/title_description_area.dart';
+import 'package:admin/ui/widgets/render/register_widgets/title_description_area/title_description_area.dart';
 import 'package:get/get.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../ui/widgets/render/register_widgets/name_template/name_template.dart';
 import '../ui/widgets/render/render_widget.dart';
 
 appRenderInit() {
   jsonWidgetRegistry.registerCustomBuilder(
     TitleDescriptionArea.kType,
     JsonWidgetBuilderContainer(builder: TitleDescriptionArea.fromDynamic),
+  );
+  jsonWidgetRegistry.registerCustomBuilder(
+    NameTemplate.kType,
+    JsonWidgetBuilderContainer(
+      builder: NameTemplate.fromDynamic,
+    ),
   );
   jsonWidgetRegistry.registerFunctions({
     "copy": ({args, required registry}) => () async {
