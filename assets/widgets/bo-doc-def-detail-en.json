@@ -27,14 +27,14 @@
                 "type": "title_description_area_widget",
                 "args": {
                     "title": "Formats",
-                    "text": "{{ comma=null }}{{ for format in data.documentUpload.documentFormatDetails }}{{ if comma }}, {{ else }}{{ end }}{{ comma=1 }}{{format.documentFormat.documentFormatType.code}}{{end}}"
+                    "text": "{{comma=null }}{{ for format in data.documentUpload.documentFormatDetails }}{{ if comma }}, {{ else }}{{ end }}{{ comma=1 }}{{format.documentFormat.documentFormatType.code}}{{end}}"
                 }
             },
             {
                 "type": "title_description_area_widget",
                 "args": {
                     "title": "Allowed Client Details",
-                    "text": "{{ comma=null }}{{ for format in data.documentUpload.documentAllowedClientDetails }}{{ if comma }}, {{ else }}{{ end }}{{ comma=1 }}{{format.documentAllowedClients.code}}{{end}}"
+                    "text": "{{comma=null }}{{ for format in data.documentUpload.documentAllowedClientDetails }}{{ if comma }}, {{ else }}{{ end }}{{ comma=1 }}{{format.documentAllowedClients.code}}{{end}}"
                 }
             },
             {

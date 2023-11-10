@@ -1127,5 +1127,50 @@
         "titleTemplate": "{{name}}",
         "url": "https://test-amorphie-workflow.burgan.com.tr/workflow/definition",
         "workflow": "workflow-create-with-flow"
+    },
+    "workflow-instance": {
+        "name": "workflow-instance",
+        "search": {
+            "columns": [
+                {
+                    "data": "entity",
+                    "sort": 1,
+                    "title": {
+                        "en-EN": "Entity",
+                        "tr-TR": "Varlık"
+                    }
+                },
+                {
+                    "data": "entityRecordId",
+                    "sort": 1,
+                    "title": {
+                        "en-EN": "Entity Record ID",
+                        "tr-TR": "Varlık ID"
+                    }
+                },
+                {
+                    "data": "instanceId",
+                    "sort": 1,
+                    "title": {
+                        "en-EN": "Instance ID",
+                        "tr-TR": "Olay ID"
+                    }
+                },
+                {
+                    "data": "workflow",
+                    "sort": 4,
+                    "title": {
+                        "en-EN": "Workflow",
+                        "tr-TR": "İş Akışı"
+                    }
+                }
+            ],
+            "defaultPageNumber": 0,
+            "defaultPageSize": 100,
+            "search": true
+        },
+        "titleTemplate": "{{name}}",
+        "url": "https://test-amorphie-workflow.burgan.com.tr/workflow/instance",
+        "workflow": "workflow-create-with-flow"
     }
 }

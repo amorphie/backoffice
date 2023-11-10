@@ -117,6 +117,16 @@
                             "tr-TR": "İş Akışı Listesi"
                         },
                         "type": "entity"
+                    },
+                    {
+                        "display-layout": "compact",
+                        "entity": "workflow-instance",
+                        "search-layout": "full",
+                        "title": {
+                            "en-EN": "Workflow Instance",
+                            "tr-TR": "İş Akışı Durum"
+                        },
+                        "type": "entity"
                     }
                 ],
                 "title": {
