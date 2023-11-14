@@ -1,0 +1,6 @@
+{
+    "type": "name_template_widget",
+    "args": {
+        "name": "{{for lang in data.documentDefinitionLanguageDetails}}{{if lang.multiLanguage.languageType.code=='en-EN'}} {{lang.multiLanguage.name}}{{end}}{{end}}"
+    }
+}

@@ -1,0 +1,6 @@
+{
+    "type": "name_template_widget",
+    "args": {
+        "name": "{{data.name}}"
+    }
+}

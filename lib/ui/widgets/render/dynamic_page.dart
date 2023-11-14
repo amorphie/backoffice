@@ -1,5 +1,4 @@
 import 'package:admin/ui/widgets/render/render_widget.dart';
-import 'package:flutter/material.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 class DynamicPage extends StatefulWidget {
@@ -22,7 +21,7 @@ class _DynamicPageState extends State<DynamicPage> {
     _data = JsonWidgetData.fromDynamic(
       widget.jsonData,
       registry: jsonWidgetRegistry,
-    )!;
+    );
   }
 
   @override

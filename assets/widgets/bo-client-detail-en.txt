@@ -1,6 +1,3 @@
-import 'dart:convert';
-
-String testRenderTemplateData = """
 {
     "type": "list_view",
     "args": {
@@ -94,7 +91,7 @@ String testRenderTemplateData = """
                     ],
                     "isTitle": true
                 }
-            },
+            },{{for flow in data.flows}}
             {
                 "type": "expanded_row_area_widget",
                 "args": {
@@ -105,7 +102,7 @@ String testRenderTemplateData = """
                         "{{flow.tokenDuration}}"
                     ]
                 }
-            },
+            },{{end}}
             {
                 "type": "detail_title_widget",
                 "args": {
@@ -122,7 +119,7 @@ String testRenderTemplateData = """
                     ],
                     "isTitle": true
                 }
-            },
+            },{{for token in data.tokens}}
             {
                 "type": "expanded_row_area_widget",
                 "args": {
@@ -132,7 +129,7 @@ String testRenderTemplateData = """
                         "{{token.claims}}"
                     ]
                 }
-            },
+            },{{end}}
             {
                 "type": "sized_box",
                 "args": {
@@ -142,15 +139,3 @@ String testRenderTemplateData = """
         ]
     }
 }
-""";
-// String _testRenderTemplate = """
-// {
-//     "type": "title_description_area_widget",
-//     "args": {
-//         "title": "Title",
-//         "text": "text",
-//         "copyValue": true
-//     }
-// }
-// """;
-// dynamic get testRenderTemplateData => json.decode(testRenderTemplate);

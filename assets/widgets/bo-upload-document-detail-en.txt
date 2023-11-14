@@ -1,0 +1,66 @@
+{
+    "type": "list_view",
+    "args": {
+        "children": [
+            {
+                "type": "title_description_area_widget",
+                "args": {
+                    "title": "Name",
+                    "text": "{{for lang in data.documentDefinition.multilanguageText}}{{if lang.language=='en-EN'}} {{lang.label}}{{end}}{{end}}"
+                }
+            },
+            {
+                "type": "title_description_area_widget",
+                "args": {
+                    "title": "ID",
+                    "text": "{{data.id}}"
+                }
+            },
+            {
+                "type": "title_description_area_widget",
+                "args": {
+                    "title": "Document Definition Code",
+                    "text": "{{data.documentDefinition.code}}"
+                }
+            },
+            {
+                "type": "title_description_area_widget",
+                "args": {
+                    "title": "Status",
+                    "text": "{{data.statuCode}}"
+                }
+            },
+            {
+                "type": "title_description_area_widget",
+                "args": {
+                    "title": "CreatedAt",
+                    "text": "{{data.createdAt}}"
+                }
+            }, 
+            {
+                "type": "detail_title_widget",
+                "args": {
+                    "title": "Tags"
+                }
+            },{{for tag in data.documentDefinition.documentOperations.documentOperationsTagsDetail}}
+            {
+                "type": "elevated_button",
+                "args": {
+                    "onPressed": "${tag_view('{{tag.code}}')}",
+                    "child": {
+                        "type": "text",
+                        "args": {
+                            "text": "{{tag.code}}"
+                        }
+                    }
+                }
+            },{{end}}
+            {
+                "type": "sized_box",
+                "args": {
+                    "height": 6
+                }
+            }
+        ]
+    }
+}

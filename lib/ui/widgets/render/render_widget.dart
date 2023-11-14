@@ -1,7 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
+import 'dart:convert';
+
 import 'package:admin/ui/widgets/render/test_render_template.dart';
-import 'package:flutter/material.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 JsonWidgetRegistry jsonWidgetRegistry = JsonWidgetRegistry.instance;
@@ -23,15 +24,14 @@ class RenderWidget extends StatelessWidget {
     return JsonWidgetData.fromDynamic(
       testRenderTemplateData,
       registry: jsonWidgetRegistry,
-    )!
-        .build(context: context);
+    ).build(context: context);
   }
 
   Widget render(BuildContext context) {
+    var temp = json.decode(template);
     return JsonWidgetData.fromDynamic(
-      template,
+      temp,
       registry: jsonWidgetRegistry,
-    )!
-        .build(context: context);
+    ).build(context: context);
   }
 }

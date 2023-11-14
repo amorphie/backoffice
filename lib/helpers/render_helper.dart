@@ -1,12 +1,37 @@
 import 'package:admin/helpers/dialog_helper.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:admin/ui/widgets/render/register_widgets/expanded_row_area/expanded_row_area.dart';
+import 'package:admin/ui/widgets/render/register_widgets/title_description_area/title_description_area.dart';
+import 'package:admin/ui/widgets/render/register_widgets/title_widget/detail_title.dart';
 import 'package:get/get.dart';
+import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../ui/widgets/render/register_widgets/name_template/name_template.dart';
 import '../ui/widgets/render/render_widget.dart';
 
 appRenderInit() {
+  jsonWidgetRegistry.registerCustomBuilder(
+    TitleDescriptionArea.kType,
+    JsonWidgetBuilderContainer(builder: TitleDescriptionArea.fromDynamic),
+  );
+  jsonWidgetRegistry.registerCustomBuilder(
+    NameTemplate.kType,
+    JsonWidgetBuilderContainer(
+      builder: NameTemplate.fromDynamic,
+    ),
+  );
+  jsonWidgetRegistry.registerCustomBuilder(
+    ExpandedRowArea.kType,
+    JsonWidgetBuilderContainer(
+      builder: ExpandedRowArea.fromDynamic,
+    ),
+  );
+  jsonWidgetRegistry.registerCustomBuilder(
+    DetailTitle.kType,
+    JsonWidgetBuilderContainer(
+      builder: DetailTitle.fromDynamic,
+    ),
+  );
   jsonWidgetRegistry.registerFunctions({
     "copy": ({args, required registry}) => () async {
           if (args != null && args.length > 0) {
