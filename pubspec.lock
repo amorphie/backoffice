@@ -560,6 +560,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "7.0.3+1"
+  json_dynamic_widget_codegen:
+    dependency: "direct dev"
+    description:
+      name: json_dynamic_widget_codegen
+      sha256: "1ea688eb70877a998314472476356e91f3e376f0f80ef42eda13f38fcd5a75f3"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.4"
   json_path:
     dependency: transitive
     description:
@@ -832,6 +840,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.2.1"
+  recase:
+    dependency: transitive
+    description:
+      name: recase
+      sha256: e4eb4ec2dcdee52dcf99cb4ceabaffc631d7424ee55e56f280bc039737f89213
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.1.0"
   rfc_6901:
     dependency: transitive
     description:
@@ -877,6 +893,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.99"
+  source_gen:
+    dependency: transitive
+    description:
+      name: source_gen
+      sha256: fc0da689e5302edb6177fdd964efcb7f58912f43c28c2047a808f5bfff643d16
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.4.0"
   source_span:
     dependency: transitive
     description:

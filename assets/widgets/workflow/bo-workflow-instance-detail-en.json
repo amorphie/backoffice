@@ -1,0 +1,67 @@
+{
+  "type": "list_view",
+  "args": {
+    "children": [
+      {
+        "type": "title_description_area_widget",
+        "args": {
+          "title": "State",
+          "text": "{{data.state.title.name}}",
+          "copyValue": true
+        }
+      },
+      {
+        "type": "title_description_area_widget",
+        "args": {
+          "title": "Base Status",
+          "text": "{{data.baseStatus}}"
+        }
+      },
+      {
+        "type": "title_description_area_widget",
+        "args": {
+          "title": "Transitions",
+          "text": "{{data.transitions.title.label}}",
+          "copyValue": true
+        }
+      },
+      {
+        "type": "title_description_area_widget",
+        "args": {
+          "title": "Form",
+          "text": "{{data.form.label}}",
+          "copyValue": true
+        }
+      },
+      {
+        "type": "title_description_area_widget",
+        "args": {
+          "title": "Service Name",
+          "text": "{{data.serviceName}}"
+        }
+      },
+      {
+        "type": "title_description_area_widget",
+        "args": {
+          "title": "Gateway",
+          "text": "{{data.gateway}}",
+          "copyValue": true
+        }
+      },
+      {
+        "type": "title_description_area_widget",
+        "args": {
+          "title": "Page",
+          "text": "{{data.page.pageRoute.label}}"
+        }
+      },
+      {
+        "type": "title_description_area_widget",
+        "args": {
+          "title": "History Forms",
+          "text": "{{data.historyForms.label}}"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "type": "list_view",
+  "args": {
+    "children": [
+      {
+        "type": "title_description_area_widget",
+        "args": {
+          "title": "ID",
+          "text": "{{data.id}}",
+          "copyValue": true
+        }
+      },
+      {
+        "type": "title_description_area_widget",
+        "args": {
+          "title": "Titles",
+          "text": "{{data.titles.label}} {{data.titles.language}}"
+        }
+      },
+      {
+        "type": "title_description_area_widget",
+        "args": {
+          "title": "Tags",
+          "text": "{{data.tags}}",
+          "copyValue": true
+        }
+      },
+      {
+        "type": "title_description_area_widget",
+        "args": {
+          "title": "Status",
+          "text": "{{data.status}}"
+        }
+      }
+    ]
+  }
+}

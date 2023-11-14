@@ -1,0 +1,23 @@
+{
+  "type": "list_view",
+  "args": {
+    "children": [
+      {
+        "type": "title_description_area_widget",
+        "args": {
+          "title": "ID",
+          "text": "{{data.id}}",
+          "copyValue": true
+        }
+      },
+      {
+        "type": "title_description_area_widget",
+        "args": {
+          "title": "URL",
+          "text": "{{data.url}}",
+          "copyValue": true
+        }
+      }
+    ]
+  }
+}
