@@ -61,8 +61,8 @@
         "display": {
             "availableWorkflows": true,
             "detailTemplate": {
-                "en-EN": "amorphy-backoffice-client-detail-en",
-                "tr-TR": "amorphy-backoffice-client-detail-tr"
+                "en-EN": "bo-client-detail-en",
+                "tr-TR": "bo-client-detail-tr"
             },
             "history": true,
             "runningWorkflows": true,
@@ -313,15 +313,15 @@
         "display": {
             "availableWorkflows": true,
             "detailTemplate": {
-                "en-EN": "amorphie-bo-document-definition-detail-en",
-                "tr-TR": "amorphie-bo-document-definition-detail-en"
+                "en-EN": "bo-doc-def-detail-en",
+                "tr-TR": "bo-doc-def-detail-en"
             },
             "history": true,
             "runningWorkflows": true,
             "stateManager": true,
             "summaryTemplate": {
-                "en-EN": "bo-name",
-                "tr-TR": "bo-name"
+                "en-EN": "bo-doc-def-name",
+                "tr-TR": "bo-doc-def-name"
             }
         },
         "name": "document-definition",
@@ -886,8 +886,8 @@
             "runningWorkflows": true,
             "stateManager": true,
             "summaryTemplate": {
-                "en-EN": "amorphie-bo-contract-name-en",
-                "tr-TR": "amorphie-bo-contract-name-tr"
+                "en-EN": "bo-upload-document-name-en",
+                "tr-TR": "bo-upload-document-name-tr"
             },
             "tabs": [
                 {
@@ -906,8 +906,8 @@
                             "order": 0,
                             "source": "template",
                             "template": {
-                                "en-EN": "amorphie-bo-tag-button-test-tr",
-                                "tr-TR": "amorphie-bo-tag-button-test-tr"
+                                "en-EN": "bo-upload-document-detail-en",
+                                "tr-TR": "bo-upload-document-detail-en"
                             },
                             "title": {
                                 "en-EN": "Detail",

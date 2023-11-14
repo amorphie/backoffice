@@ -7,6 +7,8 @@ import 'package:admin/ui/widgets/menu/profile.dart';
 import 'package:admin/ui/controllers/entity_controller.dart';
 import 'package:admin/ui/controllers/ui_controller.dart';
 import 'package:admin/ui/controllers/workflow_controller.dart';
+import 'package:admin/ui/widgets/render/render_widget.dart';
+import 'package:admin/ui/widgets/render/test_render_template.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -76,7 +78,9 @@ class MenuItem extends StatelessWidget {
               return MenuProfileItem(
                 logoPressed: () {
                   // menuController.menuReset();
-                  Get.to(PdfWidget());
+                  Get.to(Scaffold(
+                    body: RenderWidget(template: testRenderTemplateData),
+                  ));
                 },
               );
             case MenuItemType.divider:

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'title_description_area.dart';
+part of 'expanded_row_area.dart';
 
 // **************************************************************************
 // Generator: JsonWidgetLibraryBuilder
@@ -16,10 +16,10 @@ part of 'title_description_area.dart';
 // ignore_for_file: prefer_single_quotes
 // ignore_for_file: unused_local_variable
 
-class TitleDescriptionArea extends _TitleDescriptionArea {
-  const TitleDescriptionArea({required super.args});
+class ExpandedRowArea extends _ExpandedRowArea {
+  const ExpandedRowArea({required super.args});
 
-  static const kType = 'title_description_area_widget';
+  static const kType = 'expanded_row_area_widget';
 
   /// Constant that can be referenced for the builder's type.
   @override
@@ -27,20 +27,20 @@ class TitleDescriptionArea extends _TitleDescriptionArea {
 
   /// Static function that is capable of decoding the widget from a dynamic JSON
   /// or YAML set of values.
-  static TitleDescriptionArea fromDynamic(
+  static ExpandedRowArea fromDynamic(
     dynamic map, {
     JsonWidgetRegistry? registry,
   }) =>
-      TitleDescriptionArea(
+      ExpandedRowArea(
         args: map,
       );
 
   @override
-  TitleDescriptionAreaModel createModel({
+  ExpandedRowAreaModel createModel({
     ChildWidgetBuilder? childBuilder,
     required JsonWidgetData data,
   }) {
-    final model = TitleDescriptionAreaModel.fromDynamic(
+    final model = ExpandedRowAreaModel.fromDynamic(
       args,
       registry: data.jsonWidgetRegistry,
     );
@@ -49,7 +49,7 @@ class TitleDescriptionArea extends _TitleDescriptionArea {
   }
 
   @override
-  TitleDescriptionAreaWidget buildCustom({
+  ExpandedRowAreaWidget buildCustom({
     ChildWidgetBuilder? childBuilder,
     required BuildContext context,
     required JsonWidgetData data,
@@ -60,70 +60,61 @@ class TitleDescriptionArea extends _TitleDescriptionArea {
       data: data,
     );
 
-    return TitleDescriptionAreaWidget(
-      copyValue: model.copyValue,
+    return ExpandedRowAreaWidget(
+      data: model.data,
+      isTitle: model.isTitle,
       key: key,
-      text: model.text,
-      title: model.title,
     );
   }
 }
 
-class JsonTitleDescriptionAreaWidget extends JsonWidgetData {
-  JsonTitleDescriptionAreaWidget({
+class JsonExpandedRowAreaWidget extends JsonWidgetData {
+  JsonExpandedRowAreaWidget({
     Map<String, dynamic> args = const {},
     JsonWidgetRegistry? registry,
-    this.copyValue = false,
-    this.text = "",
-    this.title = "",
+    required this.data,
+    this.isTitle = false,
   }) : super(
-          jsonWidgetArgs: TitleDescriptionAreaModel.fromDynamic(
+          jsonWidgetArgs: ExpandedRowAreaModel.fromDynamic(
             {
-              'copyValue': copyValue,
-              'text': text,
-              'title': title,
+              'data': data,
+              'isTitle': isTitle,
               ...args,
             },
             args: args,
             registry: registry,
           ),
-          jsonWidgetBuilder: () => TitleDescriptionArea(
-            args: TitleDescriptionAreaModel.fromDynamic(
+          jsonWidgetBuilder: () => ExpandedRowArea(
+            args: ExpandedRowAreaModel.fromDynamic(
               {
-                'copyValue': copyValue,
-                'text': text,
-                'title': title,
+                'data': data,
+                'isTitle': isTitle,
                 ...args,
               },
               args: args,
               registry: registry,
             ),
           ),
-          jsonWidgetType: TitleDescriptionArea.kType,
+          jsonWidgetType: ExpandedRowArea.kType,
         );
 
-  final bool copyValue;
+  final List<dynamic> data;
 
-  final String text;
-
-  final String title;
+  final bool isTitle;
 }
 
-class TitleDescriptionAreaModel extends JsonWidgetBuilderModel {
-  const TitleDescriptionAreaModel(
+class ExpandedRowAreaModel extends JsonWidgetBuilderModel {
+  const ExpandedRowAreaModel(
     super.args, {
-    this.copyValue = false,
-    this.text = "",
-    this.title = "",
+    required this.data,
+    this.isTitle = false,
   });
 
-  final bool copyValue;
+  final List<dynamic> data;
 
-  final String text;
+  final bool isTitle;
 
-  final String title;
-
-  static TitleDescriptionAreaModel fromDynamic(
+  static ExpandedRowAreaModel fromDynamic(
     dynamic map, {
     Map<String, dynamic> args = const {},
     JsonWidgetRegistry? registry,
@@ -136,19 +127,19 @@ class TitleDescriptionAreaModel extends JsonWidgetBuilderModel {
 
     if (result == null) {
       throw Exception(
-        '[TitleDescriptionArea]: requested to parse from dynamic, but the input is null.',
+        '[ExpandedRowArea]: requested to parse from dynamic, but the input is null.',
       );
     }
 
     return result;
   }
 
-  static TitleDescriptionAreaModel? maybeFromDynamic(
+  static ExpandedRowAreaModel? maybeFromDynamic(
     dynamic map, {
     Map<String, dynamic> args = const {},
     JsonWidgetRegistry? registry,
   }) {
-    TitleDescriptionAreaModel? result;
+    ExpandedRowAreaModel? result;
 
     if (map != null) {
       if (map is String) {
@@ -158,19 +149,18 @@ class TitleDescriptionAreaModel extends JsonWidgetBuilderModel {
         );
       }
 
-      if (map is TitleDescriptionAreaModel) {
+      if (map is ExpandedRowAreaModel) {
         result = map;
       } else {
         registry ??= JsonWidgetRegistry.instance;
         map = registry.processArgs(map, <String>{}).value;
-        result = TitleDescriptionAreaModel(
+        result = ExpandedRowAreaModel(
           args,
-          copyValue: JsonClass.parseBool(
-            map['copyValue'],
+          data: map['data'],
+          isTitle: JsonClass.parseBool(
+            map['isTitle'],
             whenNull: false,
           ),
-          text: map['text'] ?? "",
-          title: map['title'] ?? "",
         );
       }
     }
@@ -181,28 +171,26 @@ class TitleDescriptionAreaModel extends JsonWidgetBuilderModel {
   @override
   Map<String, dynamic> toJson() {
     return JsonClass.removeNull({
-      'copyValue': false == copyValue ? null : copyValue,
-      'text': "" == text ? null : text,
-      'title': "" == title ? null : title,
+      'data': data,
+      'isTitle': false == isTitle ? null : isTitle,
       ...args,
     });
   }
 }
 
-class TitleDescriptionAreaWidgetSchema {
+class ExpandedRowAreaWidgetSchema {
   static const id =
-      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/admin/title_description_area_widget.json';
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/admin/expanded_row_area_widget.json';
 
   static final schema = <String, Object>{
     r'$schema': 'http://json-schema.org/draft-07/schema#',
     r'$id': id,
-    'title': 'TitleDescriptionAreaWidget',
+    'title': 'ExpandedRowAreaWidget',
     'type': 'object',
     'additionalProperties': false,
     'properties': {
-      'copyValue': SchemaHelper.boolSchema,
-      'text': SchemaHelper.stringSchema,
-      'title': SchemaHelper.stringSchema,
+      'data': SchemaHelper.anySchema,
+      'isTitle': SchemaHelper.boolSchema,
     },
   };
 }

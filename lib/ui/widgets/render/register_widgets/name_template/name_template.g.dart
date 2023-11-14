@@ -59,7 +59,7 @@ class NameTemplate extends _NameTemplate {
       childBuilder: childBuilder,
       data: data,
     );
-    print(model);
+
     return NameTemplateWidget(
       description: model.description,
       key: key,
@@ -176,7 +176,8 @@ class NameTemplateModel extends JsonWidgetBuilderModel {
 }
 
 class NameTemplateWidgetSchema {
-  static const id = 'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/admin/name_template_widget.json';
+  static const id =
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/admin/name_template_widget.json';
 
   static final schema = <String, Object>{
     r'$schema': 'http://json-schema.org/draft-07/schema#',
