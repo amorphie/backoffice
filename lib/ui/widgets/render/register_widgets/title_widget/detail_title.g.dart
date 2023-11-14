@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'title_description_area.dart';
+part of 'detail_title.dart';
 
 // **************************************************************************
 // Generator: JsonWidgetLibraryBuilder
@@ -16,10 +16,10 @@ part of 'title_description_area.dart';
 // ignore_for_file: prefer_single_quotes
 // ignore_for_file: unused_local_variable
 
-class TitleDescriptionArea extends _TitleDescriptionArea {
-  const TitleDescriptionArea({required super.args});
+class DetailTitle extends _DetailTitle {
+  const DetailTitle({required super.args});
 
-  static const kType = 'title_description_area_widget';
+  static const kType = 'detail_title_widget';
 
   /// Constant that can be referenced for the builder's type.
   @override
@@ -27,20 +27,20 @@ class TitleDescriptionArea extends _TitleDescriptionArea {
 
   /// Static function that is capable of decoding the widget from a dynamic JSON
   /// or YAML set of values.
-  static TitleDescriptionArea fromDynamic(
+  static DetailTitle fromDynamic(
     dynamic map, {
     JsonWidgetRegistry? registry,
   }) =>
-      TitleDescriptionArea(
+      DetailTitle(
         args: map,
       );
 
   @override
-  TitleDescriptionAreaModel createModel({
+  DetailTitleModel createModel({
     ChildWidgetBuilder? childBuilder,
     required JsonWidgetData data,
   }) {
-    final model = TitleDescriptionAreaModel.fromDynamic(
+    final model = DetailTitleModel.fromDynamic(
       args,
       registry: data.jsonWidgetRegistry,
     );
@@ -49,7 +49,7 @@ class TitleDescriptionArea extends _TitleDescriptionArea {
   }
 
   @override
-  TitleDescriptionAreaWidget buildCustom({
+  DetailTitleWidget buildCustom({
     ChildWidgetBuilder? childBuilder,
     required BuildContext context,
     required JsonWidgetData data,
@@ -60,38 +60,30 @@ class TitleDescriptionArea extends _TitleDescriptionArea {
       data: data,
     );
 
-    return TitleDescriptionAreaWidget(
-      copyValue: model.copyValue,
+    return DetailTitleWidget(
       key: key,
-      text: model.text,
       title: model.title,
     );
   }
 }
 
-class JsonTitleDescriptionAreaWidget extends JsonWidgetData {
-  JsonTitleDescriptionAreaWidget({
+class JsonDetailTitleWidget extends JsonWidgetData {
+  JsonDetailTitleWidget({
     Map<String, dynamic> args = const {},
     JsonWidgetRegistry? registry,
-    this.copyValue = false,
-    this.text = "",
-    this.title = "",
+    required this.title,
   }) : super(
-          jsonWidgetArgs: TitleDescriptionAreaModel.fromDynamic(
+          jsonWidgetArgs: DetailTitleModel.fromDynamic(
             {
-              'copyValue': copyValue,
-              'text': text,
               'title': title,
               ...args,
             },
             args: args,
             registry: registry,
           ),
-          jsonWidgetBuilder: () => TitleDescriptionArea(
-            args: TitleDescriptionAreaModel.fromDynamic(
+          jsonWidgetBuilder: () => DetailTitle(
+            args: DetailTitleModel.fromDynamic(
               {
-                'copyValue': copyValue,
-                'text': text,
                 'title': title,
                 ...args,
               },
@@ -99,31 +91,21 @@ class JsonTitleDescriptionAreaWidget extends JsonWidgetData {
               registry: registry,
             ),
           ),
-          jsonWidgetType: TitleDescriptionArea.kType,
+          jsonWidgetType: DetailTitle.kType,
         );
-
-  final bool copyValue;
-
-  final String text;
 
   final String title;
 }
 
-class TitleDescriptionAreaModel extends JsonWidgetBuilderModel {
-  const TitleDescriptionAreaModel(
+class DetailTitleModel extends JsonWidgetBuilderModel {
+  const DetailTitleModel(
     super.args, {
-    this.copyValue = false,
-    this.text = "",
-    this.title = "",
+    required this.title,
   });
-
-  final bool copyValue;
-
-  final String text;
 
   final String title;
 
-  static TitleDescriptionAreaModel fromDynamic(
+  static DetailTitleModel fromDynamic(
     dynamic map, {
     Map<String, dynamic> args = const {},
     JsonWidgetRegistry? registry,
@@ -136,19 +118,19 @@ class TitleDescriptionAreaModel extends JsonWidgetBuilderModel {
 
     if (result == null) {
       throw Exception(
-        '[TitleDescriptionArea]: requested to parse from dynamic, but the input is null.',
+        '[DetailTitle]: requested to parse from dynamic, but the input is null.',
       );
     }
 
     return result;
   }
 
-  static TitleDescriptionAreaModel? maybeFromDynamic(
+  static DetailTitleModel? maybeFromDynamic(
     dynamic map, {
     Map<String, dynamic> args = const {},
     JsonWidgetRegistry? registry,
   }) {
-    TitleDescriptionAreaModel? result;
+    DetailTitleModel? result;
 
     if (map != null) {
       if (map is String) {
@@ -158,19 +140,14 @@ class TitleDescriptionAreaModel extends JsonWidgetBuilderModel {
         );
       }
 
-      if (map is TitleDescriptionAreaModel) {
+      if (map is DetailTitleModel) {
         result = map;
       } else {
         registry ??= JsonWidgetRegistry.instance;
         map = registry.processArgs(map, <String>{}).value;
-        result = TitleDescriptionAreaModel(
+        result = DetailTitleModel(
           args,
-          copyValue: JsonClass.parseBool(
-            map['copyValue'],
-            whenNull: false,
-          ),
-          text: map['text'] ?? "",
-          title: map['title'] ?? "",
+          title: map['title'],
         );
       }
     }
@@ -181,27 +158,23 @@ class TitleDescriptionAreaModel extends JsonWidgetBuilderModel {
   @override
   Map<String, dynamic> toJson() {
     return JsonClass.removeNull({
-      'copyValue': false == copyValue ? null : copyValue,
-      'text': "" == text ? null : text,
-      'title': "" == title ? null : title,
+      'title': title,
       ...args,
     });
   }
 }
 
-class TitleDescriptionAreaWidgetSchema {
+class DetailTitleWidgetSchema {
   static const id =
-      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/admin/title_description_area_widget.json';
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/admin/detail_title_widget.json';
 
   static final schema = <String, Object>{
     r'$schema': 'http://json-schema.org/draft-07/schema#',
     r'$id': id,
-    'title': 'TitleDescriptionAreaWidget',
+    'title': 'DetailTitleWidget',
     'type': 'object',
     'additionalProperties': false,
     'properties': {
-      'copyValue': SchemaHelper.boolSchema,
-      'text': SchemaHelper.stringSchema,
       'title': SchemaHelper.stringSchema,
     },
   };

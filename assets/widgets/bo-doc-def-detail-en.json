@@ -6,14 +6,45 @@
                 "type": "title_description_area_widget",
                 "args": {
                     "title": "Name",
-                    "text": "{{for lang in data.documentDefinitionLanguageDetails}}{{if lang.multiLanguage.languageType.code=='en-EN'}} {{lang.multiLanguage.name}}{{end}}{{end}}"
+                    "text": "{{for lang in data.documentDefinitionLanguageDetails}}{{if lang.multiLanguage.languageType.code=='en-EN'}} {{lang.multiLanguage.name}}{{end}}{{end}}",
+                    "copyValue": true
+                }
+            },
+            {
+                "type": "title_description_area_widget",
+                "args": {
+                    "title": "ID",
+                    "text": "{{data.id}}",
+                    "copyValue": true
+                }
+            },
+            {
+                "type": "title_description_area_widget",
+                "args": {
+                    "title": "Created At",
+                    "text": "{{data.createdAt}}"
+                }
+            },
+            {
+                "type": "title_description_area_widget",
+                "args": {
+                    "title": "Status",
+                    "text": "{{data.status.code}}"
+                }
+            },
+            {
+                "type": "title_description_area_widget",
+                "args": {
+                    "title": "Base Status",
+                    "text": "{{data.baseStatus.code}}"
                 }
             },
             {
                 "type": "title_description_area_widget",
                 "args": {
                     "title": "Tags",
-                    "text": "{{comma=null}}{{for tag in data.documentTagsDetails}} {{if comma}},{{end}} {{tag.tags.code}}{{comma=1}}{{end}}"
+                    "text": "{{comma=null}}{{for tag in data.documentTagsDetails}} {{if comma}},{{end}} {{tag.tags.code}}{{comma=1}}{{end}}",
+                    "copyValue": true
                 }
             },
             {
