@@ -17,10 +17,10 @@ class Services {
 
   Future<Map<String, EntityModel>> getEntityData() async {
     Map<String, EntityModel> map = {};
-    // var response = await http.get(Uri.parse(dotenv.env["ENTITIES_URL"] ?? ""));
-    // var data = json.decode(response.body);
-    var response = await getJson("entities");
-    var data = json.decode(response);
+    var response = await http.get(Uri.parse(dotenv.env["ENTITIES_URL"] ?? ""));
+    var data = json.decode(response.body);
+    // var response = await getJson("entities");
+    // var data = json.decode(response);
     for (var item in data.keys) {
       map.addAll({item: EntityModel.fromMap(data[item])});
     }
@@ -28,11 +28,11 @@ class Services {
   }
 
   Future<UIModel> getUiData() async {
-    // var response = await http.get(Uri.parse(dotenv.env["UI_URL"] ?? ""));
-    // var data = json.decode(response.body);
+    var response = await http.get(Uri.parse(dotenv.env["UI_URL"] ?? ""));
+    var data = json.decode(response.body);
 
-    var response = await getJson("ui");
-    var data = json.decode(response);
+    // var response = await getJson("ui");
+    // var data = json.decode(response);
     UIModel menu = UIModel.fromMap(data);
     return menu;
   }
