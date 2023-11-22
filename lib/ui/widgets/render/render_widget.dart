@@ -28,7 +28,7 @@ class RenderWidget extends StatelessWidget {
   }
 
   Widget render(BuildContext context) {
-    var temp = json.decode(template);
+    var temp = template is String ? json.decode(template) : template;
     return JsonWidgetData.fromDynamic(
       temp,
       registry: jsonWidgetRegistry,

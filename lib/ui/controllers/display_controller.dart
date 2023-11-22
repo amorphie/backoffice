@@ -31,24 +31,27 @@ class DisplayController extends GetxController {
 
   RxList<HistoryWorkflowModel> historyWorkflows = <HistoryWorkflowModel>[].obs;
 
+  EntityModel _entity = EntityModel.init();
+
   setData(Map<String, dynamic> data) async {
     EntityController entityController = Get.find<EntityController>();
-    _displayLayout.value = entityController.entity.display!;
+    _entity = entityController.entity;
 
+    _displayLayout.value = _entity.display ?? DisplayLayoutModel();
     _displayView.value = data;
-    await getTemplates();
-    await getHistories();
+    if (_entity.display != null) {
+      await getTemplates();
+      await getHistories();
+    }
   }
 
   int get tabCount {
-    EntityController entityController = Get.find<EntityController>();
-
-    return (displayLayout.tabs?.length ?? 0) + (displayLayout.detailTemplate != null ? 1 : 0) + (entityController.entity.display!.history! ? 1 : 0);
+    return (displayLayout.tabs?.length ?? 0) + 1 + (_entity.display!.history! ? 1 : 0);
   }
 
   Future _getById() async {
     EntityController entityController = Get.find<EntityController>();
-    ResponseModel response = await Services().getById(entityController.entity.url, _displayView.value["id"]);
+    ResponseModel response = await Services().getById(_entity.url, _displayView.value["id"]);
     entityController.getDataList();
     _displayView.value = response.data;
   }
@@ -175,9 +178,7 @@ class DisplayController extends GetxController {
   }
 
   Future getHistories() async {
-    EntityController entityController = Get.find<EntityController>();
-
-    ResponseModel response = await Services().getHistory(entity: entityController.entity.workflow, recordId: _displayView.value["id"] ?? "");
+    ResponseModel response = await Services().getHistory(entity: _entity.workflow, recordId: _displayView.value["id"] ?? "");
     historyWorkflows.clear();
     if (response.success) {
       var data = response.data["data"];

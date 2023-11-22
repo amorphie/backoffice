@@ -3,6 +3,8 @@ import 'dart:developer';
 import 'package:admin/data/models/display/display_view_model.dart';
 import 'package:admin/ui/pages/detail_page.dart';
 import 'package:admin/ui/controllers/filter_controller.dart';
+import 'package:admin/ui/widgets/generic_widgets/generc_detail_widget.dart';
+import 'package:flutter/src/widgets/basic.dart';
 import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';
 
@@ -41,24 +43,42 @@ class HomeController extends GetxController {
   Future addData(Map<String, dynamic> data) async {
     _addDataLoading.value = true;
     try {
+      if (data["id"] == null) {
+        data["id"] = Uuid().v4();
+      }
       DisplayController displayController = Get.put<DisplayController>(DisplayController(data["id"]), tag: data["id"]);
       WorkflowController workflowController = Get.put<WorkflowController>(WorkflowController(data["id"]), tag: data["id"]);
       final EntityController entityController = Get.find<EntityController>();
 
       await workflowController.startTransition(entity: entityController.entity.workflow, recordId: data["id"]);
-
+      DisplayViewModel model;
       await displayController.setData(data);
-      DisplayViewModel model = DisplayViewModel(
+      if (entityController.entity.display != null) {
+        model = DisplayViewModel(
+            id: Uuid().v4(),
+            entity: entityController.entity.name,
+            data: data,
+            page: DetailWidget(
+              entity: entityController.entity.name,
+              id: data["id"],
+            ));
+      } else {
+        model = DisplayViewModel(
           id: Uuid().v4(),
           entity: entityController.entity.name,
           data: data,
-          page: DetailWidget(
-            entity: entityController.entity.name,
-            id: data["id"],
-          ));
+          page: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: GenericDetailWidget(data: data, entity: entityController.entity),
+          ),
+        );
+      }
       selectEntity(model);
       entityList.add(model);
-    } catch (e) {}
+    } catch (e) {
+      print(e);
+      ;
+    }
     _addDataLoading.value = false;
   }
 

@@ -17,6 +17,7 @@ class HubModel {
   HubNavigationPageModel? page;
   String? message;
   dynamic additionalData;
+  String workflowName;
 
   HubModel({
     required this.userId,
@@ -32,6 +33,7 @@ class HubModel {
     this.page,
     this.message,
     this.additionalData,
+    required this.workflowName,
   });
 
   HubModel copyWith({
@@ -48,6 +50,7 @@ class HubModel {
     HubNavigationPageModel? page,
     String? message,
     dynamic additionalData,
+    String? workflowName,
   }) {
     return HubModel(
       userId: userId ?? this.userId,
@@ -63,6 +66,7 @@ class HubModel {
       page: page ?? this.page,
       message: message ?? this.message,
       additionalData: additionalData ?? this.additionalData,
+      workflowName: workflowName ?? this.workflowName,
     );
   }
 
@@ -81,6 +85,7 @@ class HubModel {
       'page': page?.toMap(),
       'message': message,
       'additionalData': additionalData,
+      'workflowName': workflowName,
     };
   }
 
@@ -100,6 +105,7 @@ class HubModel {
         page: map['page'] != null ? HubNavigationPageModel.fromMap(map['page']) : null,
         message: map["message"] != null ? map["message"] : null,
         additionalData: map["additionalData"] != null ? map["additionalData"] : null,
+        workflowName: map["workflowName"] != null ? map["workflowName"] : null,
       );
     } catch (e) {
       return HubModel(
@@ -116,6 +122,7 @@ class HubModel {
         page: map['page'] != null ? HubNavigationPageModel.fromMap(map['page']) : null,
         message: map["message"] != null ? map["message"] : null,
         additionalData: map["additionalData"] != null ? map["additionalData"] : null,
+        workflowName: map["workflowName"] != null ? map["workflowName"] : null,
       );
     }
   }

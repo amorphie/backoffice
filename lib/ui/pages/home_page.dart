@@ -56,7 +56,7 @@ class HomePage extends StatelessWidget {
                       ),
                       Expanded(
                         child: Obx(() {
-                          if (homeController.hasEntity)
+                          if (!homeController.selectedEntity.value.isBlank)
                             return homeController.selectedEntity.value.page;
                           else
                             return AppDataTable(

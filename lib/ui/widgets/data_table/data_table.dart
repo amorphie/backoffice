@@ -66,6 +66,7 @@ class AppDataTable extends StatelessWidget {
                         SerachTextfield(
                           onSearch: onEndpointSuffix,
                           hintText: "Identity Number",
+                          defaultValue: "15059003384",
                         ),
                       if (hasFilter)
                         SizedBox(
@@ -124,10 +125,12 @@ class AppDataTable extends StatelessWidget {
 class SerachTextfield extends StatelessWidget {
   final String? hintText;
   final int flex;
+  final String? defaultValue;
   const SerachTextfield({
     Key? key,
     this.hintText = "Search",
     this.flex = 1,
+    this.defaultValue,
     required this.onSearch,
   }) : super(key: key);
 
@@ -140,6 +143,7 @@ class SerachTextfield extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(4),
         child: TextField(
+          controller: TextEditingController(text: defaultValue),
           cursorColor: KC.secondary,
           onSubmitted: onSearch,
           inputFormatters: [],

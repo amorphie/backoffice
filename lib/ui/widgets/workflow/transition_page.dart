@@ -28,7 +28,7 @@ class _TransitionPageState extends State<TransitionPage> {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      StateManager stateManager = controller.workflow.stateManager!;
+      StateManager stateManager = controller.selectedStateManager!;
       List<TransitionModel> transitions = stateManager.transitions!;
       bool loading = controller.loading;
       return Container(
@@ -43,6 +43,15 @@ class _TransitionPageState extends State<TransitionPage> {
                   Navigator.pop(context);
                 },
                 loading: loading);
+          } else if (controller.selectedTransition != null) {
+            return TransitionWidget(
+              data: controller.selectedTransition!,
+              getData: (data) async {
+                controller.postTransition(transition: controller.selectedTransition!, entityData: data);
+                Navigator.pop(context);
+              },
+              loading: loading,
+            );
           } else if (transitions.length == 1) {
             return TransitionWidget(
               data: transitions.first,

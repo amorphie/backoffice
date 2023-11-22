@@ -141,7 +141,11 @@ class _MultiTransitionWidgetState extends State<MultiTransitionWidget> {
           }
           widget.getData(data, sendTransition);
         };
-        return SizedBox(width: 400, height: MediaQuery.of(context).size.height * 0.4, child: RenderWidget(template: json.decode(widget.data.publicForm!)));
+        return SizedBox(
+          height: double.maxFinite,
+          width: MediaQuery.of(context).size.width * 0.7,
+          child: RenderWidget(template: json.decode(widget.data.publicForm!)),
+        );
 
       default:
         return Container();

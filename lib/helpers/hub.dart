@@ -58,10 +58,11 @@ class Hub {
         EntityController c = Get.find<EntityController>();
         c.getDataList();
       }
+
       if (model.page != null && model.page!.operation == "Open" && model.page!.type == "Popup") {
         log("showHubFormio", name: "showHubFormio");
 
-        formioDialog(Get.context!, model.entityName, model.recordId);
+        formioDialog(Get.context!, model.entityName, model.recordId, model.workflowName, model.transition);
       }
       if (model.message != null && model.message!.isNotEmpty) Get.snackbar("Result", model.message!, backgroundColor: Colors.black, colorText: Colors.white);
     });
