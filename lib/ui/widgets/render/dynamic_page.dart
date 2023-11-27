@@ -1,5 +1,4 @@
-import 'package:admin/ui/widgets/render/render_widget.dart';
-import 'package:json_dynamic_widget/json_dynamic_widget.dart';
+import '../../../helpers/exporter.dart';
 
 class DynamicPage extends StatefulWidget {
   const DynamicPage({
