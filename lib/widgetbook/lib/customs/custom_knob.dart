@@ -1,6 +1,8 @@
 /// A custom knob example for Widgetbook
 ///
 /// [Ref link]: https://docs.widgetbook.io/knobs/custom-knob
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
@@ -25,7 +27,7 @@ class RangeKnob extends Knob<RangeValues> {
   List<Field> get fields => [
         DoubleInputField(
           name: 'min-$label',
-          initialValue: value.start,
+          initialValue: value?.start,
           onChanged: (context, value) {
             if (value == null) return;
 
@@ -40,7 +42,7 @@ class RangeKnob extends Knob<RangeValues> {
         ),
         DoubleInputField(
           name: 'max-$label',
-          initialValue: value.end,
+          initialValue: value?.end,
           onChanged: (context, value) {
             if (value == null) return;
 

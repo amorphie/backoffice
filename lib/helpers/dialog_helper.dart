@@ -10,13 +10,15 @@ import '../ui/controllers/entity_controller.dart';
 import '../ui/controllers/workflow_controller.dart';
 import '../ui/style/colors.dart';
 
-Future<void> formioDialog(BuildContext context, [String? entity, String? recordId]) async {
+Future<void> formioDialog(BuildContext context, [String? entity, String? recordId, String? stateManager, String? transition]) async {
   WorkflowController controller = Get.put<WorkflowController>(WorkflowController());
   final EntityController entityController = Get.find<EntityController>();
 
   await controller.startTransition(
     entity: entity ?? entityController.entity.workflow,
     recordId: recordId,
+    stateManager: stateManager,
+    transition: transition,
   );
 
   return showDialog<void>(
@@ -39,7 +41,7 @@ Future<void> formioDialog(BuildContext context, [String? entity, String? recordI
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    controller.workflow.stateManager?.title ?? "",
+                    controller.selectedStateManager?.title ?? "",
                     style: TextStyle(color: KC.primary, fontWeight: FontWeight.bold),
                   ),
                   IconButton(

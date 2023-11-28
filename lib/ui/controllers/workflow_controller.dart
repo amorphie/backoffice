@@ -1,3 +1,4 @@
+import 'package:admin/data/models/workflow/state_manager_model.dart';
 import 'package:admin/data/models/workflow/transition_model.dart';
 import 'package:admin/data/models/workflow/workflow_model.dart';
 import 'package:admin/data/services/services.dart';
@@ -28,10 +29,27 @@ class WorkflowController extends GetxController {
 
   RxString _entity = "".obs;
   RxString _recordId = "".obs;
-  startTransition({required String entity, String? recordId}) async {
+  RxString _transition = "".obs;
+  RxString _stateManager = "".obs;
+  startTransition({required String entity, String? recordId, String? stateManager, String? transition}) async {
     _entity.value = entity;
     _recordId.value = recordId ?? Uuid().v4();
+    _transition.value = transition ?? "";
+    _stateManager.value = stateManager ?? "";
     await getTransitions();
+  }
+
+  StateManager? get selectedStateManager {
+    StateManager? _sm;
+    _sm = workflow.availableWorkflows?.firstWhereOrNull((element) => element.name == _stateManager.value);
+    _sm = workflow.runningWorkflows?.firstWhereOrNull((element) => element.name == _stateManager.value);
+    return _sm ?? workflow.stateManager;
+  }
+
+  TransitionModel? get selectedTransition {
+    TransitionModel? _tm;
+    _tm = selectedStateManager?.transitions?.firstWhereOrNull((element) => element.name == _transition.value);
+    return _tm;
   }
 
   getTransitions() async {

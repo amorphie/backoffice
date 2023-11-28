@@ -1,9 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
-import 'dart:convert';
-
-import 'package:admin/ui/widgets/render/test_render_template.dart';
-import 'package:json_dynamic_widget/json_dynamic_widget.dart';
+import '../../../helpers/exporter.dart';
 
 JsonWidgetRegistry jsonWidgetRegistry = JsonWidgetRegistry.instance;
 
@@ -28,7 +25,7 @@ class RenderWidget extends StatelessWidget {
   }
 
   Widget render(BuildContext context) {
-    var temp = json.decode(template);
+    var temp = template is String ? json.decode(template) : template;
     return JsonWidgetData.fromDynamic(
       temp,
       registry: jsonWidgetRegistry,

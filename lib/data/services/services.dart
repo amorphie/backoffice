@@ -53,7 +53,7 @@ class Services {
         _url += "&$key=$value";
       });
     }
-    ResponseModel response = await Executer.get(endpoint: _url, headers: {"Content-Type": "application/json", "Language": "en-EN"});
+    ResponseModel response = await Executer.get(endpoint: _url, headers: {"Content-Type": "application/json", "Accept-Language": "en-EN", "Language": "en-EN"});
     return response;
   }
 

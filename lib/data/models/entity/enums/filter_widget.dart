@@ -6,7 +6,7 @@ enum FilterWidget {
   String toMap() => this.name;
   factory FilterWidget.fromMap(var data) {
     switch (data) {
-      case "text":
+      case "textfield":
         return FilterWidget.textField;
 
       case "dropdown":

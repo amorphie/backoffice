@@ -111,7 +111,7 @@ class _WorkflowAreaState extends State<WorkflowArea> {
                   data: data,
                   loading: controller.loading,
                   getData: (val) async {
-                    await workflowController.postTransition(transition: data, entityData: val);
+                    workflowController.postTransition(transition: data, entityData: val);
                     Navigator.pop(context);
                   },
                 );

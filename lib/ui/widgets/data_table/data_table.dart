@@ -1,4 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 import 'package:admin/data/models/entity/layout_helpers/search_column_model.dart';
@@ -24,6 +26,9 @@ class AppDataTable extends StatelessWidget {
   final List<SearchColumn> columns;
   final List<Map<String, dynamic>> data;
   final Function(Map<String, dynamic> data) onPressed;
+  final int rowsPerPage;
+  final Function(int perPage) onRowsPerPageChanged;
+  final Function onFinish;
 
   const AppDataTable({
     Key? key,
@@ -41,7 +46,12 @@ class AppDataTable extends StatelessWidget {
     required this.columns,
     required this.data,
     required this.onPressed,
+    required this.rowsPerPage,
+    required this.onRowsPerPageChanged,
+    required this.onFinish,
   }) : super(key: key);
+
+  int get _rowsPerPage => data.length < 10 ? data.length : rowsPerPage;
 
   @override
   Widget build(BuildContext context) {
@@ -66,6 +76,7 @@ class AppDataTable extends StatelessWidget {
                         SerachTextfield(
                           onSearch: onEndpointSuffix,
                           hintText: "Identity Number",
+                          defaultValue: "15059003384",
                         ),
                       if (hasFilter)
                         SizedBox(
@@ -99,6 +110,18 @@ class AppDataTable extends StatelessWidget {
                   if (filterView) FilterArea(),
                   if (data.length > 0)
                     PaginatedDataTable(
+                      rowsPerPage: _rowsPerPage,
+                      availableRowsPerPage: [10, 20, 50],
+                      onRowsPerPageChanged: (value) {
+                        if (value != null) {
+                          onRowsPerPageChanged(value);
+                        }
+                      },
+                      onPageChanged: (value) {
+                        if (value + _rowsPerPage == data.length) {
+                          onFinish();
+                        }
+                      },
                       columns: columns
                           .map((e) => DataColumn(
                                   label: Text(
@@ -124,10 +147,12 @@ class AppDataTable extends StatelessWidget {
 class SerachTextfield extends StatelessWidget {
   final String? hintText;
   final int flex;
+  final String? defaultValue;
   const SerachTextfield({
     Key? key,
     this.hintText = "Search",
     this.flex = 1,
+    this.defaultValue,
     required this.onSearch,
   }) : super(key: key);
 
@@ -140,6 +165,7 @@ class SerachTextfield extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(4),
         child: TextField(
+          controller: TextEditingController(text: defaultValue),
           cursorColor: KC.secondary,
           onSubmitted: onSearch,
           inputFormatters: [],

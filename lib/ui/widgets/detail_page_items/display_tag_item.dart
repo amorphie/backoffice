@@ -29,7 +29,7 @@ class _DisplayTagListState extends State<DisplayTagList> {
   Widget row(List data) {
     return Container(
       color: KC.primary,
-      padding: EdgeInsets.all(5),
+      padding: EdgeInsets.only(left: 12, top: 2),
       child: Row(
         children: [
           Text(

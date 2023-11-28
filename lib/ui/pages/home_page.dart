@@ -56,10 +56,16 @@ class HomePage extends StatelessWidget {
                       ),
                       Expanded(
                         child: Obx(() {
-                          if (homeController.hasEntity)
+                          if (!homeController.selectedEntity.value.isBlank)
                             return homeController.selectedEntity.value.page;
                           else
                             return AppDataTable(
+                              onFinish: () {
+                                log("finish", name: "onPageChanged");
+                                entityController.setPage(entityController.pageNumber + 1);
+                              },
+                              rowsPerPage: homeController.rowPerPage,
+                              onRowsPerPageChanged: homeController.setRowPerPage,
                               withEndpointSuffix: entityController.entity.search?.endpointSuffix ?? false,
                               filterView: homeController.filterView,
                               withSearch: entityController.entity.search?.search ?? false,

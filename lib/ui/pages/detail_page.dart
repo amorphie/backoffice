@@ -15,6 +15,7 @@ import 'package:admin/ui/widgets/render/render_widget.dart';
 
 import '../controllers/display_controller.dart';
 import '../style/colors.dart';
+import '../widgets/generic_widgets/generc_detail_widget.dart';
 
 class DetailWidget extends StatefulWidget {
   final String id;
@@ -91,10 +92,9 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
                   indicatorPadding: EdgeInsets.all(1),
                   isScrollable: false,
                   tabs: [
-                    if (displayController.displayLayout.detailTemplate != null)
-                      Tab(
-                        icon: Text("Detail"),
-                      ),
+                    Tab(
+                      icon: Text("Detail"),
+                    ),
                     ...(displayController.displayLayout.tabs ?? [])
                         .map(
                           (e) => Tab(
@@ -110,7 +110,12 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
             ),
             body: Obx(() {
               return TabBarView(controller: _tabController, children: [
-                if (displayController.displayLayout.detailTemplate != null) getRenderWidget(displayController.displayLayout.detailTemplate!),
+                displayController.displayLayout.detailTemplate != null
+                    ? getRenderWidget(displayController.displayLayout.detailTemplate!)
+                    : GenericDetailWidget(
+                        entity: entity,
+                        data: displayController.displayView,
+                      ),
                 ...(displayController.displayLayout.tabs ?? []).map((e) {
                   return DisplayTabItemWidget(
                     value: e,
