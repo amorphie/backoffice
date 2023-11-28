@@ -21,9 +21,10 @@ class MenuItem extends StatelessWidget {
           switch (model.type) {
             case MenuItemType.group:
               return ExpansionTile(
+                tilePadding: EdgeInsets.zero,
                 backgroundColor: Colors.black12,
                 collapsedBackgroundColor: KC.primary,
-                childrenPadding: const EdgeInsets.only(left: 30, bottom: 10),
+                childrenPadding: const EdgeInsets.only(left: 15, bottom: 10),
                 expandedCrossAxisAlignment: CrossAxisAlignment.start,
                 iconColor: KC.secondary,
                 collapsedIconColor: Colors.white70,
@@ -73,6 +74,16 @@ class MenuItem extends StatelessWidget {
               );
             case MenuItemType.divider:
               return Divider();
+            case MenuItemType.query:
+              return Obx(() {
+                return MenuButtonCard(
+                  text: model.title!.enEN,
+                  onPressed: () {
+                    menuController.setMenuItem(model);
+                  },
+                  isSelected: menuController.menuItem.value == model,
+                );
+              });
             default:
               return MenuButtonCard(text: model.title!.enEN);
           }

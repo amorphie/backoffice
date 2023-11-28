@@ -7,7 +7,11 @@ enum MenuItemType {
   /* Bir modele bağlı ise o modele gidecek. */
   group,
   /* Alt menüsü varsa bu eklenecek */
-  divider; /* sadece ayırıcı */
+  divider,
+  /* sadece ayırıcı */
+  query
+  /* sürekli bütün isteklere gereken queryleri ekler */
+  ;
 
   factory MenuItemType.fromMap(String value) {
     switch (value) {
@@ -21,6 +25,8 @@ enum MenuItemType {
         return MenuItemType.group;
       case "divider":
         return MenuItemType.divider;
+      case "query":
+        return MenuItemType.query;
       default:
         return MenuItemType.none;
     }
