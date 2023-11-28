@@ -10,28 +10,29 @@ import '../ui/widgets/render/register_widgets/name_template/name_template.dart';
 import '../ui/widgets/render/render_widget.dart';
 
 appRenderInit() {
-  jsonWidgetRegistry.registerCustomBuilder(
-    TitleDescriptionArea.kType,
-    JsonWidgetBuilderContainer(builder: TitleDescriptionArea.fromDynamic),
-  );
-  jsonWidgetRegistry.registerCustomBuilder(
-    NameTemplate.kType,
-    JsonWidgetBuilderContainer(
-      builder: NameTemplate.fromDynamic,
-    ),
-  );
-  jsonWidgetRegistry.registerCustomBuilder(
-    ExpandedRowArea.kType,
-    JsonWidgetBuilderContainer(
-      builder: ExpandedRowArea.fromDynamic,
-    ),
-  );
-  jsonWidgetRegistry.registerCustomBuilder(
-    DetailTitle.kType,
-    JsonWidgetBuilderContainer(
-      builder: DetailTitle.fromDynamic,
-    ),
-  );
+  jsonWidgetRegistry
+    ..registerCustomBuilder(
+      TitleDescriptionArea.kType,
+      JsonWidgetBuilderContainer(builder: TitleDescriptionArea.fromDynamic),
+    )
+    ..registerCustomBuilder(
+      NameTemplate.kType,
+      JsonWidgetBuilderContainer(
+        builder: NameTemplate.fromDynamic,
+      ),
+    )
+    ..registerCustomBuilder(
+      ExpandedRowArea.kType,
+      JsonWidgetBuilderContainer(
+        builder: ExpandedRowArea.fromDynamic,
+      ),
+    )
+    ..registerCustomBuilder(
+      DetailTitle.kType,
+      JsonWidgetBuilderContainer(
+        builder: DetailTitle.fromDynamic,
+      ),
+    );
   jsonWidgetRegistry.registerFunctions({
     "copy": ({args, required registry}) => () async {
           if (args != null && args.length > 0) {

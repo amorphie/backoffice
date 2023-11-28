@@ -22,9 +22,11 @@ class AppUiController extends GetxController {
   Future setMenuItem(MenuItemModel _) async {
     menuItem.value = _;
     EntityController entityController = Get.find<EntityController>();
-    entityController.setEntityMenu();
-
     HomeController homeController = Get.find<HomeController>();
+
+    entityController.resetPageNumber();
+    homeController.rowPerPageReset();
+    entityController.setEntityMenu();
     homeController.deselectEntity();
     if (homeController.filterView) {
       homeController.filterClose();

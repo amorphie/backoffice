@@ -111,7 +111,15 @@ class HomeController extends GetxController {
     filterController.onClose();
     _filterView.value = false;
     //filterController.filterDataList.isNotEmpty ? filterController.filterDataList.clear() : null;
-
-    //! FILTER END
   }
+
+  //! FILTER END
+
+  //! DATATABLE BEGIN
+  RxInt _rowPerPage = 10.obs;
+  int get rowPerPage => _rowPerPage.value;
+  set rowPerPage(int value) => _rowPerPage.value = value;
+  setRowPerPage(int value) => _rowPerPage.value = value;
+  rowPerPageReset() => _rowPerPage.value = 10;
+  //! DATATABLE END
 }

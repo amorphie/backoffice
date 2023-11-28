@@ -2,9 +2,6 @@
 
 import 'package:admin/data/services/services.dart';
 import 'package:admin/helpers/exporter.dart';
-import 'package:admin/ui/controllers/ui_controller.dart';
-import 'package:get/get.dart';
-
 import '../../data/models/entity/entity_model.dart';
 
 class EntityController extends GetxController {
@@ -18,15 +15,19 @@ class EntityController extends GetxController {
   String _endpointSuffix = "";
 
   int? pageSize;
-  int? pageNumber;
+  int pageNumber = 0;
+  resetPageNumber() {
+    pageNumber = 0;
+  }
+
   setPage(int p) {
     pageNumber = p;
-    getDataList(isSearch: true);
+    getDataList(isSearch: entity.search?.search ?? true);
   }
 
   setPageSize(int ps) {
     pageSize = ps;
-    getDataList(isSearch: true);
+    getDataList(isSearch: entity.search?.search ?? true);
   }
 
   setFilter(String filter) {
@@ -78,8 +79,9 @@ class EntityController extends GetxController {
     bool isSearch = false,
   }) async {
     loading.value = true;
-
-    dataList.clear();
+    if (pageNumber == 0) {
+      dataList.clear();
+    }
     List list = await getAllData(
       pageSize: pageSize,
       pageNumber: pageNumber,
