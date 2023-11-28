@@ -1,6 +1,7 @@
 //import 'dart:ffi';
 
 import 'package:admin/data/services/services.dart';
+import 'package:admin/helpers/exporter.dart';
 import 'package:admin/ui/controllers/ui_controller.dart';
 import 'package:get/get.dart';
 
@@ -79,17 +80,14 @@ class EntityController extends GetxController {
     loading.value = true;
 
     dataList.clear();
-    List list;
-    if (!isSearch) {
-      list = await getAllData(pageSize: pageSize, pageNumber: pageNumber, keyword: _keyword == "" || _keyword.length > 3 ? _keyword : null, queries: queries);
-    } else {
-      list = await getSearchData(
-        keyword: _keyword == "" || _keyword.length > 3 ? _keyword : null,
-        pageSize: pageSize,
-        pageNumber: pageNumber,
-        queries: queries,
-      );
-    }
+    List list = await getAllData(
+      pageSize: pageSize,
+      pageNumber: pageNumber,
+      keyword: _keyword == "" || _keyword.length > 3 ? _keyword : null,
+      queries: queries,
+      isSearch: isSearch,
+    );
+
     for (var item in list) {
       dataList.add(item);
     }
@@ -103,13 +101,22 @@ class EntityController extends GetxController {
     int? pageSize,
     int? pageNumber,
     Map<String, String>? queries,
+    bool isSearch = false,
   }) async {
+    Map<String, String>? _queries = queries;
+    AppUiController menuController = Get.find<AppUiController>();
+    if (menuController.menuItem.value.type == MenuItemType.query) {
+      if (_queries == null) _queries = <String, String>{};
+      menuController.menuItem.value.query!.forEach((key, value) {
+        _queries![key] = value.toString();
+      });
+    }
     var response = await services.search(
-        url: (entityModel ?? entity).url + _endpointSuffix,
+        url: (entityModel ?? entity).url + _endpointSuffix + (isSearch ? "/search" : ""),
         pageSize: pageSize ?? (entityModel ?? entity).search!.defaultPageSize,
         pageNumber: pageNumber ?? (entityModel ?? entity).search!.defaultPageNumber,
         keyword: keyword,
-        queries: queries);
+        queries: _queries);
     List list = [];
     if (response.data is List) {
       list = response.data;
@@ -127,33 +134,33 @@ class EntityController extends GetxController {
     return list;
   }
 
-  Future<List> getSearchData({
-    EntityModel? entityModel,
-    String? keyword,
-    int? pageSize,
-    int? pageNumber,
-    Map<String, String>? queries,
-  }) async {
-    var response = await services.search(
-        url: (entityModel ?? entity).url + _endpointSuffix + "/search",
-        pageSize: pageSize ?? (entityModel ?? entity).search!.defaultPageSize,
-        pageNumber: pageNumber ?? (entityModel ?? entity).search!.defaultPageNumber,
-        keyword: keyword,
-        queries: queries);
-    List list = [];
-    if (response.data is List) {
-      list = response.data;
-    } else if (response.data is Map<String, dynamic>) {
-      if (response.data["data"] != null && response.data["data"] is List) {
-        list = response.data["data"];
-      }
-    } else if ((entityModel ?? entity).search!.subDataField != null) {
-      //TODO Alt alta gelen modelleri listeleme yapılacak
-      if (response.data[(entityModel ?? entity).search!.subDataField] != null && response.data[(entityModel ?? entity).search!.subDataField] is List) {
-        list = response.data[(entityModel ?? entity).search!.subDataField];
-      }
-    }
+  // Future<List> getSearchData({
+  //   EntityModel? entityModel,
+  //   String? keyword,
+  //   int? pageSize,
+  //   int? pageNumber,
+  //   Map<String, String>? queries,
+  // }) async {
+  //   var response = await services.search(
+  //       url: (entityModel ?? entity).url + _endpointSuffix + "/search",
+  //       pageSize: pageSize ?? (entityModel ?? entity).search!.defaultPageSize,
+  //       pageNumber: pageNumber ?? (entityModel ?? entity).search!.defaultPageNumber,
+  //       keyword: keyword,
+  //       queries: queries);
+  //   List list = [];
+  //   if (response.data is List) {
+  //     list = response.data;
+  //   } else if (response.data is Map<String, dynamic>) {
+  //     if (response.data["data"] != null && response.data["data"] is List) {
+  //       list = response.data["data"];
+  //     }
+  //   } else if ((entityModel ?? entity).search!.subDataField != null) {
+  //     //TODO Alt alta gelen modelleri listeleme yapılacak
+  //     if (response.data[(entityModel ?? entity).search!.subDataField] != null && response.data[(entityModel ?? entity).search!.subDataField] is List) {
+  //       list = response.data[(entityModel ?? entity).search!.subDataField];
+  //     }
+  //   }
 
-    return list;
-  }
+  //   return list;
+  // }
 }

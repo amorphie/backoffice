@@ -14,6 +14,7 @@ class MenuItemModel {
   String? entity;
   UISearchLayout searchLayout;
   UIDisplayLayout displayLayout;
+  Map<String, dynamic>? query;
   MenuItemModel({
     required this.type,
     this.title,
@@ -21,16 +22,17 @@ class MenuItemModel {
     this.entity,
     this.searchLayout = UISearchLayout.none,
     this.displayLayout = UIDisplayLayout.none,
+    this.query,
   });
 
-  MenuItemModel copyWith({
-    MenuItemType? type,
-    TitleModel? title,
-    List<MenuItemModel>? items,
-    String? entity,
-    UISearchLayout? searchLayout,
-    UIDisplayLayout? displayLayout,
-  }) {
+  MenuItemModel copyWith(
+      {MenuItemType? type,
+      TitleModel? title,
+      List<MenuItemModel>? items,
+      String? entity,
+      UISearchLayout? searchLayout,
+      UIDisplayLayout? displayLayout,
+      Map<String, dynamic>? query}) {
     return MenuItemModel(
       type: type ?? this.type,
       title: title ?? this.title,
@@ -38,6 +40,7 @@ class MenuItemModel {
       entity: entity ?? this.entity,
       searchLayout: searchLayout ?? this.searchLayout,
       displayLayout: displayLayout ?? this.displayLayout,
+      query: query ?? this.query,
     );
   }
 
@@ -49,6 +52,7 @@ class MenuItemModel {
       'entity': entity,
       'search-layout': searchLayout.toMap(),
       'display-layout': displayLayout.toMap(),
+      'query': query,
     };
   }
 
@@ -66,6 +70,7 @@ class MenuItemModel {
       entity: map['entity'] != null ? map['entity'] as String : null,
       searchLayout: map['search-layout'] != null ? UISearchLayout.fromMap(map['search-layout']) : UISearchLayout.none,
       displayLayout: map['display-layout'] != null ? UIDisplayLayout.fromMap(map['display-layout']) : UIDisplayLayout.none,
+      query: map['query'] != null ? map['query'] as Map<String, dynamic> : null,
     );
   }
 
@@ -75,7 +80,7 @@ class MenuItemModel {
 
   @override
   String toString() {
-    return 'MenuItemModel(type: $type, title: $title, items: $items, entity: $entity, searchLayout: $searchLayout, displayLayout: $displayLayout)';
+    return 'MenuItemModel(type: $type, title: $title, items: $items, entity: $entity, searchLayout: $searchLayout, displayLayout: $displayLayout, query: $query)';
   }
 
   @override
@@ -87,11 +92,12 @@ class MenuItemModel {
         listEquals(other.items, items) &&
         other.entity == entity &&
         other.searchLayout == searchLayout &&
-        other.displayLayout == displayLayout;
+        other.displayLayout == displayLayout &&
+        other.query == query;
   }
 
   @override
   int get hashCode {
-    return type.hashCode ^ title.hashCode ^ items.hashCode ^ entity.hashCode ^ searchLayout.hashCode ^ displayLayout.hashCode;
+    return type.hashCode ^ title.hashCode ^ items.hashCode ^ entity.hashCode ^ searchLayout.hashCode ^ displayLayout.hashCode ^ query.hashCode;
   }
 }
