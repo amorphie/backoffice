@@ -46,6 +46,6 @@ class FilterController extends GetxController {
 
   Future onFilter() async {
     EntityController entityController = Get.find<EntityController>();
-    entityController.getDataList(queries: filterQueryList, isSearch: true);
+    entityController.getDataList(queries: filterQueryList, isSearch: entityController.entity.search?.search ?? true);
   }
 }

@@ -81,10 +81,7 @@ class EntityController extends GetxController {
     dataList.clear();
     List list;
     if (!isSearch) {
-      list = await getAllData(
-        pageSize: pageSize,
-        pageNumber: pageNumber,
-      );
+      list = await getAllData(pageSize: pageSize, pageNumber: pageNumber, keyword: _keyword == "" || _keyword.length > 3 ? _keyword : null, queries: queries);
     } else {
       list = await getSearchData(
         keyword: _keyword == "" || _keyword.length > 3 ? _keyword : null,
@@ -107,8 +104,6 @@ class EntityController extends GetxController {
     int? pageNumber,
     Map<String, String>? queries,
   }) async {
-    await Future.delayed(Duration(milliseconds: 200));
-
     var response = await services.search(
         url: (entityModel ?? entity).url + _endpointSuffix,
         pageSize: pageSize ?? (entityModel ?? entity).search!.defaultPageSize,
@@ -139,8 +134,6 @@ class EntityController extends GetxController {
     int? pageNumber,
     Map<String, String>? queries,
   }) async {
-    await Future.delayed(Duration(milliseconds: 200));
-
     var response = await services.search(
         url: (entityModel ?? entity).url + _endpointSuffix + "/search",
         pageSize: pageSize ?? (entityModel ?? entity).search!.defaultPageSize,
