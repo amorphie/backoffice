@@ -1,7 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:get/get.dart';
+
+import '../../../../../helpers/exporter.dart';
 
 class TitleDescriptionAreaWidget extends StatelessWidget {
   final String title;

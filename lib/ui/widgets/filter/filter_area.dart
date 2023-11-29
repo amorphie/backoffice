@@ -1,11 +1,4 @@
-import 'package:admin/ui/widgets/filter/filter_widget.dart';
-import 'package:admin/ui/controllers/entity_controller.dart';
-import 'package:admin/ui/controllers/filter_controller.dart';
-import 'package:admin/ui/style/colors.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
-import '../../../data/models/entity/layout_helpers/filter_layout_model.dart';
+import '../../../helpers/exporter.dart';
 
 class FilterArea extends StatefulWidget {
   FilterArea({Key? key}) : super(key: key);

@@ -1,11 +1,4 @@
-import 'package:admin/helpers/hub.dart';
-import 'package:admin/helpers/render_helper.dart';
-import 'package:animated_splash_screen/animated_splash_screen.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
-import 'controllers/entity_controller.dart';
-import 'controllers/ui_controller.dart';
+import '../helpers/exporter.dart';
 
 class AppInit extends StatelessWidget {
   const AppInit({super.key});

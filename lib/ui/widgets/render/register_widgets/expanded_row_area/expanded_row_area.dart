@@ -1,6 +1,4 @@
-import 'package:json_dynamic_widget/json_dynamic_widget.dart';
-
-import 'expanded_row_area_widget.dart';
+import '../../../../../helpers/exporter.dart';
 
 part 'expanded_row_area.g.dart';
 

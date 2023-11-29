@@ -1,14 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
-import 'package:flutter/material.dart';
-
-import 'package:admin/data/models/entity/layout_helpers/search_column_model.dart';
-import 'package:admin/data/models/entity/layout_helpers/title_model.dart';
-import 'package:admin/ui/widgets/data_table/data_table_source.dart';
-import 'package:admin/ui/widgets/filter/filter_area.dart';
-import 'package:admin/ui/widgets/indicator.dart';
-
-import '../../style/colors.dart';
+import '../../../helpers/exporter.dart';
 
 class AppDataTable extends StatelessWidget {
   final TitleModel title;

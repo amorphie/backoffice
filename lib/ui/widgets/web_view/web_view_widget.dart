@@ -1,10 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:flutter/material.dart';
-import 'package:webviewx/webviewx.dart';
 
-import 'web_view_model.dart';
-
-export 'web_view_model.dart';
+import '../../../helpers/exporter.dart';
 
 class WebViewWidget extends StatefulWidget {
   final WebViewSource source;

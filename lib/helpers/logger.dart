@@ -5,8 +5,7 @@ import 'dart:convert';
 import 'package:logger/logger.dart';
 
 Logger appLogger = Logger(printer: EtoPrinter(printTime: false));
-Logger chatLogger = Logger(
-    printer: EtoPrinter(printTime: false, chat: true, printEmojis: false));
+Logger chatLogger = Logger(printer: EtoPrinter(printTime: false, chat: true, printEmojis: false));
 
 const bool printDebug = true;
 printTime() {
@@ -163,10 +162,7 @@ class EtoPrinter extends LogPrinter {
   }
 
   String formatStackTrace(StackTrace stackTrace, int methodCount) {
-    var lines = (stackTrace.toString().split('\n')).where((element) =>
-        element.startsWith("#") &&
-        element.contains("package:odenet/") &&
-        !element.contains("EtoPrinter.log"));
+    var lines = (stackTrace.toString().split('\n')).where((element) => element.startsWith("#") && element.contains("package:odenet/") && !element.contains("EtoPrinter.log"));
     var formatted = <String>[];
     var count = 0;
     for (var line in lines) {
@@ -290,10 +286,7 @@ class EtoPrinter extends LogPrinter {
       var errorColor = AnsiColor.fg(15);
       for (var line in error.split('\n')) {
         buffer.add(
-          color('$verticalLine ') +
-              errorColor.resetForeground +
-              errorColor(line) +
-              errorColor.resetBackground,
+          color('$verticalLine ') + errorColor.resetForeground + errorColor(line) + errorColor.resetBackground,
         );
       }
       buffer.add(color(_middleBorder));
