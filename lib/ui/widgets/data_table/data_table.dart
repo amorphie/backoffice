@@ -42,8 +42,6 @@ class AppDataTable extends StatelessWidget {
     required this.onFinish,
   }) : super(key: key);
 
-  int get _rowsPerPage => data.length < 10 ? data.length : rowsPerPage;
-
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -101,7 +99,7 @@ class AppDataTable extends StatelessWidget {
                   if (filterView) FilterArea(),
                   if (data.length > 0)
                     PaginatedDataTable(
-                      rowsPerPage: _rowsPerPage,
+                      rowsPerPage: rowsPerPage,
                       availableRowsPerPage: [10, 20, 50],
                       onRowsPerPageChanged: (value) {
                         if (value != null) {
@@ -109,7 +107,7 @@ class AppDataTable extends StatelessWidget {
                         }
                       },
                       onPageChanged: (value) {
-                        if (value + _rowsPerPage == data.length) {
+                        if (value + rowsPerPage == data.length) {
                           onFinish();
                         }
                       },

@@ -14,15 +14,7 @@
         "type": "title_description_area_widget",
         "args": {
           "title": "Titles",
-          "text": "{{data.titles.label}} {{data.titles.language}}"
-        }
-      },
-      {
-        "type": "title_description_area_widget",
-        "args": {
-          "title": "Tags",
-          "text": "{{data.tags}}",
-          "copyValue": true
+          "text": "{{comma=null}}{{for d in data.titles}}{{if comma}}, {{end}}{{d.label}}{{comma=1}}{{end}}"
         }
       },
       {
