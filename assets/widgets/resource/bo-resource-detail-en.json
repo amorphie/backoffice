@@ -14,15 +14,7 @@
         "type": "title_description_area_widget",
         "args": {
           "title": "Display Names",
-          "text": "{{data.displayNames.label}} {{data.displayNames.language}}"
-        }
-      },
-      {
-        "type": "title_description_area_widget",
-        "args": {
-          "title": "Type",
-          "text": "{{data.type}}",
-          "copyValue": true
+          "text": "{{comma=null}}{{for d in data.displayNames}}{{if comma}}, {{end}}{{d.label}}{{comma=1}}{{end}}"
         }
       },
       {
@@ -36,16 +28,8 @@
       {
         "type": "title_description_area_widget",
         "args": {
-          "title": "Display Names",
-          "text": "{{data.descriptions.label}} {{data.descriptions.language}}"
-        }
-      },
-      {
-        "type": "title_description_area_widget",
-        "args": {
-          "title": "Tags",
-          "text": "{{data.tags}}",
-          "copyValue": true
+          "title": "Description",
+          "text": "{{comma=null}}{{for d in data.descriptions}}{{if comma}}, {{end}}{{d.label}}{{comma=1}}{{end}}"
         }
       },
       {

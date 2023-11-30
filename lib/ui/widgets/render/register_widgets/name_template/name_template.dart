@@ -1,5 +1,4 @@
-import 'package:admin/ui/widgets/render/register_widgets/name_template/name_template_widget.dart';
-import 'package:json_dynamic_widget/json_dynamic_widget.dart';
+import '../../../../../helpers/exporter.dart';
 
 part 'name_template.g.dart';
 

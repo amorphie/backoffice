@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
-import '../style/colors.dart';
+import '../../helpers/exporter.dart';
 
 class Searchtf extends StatelessWidget {
   final List<TextInputFormatter>? inputFormatters;

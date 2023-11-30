@@ -1,14 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
-import 'package:flutter/material.dart';
-
-import 'package:admin/data/models/entity/layout_helpers/search_column_model.dart';
-import 'package:admin/data/models/entity/layout_helpers/title_model.dart';
-import 'package:admin/ui/widgets/data_table/data_table_source.dart';
-import 'package:admin/ui/widgets/filter/filter_area.dart';
-import 'package:admin/ui/widgets/indicator.dart';
-
-import '../../style/colors.dart';
+import '../../../helpers/exporter.dart';
 
 class AppDataTable extends StatelessWidget {
   final TitleModel title;
@@ -49,8 +41,6 @@ class AppDataTable extends StatelessWidget {
     required this.onRowsPerPageChanged,
     required this.onFinish,
   }) : super(key: key);
-
-  int get _rowsPerPage => data.length < 10 ? data.length : rowsPerPage;
 
   @override
   Widget build(BuildContext context) {
@@ -109,7 +99,7 @@ class AppDataTable extends StatelessWidget {
                   if (filterView) FilterArea(),
                   if (data.length > 0)
                     PaginatedDataTable(
-                      rowsPerPage: _rowsPerPage,
+                      rowsPerPage: rowsPerPage,
                       availableRowsPerPage: [10, 20, 50],
                       onRowsPerPageChanged: (value) {
                         if (value != null) {
@@ -117,7 +107,7 @@ class AppDataTable extends StatelessWidget {
                         }
                       },
                       onPageChanged: (value) {
-                        if (value + _rowsPerPage == data.length) {
+                        if (value + rowsPerPage == data.length) {
                           onFinish();
                         }
                       },

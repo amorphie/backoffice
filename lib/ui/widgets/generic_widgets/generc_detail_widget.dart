@@ -1,8 +1,4 @@
-import 'package:admin/data/extension/string_extension.dart';
-import 'package:admin/data/models/entity/entity_model.dart';
-import 'package:flutter/material.dart';
-
-import '../render/register_widgets/title_description_area/title_description_area_widget.dart';
+import '../../../helpers/exporter.dart';
 
 class GenericDetailWidget extends StatelessWidget {
   final Map<String, dynamic> data;

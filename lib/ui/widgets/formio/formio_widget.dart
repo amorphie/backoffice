@@ -1,10 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
-import 'package:admin/ui/widgets/custom_button.dart';
-import 'package:flutter/material.dart';
-
-import '../indicator.dart';
-import '../web_view/web_view_widget.dart';
+import '../../../helpers/exporter.dart';
 
 class FormioWidget extends StatefulWidget {
   final String schema;

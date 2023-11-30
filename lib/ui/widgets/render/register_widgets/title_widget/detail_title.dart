@@ -1,6 +1,4 @@
-import 'package:json_dynamic_widget/json_dynamic_widget.dart';
-
-import 'detail_title_widget.dart';
+import '../../../../../helpers/exporter.dart';
 
 part 'detail_title.g.dart';
 

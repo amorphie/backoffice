@@ -1,6 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:admin/ui/style/colors.dart';
-import 'package:flutter/material.dart';
+
+import '../../helpers/exporter.dart';
 
 class CustomButton extends StatelessWidget {
   final String title;

@@ -1,10 +1,6 @@
 // ignore_for_file: library_private_types_in_public_api
 
-import 'dart:typed_data';
-
-import 'package:admin/ui/widgets/pdf/pdf_file.dart';
-import 'package:flutter/material.dart';
-import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
+import '../../../helpers/exporter.dart';
 
 /// Represents Homepage for Navigation
 class PdfWidget extends StatefulWidget {

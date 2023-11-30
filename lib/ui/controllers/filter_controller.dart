@@ -1,9 +1,4 @@
-import 'package:admin/data/models/entity/enums/filter_type.dart';
-import 'package:admin/data/models/entity/layout_helpers/filter_layout_model.dart';
-import 'package:admin/data/services/services.dart';
-import 'package:get/get.dart';
-
-import 'entity_controller.dart';
+import '../../helpers/exporter.dart';
 
 class FilterController extends GetxController {
   Map<String, List> filterDataList = {};

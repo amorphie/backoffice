@@ -1,6 +1,4 @@
-import 'package:flutter/foundation.dart';
-
-import '../service_config.dart';
+import '../../../helpers/exporter.dart';
 
 enum ResponseMethod { POST, PATCH, DELETE, GET, PUT }
 
@@ -12,8 +10,7 @@ class ExecuterManager {
     ResponseMethod method,
   ) {
     list.removeWhere((element) => element.isBeforeNow);
-    ExecuterModel model =
-        ExecuterModel(endpoint: endpoint, data: data, method: method);
+    ExecuterModel model = ExecuterModel(endpoint: endpoint, data: data, method: method);
     if (list.contains(model)) {
       print("responseTimeOverflow");
       return false;
@@ -37,16 +34,13 @@ class ExecuterModel {
     time = DateTime.now();
   }
 
-  bool get isBeforeNow =>
-      time.add(ServiceConfig.responseTime).isBefore(DateTime.now());
+  bool get isBeforeNow => time.add(ServiceConfig.responseTime).isBefore(DateTime.now());
 
   @override
   bool operator ==(covariant ExecuterModel other) {
     if (identical(this, other)) return true;
 
-    return other.endpoint == endpoint &&
-        mapEquals(other.data, data) &&
-        other.method == method;
+    return other.endpoint == endpoint && mapEquals(other.data, data) && other.method == method;
   }
 
   @override

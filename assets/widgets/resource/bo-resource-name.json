@@ -1,0 +1,6 @@
+{
+    "type": "name_template_widget",
+    "args": {
+        "name": "{{comma=null}}{{for d in data.titles}}{{if comma}}, {{end}}{{d.label}}{{comma=1}}{{end}}"
+    }
+}

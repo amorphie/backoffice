@@ -1,9 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:admin/ui/style/colors.dart';
-import 'package:admin/ui/widgets/dashboard/dashboard_item.dart';
-import 'package:flutter/material.dart';
 
-import 'package:admin/data/models/dashboard/dashboard_item_model.dart';
+import '../../../../helpers/exporter.dart';
 
 class DashboardTab extends StatelessWidget {
   final DashboardItemModel item;

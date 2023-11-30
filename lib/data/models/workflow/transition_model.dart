@@ -1,6 +1,4 @@
-import 'dart:convert';
-
-import 'transition_type.dart';
+import '../../../helpers/exporter.dart';
 
 class TransitionModel {
   String name;

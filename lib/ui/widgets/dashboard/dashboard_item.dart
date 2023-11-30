@@ -1,16 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:admin/data/models/dashboard/dashboard_type.dart';
-import 'package:admin/ui/controllers/entity_controller.dart';
-import 'package:admin/ui/controllers/ui_controller.dart';
-import 'package:admin/ui/widgets/dashboard/dashboard_counter/dashboard_counter.dart';
-import 'package:admin/ui/widgets/dashboard/dashboard_tab/dashboard_tab.dart';
-import 'package:admin/ui/widgets/tab_data_table/app_data_table/tab_data_table.dart';
-import 'package:flutter/material.dart';
 
-import 'package:admin/data/models/dashboard/dashboard_item_model.dart';
-import 'package:get/get.dart';
-
-import 'dashboard_chart/dashboard_chart.dart';
+import '../../../helpers/exporter.dart';
 
 class DashboardItem extends StatelessWidget {
   final DashboardItemModel item;

@@ -1,13 +1,4 @@
-import 'package:admin/helpers/dialog_helper.dart';
-import 'package:admin/ui/widgets/render/register_widgets/expanded_row_area/expanded_row_area.dart';
-import 'package:admin/ui/widgets/render/register_widgets/title_description_area/title_description_area.dart';
-import 'package:admin/ui/widgets/render/register_widgets/title_widget/detail_title.dart';
-import 'package:get/get.dart';
-import 'package:json_dynamic_widget/json_dynamic_widget.dart';
-import 'package:url_launcher/url_launcher.dart';
-
-import '../ui/widgets/render/register_widgets/name_template/name_template.dart';
-import '../ui/widgets/render/render_widget.dart';
+import 'package:admin/helpers/exporter.dart';
 
 appRenderInit() {
   jsonWidgetRegistry

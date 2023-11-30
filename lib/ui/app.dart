@@ -1,10 +1,4 @@
-import 'package:admin/ui/bindings/start_app_binding.dart';
-import 'package:flutter/material.dart';
-import 'package:get/route_manager.dart';
-import 'package:google_fonts/google_fonts.dart';
-
-import '../constants/routes.dart';
-import '../helpers/scroll_helper.dart';
+import '../helpers/exporter.dart';
 
 class App extends StatelessWidget {
   const App({super.key});

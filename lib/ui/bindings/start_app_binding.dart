@@ -1,11 +1,8 @@
 // ignore_for_file: unused_local_variable
 
-import 'package:admin/ui/controllers/home_controller.dart';
-import 'package:get/get.dart';
-
 // import '../controllers/display_controller.dart';
-import '../controllers/entity_controller.dart';
-import '../controllers/ui_controller.dart';
+
+import '../../helpers/exporter.dart';
 
 class StartAppBinding extends Bindings {
   @override

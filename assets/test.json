@@ -1,0 +1,53 @@
+[
+    {
+        "id": "5e3cabb6-02b6-40ae-9aa8-99270c9e67db",
+        "code": "onlinesingcode",
+        "status": "on-hold",
+        "baseStatus": "on-hold",
+        "name": {
+            "language": "en-EN",
+            "label": "onlinesingcode en"
+        },
+        "entityProperties": [
+            {
+                "code": "onlinesingcode metadata name2",
+                "entityPropertyValue": "onlinesingcode metadata value2"
+            },
+            {
+                "code": "onlinesingcode metadata name2",
+                "entityPropertyValue": "onlinesingcode metadata value2"
+            }
+        ],
+        "tags": [
+            {
+                "code": "customer-info",
+                "contact": "#mernis.response.$.tcknno"
+            },
+            {
+                "code": "id-test1",
+                "contact": "reference"
+            }
+        ],
+        "documentUpload": null,
+        "documentOnlineSing": {
+            "semver": "1.0.0",
+            "documentAllowedClientDetail": [
+                "web-ib",
+                "dealer",
+                "mobile-ib"
+            ],
+            "documentTemplateDetails": [
+                {
+                    "code": "amorphie-backoffice-consent-detail-en",
+                    "languageType": "en-EN"
+                },
+                {
+                    "code": "amorphie-backoffice-consent-detail-tr",
+                    "languageType": "tr-TR"
+                }
+            ]
+        },
+        "documentOptimize": null,
+        "documentOperations": null
+    }
+]

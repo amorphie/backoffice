@@ -1,13 +1,4 @@
-import 'package:admin/data/models/workflow/state_manager_model.dart';
-import 'package:admin/data/models/workflow/transition_model.dart';
-import 'package:admin/ui/widgets/workflow/multi_transition_widget.dart';
-import 'package:admin/ui/widgets/workflow/transition_widget.dart';
-import 'package:admin/ui/controllers/workflow_controller.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
-import '../../style/colors.dart';
-import '../custom_button.dart';
+import '../../../helpers/exporter.dart';
 
 class TransitionPage extends StatefulWidget {
   const TransitionPage({
