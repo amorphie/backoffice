@@ -5,7 +5,7 @@ Future<void> formioDialog(BuildContext context, [String? entity, String? recordI
   final EntityController entityController = Get.find<EntityController>();
 
   await controller.startTransition(
-    entity: entity ?? entityController.entity.workflow,
+    entity: entity ?? entityController.entity.workflow.entity,
     recordId: recordId,
     stateManager: stateManager,
     transition: transition,

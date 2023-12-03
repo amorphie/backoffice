@@ -23,11 +23,11 @@ class DisplayTabItemWidget extends StatelessWidget {
       case DisplayTabType.search:
         return Obx(
           () => TabDataTable(
-            withSearch: displayController.searchModels[value.entity]!.entity.search!.search,
+            withSearch: displayController.searchModels[value.entity]!.entity.search.search,
             onSearch: (val) {
               displayController.search(tab: value, keyword: val);
             },
-            columns: displayController.searchModels[value.entity]!.entity.search!.columns,
+            columns: displayController.searchModels[value.entity]!.entity.search.columns,
             data: displayController.searchModels[value.entity]!.data,
             onPressed: (data) {},
           ),

@@ -8,20 +8,19 @@ class GenericDetailWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
-        children: entity.search?.columns.map((e) {
-              try {
-                return TitleDescriptionAreaWidget(
-                  title: e.title.enEN,
-                  text: _print(e.data.jsWithData(data)),
-                );
-              } catch (err) {
-                print(e);
-                print(data);
-                print(err);
-                return Container();
-              }
-            }).toList() ??
-            []);
+        children: entity.search.columns.map((e) {
+      try {
+        return TitleDescriptionAreaWidget(
+          title: e.title.enEN,
+          text: _print(e.data.jsWithData(data)),
+        );
+      } catch (err) {
+        print(e);
+        print(data);
+        print(err);
+        return Container();
+      }
+    }).toList());
   }
 
   String _print(dynamic item) {

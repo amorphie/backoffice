@@ -52,12 +52,12 @@ class HomePage extends StatelessWidget {
                               },
                               rowsPerPage: homeController.rowPerPage,
                               onRowsPerPageChanged: homeController.setRowPerPage,
-                              withEndpointSuffix: entityController.entity.search?.endpointSuffix ?? false,
+                              withEndpointSuffix: entityController.entity.search.endpointSuffix ?? false,
                               filterView: homeController.filterView,
-                              withSearch: entityController.entity.search?.search ?? false,
+                              withSearch: entityController.entity.search.search,
                               title: menuController.menuItem.value.title!,
                               data: entityController.dataList,
-                              columns: entityController.entity.search?.columns ?? [],
+                              columns: entityController.entity.search.columns,
                               hasFilter: entityController.entity.hasFilter,
                               entityLoading: homeController.addDataLoading,
                               filterPressed: () async {
@@ -139,7 +139,7 @@ class HomePage extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8),
                         child: Text(
-                          title ?? entityController.entities[model!.entity]?.titleTemplate.templateWithData(model.data) ?? model!.id,
+                          title ?? entityController.entities[model!.entity]?.search.titleTemplate.templateWithData(model.data) ?? model!.id,
                           style: TextStyle(color: model == homeController.selectedEntity.value ? Colors.white : Colors.black, fontSize: 16),
                         ),
                       ),
@@ -163,7 +163,7 @@ class HomePage extends StatelessWidget {
   Future<void> formioDialog(BuildContext context, [String? recordId]) async {
     WorkflowController controller = Get.put<WorkflowController>(WorkflowController());
     await controller.startTransition(
-      entity: entityController.entity.workflow,
+      entity: entityController.entity.workflow.entity,
       recordId: recordId,
       //TODO TEst ederken buraya record id elle yazılabilir
     );

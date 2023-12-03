@@ -5,40 +5,21 @@ import '../../../../helpers/exporter.dart';
 class DisplayLayoutModel {
   TitleModel? summaryTemplate;
   TitleModel? detailTemplate;
-  bool? history;
-  bool? stateManager;
-  bool? runningWorkflows;
-  bool? availableWorkflows;
   List<DisplayTabModel>? tabs;
-  bool withTabs;
   DisplayLayoutModel({
     this.summaryTemplate,
     this.detailTemplate,
-    this.history,
-    this.stateManager,
-    this.runningWorkflows,
-    this.availableWorkflows,
     this.tabs,
-    this.withTabs = true,
   });
 
   DisplayLayoutModel copyWith({
     TitleModel? summaryTemplate,
     TitleModel? detailTemplate,
-    bool? history,
-    bool? stateManager,
-    bool? runningWorkflows,
-    bool? availableWorkflows,
-    bool? withTabs,
     List<DisplayTabModel>? tabs,
   }) {
     return DisplayLayoutModel(
       summaryTemplate: summaryTemplate ?? this.summaryTemplate,
       detailTemplate: detailTemplate ?? this.detailTemplate,
-      history: history ?? this.history,
-      stateManager: stateManager ?? this.stateManager,
-      runningWorkflows: runningWorkflows ?? this.runningWorkflows,
-      availableWorkflows: availableWorkflows ?? this.availableWorkflows,
       tabs: tabs ?? this.tabs,
     );
   }
@@ -47,10 +28,6 @@ class DisplayLayoutModel {
     return <String, dynamic>{
       'summaryTemplate': summaryTemplate?.toMap(),
       'detailTemplate': detailTemplate?.toMap(),
-      'history': history,
-      'stateManager': stateManager,
-      'runningWorkflows': runningWorkflows,
-      'availableWorkflows': availableWorkflows,
       'tabs': tabs?.map((x) => x.toMap()).toList(),
     };
   }
@@ -59,10 +36,6 @@ class DisplayLayoutModel {
     return DisplayLayoutModel(
       summaryTemplate: map['summaryTemplate'] != null ? TitleModel.fromMap(map['summaryTemplate'] as Map<String, dynamic>) : null,
       detailTemplate: map['detailTemplate'] != null ? TitleModel.fromMap(map['detailTemplate'] as Map<String, dynamic>) : null,
-      history: map['history'] != null ? map['history'] as bool : null,
-      stateManager: map['stateManager'] != null ? map['stateManager'] as bool : null,
-      runningWorkflows: map['runningWorkflows'] != null ? map['runningWorkflows'] as bool : null,
-      availableWorkflows: map['availableWorkflows'] != null ? map['availableWorkflows'] as bool : null,
       tabs: map['tabs'] != null
           ? List<DisplayTabModel>.from(
               (map['tabs']).map<DisplayTabModel?>(
@@ -79,24 +52,18 @@ class DisplayLayoutModel {
 
   @override
   String toString() {
-    return 'DisplayLayoutModel( summaryTemplate: $summaryTemplate, detailTemplate: $detailTemplate, history: $history, stateManager: $stateManager, runningWorkflows: $runningWorkflows, availableWorkflows: $availableWorkflows, tabs: $tabs)';
+    return 'DisplayLayoutModel( summaryTemplate: $summaryTemplate, detailTemplate: $detailTemplate, tabs: $tabs)';
   }
 
   @override
   bool operator ==(covariant DisplayLayoutModel other) {
     if (identical(this, other)) return true;
 
-    return other.summaryTemplate == summaryTemplate &&
-        other.detailTemplate == detailTemplate &&
-        other.history == history &&
-        other.stateManager == stateManager &&
-        other.runningWorkflows == runningWorkflows &&
-        other.availableWorkflows == availableWorkflows &&
-        listEquals(other.tabs, tabs);
+    return other.summaryTemplate == summaryTemplate && other.detailTemplate == detailTemplate && listEquals(other.tabs, tabs);
   }
 
   @override
   int get hashCode {
-    return summaryTemplate.hashCode ^ detailTemplate.hashCode ^ history.hashCode ^ stateManager.hashCode ^ runningWorkflows.hashCode ^ availableWorkflows.hashCode ^ tabs.hashCode;
+    return summaryTemplate.hashCode ^ detailTemplate.hashCode ^ tabs.hashCode;
   }
 }

@@ -1,34 +1,40 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-
 import '../../../../helpers/exporter.dart';
 
 class SearchLayout {
   int defaultPageSize;
   int defaultPageNumber;
-
   bool search;
   List<FilterLayout>? filter;
   List<SearchColumn> columns;
   String? subDataField;
   bool? endpointSuffix;
+  String url;
+  String titleTemplate;
+
   SearchLayout({
-    required this.search,
-    this.filter,
-    this.subDataField,
-    this.endpointSuffix,
     this.defaultPageSize = 100,
     this.defaultPageNumber = 0,
+    this.search = false,
+    this.filter,
     required this.columns,
+    this.subDataField,
+    this.endpointSuffix,
+    required this.url,
+    required this.titleTemplate,
   });
+
+  factory SearchLayout.init() => SearchLayout(columns: [], url: "", titleTemplate: "");
 
   SearchLayout copyWith({
     int? defaultPageSize,
     int? defaultPageNumber,
     bool? search,
-    String? subDataField,
-    bool? endpointSuffix,
     List<FilterLayout>? filter,
     List<SearchColumn>? columns,
+    String? subDataField,
+    bool? endpointSuffix,
+    String? url,
+    String? titleTemplate,
   }) {
     return SearchLayout(
       defaultPageSize: defaultPageSize ?? this.defaultPageSize,
@@ -38,6 +44,8 @@ class SearchLayout {
       columns: columns ?? this.columns,
       subDataField: subDataField ?? this.subDataField,
       endpointSuffix: endpointSuffix ?? this.endpointSuffix,
+      url: url ?? this.url,
+      titleTemplate: titleTemplate ?? this.titleTemplate,
     );
   }
 
@@ -46,20 +54,20 @@ class SearchLayout {
       'defaultPageSize': defaultPageSize,
       'defaultPageNumber': defaultPageNumber,
       'search': search,
-      'subDataField': subDataField,
-      'endpointSuffix': endpointSuffix,
       'filter': filter?.map((x) => x.toMap()).toList(),
       'columns': columns.map((x) => x.toMap()).toList(),
+      'subDataField': subDataField,
+      'endpointSuffix': endpointSuffix,
+      'url': url,
+      'titleTemplate': titleTemplate,
     };
   }
 
   factory SearchLayout.fromMap(Map<String, dynamic> map) {
     return SearchLayout(
-      defaultPageSize: map["defaultPageSize"] != null ? map["defaultPageSize"] : null,
-      defaultPageNumber: map["defaultPageNumber"] != null ? map["defaultPageNumber"] : null,
-      search: map['search'] as bool,
-      subDataField: map['subDataField'] != null ? map['subDataField'] as String : null,
-      endpointSuffix: map['endpointSuffix'] != null ? map['endpointSuffix'] as bool : null,
+      defaultPageSize: map['defaultPageSize'] != null ? map['defaultPageSize'] as int : 100,
+      defaultPageNumber: map['defaultPageNumber'] != null ? map['defaultPageNumber'] as int : 0,
+      search: map['search'] != null ? map['search'] as bool : false,
       filter: map['filter'] != null
           ? List<FilterLayout>.from(
               (map['filter']).map<FilterLayout?>(
@@ -72,6 +80,10 @@ class SearchLayout {
           (x) => SearchColumn.fromMap(x as Map<String, dynamic>),
         ),
       ),
+      subDataField: map['subDataField'] != null ? map['subDataField'] as String : null,
+      endpointSuffix: map['endpointSuffix'] != null ? map['endpointSuffix'] as bool : null,
+      url: map['url'] as String,
+      titleTemplate: map['titleTemplate'] as String,
     );
   }
 
@@ -81,7 +93,7 @@ class SearchLayout {
 
   @override
   String toString() {
-    return 'SearchLayout(defaultPageSize: $defaultPageSize, defaultPageNumber: $defaultPageNumber, search: $search, filter: $filter, columns: $columns, subDataField: $subDataField, endpointSuffix: $endpointSuffix)';
+    return 'SearchLayout(defaultPageSize: $defaultPageSize, defaultPageNumber: $defaultPageNumber, search: $search, filter: $filter, columns: $columns, subDataField: $subDataField, endpointSuffix: $endpointSuffix, url: $url, titleTemplate: $titleTemplate)';
   }
 
   @override
@@ -94,11 +106,21 @@ class SearchLayout {
         listEquals(other.filter, filter) &&
         listEquals(other.columns, columns) &&
         other.subDataField == subDataField &&
-        other.endpointSuffix == endpointSuffix;
+        other.endpointSuffix == endpointSuffix &&
+        other.url == url &&
+        other.titleTemplate == titleTemplate;
   }
 
   @override
   int get hashCode {
-    return defaultPageSize.hashCode ^ defaultPageNumber.hashCode ^ search.hashCode ^ filter.hashCode ^ columns.hashCode ^ subDataField.hashCode ^ endpointSuffix.hashCode;
+    return defaultPageSize.hashCode ^
+        defaultPageNumber.hashCode ^
+        search.hashCode ^
+        filter.hashCode ^
+        columns.hashCode ^
+        subDataField.hashCode ^
+        endpointSuffix.hashCode ^
+        url.hashCode ^
+        titleTemplate.hashCode;
   }
 }

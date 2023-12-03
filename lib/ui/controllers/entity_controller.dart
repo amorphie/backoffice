@@ -20,12 +20,12 @@ class EntityController extends GetxController {
 
   setPage(int p) {
     pageNumber = p;
-    getDataList(isSearch: entity.search?.search ?? true);
+    getDataList(isSearch: entity.search.search);
   }
 
   setPageSize(int ps) {
     pageSize = ps;
-    getDataList(isSearch: entity.search?.search ?? true);
+    getDataList(isSearch: entity.search.search);
   }
 
   setFilter(String filter) {
@@ -112,9 +112,9 @@ class EntityController extends GetxController {
       });
     }
     var response = await services.search(
-        url: (entityModel ?? entity).url + _endpointSuffix + (isSearch ? "/search" : ""),
-        pageSize: pageSize ?? (entityModel ?? entity).search!.defaultPageSize,
-        pageNumber: pageNumber ?? (entityModel ?? entity).search!.defaultPageNumber,
+        url: (entityModel ?? entity).search.url + _endpointSuffix + (isSearch ? "/search" : ""),
+        pageSize: pageSize ?? (entityModel ?? entity).search.defaultPageSize,
+        pageNumber: pageNumber ?? (entityModel ?? entity).search.defaultPageNumber,
         keyword: keyword,
         queries: _queries);
     List list = [];
@@ -123,10 +123,10 @@ class EntityController extends GetxController {
     } else if (response.data is Map<String, dynamic>) {
       if (response.data["data"] != null && response.data["data"] is List) {
         list = response.data["data"];
-      } else if ((entityModel ?? entity).search!.subDataField != null) {
+      } else if ((entityModel ?? entity).search.subDataField != null) {
         //TODO Alt alta gelen modelleri listeleme yapılacak
-        if (response.data[(entityModel ?? entity).search!.subDataField] != null && response.data[(entityModel ?? entity).search!.subDataField] is List) {
-          list = response.data[(entityModel ?? entity).search!.subDataField];
+        if (response.data[(entityModel ?? entity).search.subDataField] != null && response.data[(entityModel ?? entity).search.subDataField] is List) {
+          list = response.data[(entityModel ?? entity).search.subDataField];
         }
       }
     }

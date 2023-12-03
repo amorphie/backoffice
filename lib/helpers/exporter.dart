@@ -50,7 +50,6 @@ export 'package:admin/data/models/entity/layout_helpers/display_tab_model.dart';
 export 'package:admin/data/models/entity/enums/filter_widget.dart';
 export 'package:admin/data/models/entity/layout_helpers/filter_layout_model.dart';
 export 'package:admin/data/models/entity/layout_helpers/search_column_model.dart';
-export 'package:admin/data/models/entity/layouts/delete_layout_model.dart';
 export 'package:admin/data/models/entity/layouts/display_layout_model.dart';
 export 'package:admin/data/models/history/alt_models/data_model.dart';
 export 'package:admin/data/models/entity/layouts/search_layout_model.dart';

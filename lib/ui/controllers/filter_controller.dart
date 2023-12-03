@@ -23,12 +23,12 @@ class FilterController extends GetxController {
   Future getFilterData() async {
     EntityController entityController = Get.find<EntityController>();
 
-    for (var filter in entityController.entity.search!.filter!) {
+    for (var filter in entityController.entity.search.filter!) {
       if (filter.type == FilterType.reference) {
         var response = await Services().search(
-          url: entityController.entities[filter.entity]!.url,
-          pageSize: entityController.entities[filter.entity]!.search!.defaultPageSize,
-          pageNumber: entityController.entities[filter.entity]!.search!.defaultPageNumber,
+          url: entityController.entities[filter.entity]!.search.url,
+          pageSize: entityController.entities[filter.entity]!.search.defaultPageSize,
+          pageNumber: entityController.entities[filter.entity]!.search.defaultPageNumber,
         );
         var list = response.data;
         if (list is! List) {
@@ -41,6 +41,6 @@ class FilterController extends GetxController {
 
   Future onFilter() async {
     EntityController entityController = Get.find<EntityController>();
-    entityController.getDataList(queries: filterQueryList, isSearch: entityController.entity.search?.search ?? true);
+    entityController.getDataList(queries: filterQueryList, isSearch: entityController.entity.search.search);
   }
 }

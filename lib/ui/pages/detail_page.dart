@@ -87,7 +87,7 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
                           ),
                         )
                         .toList(),
-                    if (entity.display!.history!)
+                    if (entity.workflow.history)
                       Tab(
                         icon: Text("History"),
                       ),
@@ -106,7 +106,7 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
                     value: e,
                   );
                 }).toList(),
-                if (entity.display!.history!)
+                if (entity.workflow.history)
                   HistoryListWidget(
                     histories: displayController.historyWorkflows,
                   )
