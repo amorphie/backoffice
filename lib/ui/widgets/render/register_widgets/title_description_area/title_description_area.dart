@@ -1,4 +1,4 @@
-import '../../../../../helpers/exporter.dart';
+import '../../../../helpers/exporter.dart';
 
 part 'title_description_area.g.dart';
 

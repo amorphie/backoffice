@@ -1,4 +1,4 @@
-import '../../../helpers/exporter.dart';
+import '../../../ui/helpers/exporter.dart';
 import 'layouts/ui_workflow_model.dart';
 
 class EntityModel {

@@ -1,6 +1,6 @@
 import "package:http/http.dart" as http;
 
-import "../../helpers/exporter.dart";
+import '../../ui/helpers/exporter.dart';
 
 //import 'package:logger/logger.dart' as appLogger;
 
@@ -57,6 +57,7 @@ class Executer {
 
         http.StreamedResponse response = await _request.send();
         String resultData = await response.stream.bytesToString();
+        if (resultData.isEmpty) resultData = "{}";
         var result = json.decode(resultData);
 
         if (response.statusCode >= 200 && response.statusCode < 300) {

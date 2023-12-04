@@ -1,4 +1,4 @@
-import '../../../helpers/exporter.dart';
+import '../../helpers/exporter.dart';
 
 class FilterArea extends StatefulWidget {
   FilterArea({Key? key}) : super(key: key);

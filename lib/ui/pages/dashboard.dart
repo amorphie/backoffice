@@ -1,4 +1,4 @@
-import '../../helpers/exporter.dart';
+import '../helpers/exporter.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});

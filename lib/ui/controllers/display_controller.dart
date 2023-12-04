@@ -2,7 +2,7 @@
 
 import 'dart:developer';
 
-import '../../helpers/exporter.dart';
+import '../helpers/exporter.dart';
 
 class DisplayController extends GetxController {
   DisplayController([this._tag]);

@@ -1,4 +1,4 @@
-import '../../../../helpers/exporter.dart';
+import '../../../helpers/exporter.dart';
 
 class TabDataTable extends StatelessWidget {
   final Function(String val) onSearch;

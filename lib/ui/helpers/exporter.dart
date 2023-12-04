@@ -24,12 +24,12 @@ export 'package:google_fonts/google_fonts.dart';
 
 export 'package:admin/ui/widgets/render/test_render_template.dart';
 export 'package:admin/ui/widgets/render/render_widget.dart';
-export '../ui/widgets/render/register_widgets/name_template/name_template.dart';
+export '../widgets/render/register_widgets/name_template/name_template.dart';
 export 'package:admin/ui/widgets/render/register_widgets/expanded_row_area/expanded_row_area.dart';
 
 //style
 
-export 'package:admin/ui/style/colors.dart';
+export 'package:admin/ui/constants/colors.dart';
 
 //model
 
@@ -132,14 +132,14 @@ export 'package:admin/ui/pages/dashboard.dart';
 //helper
 
 export 'dialog_helper.dart';
-export 'package:admin/helpers/hub.dart';
-export 'package:admin/helpers/logger.dart';
+export 'package:admin/ui/helpers/hub.dart';
+export 'package:admin/ui/helpers/logger.dart';
 export 'package:logging/logging.dart';
 export 'package:admin/data/extension/string_extension.dart';
 export 'package:admin/data/extension/date_extension.dart';
-export 'package:admin/helpers/render_helper.dart';
-export 'package:admin/constants/routes.dart';
-export 'package:admin/helpers/scroll_helper.dart';
+export 'package:admin/ui/helpers/render_helper.dart';
+export 'package:admin/ui/constants/routes.dart';
+export 'package:admin/ui/helpers/scroll_helper.dart';
 export 'package:admin/ui/bindings/start_app_binding.dart';
 
 //signalr

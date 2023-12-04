@@ -1,7 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:developer';
 
-import '../../../helpers/exporter.dart';
+import '../../helpers/exporter.dart';
 
 class TransitionWidget extends StatefulWidget {
   final TransitionModel data;

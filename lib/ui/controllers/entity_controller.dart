@@ -1,6 +1,6 @@
 //import 'dart:ffi';
 
-import 'package:admin/helpers/exporter.dart';
+import 'package:admin/ui/helpers/exporter.dart';
 
 class EntityController extends GetxController {
   Rx<EntityModel> _entity = EntityModel.init().obs;

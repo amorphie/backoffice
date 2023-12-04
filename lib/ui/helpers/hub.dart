@@ -13,7 +13,7 @@ class Hub {
     Logger.root.onRecord.listen((LogRecord rec) {
       log("[${rec.time}][${rec.level.name}]\t${rec.message}", name: "SIGNALR-HUB");
     });
-    String hubConnectionUrl = dotenv.env["HUB_CONNECTION_URL"] ?? "";
+    String hubConnectionUrl = "https://test-amorphie-workflow-hub.${dotenv.env["PROJECT_HOST"]}/hubs/workflow";
 
     connection = HubConnectionBuilder()
         .withUrl(

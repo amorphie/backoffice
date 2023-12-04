@@ -1,4 +1,4 @@
-import '../../../../../helpers/exporter.dart';
+import '../../../../helpers/exporter.dart';
 
 part 'expanded_row_area.g.dart';
 

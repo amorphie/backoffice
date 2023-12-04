@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import '../../helpers/exporter.dart';
+import '../helpers/exporter.dart';
 
 class HomeController extends GetxController {
   @override

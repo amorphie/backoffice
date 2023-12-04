@@ -1,4 +1,4 @@
-import '../../../helpers/exporter.dart';
+import '../../helpers/exporter.dart';
 
 class GenericDetailWidget extends StatelessWidget {
   final Map<String, dynamic> data;

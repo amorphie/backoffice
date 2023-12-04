@@ -2,7 +2,7 @@
 
 // import '../controllers/display_controller.dart';
 
-import '../../helpers/exporter.dart';
+import '../helpers/exporter.dart';
 
 class StartAppBinding extends Bindings {
   @override

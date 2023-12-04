@@ -1,4 +1,4 @@
-import '../../../helpers/exporter.dart';
+import '../../../ui/helpers/exporter.dart';
 
 class TransitionModel {
   String name;
