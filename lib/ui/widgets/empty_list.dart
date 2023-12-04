@@ -1,4 +1,4 @@
-import '../../helpers/exporter.dart';
+import '../helpers/exporter.dart';
 
 class EmptyList extends StatelessWidget {
   const EmptyList({super.key});

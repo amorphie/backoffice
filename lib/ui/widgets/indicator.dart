@@ -1,4 +1,4 @@
-import '../../helpers/exporter.dart';
+import '../helpers/exporter.dart';
 
 class AppIndicator extends StatelessWidget {
   const AppIndicator({super.key});

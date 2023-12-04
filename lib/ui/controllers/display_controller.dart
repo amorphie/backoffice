@@ -2,7 +2,7 @@
 
 import 'dart:developer';
 
-import '../../helpers/exporter.dart';
+import '../helpers/exporter.dart';
 
 class DisplayController extends GetxController {
   DisplayController([this._tag]);
@@ -35,12 +35,12 @@ class DisplayController extends GetxController {
   }
 
   int get tabCount {
-    return (displayLayout.tabs?.length ?? 0) + 1 + (_entity.display!.history! ? 1 : 0);
+    return (displayLayout.tabs?.length ?? 0) + 1 + (_entity.workflow.history ? 1 : 0);
   }
 
   Future _getById() async {
     EntityController entityController = Get.find<EntityController>();
-    ResponseModel response = await Services().getById(_entity.url, _displayView.value["id"]);
+    ResponseModel response = await Services().getById(_entity.search.url, _displayView.value["id"]);
     entityController.getDataList();
     _displayView.value = response.data;
   }
@@ -129,8 +129,8 @@ class DisplayController extends GetxController {
     EntityModel entity = entityController.entities[tab.entity]!;
     var response = await Services().search(
       url: tab.url!.replaceAll("@id", _displayView.value[tab.id]),
-      pageSize: pageSize ?? entity.search!.defaultPageSize,
-      pageNumber: pageNumber ?? entity.search!.defaultPageNumber,
+      pageSize: pageSize ?? entity.search.defaultPageSize,
+      pageNumber: pageNumber ?? entity.search.defaultPageNumber,
       keyword: keyword,
     );
     List list = [];
@@ -167,7 +167,7 @@ class DisplayController extends GetxController {
   }
 
   Future getHistories() async {
-    ResponseModel response = await Services().getHistory(entity: _entity.workflow, recordId: _displayView.value["id"] ?? "");
+    ResponseModel response = await Services().getHistory(entity: _entity.workflow.entity, recordId: _displayView.value["id"] ?? "");
     historyWorkflows.clear();
     if (response.success) {
       var data = response.data["data"];

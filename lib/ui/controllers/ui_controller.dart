@@ -1,4 +1,4 @@
-import '../../helpers/exporter.dart';
+import '../helpers/exporter.dart';
 
 class AppUiController extends GetxController {
   Rx<MenuModel> menu = MenuModel(items: []).obs;

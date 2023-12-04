@@ -1,6 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
-import '../../../helpers/exporter.dart';
+import '../../helpers/exporter.dart';
 
 class FilterDropdown extends StatelessWidget {
   final FilterLayout filter;
@@ -36,7 +36,7 @@ class FilterDropdown extends StatelessWidget {
                     .map((e) => DropdownMenuItem<dynamic>(
                         value: e,
                         child: Text(
-                          entityController.entities[filter.entity]!.titleTemplate.templateWithData(e),
+                          entityController.entities[filter.entity]!.search.titleTemplate.templateWithData(e),
                         )))
                     .toList()
               ],

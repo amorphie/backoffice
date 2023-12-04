@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import '../../helpers/exporter.dart';
+import '../helpers/exporter.dart';
 
 class HomeController extends GetxController {
   @override
@@ -40,7 +40,7 @@ class HomeController extends GetxController {
       WorkflowController workflowController = Get.put<WorkflowController>(WorkflowController(data["id"]), tag: data["id"]);
       final EntityController entityController = Get.find<EntityController>();
 
-      await workflowController.startTransition(entity: entityController.entity.workflow, recordId: data["id"]);
+      await workflowController.startTransition(entity: entityController.entity.workflow.entity, recordId: data["id"]);
       DisplayViewModel model;
       await displayController.setData(data);
       if (entityController.entity.display != null) {

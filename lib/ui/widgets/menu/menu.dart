@@ -1,4 +1,4 @@
-import '../../../helpers/exporter.dart';
+import '../../helpers/exporter.dart';
 import 'menu_item.dart';
 
 class AppMenu extends StatelessWidget {

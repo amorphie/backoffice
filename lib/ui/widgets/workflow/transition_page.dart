@@ -1,4 +1,4 @@
-import '../../../helpers/exporter.dart';
+import '../../helpers/exporter.dart';
 
 class TransitionPage extends StatefulWidget {
   const TransitionPage({

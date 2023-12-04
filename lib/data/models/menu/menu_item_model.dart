@@ -1,4 +1,4 @@
-import '../../../helpers/exporter.dart';
+import '../../../ui/helpers/exporter.dart';
 
 class MenuItemModel {
   MenuItemType type;
@@ -19,13 +19,7 @@ class MenuItemModel {
   });
 
   MenuItemModel copyWith(
-      {MenuItemType? type,
-      TitleModel? title,
-      List<MenuItemModel>? items,
-      String? entity,
-      UISearchLayout? searchLayout,
-      UIDisplayLayout? displayLayout,
-      Map<String, dynamic>? query}) {
+      {MenuItemType? type, TitleModel? title, List<MenuItemModel>? items, String? entity, UISearchLayout? searchLayout, UIDisplayLayout? displayLayout, Map<String, dynamic>? query}) {
     return MenuItemModel(
       type: type ?? this.type,
       title: title ?? this.title,

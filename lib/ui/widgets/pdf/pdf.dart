@@ -1,6 +1,6 @@
 // ignore_for_file: library_private_types_in_public_api
 
-import '../../../helpers/exporter.dart';
+import '../../helpers/exporter.dart';
 
 /// Represents Homepage for Navigation
 class PdfWidget extends StatefulWidget {

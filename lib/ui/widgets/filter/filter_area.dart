@@ -1,4 +1,4 @@
-import '../../../helpers/exporter.dart';
+import '../../helpers/exporter.dart';
 
 class FilterArea extends StatefulWidget {
   FilterArea({Key? key}) : super(key: key);
@@ -10,7 +10,7 @@ class FilterArea extends StatefulWidget {
 class _FilterAreaState extends State<FilterArea> {
   EntityController entityController = Get.find<EntityController>();
 
-  List<FilterLayout> get filters => entityController.entity.search!.filter ?? [];
+  List<FilterLayout> get filters => entityController.entity.search.filter ?? [];
   @override
   void initState() {
     super.initState();

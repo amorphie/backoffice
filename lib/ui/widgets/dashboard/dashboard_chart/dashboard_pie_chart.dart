@@ -2,7 +2,7 @@
 
 import 'dart:math';
 
-import '../../../../helpers/exporter.dart';
+import '../../../helpers/exporter.dart';
 
 class DashboardPieChart extends StatelessWidget {
   final DashboardItemModel item;

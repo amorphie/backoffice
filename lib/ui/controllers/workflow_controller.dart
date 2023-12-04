@@ -1,4 +1,4 @@
-import '../../helpers/exporter.dart';
+import '../helpers/exporter.dart';
 
 class WorkflowController extends GetxController {
   Rx<WorkflowModel> _workflow = WorkflowModel().obs;

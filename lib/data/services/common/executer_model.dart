@@ -1,4 +1,4 @@
-import '../../../helpers/exporter.dart';
+import '../../../ui/helpers/exporter.dart';
 
 enum ResponseMethod { POST, PATCH, DELETE, GET, PUT }
 
