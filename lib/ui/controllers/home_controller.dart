@@ -32,15 +32,18 @@ class HomeController extends GetxController {
 
   Future addData(Map<String, dynamic> data) async {
     _addDataLoading.value = true;
+    final EntityController entityController = Get.find<EntityController>();
+
     try {
       if (data["id"] == null) {
         data["id"] = Uuid().v4();
       }
-      DisplayController displayController = Get.put<DisplayController>(DisplayController(data["id"]), tag: data["id"]);
-      WorkflowController workflowController = Get.put<WorkflowController>(WorkflowController(data["id"]), tag: data["id"]);
-      final EntityController entityController = Get.find<EntityController>();
+      DisplayController displayController =
+          Get.put<DisplayController>(DisplayController(data[entityController.entity.workflow.recordIdData]), tag: data[entityController.entity.workflow.recordIdData]);
+      WorkflowController workflowController =
+          Get.put<WorkflowController>(WorkflowController(data[entityController.entity.workflow.recordIdData]), tag: data[entityController.entity.workflow.recordIdData]);
 
-      await workflowController.startTransition(entity: entityController.entity.workflow.entity, recordId: data["id"]);
+      await workflowController.startTransition(entity: entityController.entity.workflow.entity, recordId: data[entityController.entity.workflow.recordIdData]);
       DisplayViewModel model;
       await displayController.setData(data);
       if (entityController.entity.display != null) {

@@ -54,7 +54,7 @@ class FilterLayout {
       query: map['query'] as String,
       type: FilterType.fromMap(map['type']),
       widget: FilterWidget.fromMap(map['widget']),
-      title: TitleModel.fromMap(map['title'] as Map<String, dynamic>),
+      title: TitleModel().fromMap(map['title'] as Map<String, dynamic>),
     );
   }
 

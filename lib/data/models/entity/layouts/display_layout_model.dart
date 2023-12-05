@@ -34,8 +34,8 @@ class DisplayLayoutModel {
 
   factory DisplayLayoutModel.fromMap(Map<String, dynamic> map) {
     return DisplayLayoutModel(
-      summaryTemplate: map['summaryTemplate'] != null ? TitleModel.fromMap(map['summaryTemplate'] as Map<String, dynamic>) : null,
-      detailTemplate: map['detailTemplate'] != null ? TitleModel.fromMap(map['detailTemplate'] as Map<String, dynamic>) : null,
+      summaryTemplate: map['summaryTemplate'] != null ? TitleModel().fromMap(map['summaryTemplate'] as Map<String, dynamic>) : null,
+      detailTemplate: map['detailTemplate'] != null ? TitleModel().fromMap(map['detailTemplate'] as Map<String, dynamic>) : null,
       tabs: map['tabs'] != null
           ? List<DisplayTabModel>.from(
               (map['tabs']).map<DisplayTabModel?>(

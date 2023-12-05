@@ -17,7 +17,7 @@ class DisplayTabItemWidget extends StatelessWidget {
     switch (value.type) {
       case DisplayTabType.render:
         return Obx(() {
-          var t = displayController.templates[value.template!.enEN];
+          var t = displayController.templates[value.template!.print()];
           return RenderWidget(template: t);
         });
       case DisplayTabType.search:
@@ -83,7 +83,7 @@ class DisplayTabItemWidget extends StatelessWidget {
       margin: const EdgeInsets.all(3.0),
       child: Column(
         children: [
-          Text(item.title.trTR),
+          Text(item.title.print()),
           Divider(),
           Expanded(child: DisplayTabItemWidget(value: item)),
         ],

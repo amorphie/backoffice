@@ -35,7 +35,7 @@ class SearchColumn {
   factory SearchColumn.fromMap(Map<String, dynamic> map) {
     return SearchColumn(
       data: map['data'] as String,
-      title: TitleModel.fromMap(map['title'] as Map<String, dynamic>),
+      title: TitleModel().fromMap(map['title'] as Map<String, dynamic>),
       sort: map['sort'] as int,
     );
   }

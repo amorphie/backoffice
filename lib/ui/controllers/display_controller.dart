@@ -46,10 +46,10 @@ class DisplayController extends GetxController {
   }
 
   Future detailTemplateRefresh() async {
-    if (displayLayout.detailTemplate != null && templates[displayLayout.detailTemplate!.enEN] != null) {
+    if (displayLayout.detailTemplate != null && templates[displayLayout.detailTemplate!.print()] != null) {
       await _getById();
-      templates[displayLayout.detailTemplate!.enEN] = await getTemplate("${displayLayout.detailTemplate!.enEN}", _displayView.value);
-      templates[displayLayout.summaryTemplate!.enEN] = await getTemplate("${displayLayout.summaryTemplate!.enEN}", _displayView.value);
+      templates[displayLayout.detailTemplate!.print()] = await getTemplate("${displayLayout.detailTemplate!.print()}", _displayView.value);
+      templates[displayLayout.summaryTemplate!.print()] = await getTemplate("${displayLayout.summaryTemplate!.print()}", _displayView.value);
     }
     templates.refresh();
   }
@@ -58,15 +58,15 @@ class DisplayController extends GetxController {
     templates.clear();
     if (displayLayout.summaryTemplate != null)
       templates.addAll({
-        displayLayout.summaryTemplate!.enEN: await getTemplate(
-          "${displayLayout.summaryTemplate!.enEN}",
+        displayLayout.summaryTemplate!.print(): await getTemplate(
+          "${displayLayout.summaryTemplate!.print()}",
           _displayView.value,
         ),
       });
     if (displayLayout.detailTemplate != null)
       templates.addAll({
-        displayLayout.detailTemplate!.enEN: await getTemplate(
-          "${displayLayout.detailTemplate!.enEN}",
+        displayLayout.detailTemplate!.print(): await getTemplate(
+          "${displayLayout.detailTemplate!.print()}",
           _displayView.value,
         ),
       });
@@ -92,8 +92,8 @@ class DisplayController extends GetxController {
     switch (tab.type) {
       case DisplayTabType.render:
         templates.addAll({
-          tab.template!.enEN: await getTemplate(
-            "${tab.template!.enEN}",
+          tab.template!.print(): await getTemplate(
+            "${tab.template!.print()}",
             _displayView.value,
           )
         });

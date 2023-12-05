@@ -43,7 +43,7 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
               id: homeController.selectedEntity.value.data["id"],
             ),
             WorkflowArea(
-              id: homeController.selectedEntity.value.data["id"],
+              id: homeController.selectedEntity.value.data[entity.workflow.recordIdData],
             ),
           ],
         ),
@@ -83,7 +83,7 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
                     ...(displayController.displayLayout.tabs ?? [])
                         .map(
                           (e) => Tab(
-                            icon: Text(e.title.enEN),
+                            icon: Text(e.title.print()),
                           ),
                         )
                         .toList(),
@@ -118,7 +118,7 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
 
   Widget getRenderWidget(TitleModel template) {
     return Obx(() {
-      var t = displayController.templates[template.enEN];
+      var t = displayController.templates[template.print()];
       return RenderWidget(template: t);
     });
   }
