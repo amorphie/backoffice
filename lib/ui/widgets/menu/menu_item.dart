@@ -29,7 +29,7 @@ class MenuItem extends StatelessWidget {
                 iconColor: KC.secondary,
                 collapsedIconColor: Colors.white70,
                 title: MenuButtonCard(
-                  text: model.title!.enEN,
+                  text: model.title!.print(),
                   isEspanded: false,
                 ),
                 children: model.items!
@@ -41,7 +41,7 @@ class MenuItem extends StatelessWidget {
             case MenuItemType.entity:
               return Obx(() {
                 return MenuButtonCard(
-                  text: model.title!.enEN,
+                  text: model.title!.print(),
                   onPressed: () {
                     menuController.setMenuItem(model);
                   },
@@ -51,7 +51,7 @@ class MenuItem extends StatelessWidget {
             case MenuItemType.workflow:
               return Obx(() {
                 return MenuButtonCard(
-                  text: model.title!.enEN,
+                  text: model.title!.print(),
                   onPressed: () async {
                     WorkflowController workflowController = Get.put<WorkflowController>(WorkflowController());
                     await workflowController.startTransition(
@@ -77,7 +77,7 @@ class MenuItem extends StatelessWidget {
             case MenuItemType.query:
               return Obx(() {
                 return MenuButtonCard(
-                  text: model.title!.enEN,
+                  text: model.title!.print(),
                   onPressed: () {
                     menuController.setMenuItem(model);
                   },
@@ -85,7 +85,7 @@ class MenuItem extends StatelessWidget {
                 );
               });
             default:
-              return MenuButtonCard(text: model.title!.enEN);
+              return MenuButtonCard(text: model.title!.print());
           }
         }),
       ),

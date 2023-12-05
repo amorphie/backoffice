@@ -51,7 +51,7 @@ class AppDataTable extends StatelessWidget {
             // Padding(
             //   padding: const EdgeInsets.only(left: 16.0, top: 10, bottom: 14),
             //   child: Text(
-            //     title.enEN,
+            //     title.print(),
             //     style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.black54),
             //   ),
             // ),
@@ -114,7 +114,7 @@ class AppDataTable extends StatelessWidget {
                       columns: columns
                           .map((e) => DataColumn(
                                   label: Text(
-                                e.title.enEN,
+                                e.title.print(),
                                 style: TextStyle(color: Colors.black87),
                                 overflow: TextOverflow.ellipsis,
                               )))

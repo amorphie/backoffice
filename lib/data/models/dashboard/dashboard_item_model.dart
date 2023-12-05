@@ -51,7 +51,7 @@ class DashboardItemModel {
       entity: map['entity'] != null ? map['entity'] as String : null,
       dataUrl: map['data-url'] != null ? map['data-url'] as String : null,
       data: map['data'] != null ? DashboardDataModel.fromMap(map['data'] as Map<String, dynamic>) : null,
-      title: map['title'] != null ? TitleModel.fromMap(map['title'] as Map<String, dynamic>) : null,
+      title: map['title'] != null ? TitleModel().fromMap(map['title'] as Map<String, dynamic>) : null,
       items: map['items'] != null
           ? List<DashboardItemModel>.from(
               (map['items']).map<DashboardItemModel?>(

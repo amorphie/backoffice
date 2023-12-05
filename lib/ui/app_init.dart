@@ -7,7 +7,7 @@ class AppInit extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimatedSplashScreen.withScreenRouteFunction(
       splash: Text(
-        "Bakoffice\nNew UI",
+        "Backoffice UI",
         textAlign: TextAlign.center,
         style: Theme.of(context).textTheme.bodyLarge,
       ),
@@ -16,6 +16,7 @@ class AppInit extends StatelessWidget {
       duration: 100,
       screenRouteFunction: () async {
         appRenderInit();
+        await dotenv.load();
 
         await Hub.shared.start();
 

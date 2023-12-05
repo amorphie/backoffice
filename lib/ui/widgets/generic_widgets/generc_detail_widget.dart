@@ -11,7 +11,7 @@ class GenericDetailWidget extends StatelessWidget {
         children: entity.search.columns.map((e) {
       try {
         return TitleDescriptionAreaWidget(
-          title: e.title.enEN,
+          title: e.title.print(),
           text: _print(e.data.jsWithData(data)),
         );
       } catch (err) {

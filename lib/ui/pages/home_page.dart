@@ -27,7 +27,7 @@ class HomePage extends StatelessWidget {
                         height: 50,
                         child: Row(
                           children: [
-                            displayButton(title: menuController.menuItem.value.title!.enEN),
+                            displayButton(title: menuController.menuItem.value.title!.print()),
                             Expanded(
                               child: Obx(() {
                                 return ListView.builder(
@@ -113,7 +113,7 @@ class HomePage extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 1, vertical: 4),
         child: Tooltip(
           message: model?.entity ?? "",
-          // message: menuController.menuItem.value.title!.enEN,
+          // message: menuController.menuItem.value.title!.print(),
 
           child: GestureDetector(
               onTap: () {

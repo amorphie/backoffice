@@ -15,7 +15,7 @@ class FilterItem extends StatelessWidget {
     switch (filter.widget) {
       case FilterWidget.textField:
         return CustomTextField(
-          label: filter.title.enEN,
+          label: filter.title.print(),
           onChanged: (val) {
             if (val.isNotEmpty) {
               filterController.addFilter(filter, val);

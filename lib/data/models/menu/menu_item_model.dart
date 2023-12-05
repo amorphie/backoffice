@@ -46,7 +46,7 @@ class MenuItemModel {
   factory MenuItemModel.fromMap(Map<String, dynamic> map) {
     return MenuItemModel(
       type: MenuItemType.fromMap(map['type'] as String),
-      title: map['title'] != null ? TitleModel.fromMap(map['title'] as Map<String, dynamic>) : null,
+      title: map['title'] != null ? TitleModel().fromMap(map['title'] as Map<String, dynamic>) : null,
       items: map['items'] != null
           ? List<MenuItemModel>.from(
               (map['items']).map<MenuItemModel?>(

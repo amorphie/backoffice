@@ -46,7 +46,7 @@ class TabDataTable extends StatelessWidget {
           columns: columns
               .map((e) => DataColumn(
                       label: Text(
-                    e.title.enEN,
+                    e.title.print(),
                     style: TextStyle(color: Colors.black87),
                   )))
               .toList(),

@@ -19,7 +19,7 @@ class DashboardTab extends StatelessWidget {
             child: TabBar(
               labelColor: Colors.black,
               unselectedLabelColor: KC.primary,
-              tabs: item.items!.map((e) => Tab(text: e.title!.enEN)).toList(),
+              tabs: item.items!.map((e) => Tab(text: e.title!.print())).toList(),
             ),
           ),
           Container(
