@@ -1,5 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
+import 'package:admin/ui/widgets/data_table/datatable.dart';
+import 'package:admin/ui/widgets/data_table/datatable_type.dart';
+
 import '../../helpers/exporter.dart';
 
 class AppDataTable extends StatelessWidget {
@@ -98,29 +101,16 @@ class AppDataTable extends StatelessWidget {
                   ),
                   if (filterView) FilterArea(),
                   if (data.length > 0)
-                    PaginatedDataTable(
-                      rowsPerPage: rowsPerPage,
-                      availableRowsPerPage: [10, 20, 50],
-                      onRowsPerPageChanged: (value) {
-                        if (value != null) {
-                          onRowsPerPageChanged(value);
-                        }
-                      },
-                      onPageChanged: (value) {
-                        if (value + rowsPerPage == data.length) {
+                    CustomDataTable(
+                        type: DatatableType.paginated,
+                        rowsPerPage: rowsPerPage,
+                        onRowsPerPageChanged: onRowsPerPageChanged,
+                        onFinish: () {
                           onFinish();
-                        }
-                      },
-                      columns: columns
-                          .map((e) => DataColumn(
-                                  label: Text(
-                                e.title.print(),
-                                style: TextStyle(color: Colors.black87),
-                                overflow: TextOverflow.ellipsis,
-                              )))
-                          .toList(),
-                      source: AppDataTableSource(data: data, columns: columns, onPressed: onPressed),
-                    ),
+                        },
+                        data: data,
+                        columns: columns,
+                        onPressed: onPressed),
                 ],
               );
             }),

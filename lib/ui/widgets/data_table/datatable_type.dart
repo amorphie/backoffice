@@ -1,0 +1,4 @@
+enum DatatableType {
+  paginated,
+  infinite;
+}
