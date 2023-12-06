@@ -1,14 +1,14 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:admin/ui/helpers/exporter.dart';
 
-class MyPaginatedDatatable extends StatelessWidget {
+class NormalDataTable extends StatelessWidget {
   final int rowsPerPage;
   final Function(int) onRowsPerPageChanged;
   final Function() onFinish;
   final List<Map<String, dynamic>> data;
   final List<SearchColumn> columns;
   final Function(Map<String, dynamic>) onPressed;
-  const MyPaginatedDatatable({
+  const NormalDataTable({
     Key? key,
     required this.rowsPerPage,
     required this.onRowsPerPageChanged,
