@@ -55,7 +55,6 @@ class HomePage extends StatelessWidget {
                               withEndpointSuffix: entityController.entity.search.endpointSuffix ?? false,
                               filterView: homeController.filterView,
                               withSearch: entityController.entity.search.search,
-                              title: menuController.menuItem.value.title!,
                               data: entityController.dataList,
                               columns: entityController.entity.search.columns,
                               hasFilter: entityController.entity.hasFilter,

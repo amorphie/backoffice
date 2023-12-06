@@ -95,7 +95,7 @@ export 'package:admin/ui/widgets/dashboard/dashboard_chart/dashboard_chart.dart'
 export 'package:admin/ui/widgets/dashboard/dashboard_counter/dashboard_counter.dart';
 export 'package:admin/ui/widgets/dashboard/dashboard_tab/dashboard_tab.dart';
 export 'package:admin/ui/widgets/tab_data_table/app_data_table/tab_data_table.dart';
-export 'package:admin/ui/widgets/data_table/normal_datatable/data_table_source.dart';
+export 'package:admin/ui/widgets/data_table/paginated_datatable/data_table_source.dart';
 export 'package:admin/ui/widgets/filter/filter_area.dart';
 export 'package:admin/ui/widgets/formio/formio_test_json.dart';
 export 'package:admin/ui/widgets/formio/formio_widget.dart';

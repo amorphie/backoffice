@@ -1,11 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:data_table_2/data_table_2.dart';
+import 'package:admin/ui/helpers/exporter.dart';
 
-import '../../../helpers/exporter.dart';
-
-/// Example without a datasource
 class PaginatedDatatable extends StatelessWidget {
-  final List<SearchColumn> rows;
   final int rowsPerPage;
   final Function(int) onRowsPerPageChanged;
   final Function() onFinish;
@@ -14,7 +10,6 @@ class PaginatedDatatable extends StatelessWidget {
   final Function(Map<String, dynamic>) onPressed;
   const PaginatedDatatable({
     Key? key,
-    required this.rows,
     required this.rowsPerPage,
     required this.onRowsPerPageChanged,
     required this.onFinish,
@@ -22,47 +17,38 @@ class PaginatedDatatable extends StatelessWidget {
     required this.columns,
     required this.onPressed,
   }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return DataTable2(
-      columnSpacing: 12,
-      horizontalMargin: 12,
-      minWidth: 600,
+    return PaginatedDataTable(
+      sortAscending: true,
+      sortColumnIndex: 1,
+      primary: true,
+      rowsPerPage: rowsPerPage,
+      availableRowsPerPage: [10, 20, 50],
+      onRowsPerPageChanged: (value) {
+        if (value != null) {
+          onRowsPerPageChanged(value);
+        }
+      },
+      onPageChanged: (value) {
+        if (value + rowsPerPage == data.length) {
+          onFinish();
+        }
+      },
       columns: columns
           .map((e) => DataColumn(
-                  label: Text(
+              onSort: (columnIndex, ascending) {
+                print(e);
+                print(ascending);
+              },
+              label: Text(
                 e.title.print(),
                 style: TextStyle(color: Colors.black87),
                 overflow: TextOverflow.ellipsis,
               )))
           .toList(),
-      rows: List<DataRow>.generate(
-        rowsPerPage,
-        (index) {
-          var item = data[index];
-          return DataRow(
-            onSelectChanged: (value) {},
-            cells: rows
-                .map((e) => DataCell(
-                      Text(
-                        _print(e.data.jsWithData(item)),
-                        style: TextStyle(color: Colors.black54),
-                      ),
-                      onTap: () {
-                        onPressed(item);
-                      },
-                    ))
-                .toList(),
-          );
-        },
-      ),
+      source: PaginatedDataTableSource(data: data, columns: columns, onPressed: onPressed),
     );
-  }
-
-  String _print(dynamic item) {
-    if (item is List)
-      return item.join(", ");
-    else
-      return item.toString();
   }
 }

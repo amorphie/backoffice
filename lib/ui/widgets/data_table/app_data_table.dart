@@ -6,27 +6,31 @@ import 'package:admin/ui/widgets/data_table/datatable_type.dart';
 import '../../helpers/exporter.dart';
 
 class AppDataTable extends StatelessWidget {
-  final TitleModel title;
   final Function(String val) onSearch;
-  final Function(String val) onEndpointSuffix;
-  final Function addPressed;
-  final Function filterPressed;
-  final bool loading;
-  final bool entityLoading;
   final bool withSearch;
+
+  final Function(String val) onEndpointSuffix;
   final bool withEndpointSuffix;
+
+  final Function addPressed;
+
+  final Function filterPressed;
   final bool hasFilter;
   final bool filterView;
+
+  final bool loading;
+  final bool entityLoading;
+
+  final int rowsPerPage;
+  final Function(int perPage) onRowsPerPageChanged;
+
   final List<SearchColumn> columns;
   final List<Map<String, dynamic>> data;
   final Function(Map<String, dynamic> data) onPressed;
-  final int rowsPerPage;
-  final Function(int perPage) onRowsPerPageChanged;
   final Function onFinish;
 
   const AppDataTable({
     Key? key,
-    required this.title,
     required this.withSearch,
     required this.withEndpointSuffix,
     required this.onSearch,
@@ -49,71 +53,60 @@ class AppDataTable extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        ListView(
+        Column(
           children: [
-            // Padding(
-            //   padding: const EdgeInsets.only(left: 16.0, top: 10, bottom: 14),
-            //   child: Text(
-            //     title.print(),
-            //     style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.black54),
-            //   ),
-            // ),
-            Builder(builder: (context) {
-              return Column(
-                children: [
-                  Row(
-                    children: [
-                      if (withSearch) SerachTextfield(flex: 4, onSearch: onSearch),
-                      if (withEndpointSuffix)
-                        SerachTextfield(
-                          onSearch: onEndpointSuffix,
-                          hintText: "Identity Number",
-                          defaultValue: "15059003384",
-                        ),
-                      if (hasFilter)
-                        SizedBox(
-                          width: 50,
-                          height: 50,
-                          child: IconButton(
-                              onPressed: () {
-                                filterPressed();
-                              },
-                              icon: Icon(
-                                Icons.filter_alt_rounded,
-                                color: KC.primary,
-                                size: 32,
-                              )),
-                        ),
-                      SizedBox(
-                        width: 50,
-                        height: 50,
-                        child: IconButton(
-                            onPressed: () {
-                              addPressed();
-                            },
-                            icon: Icon(
-                              Icons.add_circle_outlined,
-                              color: KC.primary,
-                              size: 32,
-                            )),
-                      )
-                    ],
+            Row(
+              children: [
+                if (withSearch) SerachTextfield(flex: 4, onSearch: onSearch),
+                if (withEndpointSuffix)
+                  SerachTextfield(
+                    onSearch: onEndpointSuffix,
+                    hintText: "Suffix",
+                    defaultValue: "15059003384",
                   ),
-                  if (filterView) FilterArea(),
-                  if (data.length > 0)
-                    CustomDataTable(
-                        type: DatatableType.paginated,
-                        rowsPerPage: rowsPerPage,
-                        onRowsPerPageChanged: onRowsPerPageChanged,
-                        onFinish: () {
-                          onFinish();
+                if (hasFilter)
+                  SizedBox(
+                    width: 50,
+                    height: 50,
+                    child: IconButton(
+                        onPressed: () {
+                          filterPressed();
                         },
-                        data: data,
-                        columns: columns,
-                        onPressed: onPressed),
-                ],
-              );
-            }),
+                        icon: Icon(
+                          Icons.filter_alt_rounded,
+                          color: KC.primary,
+                          size: 32,
+                        )),
+                  ),
+                SizedBox(
+                  width: 50,
+                  height: 50,
+                  child: IconButton(
+                      onPressed: () {
+                        addPressed();
+                      },
+                      icon: Icon(
+                        Icons.add_circle_outlined,
+                        color: KC.primary,
+                        size: 32,
+                      )),
+                )
+              ],
+            ),
+            if (filterView) FilterArea(),
+            if (data.length > 0)
+              Expanded(
+                child: CustomDataTable(
+                    type: DatatableType.paginated,
+                    rowsPerPage: rowsPerPage,
+                    onRowsPerPageChanged: onRowsPerPageChanged,
+                    onFinish: () {
+                      onFinish();
+                    },
+                    data: data,
+                    columns: columns,
+                    onPressed: onPressed),
+              ),
           ],
         ),
         if (loading) AppIndicator(),

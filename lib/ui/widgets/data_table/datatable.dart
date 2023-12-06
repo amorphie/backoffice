@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:admin/ui/helpers/exporter.dart';
 import 'package:admin/ui/widgets/data_table/datatable_type.dart';
+import 'package:admin/ui/widgets/data_table/paginated_datatable/paginated_datatable.dart';
 import 'package:admin/ui/widgets/data_table/normal_datatable/normal_datatable.dart';
 
 class CustomDataTable extends StatelessWidget {
@@ -27,7 +28,16 @@ class CustomDataTable extends StatelessWidget {
   Widget build(BuildContext context) {
     switch (type) {
       case DatatableType.paginated:
-        return NormalDataTable(
+        return PaginatedDatatable(
+          rowsPerPage: rowsPerPage,
+          onRowsPerPageChanged: onRowsPerPageChanged,
+          onFinish: onFinish,
+          data: data,
+          columns: columns,
+          onPressed: onPressed,
+        );
+      case DatatableType.normal:
+        return NormalDatatable(
           rowsPerPage: rowsPerPage,
           onRowsPerPageChanged: onRowsPerPageChanged,
           onFinish: onFinish,

@@ -2,11 +2,11 @@
 
 import '../../../helpers/exporter.dart';
 
-class AppDataTableSource extends DataTableSource {
+class PaginatedDataTableSource extends DataTableSource {
   final List<Map<String, dynamic>> data;
   final List<SearchColumn> columns;
   final Function(Map<String, dynamic> data) onPressed;
-  AppDataTableSource({
+  PaginatedDataTableSource({
     required this.data,
     required this.columns,
     required this.onPressed,
