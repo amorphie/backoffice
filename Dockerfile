@@ -29,7 +29,6 @@ RUN flutter config --enable-web
 RUN flutter doctor
 
 
-
 # Copy files to container and build
 RUN mkdir /app/
 COPY . /app/
