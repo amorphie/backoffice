@@ -5,7 +5,7 @@ import '../../../helpers/exporter.dart';
 
 /// Example without a datasource
 class PaginatedDatatable extends StatelessWidget {
-  final List<DataRow> rows;
+  final List<SearchColumn> rows;
   final int rowsPerPage;
   final Function(int) onRowsPerPageChanged;
   final Function() onFinish;
@@ -38,11 +38,31 @@ class PaginatedDatatable extends StatelessWidget {
           .toList(),
       rows: List<DataRow>.generate(
         rowsPerPage,
-        (index) => DataRow(
-          onSelectChanged: (value) {},
-          cells: rows.map((e) => DataCell(Text("data"))).toList(),
-        ),
+        (index) {
+          var item = data[index];
+          return DataRow(
+            onSelectChanged: (value) {},
+            cells: rows
+                .map((e) => DataCell(
+                      Text(
+                        _print(e.data.jsWithData(item)),
+                        style: TextStyle(color: Colors.black54),
+                      ),
+                      onTap: () {
+                        onPressed(item);
+                      },
+                    ))
+                .toList(),
+          );
+        },
       ),
     );
+  }
+
+  String _print(dynamic item) {
+    if (item is List)
+      return item.join(", ");
+    else
+      return item.toString();
   }
 }
