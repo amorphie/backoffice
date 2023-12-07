@@ -6,11 +6,7 @@ class AppInit extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedSplashScreen.withScreenRouteFunction(
-      splash: Text(
-        "Backoffice UI",
-        textAlign: TextAlign.center,
-        style: Theme.of(context).textTheme.bodyLarge,
-      ),
+      splash: "assets/images/logo.png",
       curve: Curves.easeIn,
       splashTransition: SplashTransition.fadeTransition,
       duration: 100,

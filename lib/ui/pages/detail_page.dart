@@ -40,10 +40,10 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
           children: [
             temp(context),
             DisplayTagList(
-              id: homeController.selectedEntity.value.data["id"],
+              id: widget.id,
             ),
             WorkflowArea(
-              id: homeController.selectedEntity.value.data[entity.workflow.recordIdData],
+              id: widget.id,
             ),
           ],
         ),
@@ -104,6 +104,7 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
                 ...(displayController.displayLayout.tabs ?? []).map((e) {
                   return DisplayTabItemWidget(
                     value: e,
+                    id: widget.id,
                   );
                 }).toList(),
                 if (entity.workflow.history)
