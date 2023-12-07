@@ -1,5 +1,7 @@
 //import 'dart:ffi';
 
+import 'package:admin/data/models/entity/layout_helpers/sort/sort_column_model.dart';
+import 'package:admin/data/models/entity/layout_helpers/sort/sort_direction_enum.dart';
 import 'package:admin/ui/helpers/exporter.dart';
 
 class EntityController extends GetxController {
@@ -12,30 +14,48 @@ class EntityController extends GetxController {
   String _keyword = "";
   String _endpointSuffix = "";
 
-  int? pageSize;
+  Rx<SortColumnModel> _sortColumn = SortColumnModel(sortColumn: "", sortDirection: SortDirection.asc).obs;
+  SortColumnModel get sortColumn => _sortColumn.value;
+  set sortColumn(SortColumnModel _) {
+    _sortColumn.value = _;
+  }
+
+  int? get sortColumnIndex {
+    int index = entity.search.columns.indexWhere((element) => element.data == sortColumn.sortColumn);
+    if (index == -1) return null;
+    return index;
+  }
+
+  onSort(String col) {
+    pageNumber = 0;
+    if (sortColumn.sortColumn == col) {
+      sortColumn.sortDirection = sortColumn.sortDirection == SortDirection.asc ? SortDirection.desc : SortDirection.asc;
+    } else {
+      sortColumn.sortColumn = col;
+      sortColumn.sortDirection = SortDirection.asc;
+    }
+
+    getDataList(queries: sortColumn.toQueryMap());
+  }
+
   int pageNumber = 0;
   resetPageNumber() {
     pageNumber = 0;
   }
 
-  setPage(int p) {
+  onPageChange(int p) {
     pageNumber = p;
     getDataList(isSearch: entity.search.search);
   }
 
-  setPageSize(int ps) {
-    pageSize = ps;
-    getDataList(isSearch: entity.search.search);
-  }
-
-  setFilter(String filter) {
+  onSearch(String filter) {
     _keyword = filter;
     if (_keyword == "" || _keyword.length > 3) {
       getDataList(isSearch: true);
     }
   }
 
-  setEndpointSuffix(String sf) {
+  onEndpointSuffixSend(String sf) {
     if (sf == "")
       _endpointSuffix = "";
     else
@@ -81,7 +101,6 @@ class EntityController extends GetxController {
       dataList.clear();
     }
     List list = await getAllData(
-      pageSize: pageSize,
       pageNumber: pageNumber,
       keyword: _keyword == "" || _keyword.length > 3 ? _keyword : null,
       queries: queries,
@@ -133,34 +152,4 @@ class EntityController extends GetxController {
 
     return list;
   }
-
-  // Future<List> getSearchData({
-  //   EntityModel? entityModel,
-  //   String? keyword,
-  //   int? pageSize,
-  //   int? pageNumber,
-  //   Map<String, String>? queries,
-  // }) async {
-  //   var response = await services.search(
-  //       url: (entityModel ?? entity).url + _endpointSuffix + "/search",
-  //       pageSize: pageSize ?? (entityModel ?? entity).search!.defaultPageSize,
-  //       pageNumber: pageNumber ?? (entityModel ?? entity).search!.defaultPageNumber,
-  //       keyword: keyword,
-  //       queries: queries);
-  //   List list = [];
-  //   if (response.data is List) {
-  //     list = response.data;
-  //   } else if (response.data is Map<String, dynamic>) {
-  //     if (response.data["data"] != null && response.data["data"] is List) {
-  //       list = response.data["data"];
-  //     }
-  //   } else if ((entityModel ?? entity).search!.subDataField != null) {
-  //     //TODO Alt alta gelen modelleri listeleme yapılacak
-  //     if (response.data[(entityModel ?? entity).search!.subDataField] != null && response.data[(entityModel ?? entity).search!.subDataField] is List) {
-  //       list = response.data[(entityModel ?? entity).search!.subDataField];
-  //     }
-  //   }
-
-  //   return list;
-  // }
 }

@@ -81,7 +81,7 @@ export 'package:admin/ui/widgets/detail_page_items/display_item.dart';
 export 'package:admin/ui/widgets/detail_page_items/display_tag_item.dart';
 export 'package:admin/ui/widgets/detail_page_items/workflow_area.dart';
 export 'package:admin/ui/widgets/history/history_list.dart';
-export 'package:admin/ui/widgets/data_table/data_table.dart';
+export 'package:admin/ui/widgets/data_table/app_data_table.dart';
 export 'package:admin/ui/widgets/workflow/transition_widget.dart';
 export 'package:admin/ui/widgets/indicator.dart';
 export 'package:admin/ui/widgets/workflow/multi_transition_widget.dart';
@@ -95,7 +95,7 @@ export 'package:admin/ui/widgets/dashboard/dashboard_chart/dashboard_chart.dart'
 export 'package:admin/ui/widgets/dashboard/dashboard_counter/dashboard_counter.dart';
 export 'package:admin/ui/widgets/dashboard/dashboard_tab/dashboard_tab.dart';
 export 'package:admin/ui/widgets/tab_data_table/app_data_table/tab_data_table.dart';
-export 'package:admin/ui/widgets/data_table/data_table_source.dart';
+export 'package:admin/ui/widgets/data_table/paginated_datatable/data_table_source.dart';
 export 'package:admin/ui/widgets/filter/filter_area.dart';
 export 'package:admin/ui/widgets/formio/formio_test_json.dart';
 export 'package:admin/ui/widgets/formio/formio_widget.dart';
