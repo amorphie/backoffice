@@ -4,13 +4,15 @@ import '../../helpers/exporter.dart';
 
 class DisplayTabItemWidget extends StatelessWidget {
   final DisplayTabModel value;
+  final String id;
   const DisplayTabItemWidget({
     Key? key,
     required this.value,
+    required this.id,
   }) : super(key: key);
   HomeController get homeController => Get.find<HomeController>();
 
-  DisplayController get displayController => Get.find<DisplayController>(tag: homeController.selectedEntity.value.data["id"]);
+  DisplayController get displayController => Get.find<DisplayController>(tag: id);
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +74,7 @@ class DisplayTabItemWidget extends StatelessWidget {
   }
 
   Widget splitItem(DisplayTabModel item) {
-    if (item.type.isSplit) return DisplayTabItemWidget(value: item);
+    if (item.type.isSplit) return DisplayTabItemWidget(value: item, id: id);
     return Container(
       decoration: BoxDecoration(
           border: Border.all(
@@ -85,7 +87,7 @@ class DisplayTabItemWidget extends StatelessWidget {
         children: [
           Text(item.title.print()),
           Divider(),
-          Expanded(child: DisplayTabItemWidget(value: item)),
+          Expanded(child: DisplayTabItemWidget(value: item, id: id)),
         ],
       ),
     );

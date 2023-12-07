@@ -33,27 +33,27 @@ class HomeController extends GetxController {
   Future addData(Map<String, dynamic> data) async {
     _addDataLoading.value = true;
     final EntityController entityController = Get.find<EntityController>();
-
+    String dataId = data[entityController.entity.workflow.recordIdData] ?? Uuid().v4();
+    String entityName = data[entityController.entity.workflow.entityNameData] ?? entityController.entity.workflow.entity;
+    String? workflowName = data[entityController.entity.workflow.workflowNameData] ?? Uuid().v4();
     try {
       if (data["id"] == null) {
         data["id"] = Uuid().v4();
       }
-      DisplayController displayController =
-          Get.put<DisplayController>(DisplayController(data[entityController.entity.workflow.recordIdData]), tag: data[entityController.entity.workflow.recordIdData]);
-      WorkflowController workflowController =
-          Get.put<WorkflowController>(WorkflowController(data[entityController.entity.workflow.recordIdData]), tag: data[entityController.entity.workflow.recordIdData]);
+      DisplayController displayController = Get.put<DisplayController>(DisplayController(dataId), tag: dataId);
+      WorkflowController workflowController = Get.put<WorkflowController>(WorkflowController(dataId), tag: dataId);
 
-      await workflowController.startTransition(entity: entityController.entity.workflow.entity, recordId: data[entityController.entity.workflow.recordIdData]);
+      await workflowController.startTransition(entity: entityName, recordId: dataId, stateManager: workflowName);
       DisplayViewModel model;
       await displayController.setData(data);
       if (entityController.entity.display != null) {
         model = DisplayViewModel(
-            id: Uuid().v4(),
+            id: dataId,
             entity: entityController.entity.name,
             data: data,
             page: DetailWidget(
               entity: entityController.entity.name,
-              id: data["id"],
+              id: dataId,
             ));
       } else {
         model = DisplayViewModel(
