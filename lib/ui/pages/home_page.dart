@@ -48,7 +48,7 @@ class HomePage extends StatelessWidget {
                             return AppDataTable(
                               onFinish: () {
                                 log("finish", name: "onPageChanged");
-                                entityController.setPage(entityController.pageNumber + 1);
+                                entityController.onPageChange(entityController.pageNumber + 1);
                               },
                               rowsPerPage: homeController.rowPerPage,
                               onRowsPerPageChanged: homeController.setRowPerPage,
@@ -68,10 +68,10 @@ class HomePage extends StatelessWidget {
                                 }
                               },
                               onSearch: (val) {
-                                entityController.setFilter(val);
+                                entityController.onSearch(val);
                               },
                               onEndpointSuffix: (val) {
-                                entityController.setEndpointSuffix(val);
+                                entityController.onEndpointSuffixSend(val);
                               },
                               loading: entityController.loading.value,
                               onPressed: (data) async {
@@ -81,6 +81,12 @@ class HomePage extends StatelessWidget {
                               addPressed: () async {
                                 formioDialog(context);
                               },
+                              onSort: (val) {
+                                entityController.onSort(val);
+                              },
+                              sortAscending: entityController.sortColumn.sortAscending,
+                              sortColumnIndex: entityController.sortColumnIndex,
+                              sortableColumns: entityController.entity.search.sort?.columns ?? [],
                             );
                         }),
                       )

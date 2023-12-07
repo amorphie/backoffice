@@ -13,6 +13,11 @@ class CustomDataTable extends StatelessWidget {
   final List<SearchColumn> columns;
   final Function(Map<String, dynamic>) onPressed;
 
+  final Function(String)? onSort;
+  final bool sortAscending;
+  final int? sortColumnIndex;
+  final List<String> sortableColumns;
+
   const CustomDataTable({
     Key? key,
     required this.type,
@@ -22,6 +27,10 @@ class CustomDataTable extends StatelessWidget {
     required this.data,
     required this.columns,
     required this.onPressed,
+    this.onSort,
+    this.sortAscending = true,
+    this.sortColumnIndex,
+    this.sortableColumns = const [],
   }) : super(key: key);
 
   @override
@@ -35,6 +44,10 @@ class CustomDataTable extends StatelessWidget {
           data: data,
           columns: columns,
           onPressed: onPressed,
+          onSort: onSort,
+          sortAscending: sortAscending,
+          sortColumnIndex: sortColumnIndex,
+          sortableColumns: sortableColumns,
         );
       case DatatableType.normal:
         return NormalDatatable(

@@ -29,6 +29,10 @@ class AppDataTable extends StatelessWidget {
   final Function(Map<String, dynamic> data) onPressed;
   final Function onFinish;
 
+  final Function(String)? onSort;
+  final bool sortAscending;
+  final int? sortColumnIndex;
+  final List<String> sortableColumns;
   const AppDataTable({
     Key? key,
     required this.withSearch,
@@ -47,6 +51,10 @@ class AppDataTable extends StatelessWidget {
     required this.rowsPerPage,
     required this.onRowsPerPageChanged,
     required this.onFinish,
+    this.onSort,
+    this.sortAscending = true,
+    this.sortColumnIndex,
+    this.sortableColumns = const [],
   }) : super(key: key);
 
   @override
@@ -97,15 +105,20 @@ class AppDataTable extends StatelessWidget {
             if (data.length > 0)
               Expanded(
                 child: CustomDataTable(
-                    type: DatatableType.paginated,
-                    rowsPerPage: rowsPerPage,
-                    onRowsPerPageChanged: onRowsPerPageChanged,
-                    onFinish: () {
-                      onFinish();
-                    },
-                    data: data,
-                    columns: columns,
-                    onPressed: onPressed),
+                  type: DatatableType.paginated,
+                  rowsPerPage: rowsPerPage,
+                  onRowsPerPageChanged: onRowsPerPageChanged,
+                  onFinish: () {
+                    onFinish();
+                  },
+                  data: data,
+                  columns: columns,
+                  onPressed: onPressed,
+                  onSort: onSort,
+                  sortAscending: sortAscending,
+                  sortColumnIndex: sortColumnIndex,
+                  sortableColumns: sortableColumns,
+                ),
               ),
           ],
         ),

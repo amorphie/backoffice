@@ -8,6 +8,10 @@ class PaginatedDatatable extends StatelessWidget {
   final List<Map<String, dynamic>> data;
   final List<SearchColumn> columns;
   final Function(Map<String, dynamic>) onPressed;
+  final Function(String)? onSort;
+  final bool sortAscending;
+  final int? sortColumnIndex;
+  final List<String> sortableColumns;
   const PaginatedDatatable({
     Key? key,
     required this.rowsPerPage,
@@ -16,14 +20,17 @@ class PaginatedDatatable extends StatelessWidget {
     required this.data,
     required this.columns,
     required this.onPressed,
+    this.onSort,
+    this.sortAscending = true,
+    this.sortColumnIndex,
+    this.sortableColumns = const [],
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return PaginatedDataTable(
-      sortAscending: true,
-      sortColumnIndex: 1,
-      primary: true,
+      sortAscending: sortAscending,
+      sortColumnIndex: sortColumnIndex,
       rowsPerPage: rowsPerPage,
       availableRowsPerPage: [10, 20, 50],
       onRowsPerPageChanged: (value) {
@@ -38,10 +45,11 @@ class PaginatedDatatable extends StatelessWidget {
       },
       columns: columns
           .map((e) => DataColumn(
-              onSort: (columnIndex, ascending) {
-                print(e);
-                print(ascending);
-              },
+              onSort: sortableColumns.contains(e.data)
+                  ? (columnIndex, ascending) {
+                      onSort!(e.data);
+                    }
+                  : null,
               label: Text(
                 e.title.print(),
                 style: TextStyle(color: Colors.black87),

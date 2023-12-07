@@ -1,4 +1,5 @@
 import '../../../../ui/helpers/exporter.dart';
+import '../layout_helpers/sort/sort_layout_model.dart';
 
 class SearchLayout {
   int defaultPageSize;
@@ -10,12 +11,14 @@ class SearchLayout {
   bool? endpointSuffix;
   String url;
   String titleTemplate;
+  SortLayoutModel? sort;
 
   SearchLayout({
     this.defaultPageSize = 100,
     this.defaultPageNumber = 0,
     this.search = false,
     this.filter,
+    this.sort,
     required this.columns,
     this.subDataField,
     this.endpointSuffix,
@@ -35,6 +38,7 @@ class SearchLayout {
     bool? endpointSuffix,
     String? url,
     String? titleTemplate,
+    SortLayoutModel? sort,
   }) {
     return SearchLayout(
       defaultPageSize: defaultPageSize ?? this.defaultPageSize,
@@ -46,6 +50,7 @@ class SearchLayout {
       endpointSuffix: endpointSuffix ?? this.endpointSuffix,
       url: url ?? this.url,
       titleTemplate: titleTemplate ?? this.titleTemplate,
+      sort: sort ?? this.sort,
     );
   }
 
@@ -60,6 +65,7 @@ class SearchLayout {
       'endpointSuffix': endpointSuffix,
       'url': url,
       'titleTemplate': titleTemplate,
+      'sort': sort?.toMap(),
     };
   }
 
@@ -82,6 +88,7 @@ class SearchLayout {
       ),
       subDataField: map['subDataField'] != null ? map['subDataField'] as String : null,
       endpointSuffix: map['endpointSuffix'] != null ? map['endpointSuffix'] as bool : null,
+      sort: map['sort'] != null ? SortLayoutModel.fromMap(map['sort']) : null,
       url: map['url'] as String,
       titleTemplate: map['titleTemplate'] as String,
     );
@@ -108,6 +115,7 @@ class SearchLayout {
         other.subDataField == subDataField &&
         other.endpointSuffix == endpointSuffix &&
         other.url == url &&
+        other.sort == sort &&
         other.titleTemplate == titleTemplate;
   }
 
@@ -121,6 +129,7 @@ class SearchLayout {
         subDataField.hashCode ^
         endpointSuffix.hashCode ^
         url.hashCode ^
+        sort.hashCode ^
         titleTemplate.hashCode;
   }
 }
