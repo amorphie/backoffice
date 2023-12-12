@@ -2,9 +2,15 @@
 
 import '../../../../ui/helpers/exporter.dart';
 
+part 'workflow_model.g.dart';
+
+@JsonSerializable()
 class WorkflowModel {
+  @JsonKey(includeIfNull: false)
   StateManager? stateManager;
+  @JsonKey(includeIfNull: false)
   List<StateManager>? runningWorkflows;
+  @JsonKey(includeIfNull: false)
   List<StateManager>? availableWorkflows;
 
   bool get isEmpty => stateManagerEmpty && runningWorkflowsEmpty && availableWorkflowsEmpty;
@@ -31,37 +37,9 @@ class WorkflowModel {
     );
   }
 
-  Map<String, dynamic> toMap() {
-    return <String, dynamic>{
-      'stateManager': stateManager?.toMap(),
-      'runningWorkflows': runningWorkflows?.map((x) => x.toMap()).toList(),
-      'availableWorkflows': availableWorkflows?.map((x) => x.toMap()).toList(),
-    };
-  }
+  factory WorkflowModel.fromJson(Map<String, dynamic> json) => _$WorkflowModelFromJson(json);
 
-  factory WorkflowModel.fromMap(Map<String, dynamic> map) {
-    return WorkflowModel(
-      stateManager: map['stateManager'] != null ? StateManager.fromMap(map['stateManager'] as Map<String, dynamic>) : null,
-      runningWorkflows: map['runningWorkflows'] != null
-          ? List<StateManager>.from(
-              (map['runningWorkflows']).map<StateManager?>(
-                (x) => StateManager.fromMap(x as Map<String, dynamic>),
-              ),
-            )
-          : null,
-      availableWorkflows: map['availableWorkflows'] != null
-          ? List<StateManager>.from(
-              (map['availableWorkflows']).map<StateManager?>(
-                (x) => StateManager.fromMap(x as Map<String, dynamic>),
-              ),
-            )
-          : null,
-    );
-  }
-
-  String toJson() => json.encode(toMap());
-
-  factory WorkflowModel.fromJson(String source) => WorkflowModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  Map<String, dynamic> toJson() => _$WorkflowModelToJson(this);
 
   @override
   String toString() => 'WorkflowModel(stateManager: $stateManager, runningWorkflows: $runningWorkflows, availableWorkflows: $availableWorkflows)';

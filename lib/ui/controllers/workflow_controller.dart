@@ -55,7 +55,7 @@ class WorkflowController extends GetxController {
     _loading.value = false;
     if (response.success) {
       var result = response.data;
-      workflow = WorkflowModel.fromMap(result["data"]);
+      workflow = WorkflowModel.fromJson(result["data"]);
     }
   }
 

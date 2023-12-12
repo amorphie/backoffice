@@ -19,6 +19,7 @@ export 'package:webviewx/webviewx.dart';
 export 'package:flutter_spinkit/flutter_spinkit.dart';
 export 'package:animated_splash_screen/animated_splash_screen.dart';
 export 'package:google_fonts/google_fonts.dart';
+export 'package:json_annotation/json_annotation.dart';
 
 //render
 

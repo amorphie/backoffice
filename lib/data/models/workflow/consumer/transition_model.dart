@@ -1,5 +1,8 @@
 import '../../../../ui/helpers/exporter.dart';
 
+part 'transition_model.g.dart';
+
+@JsonSerializable()
 class TransitionModel {
   String name;
   String title;
@@ -27,28 +30,9 @@ class TransitionModel {
     );
   }
 
-  Map<String, dynamic> toMap() {
-    return <String, dynamic>{
-      'name': name,
-      'title': title,
-      'form': form,
-      'type': type.name,
-    };
-  }
+  factory TransitionModel.fromJson(Map<String, dynamic> json) => _$TransitionModelFromJson(json);
 
-  factory TransitionModel.fromMap(Map<String, dynamic> map) {
-    return TransitionModel(
-      name: map['name'] as String,
-      title: map['title'] as String,
-      form: map['form'] as String,
-      type: TransitionType.fromMap(map["type"] ?? ""),
-    );
-  }
-
-  String toJson() => json.encode(toMap());
-
-  factory TransitionModel.fromJson(String source) => TransitionModel.fromMap(json.decode(source) as Map<String, dynamic>);
-
+  Map<String, dynamic> toJson() => _$TransitionModelToJson(this);
   @override
   String toString() => 'TransitionModel(name: $name, title: $title, form: $form)';
 
