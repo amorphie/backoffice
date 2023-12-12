@@ -103,4 +103,74 @@ class Services {
       headers: headers,
     );
   }
+
+  Future<ResponseModel> getWorkflowInstanceInit(String workflowName) async {
+    return await Executer.get(
+      endpoint: "https://test-amorphie-workflow.${dotenv.env["PROJECT_HOST"]}/workflow/instance/workflow/${workflowName}/init",
+      headers: {
+        "Accept": "application/json",
+        "Accept-Language": "en-EN",
+      },
+    );
+  }
+
+  Future<ResponseModel> getWorkflowInstanceTransitionView(String transitionName) async {
+    return await Executer.get(
+      endpoint: "https://test-amorphie-workflow.${dotenv.env["PROJECT_HOST"]}/workflow/instance/transition/${transitionName}/view",
+      headers: {
+        "Accept": "application/json",
+        "Accept-Language": "en-EN",
+      },
+    );
+  }
+
+  Future<ResponseModel> getWorkflowInstanceStateView(String stateName) async {
+    return await Executer.get(
+      endpoint: "https://test-amorphie-workflow.${dotenv.env["PROJECT_HOST"]}/workflow/instance/state/${stateName}/view",
+      headers: {
+        "Accept": "application/json",
+        "Accept-Language": "en-EN",
+      },
+    );
+  }
+
+  Future<ResponseModel> postWorkflowInstance(String instanceId, String transitionName, Map<String, dynamic> data) async {
+    return await Executer.post(
+      endpoint: "https://test-amorphie-workflow.${dotenv.env["PROJECT_HOST"]}/workflow/instance/${instanceId}/transition/${transitionName}",
+      data: {
+        "entityData": data,
+        "formData": {},
+        "additionalData": {},
+        "getSignalRHub": true,
+        "routeData": {},
+        "queryData": {},
+      },
+      headers: {
+        "User": Uuid().v4(),
+        "Behalf-Of-User": Uuid().v4(),
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+      },
+    );
+  }
+
+  Future<ResponseModel> getWorkflowInstanceTransition(String instanceId) async {
+    return await Executer.get(
+      endpoint: "https://test-amorphie-workflow.${dotenv.env["PROJECT_HOST"]}/workflow/instance/${instanceId}/transition",
+      headers: {
+        "Accept": "application/json",
+        "Accept-Language": "en-EN",
+      },
+    );
+  }
+
+  Future<ResponseModel> getWorkflowInstanceData(String instanceId) async {
+    return await Executer.get(
+      endpoint: "https://test-amorphie-workflow.${dotenv.env["PROJECT_HOST"]}/workflow/instance/${instanceId}/data ",
+      headers: {
+        "Accept": "application/json",
+        "Accept-Language": "en-EN",
+      },
+    );
+  }
 }
