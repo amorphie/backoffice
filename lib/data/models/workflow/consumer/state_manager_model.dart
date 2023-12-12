@@ -11,8 +11,8 @@ class StateManager {
   List<TransitionModel>? transitions;
   @JsonKey(includeIfNull: false)
   String? status;
-  @JsonKey(defaultValue: false)
-  bool? isPublicForm;
+  @JsonKey(defaultValue: false, includeIfNull: false, required: false)
+  bool isPublicForm;
   @JsonKey(includeIfNull: false)
   String? publicForm;
 
@@ -21,7 +21,7 @@ class StateManager {
     required this.title,
     this.transitions,
     this.status,
-    this.isPublicForm,
+    required this.isPublicForm,
     this.publicForm,
   });
 
