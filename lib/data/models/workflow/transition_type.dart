@@ -1,7 +1,16 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'transition_type.g.dart';
+
+@JsonEnum(valueField: 'type', alwaysCreate: true)
 enum TransitionType {
+  @JsonValue("Formio")
   formio,
+  @JsonValue("PageUrl")
   pageUrl,
+  @JsonValue("Html")
   html,
+  @JsonValue("FlutterWidget")
   flutterWidget;
 
   const TransitionType();

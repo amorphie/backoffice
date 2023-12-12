@@ -33,7 +33,7 @@ export 'package:admin/ui/constants/colors.dart';
 
 //model
 
-export 'package:admin/data/models/workflow/workflow_model.dart';
+export 'package:admin/data/models/workflow/consumer/workflow_model.dart';
 export 'package:admin/data/models/menu/enums/menu_item_type.dart';
 export 'package:admin/data/models/menu/menu_item_model.dart';
 export 'package:admin/data/models/dashboard/dashboard_counter_list_item_model.dart';
@@ -62,8 +62,8 @@ export 'package:admin/data/models/menu/enums/ui_display_layout.dart';
 export 'package:admin/data/models/menu/enums/ui_search_layout.dart';
 export 'package:admin/data/models/dashboard/dashboard_model.dart';
 export 'package:admin/data/models/menu/menu_model.dart';
-export 'package:admin/data/models/workflow/transition_model.dart';
-export 'package:admin/data/models/workflow/state_manager_model.dart';
+export 'package:admin/data/models/workflow/consumer/transition_model.dart';
+export 'package:admin/data/models/workflow/consumer/state_manager_model.dart';
 export 'package:admin/data/models/ui/ui_model.dart';
 export 'package:admin/data/models/workflow/transition_type.dart';
 export 'package:admin/data/models/display/display_tab_search_model.dart';
