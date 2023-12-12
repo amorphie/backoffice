@@ -21,6 +21,15 @@ class WorkflowInstanceViewModel {
     required this.body,
   });
 
+  factory WorkflowInstanceViewModel.init() => WorkflowInstanceViewModel(
+        name: "",
+        type: "",
+        language: "",
+        navigation: "",
+        data: "",
+        body: "",
+      );
+
   factory WorkflowInstanceViewModel.fromJson(Map<String, dynamic> json) => _$WorkflowInstanceViewModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$WorkflowInstanceViewModelToJson(this);

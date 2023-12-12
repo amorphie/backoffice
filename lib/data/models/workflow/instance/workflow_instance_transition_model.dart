@@ -25,6 +25,8 @@ class WorkflowInstanceTransitionModel {
     required this.hasViewVariant,
   });
 
+  factory WorkflowInstanceTransitionModel.init() => WorkflowInstanceTransitionModel(transition: "", hasViewVariant: false);
+
   factory WorkflowInstanceTransitionModel.fromJson(Map<String, dynamic> json) => _$WorkflowInstanceTransitionModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$WorkflowInstanceTransitionModelToJson(this);

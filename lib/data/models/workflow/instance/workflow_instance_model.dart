@@ -20,6 +20,8 @@ class WorkflowInstanceModel {
     required this.transition,
   });
 
+  factory WorkflowInstanceModel.init() => WorkflowInstanceModel(state: "", viewSource: "", transition: []);
+
   factory WorkflowInstanceModel.fromJson(Map<String, dynamic> json) => _$WorkflowInstanceModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$WorkflowInstanceModelToJson(this);
