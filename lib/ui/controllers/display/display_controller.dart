@@ -2,72 +2,56 @@
 
 import 'dart:developer';
 
-import '../helpers/exporter.dart';
+import '../../helpers/exporter.dart';
+import '_display_controller.dart';
 
-class DisplayController extends GetxController {
-  DisplayController([this._tag]);
-  // ignore: unused_field
-  String? _tag;
-
-  Rx<DisplayLayoutModel> _displayLayout = DisplayLayoutModel().obs;
-  DisplayLayoutModel get displayLayout => _displayLayout.value;
-
-  RxMap<String, dynamic> _displayView = <String, dynamic>{}.obs;
-  Map<String, dynamic> get displayView => _displayView.value;
-
-  RxMap<String, dynamic> templates = <String, dynamic>{}.obs;
-  RxMap<String, DisplayTabSearchModel> searchModels = <String, DisplayTabSearchModel>{}.obs;
-
-  RxList<HistoryWorkflowModel> historyWorkflows = <HistoryWorkflowModel>[].obs;
-
-  EntityModel _entity = EntityModel.init();
+class DisplayController extends GetxController with DisplayControllerMixin {
+  DisplayController([String? _tag]) {
+    setTag(_tag);
+  }
 
   setData(Map<String, dynamic> data) async {
     EntityController entityController = Get.find<EntityController>();
-    _entity = entityController.entity;
+    setEntity(entityController.entity);
 
-    _displayLayout.value = _entity.display ?? DisplayLayoutModel();
-    _displayView.value = data;
-    if (_entity.display != null) {
+    setDisplayLayout(entity.display ?? DisplayLayoutModel());
+    setDisplayData(data);
+    if (entity.display != null) {
       await getTemplates();
       await getHistories();
     }
   }
 
-  int get tabCount {
-    return (displayLayout.tabs?.length ?? 0) + 1 + (_entity.workflow.history ? 1 : 0);
-  }
-
   Future _getById() async {
     EntityController entityController = Get.find<EntityController>();
-    ResponseModel response = await Services().getById(_entity.search.url, _displayView.value["id"]);
+    ResponseModel response = await Services().getById(entity.search.url, displayData["id"]);
     entityController.getDataList();
-    _displayView.value = response.data;
+    setDisplayData(response.data);
   }
 
   Future detailTemplateRefresh() async {
     if (displayLayout.detailTemplate != null && templates[displayLayout.detailTemplate!.print()] != null) {
       await _getById();
-      templates[displayLayout.detailTemplate!.print()] = await getTemplate("${displayLayout.detailTemplate!.print()}", _displayView.value);
-      templates[displayLayout.summaryTemplate!.print()] = await getTemplate("${displayLayout.summaryTemplate!.print()}", _displayView.value);
+
+      if (displayLayout.detailTemplate != null) addTemplates({displayLayout.detailTemplate!.print(): await getTemplate("${displayLayout.detailTemplate!.print()}", displayData)});
+      if (displayLayout.summaryTemplate != null) addTemplates({displayLayout.summaryTemplate!.print(): await getTemplate("${displayLayout.summaryTemplate!.print()}", displayData)});
     }
-    templates.refresh();
   }
 
   getTemplates() async {
-    templates.clear();
+    clearTemplates();
     if (displayLayout.summaryTemplate != null)
-      templates.addAll({
+      addTemplates({
         displayLayout.summaryTemplate!.print(): await getTemplate(
           "${displayLayout.summaryTemplate!.print()}",
-          _displayView.value,
+          displayData,
         ),
       });
     if (displayLayout.detailTemplate != null)
-      templates.addAll({
+      addTemplates({
         displayLayout.detailTemplate!.print(): await getTemplate(
           "${displayLayout.detailTemplate!.print()}",
-          _displayView.value,
+          displayData,
         ),
       });
     if (displayLayout.tabs != null) {
@@ -91,15 +75,15 @@ class DisplayController extends GetxController {
   Future addTabTemplate(DisplayTabModel tab) async {
     switch (tab.type) {
       case DisplayTabType.render:
-        templates.addAll({
+        addTemplates({
           tab.template!.print(): await getTemplate(
             "${tab.template!.print()}",
-            _displayView.value,
+            displayData,
           )
         });
         break;
       case DisplayTabType.search:
-        searchModels.addAll({tab.entity!: await getSearchData(tab)});
+        addSearchModels({tab.entity!: await getSearchData(tab)});
 
         break;
       default:
@@ -113,8 +97,7 @@ class DisplayController extends GetxController {
     int? pageNumber,
   }) async {
     DisplayTabSearchModel searchModel = await getSearchData(tab, keyword: keyword);
-    searchModels[tab.entity!] = searchModel;
-    searchModels.refresh();
+    addSearchModels({tab.entity!: searchModel});
   }
 
   Future<DisplayTabSearchModel> getSearchData(
@@ -128,7 +111,7 @@ class DisplayController extends GetxController {
     EntityController entityController = Get.find<EntityController>();
     EntityModel entity = entityController.entities[tab.entity]!;
     var response = await Services().search(
-      url: tab.url!.replaceAll("@id", _displayView.value[tab.id]),
+      url: tab.url!.replaceAll("@id", displayData[tab.id]),
       pageSize: pageSize ?? entity.search.defaultPageSize,
       pageNumber: pageNumber ?? entity.search.defaultPageNumber,
       keyword: keyword,
@@ -167,21 +150,16 @@ class DisplayController extends GetxController {
   }
 
   Future getHistories() async {
-    ResponseModel response = await Services().getHistory(entity: _entity.workflow.entity, recordId: _displayView.value["id"] ?? "");
-    historyWorkflows.clear();
+    ResponseModel response = await Services().getHistory(entity: entity.workflow.entity, recordId: tag ?? displayData[entity.workflow.recordIdData] ?? "");
+    historyWorkflowsClear();
     if (response.success) {
       var data = response.data["data"];
       var runningWorkflows = data["runningWorkflows"];
 
       for (var element in runningWorkflows) {
         HistoryWorkflowModel historyWorkflowModel = HistoryWorkflowModel.fromMap(element);
-        historyWorkflows.add(historyWorkflowModel);
+        historyWorkflowsAddItem(historyWorkflowModel);
       }
     }
-    historyWorkflows.refresh();
-  }
-
-  reset() {
-    _displayView.value = <String, dynamic>{};
   }
 }

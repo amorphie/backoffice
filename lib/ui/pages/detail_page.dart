@@ -96,7 +96,7 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
                     ? getRenderWidget(displayController.displayLayout.detailTemplate!)
                     : GenericDetailWidget(
                         entity: entity,
-                        data: displayController.displayView,
+                        data: displayController.displayData,
                       ),
                 ...(displayController.displayLayout.tabs ?? []).map((e) {
                   return DisplayTabItemWidget(

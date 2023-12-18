@@ -17,8 +17,8 @@ class _DisplayTagListState extends State<DisplayTagList> {
   DisplayController get controller => Get.find<DisplayController>(tag: widget.id);
   @override
   Widget build(BuildContext context) {
-    if ((controller.displayView["tag"] ?? controller.displayView["tags"]) == null) return Container();
-    return row(controller.displayView["tag"] ?? controller.displayView["tags"]);
+    if ((controller.displayData["tag"] ?? controller.displayData["tags"]) == null) return Container();
+    return row(controller.displayData["tag"] ?? controller.displayData["tags"]);
   }
 
   Widget row(List data) {

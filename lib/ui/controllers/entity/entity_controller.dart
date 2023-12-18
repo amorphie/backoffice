@@ -1,76 +1,35 @@
-//import 'dart:ffi';
-
-import 'package:admin/data/models/entity/layout_helpers/sort/sort_column_model.dart';
-import 'package:admin/data/models/entity/layout_helpers/sort/sort_direction_enum.dart';
 import 'package:admin/ui/helpers/exporter.dart';
 
-class EntityController extends GetxController {
-  Rx<EntityModel> _entity = EntityModel.init().obs;
-  EntityModel get entity => _entity.value;
-  set entity(EntityModel _) {
-    _entity.value = _;
-  }
+import '_entity_controller.dart';
 
-  String _keyword = "";
-  String _endpointSuffix = "";
-
-  Rx<SortColumnModel> _sortColumn = SortColumnModel(sortColumn: "", sortDirection: SortDirection.asc).obs;
-  SortColumnModel get sortColumn => _sortColumn.value;
-  set sortColumn(SortColumnModel _) {
-    _sortColumn.value = _;
-  }
-
-  int? get sortColumnIndex {
-    int index = entity.search.columns.indexWhere((element) => element.data == sortColumn.sortColumn);
-    if (index == -1) return null;
-    return index;
-  }
-
+class EntityController extends GetxController with EntityControllerMixin {
   onSort(String col) {
-    pageNumber = 0;
-    if (sortColumn.sortColumn == col) {
-      sortColumn.sortDirection = sortColumn.sortDirection == SortDirection.asc ? SortDirection.desc : SortDirection.asc;
-    } else {
-      sortColumn.sortColumn = col;
-      sortColumn.sortDirection = SortDirection.asc;
-    }
+    setSort(col);
 
-    getDataList(queries: sortColumn.toQueryMap());
+    getDataList();
   }
 
-  int pageNumber = 0;
-  resetPageNumber() {
-    pageNumber = 0;
-  }
-
-  onPageChange(int p) {
-    pageNumber = p;
+  onPageChange() {
+    pageNumberIncrement();
     getDataList(isSearch: entity.search.search);
   }
 
   onSearch(String filter) {
-    _keyword = filter;
-    if (_keyword == "" || _keyword.length > 3) {
+    setKeyword(filter);
+    if (keyword == "" || keyword.length > 3) {
       getDataList(isSearch: true);
     }
   }
 
   onEndpointSuffixSend(String sf) {
     if (sf == "")
-      _endpointSuffix = "";
+      setEndpointSuffix("");
     else
-      _endpointSuffix = "/" + sf;
-    if (_endpointSuffix == "" || _endpointSuffix.length > 3) {
+      setEndpointSuffix("/" + sf);
+    if (endpointSuffix == "" || endpointSuffix.length > 3) {
       getDataList(isSearch: false);
     }
   }
-
-  Map<String, EntityModel> entities = {};
-  RxBool loading = false.obs;
-
-  RxList<Map<String, dynamic>> dataList = <Map<String, dynamic>>[].obs;
-  RxList<Map<String, dynamic>> userList = <Map<String, dynamic>>[].obs;
-  Services services = Services();
 
   Future<void> init() async {
     entities = await services.getEntityData();
@@ -83,9 +42,10 @@ class EntityController extends GetxController {
   Future<void> setEntityMenu() async {
     AppUiController menu = Get.find<AppUiController>();
     EntityModel? entityModel = entities[menu.menuItem.entity];
-    _endpointSuffix = "";
+
+    setEndpointSuffix("");
     if (entityModel != null) {
-      entity = entityModel;
+      setEntity(entityModel);
       await getDataList();
     } else {
       Get.snackbar("Uyarı", "İsteğe uygun bir model bulunamadı");
@@ -96,22 +56,21 @@ class EntityController extends GetxController {
     Map<String, String>? queries,
     bool isSearch = false,
   }) async {
-    loading.value = true;
+    start();
     if (pageNumber == 0) {
-      dataList.clear();
+      dataListClear();
     }
     List list = await getAllData(
       pageNumber: pageNumber,
-      keyword: _keyword == "" || _keyword.length > 3 ? _keyword : null,
+      keyword: keyword == "" || keyword.length > 3 ? keyword : null,
       queries: queries,
       isSearch: isSearch,
     );
 
     for (var item in list) {
-      dataList.add(item);
+      dataListAddItem(item);
     }
-    loading.value = false;
-    dataList.refresh();
+    end();
   }
 
   Future<List> getAllData({
@@ -123,15 +82,17 @@ class EntityController extends GetxController {
     bool isSearch = false,
   }) async {
     Map<String, String>? _queries = queries;
+    if (_queries == null) _queries = <String, String>{};
     AppUiController menuController = Get.find<AppUiController>();
     if (menuController.menuItem.type == MenuItemType.query) {
-      if (_queries == null) _queries = <String, String>{};
       menuController.menuItem.query!.forEach((key, value) {
         _queries![key] = value.toString();
       });
     }
+    _queries.addAll(sortColumn.toQueryMap());
+
     var response = await services.search(
-        url: (entityModel ?? entity).search.url + _endpointSuffix + (isSearch ? "/search" : ""),
+        url: (entityModel ?? entity).search.url + endpointSuffix + (isSearch ? "/search" : ""),
         pageSize: pageSize ?? (entityModel ?? entity).search.defaultPageSize,
         pageNumber: pageNumber ?? (entityModel ?? entity).search.defaultPageNumber,
         keyword: keyword,

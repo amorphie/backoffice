@@ -50,7 +50,7 @@ class HomePage extends StatelessWidget {
                             return AppDataTable(
                               onFinish: () {
                                 log("finish", name: "onPageChanged");
-                                entityController.onPageChange(entityController.pageNumber + 1);
+                                entityController.onPageChange();
                               },
                               rowsPerPage: homeController.rowPerPage,
                               onRowsPerPageChanged: homeController.setRowPerPage,
@@ -75,7 +75,7 @@ class HomePage extends StatelessWidget {
                               onEndpointSuffix: (val) {
                                 entityController.onEndpointSuffixSend(val);
                               },
-                              loading: entityController.loading.value,
+                              loading: entityController.loading,
                               onPressed: (data) async {
                                 await homeController.selectDisplayData(data);
                                 log(DateTime.now().toIso8601String(), name: "SelectEntityFinal");
