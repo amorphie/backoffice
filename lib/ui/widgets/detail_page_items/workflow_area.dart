@@ -27,7 +27,7 @@ class _WorkflowAreaState extends State<WorkflowArea> {
   Widget workflowArea(WorkflowModel workflow) {
     return Container(
       color: KC.primary,
-      padding: EdgeInsets.all(12),
+      padding: EdgeInsets.only(left: 12, top: 8),
       child: Column(
         children: [
           if (!workflowController.workflow.stateManagerEmpty) workflowRow(workflow.stateManager!.title + " : ", workflow.stateManager!.transitions!),
