@@ -61,7 +61,7 @@ class AppDataTable extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Column(
+        ListView(
           children: [
             Row(
               children: [
@@ -103,22 +103,20 @@ class AppDataTable extends StatelessWidget {
             ),
             if (filterView) FilterArea(),
             if (data.length > 0)
-              Expanded(
-                child: CustomDataTable(
-                  type: DatatableType.paginated,
-                  rowsPerPage: rowsPerPage,
-                  onRowsPerPageChanged: onRowsPerPageChanged,
-                  onFinish: () {
-                    onFinish();
-                  },
-                  data: data,
-                  columns: columns,
-                  onPressed: onPressed,
-                  onSort: onSort,
-                  sortAscending: sortAscending,
-                  sortColumnIndex: sortColumnIndex,
-                  sortableColumns: sortableColumns,
-                ),
+              CustomDataTable(
+                type: DatatableType.paginated,
+                rowsPerPage: rowsPerPage,
+                onRowsPerPageChanged: onRowsPerPageChanged,
+                onFinish: () {
+                  onFinish();
+                },
+                data: data,
+                columns: columns,
+                onPressed: onPressed,
+                onSort: onSort,
+                sortAscending: sortAscending,
+                sortColumnIndex: sortColumnIndex,
+                sortableColumns: sortableColumns,
               ),
           ],
         ),
