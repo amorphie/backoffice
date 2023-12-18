@@ -45,7 +45,7 @@ class MenuItem extends StatelessWidget {
                   onPressed: () {
                     menuController.setMenuItem(model);
                   },
-                  isSelected: menuController.menuItem.value == model,
+                  isSelected: menuController.menuItem == model,
                 );
               });
             case MenuItemType.workflow:
@@ -58,9 +58,9 @@ class MenuItem extends StatelessWidget {
                       entity: model.entity!,
                       // recordId: "cf0a00ce-b0e5-4f0e-8c31-7e35cd4d4f5a",
                     );
-                    menuController.menuItem.value = model;
+                    menuController.setMenuItem(model);
                   },
-                  isSelected: menuController.menuItem.value == model,
+                  isSelected: menuController.menuItem == model,
                 );
               });
             case MenuItemType.profile:
@@ -81,7 +81,7 @@ class MenuItem extends StatelessWidget {
                   onPressed: () {
                     menuController.setMenuItem(model);
                   },
-                  isSelected: menuController.menuItem.value == model,
+                  isSelected: menuController.menuItem == model,
                 );
               });
             default:

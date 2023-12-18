@@ -82,7 +82,7 @@ class EntityController extends GetxController {
 
   Future<void> setEntityMenu() async {
     AppUiController menu = Get.find<AppUiController>();
-    EntityModel? entityModel = entities[menu.menuItem.value.entity];
+    EntityModel? entityModel = entities[menu.menuItem.entity];
     _endpointSuffix = "";
     if (entityModel != null) {
       entity = entityModel;
@@ -124,9 +124,9 @@ class EntityController extends GetxController {
   }) async {
     Map<String, String>? _queries = queries;
     AppUiController menuController = Get.find<AppUiController>();
-    if (menuController.menuItem.value.type == MenuItemType.query) {
+    if (menuController.menuItem.type == MenuItemType.query) {
       if (_queries == null) _queries = <String, String>{};
-      menuController.menuItem.value.query!.forEach((key, value) {
+      menuController.menuItem.query!.forEach((key, value) {
         _queries![key] = value.toString();
       });
     }

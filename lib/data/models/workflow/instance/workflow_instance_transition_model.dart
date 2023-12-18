@@ -1,7 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:admin/data/models/workflow/transition_button_type.dart';
 import 'package:json_annotation/json_annotation.dart';
-
-import '../transition_type.dart';
 
 part 'workflow_instance_transition_model.g.dart';
 
@@ -13,7 +12,7 @@ class WorkflowInstanceTransitionModel {
     required: false,
     unknownEnumValue: JsonKey.nullForUndefinedEnumValue,
   )
-  TransitionType? type;
+  TransitionButtonType? type;
   @JsonKey(name: "require-data", includeIfNull: false)
   String? requireData;
   @JsonKey(name: "has-view-variant")

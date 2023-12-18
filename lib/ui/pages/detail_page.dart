@@ -64,7 +64,7 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
               actions: [
                 IconButton(
                     onPressed: () {
-                      homeController.subtractData(homeController.selectedEntity.value);
+                      homeController.subtractData(homeController.displayView);
                       homeController.deselectEntity();
                     },
                     icon: Icon(Icons.close))

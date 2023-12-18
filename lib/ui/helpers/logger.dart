@@ -47,10 +47,10 @@ printLog(
 
 class EtoPrinter extends LogPrinter {
   final bool chat;
-  static const topLeftCorner = '┌';
-  static const bottomLeftCorner = '└';
-  static const middleCorner = '├';
-  static const verticalLine = '│';
+  static const topLeftCorner = '';
+  static const bottomLeftCorner = '';
+  static const middleCorner = '';
+  static const verticalLine = '';
   static const doubleDivider = '─';
   static const singleDivider = '┄';
   static bool _isChat = false;
@@ -65,12 +65,12 @@ class EtoPrinter extends LogPrinter {
 //👌😎🐼😂 "😍🌹♥️❤️🥳🇹🇷✅🐴🤮💋💔💯💥💣🖕👍🗣️🍉🍆✈️🌝🌪️⚡🔥🌈🎃🎱🧿🏆🔔🎵🎶🎹🎸🎺🚽🩹☢️☣️🚸⛔🚫⚠️🚼🚾🛐💲©️®️™️✔️❌☑️✅❎⭕♻️⚧♂️♀️🆘🏁🚩🏳️🏴"
 
   static final levelEmojis = {
-    Level.verbose: '✅',
-    Level.debug: '⭕',
-    Level.info: '😎 ',
-    Level.warning: '🖕',
-    Level.error: '💣 ',
-    Level.wtf: '💔',
+    Level.verbose: '',
+    Level.debug: '',
+    Level.info: '',
+    Level.warning: '',
+    Level.error: '',
+    Level.wtf: '',
   };
 
   // /// Matches a stacktrace line as generated on Android/iOS devices.

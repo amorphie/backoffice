@@ -117,7 +117,7 @@ class Services {
 
   Future<ResponseModel> getWorkflowInstanceTransitionView(String transitionName) async {
     return await Executer.get(
-      endpoint: "https://test-amorphie-workflow.${AppSettings.projectHost}/workflow/instance/transition/${transitionName}/view",
+      endpoint: "https://test-amorphie-workflow.${AppSettings.projectHost}/workflow/instance/transition/${transitionName}/view?type=Formio&json=0", //TODO değişecek
       headers: {
         "Accept": "application/json",
         "Accept-Language": "en-EN",
@@ -127,7 +127,7 @@ class Services {
 
   Future<ResponseModel> getWorkflowInstanceStateView(String stateName) async {
     return await Executer.get(
-      endpoint: "https://test-amorphie-workflow.${AppSettings.projectHost}/workflow/instance/state/${stateName}/view",
+      endpoint: "https://test-amorphie-workflow.${AppSettings.projectHost}/workflow/instance/state/${stateName}/view?type=Formio&json=0", //TODO değişecek
       headers: {
         "Accept": "application/json",
         "Accept-Language": "en-EN",
@@ -138,14 +138,7 @@ class Services {
   Future<ResponseModel> postWorkflowInstance(String instanceId, String transitionName, Map<String, dynamic> data) async {
     return await Executer.post(
       endpoint: "https://test-amorphie-workflow.${AppSettings.projectHost}/workflow/instance/${instanceId}/transition/${transitionName}",
-      data: {
-        "entityData": data,
-        "formData": {},
-        "additionalData": {},
-        "getSignalRHub": true,
-        "routeData": {},
-        "queryData": {},
-      },
+      data: data,
       headers: {
         "User": Uuid().v4(),
         "Behalf-Of-User": Uuid().v4(),
@@ -167,10 +160,11 @@ class Services {
 
   Future<ResponseModel> getWorkflowInstanceData(String instanceId) async {
     return await Executer.get(
-      endpoint: "https://test-amorphie-workflow.${AppSettings.projectHost}/workflow/instance/${instanceId}/data ",
+      endpoint: "https://test-amorphie-workflow.${AppSettings.projectHost}/workflow/instance/${instanceId}/data",
       headers: {
         "Accept": "application/json",
         "Accept-Language": "en-EN",
+        "Host": "test-amorphie-workflow.burgan.com.tr",
       },
     );
   }

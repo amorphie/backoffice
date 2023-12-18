@@ -1,5 +1,7 @@
 import 'dart:developer';
 
+import 'package:admin/ui/controllers/workflow_instance/workflow_instance_controller.dart';
+
 import 'exporter.dart';
 
 class Hub {
@@ -43,20 +45,26 @@ class Hub {
       } else {
         model = HubModel.fromMap(d);
       }
-      if ((model.eventInfo == "worker-completed" || model.eventInfo == "transition-completed") && (model.page != null && model.page!.type != "Popup")) {
-        EntityController c = Get.find<EntityController>();
-        c.getDataList();
-      }
 
-      if (model.page != null && model.page!.operation == "Open" && model.page!.type == "Popup") {
-        log("showHubFormio", name: "showHubFormio");
+      WorkflowInstanceController controller = Get.put<WorkflowInstanceController>(WorkflowInstanceController());
 
-        formioDialog(Get.context!, model.entityName, model.recordId, model.workflowName, model.transition);
-      }
+      controller.hub(model);
+
+      // if ((model.eventInfo == "worker-completed" || model.eventInfo == "transition-completed") && (model.page != null && model.page!.type != "Popup")) {
+      //   EntityController c = Get.find<EntityController>();
+      //   c.getDataList();
+      // }
+
+      // if (model.page != null && model.page!.operation == "Open" && model.page!.type == "Popup") {
+      //   log("showHubFormio", name: "showHubFormio");
+
+      //   formioDialog(Get.context!, model.entityName, model.recordId, model.workflowName, model.transition);
+      // }
       if (model.message != null && model.message!.isNotEmpty) Get.snackbar("Result", model.message!, backgroundColor: Colors.black, colorText: Colors.white);
     });
     connection.on("ClientConnected", (arguments) {
       Logger.root.config(arguments.toString(), "ClientConnected");
+      // stop();
     });
 
     connection.onclose(({error}) {
@@ -68,7 +76,9 @@ class Hub {
     connection.onreconnecting(({error}) {
       Logger.root.config(error, "onreconnecting"); //Test için eklendi
     });
+
     try {
+      // await connection.stop();
       await connection.start();
     } catch (e) {
       Logger.root.warning(e);

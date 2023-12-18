@@ -5,8 +5,24 @@
       {
         "type": "title_description_area_widget",
         "args": {
+          "title": "ID",
+          "text": "{{data.id}}",
+          "copyValue": true
+        }
+      },
+      {
+        "type": "title_description_area_widget",
+        "args": {
+          "title": "Record ID",
+          "text": "{{data.recordId}}",
+          "copyValue": true
+        }
+      },
+      {
+        "type": "title_description_area_widget",
+        "args": {
           "title": "Entity",
-          "text": "{{data.entity}}",
+          "text": "{{data.entityName}}",
           "copyValue": true
         }
       },
@@ -14,7 +30,7 @@
         "type": "title_description_area_widget",
         "args": {
           "title": "Workflow",
-          "text": "{{data.workflow}}",
+          "text": "{{data.workflowName}}",
           "copyValue": true
         }
       },
@@ -33,51 +49,16 @@
         }
       },{{for transition in data.state.transitions}}
       {
-        "type": "title_description_area_widget",
-        "args": {
-          "title": "",
-          "text": "{{transition.name}}",
-          "copyValue": true
-        }
-      },
-      {
-        "type": "title_description_area_widget",
-        "args": {
-          "title": "",
-          "text": "{{transition.title.label}}",
-          "copyValue": true
-        }
-      },
-      {
-        "type": "title_description_area_widget",
-        "args": {
-          "title": "",
-          "text": "{{transition.toState}}",
-          "copyValue": true
-        }
-      },
-      {
-        "type": "title_description_area_widget",
-        "args": {
-          "title": "",
-          "text": "{{transition.form.label}}",
-          "copyValue": true
-        }
-      },
-      {
-        "type": "title_description_area_widget",
-        "args": {
-          "title": "",
-          "text": "{{transition.fromState}}",
-          "copyValue": true
-        }
-      },
-      {
-        "type": "title_description_area_widget",
-        "args": {
-          "title": "Created At",
-          "text": "{{data.createdAt}}"
-        }
+          "type": "elevated_button",
+          "args": {
+              "onPressed": "${transition_view('{{transition.name}}','{{data.id}}','{{transition.title.label}}')}",
+              "child": {
+                  "type": "text",
+                  "args": {
+                      "text": "{{transition.name}}"
+                  }
+              }
+          }
       },{{end}}
       {
         "type": "sized_box",

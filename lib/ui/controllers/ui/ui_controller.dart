@@ -1,16 +1,10 @@
-import '../helpers/exporter.dart';
+import 'package:admin/ui/controllers/ui/_ui_controller.dart';
 
-class AppUiController extends GetxController {
-  Rx<MenuModel> menu = MenuModel(items: []).obs;
-  Rx<MenuItemModel> menuItem = MenuItemModel(type: MenuItemType.none).obs;
-  late UIModel ui;
+import '../../helpers/exporter.dart';
 
-  bool get isEntityItem => menuItem.value.type == MenuItemType.entity;
-  bool get hasSelectedMenuItem => menuItem.value.type != MenuItemType.none;
-  RxMap<String, dynamic> dashboardListData = <String, dynamic>{}.obs;
-
+class AppUiController extends GetxController with AppUiControllerMixin {
   Future setMenuItem(MenuItemModel _) async {
-    menuItem.value = _;
+    setMenuItemModel(_);
     EntityController entityController = Get.find<EntityController>();
     HomeController homeController = Get.find<HomeController>();
 
@@ -23,17 +17,13 @@ class AppUiController extends GetxController {
     }
   }
 
-  menuReset() {
-    menuItem.value = MenuItemModel(type: MenuItemType.none);
-  }
-
   Future<void> init() async {
     Services services = Services();
-    ui = await services.getUiData();
-    for (var d in ui.dashboard.items) {
+    UIModel ui = await services.getUiData();
+    setUi(ui);
+    for (var d in dashboard.items) {
       await getDashboardListData(d);
     }
-    menu.value = ui.leftSidebar;
   }
 
   Future getDashboardListData(DashboardItemModel item) async {
@@ -46,7 +36,6 @@ class AppUiController extends GetxController {
         Services services = Services();
         var result = await services.search(url: item.dataUrl!, pageSize: item.count, pageNumber: 0);
         dashboardListData.addAll({item.entity!: result.data});
-        dashboardListData.refresh();
       }
     }
   }

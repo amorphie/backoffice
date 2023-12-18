@@ -17,7 +17,6 @@ class Executer {
   }) {
     _request = http.Request(method.name, Uri.parse(endpoint));
 
-    appLogger.wtf(data, endpoint, StackTrace.empty);
     _setData();
     _setHeaders();
   }
@@ -50,25 +49,28 @@ class Executer {
   }
 
   Future<ResponseModel> execute() async {
-    if (ExecuterManager.control(endpoint, data, method)) {
+    if (ExecuterManager.control(_endpointData(), data, method)) {
       try {
         _setHeaders();
 
+        appLogger.wtf(data, "data", StackTrace.empty);
+        appLogger.wtf(headers, "headers", StackTrace.empty);
         http.StreamedResponse response = await _request.send();
         String resultData = await response.stream.bytesToString();
         if (resultData.isEmpty) resultData = "{}";
         var result = jsonDecode(resultData);
 
         if (response.statusCode >= 200 && response.statusCode < 300) {
-          appLogger.v("statusCode => " + response.statusCode.toString(), endpoint);
-          // appLogger.v(result, endpoint);
+          appLogger.v(result, _endpointData(response.statusCode));
 
           return ResponseModel(code: response.statusCode, errors: {}, success: true, message: "", data: result);
         } else {
+          appLogger.w(result, _endpointData(response.statusCode));
+
           return ResponseModel(code: response.statusCode, success: false, errors: {}, message: result["message"] ?? "", data: result);
         }
       } catch (e) {
-        appLogger.e(e.toString(), endpoint);
+        appLogger.e(e.toString(), _endpointData());
         return ResponseModel(code: 0, success: false, errors: {"errors": e}, message: e.toString(), data: null);
       }
     }
@@ -97,4 +99,6 @@ class Executer {
       _request.body = json.encode(data);
     }
   }
+
+  String _endpointData([int? statusCode, String? title]) => "${title != null ? "[" + title + "]" : ""} ${statusCode != null ? statusCode : ""} [${method.name}] ${endpoint}";
 }

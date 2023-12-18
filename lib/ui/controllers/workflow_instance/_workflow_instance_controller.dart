@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:admin/data/models/workflow/instance/workflow_instance_model.dart';
 import 'package:admin/data/models/workflow/instance/workflow_instance_transition_model.dart';
 import 'package:admin/data/models/workflow/instance/workflow_instance_view_model.dart';
@@ -38,6 +39,7 @@ mixin WorkflowInstanceControllerMixin {
 
   setTransition(WorkflowInstanceTransitionModel _) {
     transition = _;
+    transitionName = _.transition;
   }
   //! view END
 

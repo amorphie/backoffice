@@ -116,9 +116,9 @@ export 'package:admin/ui/widgets/render/register_widgets/title_widget/detail_tit
 //controller
 
 export 'package:admin/ui/controllers/workflow_controller.dart';
-export 'package:admin/ui/controllers/ui_controller.dart';
+export 'package:admin/ui/controllers/ui/ui_controller.dart';
 export 'package:admin/ui/controllers/entity_controller.dart';
-export 'package:admin/ui/controllers/home_controller.dart';
+export 'package:admin/ui/controllers/home/home_controller.dart';
 export 'package:admin/ui/controllers/display_controller.dart';
 export 'package:admin/ui/controllers/filter_controller.dart';
 
