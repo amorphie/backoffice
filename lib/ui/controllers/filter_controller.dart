@@ -26,9 +26,9 @@ class FilterController extends GetxController {
     for (var filter in entityController.entity.search.filter!) {
       if (filter.type == FilterType.reference) {
         var response = await Services().search(
-          url: entityController.entities[filter.entity]!.search.url,
-          pageSize: entityController.entities[filter.entity]!.search.defaultPageSize,
-          pageNumber: entityController.entities[filter.entity]!.search.defaultPageNumber,
+          url: entityController.getEntity(filter.entity)!.search.url,
+          pageSize: entityController.getEntity(filter.entity)!.search.defaultPageSize,
+          pageNumber: entityController.getEntity(filter.entity)!.search.defaultPageNumber,
         );
         var list = response.data;
         if (list is! List) {

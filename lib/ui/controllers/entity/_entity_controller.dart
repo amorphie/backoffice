@@ -47,7 +47,17 @@ mixin EntityControllerMixin {
     _pageNumber.value = 0;
   }
 
-  Map<String, EntityModel> entities = {};
+  Map<String, EntityModel> _entities = {};
+
+  setEntities(Map<String, EntityModel> _) {
+    _entities = _;
+  }
+
+  EntityModel? getEntity(String? name) {
+    if (_entities[name] != null) return _entities[name]!;
+    // throw Exception("$name isimli entity bulunamadı");
+    return null;
+  }
 
   RxList<Map<String, dynamic>> _dataList = <Map<String, dynamic>>[].obs;
   List<Map<String, dynamic>> get dataList => List<Map<String, dynamic>>.of(_dataList);

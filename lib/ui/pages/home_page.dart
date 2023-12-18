@@ -149,7 +149,7 @@ class HomePage extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8),
                         child: Text(
-                          title ?? entityController.entities[model!.entity]?.search.titleTemplate.templateWithData(model.data) ?? model!.id,
+                          title ?? entityController.getEntity(model!.entity)?.search.titleTemplate.templateWithData(model.data) ?? model!.id,
                           style: TextStyle(color: homeController.equalDisplayView(model) ? Colors.white : Colors.black, fontSize: 16),
                         ),
                       ),

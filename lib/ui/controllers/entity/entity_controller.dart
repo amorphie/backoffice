@@ -32,7 +32,7 @@ class EntityController extends GetxController with EntityControllerMixin {
   }
 
   Future<void> init() async {
-    entities = await services.getEntityData();
+    setEntities(await services.getEntityData());
   }
 
   Future refreshList() async {
@@ -41,7 +41,7 @@ class EntityController extends GetxController with EntityControllerMixin {
 
   Future<void> setEntityMenu() async {
     AppUiController menu = Get.find<AppUiController>();
-    EntityModel? entityModel = entities[menu.menuItem.entity];
+    EntityModel? entityModel = getEntity(menu.menuItem.entity);
 
     setEndpointSuffix("");
     if (entityModel != null) {

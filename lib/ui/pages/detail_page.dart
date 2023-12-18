@@ -28,7 +28,7 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
     _tabController = TabController(length: displayController.tabCount, vsync: this);
   }
 
-  EntityModel get entity => entityController.entities[widget.entity]!;
+  EntityModel get entity => entityController.getEntity(widget.entity)!;
 
   @override
   Widget build(BuildContext context) {

@@ -109,7 +109,7 @@ class DisplayController extends GetxController with DisplayControllerMixin {
     await Future.delayed(Duration(milliseconds: 200));
 
     EntityController entityController = Get.find<EntityController>();
-    EntityModel entity = entityController.entities[tab.entity]!;
+    EntityModel entity = entityController.getEntity(tab.entity)!;
     var response = await Services().search(
       url: tab.url!.replaceAll("@id", displayData[tab.id]),
       pageSize: pageSize ?? entity.search.defaultPageSize,

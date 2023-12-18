@@ -36,7 +36,7 @@ class FilterDropdown extends StatelessWidget {
                     .map((e) => DropdownMenuItem<dynamic>(
                         value: e,
                         child: Text(
-                          entityController.entities[filter.entity]!.search.titleTemplate.templateWithData(e),
+                          entityController.getEntity(filter.entity)!.search.titleTemplate.templateWithData(e),
                         )))
                     .toList()
               ],
