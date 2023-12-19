@@ -164,7 +164,6 @@ class Services {
       headers: {
         "Accept": "application/json",
         "Accept-Language": "en-EN",
-        "Host": "test-amorphie-workflow.burgan.com.tr",
       },
     );
   }

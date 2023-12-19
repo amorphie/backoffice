@@ -7,41 +7,53 @@ import 'package:admin/ui/helpers/exporter.dart';
 import '_workflow_instance_controller.dart';
 
 class WorkflowInstanceController extends GetxController with WorkflowInstanceControllerMixin {
+  WorkflowInstanceController([String? _tag]) {
+    setTag(_tag);
+  }
+  @override
+  void onInit() {
+    super.onInit();
+    if (tag != null && tag!.isNotEmpty) setInstanceId(tag!);
+  }
+
   Future hub(HubModel hubModel) async {
     assert(hubModel.instanceId.isNotEmpty);
 
     setInstanceId(hubModel.instanceId);
     await _getWorkflowInstanceTransition();
+
     if (model.viewSource == "transition") {
-      await _getWorkflowInstanceData();
-      await _getWorkflowInstanceTransition();
+      await _getWorkflowInstanceData(); //TODO DATA HER TÜRLÜ BURADA BIND EDILECEK
+      WorkflowInstanceTransitionModel? transitionModel = model.transition.firstWhereOrNull((element) => element.type == TransitionButtonType.forward || element.type == null);
+      if (transitionModel != null) {
+        setTransition(transitionModel);
+        await _getWorkflowInstanceTransitionView();
+        instanceDialog(Get.context!);
+      }
+    } else if (model.viewSource == "state") {
+      await _getWorkflowInstanceData(); //TODO DATA HER TÜRLÜ BURADA BIND EDILECEK
     }
     printData();
   }
 
-  Future init({String? recordId, String? transitionName}) async {
-    assert(recordId != null || transitionName != null);
-
-    if (recordId != null) {
-      setInstanceId(recordId);
-      setTransitionName(transitionName!);
-      await _getWorkflowInstanceTransition();
-      if (model.viewSource == "transition") {
-        await _getWorkflowInstanceData();
-        await _getWorkflowInstanceTransitionView();
-      }
-    } else if (transitionName != null) {
-      setTransitionName(transitionName);
-      if (instanceId.isEmpty) setInstanceId(Uuid().v4());
-      await _getWorkflowInstanceTransitionView();
-    }
-  }
-
   Future initWithWorkflowName(String workflowName) async {
+    //!Menüden + ya basınca ilk gelen transition için
     setWorkflowName(workflowName);
     if (instanceId.isEmpty) setInstanceId(Uuid().v4());
 
     await _getWorkflowInstanceInit();
+  }
+
+  Future initWithInstanceId([String? instanceId]) async {
+    //! Listeden bir detay açılırken o detayın datası gelsin diye
+    await _getWorkflowInstanceTransition();
+  }
+
+  Future viewTransition(WorkflowInstanceTransitionModel t) async {
+    //! Bir detay içerisinden transition seçilirse
+    setTransition(t);
+    await _getWorkflowInstanceTransitionView();
+    instanceDialog(Get.context!);
   }
 
   Future postData({WorkflowInstanceTransitionModel? transition, required Map<String, dynamic> entityData, String? instanceId}) async {
@@ -96,14 +108,6 @@ class WorkflowInstanceController extends GetxController with WorkflowInstanceCon
     ResponseModel response = await Services().getWorkflowInstanceTransition(instanceId);
     if (response.success) {
       model = WorkflowInstanceModel.fromJson(response.data);
-      if (model.viewSource == "transition") {
-        WorkflowInstanceTransitionModel? transitionModel = model.transition.firstWhereOrNull((element) => element.type == TransitionButtonType.forward || element.type == null);
-        if (transitionModel != null) {
-          setTransition(transitionModel);
-          await _getWorkflowInstanceTransitionView();
-          instanceDialog(Get.context!);
-        }
-      }
     }
   }
 

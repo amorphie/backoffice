@@ -10,7 +10,6 @@ class MenuItem extends StatelessWidget {
   }) : super(key: key);
 
   final AppUiController menuController = Get.find<AppUiController>();
-  final EntityController entityController = Get.find<EntityController>();
   @override
   Widget build(BuildContext context) {
     return Align(
@@ -28,15 +27,8 @@ class MenuItem extends StatelessWidget {
                 expandedCrossAxisAlignment: CrossAxisAlignment.start,
                 iconColor: KC.secondary,
                 collapsedIconColor: Colors.white70,
-                title: MenuButtonCard(
-                  text: model.title!.print(),
-                  isEspanded: false,
-                ),
-                children: model.items!
-                    .map((e) => MenuItem(
-                          model: e,
-                        ))
-                    .toList(),
+                title: MenuButtonCard(text: model.title!.print(), isEspanded: false),
+                children: model.items!.map((e) => MenuItem(model: e)).toList(),
               );
             case MenuItemType.entity:
               return Obx(() {
@@ -66,10 +58,7 @@ class MenuItem extends StatelessWidget {
             case MenuItemType.profile:
               return MenuProfileItem(
                 logoPressed: () {
-                  // menuController.menuReset();
-                  Get.to(Scaffold(
-                    body: RenderWidget(template: testRenderTemplateData),
-                  ));
+                  menuController.menuReset();
                 },
               );
             case MenuItemType.divider:

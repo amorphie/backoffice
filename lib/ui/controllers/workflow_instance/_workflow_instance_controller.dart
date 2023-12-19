@@ -6,6 +6,10 @@ import 'package:admin/data/models/workflow/instance/workflow_instance_view_model
 import '../../helpers/exporter.dart';
 
 mixin WorkflowInstanceControllerMixin {
+  String? _tag;
+  String? get tag => _tag;
+  setTag(String? _) => _tag = _;
+
   //! model BEGIN
   Rx<WorkflowInstanceModel> _model = WorkflowInstanceModel.init().obs;
   WorkflowInstanceModel get model => _model.value;

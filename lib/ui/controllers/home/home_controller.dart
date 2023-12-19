@@ -1,4 +1,5 @@
 import 'package:admin/ui/controllers/home/_home_controller.dart';
+import 'package:admin/ui/controllers/workflow_instance/workflow_instance_controller.dart';
 
 import '../../helpers/exporter.dart';
 
@@ -23,6 +24,10 @@ class HomeController extends GetxController with HomeControllerMixin {
       String? workflowName = data[entityController.entity.workflow.workflowNameData] ?? Uuid().v4();
 
       DisplayController displayController = Get.put<DisplayController>(DisplayController(dataId), tag: dataId);
+
+      WorkflowInstanceController instance = Get.put<WorkflowInstanceController>(WorkflowInstanceController(dataId), tag: dataId);
+      await instance.initWithInstanceId(dataId);
+
       WorkflowController workflowController = Get.put<WorkflowController>(WorkflowController(dataId), tag: dataId);
 
       await workflowController.startTransition(entity: entityName, recordId: dataId, stateManager: workflowName);
