@@ -1,6 +1,8 @@
 import 'dart:developer';
 
+import 'package:admin/ui/constants/app_settings.dart';
 import 'package:admin/ui/controllers/workflow_instance/workflow_instance_controller.dart';
+import 'package:signalr_netcore/ihub_protocol.dart';
 
 import 'exporter.dart';
 
@@ -9,13 +11,17 @@ class Hub {
   late HubConnection connection;
 
   Hub() {
-    HttpConnectionOptions httpOptions = HttpConnectionOptions(requestTimeout: 5000);
+    HttpConnectionOptions httpOptions = HttpConnectionOptions(
+      requestTimeout: 5000,
+      headers: MessageHeaders()..setHeaderValue("X-Device-Id", AppSettings.xDeviceId),
+    );
     Logger hubProtLogger = Logger("SignalR - hub");
     Logger.root.level = Level.ALL;
     Logger.root.onRecord.listen((LogRecord rec) {
       log("[${rec.time}][${rec.level.name}]\t${rec.message}", name: "SIGNALR-HUB");
     });
-    String hubConnectionUrl = "https://test-amorphie-workflow-hub.${dotenv.env["PROJECT_HOST"]}/hubs/workflow";
+
+    String hubConnectionUrl = "https://test-amorphie-workflow-hub.${dotenv.env["PROJECT_HOST"]}/hubs/genericHub";
 
     connection = HubConnectionBuilder()
         .withUrl(
@@ -32,6 +38,7 @@ class Hub {
       'sendMessage',
       args: [message],
     );
+    print("sendmessage");
   }
 
   Future start() async {
@@ -64,6 +71,8 @@ class Hub {
     });
     connection.on("ClientConnected", (arguments) {
       Logger.root.config(arguments.toString(), "ClientConnected");
+      sendMessage("Test");
+
       // stop();
     });
 
@@ -80,6 +89,7 @@ class Hub {
     try {
       // await connection.stop();
       await connection.start();
+      print(1);
     } catch (e) {
       Logger.root.warning(e);
     }

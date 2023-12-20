@@ -144,6 +144,7 @@ class Services {
         "Behalf-Of-User": Uuid().v4(),
         "Content-Type": "application/json",
         "Accept": "application/json",
+        "X-Device-Id": AppSettings.xDeviceId,
       },
     );
   }
