@@ -46,6 +46,11 @@ appRenderInit() {
             showTag(args.first.toString());
           }
         },
+    "transition_view": ({args, required registry}) => () async {
+          if (args != null && args.length > 2) {
+            instanceDialog(Get.context!, transition: args[0], recordId: args[1]);
+          }
+        },
     'set_value': ({args, required registry}) => () {
           final replace = registry.getValue(args![1]);
           registry.setValue(args[0], replace);

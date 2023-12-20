@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:admin/data/models/workflow/instance/workflow_instance_model.dart';
 import 'package:admin/data/models/workflow/instance/workflow_instance_transition_model.dart';
 import 'package:admin/data/models/workflow/instance/workflow_instance_view_model.dart';
@@ -5,6 +6,10 @@ import 'package:admin/data/models/workflow/instance/workflow_instance_view_model
 import '../../helpers/exporter.dart';
 
 mixin WorkflowInstanceControllerMixin {
+  String? _tag;
+  String? get tag => _tag;
+  setTag(String? _) => _tag = _;
+
   //! model BEGIN
   Rx<WorkflowInstanceModel> _model = WorkflowInstanceModel.init().obs;
   WorkflowInstanceModel get model => _model.value;
@@ -38,6 +43,7 @@ mixin WorkflowInstanceControllerMixin {
 
   setTransition(WorkflowInstanceTransitionModel _) {
     transition = _;
+    transitionName = _.transition;
   }
   //! view END
 

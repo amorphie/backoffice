@@ -1,5 +1,9 @@
 import 'dart:developer';
 
+import 'package:admin/ui/constants/app_settings.dart';
+import 'package:admin/ui/controllers/workflow_instance/workflow_instance_controller.dart';
+import 'package:signalr_netcore/ihub_protocol.dart';
+
 import 'exporter.dart';
 
 class Hub {
@@ -7,13 +11,17 @@ class Hub {
   late HubConnection connection;
 
   Hub() {
-    HttpConnectionOptions httpOptions = HttpConnectionOptions(requestTimeout: 5000);
+    HttpConnectionOptions httpOptions = HttpConnectionOptions(
+      requestTimeout: 5000,
+      headers: MessageHeaders()..setHeaderValue("X-Device-Id", AppSettings.xDeviceId),
+    );
     Logger hubProtLogger = Logger("SignalR - hub");
     Logger.root.level = Level.ALL;
     Logger.root.onRecord.listen((LogRecord rec) {
       log("[${rec.time}][${rec.level.name}]\t${rec.message}", name: "SIGNALR-HUB");
     });
-    String hubConnectionUrl = "https://test-amorphie-workflow-hub.${dotenv.env["PROJECT_HOST"]}/hubs/workflow";
+
+    String hubConnectionUrl = "https://test-amorphie-workflow-hub.${dotenv.env["PROJECT_HOST"]}/hubs/genericHub";
 
     connection = HubConnectionBuilder()
         .withUrl(
@@ -30,6 +38,7 @@ class Hub {
       'sendMessage',
       args: [message],
     );
+    print("sendmessage");
   }
 
   Future start() async {
@@ -43,20 +52,28 @@ class Hub {
       } else {
         model = HubModel.fromMap(d);
       }
-      if ((model.eventInfo == "worker-completed" || model.eventInfo == "transition-completed") && (model.page != null && model.page!.type != "Popup")) {
-        EntityController c = Get.find<EntityController>();
-        c.getDataList();
-      }
 
-      if (model.page != null && model.page!.operation == "Open" && model.page!.type == "Popup") {
-        log("showHubFormio", name: "showHubFormio");
+      WorkflowInstanceController controller = Get.put<WorkflowInstanceController>(WorkflowInstanceController());
 
-        formioDialog(Get.context!, model.entityName, model.recordId, model.workflowName, model.transition);
-      }
+      controller.hub(model);
+
+      // if ((model.eventInfo == "worker-completed" || model.eventInfo == "transition-completed") && (model.page != null && model.page!.type != "Popup")) {
+      //   EntityController c = Get.find<EntityController>();
+      //   c.getDataList();
+      // }
+
+      // if (model.page != null && model.page!.operation == "Open" && model.page!.type == "Popup") {
+      //   log("showHubFormio", name: "showHubFormio");
+
+      //   formioDialog(Get.context!, model.entityName, model.recordId, model.workflowName, model.transition);
+      // }
       if (model.message != null && model.message!.isNotEmpty) Get.snackbar("Result", model.message!, backgroundColor: Colors.black, colorText: Colors.white);
     });
     connection.on("ClientConnected", (arguments) {
       Logger.root.config(arguments.toString(), "ClientConnected");
+      sendMessage("Test");
+
+      // stop();
     });
 
     connection.onclose(({error}) {
@@ -68,8 +85,11 @@ class Hub {
     connection.onreconnecting(({error}) {
       Logger.root.config(error, "onreconnecting"); //Test için eklendi
     });
+
     try {
+      // await connection.stop();
       await connection.start();
+      print(1);
     } catch (e) {
       Logger.root.warning(e);
     }

@@ -10,7 +10,7 @@ WorkflowInstanceTransitionModel _$WorkflowInstanceTransitionModelFromJson(
         Map<String, dynamic> json) =>
     WorkflowInstanceTransitionModel(
       transition: json['transition'] as String,
-      type: $enumDecodeNullable(_$TransitionTypeEnumMap, json['type'],
+      type: $enumDecodeNullable(_$TransitionButtonTypeEnumMap, json['type'],
           unknownValue: JsonKey.nullForUndefinedEnumValue),
       requireData: json['require-data'] as String?,
       hasViewVariant: json['has-view-variant'] as bool,
@@ -20,7 +20,7 @@ Map<String, dynamic> _$WorkflowInstanceTransitionModelToJson(
     WorkflowInstanceTransitionModel instance) {
   final val = <String, dynamic>{
     'transition': instance.transition,
-    'type': _$TransitionTypeEnumMap[instance.type],
+    'type': _$TransitionButtonTypeEnumMap[instance.type],
   };
 
   void writeNotNull(String key, dynamic value) {
@@ -34,9 +34,8 @@ Map<String, dynamic> _$WorkflowInstanceTransitionModelToJson(
   return val;
 }
 
-const _$TransitionTypeEnumMap = {
-  TransitionType.formio: 'Formio',
-  TransitionType.pageUrl: 'PageUrl',
-  TransitionType.html: 'Html',
-  TransitionType.flutterWidget: 'FlutterWidget',
+const _$TransitionButtonTypeEnumMap = {
+  TransitionButtonType.forward: 'Forward',
+  TransitionButtonType.back: 'Back',
+  TransitionButtonType.cancel: 'Cancel',
 };

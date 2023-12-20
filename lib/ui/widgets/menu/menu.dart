@@ -36,7 +36,7 @@ class AppMenu extends StatelessWidget {
           Expanded(
             child: ListView(
               children: [
-                ...c.menu.value.items.map((e) => MenuItem(model: e)).toList(),
+                ...c.menu.items.map((e) => MenuItem(model: e)).toList(),
               ],
             ),
           ),

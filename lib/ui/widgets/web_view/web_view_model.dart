@@ -9,14 +9,14 @@ class WebViewSource {
   WebViewSource({required this.source, this.callJsMethod});
   factory WebViewSource.html(String data) => WebViewSource(source: data);
   factory WebViewSource.url(String url) => WebViewSource(source: url);
-  factory WebViewSource.formio(String data) => WebViewSource(source: _initialContent(data));
+  factory WebViewSource.formio(String data) => WebViewSource(source: _formioContent(data));
 
   bool get isHtml => _sourceType == _WebViewSourceType.html;
   bool get isUrl => _sourceType == _WebViewSourceType.url;
   bool get isFormio => _sourceType == _WebViewSourceType.formio;
 }
 
-String _initialContent(String json) => """
+String _formioContent(String json) => """
 <!DOCTYPE html>
 <html lang="en">
 

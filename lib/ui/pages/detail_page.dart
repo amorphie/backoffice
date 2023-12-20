@@ -28,7 +28,7 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
     _tabController = TabController(length: displayController.tabCount, vsync: this);
   }
 
-  EntityModel get entity => entityController.entities[widget.entity]!;
+  EntityModel get entity => entityController.getEntity(widget.entity)!;
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +61,7 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
               actions: [
                 IconButton(
                     onPressed: () {
-                      homeController.subtractData(homeController.selectedEntity.value);
+                      homeController.subtractData(homeController.displayView);
                       homeController.deselectEntity();
                     },
                     icon: Icon(Icons.close))
@@ -96,7 +96,7 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
                     ? getRenderWidget(displayController.displayLayout.detailTemplate!)
                     : GenericDetailWidget(
                         entity: entity,
-                        data: displayController.displayView,
+                        data: displayController.displayData,
                       ),
                 ...(displayController.displayLayout.tabs ?? []).map((e) {
                   return DisplayTabItemWidget(

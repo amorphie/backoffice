@@ -12,8 +12,8 @@ class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemBuilder: (context, index) => DashboardItem(item: c.ui.dashboard.items[index]),
-      itemCount: c.ui.dashboard.items.length,
+      itemBuilder: (context, index) => DashboardItem(item: c.dashboard.items[index]),
+      itemCount: c.dashboard.items.length,
     );
   }
 }

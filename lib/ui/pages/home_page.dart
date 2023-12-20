@@ -1,5 +1,7 @@
 import 'dart:developer';
 
+import 'package:admin/ui/controllers/workflow_instance/workflow_instance_controller.dart';
+
 import '../helpers/exporter.dart';
 
 class HomePage extends StatelessWidget {
@@ -27,12 +29,12 @@ class HomePage extends StatelessWidget {
                         height: 50,
                         child: Row(
                           children: [
-                            displayButton(title: menuController.menuItem.value.title!.print()),
+                            displayButton(title: menuController.menuItem.title!.print()),
                             Expanded(
                               child: Obx(() {
                                 return ListView.builder(
-                                  itemCount: homeController.entityList.length,
-                                  itemBuilder: (_, i) => displayButton(model: homeController.entityList[i]),
+                                  itemCount: homeController.displayList.length,
+                                  itemBuilder: (_, i) => displayButton(model: homeController.displayList[i]),
                                   scrollDirection: Axis.horizontal,
                                 );
                               }),
@@ -42,13 +44,13 @@ class HomePage extends StatelessWidget {
                       ),
                       Expanded(
                         child: Obx(() {
-                          if (!homeController.selectedEntity.value.isBlank)
-                            return homeController.selectedEntity.value.page;
+                          if (homeController.hasEntity)
+                            return homeController.displayView.page;
                           else
                             return AppDataTable(
                               onFinish: () {
                                 log("finish", name: "onPageChanged");
-                                entityController.onPageChange(entityController.pageNumber + 1);
+                                entityController.onPageChange();
                               },
                               rowsPerPage: homeController.rowPerPage,
                               onRowsPerPageChanged: homeController.setRowPerPage,
@@ -73,13 +75,16 @@ class HomePage extends StatelessWidget {
                               onEndpointSuffix: (val) {
                                 entityController.onEndpointSuffixSend(val);
                               },
-                              loading: entityController.loading.value,
+                              loading: entityController.loading,
                               onPressed: (data) async {
-                                await homeController.addData(data);
+                                await homeController.selectDisplayData(data);
                                 log(DateTime.now().toIso8601String(), name: "SelectEntityFinal");
                               },
                               addPressed: () async {
-                                formioDialog(context);
+                                WorkflowInstanceController controller = Get.put<WorkflowInstanceController>(WorkflowInstanceController());
+                                if (entityController.entity.workflow.name != null) controller.initWithWorkflowName(entityController.entity.workflow.name!);
+
+                                // formioDialog(context);
                               },
                               onSort: (val) {
                                 entityController.onSort(val);
@@ -123,7 +128,7 @@ class HomePage extends StatelessWidget {
           child: GestureDetector(
               onTap: () {
                 if (title == null) {
-                  homeController.selectEntity(model!);
+                  homeController.setDisplayView(model!);
                 } else {
                   homeController.deselectEntity();
                 }
@@ -132,7 +137,7 @@ class HomePage extends StatelessWidget {
                 elevation: 2,
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
                 child: Container(
-                  decoration: model == homeController.selectedEntity.value
+                  decoration: homeController.equalDisplayView(model)
                       ? BoxDecoration(borderRadius: BorderRadius.circular(20), color: KC.secondary)
                       : title == null
                           ? BoxDecoration(borderRadius: BorderRadius.circular(20), border: Border.all(), color: Colors.transparent)
@@ -144,8 +149,8 @@ class HomePage extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8),
                         child: Text(
-                          title ?? entityController.entities[model!.entity]?.search.titleTemplate.templateWithData(model.data) ?? model!.id,
-                          style: TextStyle(color: model == homeController.selectedEntity.value ? Colors.white : Colors.black, fontSize: 16),
+                          title ?? entityController.getEntity(model!.entity)?.search.titleTemplate.templateWithData(model.data) ?? model!.id,
+                          style: TextStyle(color: homeController.equalDisplayView(model) ? Colors.white : Colors.black, fontSize: 16),
                         ),
                       ),
                       if (title == null) SizedBox(width: 5),
@@ -156,7 +161,7 @@ class HomePage extends StatelessWidget {
                               onTap: () {
                                 homeController.subtractData(model!);
                               },
-                              child: Icon(Icons.close, size: 18, color: model == homeController.selectedEntity.value ? KC.background : KC.primary)),
+                              child: Icon(Icons.close, size: 18, color: homeController.equalDisplayView(model) ? KC.background : KC.primary)),
                         )
                     ],
                   ),
@@ -164,55 +169,4 @@ class HomePage extends StatelessWidget {
               )),
         ),
       );
-
-  Future<void> formioDialog(BuildContext context, [String? recordId]) async {
-    WorkflowController controller = Get.put<WorkflowController>(WorkflowController());
-    await controller.startTransition(
-      entity: entityController.entity.workflow.entity,
-      recordId: recordId,
-      //TODO TEst ederken buraya record id elle yazılabilir
-    );
-
-    return showDialog<void>(
-      context: context,
-      barrierDismissible: false,
-      builder: (BuildContext context) {
-        return Obx(() {
-          if (controller.loading) return AppIndicator();
-          return Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: AlertDialog(
-              actionsPadding: EdgeInsets.zero,
-              insetPadding: EdgeInsets.zero,
-              buttonPadding: EdgeInsets.zero,
-              contentPadding: EdgeInsets.zero,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-              title: Container(
-                padding: const EdgeInsets.all(10.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      controller.workflow.stateManager?.title ?? "",
-                      style: TextStyle(color: KC.primary, fontWeight: FontWeight.bold),
-                    ),
-                    IconButton(
-                        onPressed: () async {
-                          Navigator.pop(context);
-                          entityController.getDataList();
-                        },
-                        icon: Icon(
-                          Icons.close_rounded,
-                          color: KC.primary,
-                        ))
-                  ],
-                ),
-              ),
-              content: TransitionPage(),
-            ),
-          );
-        });
-      },
-    );
-  }
 }

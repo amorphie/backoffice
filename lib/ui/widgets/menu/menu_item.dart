@@ -10,7 +10,6 @@ class MenuItem extends StatelessWidget {
   }) : super(key: key);
 
   final AppUiController menuController = Get.find<AppUiController>();
-  final EntityController entityController = Get.find<EntityController>();
   @override
   Widget build(BuildContext context) {
     return Align(
@@ -28,15 +27,8 @@ class MenuItem extends StatelessWidget {
                 expandedCrossAxisAlignment: CrossAxisAlignment.start,
                 iconColor: KC.secondary,
                 collapsedIconColor: Colors.white70,
-                title: MenuButtonCard(
-                  text: model.title!.print(),
-                  isEspanded: false,
-                ),
-                children: model.items!
-                    .map((e) => MenuItem(
-                          model: e,
-                        ))
-                    .toList(),
+                title: MenuButtonCard(text: model.title!.print(), isEspanded: false),
+                children: model.items!.map((e) => MenuItem(model: e)).toList(),
               );
             case MenuItemType.entity:
               return Obx(() {
@@ -45,7 +37,7 @@ class MenuItem extends StatelessWidget {
                   onPressed: () {
                     menuController.setMenuItem(model);
                   },
-                  isSelected: menuController.menuItem.value == model,
+                  isSelected: menuController.menuItem == model,
                 );
               });
             case MenuItemType.workflow:
@@ -58,18 +50,15 @@ class MenuItem extends StatelessWidget {
                       entity: model.entity!,
                       // recordId: "cf0a00ce-b0e5-4f0e-8c31-7e35cd4d4f5a",
                     );
-                    menuController.menuItem.value = model;
+                    menuController.setMenuItem(model);
                   },
-                  isSelected: menuController.menuItem.value == model,
+                  isSelected: menuController.menuItem == model,
                 );
               });
             case MenuItemType.profile:
               return MenuProfileItem(
                 logoPressed: () {
-                  // menuController.menuReset();
-                  Get.to(Scaffold(
-                    body: RenderWidget(template: testRenderTemplateData),
-                  ));
+                  menuController.menuReset();
                 },
               );
             case MenuItemType.divider:
@@ -81,7 +70,7 @@ class MenuItem extends StatelessWidget {
                   onPressed: () {
                     menuController.setMenuItem(model);
                   },
-                  isSelected: menuController.menuItem.value == model,
+                  isSelected: menuController.menuItem == model,
                 );
               });
             default:

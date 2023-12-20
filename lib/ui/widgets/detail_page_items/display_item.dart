@@ -62,7 +62,7 @@ class DisplayTabItemWidget extends StatelessWidget {
       case DisplayTabType.pdf:
         Uint8List? bytes;
         if (value.source == "data") {
-          String? data = value.data?.jsWithData(displayController.displayView);
+          String? data = value.data?.jsWithData(displayController.displayData);
           if (data != null) bytes = getPdfFile(data);
         }
         return PdfWidget(

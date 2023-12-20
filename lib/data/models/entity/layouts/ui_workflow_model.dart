@@ -4,6 +4,7 @@ import 'dart:convert';
 class UIWorkflowModel {
   String entity;
   String? name;
+  String? firstTransition;
   String recordIdData;
   String? entityNameData;
   String? workflowNameData;
@@ -16,6 +17,7 @@ class UIWorkflowModel {
     this.name,
     this.recordIdData = "id",
     this.entityNameData,
+    this.firstTransition,
     this.workflowNameData,
     this.history = true,
     this.stateManager = true,
@@ -53,6 +55,7 @@ class UIWorkflowModel {
       'entity': entity,
       'name': name,
       'recordIdData': recordIdData,
+      'firstTransition': firstTransition,
       'entityNameData': entityNameData,
       'workflowNameData': workflowNameData,
       'history': history,
@@ -68,6 +71,7 @@ class UIWorkflowModel {
       name: map['name'] != null ? map['name'] as String : null,
       recordIdData: map['recordIdData'] as String,
       entityNameData: map['entityNameData'] != null ? map['entityNameData'] as String : null,
+      firstTransition: map['firstTransition'] != null ? map['firstTransition'] as String : null,
       workflowNameData: map['workflowNameData'] != null ? map['workflowNameData'] as String : null,
       history: map['history'] as bool,
       stateManager: map['stateManager'] as bool,

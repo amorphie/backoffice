@@ -13,12 +13,12 @@ class SortColumnModel {
   });
 
   bool get sortAscending => sortDirection == SortDirection.asc;
-
+  bool get hasSort => sortColumn.isNotEmpty;
   Map<String, String> toQueryMap() {
-    return <String, String>{
-      'sortColumn': sortColumn,
-      'sortDirection': sortDirection.toMap(),
-    };
+    var map = <String, String>{};
+    if (hasSort) map["sortColumn"] = sortColumn;
+    map["sortDirection"] = sortDirection.toMap();
+    return map;
   }
 
   SortColumnModel copyWith({

@@ -25,7 +25,7 @@ class DashboardItem extends StatelessWidget {
           return TabDataTable(
             withSearch: false,
             onSearch: (val) {},
-            columns: entityController.entities[item.entity]!.search.columns,
+            columns: entityController.getEntity(item.entity)!.search.columns,
             data: uiController.dashboardListData[item.entity]!,
             onPressed: (val) {},
           );

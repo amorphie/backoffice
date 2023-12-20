@@ -1,15 +1,10 @@
+import 'package:admin/ui/controllers/workflow_instance/workflow_instance_controller.dart';
+import 'package:admin/ui/widgets/workflow_instance/transition_widget.dart';
+
 import 'exporter.dart';
 
-Future<void> formioDialog(BuildContext context, [String? entity, String? recordId, String? stateManager, String? transition]) async {
-  WorkflowController controller = Get.put<WorkflowController>(WorkflowController());
-  final EntityController entityController = Get.find<EntityController>();
-
-  await controller.startTransition(
-    entity: entity ?? entityController.entity.workflow.entity,
-    recordId: recordId,
-    stateManager: stateManager,
-    transition: transition,
-  );
+Future<void> instanceDialog(BuildContext context, {String? recordId, String? workflow, String? transition}) async {
+  WorkflowInstanceController controller = Get.find<WorkflowInstanceController>();
 
   return showDialog<void>(
     context: context,
@@ -30,14 +25,14 @@ Future<void> formioDialog(BuildContext context, [String? entity, String? recordI
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    controller.selectedStateManager?.title ?? "",
-                    style: TextStyle(color: KC.primary, fontWeight: FontWeight.bold),
-                  ),
+                  SizedBox(),
+                  // Text(
+                  //   controller.model.?.title ?? "",
+                  //   style: TextStyle(color: KC.primary, fontWeight: FontWeight.bold),
+                  // ),
                   IconButton(
                       onPressed: () async {
                         Navigator.pop(context);
-                        entityController.getDataList();
                       },
                       icon: Icon(
                         Icons.close_rounded,
@@ -46,7 +41,13 @@ Future<void> formioDialog(BuildContext context, [String? entity, String? recordI
                 ],
               ),
             ),
-            content: TransitionPage(),
+            content: InstanceTransitionWidget(
+              data: controller.view,
+              getData: (val) {
+                controller.postData(entityData: val);
+              },
+              loading: controller.loading,
+            ),
           ),
         );
       });
