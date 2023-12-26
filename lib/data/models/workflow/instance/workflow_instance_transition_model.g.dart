@@ -12,7 +12,7 @@ WorkflowInstanceTransitionModel _$WorkflowInstanceTransitionModelFromJson(
       transition: json['transition'] as String,
       type: $enumDecodeNullable(_$TransitionButtonTypeEnumMap, json['type'],
           unknownValue: JsonKey.nullForUndefinedEnumValue),
-      requireData: json['require-data'] as String?,
+      requireData: json['require-data'] as bool? ?? false,
       hasViewVariant: json['has-view-variant'] as bool,
     );
 

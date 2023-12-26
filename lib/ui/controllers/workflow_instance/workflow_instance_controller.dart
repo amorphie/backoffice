@@ -16,7 +16,7 @@ class WorkflowInstanceController extends GetxController with WorkflowInstanceCon
     if (tag != null && tag!.isNotEmpty) setInstanceId(tag!);
   }
 
-  Future hub(HubModel hubModel) async {
+  Future hub(HubDataModel hubModel) async {
     assert(hubModel.instanceId.isNotEmpty);
 
     setInstanceId(hubModel.instanceId);
@@ -36,10 +36,18 @@ class WorkflowInstanceController extends GetxController with WorkflowInstanceCon
     printData();
   }
 
+  Future back() async {
+    if (backTransition != null) await postData(transition: backTransition!);
+  }
+
+  Future cancel() async {
+    if (cancelTransition != null) await postData(transition: cancelTransition!);
+  }
+
   Future initWithWorkflowName(String workflowName) async {
     //!Menüden + ya basınca ilk gelen transition için
     setWorkflowName(workflowName);
-    if (instanceId.isEmpty) setInstanceId(Uuid().v4());
+    setInstanceId(Uuid().v4());
 
     await _getWorkflowInstanceInit();
   }
@@ -53,14 +61,16 @@ class WorkflowInstanceController extends GetxController with WorkflowInstanceCon
     //! Bir detay içerisinden transition seçilirse
     setTransition(t);
     await _getWorkflowInstanceTransitionView();
-    instanceDialog(Get.context!);
+    instanceDialog(Get.context!, recordId: instanceId);
   }
 
-  Future postData({WorkflowInstanceTransitionModel? transition, required Map<String, dynamic> entityData, String? instanceId}) async {
+  Future postData({WorkflowInstanceTransitionModel? transition, Map<String, dynamic>? entityData, String? instanceId}) async {
     if (this.instanceId.isEmpty) setInstanceId(instanceId ?? Uuid().v4());
-    if (transition != null) setTransition(transition);
-    setEntityData(entityData);
-    await _postWorkflowInstance();
+    WorkflowInstanceTransitionModel t = transition ?? this.transition;
+    //! eğer ki viewde gösterilen transitiona post atmak istenirse buraya transition null gönderilmelidir.
+    if (t.requireData && entityData != null) setEntityData(entityData);
+
+    await _postWorkflowInstance(t);
   }
 
   Future _getWorkflowInstanceInit() async {
@@ -95,11 +105,11 @@ class WorkflowInstanceController extends GetxController with WorkflowInstanceCon
     }
   }
 
-  Future _postWorkflowInstance() async {
+  Future _postWorkflowInstance(WorkflowInstanceTransitionModel transitionModel) async {
     assert(instanceId.isNotEmpty);
     assert(entityData.isNotEmpty);
-    assert(transition.transition.isNotEmpty);
-    ResponseModel response = await Services().postWorkflowInstance(instanceId, transition.transition, entityData);
+    assert(transitionModel.transition.isNotEmpty);
+    ResponseModel response = await Services().postWorkflowInstance(instanceId, transitionModel.transition, entityData);
     if (response.success) {}
   }
 

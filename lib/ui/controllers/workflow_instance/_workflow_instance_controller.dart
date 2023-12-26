@@ -2,6 +2,7 @@
 import 'package:admin/data/models/workflow/instance/workflow_instance_model.dart';
 import 'package:admin/data/models/workflow/instance/workflow_instance_transition_model.dart';
 import 'package:admin/data/models/workflow/instance/workflow_instance_view_model.dart';
+import 'package:admin/data/models/workflow/transition_button_type.dart';
 
 import '../../helpers/exporter.dart';
 
@@ -45,6 +46,11 @@ mixin WorkflowInstanceControllerMixin {
     transition = _;
     transitionName = _.transition;
   }
+
+  WorkflowInstanceTransitionModel? get backTransition => model.transition.firstWhereOrNull((element) => element.type == TransitionButtonType.back);
+  bool get hasBackTransition => backTransition != null;
+  WorkflowInstanceTransitionModel? get cancelTransition => model.transition.firstWhereOrNull((element) => element.type == TransitionButtonType.cancel);
+  bool get hasCancelTransition => cancelTransition != null;
   //! view END
 
   //! workflowName BEGIN

@@ -6,16 +6,16 @@ import 'package:admin/data/models/workflow/instance/workflow_instance_view_model
 import '../../helpers/exporter.dart';
 
 class InstanceTransitionWidget extends StatefulWidget {
-  final WorkflowInstanceViewModel data;
+  final WorkflowInstanceViewModel view;
+  final Function? back;
   final Function(dynamic val) getData;
-  final bool isBack;
   final bool loading;
   const InstanceTransitionWidget({
     Key? key,
-    required this.data,
+    required this.view,
+    this.back,
     required this.getData,
     required this.loading,
-    this.isBack = false,
   }) : super(key: key);
 
   @override
@@ -44,9 +44,9 @@ class _InstanceTransitionWidgetState extends State<InstanceTransitionWidget> {
                         border: Border.all(width: 0.2),
                       ),
                       child: Builder(builder: (context) {
-                        switch (widget.data.type) {
+                        switch (widget.view.type) {
                           case TransitionType.formio:
-                            WebViewSource webViewSource = WebViewSource.formio(widget.data.body);
+                            WebViewSource webViewSource = WebViewSource.formio(widget.view.body);
                             onSubmit = () async {
                               await webViewSource.callJsMethod!("onSubmit", []);
                             };
@@ -61,7 +61,7 @@ class _InstanceTransitionWidgetState extends State<InstanceTransitionWidget> {
                               },
                             );
                           case TransitionType.html:
-                            WebViewSource webViewSource = WebViewSource.html(widget.data.body);
+                            WebViewSource webViewSource = WebViewSource.html(widget.view.body);
                             onSubmit = () async {
                               await webViewSource.callJsMethod!("onSubmit", []);
                             };
@@ -95,7 +95,7 @@ class _InstanceTransitionWidgetState extends State<InstanceTransitionWidget> {
                             return SizedBox(
                               height: double.maxFinite,
                               width: MediaQuery.of(context).size.width * 0.7,
-                              child: RenderWidget(template: json.decode(widget.data.body)),
+                              child: RenderWidget(template: json.decode(widget.view.body)),
                             );
 
                           default:
@@ -107,17 +107,17 @@ class _InstanceTransitionWidgetState extends State<InstanceTransitionWidget> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    if (widget.isBack)
+                    if (widget.back != null)
                       CustomButton(
                         title: "Back",
                         tooltip: "Back",
                         onPressed: () async {
-                          Navigator.pop(context);
+                          widget.back!();
                         },
                       ),
                     CustomButton(
-                      title: widget.data.name,
-                      tooltip: widget.data.name,
+                      title: widget.view.name,
+                      tooltip: widget.view.name,
                       onPressed: () async {
                         await onSubmit();
                       },
