@@ -1,4 +1,5 @@
 import 'package:admin/ui/constants/app_settings.dart';
+import 'package:admin/ui/helpers/device_info.dart';
 
 import 'helpers/exporter.dart';
 
@@ -13,7 +14,8 @@ class AppInit extends StatelessWidget {
       splashTransition: SplashTransition.fadeTransition,
       duration: 100,
       screenRouteFunction: () async {
-        AppSettings.xDeviceId = Uuid().v4();
+        AppSettings.xDeviceId = await DeviceInfo().getId() ?? Uuid().v4();
+        AppSettings.xTokenId = Uuid().v4();
         appRenderInit();
         await dotenv.load();
 

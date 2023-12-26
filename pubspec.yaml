@@ -29,6 +29,7 @@ dependencies:
   url_launcher: ^6.1.12
   flutter_dotenv: ^5.1.0
   uuid: ^3.0.7
+  device_info_plus: ^9.1.0
 
   #business_widgets
   get: ^4.6.5
