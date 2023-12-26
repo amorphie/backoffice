@@ -62,7 +62,7 @@ class Hub {
         c.getDataList();
       }
 
-      if (model.data.page != null && model.data.page!.operation == "Open" && model.data.page!.type == "Popup") {
+      if (model.data.page != null && model.data.page!.operation == "Open") {
         WorkflowInstanceController controller = Get.put<WorkflowInstanceController>(WorkflowInstanceController());
 
         controller.hub(model.data);

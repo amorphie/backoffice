@@ -13,14 +13,14 @@ class WorkflowInstanceTransitionModel {
     unknownEnumValue: JsonKey.nullForUndefinedEnumValue,
   )
   TransitionButtonType? type;
-  @JsonKey(name: "require-data", includeIfNull: false, defaultValue: false)
+  @JsonKey(name: "require-data", includeIfNull: false)
   bool requireData;
   @JsonKey(name: "has-view-variant")
   bool hasViewVariant;
   WorkflowInstanceTransitionModel({
     required this.transition,
     this.type,
-    this.requireData = false,
+    this.requireData = true,
     required this.hasViewVariant,
   });
 

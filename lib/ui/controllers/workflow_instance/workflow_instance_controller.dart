@@ -107,7 +107,6 @@ class WorkflowInstanceController extends GetxController with WorkflowInstanceCon
 
   Future _postWorkflowInstance(WorkflowInstanceTransitionModel transitionModel) async {
     assert(instanceId.isNotEmpty);
-    assert(entityData.isNotEmpty);
     assert(transitionModel.transition.isNotEmpty);
     ResponseModel response = await Services().postWorkflowInstance(instanceId, transitionModel.transition, entityData);
     if (response.success) {}
