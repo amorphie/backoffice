@@ -1,35 +1,39 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:developer';
 
+import 'package:admin/data/models/workflow/instance/workflow_instance_transition_model.dart';
 import 'package:admin/data/models/workflow/instance/workflow_instance_view_model.dart';
 
 import '../../helpers/exporter.dart';
 
-class InstanceTransitionWidget extends StatefulWidget {
+class InstanceStateWidget extends StatefulWidget {
+  final List<WorkflowInstanceTransitionModel> transitions;
   final WorkflowInstanceViewModel view;
-  final String? data;
   final Function? back;
-  final Function(dynamic val) getData;
+  final String? data;
+  final Function(WorkflowInstanceTransitionModel transition, dynamic val) getData;
   final bool loading;
-  const InstanceTransitionWidget({
+  const InstanceStateWidget({
     Key? key,
+    required this.transitions,
     required this.view,
-    this.data,
     this.back,
+    this.data,
     required this.getData,
     required this.loading,
   }) : super(key: key);
 
   @override
-  _InstanceTransitionWidgetState createState() => _InstanceTransitionWidgetState();
+  _InstanceStateWidgetState createState() => _InstanceStateWidgetState();
 }
 
-class _InstanceTransitionWidgetState extends State<InstanceTransitionWidget> {
+class _InstanceStateWidgetState extends State<InstanceStateWidget> {
   @override
   void initState() {
     super.initState();
   }
 
+  WorkflowInstanceTransitionModel? selectedTransition;
   Future<dynamic> Function() onSubmit = () async {};
   @override
   Widget build(BuildContext context) {
@@ -56,7 +60,7 @@ class _InstanceTransitionWidgetState extends State<InstanceTransitionWidget> {
                               source: webViewSource,
                               onSubmit: (msg) {
                                 var data = jsonDecode(msg);
-                                widget.getData(data);
+                                widget.getData(selectedTransition!, data);
                               },
                               onError: (msg) {
                                 log(msg);
@@ -71,7 +75,7 @@ class _InstanceTransitionWidgetState extends State<InstanceTransitionWidget> {
                               source: webViewSource,
                               onSubmit: (msg) {
                                 var data = jsonDecode(msg);
-                                widget.getData(data);
+                                widget.getData(selectedTransition!, data);
                               },
                               onError: (msg) {
                                 log(msg);
@@ -92,7 +96,7 @@ class _InstanceTransitionWidgetState extends State<InstanceTransitionWidget> {
                                   d.addAll({element: item});
                                 }
                               }
-                              widget.getData(d);
+                              widget.getData(selectedTransition!, d);
                             };
                             return SizedBox(
                               height: double.maxFinite,
@@ -117,13 +121,18 @@ class _InstanceTransitionWidgetState extends State<InstanceTransitionWidget> {
                           widget.back!();
                         },
                       ),
-                    CustomButton(
-                      title: widget.view.name,
-                      tooltip: widget.view.name,
-                      onPressed: () async {
-                        await onSubmit();
-                      },
-                    ),
+                    ...widget.transitions
+                        .map(
+                          (e) => CustomButton(
+                            title: e.transition,
+                            tooltip: e.transition,
+                            onPressed: () async {
+                              selectedTransition = e;
+                              await onSubmit();
+                            },
+                          ),
+                        )
+                        .toList(),
                   ],
                 ),
               ],

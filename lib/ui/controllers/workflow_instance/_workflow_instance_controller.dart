@@ -7,15 +7,12 @@ import 'package:admin/data/models/workflow/transition_button_type.dart';
 import '../../helpers/exporter.dart';
 
 mixin WorkflowInstanceControllerMixin {
-  String? _tag;
-  String? get tag => _tag;
-  setTag(String? _) => _tag = _;
-
   //! model BEGIN
   Rx<WorkflowInstanceModel> _model = WorkflowInstanceModel.init().obs;
   WorkflowInstanceModel get model => _model.value;
   set model(WorkflowInstanceModel _) {
     _model.value = _;
+    _stateName.value = _.state;
   }
 
   setModel(WorkflowInstanceModel _) {
@@ -35,23 +32,25 @@ mixin WorkflowInstanceControllerMixin {
   }
   //! view END
 
-  //! view BEGIN
+  //! transition BEGIN
   Rx<WorkflowInstanceTransitionModel> _transition = WorkflowInstanceTransitionModel.init().obs;
   WorkflowInstanceTransitionModel get transition => _transition.value;
   set transition(WorkflowInstanceTransitionModel _) {
     _transition.value = _;
+    _transitionName.value = _.transition;
   }
 
   setTransition(WorkflowInstanceTransitionModel _) {
     transition = _;
-    transitionName = _.transition;
   }
 
   WorkflowInstanceTransitionModel? get backTransition => model.transition.firstWhereOrNull((element) => element.type == TransitionButtonType.back);
   bool get hasBackTransition => backTransition != null;
   WorkflowInstanceTransitionModel? get cancelTransition => model.transition.firstWhereOrNull((element) => element.type == TransitionButtonType.cancel);
   bool get hasCancelTransition => cancelTransition != null;
-  //! view END
+  bool get hasMultiForwardTransition => model.transition.where((element) => element.type == TransitionButtonType.forward).length > 1;
+  List<WorkflowInstanceTransitionModel> get forwardTransitions => model.transition.where((element) => element.type == TransitionButtonType.forward).toList();
+  //! transition END
 
   //! workflowName BEGIN
   Rx<String> _workflowName = "".obs;
@@ -127,5 +126,7 @@ mixin WorkflowInstanceControllerMixin {
   setEntityData(Map<String, dynamic> _) {
     entityData = _;
   }
+
+  String get getDataString => jsonEncode(entityData);
   //! entityData END
 }

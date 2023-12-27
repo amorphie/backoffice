@@ -81,7 +81,8 @@ class HomePage extends StatelessWidget {
                                 log(DateTime.now().toIso8601String(), name: "SelectEntityFinal");
                               },
                               addPressed: () async {
-                                WorkflowInstanceController controller = Get.put<WorkflowInstanceController>(WorkflowInstanceController());
+                                String id = Uuid().v4();
+                                WorkflowInstanceController controller = Get.put<WorkflowInstanceController>(WorkflowInstanceController(id), tag: id);
                                 if (entityController.entity.workflow.name != null) controller.initWithWorkflowName(entityController.entity.workflow.name!);
 
                                 // formioDialog(context);

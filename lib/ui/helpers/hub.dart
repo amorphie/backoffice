@@ -63,7 +63,7 @@ class Hub {
       }
 
       if (model.data.page != null && model.data.page!.operation == "Open") {
-        WorkflowInstanceController controller = Get.put<WorkflowInstanceController>(WorkflowInstanceController());
+        WorkflowInstanceController controller = Get.put<WorkflowInstanceController>(WorkflowInstanceController(model.data.instanceId), tag: model.data.instanceId);
 
         controller.hub(model.data);
       }
