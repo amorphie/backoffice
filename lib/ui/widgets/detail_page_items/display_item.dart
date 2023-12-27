@@ -59,12 +59,12 @@ class DisplayTabItemWidget extends StatelessWidget {
         );
       case DisplayTabType.formio:
         return FormioWidget(
-          schema: htmlTestPage,
+          schema: formioTestJson,
           withBackButton: false,
         );
       case DisplayTabType.html:
         return HtmlWidget(
-          schema: formioTestJson,
+          schema: htmlTestPage,
           withBackButton: false,
         );
       case DisplayTabType.url:
