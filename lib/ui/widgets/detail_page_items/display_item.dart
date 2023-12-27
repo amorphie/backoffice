@@ -1,6 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
+import 'package:admin/ui/widgets/html/html_widget.dart';
+
 import '../../helpers/exporter.dart';
+import '../html/html_test_page.dart';
 
 class DisplayTabItemWidget extends StatelessWidget {
   final DisplayTabModel value;
@@ -56,8 +59,21 @@ class DisplayTabItemWidget extends StatelessWidget {
         );
       case DisplayTabType.formio:
         return FormioWidget(
+          schema: htmlTestPage,
+          withBackButton: false,
+        );
+      case DisplayTabType.html:
+        return HtmlWidget(
           schema: formioTestJson,
           withBackButton: false,
+        );
+      case DisplayTabType.url:
+        return WebViewWidget(
+          source: WebViewSource.url(value.url!),
+        );
+      case DisplayTabType.image:
+        return Image.network(
+          value.url ?? value.source ?? "", //TODO IMAGE İDARETEN BU ŞEKİLDE YAPILDI
         );
       case DisplayTabType.pdf:
         Uint8List? bytes;
