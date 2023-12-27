@@ -31,10 +31,16 @@ class _WebViewWidgetState extends State<WebViewWidget> {
     return WebViewX(
       key: const ValueKey('formio'),
       initialContent: widget.source.source,
-      initialSourceType: widget.source.isHtml ? SourceType.html : SourceType.url,
+      initialSourceType: widget.source.isUrl ? SourceType.url : SourceType.html,
       height: double.maxFinite,
       width: MediaQuery.of(context).size.width * 0.7,
       onWebViewCreated: (controller) {
+        if (widget.source.isUrl) {
+          controller.loadContent(
+            widget.source.source,
+            SourceType.url,
+          );
+        }
         webviewController = controller;
         widget.source.callJsMethod = webviewController.callJsMethod;
       },

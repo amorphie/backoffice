@@ -7,13 +7,16 @@ class WebViewSource {
   Future<dynamic> Function(String name, List<dynamic> params)? callJsMethod;
 
   WebViewSource({required this.source, this.callJsMethod});
-  factory WebViewSource.html(String data) => WebViewSource(source: data);
-  factory WebViewSource.url(String url) => WebViewSource(source: url);
-  factory WebViewSource.formio(String data) => WebViewSource(source: _initialContent(data));
+  factory WebViewSource.html(String data) => WebViewSource(source: data).._sourceType = _WebViewSourceType.html;
+  factory WebViewSource.url(String url) => WebViewSource(source: url).._sourceType = _WebViewSourceType.url;
+  factory WebViewSource.formio(String data) => WebViewSource(source: _initialContent(data)).._sourceType = _WebViewSourceType.formio;
 
   bool get isHtml => _sourceType == _WebViewSourceType.html;
   bool get isUrl => _sourceType == _WebViewSourceType.url;
   bool get isFormio => _sourceType == _WebViewSourceType.formio;
+
+  @override
+  String toString() => 'WebViewSource(_sourceType: $_sourceType, source: $source, callJsMethod: $callJsMethod)';
 }
 
 String _initialContent(String json) => """
