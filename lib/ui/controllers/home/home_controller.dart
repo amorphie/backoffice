@@ -20,17 +20,18 @@ class HomeController extends GetxController with HomeControllerMixin {
       }
       final EntityController entityController = Get.find<EntityController>();
       String dataId = data[entityController.entity.workflow.recordIdData] ?? Uuid().v4();
-      String entityName = data[entityController.entity.workflow.entityNameData] ?? entityController.entity.workflow.entity;
-      String? workflowName = data[entityController.entity.workflow.workflowNameData] ?? Uuid().v4();
+      // String entityName = data[entityController.entity.workflow.entityNameData] ?? entityController.entity.workflow.entity;
+      // String? workflowName = data[entityController.entity.workflow.workflowNameData] ?? Uuid().v4();
 
       DisplayController displayController = Get.put<DisplayController>(DisplayController(dataId), tag: dataId);
 
       WorkflowInstanceController instance = Get.put<WorkflowInstanceController>(WorkflowInstanceController(dataId), tag: dataId);
-      await instance.initWithInstanceId(dataId);
+      await instance.initWithInstanceId();
 
-      WorkflowController workflowController = Get.put<WorkflowController>(WorkflowController(dataId), tag: dataId);
+      // WorkflowController workflowController = Get.put<WorkflowController>(WorkflowController(dataId), tag: dataId);
 
-      await workflowController.startTransition(entity: entityName, recordId: dataId, stateManager: workflowName);
+      // await workflowController.startTransition(entity: entityName, recordId: dataId, stateManager: workflowName);
+
       await displayController.setData(data);
 
       DisplayViewModel model = DisplayViewModel(

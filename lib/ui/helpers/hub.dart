@@ -1,8 +1,10 @@
 import 'dart:developer';
 
+import 'package:admin/data/models/hub/hub_response_model.dart';
 import 'package:admin/ui/constants/app_settings.dart';
 import 'package:admin/ui/controllers/workflow_instance/workflow_instance_controller.dart';
-import 'package:signalr_netcore/ihub_protocol.dart';
+// import 'package:signalr_netcore/ihub_protocol.dart';
+// import 'package:signalr_netcore/itransport.dart';
 
 import 'exporter.dart';
 
@@ -13,7 +15,9 @@ class Hub {
   Hub() {
     HttpConnectionOptions httpOptions = HttpConnectionOptions(
       requestTimeout: 5000,
-      headers: MessageHeaders()..setHeaderValue("X-Device-Id", AppSettings.xDeviceId),
+      // headers: MessageHeaders()..setHeaderValue("X-Device-Id", AppSettings.xDeviceId),
+      // skipNegotiation: true,
+      // transport: HttpTransportType.LongPolling,
     );
     Logger hubProtLogger = Logger("SignalR - hub");
     Logger.root.level = Level.ALL;
@@ -21,7 +25,8 @@ class Hub {
       log("[${rec.time}][${rec.level.name}]\t${rec.message}", name: "SIGNALR-HUB");
     });
 
-    String hubConnectionUrl = "https://test-amorphie-workflow-hub.${dotenv.env["PROJECT_HOST"]}/hubs/genericHub";
+    // String hubConnectionUrl = "https://pubagw6.burgan.com.tr/ebank/flow/hub/hubs/genericHub?X-Device-Id=${AppSettings.xDeviceId}&X-Token-Id=${AppSettings.xTokenId}";
+    String hubConnectionUrl = "https://test-amorphie-workflow-hub.${dotenv.env["PROJECT_HOST"]}/hubs/genericHub?X-Device-Id=${AppSettings.xDeviceId}&X-Token-Id=${AppSettings.xTokenId}";
 
     connection = HubConnectionBuilder()
         .withUrl(
@@ -43,31 +48,26 @@ class Hub {
 
   Future start() async {
     connection.on("sendMessage", (arguments) {
-      Logger.root.config(arguments.toString(), "sendMessage");
       appLogger.d(json.decode(arguments.toString()), "sendMessage");
       var d = json.decode(arguments.toString());
-      HubModel model;
+      HubResponseModel model;
       if (d is List) {
-        model = HubModel.fromMap(d.first);
+        model = HubResponseModel.fromMap(d.first);
       } else {
-        model = HubModel.fromMap(d);
+        model = HubResponseModel.fromMap(d);
       }
 
-      WorkflowInstanceController controller = Get.put<WorkflowInstanceController>(WorkflowInstanceController());
+      if ((model.data.eventInfo == "worker-completed" || model.data.eventInfo == "transition-completed") && (model.data.page != null && model.data.page!.type != "Popup")) {
+        EntityController c = Get.find<EntityController>();
+        c.getDataList();
+      }
 
-      controller.hub(model);
+      if (model.data.page != null && model.data.page!.operation == "Open") {
+        WorkflowInstanceController controller = Get.put<WorkflowInstanceController>(WorkflowInstanceController(model.data.instanceId), tag: model.data.instanceId);
 
-      // if ((model.eventInfo == "worker-completed" || model.eventInfo == "transition-completed") && (model.page != null && model.page!.type != "Popup")) {
-      //   EntityController c = Get.find<EntityController>();
-      //   c.getDataList();
-      // }
-
-      // if (model.page != null && model.page!.operation == "Open" && model.page!.type == "Popup") {
-      //   log("showHubFormio", name: "showHubFormio");
-
-      //   formioDialog(Get.context!, model.entityName, model.recordId, model.workflowName, model.transition);
-      // }
-      if (model.message != null && model.message!.isNotEmpty) Get.snackbar("Result", model.message!, backgroundColor: Colors.black, colorText: Colors.white);
+        controller.hub(model.data);
+      }
+      if (model.data.message != null && model.data.message!.isNotEmpty) Get.snackbar("Result", model.data.message!, backgroundColor: Colors.black, colorText: Colors.white);
     });
     connection.on("ClientConnected", (arguments) {
       Logger.root.config(arguments.toString(), "ClientConnected");
@@ -89,6 +89,7 @@ class Hub {
     try {
       // await connection.stop();
       await connection.start();
+      // await sendMessage("test");
       print(1);
     } catch (e) {
       Logger.root.warning(e);

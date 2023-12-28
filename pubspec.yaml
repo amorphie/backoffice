@@ -14,11 +14,7 @@ dependencies:
   neo_core:
     git:
       url: https://github.com/amorphie/flutter.core
-      ref: 0.0.29
-  burgan_ui:
-    git:
-      url: https://github.com/amorphie/flutter.ui
-      ref: 0.0.5
+      ref: 0.0.65
   cupertino_icons: ^1.0.3
 
   #business_logic:
@@ -29,6 +25,7 @@ dependencies:
   url_launcher: ^6.1.12
   flutter_dotenv: ^5.1.0
   uuid: ^3.0.7
+  device_info_plus: ^9.1.0
 
   #business_widgets
   get: ^4.6.5
@@ -47,7 +44,7 @@ dependencies:
   json_annotation: ^4.8.1
 
 dependency_overrides:
-  uuid: ^3.0.4
+  uuid: ^4.1.0
   device_info_plus: ^9.1.0
 
 dev_dependencies:

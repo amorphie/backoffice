@@ -14,13 +14,13 @@ class WorkflowInstanceTransitionModel {
   )
   TransitionButtonType? type;
   @JsonKey(name: "require-data", includeIfNull: false)
-  String? requireData;
+  bool requireData;
   @JsonKey(name: "has-view-variant")
   bool hasViewVariant;
   WorkflowInstanceTransitionModel({
     required this.transition,
     this.type,
-    this.requireData,
+    this.requireData = true,
     required this.hasViewVariant,
   });
 

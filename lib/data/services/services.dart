@@ -145,6 +145,7 @@ class Services {
         "Content-Type": "application/json",
         "Accept": "application/json",
         "X-Device-Id": AppSettings.xDeviceId,
+        "X-Token-Id": AppSettings.xTokenId,
       },
     );
   }

@@ -4,19 +4,28 @@ enum _WebViewSourceType { html, url, formio }
 class WebViewSource {
   _WebViewSourceType _sourceType = _WebViewSourceType.html;
   String source;
+  String? jsonData;
   Future<dynamic> Function(String name, List<dynamic> params)? callJsMethod;
 
-  WebViewSource({required this.source, this.callJsMethod});
+  WebViewSource({required this.source, this.callJsMethod, this.jsonData});
   factory WebViewSource.html(String data) => WebViewSource(source: data);
   factory WebViewSource.url(String url) => WebViewSource(source: url);
-  factory WebViewSource.formio(String data) => WebViewSource(source: _formioContent(data));
+  factory WebViewSource.formio(String data, [String? jsonData]) => WebViewSource(source: _formioContent(data, _getDataString(jsonData)));
 
   bool get isHtml => _sourceType == _WebViewSourceType.html;
   bool get isUrl => _sourceType == _WebViewSourceType.url;
   bool get isFormio => _sourceType == _WebViewSourceType.formio;
 }
 
-String _formioContent(String json) => """
+String _getDataString(String? data) => data == null
+    ? ""
+    : """
+            fr.submission = {
+              data: $data
+            };
+
+""";
+String _formioContent(String json, String dataString) => """
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,6 +49,7 @@ String _formioContent(String json) => """
             $json
         ).then(function (form) {
             fr = form;
+            $dataString
         });
 
         function onSubmit() {
