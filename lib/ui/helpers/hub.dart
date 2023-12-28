@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import '../constants/app_settings.dart';
 import 'exporter.dart';
 
 class Hub {
@@ -13,7 +14,7 @@ class Hub {
     Logger.root.onRecord.listen((LogRecord rec) {
       log("[${rec.time}][${rec.level.name}]\t${rec.message}", name: "SIGNALR-HUB");
     });
-    String hubConnectionUrl = "https://test-amorphie-workflow-hub.${dotenv.env["PROJECT_HOST"]}/hubs/workflow";
+    String hubConnectionUrl = "https://test-amorphie-workflow-hub.${dotenv.env["PROJECT_HOST"]}/hubs/genericHub?X-Device-Id=${AppSettings.xDeviceId}&X-Token-Id=${AppSettings.xTokenId}";
 
     connection = HubConnectionBuilder()
         .withUrl(

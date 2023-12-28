@@ -17,7 +17,6 @@ class Executer {
   }) {
     _request = http.Request(method.name, Uri.parse(endpoint));
 
-    appLogger.wtf(data, endpoint, StackTrace.empty);
     _setData();
     _setHeaders();
   }
@@ -54,6 +53,8 @@ class Executer {
       try {
         _setHeaders();
 
+        appLogger.wtf(data, "data", StackTrace.empty);
+        appLogger.wtf(headers, "headers", StackTrace.empty);
         http.StreamedResponse response = await _request.send();
         String resultData = await response.stream.bytesToString();
         if (resultData.isEmpty) resultData = "{}";
