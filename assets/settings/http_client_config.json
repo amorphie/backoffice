@@ -1,0 +1,153 @@
+{
+  "hosts": [
+    {
+      "key": "old-workflow",
+      "oauth-client": "bbt-mobile",
+      "oauth-server": "sso.burgan.com.tr",
+      "active-hosts": [
+        {
+          "host": "pubagw6.burgan.com.tr"
+        }
+      ]
+    },
+    {
+      "key": "workflow",
+      "oauth-client": "bbt-mobile",
+      "oauth-server": "sso.burgan.com.tr",
+      "active-hosts": [
+        {
+          "host": "test-pubagw6.burgan.com.tr"
+        }
+      ]
+    },
+    {
+      "key": "token-service",
+      "oauth-client": "bbt-mobile",
+      "oauth-server": "sso.burgan.com.tr",
+      "active-hosts": [
+        {
+          "host": "pubagw6.burgan.com.tr",
+          "retry-count": 2
+        }
+      ]
+    },
+    {
+      "key": "local",
+      "oauth-client": "bbt-mobile",
+      "oauth-server": "sso.burgan.com.tr",
+      "active-hosts": [
+        {
+          "host": "localhost:3000"
+        }
+      ]
+    },
+    {
+      "key": "android",
+      "oauth-client": "",
+      "oauth-server": "",
+      "active-hosts": [
+        {
+          "host": "10.0.2.2:3000"
+        }
+      ]
+    },
+    {
+      "key": "demo",
+      "oauth-client": "bbt-mobile",
+      "oauth-server": "sso.burgan.com.tr",
+      "active-hosts": [
+        {
+          "host": "test-integration-apisix-gw.apps.nonprod.ebt.bank"
+        }
+      ]
+    }
+  ],
+  "services": [
+    {
+      "key": "account-summary",
+      "method": "GET",
+      "host": "local",
+      "signature": true,
+      "name": "/account-summary/{IBAN}"
+    },
+    {
+      "key": "components",
+      "method": "GET",
+      "host": "old-workflow",
+      "signature": true,
+      "name": "/ebank/component/page/{PAGE_ID}"
+    },
+    {
+      "key": "get-token",
+      "method": "POST",
+      "host": "token-service",
+      "signature": true,
+      "name": "/ebank/token/Token"
+    },
+    {
+      "key": "get-branch-code",
+      "method": "GET",
+      "host": "old-workflow",
+      "signature": true,
+      "name": "/ebank/bffapi/get-customer-branches-code/{CUSTOMER_ID}"
+    },
+    {
+      "key": "get-maturity-renewal",
+      "method": "GET",
+      "host": "old-workflow",
+      "signature": true,
+      "name": "/ebank/bffapi/get-constant/maturity-renewal-preference"
+    },
+    {
+      "key": "get-maturity",
+      "method": "GET",
+      "host": "old-workflow",
+      "signature": true,
+      "name": "/ebank/bffapi/get-constant/maturity"
+    },
+    {
+      "key": "get-checking-account",
+      "method": "GET",
+      "host": "old-workflow",
+      "signature": true,
+      "name": "/ebank/bffapi/get-checking-account-list/{CUSTOMER_ID}"
+    },
+    {
+      "key": "init-workflow",
+      "method": "GET",
+      "host": "workflow",
+      "signature": true,
+      "name": "/ebanking/flow/instance/workflow/{WORKFLOW_NAME}/init"
+    },
+    {
+      "key": "get-page-response-from-workflow",
+      "method": "GET",
+      "host": "workflow",
+      "signature": true,
+      "name": "/ebanking/flow/instance/{SOURCE}/{PAGE_ID}/view"
+    },
+    {
+      "key": "get-workflow-available-steps",
+      "method": "GET",
+      "host": "workflow",
+      "signature": true,
+      "name": "/ebanking/flow/instance/{INSTANCE_ID}/transition"
+    },
+    {
+      "key": "post-transition-to-workflow",
+      "method": "POST",
+      "host": "workflow",
+      "signature": true,
+      "name": "/ebanking/flow/instance/{INSTANCE_ID}/transition/{TRANSITION_NAME}"
+    },
+    {
+      "key": "revoke-token",
+      "method": "PUT",
+      "host": "old-workflow",
+      "signature": true,
+      "name": "/ebank/token/Revoke/{CLIENT_ID}/{CUSTOMER_ID}"
+    }
+  ]
+}
+
+
