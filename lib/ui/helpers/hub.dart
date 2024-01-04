@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import '../../data/models/hub/hub_response_model.dart';
 import '../constants/app_settings.dart';
 import 'exporter.dart';
 
@@ -38,23 +39,23 @@ class Hub {
       Logger.root.config(arguments.toString(), "sendMessage");
       appLogger.d(json.decode(arguments.toString()), "sendMessage");
       var d = json.decode(arguments.toString());
-      HubModel model;
+      HubResponseModel model;
       if (d is List) {
-        model = HubModel.fromMap(d.first);
+        model = HubResponseModel.fromMap(d.first);
       } else {
-        model = HubModel.fromMap(d);
+        model = HubResponseModel.fromMap(d);
       }
-      if ((model.eventInfo == "worker-completed" || model.eventInfo == "transition-completed") && (model.page != null && model.page!.type != "Popup")) {
+      if ((model.data.eventInfo == "worker-completed" || model.data.eventInfo == "transition-completed") && (model.data.page != null)) {
         EntityController c = Get.find<EntityController>();
         c.getDataList();
       }
 
-      if (model.page != null && model.page!.operation == "Open" && model.page!.type == "Popup") {
+      if (model.data.page != null && model.data.page!.operation == "Open") {
         log("showHubFormio", name: "showHubFormio");
 
-        formioDialog(Get.context!, model.entityName, model.recordId, model.workflowName, model.transition);
+        formioDialog(Get.context!, model.data.entityName, model.data.recordId, model.data.workflowName, model.data.transition);
       }
-      if (model.message != null && model.message!.isNotEmpty) Get.snackbar("Result", model.message!, backgroundColor: Colors.black, colorText: Colors.white);
+      if (model.data.message != null && model.data.message!.isNotEmpty) Get.snackbar("Result", model.data.message!, backgroundColor: Colors.black, colorText: Colors.white);
     });
     connection.on("ClientConnected", (arguments) {
       Logger.root.config(arguments.toString(), "ClientConnected");
