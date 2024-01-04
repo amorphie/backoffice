@@ -1,3 +1,4 @@
+import '../constants/app_settings.dart';
 import '../helpers/exporter.dart';
 
 class WorkflowController extends GetxController {
@@ -75,6 +76,8 @@ class WorkflowController extends GetxController {
       "Behalf-Of-User": Uuid().v4(),
       "Content-Type": "application/json",
       "Accept": "application/json",
+      "X-Device-Id": AppSettings.xDeviceId,
+      "X-Token-Id": AppSettings.xTokenId,
     };
     var response = await Services().postTransitions(
       entity: _entity.value,

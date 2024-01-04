@@ -101,7 +101,7 @@ class HomePage extends StatelessWidget {
                   children: [
                     Expanded(child: Dashboard()),
                     // Expanded(child: Center(child: Text("HomePage"))),
-                    Text("v1.0.3"),
+                    Text("v1.0.4"),
                   ],
                 ),
               );

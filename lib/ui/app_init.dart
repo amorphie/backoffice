@@ -1,3 +1,5 @@
+import 'constants/app_settings.dart';
+import 'helpers/device_info.dart';
 import 'helpers/exporter.dart';
 
 class AppInit extends StatelessWidget {
@@ -6,11 +8,13 @@ class AppInit extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedSplashScreen.withScreenRouteFunction(
-      splash: "assets/images/logo.png",
+      splash: "assets/images/icon.png",
       curve: Curves.easeIn,
       splashTransition: SplashTransition.fadeTransition,
       duration: 100,
       screenRouteFunction: () async {
+        AppSettings.xDeviceId = await DeviceInfo().getId() ?? Uuid().v4();
+        AppSettings.xTokenId = Uuid().v4();
         appRenderInit();
         await dotenv.load();
 

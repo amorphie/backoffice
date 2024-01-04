@@ -36,6 +36,7 @@ dependencies:
   json_dynamic_widget: ^7.0.5+1
   syncfusion_flutter_pdfviewer: ^20.4.54
   fl_chart: ^0.63.0
+  device_info_plus: ^9.1.0
 
   #widgets
   google_fonts: ^4.0.3
