@@ -39,9 +39,9 @@ class _DetailWidgetState extends State<DetailWidget> with TickerProviderStateMix
         child: Column(
           children: [
             temp(context),
-            DisplayTagList(
-              id: widget.id,
-            ),
+            // DisplayTagList(
+            //   id: widget.id,
+            // ),
             WorkflowArea(
               id: widget.id,
             ),
