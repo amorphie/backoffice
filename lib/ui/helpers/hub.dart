@@ -45,12 +45,13 @@ class Hub {
       } else {
         model = HubResponseModel.fromMap(d);
       }
-      if ((model.data.eventInfo == "worker-completed" || model.data.eventInfo == "transition-completed") && (model.data.page != null)) {
+
+      if ((model.data.eventInfo == "worker-completed" || model.data.eventInfo == "transition-completed") && (model.data.page != null && model.data.page!.type.toLowerCase() == "popup")) {
         EntityController c = Get.find<EntityController>();
         c.getDataList();
       }
 
-      if (model.data.page != null && model.data.page!.operation == "Open") {
+      if (model.data.page != null && model.data.page!.operation == "Open" && model.data.page!.type.toLowerCase() == "popup") {
         log("showHubFormio", name: "showHubFormio");
 
         formioDialog(Get.context!, model.data.entityName, model.data.recordId, model.data.workflowName, model.data.transition);
