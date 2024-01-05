@@ -1,5 +1,7 @@
 import 'package:admin/ui/helpers/exporter.dart';
 
+import '../widgets/render/register_widgets/expansion_tile/expansion_tile.dart';
+
 appRenderInit() {
   jsonWidgetRegistry
     ..registerCustomBuilder(
@@ -16,6 +18,12 @@ appRenderInit() {
       ExpandedRowArea.kType,
       JsonWidgetBuilderContainer(
         builder: ExpandedRowArea.fromDynamic,
+      ),
+    )
+    ..registerCustomBuilder(
+      JsonExpansionTileBuilder.kType,
+      JsonWidgetBuilderContainer(
+        builder: JsonExpansionTileBuilder.fromDynamic,
       ),
     )
     ..registerCustomBuilder(

@@ -63,8 +63,10 @@ class DisplayTabItemWidget extends StatelessWidget {
           withBackButton: false,
         );
       case DisplayTabType.html:
+        var t = displayController.templates[value.template?.print() ?? ""];
+
         return HtmlWidget(
-          schema: htmlTestPage,
+          schema: t ?? htmlTestPage,
           withBackButton: false,
         );
       case DisplayTabType.url:

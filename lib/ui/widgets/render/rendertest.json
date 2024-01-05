@@ -1,78 +1,111 @@
 {
-    "type": "container",
+    "type": "list_view",
     "args": {
-        "margin": 2,
-        "padding": 4
-    },
-    "child": {
-        "type": "list_view",
         "children": [
             {
-                "type": "text",
+                "type": "title_description_area_widget",
                 "args": {
-                    "text": "ID",
-                    "style": {
-                        "fontWeight": "bold",
-                        "color": "#1d1f29"
-                    }
+                    "title": "Name",
+                    "text": "Banking Services Contract 30-VK11-1",
+                    "copyValue": true
                 }
             },
             {
-                "type": "padding",
+                "type": "title_description_area_widget",
                 "args": {
-                    "padding": {
-                        "bottom": 8,
-                        "top": 5
-                    }
-                },
-                "child": {
-                    "type": "text",
-                    "args": {
-                        "text": "{{data.id}}",
-                        "style": {
-                            "fontWeight": "w400",
-                            "color": "#1d1f29"
+                    "title": "ID",
+                    "text": "14a8b2e6-c72d-403f-81e9-99b03d9919a8",
+                    "copyValue": true
+                }
+            },
+            {
+                "type": "title_description_area_widget",
+                "args": {
+                    "title": "Status",
+                    "text": "OnHold"
+                }
+            },
+            {
+                "type": "title_description_area_widget",
+                "args": {
+                    "title": "Base Status",
+                    "text": "OnHold"
+                }
+            },
+            {
+                "type": "title_description_area_widget",
+                "args": {
+                    "title": "Tags",
+                    "text": "  customer-info , id-card",
+                    "copyValue": true
+                }
+            },
+            {
+                "type": "title_description_area_widget",
+                "args": {
+                    "title": "Formats",
+                    "text": ""
+                }
+            },
+            {
+                "type": "title_description_area_widget",
+                "args": {
+                    "title": "Allowed Client Details",
+                    "text": ""
+                }
+            },
+            {
+                "type": "title_description_area_widget",
+                "args": {
+                    "title": "Optimize Size",
+                    "text": "None"
+                }
+            },
+            {
+                "type": "detail_title_widget",
+                "args": {
+                    "title": "Document Online Sign"
+                }
+            },
+            {
+                "type": "expansion_tile",
+                "args": {
+                    "title": {
+                        "type": "detail_title_widget",
+                        "args": {
+                            "title": "Document Online Sign"
                         }
-                    }
-                }
-            },
-            {
-                "type": "container",
-                "args": {
-                    "padding": 4
-                },
-                "child": {
-                    "type": "row",
-                    "args": {
-                        "mainAxisAlignment": "start"
                     },
                     "children": [
                         {
-                            "type": "text",
+                            "type": "title_description_area_widget",
                             "args": {
-                                "text": "asdafdas",
-                                "style": {
-                                    "fontWeight": "bold",
-                                    "color": "#1d1f29"
-                                }
+                                "title": "Document Allowed Client Detail",
+                                "text": "direct-sales, mobile-ib, dealer, web-ib"
                             }
                         },
                         {
-                            "type": "icon_button",
+                            "type": "title_description_area_widget",
                             "args": {
-                                "icon": {
-                                    "type": "icon",
-                                    "args": {
-                                        "icon": {
-                                            "codePoint": 57499,
-                                            "fontFamily": "MaterialIcons"
-                                        }
-                                    }
-                                },
-                                "onPressed": "${tag_view('sdfsdf')}"
+                                "title": "Document Allowed Client Detail",
+                                "text": "doc-bankacilik-hizmetleri-sozlesmesi-30-VK11"
                             }
                         }
                     ]
+                }
+            },
+            {
+                "type": "title_description_area_widget",
+                "args": {
+                    "title": "Document Allowed Client Detail",
+                    "text": "direct-sales, mobile-ib, dealer, web-ib"
+                }
+            },
+            {
+                "type": "title_description_area_widget",
+                "args": {
+                    "title": "Document Allowed Client Detail",
+                    "text": "doc-bankacilik-hizmetleri-sozlesmesi-30-VK11"
                 }
             }
         ]

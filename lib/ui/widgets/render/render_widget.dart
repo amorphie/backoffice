@@ -18,8 +18,10 @@ class RenderWidget extends StatelessWidget {
   }
 
   Widget testRender(BuildContext context) {
+    var temp = json.decode(testRenderTemplateData);
+
     return JsonWidgetData.fromDynamic(
-      testRenderTemplateData,
+      temp,
       registry: jsonWidgetRegistry,
     ).build(context: context);
   }
