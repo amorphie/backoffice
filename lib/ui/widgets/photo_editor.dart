@@ -26,10 +26,10 @@ class _PhotoEditorState extends State<PhotoEditor> {
     super.initState();
   }
 
-  void loadAsset(String name) async {
-    var data = await rootBundle.load('assets/$name');
-    setState(() => imageData = data.buffer.asUint8List());
-  }
+  // void loadAsset(String name) async {
+  //   var data = await rootBundle.load('assets/$name');
+  //   setState(() => imageData = data.buffer.asUint8List());
+  // }
 
   @override
   Widget build(BuildContext context) {
