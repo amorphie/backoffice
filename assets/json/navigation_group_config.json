@@ -1,0 +1,160 @@
+{
+  "navigation-groups": [
+    {
+      "key": "nav-group-home",
+      "items": [
+        {
+          "key": "card-settings",
+          "priority": 1010,
+          "icon": "urn:local:icons:credit-card-up:svg",
+          "display": "Kart Ayarları",
+          "action": "urn:transaction:card-settings-transition-id",
+          "audience": [
+            "1FA"
+          ],
+          "is-new": false,
+          "parameters": [
+            {
+              "source": "storage:claim.user",
+              "dataKey": "user"
+            }
+          ]
+        },
+        {
+          "key": "send-money",
+          "priority": 1020,
+          "icon": "urn:local:icons:coins-hand:svg",
+          "display": "Para Gönder",
+          "action": "urn:transaction:send-money-transition-id",
+          "audience": [
+            "1FA"
+          ],
+          "is-new": true
+        },
+        {
+          "key": "account-details",
+          "priority": 1020,
+          "icon": "urn:local:icons:receipt:svg",
+          "display": "Hesap Detayları",
+          "action": "urn:page:account-details",
+          "navigation-path": "account-details",
+          "parameters": [
+            {
+              "source": "storage:claim.user",
+              "dataKey": "user"
+            },
+            {
+              "source": "cache:home:iban",
+              "dataKey": "iban"
+            }
+          ],
+          "audience": [
+            "2FA"
+          ],
+          "is-new": true
+        },
+        {
+          "key": "transfer-trl",
+          "priority": 1000,
+          "icon": "urn:local:icons:coins-hand:svg",
+          "display": "TL Gönder",
+          "action": "urn:transaction:transfer-trl-transition-id",
+          "audience": [],
+          "is-new": false
+        },
+        {
+          "key": "transfer-swift",
+          "priority": 1040,
+          "icon": "urn:local:icons:receipt:svg",
+          "display": "Swift ile Para Gönder",
+          "action": "urn:transaction:transfer-swift-transition-id",
+          "audience": [
+            "NL"
+          ],
+          "is-new": true
+        },
+        {
+          "key": "card-preferences",
+          "priority": 1050,
+          "icon": "urn:local:icons:credit-card-up:svg",
+          "display": "Kart Tercihleri",
+          "action": "urn:transaction:card-prefs-transition-id",
+          "audience": [
+            "NL",
+            "1FA"
+          ],
+          "is-new": false,
+          "parameters": [
+            {
+              "source": "storage:claim.user",
+              "dataKey": "user"
+            },
+            {
+              "source": "cache:home:iban",
+              "dataKey": "iban"
+            }
+          ]
+        },
+        {
+          "key": "request-money",
+          "priority": 1060,
+          "icon": "urn:local:icons:coins-hand:svg",
+          "display": "Para İste",
+          "action": "urn:transaction:send-money-transition-id",
+          "audience": [
+            "NL",
+            "1FA"
+          ],
+          "is-new": true
+        },
+        {
+          "key": "account-history",
+          "priority": 1070,
+          "icon": "urn:local:icons:receipt:svg",
+          "display": "Hesap Hareketleri",
+          "action": "urn:transaction:account-history-transition-id",
+          "audience": [
+            "NL"
+          ],
+          "is-new": true
+        },
+        {
+          "key": "transfer-usd",
+          "priority": 1065,
+          "icon": "urn:local:icons:coins-hand:svg",
+          "display": "USD Gönder",
+          "action": "urn:transaction:transfer-usd-transition-id",
+          "audience": [
+            "NL"
+          ],
+          "is-new": false
+        },
+        {
+          "key": "fx-buy-context",
+          "priority": 1100,
+          "display": "Doviz Al",
+          "icon": "urn:local:icons/coins-hand",
+          "action": "urn:transaction:fx:buy",
+          "audience": [
+            "NL"
+          ],
+          "is-new": false,
+          "filter": {
+            "type": "visible",
+            "expression": "balance > 0 && currency == 'TRL'"
+          },
+          "parameters": [
+            {
+              "source": "cache:home:available-balance",
+              "dataKey": "balance"
+            },
+            {
+              "source": "cache:home:currency",
+              "dataKey": "currency"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

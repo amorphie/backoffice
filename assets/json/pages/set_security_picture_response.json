@@ -1,0 +1,128 @@
+{
+  "type": "neo_scaffold",
+  "args": {
+    "appBar": {
+      "type": "neo_app_bar",
+      "args": {
+        "backTransitionId": "",
+        "title": "Sözleşme İzni Güncelleme",
+        "leftWidgetType": "NeoAppBarLeftWidgetType.backButton"
+      }
+    },
+    "useSafeArea": true,
+    "padding": {
+      "start": "24",
+      "end": "24"
+    },
+    "body": {
+      "type": "stack",
+      "args": {
+        "children": [
+          {
+            "type": "single_child_scroll_view",
+            "args": {
+              "child": {
+                "type": "column",
+                "args": {
+                  "crossAxisAlignment": "start",
+                  "children": [
+                    {
+                      "type": "neo_text",
+                      "args": {
+                        "text": "Güvenlik Resmi",
+                        "style": {
+                          "color": "#2d2a26",
+                          "fontWeight": "w600",
+                          "fontSize": 16,
+                          "fontFamily": "Montserrat"
+                        },
+                        "padding": {
+                          "top": "24",
+                          "bottom": "12"
+                        }
+                      }
+                    },
+                    {
+                      "type": "neo_text",
+                      "args": {
+                        "text": "Şifre güvenliğiniz için güvenlik resimlerinden birini seçiniz.",
+                        "textAlign": "left",
+                        "style": {
+                          "color": "#636363",
+                          "fontWeight": "w500",
+                          "fontSize": 14,
+                          "fontFamily": "Montserrat"
+                        },
+                        "padding": {
+                          "bottom": "24"
+                        }
+                      }
+                    },
+                    {
+                      "type": "neo_image_selector_widget",
+                      "args": {
+                        "padding": {
+                          "bottom": "88"
+                        },
+                        "urlList": [
+                          "https://cdn.pixabay.com/photo/2015/11/19/21/11/book-1052014_1280.jpg",
+                          "https://cdn.pixabay.com/photo/2014/09/14/18/04/dandelion-445228_1280.jpg",
+                          "https://cdn.pixabay.com/photo/2022/03/09/21/40/song-7058726_1280.jpg",
+                          "https://cdn.pixabay.com/photo/2016/08/11/23/48/mountains-1587287_1280.jpg",
+                          "https://cdn.pixabay.com/photo/2014/10/22/18/04/man-498473_1280.jpg",
+                          "https://cdn.pixabay.com/photo/2016/10/27/22/52/apples-1776744_1280.jpg",
+                          "https://cdn.pixabay.com/photo/2017/01/04/21/00/fireworks-1953253_1280.jpg",
+                          "https://cdn.pixabay.com/photo/2016/06/06/21/53/child-1440526_1280.jpg"
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "type": "positioned",
+            "args": {
+              "child": {
+                "type": "align",
+                "args": {
+                  "alignment": "bottomCenter",
+                  "child": {
+                    "type": "decorated_box",
+                    "args": {
+                      "decoration": {
+                        "color": "#fdfdfd"
+                      },
+                      "child": {
+                        "type": "column",
+                        "args": {
+                          "crossAxisAlignment": "stretch",
+                          "mainAxisSize": "min",
+                          "children": [
+                            {
+                              "type": "neo_button",
+                              "args": {
+                                "transitionId": "ob-send-sequrity-image",
+                                "labelText": "Giriş Yap",
+                                "size": "NeoButtonSize.large",
+                                "enabled": false,
+                                "padding": {
+                                  "bottom": "40"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "type": "single_child_scroll_view",
+  "args": {
+    "child": {
+      "type": "padding",
+      "args": {
+        "padding": {
+          "top": 16,
+          "bottom": 16
+        },
+        "child": {
+          "type": "column",
+          "args": {
+            "mainAxisSize": "min",
+            "children": [
+              {
+                "type": "brg_account_slider_widget",
+                "args": {
+                  "openingDate": "08.09.2023",
+                  "accountBalance": "100.000 TL",
+                  "availableBalance": "76.543 TL",
+                  "iban": "TR76 0012 5095 3200 5404 8973 98",
+                  "branchDetails": "9530 - MERKEZ    20054048 - 351"
+                }
+              },
+              {
+                "type": "home_overdraft_info_widget",
+                "args": {
+                  "title": "Süper Ek Hesap",
+                  "closeAccountButtonText": "Hesabı Kapat",
+                  "updateLimitButtonText": "LİMİT GÜNCELLE"
+                }
+              },
+              {
+                "type": "home_account_summary_widget",
+                "args": {
+                  "iban": "TR76 0012 5095 3200 5404 8973 98"
+                }
+              },
+              {
+                "type": "home_last_transactions_widget",
+                "args": {
+                  "title": "Son Transferler",
+                  "userList": [
+                    {
+                      "name": "Emre",
+                      "surname": "Reyhanlioglu"
+                    },
+                    {
+                      "name": "Mertcan",
+                      "surname": "Yigin"
+                    }
+                  ],
+                  "newTransactionText": "YENİ TRANSFER"
+                }
+              },
+              {
+                "type": "sub_navigation_widget",
+                "args": {
+                  "items": [
+                    {
+                      "displayName": "Hesap Aç",
+                      "icon": "class::icons:add_address",
+                      "page": "Account0",
+                      "navigationType": "push",
+                      "new": true,
+                      "active": true
+                    },
+                    {
+                      "displayName": "Hesap Detayları",
+                      "icon": "class::icons:account_flag",
+                      "page": "account-details?param1=Test",
+                      "navigationType": "push",
+                      "new": false,
+                      "active": true
+                    },
+                    {
+                      "displayName": "Hesap Hareketleri",
+                      "icon": "class::icons:account_transactions",
+                      "page": "account-transaction",
+                      "navigationType": "push",
+                      "new": true,
+                      "active": true
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

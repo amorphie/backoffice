@@ -1,0 +1,120 @@
+{
+  "type": "stack",
+  "args": {
+    "children": [
+      {
+        "type": "neo_animation",
+        "args": {
+          "animationUrn": "urn:local:animations:welcomeBackground:json",
+          "isFullscreen": true,
+          "reverse": true
+        }
+      },
+      {
+        "type": "neo_scaffold",
+        "args": {
+          "useSafeArea": true,
+          "backgroundColor": "#00000000",
+          "body": {
+            "type": "column",
+            "args": {
+              "mainAxisSize": "max",
+              "children": [
+                {
+                  "type": "login_app_bar",
+                  "args": {
+                    "defaultAppBar": {
+                      "type": "neo_app_bar",
+                      "args": {
+                        "leftWidgetType": "NeoAppBarLeftWidgetType.languageSwitch",
+                        "actionList": [
+                          {
+                            "iconUrn": "urn:local:icons:notificationSquare:svg"
+                          }
+                        ]
+                      }
+                    },
+                    "focusedAppBar": {
+                      "type": "neo_app_bar",
+                      "args": {
+                        "actionList": [
+                          {
+                            "iconUrn": "urn:local:icons:xClose:svg",
+                            "widgetEventKey": "loginTextFieldUnfocused"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "login_slidable_avatar_tab",
+                  "args": {
+                    "childNewUser": {
+                      "type": "neo_avatar",
+                      "args": {
+                        "showImage": false,
+                        "subText": "Hoşgeldin",
+                        "labelText": "Yeni Kullanıcı",
+                        "padding": {
+                          "top": 66
+                        }
+                      }
+                    },
+                    "childLogin": {
+                      "type": "neo_avatar",
+                      "args": {
+                        "imageUrn": "urn:local:icons:onDev:png",
+                        "subText": "Hoşgeldin",
+                        "labelText": "Tayfun Doğan",
+                        "padding": {
+                          "top": 44
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "login_credential_form",
+                  "args": {
+                    "tcknDataKey": "username",
+                    "tcknLabelText": "TCKN / VKN",
+                    "tcknErrorText": "Yanlış bilgi girdiniz, lütfen kontrol ediniz.",
+                    "passwordDataKey": "password",
+                    "passwordLabelText": "Şifre",
+                    "passwordErrorText": "Şifreniz en az 6 karakter olmalıdır.",
+                    "passwordValidationRegex": "^\\d{6}$",
+                    "passwordMaxLength": 6,
+                    "passwordButtonRight": {
+                      "transitionId": "",
+                      "labelText": "Unuttum"
+                    },
+                    "padding": {
+                      "top": 24,
+                      "start": 24,
+                      "end": 24
+                    }
+                  }
+                },
+                {
+                  "type": "login_button",
+                  "args": {
+                    "transitionId": "amorphie-mobile-login",
+                    "labelText": "Giriş Yap",
+                    "loadingLabelText": "Giriş Yapılıyor",
+                    "formValidationRequired": true,
+                    "padding": {
+                      "top": 24,
+                      "start": 24,
+                      "end": 24
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    ]
+  }
+}

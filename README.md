@@ -98,7 +98,7 @@
     "items": [
         {
             "count": 5,
-            "data-url": "https://test-amorphie-fact-client.burgan.com.tr/client",
+            "data-url": "data-url",
             "entity": "client",
             "title": {
                 "en-EN": "Last Clients",

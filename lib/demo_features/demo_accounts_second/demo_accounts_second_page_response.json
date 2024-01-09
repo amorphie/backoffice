@@ -1,0 +1,67 @@
+{
+  "type": "safe_area",
+  "args": {
+    "child": {
+      "type": "column",
+      "args": {
+        "crossAxisAlignment": "stretch",
+        "children": [
+          {
+            "type": "neo_text_form_field",
+            "args": {
+              "dataKey": "name",
+              "labelText": "Account Name",
+              "padding": 16
+            }
+          },
+          {
+            "type": "neo_network_dropdown_form_field2",
+            "args": {
+              "dataKey": "branchCode",
+              "labelText": "Branch Code",
+              "endpoint": "get-branch-code"
+            }
+          },
+          {
+            "type": "neo_text_form_field",
+            "args": {
+              "dataKey": "currencyCode",
+              "labelText": "Currency Code",
+              "initialData": "TRY",
+              "padding": 16
+            }
+          },
+          {
+            "type": "neo_text_form_field",
+            "args": {
+              "dataKey": "productCode",
+              "labelText": "Product Code",
+              "initialData": "VDSZMVD",
+              "padding": 16
+            }
+          },
+          {
+            "type": "padding",
+            "args": {
+              "padding": [
+                16,
+                16,
+                16,
+                16
+              ],
+              "child": {
+                "type": "neo_transition_button",
+                "args": {
+                  "transitionId": "create-account-start",
+                  "text": "Create Account Start",
+                  "entity": "account-create",
+                  "startTransition": true
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

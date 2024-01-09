@@ -1,0 +1,79 @@
+{
+    "type": "neo_scaffold",
+    "args": {
+      "appBar": {
+        "type": "neo_app_bar",
+        "args": {
+          "backTransitionId": "",
+          "title": "Sözleşme İzni Güncelleme",
+          "leftWidgetType": "NeoAppBarLeftWidgetType.backButton"
+        }
+      },
+      "useSafeArea": true,
+      "body": {
+        "type": "stack",
+        "args": {
+          "children": [
+            {
+              "type": "neo_terms_and_conditions",
+              "args": {
+                "buttonTransitionId": "",
+                "titleText": "ON İnternet Şubesi Bilgilendirme Metni",
+                "contentText": "Lorem ipsum dolor sit amet consectetur. Nibh faucibus vel natoque libero. Facilisis eu nulla ornare tortor sit condimentum eget egestas volutpat. Enim consequat et faucibus aenean in nec odio eget. Dui sit vestibulum imperdiet enim dolor amet pulvinar dolor ultricies. At consectetur at id tristique aliquam enim. Quis a arcu vitae dui fermentum. Nunc accumsan facilisis scelerisque massa.\n\nOrci dictum pellentesque duis aliquet turpis convallis. Posuere consectetur odio scelerisque mi. Massa in etiam facilisis enim augue nisl faucibus. Molestie quis gravida et dui nullam nec gravida faucibus. Hac amet non rhoncus eu tortor netus et sagittis pellentesque. Morbi accumsan enim non non massa integer euismod. Arcu porttitor mattis enim et et congue. Id dolor libero turpis sit sem pellentesque viverra. Et aliquet id tortor orci scelerisque sollicitudin nisl magna. Magna egestas quis blandit tellus. Consequat purus amet ut semper. Sem est molestie eget eget maecenas. Mauris sit nec id pellentesque eget elementum.\n\nFaucibus lorem amet aenean adipiscing lorem eget. Nisi congue magnis nulla egestas odio. Gravida ullamcorper arcu nibh ut nulla suspendisse facilisis vitae. Dignissim quis aliquet volutpat feugiat nullam a neque lorem tortor. Quis accumsan scelerisque eu pharetra. Lorem ipsum dolor sit amet consectetur. Nibh faucibus vel natoque libero. Facilisis eu nulla ornare tortor sit condimentum eget egestas volutpat.",
+                "buttonText": "Onaylıyorum",
+                "padding": {
+                  "start": "24",
+                  "top": "24",
+                  "end": "24",
+                  "bottom": "120"
+                }
+              }
+            },
+            {
+              "type": "positioned",
+              "args": {
+                "child": {
+                  "type": "align",
+                  "args": {
+                    "alignment": "bottomCenter",
+                    "child": {
+                      "type": "decorated_box",
+                      "args": {
+                        "decoration": {
+                          "color": "#fdfdfd"
+                        },
+                        "child": {
+                          "type": "column",
+                          "args": {
+                            "crossAxisAlignment": "stretch",
+                            "mainAxisSize": "min",
+                            "children": [
+                              {
+                                "type": "neo_button",
+                                "args": {
+                                  "transitionId": "ob-send-contract-2",
+                                  "labelText": "Onaylıyorum",
+                                  "size": "NeoButtonSize.large",
+                                  "enabled": false,
+                                  "padding": {
+                                    "start": "24",
+                                    "end": "24",
+                                    "top": "8",
+                                    "bottom": "40"
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  }

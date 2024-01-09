@@ -1,0 +1,100 @@
+{
+  "type": "safe_area",
+  "args": {
+    "child": {
+      "type": "column",
+      "args": {
+        "crossAxisAlignment": "stretch",
+        "children": [
+          {
+            "type": "text",
+            "args": {
+              "text": "{{data.identityNumber}}"
+            }
+          },
+          {
+            "type": "text",
+            "args": {
+              "text": "{{data.name}}"
+            }
+          },
+          {
+            "type": "text",
+            "args": {
+              "text": "{{data.branchCode}}"
+            }
+          },
+          {
+            "type": "text",
+            "args": {
+              "text": "{{data.currencyCode}}"
+            }
+          },
+          {
+            "type": "text",
+            "args": {
+              "text": "{{data.productCode}}"
+            }
+          },
+          {
+            "type": "padding",
+            "args": {
+              "padding": [
+                16,
+                16,
+                16,
+                16
+              ],
+              "child": {
+                "type": "neo_transition_button",
+                "args": {
+                  "transitionId": "create-account-confirm-yes",
+                  "text": "Onayla",
+                  "entity": "account-create"
+                }
+              }
+            }
+          },
+          {
+            "type": "padding",
+            "args": {
+              "padding": [
+                16,
+                16,
+                16,
+                16
+              ],
+              "child": {
+                "type": "neo_transition_button",
+                "args": {
+                  "transitionId": "create-account-confirm-no",
+                  "text": "Reddet",
+                  "entity": "account-create"
+                }
+              }
+            }
+          },
+          {
+            "type": "padding",
+            "args": {
+              "padding": [
+                16,
+                16,
+                16,
+                16
+              ],
+              "child": {
+                "type": "neo_transition_button",
+                "args": {
+                  "transitionId": "create-account-confirm-back",
+                  "text": "Back",
+                  "entity": "account-create"
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}
