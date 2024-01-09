@@ -191,7 +191,7 @@ class DemoMaturityNetworkDropdownFieldBuilderModel
 
 class DemoMaturityNetworkDropdownFieldSchema {
   static const id =
-      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/neo_bank/demo_maturity_network_dropdown_field.json';
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/backoffice/demo_maturity_network_dropdown_field.json';
 
   static final schema = <String, Object>{
     r'$schema': 'http://json-schema.org/draft-07/schema#',

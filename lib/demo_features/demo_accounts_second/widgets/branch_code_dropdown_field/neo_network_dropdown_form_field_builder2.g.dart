@@ -189,7 +189,7 @@ class NeoNetworkDropdownFormFieldBuilder2Model extends JsonWidgetBuilderModel {
 
 class NeoNetworkDropdownFormField2Schema {
   static const id =
-      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/neo_bank/neo_network_dropdown_form_field2.json';
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/backoffice/neo_network_dropdown_form_field2.json';
 
   static final schema = <String, Object>{
     r'$schema': 'http://json-schema.org/draft-07/schema#',

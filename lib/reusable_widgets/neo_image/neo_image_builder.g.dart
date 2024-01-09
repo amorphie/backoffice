@@ -317,7 +317,7 @@ class NeoImageBuilderModel extends JsonWidgetBuilderModel {
 
 class NeoImageSchema {
   static const id =
-      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/neo_bank/neo_image.json';
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/backoffice/neo_image.json';
 
   static final schema = <String, Object>{
     r'$schema': 'http://json-schema.org/draft-07/schema#',

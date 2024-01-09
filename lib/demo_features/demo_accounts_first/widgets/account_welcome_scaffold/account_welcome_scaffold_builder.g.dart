@@ -180,7 +180,7 @@ class AccountWelcomeScaffoldBuilderModel extends JsonWidgetBuilderModel {
 
 class AccountWelcomeScaffoldSchema {
   static const id =
-      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/neo_bank/account_welcome_scaffold.json';
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/backoffice/account_welcome_scaffold.json';
 
   static final schema = <String, Object>{
     r'$schema': 'http://json-schema.org/draft-07/schema#',

@@ -180,7 +180,7 @@ class SecurityIconWidgetBuilderModel extends JsonWidgetBuilderModel {
 
 class SecurityIconWidgetSchema {
   static const id =
-      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/neo_bank/security_icon_widget.json';
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/backoffice/security_icon_widget.json';
 
   static final schema = <String, Object>{
     r'$schema': 'http://json-schema.org/draft-07/schema#',

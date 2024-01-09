@@ -153,7 +153,7 @@ class AnimatedIconBuilderModel extends JsonWidgetBuilderModel {
 
 class AnimatedIconExampleSchema {
   static const id =
-      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/neo_bank/animated_icon_example.json';
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/backoffice/animated_icon_example.json';
 
   static final schema = <String, Object>{
     r'$schema': 'http://json-schema.org/draft-07/schema#',

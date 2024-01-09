@@ -177,7 +177,7 @@ class AccountsCustomInfoTextBuilderModel extends JsonWidgetBuilderModel {
 
 class AccountsCustomInfoTextSchema {
   static const id =
-      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/neo_bank/accounts_custom_info_text.json';
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/backoffice/accounts_custom_info_text.json';
 
   static final schema = <String, Object>{
     r'$schema': 'http://json-schema.org/draft-07/schema#',

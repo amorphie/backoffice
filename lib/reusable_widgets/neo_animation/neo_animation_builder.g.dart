@@ -259,7 +259,7 @@ class NeoAnimationBuilderModel extends JsonWidgetBuilderModel {
 
 class NeoAnimationSchema {
   static const id =
-      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/neo_bank/neo_animation.json';
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/backoffice/neo_animation.json';
 
   static final schema = <String, Object>{
     r'$schema': 'http://json-schema.org/draft-07/schema#',

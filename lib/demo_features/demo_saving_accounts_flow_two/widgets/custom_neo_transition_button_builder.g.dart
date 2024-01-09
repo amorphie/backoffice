@@ -189,7 +189,7 @@ class CustomNeoTransitionButtonBuilderModel extends JsonWidgetBuilderModel {
 
 class CustomNeoTransitionButtonSchema {
   static const id =
-      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/neo_bank/custom_neo_transition_button.json';
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/backoffice/custom_neo_transition_button.json';
 
   static final schema = <String, Object>{
     r'$schema': 'http://json-schema.org/draft-07/schema#',
