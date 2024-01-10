@@ -14,7 +14,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:backoffice/core/models/brg_phone_number.dart';
+import 'package:backoffice/core/models/brg_phone_number/brg_phone_number.dart';
 import 'package:backoffice/util/neo_util.dart';
 import 'package:neo_core/core/workflow_form/bloc/workflow_form_bloc.dart';
 
