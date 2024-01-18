@@ -59,6 +59,7 @@ dependencies:
   system_proxy: 0.1.0
   async: ^2.11.0
   flutter_dotenv: ^5.1.0
+  webviewx_plus: ^0.3.3
   
 dependency_overrides:
   uuid: ^4.1.0 # Delete this overrides when signalr_netcore package in neo_core package is updated
