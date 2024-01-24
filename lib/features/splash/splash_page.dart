@@ -69,7 +69,8 @@ class _SplashPageState extends State<SplashPage> {
       NeoNavigationHelper().navigate(
         context: context,
         navigationType: NeoNavigationType.pushReplacement,
-        navigationPath: NeoPageId.welcome,
+        navigationPath: NeoPageId.boHome,
+        //TODO değişiklik yapılacak
       ),
     );
   }

@@ -37,4 +37,5 @@ class NeoPageId {
   static const termsAndConditionsSecond = "personel_contract_second_page";
   static const accountDetails = "account-details";
   static const addAddress = "add-address";
+  static const boHome = "bo-home";
 }

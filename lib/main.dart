@@ -12,6 +12,7 @@
 
 import 'dart:developer';
 
+import 'package:backoffice/features/home_page/bo_home_page.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -177,6 +178,8 @@ class MyApp extends StatelessWidget {
         return MaterialPageRoute(builder: (context) => const WelcomePageRoute());
       case NeoPageId.home:
         return MaterialPageRoute(builder: (context) => const HomePageRoute());
+      case NeoPageId.boHome:
+        return MaterialPageRoute(builder: (context) => BackofficeHomePage());
       case NeoPageId.photoSelectionVerify:
         return MaterialPageRoute(
           builder: (context) => PhotoSelectionVerifyPageRoute(
