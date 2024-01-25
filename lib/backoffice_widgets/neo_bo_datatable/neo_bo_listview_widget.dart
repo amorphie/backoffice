@@ -2,21 +2,12 @@
 
 import 'package:flutter/material.dart';
 
-class MyApp extends StatelessWidget {
+class NeoBoListView extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: MyListView(),
-    );
-  }
+  _NeoBoListViewState createState() => _NeoBoListViewState();
 }
 
-class MyListView extends StatefulWidget {
-  @override
-  _MyListViewState createState() => _MyListViewState();
-}
-
-class _MyListViewState extends State<MyListView> {
+class _NeoBoListViewState extends State<NeoBoListView> {
   List<String> items = List.generate(20, (index) => 'Item $index');
   final ScrollController _scrollController = ScrollController();
 
@@ -46,31 +37,27 @@ class _MyListViewState extends State<MyListView> {
     });
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Infinite Scrolling ListView'),
-      ),
-      body: ListView.builder(
-        controller: _scrollController,
-        itemCount: items.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-            title: Text(items[index]),
-            tileColor: index % 2 == 0 ? Colors.grey[200] : null, // Optional: Alternate row colors
-            onTap: () {
-              // Handle item selection
-              _handleItemSelection(items[index]);
-            },
-          );
-        },
-      ),
-    );
-  }
-
   void _handleItemSelection(String selectedItem) {
     // Implement your logic for handling item selection here
+    // ignore: avoid_print
     print('Selected Item: $selectedItem');
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      controller: _scrollController,
+      itemCount: items.length,
+      itemBuilder: (context, index) {
+        return ListTile(
+          title: Text(items[index]),
+          tileColor: index % 2 == 0 ? Colors.grey[200] : null, // Optional: Alternate row colors
+          onTap: () {
+            // Handle item selection
+            _handleItemSelection(items[index]);
+          },
+        );
+      },
+    );
   }
 }

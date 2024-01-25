@@ -7,12 +7,12 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-class MyDataTable extends StatefulWidget {
+class NeoBoDataTable extends StatefulWidget {
   List<Map<String, dynamic>> data;
   List<Map<String, dynamic>> columns;
   Future Function() onPageEnd;
 
-  MyDataTable({
+  NeoBoDataTable({
     Key? key,
     required this.data,
     required this.columns,
@@ -20,10 +20,10 @@ class MyDataTable extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _MyDataTableState createState() => _MyDataTableState();
+  _NeoBoDataTableState createState() => _NeoBoDataTableState();
 }
 
-class _MyDataTableState extends State<MyDataTable> {
+class _NeoBoDataTableState extends State<NeoBoDataTable> {
   List<Map<String, dynamic>> data = [];
   bool isLoading = false;
 
