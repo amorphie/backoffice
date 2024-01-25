@@ -10,8 +10,6 @@
  * Any reproduction of this material must contain this notice.
  */
 
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:backoffice/core/dependency_injection/dependency_injection.dart';
 import 'package:backoffice/core/navigation/models/neo_navigation_group_item_model.dart';
@@ -24,8 +22,8 @@ import 'package:backoffice/util/neo_util.dart';
 import 'package:neo_core/core/navigation/models/neo_navigation_type.dart';
 
 abstract class _Constants {
-  static const double iconSize = 24;
-  static const double textMaxWidth = 80;
+  static const double iconSize = 14;
+  static const double textMaxWidth = 120;
   static const int maxLines = 2;
   static const String transitionUrnPrefix = "urn:transaction:";
   static const String navigationUrnPrefix = "urn:page:";
@@ -44,16 +42,12 @@ class NeoBackofficeNavigationGroupItemWidget extends INeoButton {
   Widget Function(BuildContext, NeoButtonState) get childBuilder => (BuildContext context, state) => TextButton(
         style: TextButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(NeoDimens.px32))),
         onPressed: () async {
-          final hasTransition = _parseTransitionId(model.action).isNotEmpty;
-          final transitionParameters = await model.getTransitionParameters();
-          if (hasTransition) {
-            unawaited(startTransition(context, transitionBody: transitionParameters));
-          } else {
-            _handleNavigation(
-              context,
-              navigationPath: _parseNavigationPath().formatWithQueryParams(transitionParameters),
-            );
-          }
+          final configParameters = await model.getConfigParameters();
+
+          _handleNavigation(
+            context,
+            navigationPath: _parseNavigationPath().formatWithQueryParams(configParameters),
+          );
         },
         child: Stack(
           alignment: Alignment.topCenter,

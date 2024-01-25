@@ -65,8 +65,8 @@ class NeoBackofficeNavigationGroupWidget extends StatelessWidget {
               ],
             ),
             SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
+              scrollDirection: Axis.vertical,
+              child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

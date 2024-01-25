@@ -7,6 +7,6 @@ class BackofficeHomePageRoute extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BackofficeHomePage();
+    return const BackofficeHomePage();
   }
 }

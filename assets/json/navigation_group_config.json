@@ -10,13 +10,14 @@
           "display": "Kart Ayarları",
           "action": "urn:transaction:card-settings-transition-id",
           "audience": [
+            "NL",
             "1FA"
           ],
           "is-new": false,
           "parameters": [
             {
               "source": "storage:claim.user",
-              "dataKey": "user"
+              "data": "user"
             }
           ]
         },
@@ -27,7 +28,8 @@
           "icon": "urn:images:shared:icon:search",
           "action": "urn:page:SearchWorkflowWidget",
           "audience": [
-            "NL"
+            "NL",
+            "2FA"
           ],
           "is-new": false,
           "parameters": [

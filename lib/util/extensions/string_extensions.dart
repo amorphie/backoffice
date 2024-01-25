@@ -10,6 +10,8 @@
  * Any reproduction of this material must contain this notice.
  */
 
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:backoffice/util/extensions/nullable_extensions.dart';
