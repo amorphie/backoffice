@@ -42,6 +42,9 @@ class NeoBackofficeNavigationGroupItemWidget extends INeoButton {
   Widget Function(BuildContext, NeoButtonState) get childBuilder => (BuildContext context, state) => TextButton(
         style: TextButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(NeoDimens.px32))),
         onPressed: () async {
+          // var response = await NeoSearchNetworkManager().fetchItemList("user");
+          // print(response);
+
           final configParameters = await model.getConfigParameters();
 
           _handleNavigation(

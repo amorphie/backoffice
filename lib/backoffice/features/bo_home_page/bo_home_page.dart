@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
-import '../../backoffice_widgets/neo_bo_menu/neo_bo_navigation_group_widget.dart';
-import '../../core/navigation/models/neo_navigation_group_config.dart';
+import '../../../core/navigation/models/neo_navigation_group_config.dart';
+import '../../widgets/neo_bo_menu/neo_bo_navigation_group_widget.dart';
 
 class BackofficeHomePage extends StatelessWidget {
   const BackofficeHomePage({super.key});
@@ -26,7 +26,7 @@ class BackofficeHomePage extends StatelessWidget {
               ],
             ),
           ),
-          Expanded(child: Text("data"))
+          const Spacer(),
         ],
       ),
     );

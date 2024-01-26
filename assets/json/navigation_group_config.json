@@ -4,28 +4,10 @@
       "key": "nav-group-home",
       "items": [
         {
-          "key": "card-settings",
-          "priority": 1010,
-          "icon": "urn:local:icons:credit-card-up:svg",
-          "display": "Kart Ayarları",
-          "action": "urn:transaction:card-settings-transition-id",
-          "audience": [
-            "NL",
-            "1FA"
-          ],
-          "is-new": false,
-          "parameters": [
-            {
-              "source": "storage:claim.user",
-              "data": "user"
-            }
-          ]
-        },
-        {
           "key": "user-list",
           "priority": 1010,
           "display": "Kullanicilar",
-          "icon": "urn:images:shared:icon:search",
+          "icon": "urn:local:icons:user:svg",
           "action": "urn:page:SearchWorkflowWidget",
           "audience": [
             "NL",
@@ -43,43 +25,51 @@
               "data": {
                 "columns": [
                   {
-                    "data": "$.data.reference",
+                    "data": "$.data.entityName",
                     "sort": 1,
                     "title": {
-                      "en-EN": "Reference",
-                      "tr-TR": "Referans"
+                      "en-EN": "Entity",
+                      "tr-TR": "Varlık"
                     }
                   },
                   {
-                    "data": "$.data.firstName",
-                    "sort": 2,
-                    "title": {
-                      "en-EN": "First Name",
-                      "tr-TR": "İsim"
-                    }
-                  },
-                  {
-                    "data": "$.data.lastName",
-                    "sort": 3,
-                    "title": {
-                      "en-EN": "Last Name",
-                      "tr-TR": "Soyisim"
-                    }
-                  },
-                  {
-                    "data": "$.data.tag",
+                    "data": "$.data.workflowName",
                     "sort": 4,
                     "title": {
-                      "en-EN": "Tags",
-                      "tr-TR": "Etiketler"
+                      "en-EN": "Workflow",
+                      "tr-TR": "İş Akışı"
                     }
                   },
                   {
-                    "data": "$.data.state",
-                    "sort": 5,
+                    "data": "$.data.state.title.label",
+                    "sort": 4,
                     "title": {
                       "en-EN": "State",
-                      "tr-TR": "Durum"
+                      "tr-TR": "State"
+                    }
+                  },
+                  {
+                    "data": "$.data.recordId",
+                    "sort": 1,
+                    "title": {
+                      "en-EN": "Entity Record ID",
+                      "tr-TR": "Varlık ID"
+                    }
+                  },
+                  {
+                    "data": "$.data.id",
+                    "sort": 1,
+                    "title": {
+                      "en-EN": "Instance ID",
+                      "tr-TR": "Olay ID"
+                    }
+                  },
+                  {
+                    "data": "$.data.createdAt",
+                    "sort": 1,
+                    "title": {
+                      "en-EN": "Created",
+                      "tr-TR": "Oluşturma"
                     }
                   }
                 ],

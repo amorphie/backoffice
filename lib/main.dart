@@ -10,10 +10,8 @@
  * Any reproduction of this material must contain this notice.
  */
 
-import 'dart:convert';
 import 'dart:developer';
 
-import 'package:backoffice/features/bo_home_page/bo_home_page.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -48,7 +46,8 @@ import 'package:neo_core/core/widgets/neo_core_app/neo_core_app.dart';
 import 'package:neo_core/core/widgets/neo_core_firebase_messaging/neo_core_firebase_messaging.dart';
 import 'package:neo_core/neo_core.dart';
 
-import 'features/bo_search_page/bo_search_page.dart';
+import 'backoffice/features/bo_home_page/bo_home_page.dart';
+import 'backoffice/features/bo_search_page/bo_search_page.dart';
 
 abstract class _NeoCoreConstant {
   static const androidDefaultIcon = "@mipmap/ic_launcher";
