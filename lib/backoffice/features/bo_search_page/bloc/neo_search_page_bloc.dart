@@ -8,7 +8,7 @@ import 'neo_search_page_state.dart';
 
 class NeoSearchPageViewBloc extends Bloc<NeoSearchPageEvent, NeoSearchPageState> {
   final NeoSearchNetworkManager networkManager;
-  final itemListStream = BehaviorSubject<List>();
+  final itemListStream = BehaviorSubject<List<Map<String, dynamic>>>();
   final String workflowName;
 
   NeoSearchPageViewBloc({required this.networkManager, required this.workflowName}) : super(const NeoSearchPageListViewState()) {
@@ -16,7 +16,11 @@ class NeoSearchPageViewBloc extends Bloc<NeoSearchPageEvent, NeoSearchPageState>
       try {
         final response = await networkManager.fetchItemList(workflowName);
         if (response.isSuccess) {
-          final List itemList = (response as NeoSuccessResponse).data["data"];
+          List<Map<String, dynamic>> itemList = [];
+          for (var item in (response as NeoSuccessResponse).data["data"]) {
+            itemList.add(item);
+          }
+
           itemListStream.add(itemList);
         } else {
           //TODO: handle error

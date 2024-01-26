@@ -1,3 +1,7 @@
+import 'dart:convert';
+
+import '../../models/config/neo_navigation_config_model.dart';
+import '../../widgets/neo_bo_search_datatable/neo_bo_search_datatable.dart';
 import 'bloc/neo_search_page_state.dart';
 import 'network/neo_search_network_manager.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +25,7 @@ class BackofficeSearchPage extends StatelessWidget {
         create: (ctx) => NeoSearchPageViewBloc(networkManager: NeoSearchNetworkManager(), workflowName: workflow)..add(const NeoSearchPageListViewEventFetchItemList()),
         child: BlocBuilder<NeoSearchPageViewBloc, NeoSearchPageState>(
           builder: (context, state) {
-            return StreamBuilder<List>(
+            return StreamBuilder<List<Map<String, dynamic>>>(
                 stream: context.read<NeoSearchPageViewBloc>().itemListStream,
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
@@ -34,20 +38,20 @@ class BackofficeSearchPage extends StatelessWidget {
         ));
   }
 
-  Widget _buildWidget(data) => Scaffold(
-        body: Row(
-          children: [
-            SizedBox(
-              width: 250,
-              child: Column(
-                children: [
-                  Text(workflow),
-                  Text(config),
-                ],
+  Widget _buildWidget(data) {
+    return Scaffold(
+      body: Column(
+        children: [
+          Expanded(
+            child: NeoSearchDataTable(
+              data: data,
+              navigationConfig: NeoNavigationConfigModel.fromJson(
+                json.decode(config),
               ),
             ),
-            Expanded(child: Text(data.toString()))
-          ],
-        ),
-      );
+          ),
+        ],
+      ),
+    );
+  }
 }

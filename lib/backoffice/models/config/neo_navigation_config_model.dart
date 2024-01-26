@@ -1,6 +1,6 @@
-import 'package:backoffice/core/models/entity/layout_helpers/search_column_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
+import 'search_column_model.dart';
 import 'search_filter.dart';
 
 part 'neo_navigation_config_model.g.dart';

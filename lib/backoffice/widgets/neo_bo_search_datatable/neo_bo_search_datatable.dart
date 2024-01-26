@@ -4,6 +4,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:json_path/json_path.dart';
 
 import '../../models/config/neo_navigation_config_model.dart';
 
@@ -61,7 +62,7 @@ class _NeoSearchDataTableState extends State<NeoSearchDataTable> {
     return widget.navigationConfig.columns
         .map((e) => DataColumn(
                 label: Text(
-              e.title.toString(), //TODO title verisinin language datası değişecek
+              e.title["en-EN"].toString(), //TODO title verisinin language datası değişecek
             )))
         .toList();
   }
@@ -71,7 +72,17 @@ class _NeoSearchDataTableState extends State<NeoSearchDataTable> {
   }
 
   DataRow _row(Map<String, dynamic> data) {
-    return DataRow(cells: [...widget.navigationConfig.columns.map((e) => DataCell(Text(data[e.data].toString()))).toList()]);
+    return DataRow(cells: [
+      ...widget.navigationConfig.columns
+          .map(
+            (e) => DataCell(
+              Text(
+                JsonPath(e.data.replaceAll(".data", "")).read(data).firstOrNull?.value?.toString() ?? "",
+              ),
+            ),
+          )
+          .toList()
+    ]);
   }
 
   @override

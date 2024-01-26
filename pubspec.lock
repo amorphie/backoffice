@@ -854,7 +854,7 @@ packages:
     source: hosted
     version: "1.0.5"
   json_path:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: json_path
       sha256: "93f2cb012eb37112e62d3b5e5eb535431beb4c2566a9c1987b079b13b308763b"
