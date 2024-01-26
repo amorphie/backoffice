@@ -3,13 +3,13 @@
 
 import 'package:flutter/material.dart';
 
-import 'neo_bo_tab_model.dart';
+import 'neo_bo_tabview_model.dart';
 
 class NeoBoTabView extends StatefulWidget {
-  final TabModel model;
+  final List<NeoBoTabViewModel> items;
   const NeoBoTabView({
     Key? key,
-    required this.model,
+    required this.items,
   }) : super(key: key);
 
   @override
@@ -28,22 +28,21 @@ class _NeoBoTabViewState extends State<NeoBoTabView> with SingleTickerProviderSt
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 3,
+      length: widget.items.length,
       child: Column(
         children: [
           Container(
             constraints: BoxConstraints.expand(height: 50),
             child: TabBar(
               controller: _tabController,
-              tabs: [
-                Tab(text: widget.model.title),
-              ],
+              tabs: widget.items.map((e) => Tab(text: e.title)).toList(),
             ),
           ),
           Expanded(
-            child: TabBarView(controller: _tabController, children: [
-              widget.model.child,
-            ]),
+            child: TabBarView(
+              controller: _tabController,
+              children: widget.items.map((e) => e.tab).toList(),
+            ),
           ),
         ],
       ),
