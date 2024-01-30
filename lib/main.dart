@@ -122,6 +122,7 @@ class MyApp extends StatelessWidget {
                   return NeoSessionExpirationListener(
                     navigatorKey: navigatorKey,
                     child: MaterialApp(
+                      debugShowCheckedModeBanner: false,
                       navigatorKey: navigatorKey,
                       title: 'Burgan Template',
                       theme: AppTheme.light(context),

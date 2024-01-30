@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import '../../models/config/neo_navigation_config_model.dart';
 import '../../widgets/neo_bo_search_datatable/neo_bo_search_datatable.dart';
+import '../../widgets/neo_bo_searchbar/neo_bo_searchbar.dart';
 import 'bloc/neo_search_page_state.dart';
 import 'network/neo_search_network_manager.dart';
 import 'package:flutter/material.dart';
@@ -42,6 +43,12 @@ class BackofficeSearchPage extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
+          NeoSearchbar(
+            workflow: workflow,
+            config: NeoNavigationConfigModel.fromJson(
+              json.decode(config),
+            ),
+          ),
           Expanded(
             child: NeoSearchDataTable(
               data: data,

@@ -22,7 +22,7 @@ import 'package:backoffice/util/neo_util.dart';
 import 'package:neo_core/core/navigation/models/neo_navigation_type.dart';
 
 abstract class _Constants {
-  static const double iconSize = 14;
+  static const double iconSize = 12;
   static const double textMaxWidth = 120;
   static const int maxLines = 2;
   static const String transitionUrnPrefix = "urn:transaction:";
@@ -56,7 +56,7 @@ class NeoBackofficeNavigationGroupItemWidget extends INeoButton {
           alignment: Alignment.topCenter,
           children: [
             Row(
-              children: [_buildIcon(), _buildText()],
+              children: [_buildIcon(), const SizedBox(width: 10), _buildText()],
             ),
             if (model.isNew) const NewBadgeWidget(padding: EdgeInsets.zero).paddingOnly(bottom: 80, start: 40),
           ],

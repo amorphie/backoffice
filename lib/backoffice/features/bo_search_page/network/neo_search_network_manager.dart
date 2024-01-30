@@ -10,12 +10,13 @@ abstract class _Constants {
 }
 
 class NeoSearchNetworkManager {
-  Future<NeoResponse> fetchItemList(String workflowName) async {
+  Future<NeoResponse> fetchItemList(String workflowName, [String? keyword]) async {
     try {
       final response = await GetIt.I<NeoNetworkManager>().call(NeoHttpCall(endpoint: _Constants.endpoint, queryProviders: [
         HttpQueryProvider({_Constants.workflowNameQueryParameter: workflowName}),
         HttpQueryProvider({_Constants.pageSizeQueryParameter: "10"}),
         HttpQueryProvider({_Constants.pageNumberQueryParameter: "1"}),
+        if (keyword != null) HttpQueryProvider({"keyword": keyword}),
       ]));
       return NeoResponse.success(response);
     } on NeoException catch (exception) {

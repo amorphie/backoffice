@@ -36,7 +36,7 @@ class NeoButtonBloc extends Bloc<NeoButtonEvent, NeoButtonState> {
           navigationData: SignalrTransitionData(
             navigationPath: response["state"],
             // STOPSHIP: Get from API
-            navigationType: NeoNavigationType.pushReplacement,
+            navigationType: NeoNavigationType.push,
             pageId: response["state"],
             viewSource: response["view-source"],
             initialData: {},

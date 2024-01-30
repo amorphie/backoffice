@@ -30,5 +30,23 @@ class NeoSearchPageViewBloc extends Bloc<NeoSearchPageEvent, NeoSearchPageState>
         print(_);
       }
     });
+    on<NeoSearchPageListViewSearchEvent>((event, emit) async {
+      try {
+        final response = await networkManager.fetchItemList(workflowName, event.keyword);
+        if (response.isSuccess) {
+          List<Map<String, dynamic>> itemList = [];
+          for (var item in (response as NeoSuccessResponse).data["data"]) {
+            itemList.add(item);
+          }
+
+          itemListStream.add(itemList);
+        } else {
+          //TODO: handle error
+        }
+      } on Exception catch (_) {
+        //TODO: handle exception
+        print(_);
+      }
+    });
   }
 }
