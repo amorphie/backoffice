@@ -215,7 +215,7 @@ class MyApp extends StatelessWidget {
     }
     return NeoWorkflowPage(
       source: transitionData.viewSource,
-      pageId: transitionData.pageId,
+      pageId: transitionData.navigationPath,
       initialData: transitionData.initialData,
     );
   }

@@ -14,19 +14,28 @@ class WorkflowComponentTreeBuilderBloc extends Bloc<WorkflowComponentTreeBuilder
   WorkflowComponentTreeBuilderBloc(this.networkManager) : super(WorkflowComponentTreeBuilderStateLoading()) {
     on<WorkflowComponentTreeBuilderEventFetchComponents>((event, emit) async {
       try {
-        final response = await networkManager.fetchPageComponents(event.source, event.pageId);
+        var response;
+        response = await networkManager.fetchPageComponents(event.source, event.pageId, "flutterwidget", "1");
         if (response.isSuccess) {
           final componentsResponse = jsonEncode((response as NeoSuccessResponse).data["body"]);
           emit(
             WorkflowComponentTreeBuilderStateLoaded(componentsMap: jsonDecode(componentsResponse)),
           );
         } else {
-          emit(
-            WorkflowComponentTreeBuilderStateError(
-              // TODO: Select error message based on current language
-              errorMessage: (response as NeoErrorResponse).error.messages.firstOrNull?.title ?? "",
-            ),
-          );
+          response = await networkManager.fetchPageComponents(event.source, event.pageId, "Formio", "0");
+          if (response.isSuccess) {
+            final componentsResponse = (response as NeoSuccessResponse).data["body"];
+            emit(
+              WorkflowFormioBuilderStateLoaded(formioData: componentsResponse),
+            );
+          } else {
+            emit(
+              WorkflowComponentTreeBuilderStateError(
+                // TODO: Select error message based on current language
+                errorMessage: (response as NeoErrorResponse).error.messages.firstOrNull?.title ?? "",
+              ),
+            );
+          }
         }
       } on Exception catch (e) {
         emit(WorkflowComponentTreeBuilderStateError(errorMessage: e.toString()));

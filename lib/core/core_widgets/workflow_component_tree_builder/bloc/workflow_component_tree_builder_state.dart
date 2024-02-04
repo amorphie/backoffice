@@ -18,6 +18,15 @@ class WorkflowComponentTreeBuilderStateLoaded extends WorkflowComponentTreeBuild
   List<Object> get props => [componentsMap];
 }
 
+class WorkflowFormioBuilderStateLoaded extends WorkflowComponentTreeBuilderState {
+  final String formioData;
+
+  const WorkflowFormioBuilderStateLoaded({required this.formioData});
+
+  @override
+  List<Object> get props => [formioData];
+}
+
 class WorkflowComponentTreeBuilderStateError extends WorkflowComponentTreeBuilderState {
   final String errorMessage;
 

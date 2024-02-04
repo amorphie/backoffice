@@ -1,3 +1,4 @@
+import 'package:backoffice/backoffice/widgets/neo_web_view/neo_web_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 import 'package:backoffice/core/core_widgets/workflow_component_tree_builder/bloc/workflow_component_tree_builder_bloc.dart';
@@ -33,6 +34,10 @@ class WorkflowComponentTreeBuilder extends StatelessWidget {
             return loadingWidget;
           case WorkflowComponentTreeBuilderStateLoaded _:
             return JsonWidgetData.fromDynamic(state.componentsMap).build(context: context);
+          case WorkflowFormioBuilderStateLoaded _:
+            return Container(
+              child: NeoWebView(source: WebViewSource.formio(state.formioData)),
+            );
           case WorkflowComponentTreeBuilderStateError _:
             return errorWidget;
         }

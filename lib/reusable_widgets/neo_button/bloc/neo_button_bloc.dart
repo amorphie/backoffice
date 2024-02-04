@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:collection/collection.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -31,19 +32,38 @@ class NeoButtonBloc extends Bloc<NeoButtonEvent, NeoButtonState> {
   Future _onStartTransition(NeoButtonEventStartTransition event, Emitter<NeoButtonState> emit) async {
     if (event.startWorkflow) {
       final response = await neoWorkflowManager.initWorkflow(workflowName: event.transitionId);
-      emit(
-        NeoButtonState(
-          navigationData: SignalrTransitionData(
-            navigationPath: response["state"],
-            // STOPSHIP: Get from API
-            navigationType: NeoNavigationType.push,
-            pageId: response["state"],
-            viewSource: response["view-source"],
-            initialData: {},
-            isBackNavigation: false,
+      if (response["view-source"] == "transition") {
+        var transition = (response["transition"] as List).firstWhereOrNull((element) => element["type"] == "Forward");
+        if (transition != null) {
+          emit(
+            NeoButtonState(
+              navigationData: SignalrTransitionData(
+                navigationPath: transition["transition"],
+                // STOPSHIP: Get from API
+                navigationType: NeoNavigationType.push,
+                pageId: response["state"],
+                viewSource: response["view-source"],
+                initialData: {},
+                isBackNavigation: false,
+              ),
+            ),
+          );
+        }
+      } else {
+        emit(
+          NeoButtonState(
+            navigationData: SignalrTransitionData(
+              navigationPath: response["state"],
+              // STOPSHIP: Get from API
+              navigationType: NeoNavigationType.push,
+              pageId: response["state"],
+              viewSource: response["view-source"],
+              initialData: {},
+              isBackNavigation: false,
+            ),
           ),
-        ),
-      );
+        );
+      }
       emit(const NeoButtonState()); // Clear the navigation path to prevent back button bugs from navigated page
     } else {
       await neoWorkflowManager.postTransition(transitionName: event.transitionId, body: event.transitionBody);
