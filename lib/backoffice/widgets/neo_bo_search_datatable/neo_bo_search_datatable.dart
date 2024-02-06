@@ -89,7 +89,7 @@ class _NeoSearchDataTableState extends State<NeoSearchDataTable> {
           .map(
             (e) => DataCell(
               Text(
-                JsonPath(e.data.replaceAll(".data", "")).read(data).firstOrNull?.value?.toString() ?? "",
+                JsonPath(e.data).read(data).firstOrNull?.value?.toString() ?? "",
               ),
             ),
           )
