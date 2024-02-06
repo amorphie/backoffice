@@ -1,6 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first, prefer_const_constructors, prefer_const_literals_to_create_immutables, must_be_immutable
-// ignore_for_file: library_private_types_in_public_api
-
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -9,10 +6,10 @@ import 'package:json_path/json_path.dart';
 import '../../models/config/neo_navigation_config_model.dart';
 
 class NeoSearchDataTable extends StatefulWidget {
-  NeoNavigationConfigModel navigationConfig;
-  List<Map<String, dynamic>> data;
-  Future Function()? onPageEnd;
-  Future Function()? onPageRefresh;
+  final NeoNavigationConfigModel navigationConfig;
+  final List<Map<String, dynamic>> data;
+  final Future Function()? onPageEnd;
+  final Future Function()? onPageRefresh;
 
   NeoSearchDataTable({
     Key? key,
@@ -28,6 +25,8 @@ class NeoSearchDataTable extends StatefulWidget {
 
 class _NeoSearchDataTableState extends State<NeoSearchDataTable> {
   final ScrollController _scrollController = ScrollController();
+  bool _sortAscending = true;
+  int _sortColumnIndex = 0;
 
   @override
   void initState() {
@@ -60,10 +59,23 @@ class _NeoSearchDataTableState extends State<NeoSearchDataTable> {
 
   List<DataColumn> get _columns {
     return widget.navigationConfig.columns
-        .map((e) => DataColumn(
+        .asMap()
+        .map((index, column) => MapEntry(
+              index,
+              DataColumn(
                 label: Text(
-              e.title["en-EN"].toString(), //TODO title verisinin language datası değişecek
-            )))
+                  column.title["en-EN"].toString(), //TODO title verisinin language datası değişecek
+                ),
+                onSort: (columnIndex, ascending) {
+                  _sortColumnIndex = columnIndex;
+                  setState(() {
+                    _sortAscending = ascending;
+                    _sort(index, ascending);
+                  });
+                },
+              ),
+            ))
+        .values
         .toList();
   }
 
@@ -72,8 +84,8 @@ class _NeoSearchDataTableState extends State<NeoSearchDataTable> {
   }
 
   DataRow _row(Map<String, dynamic> data) {
-    return DataRow(cells: [
-      ...widget.navigationConfig.columns
+    return DataRow(
+      cells: widget.navigationConfig.columns
           .map(
             (e) => DataCell(
               Text(
@@ -81,8 +93,25 @@ class _NeoSearchDataTableState extends State<NeoSearchDataTable> {
               ),
             ),
           )
-          .toList()
-    ]);
+          .toList(),
+      selected: false,
+      onSelectChanged: (selected) {
+        if (selected != null && selected) {
+          // Handle row selection
+        }
+      },
+    );
+  }
+
+  void _sort(int columnIndex, bool ascending) {
+    widget.data.sort((a, b) {
+      final aValue = a[widget.navigationConfig.columns[columnIndex].data];
+      final bValue = b[widget.navigationConfig.columns[columnIndex].data];
+      if (aValue is String && bValue is String) {
+        return ascending ? aValue.compareTo(bValue) : bValue.compareTo(aValue);
+      }
+      return 0;
+    });
   }
 
   @override
@@ -94,7 +123,12 @@ class _NeoSearchDataTableState extends State<NeoSearchDataTable> {
       child: ListView(
         controller: _scrollController,
         children: [
-          DataTable(columns: _columns, rows: _rows),
+          DataTable(
+            sortAscending: _sortAscending,
+            sortColumnIndex: _sortColumnIndex,
+            columns: _columns,
+            rows: _rows,
+          ),
         ],
       ),
     );
