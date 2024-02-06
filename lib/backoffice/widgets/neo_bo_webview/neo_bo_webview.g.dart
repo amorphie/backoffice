@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'neo_bo_tabview.dart';
+part of 'neo_bo_webview.dart';
 
 // **************************************************************************
 // Generator: JsonWidgetLibraryBuilder
@@ -16,10 +16,10 @@ part of 'neo_bo_tabview.dart';
 // ignore_for_file: prefer_single_quotes
 // ignore_for_file: unused_local_variable
 
-class JsonNeoBoTabviewBuilder extends _JsonNeoBoTabviewBuilder {
-  const JsonNeoBoTabviewBuilder({required super.args});
+class NeoBoWebview extends _NeoBoWebview {
+  const NeoBoWebview({required super.args});
 
-  static const kType = 'neo_bo_tabview';
+  static const kType = 'json_neo_bo_web_view';
 
   /// Constant that can be referenced for the builder's type.
   @override
@@ -27,20 +27,20 @@ class JsonNeoBoTabviewBuilder extends _JsonNeoBoTabviewBuilder {
 
   /// Static function that is capable of decoding the widget from a dynamic JSON
   /// or YAML set of values.
-  static JsonNeoBoTabviewBuilder fromDynamic(
+  static NeoBoWebview fromDynamic(
     dynamic map, {
     JsonWidgetRegistry? registry,
   }) =>
-      JsonNeoBoTabviewBuilder(
+      NeoBoWebview(
         args: map,
       );
 
   @override
-  JsonNeoBoTabviewBuilderModel createModel({
+  NeoBoWebviewModel createModel({
     ChildWidgetBuilder? childBuilder,
     required JsonWidgetData data,
   }) {
-    final model = JsonNeoBoTabviewBuilderModel.fromDynamic(
+    final model = NeoBoWebviewModel.fromDynamic(
       args,
       registry: data.jsonWidgetRegistry,
     );
@@ -49,7 +49,7 @@ class JsonNeoBoTabviewBuilder extends _JsonNeoBoTabviewBuilder {
   }
 
   @override
-  _NeoBoTabview buildCustom({
+  _JsonNeoBoWebView buildCustom({
     ChildWidgetBuilder? childBuilder,
     required BuildContext context,
     required JsonWidgetData data,
@@ -60,53 +60,61 @@ class JsonNeoBoTabviewBuilder extends _JsonNeoBoTabviewBuilder {
       data: data,
     );
 
-    return _NeoBoTabview(
+    return _JsonNeoBoWebView(
       childBuilder: childBuilder,
-      data: model.data,
-      model: model,
+      source: model.source,
+      type: model.type,
     );
   }
 }
 
-class JsonNeoBoTabview extends JsonWidgetData {
-  JsonNeoBoTabview({
+class JsonJsonNeoBoWebView extends JsonWidgetData {
+  JsonJsonNeoBoWebView({
     Map<String, dynamic> args = const {},
     JsonWidgetRegistry? registry,
-    required this.data,
+    required this.source,
+    required this.type,
   }) : super(
-          jsonWidgetArgs: JsonNeoBoTabviewBuilderModel.fromDynamic(
+          jsonWidgetArgs: NeoBoWebviewModel.fromDynamic(
             {
-              'data': data,
+              'source': source,
+              'type': type,
               ...args,
             },
             args: args,
             registry: registry,
           ),
-          jsonWidgetBuilder: () => JsonNeoBoTabviewBuilder(
-            args: JsonNeoBoTabviewBuilderModel.fromDynamic(
+          jsonWidgetBuilder: () => NeoBoWebview(
+            args: NeoBoWebviewModel.fromDynamic(
               {
-                'data': data,
+                'source': source,
+                'type': type,
                 ...args,
               },
               args: args,
               registry: registry,
             ),
           ),
-          jsonWidgetType: JsonNeoBoTabviewBuilder.kType,
+          jsonWidgetType: NeoBoWebview.kType,
         );
 
-  final List<dynamic> data;
+  final String source;
+
+  final String type;
 }
 
-class JsonNeoBoTabviewBuilderModel extends JsonWidgetBuilderModel {
-  const JsonNeoBoTabviewBuilderModel(
+class NeoBoWebviewModel extends JsonWidgetBuilderModel {
+  const NeoBoWebviewModel(
     super.args, {
-    required this.data,
+    required this.source,
+    required this.type,
   });
 
-  final List<dynamic> data;
+  final String source;
 
-  static JsonNeoBoTabviewBuilderModel fromDynamic(
+  final String type;
+
+  static NeoBoWebviewModel fromDynamic(
     dynamic map, {
     Map<String, dynamic> args = const {},
     JsonWidgetRegistry? registry,
@@ -119,19 +127,19 @@ class JsonNeoBoTabviewBuilderModel extends JsonWidgetBuilderModel {
 
     if (result == null) {
       throw Exception(
-        '[JsonNeoBoTabviewBuilder]: requested to parse from dynamic, but the input is null.',
+        '[NeoBoWebview]: requested to parse from dynamic, but the input is null.',
       );
     }
 
     return result;
   }
 
-  static JsonNeoBoTabviewBuilderModel? maybeFromDynamic(
+  static NeoBoWebviewModel? maybeFromDynamic(
     dynamic map, {
     Map<String, dynamic> args = const {},
     JsonWidgetRegistry? registry,
   }) {
-    JsonNeoBoTabviewBuilderModel? result;
+    NeoBoWebviewModel? result;
 
     if (map != null) {
       if (map is String) {
@@ -141,14 +149,15 @@ class JsonNeoBoTabviewBuilderModel extends JsonWidgetBuilderModel {
         );
       }
 
-      if (map is JsonNeoBoTabviewBuilderModel) {
+      if (map is NeoBoWebviewModel) {
         result = map;
       } else {
         registry ??= JsonWidgetRegistry.instance;
         map = registry.processArgs(map, <String>{}).value;
-        result = JsonNeoBoTabviewBuilderModel(
+        result = NeoBoWebviewModel(
           args,
-          data: map['data'],
+          source: map['source'],
+          type: map['type'],
         );
       }
     }
@@ -159,24 +168,26 @@ class JsonNeoBoTabviewBuilderModel extends JsonWidgetBuilderModel {
   @override
   Map<String, dynamic> toJson() {
     return JsonClass.removeNull({
-      'data': data,
+      'source': source,
+      'type': type,
       ...args,
     });
   }
 }
 
-class NeoBoTabviewSchema {
+class JsonNeoBoWebViewSchema {
   static const id =
-      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/json_dynamic_example/neo_bo_tabview.json';
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/json_dynamic_example/json_neo_bo_web_view.json';
 
   static final schema = <String, Object>{
     r'$schema': 'http://json-schema.org/draft-07/schema#',
     r'$id': id,
-    'title': '_NeoBoTabview',
+    'title': '_JsonNeoBoWebView',
     'type': 'object',
     'additionalProperties': false,
     'properties': {
-      'data': SchemaHelper.anySchema,
+      'source': SchemaHelper.stringSchema,
+      'type': SchemaHelper.stringSchema,
     },
   };
 }

@@ -22,7 +22,7 @@ class _NeoBoTabViewState extends State<NeoBoTabView> with SingleTickerProviderSt
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 3, vsync: this);
+    _tabController = TabController(length: widget.items.length, vsync: this);
   }
 
   @override
@@ -32,10 +32,16 @@ class _NeoBoTabViewState extends State<NeoBoTabView> with SingleTickerProviderSt
       child: Column(
         children: [
           Container(
-            constraints: BoxConstraints.expand(height: 50),
+            constraints: BoxConstraints.expand(height: 30),
             child: TabBar(
+              indicatorSize: TabBarIndicatorSize.label,
               controller: _tabController,
-              tabs: widget.items.map((e) => Tab(text: e.title)).toList(),
+              tabs: widget.items
+                  .map((e) => Tab(
+                        text: e.title,
+                        iconMargin: EdgeInsets.all(3),
+                      ))
+                  .toList(),
             ),
           ),
           Expanded(
