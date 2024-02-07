@@ -13,7 +13,7 @@ import 'bloc/neo_search_page_event.dart';
 
 class BackofficeSearchPage extends StatelessWidget {
   final String workflow;
-  final dynamic config;
+  final NeoNavigationConfigModel config;
   const BackofficeSearchPage({
     required this.workflow,
     required this.config,
@@ -45,16 +45,12 @@ class BackofficeSearchPage extends StatelessWidget {
         children: [
           NeoSearchbar(
             workflow: workflow,
-            config: NeoNavigationConfigModel.fromJson(
-              json.decode(config),
-            ),
+            config: config,
           ),
           Expanded(
             child: NeoSearchDataTable(
               data: data,
-              navigationConfig: NeoNavigationConfigModel.fromJson(
-                json.decode(config),
-              ),
+              navigationConfig: config,
             ),
           ),
         ],

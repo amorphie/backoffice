@@ -25,51 +25,43 @@
               "data": {
                 "columns": [
                   {
-                    "data": "$.data.entityName",
+                    "data": "$.data.firstName",
                     "sort": 1,
                     "title": {
-                      "en-EN": "Entity",
-                      "tr-TR": "Varlık"
+                      "en-EN": "First Name",
+                      "tr-TR": "Ad"
                     }
                   },
                   {
-                    "data": "$.data.workflowName",
-                    "sort": 4,
-                    "title": {
-                      "en-EN": "Workflow",
-                      "tr-TR": "İş Akışı"
-                    }
-                  },
-                  {
-                    "data": "$.data.state.title.label",
-                    "sort": 4,
-                    "title": {
-                      "en-EN": "State",
-                      "tr-TR": "State"
-                    }
-                  },
-                  {
-                    "data": "$.data.recordId",
+                    "data": "$.data.lastName",
                     "sort": 1,
                     "title": {
-                      "en-EN": "Entity Record ID",
-                      "tr-TR": "Varlık ID"
+                      "en-EN": "Last Name",
+                      "tr-TR": "Soyad"
                     }
                   },
                   {
-                    "data": "$.data.id",
+                    "data": "$.data.reference",
                     "sort": 1,
                     "title": {
-                      "en-EN": "Instance ID",
-                      "tr-TR": "Olay ID"
+                      "en-EN": "Reference",
+                      "tr-TR": "Kimlik No"
                     }
                   },
                   {
-                    "data": "$.data.createdAt",
+                    "data": "$.data.eMail",
                     "sort": 1,
                     "title": {
-                      "en-EN": "Created",
-                      "tr-TR": "Oluşturma"
+                      "en-EN": "E-Mail",
+                      "tr-TR": "E-Posta"
+                    }
+                  },
+                  {
+                    "data": "$.createdAt",
+                    "sort": 1,
+                    "title": {
+                      "en-EN": "Created At",
+                      "tr-TR": "Oluşturulma Tarihi"
                     }
                   }
                 ],

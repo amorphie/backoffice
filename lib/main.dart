@@ -10,6 +10,7 @@
  * Any reproduction of this material must contain this notice.
  */
 
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter/foundation.dart';
@@ -48,6 +49,7 @@ import 'package:neo_core/neo_core.dart';
 
 import 'backoffice/features/bo_home_page/bo_home_page.dart';
 import 'backoffice/features/bo_search_page/bo_search_page.dart';
+import 'backoffice/models/config/neo_navigation_config_model.dart';
 
 abstract class _NeoCoreConstant {
   static const androidDefaultIcon = "@mipmap/ic_launcher";
@@ -187,7 +189,9 @@ class MyApp extends StatelessWidget {
         return MaterialPageRoute(
             builder: (context) => BackofficeSearchPage(
                   workflow: args["workflow"] ?? "",
-                  config: args["config"],
+                  config: NeoNavigationConfigModel.fromJson(
+                    json.decode(args["config"] ?? "{}"),
+                  ),
                 ));
       case NeoPageId.photoSelectionVerify:
         return MaterialPageRoute(
