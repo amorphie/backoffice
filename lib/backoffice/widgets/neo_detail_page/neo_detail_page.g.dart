@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'neo_bo_tabview.dart';
+part of 'neo_detail_page.dart';
 
 // **************************************************************************
 // Generator: JsonWidgetLibraryBuilder
@@ -16,10 +16,10 @@ part of 'neo_bo_tabview.dart';
 // ignore_for_file: prefer_single_quotes
 // ignore_for_file: unused_local_variable
 
-class JsonNeoBoTabviewBuilder extends _JsonNeoBoTabviewBuilder {
-  const JsonNeoBoTabviewBuilder({required super.args});
+class JsonNeoDetailPageBuilder extends _JsonNeoDetailPageBuilder {
+  const JsonNeoDetailPageBuilder({required super.args});
 
-  static const kType = 'neo_bo_tabview';
+  static const kType = 'neo_detail_page';
 
   /// Constant that can be referenced for the builder's type.
   @override
@@ -27,20 +27,20 @@ class JsonNeoBoTabviewBuilder extends _JsonNeoBoTabviewBuilder {
 
   /// Static function that is capable of decoding the widget from a dynamic JSON
   /// or YAML set of values.
-  static JsonNeoBoTabviewBuilder fromDynamic(
+  static JsonNeoDetailPageBuilder fromDynamic(
     dynamic map, {
     JsonWidgetRegistry? registry,
   }) =>
-      JsonNeoBoTabviewBuilder(
+      JsonNeoDetailPageBuilder(
         args: map,
       );
 
   @override
-  JsonNeoBoTabviewBuilderModel createModel({
+  JsonNeoDetailPageBuilderModel createModel({
     ChildWidgetBuilder? childBuilder,
     required JsonWidgetData data,
   }) {
-    final model = JsonNeoBoTabviewBuilderModel.fromDynamic(
+    final model = JsonNeoDetailPageBuilderModel.fromDynamic(
       args,
       registry: data.jsonWidgetRegistry,
     );
@@ -49,7 +49,7 @@ class JsonNeoBoTabviewBuilder extends _JsonNeoBoTabviewBuilder {
   }
 
   @override
-  _NeoBoTabview buildCustom({
+  _NeoDetailPage buildCustom({
     ChildWidgetBuilder? childBuilder,
     required BuildContext context,
     required JsonWidgetData data,
@@ -60,53 +60,62 @@ class JsonNeoBoTabviewBuilder extends _JsonNeoBoTabviewBuilder {
       data: data,
     );
 
-    return _NeoBoTabview(
+    return _NeoDetailPage(
       childBuilder: childBuilder,
-      data: model.data,
       model: model,
+      summary: model.summary,
+      tabs: model.tabs,
     );
   }
 }
 
-class JsonNeoBoTabview extends JsonWidgetData {
-  JsonNeoBoTabview({
+class JsonNeoDetailPage extends JsonWidgetData {
+  JsonNeoDetailPage({
     Map<String, dynamic> args = const {},
     JsonWidgetRegistry? registry,
-    required this.data,
+    required this.summary,
+    required this.tabs,
   }) : super(
-          jsonWidgetArgs: JsonNeoBoTabviewBuilderModel.fromDynamic(
+          jsonWidgetArgs: JsonNeoDetailPageBuilderModel.fromDynamic(
             {
-              'data': data,
+              'summary': summary,
+              'tabs': tabs,
               ...args,
             },
             args: args,
             registry: registry,
           ),
-          jsonWidgetBuilder: () => JsonNeoBoTabviewBuilder(
-            args: JsonNeoBoTabviewBuilderModel.fromDynamic(
+          jsonWidgetBuilder: () => JsonNeoDetailPageBuilder(
+            args: JsonNeoDetailPageBuilderModel.fromDynamic(
               {
-                'data': data,
+                'summary': summary,
+                'tabs': tabs,
                 ...args,
               },
               args: args,
               registry: registry,
             ),
           ),
-          jsonWidgetType: JsonNeoBoTabviewBuilder.kType,
+          jsonWidgetType: JsonNeoDetailPageBuilder.kType,
         );
 
-  final List<dynamic> data;
+  final JsonWidgetData summary;
+
+  final JsonWidgetData tabs;
 }
 
-class JsonNeoBoTabviewBuilderModel extends JsonWidgetBuilderModel {
-  const JsonNeoBoTabviewBuilderModel(
+class JsonNeoDetailPageBuilderModel extends JsonWidgetBuilderModel {
+  const JsonNeoDetailPageBuilderModel(
     super.args, {
-    required this.data,
+    required this.summary,
+    required this.tabs,
   });
 
-  final List<dynamic> data;
+  final JsonWidgetData summary;
 
-  static JsonNeoBoTabviewBuilderModel fromDynamic(
+  final JsonWidgetData tabs;
+
+  static JsonNeoDetailPageBuilderModel fromDynamic(
     dynamic map, {
     Map<String, dynamic> args = const {},
     JsonWidgetRegistry? registry,
@@ -119,19 +128,19 @@ class JsonNeoBoTabviewBuilderModel extends JsonWidgetBuilderModel {
 
     if (result == null) {
       throw Exception(
-        '[JsonNeoBoTabviewBuilder]: requested to parse from dynamic, but the input is null.',
+        '[JsonNeoDetailPageBuilder]: requested to parse from dynamic, but the input is null.',
       );
     }
 
     return result;
   }
 
-  static JsonNeoBoTabviewBuilderModel? maybeFromDynamic(
+  static JsonNeoDetailPageBuilderModel? maybeFromDynamic(
     dynamic map, {
     Map<String, dynamic> args = const {},
     JsonWidgetRegistry? registry,
   }) {
-    JsonNeoBoTabviewBuilderModel? result;
+    JsonNeoDetailPageBuilderModel? result;
 
     if (map != null) {
       if (map is String) {
@@ -141,14 +150,37 @@ class JsonNeoBoTabviewBuilderModel extends JsonWidgetBuilderModel {
         );
       }
 
-      if (map is JsonNeoBoTabviewBuilderModel) {
+      if (map is JsonNeoDetailPageBuilderModel) {
         result = map;
       } else {
         registry ??= JsonWidgetRegistry.instance;
         map = registry.processArgs(map, <String>{}).value;
-        result = JsonNeoBoTabviewBuilderModel(
+        result = JsonNeoDetailPageBuilderModel(
           args,
-          data: map['data'],
+          summary: () {
+            dynamic parsed = JsonWidgetData.fromDynamic(
+              map['summary'],
+              registry: registry,
+            );
+
+            if (parsed == null) {
+              throw Exception(
+                  'Null value encountered for required parameter: [summary].');
+            }
+            return parsed;
+          }(),
+          tabs: () {
+            dynamic parsed = JsonWidgetData.fromDynamic(
+              map['tabs'],
+              registry: registry,
+            );
+
+            if (parsed == null) {
+              throw Exception(
+                  'Null value encountered for required parameter: [tabs].');
+            }
+            return parsed;
+          }(),
         );
       }
     }
@@ -159,24 +191,26 @@ class JsonNeoBoTabviewBuilderModel extends JsonWidgetBuilderModel {
   @override
   Map<String, dynamic> toJson() {
     return JsonClass.removeNull({
-      'data': data,
+      'summary': summary.toJson(),
+      'tabs': tabs.toJson(),
       ...args,
     });
   }
 }
 
-class NeoBoTabviewSchema {
+class NeoDetailPageSchema {
   static const id =
-      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/json_dynamic_example/neo_bo_tabview.json';
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/json_dynamic_example/neo_detail_page.json';
 
   static final schema = <String, Object>{
     r'$schema': 'http://json-schema.org/draft-07/schema#',
     r'$id': id,
-    'title': '_NeoBoTabview',
+    'title': '_NeoDetailPage',
     'type': 'object',
     'additionalProperties': false,
     'properties': {
-      'data': SchemaHelper.anySchema,
+      'summary': SchemaHelper.objectSchema(JsonWidgetDataSchema.id),
+      'tabs': SchemaHelper.objectSchema(JsonWidgetDataSchema.id),
     },
   };
 }

@@ -1,13 +1,15 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 // ignore: unused_import
-import 'package:flutter/gestures.dart';
-import 'package:json_dynamic_widget/builders.dart';
+import 'dart:convert';
+
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
+import '../render_widget.dart';
+import 'neo_bo_tabview_model.dart';
 import 'neo_bo_tabview_widget.dart';
 
 part 'neo_bo_tabview.g.dart';
 
-/// Builder that can build an [NeoBoTabview] widget.
 @jsonWidget
 abstract class _JsonNeoBoTabviewBuilder extends JsonWidgetBuilder {
   const _JsonNeoBoTabviewBuilder({
@@ -26,20 +28,28 @@ abstract class _JsonNeoBoTabviewBuilder extends JsonWidgetBuilder {
 class _NeoBoTabview extends StatelessWidget {
   const _NeoBoTabview({
     @JsonBuildArg() this.childBuilder,
-    required this.title,
+    required this.data,
     @JsonBuildArg() required this.model,
-    this.children,
   });
 
   final ChildWidgetBuilder? childBuilder;
-  final List<JsonWidgetData>? children;
-  final JsonWidgetData title;
+  final List data;
   final JsonNeoBoTabviewBuilderModel model;
 
   @override
   Widget build(BuildContext context) {
-    final children = this.children ?? const <JsonWidgetData>[];
+    List<NeoBoTabViewModel> list = data
+        .map((e) => NeoBoTabViewModel(
+            title: e["title"],
+            tab: RenderWidget(
+              template: e["view"],
+              childBuilder: childBuilder,
+            )))
+        .toList();
 
-    return NeoBoTabView(items: []);
+    return Container(
+        // width: MediaQuery.of(context).size.width,
+        height: 600,
+        child: NeoBoTabView(items: list));
   }
 }

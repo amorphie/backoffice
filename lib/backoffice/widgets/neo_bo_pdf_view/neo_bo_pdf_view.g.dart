@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'neo_bo_tabview.dart';
+part of 'neo_bo_pdf_view.dart';
 
 // **************************************************************************
 // Generator: JsonWidgetLibraryBuilder
@@ -8,7 +8,7 @@ part of 'neo_bo_tabview.dart';
 
 // ignore_for_file: avoid_init_to_null
 // ignore_for_file: deprecated_member_use
-// ignore_for_file: library_private_types_in_public_api
+
 // ignore_for_file: prefer_const_constructors
 // ignore_for_file: prefer_const_constructors_in_immutables
 // ignore_for_file: prefer_final_locals
@@ -16,10 +16,10 @@ part of 'neo_bo_tabview.dart';
 // ignore_for_file: prefer_single_quotes
 // ignore_for_file: unused_local_variable
 
-class JsonNeoBoTabviewBuilder extends _JsonNeoBoTabviewBuilder {
-  const JsonNeoBoTabviewBuilder({required super.args});
+class NeoBoPdfView extends _NeoBoPdfView {
+  const NeoBoPdfView({required super.args});
 
-  static const kType = 'neo_bo_tabview';
+  static const kType = 'neo_bo_pdf_view_widget';
 
   /// Constant that can be referenced for the builder's type.
   @override
@@ -27,20 +27,20 @@ class JsonNeoBoTabviewBuilder extends _JsonNeoBoTabviewBuilder {
 
   /// Static function that is capable of decoding the widget from a dynamic JSON
   /// or YAML set of values.
-  static JsonNeoBoTabviewBuilder fromDynamic(
+  static NeoBoPdfView fromDynamic(
     dynamic map, {
     JsonWidgetRegistry? registry,
   }) =>
-      JsonNeoBoTabviewBuilder(
+      NeoBoPdfView(
         args: map,
       );
 
   @override
-  JsonNeoBoTabviewBuilderModel createModel({
+  NeoBoPdfViewModel createModel({
     ChildWidgetBuilder? childBuilder,
     required JsonWidgetData data,
   }) {
-    final model = JsonNeoBoTabviewBuilderModel.fromDynamic(
+    final model = NeoBoPdfViewModel.fromDynamic(
       args,
       registry: data.jsonWidgetRegistry,
     );
@@ -49,7 +49,7 @@ class JsonNeoBoTabviewBuilder extends _JsonNeoBoTabviewBuilder {
   }
 
   @override
-  _NeoBoTabview buildCustom({
+  NeoBoPdfViewWidget buildCustom({
     ChildWidgetBuilder? childBuilder,
     required BuildContext context,
     required JsonWidgetData data,
@@ -60,53 +60,52 @@ class JsonNeoBoTabviewBuilder extends _JsonNeoBoTabviewBuilder {
       data: data,
     );
 
-    return _NeoBoTabview(
-      childBuilder: childBuilder,
-      data: model.data,
-      model: model,
+    return NeoBoPdfViewWidget(
+      bytes: model.bytes,
+      key: key,
     );
   }
 }
 
-class JsonNeoBoTabview extends JsonWidgetData {
-  JsonNeoBoTabview({
+class JsonNeoBoPdfViewWidget extends JsonWidgetData {
+  JsonNeoBoPdfViewWidget({
     Map<String, dynamic> args = const {},
     JsonWidgetRegistry? registry,
-    required this.data,
+    this.bytes,
   }) : super(
-          jsonWidgetArgs: JsonNeoBoTabviewBuilderModel.fromDynamic(
+          jsonWidgetArgs: NeoBoPdfViewModel.fromDynamic(
             {
-              'data': data,
+              'bytes': bytes,
               ...args,
             },
             args: args,
             registry: registry,
           ),
-          jsonWidgetBuilder: () => JsonNeoBoTabviewBuilder(
-            args: JsonNeoBoTabviewBuilderModel.fromDynamic(
+          jsonWidgetBuilder: () => NeoBoPdfView(
+            args: NeoBoPdfViewModel.fromDynamic(
               {
-                'data': data,
+                'bytes': bytes,
                 ...args,
               },
               args: args,
               registry: registry,
             ),
           ),
-          jsonWidgetType: JsonNeoBoTabviewBuilder.kType,
+          jsonWidgetType: NeoBoPdfView.kType,
         );
 
-  final List<dynamic> data;
+  final Uint8List? bytes;
 }
 
-class JsonNeoBoTabviewBuilderModel extends JsonWidgetBuilderModel {
-  const JsonNeoBoTabviewBuilderModel(
+class NeoBoPdfViewModel extends JsonWidgetBuilderModel {
+  const NeoBoPdfViewModel(
     super.args, {
-    required this.data,
+    this.bytes,
   });
 
-  final List<dynamic> data;
+  final Uint8List? bytes;
 
-  static JsonNeoBoTabviewBuilderModel fromDynamic(
+  static NeoBoPdfViewModel fromDynamic(
     dynamic map, {
     Map<String, dynamic> args = const {},
     JsonWidgetRegistry? registry,
@@ -119,19 +118,19 @@ class JsonNeoBoTabviewBuilderModel extends JsonWidgetBuilderModel {
 
     if (result == null) {
       throw Exception(
-        '[JsonNeoBoTabviewBuilder]: requested to parse from dynamic, but the input is null.',
+        '[NeoBoPdfView]: requested to parse from dynamic, but the input is null.',
       );
     }
 
     return result;
   }
 
-  static JsonNeoBoTabviewBuilderModel? maybeFromDynamic(
+  static NeoBoPdfViewModel? maybeFromDynamic(
     dynamic map, {
     Map<String, dynamic> args = const {},
     JsonWidgetRegistry? registry,
   }) {
-    JsonNeoBoTabviewBuilderModel? result;
+    NeoBoPdfViewModel? result;
 
     if (map != null) {
       if (map is String) {
@@ -141,14 +140,14 @@ class JsonNeoBoTabviewBuilderModel extends JsonWidgetBuilderModel {
         );
       }
 
-      if (map is JsonNeoBoTabviewBuilderModel) {
+      if (map is NeoBoPdfViewModel) {
         result = map;
       } else {
         registry ??= JsonWidgetRegistry.instance;
         map = registry.processArgs(map, <String>{}).value;
-        result = JsonNeoBoTabviewBuilderModel(
+        result = NeoBoPdfViewModel(
           args,
-          data: map['data'],
+          bytes: map['bytes'],
         );
       }
     }
@@ -159,24 +158,24 @@ class JsonNeoBoTabviewBuilderModel extends JsonWidgetBuilderModel {
   @override
   Map<String, dynamic> toJson() {
     return JsonClass.removeNull({
-      'data': data,
+      'bytes': bytes,
       ...args,
     });
   }
 }
 
-class NeoBoTabviewSchema {
+class NeoBoPdfViewWidgetSchema {
   static const id =
-      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/json_dynamic_example/neo_bo_tabview.json';
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/json_dynamic_example/neo_bo_pdf_view_widget.json';
 
   static final schema = <String, Object>{
     r'$schema': 'http://json-schema.org/draft-07/schema#',
     r'$id': id,
-    'title': '_NeoBoTabview',
+    'title': 'NeoBoPdfViewWidget',
     'type': 'object',
     'additionalProperties': false,
     'properties': {
-      'data': SchemaHelper.anySchema,
+      'bytes': SchemaHelper.anySchema,
     },
   };
 }
