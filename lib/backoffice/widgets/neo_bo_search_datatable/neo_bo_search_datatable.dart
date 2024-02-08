@@ -17,7 +17,6 @@ class NeoSearchDataTable extends StatefulWidget {
   bool sortAscending;
   final List<String> sortableColumns;
   final Function(String)? onSort;
-  final List<NeoBoSearchColumn> columns;
   final bool isSelected;
 
   NeoSearchDataTable({
@@ -30,7 +29,6 @@ class NeoSearchDataTable extends StatefulWidget {
     required this.sortAscending,
     required this.sortableColumns,
     this.onSort,
-    required this.columns,
     required this.isSelected,
   }) : super(key: key);
 
