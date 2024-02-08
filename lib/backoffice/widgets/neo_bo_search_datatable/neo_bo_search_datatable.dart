@@ -19,6 +19,7 @@ class NeoSearchDataTable extends StatefulWidget {
   final Function(String)? onSort;
   final List<NeoBoSearchColumn> columns;
   final bool isSelected;
+  final Future Function(Map<String, dynamic>) onSelect;
 
   NeoSearchDataTable({
     Key? key,
@@ -32,6 +33,7 @@ class NeoSearchDataTable extends StatefulWidget {
     this.onSort,
     required this.columns,
     required this.isSelected,
+    required this.onSelect,
   }) : super(key: key);
 
   @override
@@ -115,15 +117,19 @@ class _NeoSearchDataTableState extends State<NeoSearchDataTable> {
               Text(
                 JsonPath(e.data).read(data).firstOrNull?.value?.toString() ?? "",
               ),
+              onTap: () {
+                widget.onSelect(data);
+              },
             ),
           )
           .toList(),
       selected: false,
-      onSelectChanged: (selected) {
-        if (selected != null && selected) {
-          // Handle row selection
-        }
-      },
+
+      // onSelectChanged: (selected) {
+      //   if (selected != null && selected) {
+      //     // Handle row selection
+      //   }
+      // },
     );
   }
 

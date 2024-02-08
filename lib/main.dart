@@ -47,6 +47,7 @@ import 'package:neo_core/core/widgets/neo_core_app/neo_core_app.dart';
 import 'package:neo_core/core/widgets/neo_core_firebase_messaging/neo_core_firebase_messaging.dart';
 import 'package:neo_core/neo_core.dart';
 
+import 'backoffice/features/bo_detail_page/bo_detail_page.dart';
 import 'backoffice/features/bo_home_page/bo_home_page.dart';
 import 'backoffice/features/bo_search_page/bo_search_page.dart';
 import 'backoffice/models/config/neo_navigation_config_model.dart';
@@ -185,6 +186,11 @@ class MyApp extends StatelessWidget {
         return MaterialPageRoute(builder: (context) => const HomePageRoute());
       case NeoPageId.boHome:
         return MaterialPageRoute(builder: (context) => const BackofficeHomePage());
+      case NeoPageId.boDetail:
+        return MaterialPageRoute(
+            builder: (context) => BoDetailPage(
+                  data: args["data"].isNullOrBlank ? {} : json.decode(args["data"]!),
+                ));
       case NeoPageId.searchWorkflowWidget:
         return MaterialPageRoute(
             builder: (context) => BackofficeSearchPage(

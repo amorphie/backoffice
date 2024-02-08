@@ -38,5 +38,6 @@ class NeoPageId {
   static const accountDetails = "account-details";
   static const addAddress = "add-address";
   static const boHome = "bo-home";
+  static const boDetail = "bo-detail";
   static const searchWorkflowWidget = "SearchWorkflowWidget";
 }

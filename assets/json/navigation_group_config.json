@@ -25,6 +25,14 @@
               "data": {
                 "columns": [
                   {
+                    "data": "$.state.name",
+                    "sort": 1,
+                    "title": {
+                      "en-EN": "State Name",
+                      "tr-TR": "Durum Adı"
+                    }
+                  },
+                  {
                     "data": "$.data.firstName",
                     "sort": 1,
                     "title": {
