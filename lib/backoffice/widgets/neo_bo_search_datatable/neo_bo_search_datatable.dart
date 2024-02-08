@@ -8,7 +8,6 @@ import 'package:backoffice/backoffice/widgets/neo_bo_datatable/neo_bo_datatable_
 
 import '../../models/config/neo_navigation_config_model.dart';
 
-// ignore: must_be_immutable
 class NeoSearchDataTable extends StatefulWidget {
   final NeoNavigationConfigModel navigationConfig;
   final List<Map<String, dynamic>> data;
@@ -19,6 +18,7 @@ class NeoSearchDataTable extends StatefulWidget {
   final List<String> sortableColumns;
   final Function(String)? onSort;
   final List<NeoBoSearchColumn> columns;
+  final bool isSelected;
 
   NeoSearchDataTable({
     Key? key,
@@ -31,6 +31,7 @@ class NeoSearchDataTable extends StatefulWidget {
     required this.sortableColumns,
     this.onSort,
     required this.columns,
+    required this.isSelected,
   }) : super(key: key);
 
   @override
@@ -69,20 +70,36 @@ class _NeoSearchDataTableState extends State<NeoSearchDataTable> {
     }
   }
 
+  void _sort(int columnIndex, bool ascending) {
+    widget.data.sort((a, b) {
+      final aValue = a[widget.navigationConfig.columns[columnIndex].data];
+      final bValue = b[widget.navigationConfig.columns[columnIndex].data];
+      if (aValue is String && bValue is String) {
+        return ascending ? aValue.compareTo(bValue) : bValue.compareTo(aValue);
+      }
+      return 0;
+    });
+  }
+
   List<DataColumn> get _columns {
-    return widget.columns
-        .map((e) => DataColumn(
-              onSort: widget.sortableColumns.contains(e.data)
-                  ? (columnIndex, ascending) {
-                      widget.onSort!(e.data);
-                    }
-                  : null,
-              label: Text(
-                e.title.print(),
-                style: const TextStyle(color: Colors.black87),
-                overflow: TextOverflow.ellipsis,
+    return widget.navigationConfig.columns
+        .asMap()
+        .map((index, column) => MapEntry(
+              index,
+              DataColumn(
+                label: Text(
+                  column.title["en-EN"].toString(), //TODO title verisinin language datası değişecek
+                ),
+                onSort: (columnIndex, ascending) {
+                  widget.sortColumnIndex = columnIndex;
+                  setState(() {
+                    widget.sortAscending = ascending;
+                    _sort(index, ascending);
+                  });
+                },
               ),
             ))
+        .values
         .toList();
   }
 
@@ -108,17 +125,6 @@ class _NeoSearchDataTableState extends State<NeoSearchDataTable> {
         }
       },
     );
-  }
-
-  void _sort(int columnIndex, bool ascending) {
-    widget.data.sort((a, b) {
-      final aValue = a[widget.navigationConfig.columns[columnIndex].data];
-      final bValue = b[widget.navigationConfig.columns[columnIndex].data];
-      if (aValue is String && bValue is String) {
-        return ascending ? aValue.compareTo(bValue) : bValue.compareTo(aValue);
-      }
-      return 0;
-    });
   }
 
   @override
