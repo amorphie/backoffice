@@ -4,8 +4,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:json_path/json_path.dart';
 
-import 'package:backoffice/backoffice/widgets/neo_bo_datatable/neo_bo_datatable_models/neo_bo_search_column_model.dart';
-
 import '../../models/config/neo_navigation_config_model.dart';
 
 class NeoSearchDataTable extends StatefulWidget {

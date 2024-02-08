@@ -51,6 +51,7 @@ import 'backoffice/features/bo_detail_page/bo_detail_page.dart';
 import 'backoffice/features/bo_home_page/bo_home_page.dart';
 import 'backoffice/features/bo_search_page/bo_search_page.dart';
 import 'backoffice/models/config/neo_navigation_config_model.dart';
+import 'backoffice/widgets/backoffice_widget_registerer.dart';
 
 abstract class _NeoCoreConstant {
   static const androidDefaultIcon = "@mipmap/ic_launcher";
@@ -68,6 +69,7 @@ void main() async {
   await _initBurganSDKs();
   CustomWidgetRegisterer().init();
   CustomArgProcessorRegisterer().init();
+  BackofficeWidgetRegisterer().init();
   final isLoggedIn = await NeoCoreSecureStorage().getAuthToken() != null;
   runApp(
     MultiBlocProvider(

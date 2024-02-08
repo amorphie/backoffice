@@ -1,9 +1,11 @@
 import 'package:backoffice/backoffice/features/bo_detail_page/bloc/bo_detail_page_bloc.dart';
 import 'package:backoffice/backoffice/features/bo_detail_page/bloc/bo_detail_page_event.dart';
 import 'package:backoffice/backoffice/features/bo_detail_page/network/neo_detail_network_manager.dart';
+import 'package:backoffice/backoffice/widgets/render_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../widgets/test_render_template.dart';
 import 'bloc/bo_detail_page_state.dart';
 
 class BoDetailPage extends StatelessWidget {
@@ -33,7 +35,11 @@ class BoDetailPage extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          Text(item.toString()),
+          Expanded(
+            child: RenderWidget(
+              template: testRenderTemplateData,
+            ),
+          ),
         ],
       ),
     );

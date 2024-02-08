@@ -1,4 +1,3 @@
-String testRenderTemplateData = """
 {
     "type": "neo_detail_page",
     "args": {
@@ -22,7 +21,7 @@ String testRenderTemplateData = """
                                         "type": "neo_bo_detail_item_widget",
                                         "args": {
                                             "title": "First Name",
-                                            "text": "\$.data.firstName",
+                                            "text": "$.data.firstName",
                                             "copyValue": true
                                         }
                                     },
@@ -30,7 +29,7 @@ String testRenderTemplateData = """
                                         "type": "neo_bo_detail_item_widget",
                                         "args": {
                                             "title": "Last Name",
-                                            "text": "\$.data.lastName",
+                                            "text": "$.data.lastName",
                                             "copyValue": true
                                         }
                                     },
@@ -38,7 +37,7 @@ String testRenderTemplateData = """
                                         "type": "neo_bo_detail_item_widget",
                                         "args": {
                                             "title": "Reference",
-                                            "text": "\$.data.reference",
+                                            "text": "$.data.reference",
                                             "copyValue": true
                                         }
                                     },
@@ -46,7 +45,7 @@ String testRenderTemplateData = """
                                         "type": "neo_bo_detail_item_widget",
                                         "args": {
                                             "title": "E-Mail",
-                                            "text": "\$.data.eMail",
+                                            "text": "$.data.eMail",
                                             "copyValue": true
                                         }
                                     },
@@ -54,7 +53,7 @@ String testRenderTemplateData = """
                                         "type": "neo_bo_detail_item_widget",
                                         "args": {
                                             "title": "Created At",
-                                            "text": "\$.createdAt",
+                                            "text": "$.createdAt",
                                             "copyValue": true
                                         }
                                     }
@@ -67,15 +66,3 @@ String testRenderTemplateData = """
         }
     }
 }
-""";
-// String _testRenderTemplate = """
-// {
-//     "type": "title_description_area_widget",
-//     "args": {
-//         "title": "Title",
-//         "text": "text",
-//         "copyValue": true
-//     }
-// }
-// """;
-// dynamic get testRenderTemplateData => json.decode(testRenderTemplate);
