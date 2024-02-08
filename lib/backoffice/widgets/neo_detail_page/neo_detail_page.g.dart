@@ -200,7 +200,7 @@ class JsonNeoDetailPageBuilderModel extends JsonWidgetBuilderModel {
 
 class NeoDetailPageSchema {
   static const id =
-      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/json_dynamic_example/neo_detail_page.json';
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/backoffice/neo_detail_page.json';
 
   static final schema = <String, Object>{
     r'$schema': 'http://json-schema.org/draft-07/schema#',

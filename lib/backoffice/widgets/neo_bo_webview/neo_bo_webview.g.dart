@@ -177,7 +177,7 @@ class NeoBoWebviewModel extends JsonWidgetBuilderModel {
 
 class JsonNeoBoWebViewSchema {
   static const id =
-      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/json_dynamic_example/json_neo_bo_web_view.json';
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/backoffice/json_neo_bo_web_view.json';
 
   static final schema = <String, Object>{
     r'$schema': 'http://json-schema.org/draft-07/schema#',

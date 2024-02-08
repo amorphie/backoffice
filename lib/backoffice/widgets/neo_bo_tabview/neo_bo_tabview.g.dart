@@ -167,7 +167,7 @@ class JsonNeoBoTabviewBuilderModel extends JsonWidgetBuilderModel {
 
 class NeoBoTabviewSchema {
   static const id =
-      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/json_dynamic_example/neo_bo_tabview.json';
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/backoffice/neo_bo_tabview.json';
 
   static final schema = <String, Object>{
     r'$schema': 'http://json-schema.org/draft-07/schema#',
