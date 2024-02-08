@@ -58,7 +58,6 @@ class BackofficeSearchPage extends StatelessWidget {
               data: data,
               navigationConfig: config,
               sortAscending: true,
-              columns: [],
               sortableColumns: [],
               isSelected: false,
               onSelect: (item) async {
