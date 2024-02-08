@@ -49,6 +49,9 @@ class BackofficeSearchPage extends StatelessWidget {
             child: NeoSearchDataTable(
               data: data,
               navigationConfig: config,
+              sortAscending: true,
+              columns: [],
+              sortableColumns: [],
             ),
           ),
         ],

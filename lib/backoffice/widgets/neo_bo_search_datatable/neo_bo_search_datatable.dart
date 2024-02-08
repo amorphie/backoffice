@@ -1,22 +1,36 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:json_path/json_path.dart';
 
+import 'package:backoffice/backoffice/widgets/neo_bo_datatable/neo_bo_datatable_models/neo_bo_search_column_model.dart';
+
 import '../../models/config/neo_navigation_config_model.dart';
 
+// ignore: must_be_immutable
 class NeoSearchDataTable extends StatefulWidget {
   final NeoNavigationConfigModel navigationConfig;
   final List<Map<String, dynamic>> data;
   final Future Function()? onPageEnd;
   final Future Function()? onPageRefresh;
+  int? sortColumnIndex = 0;
+  bool sortAscending;
+  final List<String> sortableColumns;
+  final Function(String)? onSort;
+  final List<NeoBoSearchColumn> columns;
 
   NeoSearchDataTable({
     Key? key,
-    required this.data,
     required this.navigationConfig,
+    required this.data,
     this.onPageEnd,
     this.onPageRefresh,
+    this.sortColumnIndex,
+    required this.sortAscending,
+    required this.sortableColumns,
+    this.onSort,
+    required this.columns,
   }) : super(key: key);
 
   @override
@@ -25,8 +39,6 @@ class NeoSearchDataTable extends StatefulWidget {
 
 class _NeoSearchDataTableState extends State<NeoSearchDataTable> {
   final ScrollController _scrollController = ScrollController();
-  bool _sortAscending = true;
-  int _sortColumnIndex = 0;
 
   @override
   void initState() {
@@ -58,24 +70,19 @@ class _NeoSearchDataTableState extends State<NeoSearchDataTable> {
   }
 
   List<DataColumn> get _columns {
-    return widget.navigationConfig.columns
-        .asMap()
-        .map((index, column) => MapEntry(
-              index,
-              DataColumn(
-                label: Text(
-                  column.title["en-EN"].toString(), //TODO title verisinin language datası değişecek
-                ),
-                onSort: (columnIndex, ascending) {
-                  _sortColumnIndex = columnIndex;
-                  setState(() {
-                    _sortAscending = ascending;
-                    _sort(index, ascending);
-                  });
-                },
+    return widget.columns
+        .map((e) => DataColumn(
+              onSort: widget.sortableColumns.contains(e.data)
+                  ? (columnIndex, ascending) {
+                      widget.onSort!(e.data);
+                    }
+                  : null,
+              label: Text(
+                e.title.print(),
+                style: const TextStyle(color: Colors.black87),
+                overflow: TextOverflow.ellipsis,
               ),
             ))
-        .values
         .toList();
   }
 
@@ -124,8 +131,8 @@ class _NeoSearchDataTableState extends State<NeoSearchDataTable> {
         controller: _scrollController,
         children: [
           DataTable(
-            sortAscending: _sortAscending,
-            sortColumnIndex: _sortColumnIndex,
+            sortAscending: widget.sortAscending,
+            sortColumnIndex: widget.sortColumnIndex,
             columns: _columns,
             rows: _rows,
           ),
