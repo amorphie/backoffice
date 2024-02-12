@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:backoffice/backoffice/features/bo_search_page/bloc/neo_search_page_event.dart';
+import 'package:backoffice/backoffice/widgets/neo_button/neo_bo_button.dart';
 import 'package:backoffice/reusable_widgets/neo_button/neo_button.dart';
 import 'package:flutter/material.dart';
 
@@ -29,7 +30,7 @@ class NeoSearchbar extends StatelessWidget {
             },
           ),
         ),
-        NeoButton(
+        NeoBoButton(
           labelText: 'Add',
           transitionId: workflow,
           startWorkflow: true,

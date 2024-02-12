@@ -44,7 +44,6 @@ class NeoBackofficeNavigationGroupWidget extends StatelessWidget {
       future: neoNavigationGroupConfig.getNavigationGroupByKey(navigationGroupKey).getItemListToDisplay(),
       builder: (context, snapshot) {
         final itemList = snapshot.hasData ? (snapshot.data ?? []) : [];
-        final itemListToDisplay = itemList.length >= itemCountToDisplay ? itemList.getRange(0, itemCountToDisplay).toList() : itemList;
         return Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -70,7 +69,7 @@ class NeoBackofficeNavigationGroupWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  ...itemListToDisplay.map(
+                  ...itemList.map(
                     (itemModel) => NeoBackofficeNavigationGroupItemWidget(model: itemModel).paddingSymmetric(
                       horizontal: NeoDimens.px12,
                     ),

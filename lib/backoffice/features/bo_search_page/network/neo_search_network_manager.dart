@@ -14,7 +14,7 @@ class NeoSearchNetworkManager {
     try {
       final response = await GetIt.I<NeoNetworkManager>().call(NeoHttpCall(endpoint: _Constants.endpoint, queryProviders: [
         HttpQueryProvider({_Constants.workflowNameQueryParameter: workflowName}),
-        HttpQueryProvider({_Constants.pageSizeQueryParameter: "100"}),
+        HttpQueryProvider({_Constants.pageSizeQueryParameter: "10"}),
         HttpQueryProvider({_Constants.pageNumberQueryParameter: "1"}),
         if (keyword != null) HttpQueryProvider({"keyword": keyword}),
       ]));
