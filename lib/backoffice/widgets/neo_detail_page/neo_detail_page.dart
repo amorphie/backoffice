@@ -1,6 +1,5 @@
 // ignore: unused_import
-import 'package:flutter/gestures.dart';
-import 'package:json_dynamic_widget/builders.dart';
+import 'package:backoffice/util/neo_util.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 part 'neo_detail_page.g.dart';
@@ -36,7 +35,7 @@ class _NeoDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return ListView(
       children: [
         Container(
           color: Colors.black,

@@ -83,7 +83,7 @@ class NeoBackofficeNavigationGroupItemWidget extends INeoButton {
         maxLines: _Constants.maxLines,
         overflow: TextOverflow.ellipsis,
         style: const TextStyle(color: NeoColors.textDefault, fontWeight: FontWeight.w500),
-        textAlign: TextAlign.center,
+        textAlign: TextAlign.start,
       ),
     ).paddingOnly(top: NeoDimens.px8);
   }
