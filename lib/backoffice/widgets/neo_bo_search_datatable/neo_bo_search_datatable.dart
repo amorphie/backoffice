@@ -113,6 +113,7 @@ class _NeoSearchDataTableState extends State<NeoSearchDataTable> {
             (e) => DataCell(
               Text(
                 JsonPath(e.data).read(data).firstOrNull?.value?.toString() ?? "",
+                overflow: TextOverflow.ellipsis,
               ),
               onTap: () {
                 widget.onSelect(data);
