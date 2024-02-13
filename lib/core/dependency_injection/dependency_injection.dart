@@ -1,8 +1,8 @@
 import 'dart:convert';
 
+import 'package:backoffice/backoffice/core/neo_bo_core.dart';
 import 'package:flutter/services.dart';
 import 'package:get_it/get_it.dart';
-import 'package:http/http.dart';
 import 'package:injectable/injectable.dart';
 import 'package:backoffice/core/dependency_injection/dependency_injection.config.dart';
 import 'package:backoffice/core/managers/parameter_manager/neo_parameter_manager.dart';
@@ -14,15 +14,12 @@ final getIt = GetIt.instance;
 
 @InjectableInit()
 Future<void> configureDependencies() async {
-  var httpClientResponse = await get(Uri.parse(AppConstants.httpConfigFilePath));
   final registrationResult = getIt
     ..registerLazySingleton<NeoWidgetEventBus>(NeoWidgetEventBus.new)
     ..registerSingletonAsync<NeoNetworkManager>(
       () async => NeoNetworkManager(
         secureStorage: NeoCoreSecureStorage(),
-        httpClientConfig: HttpClientConfig.fromJson(
-          json.decode(httpClientResponse.body),
-        ),
+        httpClientConfig: await NeoBoCore.httpClientConfig(),
       ),
     )
     ..registerSingletonAsync<NeoNavigationGroupConfig>(

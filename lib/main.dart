@@ -10,7 +10,6 @@
  * Any reproduction of this material must contain this notice.
  */
 
-import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter/foundation.dart';
@@ -47,10 +46,8 @@ import 'package:neo_core/core/widgets/neo_core_app/neo_core_app.dart';
 import 'package:neo_core/core/widgets/neo_core_firebase_messaging/neo_core_firebase_messaging.dart';
 import 'package:neo_core/neo_core.dart';
 
-import 'backoffice/features/bo_detail_page/bo_detail_page.dart';
-import 'backoffice/features/bo_home_page/bo_home_page.dart';
-import 'backoffice/features/bo_search_page/bo_search_page.dart';
-import 'backoffice/models/config/neo_navigation_config_model.dart';
+import 'backoffice/core/neo_bo_core.dart';
+import 'backoffice/core/neo_bo_page_id.dart';
 import 'backoffice/widgets/backoffice_widget_registerer.dart';
 
 abstract class _NeoCoreConstant {
@@ -63,13 +60,12 @@ void main() async {
   if (flavor != EnvironmentType.prod) {
     await NeoHttpOverrides.addSystemProxy();
   }
-  await dotenv.load();
+  await NeoBoCore.init();
 
   await configureDependencies();
   await _initBurganSDKs();
   CustomWidgetRegisterer().init();
   CustomArgProcessorRegisterer().init();
-  BackofficeWidgetRegisterer().init();
   final isLoggedIn = await NeoCoreSecureStorage().getAuthToken() != null;
   runApp(
     MultiBlocProvider(
@@ -155,7 +151,10 @@ class MyApp extends StatelessWidget {
   Route<dynamic>? _onGenerateRoutes(routeSettings) {
     final args = routeSettings.arguments as Map<String, String>? ?? {};
     final transitionData = args.isNotEmpty && !args[AppConstants.transitionDataKey].isNullOrBlank ? SignalrTransitionData.decode(args[AppConstants.transitionDataKey] ?? "") : null;
-
+    Route? boRoute = NeoBoCore.onBoGenerateRoutes(routeSettings);
+    if (boRoute != null) {
+      return boRoute;
+    }
     switch (transitionData?.navigationPath ?? routeSettings.name) {
       // STOPSHIP: Delete this demo pages
       case NeoPageId.accountFirst:
@@ -186,21 +185,6 @@ class MyApp extends StatelessWidget {
         return MaterialPageRoute(builder: (context) => const WelcomePageRoute());
       case NeoPageId.home:
         return MaterialPageRoute(builder: (context) => const HomePageRoute());
-      case NeoPageId.boHome:
-        return MaterialPageRoute(builder: (context) => const BackofficeHomePage());
-      case NeoPageId.boDetail:
-        return MaterialPageRoute(
-            builder: (context) => BoDetailPage(
-                  data: args["data"].isNullOrBlank ? {} : json.decode(args["data"]!),
-                ));
-      case NeoPageId.searchWorkflowWidget:
-        return MaterialPageRoute(
-            builder: (context) => BackofficeSearchPage(
-                  workflow: args["workflow"] ?? "",
-                  config: NeoNavigationConfigModel.fromJson(
-                    json.decode(args["config"] ?? "{}"),
-                  ),
-                ));
       case NeoPageId.photoSelectionVerify:
         return MaterialPageRoute(
           builder: (context) => PhotoSelectionVerifyPageRoute(
