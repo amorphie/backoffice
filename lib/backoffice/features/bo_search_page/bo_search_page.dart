@@ -52,7 +52,7 @@ class BackofficeSearchPage extends StatelessWidget {
           NeoSearchbar(
             workflow: workflow,
             config: config,
-          ),
+          ).paddingAll(NeoDimens.px12),
           Expanded(
             child: NeoSearchDataTable(
               data: data,

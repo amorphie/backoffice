@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:async';
 
+import 'package:backoffice/util/neo_util.dart';
 import 'package:flutter/material.dart';
 import 'package:json_path/json_path.dart';
 
@@ -86,7 +87,8 @@ class _NeoSearchDataTableState extends State<NeoSearchDataTable> {
               index,
               DataColumn(
                 label: Text(
-                  column.title["en-EN"].toString(), //TODO title verisinin language datası değişecek
+                  column.title["en-EN"].toString(), overflow: TextOverflow.ellipsis,
+                  //TODO title verisinin language datası değişecek
                 ),
                 onSort: (columnIndex, ascending) {
                   widget.sortColumnIndex = columnIndex;
@@ -143,7 +145,8 @@ class _NeoSearchDataTableState extends State<NeoSearchDataTable> {
             sortColumnIndex: widget.sortColumnIndex,
             columns: _columns,
             rows: _rows,
-          ),
+            columnSpacing: 4,
+          )
         ],
       ),
     );

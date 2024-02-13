@@ -90,7 +90,7 @@ class NeoBoButton extends INeoBoButton {
             ),
           ),
         ),
-      ).padding(padding ?? EdgeInsetsDirectional.zero);
+      );
 
   @override
   void onTransitionError(BuildContext context, String errorMessage) {
@@ -98,7 +98,14 @@ class NeoBoButton extends INeoBoButton {
   }
 
   double _buttonHeight() {
-    return switch (size) { NeoBoButtonSize.small => NeoDimens.px40, NeoBoButtonSize.medium => NeoDimens.px44, NeoBoButtonSize.large => NeoDimens.px48 };
+    switch (size) {
+      case NeoBoButtonSize.small:
+        return NeoDimens.px40;
+      case NeoBoButtonSize.medium:
+        return NeoDimens.px44;
+      case NeoBoButtonSize.large:
+        return NeoDimens.px48;
+    }
   }
 
   Color? _getBackgroundColor(bool buttonEnabled) {

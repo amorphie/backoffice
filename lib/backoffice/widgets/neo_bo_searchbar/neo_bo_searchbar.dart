@@ -21,21 +21,20 @@ class NeoSearchbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Row(children: [
-        Expanded(
-          child: NeoBoSearchTextfield(
-            onSearch: (val) async {
-              context.read<NeoSearchPageViewBloc>().add(NeoSearchPageListViewSearchEvent(val));
-            },
-          ),
+    return Row(children: [
+      Expanded(
+        child: NeoBoSearchTextfield(
+          onSearch: (val) async {
+            context.read<NeoSearchPageViewBloc>().add(NeoSearchPageListViewSearchEvent(val));
+          },
         ),
-        NeoBoButton(
-          labelText: 'Add',
-          transitionId: workflow,
-          startWorkflow: true,
-        )
-      ]),
-    );
+      ),
+      const SizedBox(width: 12),
+      NeoBoButton(
+        labelText: 'Add',
+        transitionId: workflow,
+        startWorkflow: true,
+      )
+    ]);
   }
 }

@@ -13,8 +13,9 @@ class BackofficeHomePage extends StatelessWidget {
       body: Row(
         children: [
           SizedBox(
-            width: 250,
-            child: Column(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            child: ListView(
               children: [
                 ...GetIt.I<NeoNavigationGroupConfig>()
                     .groupList

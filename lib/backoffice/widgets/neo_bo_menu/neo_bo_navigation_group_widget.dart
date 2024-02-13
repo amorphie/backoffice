@@ -63,20 +63,15 @@ class NeoBackofficeNavigationGroupWidget extends StatelessWidget {
                 ),
               ],
             ),
-            SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  ...itemList.map(
-                    (itemModel) => NeoBackofficeNavigationGroupItemWidget(model: itemModel).paddingSymmetric(
-                      horizontal: NeoDimens.px12,
-                    ),
-                  ),
-                ],
-              ).paddingOnly(top: NeoDimens.px8),
-            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ...itemList.map(
+                  (itemModel) => NeoBackofficeNavigationGroupItemWidget(model: itemModel).paddingSymmetric(horizontal: NeoDimens.px12, vertical: NeoDimens.px4),
+                ),
+              ],
+            ).paddingOnly(top: NeoDimens.px8),
           ],
         ).padding(padding);
       },
