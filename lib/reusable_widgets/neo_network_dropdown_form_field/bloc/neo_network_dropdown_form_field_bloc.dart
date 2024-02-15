@@ -28,4 +28,10 @@ class NeoNetworkDropdownFormFieldBloc extends Bloc<NeoNetworkDropdownFormFieldEv
       },
     );
   }
+
+  @override
+  Future<void> close() {
+    itemListStream.close();
+    return super.close();
+  }
 }

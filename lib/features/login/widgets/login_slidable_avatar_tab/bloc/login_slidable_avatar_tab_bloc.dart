@@ -26,7 +26,8 @@ part 'login_slidable_avatar_tab_state.dart';
 class LoginSlidableAvatarTabBloc extends Bloc<LoginSlidableAvatarTabEvent, LoginSlidableAvatarTabState> {
   late final NeoCoreSecureStorage? _storage;
   late final StreamSubscription<NeoWidgetEvent>? _neoWidgetEventSubscription;
-  Color activeTabColor = NeoColors.bgPrimaryGreen;
+  Color _activeTabColor = NeoColors.bgPrimaryGreen;
+  bool _isSlidable = true;
 
   // STOPSHIP: Change this when burgan_core updated
   Future<bool> get _isUserExist async => !(await _storage?.getCustomerId()).isNullOrBlank;
@@ -36,6 +37,7 @@ class LoginSlidableAvatarTabBloc extends Bloc<LoginSlidableAvatarTabEvent, Login
     on<LoginSlidableAvatarTabEventShowExistingUser>(_onShowExistingUser);
     on<LoginSlidableAvatarTabEventShowNewUser>(_onShowNewUser);
     on<LoginSlidableAvatarTabEventChangeActiveTabColor>(_onChangeActiveTabColor);
+    on<LoginSlidableAvatarTabEventChangeSlidability>(_onChangeSlidability);
   }
 
   _onInitialize(event, emit) async {
@@ -50,25 +52,35 @@ class LoginSlidableAvatarTabBloc extends Bloc<LoginSlidableAvatarTabEvent, Login
   }
 
   _onShowExistingUser(LoginSlidableAvatarTabEventShowExistingUser event, Emitter<LoginSlidableAvatarTabState> emit) {
-    emit(LoginSlidableAvatarTabStateExistingUser(activeTabColor: activeTabColor));
+    emit(LoginSlidableAvatarTabStateExistingUser(activeTabColor: _activeTabColor, isSlidable: _isSlidable));
   }
 
   _onShowNewUser(LoginSlidableAvatarTabEventShowNewUser event, Emitter<LoginSlidableAvatarTabState> emit) {
-    emit(LoginSlidableAvatarTabStateNewUser(activeTabColor: activeTabColor));
+    emit(LoginSlidableAvatarTabStateNewUser(activeTabColor: _activeTabColor));
   }
 
   _onChangeActiveTabColor(
     LoginSlidableAvatarTabEventChangeActiveTabColor event,
     Emitter<LoginSlidableAvatarTabState> emit,
   ) {
-    activeTabColor = event.color;
+    _activeTabColor = event.color;
     emit(
       switch (state) {
         LoginSlidableAvatarTabStateLoading _ => const LoginSlidableAvatarTabStateLoading(),
-        LoginSlidableAvatarTabStateNewUser _ => LoginSlidableAvatarTabStateNewUser(activeTabColor: activeTabColor),
-        LoginSlidableAvatarTabStateExistingUser _ => LoginSlidableAvatarTabStateExistingUser(activeTabColor: activeTabColor),
+        LoginSlidableAvatarTabStateNewUser _ => LoginSlidableAvatarTabStateNewUser(activeTabColor: _activeTabColor),
+        LoginSlidableAvatarTabStateExistingUser _ => LoginSlidableAvatarTabStateExistingUser(activeTabColor: _activeTabColor, isSlidable: _isSlidable),
       },
     );
+  }
+
+  _onChangeSlidability(
+    LoginSlidableAvatarTabEventChangeSlidability event,
+    Emitter<LoginSlidableAvatarTabState> emit,
+  ) {
+    _isSlidable = event.isSlidable;
+    if (state is LoginSlidableAvatarTabStateExistingUser) {
+      emit(LoginSlidableAvatarTabStateExistingUser(activeTabColor: _activeTabColor, isSlidable: _isSlidable));
+    }
   }
 
   _listenForWidgetEvents() {
@@ -76,8 +88,22 @@ class LoginSlidableAvatarTabBloc extends Bloc<LoginSlidableAvatarTabEvent, Login
       (NeoWidgetEventKeys.loginShowNewUserPage, (_) => add(const LoginSlidableAvatarTabEventShowNewUser())),
       (NeoWidgetEventKeys.loginShowExistUserPage, (_) => add(const LoginSlidableAvatarTabEventShowExistingUser())),
       // STOPSHIP: Remove the events below, use instead NeoWidgetEventKeys.loginSlidableAvatarTabChangeActiveTabColor
-      (NeoWidgetEventKeys.loginTextFieldFocused, (_) => add(const LoginSlidableAvatarTabEventChangeActiveTabColor(color: NeoColors.bgDarker))),
-      (NeoWidgetEventKeys.loginTextFieldUnfocused, (_) => add(const LoginSlidableAvatarTabEventChangeActiveTabColor(color: NeoColors.bgPrimaryGreen))),
+      // STOPSHIP: Remove the events below, use instead NeoWidgetEventKeys.loginSlidableAvatarTabChangeSlidability
+
+      (
+        NeoWidgetEventKeys.loginTextFieldFocused,
+        (_) {
+          add(const LoginSlidableAvatarTabEventChangeActiveTabColor(color: NeoColors.bgDarker));
+          add(const LoginSlidableAvatarTabEventChangeSlidability(isSlidable: false));
+        }
+      ),
+      (
+        NeoWidgetEventKeys.loginTextFieldUnfocused,
+        (_) {
+          add(const LoginSlidableAvatarTabEventChangeActiveTabColor(color: NeoColors.bgPrimaryGreen));
+          add(const LoginSlidableAvatarTabEventChangeSlidability(isSlidable: true));
+        }
+      ),
     ].listenEvents();
   }
 

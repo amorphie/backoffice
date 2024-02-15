@@ -14,6 +14,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:backoffice/core/localization/language.dart';
 import 'package:neo_core/neo_core.dart';
+import 'package:universal_io/io.dart';
 
 part 'localization_event.dart';
 part 'localization_state.dart';
@@ -23,12 +24,19 @@ class LocalizationBloc extends Bloc<LocalizationEvent, LocalizationState> {
 
   static Language? get currentLanguage => _currentLanguage;
 
+  static Map<String, dynamic> localizationData = {};
+
   final _secureStorage = NeoCoreSecureStorage();
 
   LocalizationBloc() : super(LocalizationState(Language.defaultLanguage)) {
     on<LocalizationEventInit>((_, emitter) => _init());
     on<LocalizationEventChangeLanguage>(_mapLanguageChangedToState);
     on<LocalizationEventSwitchLanguage>(_mapSwitchLanguage);
+  }
+
+  static String getLocalizedText(String key) {
+    final localizationItem = localizationData[key];
+    return localizationItem != null ? localizationItem[_currentLanguage?.languageCode.toUpperCase()] ?? key : key;
   }
 
   _init() async {
@@ -56,7 +64,23 @@ class LocalizationBloc extends Bloc<LocalizationEvent, LocalizationState> {
     if (storedLanguageCode != null) {
       return Language.fromString(storedLanguageCode);
     } else {
-      return Language.defaultLanguage;
+      return _deviceLanguageCode != null ? Language.fromString(_deviceLanguageCode!) : Language.defaultLanguage;
     }
   }
+
+  String? get _deviceLanguageCode {
+    try {
+      return Platform.localeName.substring(0, 2);
+    } catch (e) {
+      return null;
+    }
+  }
+}
+
+/// Global function for localization which does not need context
+/// It should be used in components such as NeoText which takes localization key from response
+/// DO NOT USE THIS METHOD FOR LOCAL USAGE OR DON'T MAKE THIS METHOD A STRING EXTENSION.
+/// PREFER loc() method in [LocalizationKeyExtension] whenever possible
+String localize(String localizationKey) {
+  return LocalizationBloc.getLocalizedText(localizationKey);
 }

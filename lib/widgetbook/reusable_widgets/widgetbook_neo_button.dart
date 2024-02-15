@@ -13,6 +13,7 @@
  */
 
 import 'package:backoffice/reusable_widgets/neo_button/model/neo_button_display_mode.dart';
+import 'package:backoffice/reusable_widgets/neo_button/model/neo_button_enable_state.dart';
 import 'package:backoffice/reusable_widgets/neo_button/model/neo_button_size.dart';
 import 'package:backoffice/reusable_widgets/neo_button/neo_button.dart';
 import 'package:backoffice/util/neo_assets.dart';
@@ -30,9 +31,13 @@ WidgetbookComponent get widgetbookNeoButton => WidgetbookComponent(
               options: NeoButtonDisplayMode.values,
               initialOption: NeoButtonDisplayMode.primary,
             ),
-            enabled: context.knobs.boolean(label: 'enabled', initialValue: true),
-            iconLeftUrn: context.knobs.stringOrNull(label: 'Icon Left Urn', initialValue: NeoAssets.plusCircle.urn),
-            iconRightUrn: context.knobs.stringOrNull(label: 'Icon Right Urn', initialValue: NeoAssets.plusCircle.urn),
+            enableState: context.knobs.list(
+              label: 'Enable State',
+              options: NeoButtonEnableState.values,
+              initialOption: NeoButtonEnableState.enabled,
+            ),
+            iconLeftUrn: context.knobs.stringOrNull(label: 'Icon Left Urn', initialValue: NeoAssets.plusCircle20px.urn),
+            iconRightUrn: context.knobs.stringOrNull(label: 'Icon Right Urn', initialValue: NeoAssets.plusCircle20px.urn),
             labelText: context.knobs.string(label: 'Label Text', initialValue: "Button Label"),
             size: context.knobs.list(label: 'Size', options: NeoButtonSize.values, initialOption: NeoButtonSize.medium),
           ),

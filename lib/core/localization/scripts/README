@@ -1,0 +1,4 @@
+1. Copy and paste your OnMobil-Revamp-Localization.xlsx excel file under this(scripts) folder. (It's ignored by git, don't try to commit it)
+
+2. Then open terminal in this folder and run the script below:
+./updateLocalizations.sh

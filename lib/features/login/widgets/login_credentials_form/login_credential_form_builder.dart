@@ -13,8 +13,15 @@
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 import 'package:backoffice/features/login/widgets/login_credentials_form/login_credential_form.dart';
 import 'package:backoffice/reusable_widgets/neo_text_form_field/model/neo_button_data_model.dart';
+import 'package:backoffice/reusable_widgets/neo_text_form_field/model/neo_text_validation_model.dart';
 
 part 'login_credential_form_builder.g.dart';
+
+abstract class _Constants {
+  static const passwordButtonRightKey = 'passwordButtonRight';
+  static const tcknValidationsKey = 'tcknValidations';
+  static const passwordValidationsKey = 'passwordValidations';
+}
 
 @JsonWidget(type: 'login_credential_form')
 abstract class _LoginCredentialFormBuilder extends JsonWidgetBuilder {
@@ -23,8 +30,20 @@ abstract class _LoginCredentialFormBuilder extends JsonWidgetBuilder {
   });
 
   // TODO: Inspect why this decoder is necessary
-  @JsonArgDecoder('passwordButtonRight')
-  NeoButtonDataModel _decodePasswordButtonRight({required JsonWidgetData data}) => NeoButtonDataModel.fromJson(data.jsonWidgetArgs['passwordButtonRight']);
+  @JsonArgDecoder(_Constants.passwordButtonRightKey)
+  NeoButtonDataModel _decodePasswordButtonRight({required JsonWidgetData data}) => NeoButtonDataModel.fromJson(data.jsonWidgetArgs[_Constants.passwordButtonRightKey]);
+
+  @JsonArgDecoder(_Constants.tcknValidationsKey)
+  List<NeoTextValidationModel>? _decodeTcknValidations({required JsonWidgetData data}) {
+    final listJson = data.jsonWidgetArgs[_Constants.tcknValidationsKey];
+    return listJson != null ? List<Map<String, dynamic>>.from(listJson).map(NeoTextValidationModel.fromJson).toList() : null;
+  }
+
+  @JsonArgDecoder(_Constants.passwordValidationsKey)
+  List<NeoTextValidationModel>? _decodePasswordValidations({required JsonWidgetData data}) {
+    final listJson = data.jsonWidgetArgs[_Constants.passwordValidationsKey];
+    return listJson != null ? List<Map<String, dynamic>>.from(listJson).map(NeoTextValidationModel.fromJson).toList() : null;
+  }
 
   @override
   LoginCredentialForm buildCustom({

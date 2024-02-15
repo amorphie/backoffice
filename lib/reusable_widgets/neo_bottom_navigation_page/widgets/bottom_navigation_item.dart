@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:backoffice/reusable_widgets/neo_icon/neo_icon.dart';
+import 'package:backoffice/reusable_widgets/neo_text/neo_text.dart';
 import 'package:backoffice/util/constants/neo_colors.dart';
 import 'package:backoffice/util/constants/neo_dimens.dart';
 import 'package:backoffice/util/constants/neo_text_styles.dart';
@@ -20,7 +21,7 @@ class NeoBottomNavigationItem extends StatelessWidget {
           iconUrn: iconUrn,
           color: NeoColors.bgPrimaryGreen,
         ).paddingOnly(bottom: NeoDimens.px4),
-        Text(
+        NeoText(
           labelText,
           maxLines: 1,
           textAlign: TextAlign.left,

@@ -34,9 +34,9 @@ class NeoLanguageSwitch extends StatelessWidget {
 
   String get _buttonIconUrn {
     if (_targetLanguage == Language.turkish) {
-      return NeoAssets.languageSwitchSquareTr.urn;
+      return NeoAssets.languageTr24px.urn;
     } else {
-      return NeoAssets.languageSwitchSquareEn.urn;
+      return NeoAssets.languageEn24px.urn;
     }
   }
 

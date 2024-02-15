@@ -48,16 +48,27 @@ class LoginSlidableAvatarTab extends StatelessWidget {
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onHorizontalDragEnd: (details) {
+        if (!state.isSlidable) {
+          return;
+        }
+
         final isSwipedLeft = details.primaryVelocity.orZero < 0;
         if (isSwipedLeft) {
           ShowUserChangePopupUseCase().call(context);
         }
       },
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          childLogin.paddingOnly(bottom: NeoDimens.px12),
-          _buildTabIndicators(context, state),
+          Flexible(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                childLogin.paddingOnly(bottom: NeoDimens.px12),
+                _buildTabIndicators(context, state),
+              ],
+            ),
+          ),
         ],
       ),
     );
@@ -74,7 +85,7 @@ class LoginSlidableAvatarTab extends StatelessWidget {
         Container(
           height: _Constants.tabIndicatorDotSize,
           width: _Constants.tabIndicatorDotSize,
-          decoration: const BoxDecoration(shape: BoxShape.circle, color: NeoColors.bgDark),
+          decoration: BoxDecoration(shape: BoxShape.circle, color: NeoColors.bgDark),
         ),
       ],
     );

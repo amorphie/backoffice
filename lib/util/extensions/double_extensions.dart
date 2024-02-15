@@ -10,6 +10,6 @@
  * Any reproduction of this material must contain this notice.
  */
 
-extension DoubleExtensions on double? {
+extension DoubleNullableExtensions on double? {
   double get orZero => this ?? 0;
 }

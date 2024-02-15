@@ -19,14 +19,14 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_pdfview/flutter_pdfview.dart';
-import 'package:backoffice/core/dependency_injection/dependency_injection.dart';
+import 'package:backoffice/reusable_widgets/neo_button/model/neo_button_enable_state.dart';
 import 'package:backoffice/reusable_widgets/neo_button/neo_button.dart';
 import 'package:backoffice/reusable_widgets/neo_terms_and_conditions_group/models/neo_terms_and_conditions_item_data.dart';
 import 'package:backoffice/reusable_widgets/neo_terms_and_conditions_group/network/neo_terms_and_conditions_group_network_manager.dart';
 import 'package:backoffice/util/constants/neo_widget_event_keys.dart';
 import 'package:backoffice/util/neo_util.dart';
 import 'package:neo_core/core/bus/widget_event_bus/neo_widget_event.dart';
-import 'package:neo_core/core/bus/widget_event_bus/neo_widget_event_bus.dart';
+import 'package:neo_core/core/widgets/neo_transition_listener/bloc/neo_transition_listener_bloc.dart';
 import 'package:neo_core/core/workflow_form/bloc/workflow_form_bloc.dart';
 
 abstract class _Constants {
@@ -101,6 +101,7 @@ class _NeoTermsAndConditionsGroupState extends State<NeoTermsAndConditionsGroup>
               child: PDFView(
                 pdfData: Uint8List.fromList(base64.decode(base64Content)),
                 pageFling: false,
+                pageSnap: false,
                 onPageChanged: (int? pageIndex, int? totalPageCount) {
                   if (pageIndex == (totalPageCount ?? 0) - 1) {
                     _setButtonEnabledStatus(true);
@@ -114,7 +115,7 @@ class _NeoTermsAndConditionsGroupState extends State<NeoTermsAndConditionsGroup>
                   child: NeoButton(
                     transitionId: widget.transitionId,
                     labelText: widget.buttonLabelText,
-                    enabled: false,
+                    enableState: NeoButtonEnableState.disabled,
                     widgetEventKey: NeoWidgetEventKeys.termsAndConditionsPressContinueButton.name,
                     autoTriggerTransition: false,
                   ).paddingOnly(
@@ -133,7 +134,8 @@ class _NeoTermsAndConditionsGroupState extends State<NeoTermsAndConditionsGroup>
   }
 
   void _setButtonEnabledStatus(bool isEnabled) {
-    NeoWidgetEventKeys.neoButtonChangeEnableStatusEventKey.sendEvent(data: isEnabled);
+    final enableState = isEnabled ? NeoButtonEnableState.enabled : NeoButtonEnableState.disabled;
+    NeoWidgetEventKeys.neoButtonChangeEnableStateEventKey.sendEvent(data: enableState);
   }
 
   void _listenButtonPressEvents() {
@@ -141,13 +143,11 @@ class _NeoTermsAndConditionsGroupState extends State<NeoTermsAndConditionsGroup>
       onEventReceived: (_) async {
         final tabIndex = _tabController.index;
         if (tabIndex == documentUrlList.length - 1) {
+          final neoTransitionListenerBloc = context.read<NeoTransitionListenerBloc>();
           await _postDocumentReadStatus(tabIndex);
-          getIt.get<NeoWidgetEventBus>().addEvent(
-                NeoWidgetEvent(
-                  eventId: NeoWidgetEventKeys.neoButtonStartTransition.name,
-                  data: widget.transitionId,
-                ),
-              );
+          neoTransitionListenerBloc.add(
+            NeoTransitionListenerEventPostTransition(transitionName: widget.transitionId, body: const {}),
+          );
         } else {
           unawaited(_postDocumentReadStatus(tabIndex));
           _setButtonEnabledStatus(false);

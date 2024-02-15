@@ -23,10 +23,11 @@ part 'login_app_bar_state.dart';
 class LoginAppBarBloc extends Bloc<LoginAppBarEvent, LoginAppBarState> {
   late final StreamSubscription<NeoWidgetEvent>? _neoWidgetEventSubscription;
 
-  LoginAppBarBloc() : super(LoginAppBarStateInitial()) {
+  LoginAppBarBloc() : super(const LoginAppBarStateInitial()) {
     on<LoginAppBarEventInitialize>(_onInitialize);
     on<LoginAppBarEventShowFocusedAppBar>(_onShowFocusedAppBar);
     on<LoginAppBarEventShowDefaultAppBar>(_onShowDefaultAppBar);
+    on<LoginAppBarEventToggleActionStatus>(_onToggleActionStatus);
   }
 
   _onInitialize(LoginAppBarEventInitialize event, Emitter<LoginAppBarState> emit) {
@@ -34,11 +35,19 @@ class LoginAppBarBloc extends Bloc<LoginAppBarEvent, LoginAppBarState> {
   }
 
   _onShowFocusedAppBar(LoginAppBarEventShowFocusedAppBar event, Emitter<LoginAppBarState> emit) {
-    emit(LoginAppBarStateFocused());
+    emit(const LoginAppBarStateFocused());
   }
 
   _onShowDefaultAppBar(LoginAppBarEventShowDefaultAppBar event, Emitter<LoginAppBarState> emit) {
-    emit(LoginAppBarStateInitial());
+    emit(const LoginAppBarStateInitial());
+  }
+
+  _onToggleActionStatus(LoginAppBarEventToggleActionStatus event, Emitter<LoginAppBarState> emit) {
+    if (state is LoginAppBarStateFocused) {
+      emit(LoginAppBarStateFocused(enableUserInterface: event.isInterfaceEnabled));
+    } else if (state is LoginAppBarStateInitial) {
+      emit(LoginAppBarStateInitial(enableUserInterface: event.isInterfaceEnabled));
+    }
   }
 
   _listenForWidgetEvents() {
@@ -47,6 +56,15 @@ class LoginAppBarBloc extends Bloc<LoginAppBarEvent, LoginAppBarState> {
       // NeoWidgetEventKeys.loginAppBarShowUnfocusedAppBar.name
       (NeoWidgetEventKeys.loginTextFieldFocused, (_) => add(const LoginAppBarEventShowFocusedAppBar())),
       (NeoWidgetEventKeys.loginTextFieldUnfocused, (_) => add(const LoginAppBarEventShowDefaultAppBar())),
+      (NeoWidgetEventKeys.loginEnableUserInterface, (_) => add(const LoginAppBarEventToggleActionStatus(isInterfaceEnabled: true))),
+      (NeoWidgetEventKeys.loginDisableUserInterface, (_) => add(const LoginAppBarEventToggleActionStatus(isInterfaceEnabled: false))),
+      (
+        NeoWidgetEventKeys.loginDisabledPopupClosed,
+        (_) {
+          NeoWidgetEventKeys.loginTextFieldUnfocused.sendEvent();
+          NeoWidgetEventKeys.neoSwipeButtonStopLoading.sendEvent();
+        }
+      ),
     ].listenEvents();
   }
 

@@ -1,47 +1,49 @@
-import 'package:backoffice/backoffice/widgets/neo_web_view/neo_web_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 import 'package:backoffice/core/core_widgets/workflow_component_tree_builder/bloc/workflow_component_tree_builder_bloc.dart';
 import 'package:backoffice/core/core_widgets/workflow_component_tree_builder/network/workflow_components_network_manager.dart';
+import 'package:backoffice/core/pages/usecases/get_error_widget_usecase.dart';
 
 class WorkflowComponentTreeBuilder extends StatelessWidget {
   final WorkflowComponentsNetworkManager componentsNetworkManager;
   final String source;
   final String pageId;
-  final Widget loadingWidget;
-  final Widget errorWidget;
+  final Widget? loadingWidget;
+  final Widget? errorWidget;
 
   const WorkflowComponentTreeBuilder({
     required this.componentsNetworkManager,
     required this.source,
     required this.pageId,
-    this.loadingWidget = const Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [Center(child: CircularProgressIndicator())],
-    ),
-    this.errorWidget = const SizedBox.shrink(),
+    this.loadingWidget,
+    this.errorWidget,
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<WorkflowComponentTreeBuilderBloc, WorkflowComponentTreeBuilderState>(
-      bloc: WorkflowComponentTreeBuilderBloc(componentsNetworkManager)..add(WorkflowComponentTreeBuilderEventFetchComponents(source: source, pageId: pageId)),
+      bloc: WorkflowComponentTreeBuilderBloc(componentsNetworkManager)
+        ..add(WorkflowComponentTreeBuilderEventInit(source: source, pageId: pageId))
+        ..add(WorkflowComponentTreeBuilderEventFetchComponents()),
       builder: (context, state) {
         switch (state) {
           case WorkflowComponentTreeBuilderStateLoading _:
-            return loadingWidget;
+            return loadingWidget ?? _defaultLoadingWidget;
           case WorkflowComponentTreeBuilderStateLoaded _:
             return JsonWidgetData.fromDynamic(state.componentsMap).build(context: context);
-          case WorkflowFormioBuilderStateLoaded _:
-            return Container(
-              child: NeoWebView(source: WebViewSource.formio(state.formioData)),
-            );
           case WorkflowComponentTreeBuilderStateError _:
-            return errorWidget;
+            return errorWidget ?? _defaultErrorWidget;
         }
       },
     );
   }
+
+  Widget get _defaultLoadingWidget => const Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [Center(child: CircularProgressIndicator())],
+      );
+
+  Widget get _defaultErrorWidget => GetErrorWidgetUseCase().call(pageId);
 }

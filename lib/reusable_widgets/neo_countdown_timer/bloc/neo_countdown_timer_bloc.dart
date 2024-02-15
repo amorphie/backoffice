@@ -16,66 +16,69 @@ import 'dart:async';
 
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:backoffice/core/core_widgets/neo_session_expiration_listener/util/neo_background_timer.dart';
+import 'package:backoffice/util/constants/neo_widget_event_keys.dart';
 import 'package:backoffice/util/neo_formatters.dart';
+import 'package:neo_core/neo_core.dart';
 
 part 'neo_countdown_timer_event.dart';
 part 'neo_countdown_timer_state.dart';
 
 class NeoCountdownTimerBloc extends Bloc<NeoCountdownTimerEvent, NeoCountdownTimerState> {
-  int _duration;
+  StreamSubscription<NeoWidgetEvent>? _neoWidgetEventSubscription;
+  final int _duration;
+  late final NeoBackgroundTimer _sessionTimer;
 
   NeoCountdownTimerBloc({required int duration})
       : _duration = duration,
         super(NeoCountdownTimerState(duration: NeoFormatters.formatCountdownTime(duration))) {
+    _init();
     on<NeoCountdownTimerEventStartTimer>(_onStartTimer);
     on<NeoCountdownTimerEventTimerTick>(_onTimerTick);
     on<NeoCountdownTimerEventTimerFinished>(_onTimerFinished);
+    on<NeoCountdownTimerEventRestartTimer>(_onRestartTimer);
   }
 
-  Timer? _timer;
-
-  @override
-  Future<void> close() {
-    _timer?.cancel();
-    return super.close();
+  void _init() {
+    _listenForWidgetEvents();
   }
 
   void _onStartTimer(NeoCountdownTimerEventStartTimer event, Emitter<NeoCountdownTimerState> emit) {
-    _duration = event.duration;
-    _startTimer();
+    _sessionTimer = NeoBackgroundTimer(
+      seconds: _duration,
+      onFinished: () => add(NeoCountdownTimerEventTimerFinished()),
+      onTick: (duration) => add(NeoCountdownTimerEventTimerTick(duration: duration)),
+      onResumed: () => _sessionTimer.resume(),
+      onPaused: () => _sessionTimer.pause(),
+    )..init();
+    _sessionTimer.start();
   }
 
   void _onTimerTick(NeoCountdownTimerEventTimerTick event, Emitter<NeoCountdownTimerState> emit) {
-    emit(state.copyWith(duration: NeoFormatters.formatCountdownTime(_duration)));
+    emit(state.copyWith(duration: NeoFormatters.formatCountdownTime(event.duration)));
   }
 
   void _onTimerFinished(NeoCountdownTimerEventTimerFinished event, Emitter<NeoCountdownTimerState> emit) {
-    _timer?.cancel();
-    emit(state.copyWith(isFinished: true, duration: NeoFormatters.formatCountdownTime(_duration)));
+    _sessionTimer.stop();
+    emit(state.copyWith(isFinished: true));
   }
 
-  void _startTimer() {
-    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      if (isClosed) {
-        _cancelTimer();
-        return;
-      }
-
-      if (_duration > 0) {
-        _duration--;
-        if (_duration == 0) {
-          _cancelTimer();
-        } else {
-          add(NeoCountdownTimerEventTimerTick());
-        }
-      } else {
-        _cancelTimer();
-      }
-    });
+  void _onRestartTimer(NeoCountdownTimerEventRestartTimer event, Emitter<NeoCountdownTimerState> emit) {
+    _sessionTimer
+      ..stop()
+      ..start(durationInSeconds: _duration);
   }
 
-  void _cancelTimer() {
-    add(NeoCountdownTimerEventTimerFinished());
-    _timer?.cancel();
+  _listenForWidgetEvents() async {
+    _neoWidgetEventSubscription = [
+      (NeoWidgetEventKeys.neoCountdownTimerRestartTimer, (_) => add(NeoCountdownTimerEventRestartTimer())),
+    ].listenEvents();
+  }
+
+  @override
+  Future<void> close() {
+    _neoWidgetEventSubscription?.cancel();
+    _sessionTimer.dispose();
+    return super.close();
   }
 }

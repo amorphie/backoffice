@@ -27,10 +27,8 @@ class NeoSwipeButtonEventStartTransaction extends NeoSwipeButtonEvent {
 }
 
 class NeoSwipeButtonEventShowError extends NeoSwipeButtonEvent {
-  final String message;
-
-  const NeoSwipeButtonEventShowError({required this.message});
+  const NeoSwipeButtonEventShowError();
 
   @override
-  List<Object> get props => [message];
+  List<Object> get props => [];
 }

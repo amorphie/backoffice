@@ -10,8 +10,8 @@
  * Any reproduction of this material must contain this notice.
  */
 
+import 'package:backoffice/core/environment_variables/neo_environment_variable.dart';
 import 'package:backoffice/reusable_widgets/neo_swipe_button/neo_swipe_button.dart';
-import 'package:backoffice/util/app_constants.dart';
 
 abstract class _Constant {
   static const _transitionKeyClientId = "client_id";
@@ -21,16 +21,16 @@ abstract class _Constant {
   static const _loginScopes = ["retail-customer", "openId"];
   static const _loginGrantType = "password";
 
-  static const Map<String, dynamic> transitionParams = {
-    _Constant._transitionKeyClientId: AppConstants.workflowClientId,
-    _Constant._transitionKeyClientSecret: AppConstants.workflowClientSecret,
+  static Map<String, dynamic> transitionParams = {
+    _Constant._transitionKeyClientId: NeoEnvironmentVariable.workflowClientId.value,
+    _Constant._transitionKeyClientSecret: NeoEnvironmentVariable.workflowClientSecret.value,
     _Constant._transitionKeyScopes: _Constant._loginScopes,
     _Constant._transitionKeyGrantType: _Constant._loginGrantType,
   };
 }
 
 class LoginButton extends NeoSwipeButton {
-  const LoginButton({
+  LoginButton({
     super.transitionId,
     super.labelText,
     super.loadingLabelText,

@@ -12,6 +12,7 @@ WidgetbookComponent get widgetbookSetPasswordBulletView => WidgetbookComponent(
           builder: (context) => SetPasswordBulletView(
             passwordWidgetEventKey: 'test',
             repeatedPasswordWidgetEventKey: 'testRepeated',
+            passwordLength: context.knobs.int.input(label: 'passwordLength'),
             padding: EdgeInsetsDirectional.only(
               top: context.knobs.double.input(label: 'topPadding'),
               bottom: context.knobs.double.input(label: 'bottomPadding'),

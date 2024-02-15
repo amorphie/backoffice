@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:backoffice/reusable_widgets/neo_network_dropdown_form_field/bloc/neo_network_dropdown_form_field_bloc.dart';
 import 'package:backoffice/reusable_widgets/neo_network_dropdown_form_field/network/neo_network_dropdown_form_field_network_manager.dart';
+import 'package:backoffice/reusable_widgets/neo_text/neo_text.dart';
 import 'package:backoffice/util/neo_util.dart';
 import 'package:neo_core/core/workflow_form/bloc/workflow_form_bloc.dart';
 
@@ -36,7 +37,7 @@ class _NeoNetworkDropdownFormFieldState extends State<NeoNetworkDropdownFormFiel
               }
               final itemList = snapshot.data!;
               return DropdownButtonFormField<String>(
-                items: itemList.map((e) => DropdownMenuItem<String>(value: e, child: Text(e))).toList(),
+                items: itemList.map((e) => DropdownMenuItem<String>(value: e, child: NeoText(e))).toList(),
                 onChanged: (String? text) {
                   context.read<WorkflowFormBloc>().add(WorkflowFormEventUpdateTextFormField(key: widget.dataKey, value: text.orEmpty));
                 },

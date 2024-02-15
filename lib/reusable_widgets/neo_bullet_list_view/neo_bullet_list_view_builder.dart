@@ -3,8 +3,6 @@ import 'package:backoffice/reusable_widgets/neo_bullet_list_view/neo_bullet_list
 
 part 'neo_bullet_list_view_builder.g.dart';
 
-// STOPSHIP: Delete this ignore
-// ignore_for_file: deprecated_member_use_from_same_package
 @JsonWidget(type: 'neo_bullet_list_view')
 abstract class _NeoBulletListViewBuilder extends JsonWidgetBuilder {
   const _NeoBulletListViewBuilder({

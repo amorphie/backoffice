@@ -17,6 +17,7 @@ import 'package:backoffice/core/navigation/models/neo_navigation_group_item_mode
 import 'package:backoffice/core/navigation/models/neo_navigation_group_model.dart';
 import 'package:backoffice/reusable_widgets/neo_navigation_group_widget/usecases/display_neo_navigation_group_bottom_sheet.dart';
 import 'package:backoffice/reusable_widgets/neo_navigation_group_widget/widgets/neo_navigation_group_item_widget.dart';
+import 'package:backoffice/reusable_widgets/neo_text/neo_text.dart';
 import 'package:backoffice/util/neo_util.dart';
 
 class NeoNavigationGroupWidget extends StatelessWidget {
@@ -50,15 +51,15 @@ class NeoNavigationGroupWidget extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(titleText, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                NeoText(titleText, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
                 InkWell(
                   onTap: () => DisplayNeoNavigationGroupBottomSheet()(
                     context: context,
                     navigationGroupKey: navigationGroupKey,
                   ),
-                  child: Text(
+                  child: NeoText(
                     showMoreText,
-                    style: const TextStyle(fontWeight: FontWeight.bold, color: NeoColors.textSuccess),
+                    style: TextStyle(fontWeight: FontWeight.bold, color: NeoColors.textSuccess),
                   ),
                 ),
               ],

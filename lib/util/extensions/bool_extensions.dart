@@ -12,4 +12,5 @@
 
 extension NullableBoolExtensions on bool? {
   bool get orTrue => this ?? true;
+  bool get orFalse => this ?? false;
 }

@@ -21,6 +21,9 @@ import 'package:backoffice/reusable_widgets/new_badge/new_badge_widget.dart';
 import 'package:backoffice/util/neo_util.dart';
 import 'package:neo_core/core/navigation/models/neo_navigation_type.dart';
 
+import '../../../../reusable_widgets/neo_badge/model/neo_badge_display_mode.dart';
+import '../../../../reusable_widgets/neo_badge/neo_badge.dart';
+
 abstract class _Constants {
   static const double iconSize = 12;
   static const double textMaxWidth = 120;
@@ -58,7 +61,11 @@ class NeoBackofficeNavigationGroupItemWidget extends INeoButton {
             Row(
               children: [_buildIcon(), const SizedBox(width: 10), _buildText()],
             ),
-            if (model.isNew) const NewBadgeWidget(padding: EdgeInsets.zero).paddingOnly(bottom: 80, start: 40),
+            if (model.isNew)
+              const NeoBadge(
+                text: "New", // STOPSHIP: Add localization
+                displayMode: NeoBadgeDisplayMode.blackHighlighted,
+              ).paddingOnly(bottom: 80, start: 40),
           ],
         ),
       );

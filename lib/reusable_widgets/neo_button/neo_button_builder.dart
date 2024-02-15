@@ -14,6 +14,7 @@
 
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 import 'package:backoffice/reusable_widgets/neo_button/model/neo_button_display_mode.dart';
+import 'package:backoffice/reusable_widgets/neo_button/model/neo_button_enable_state.dart';
 import 'package:backoffice/reusable_widgets/neo_button/model/neo_button_size.dart';
 import 'package:backoffice/reusable_widgets/neo_button/neo_button.dart';
 

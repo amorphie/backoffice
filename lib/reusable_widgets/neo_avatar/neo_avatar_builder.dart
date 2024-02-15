@@ -1,4 +1,5 @@
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
+import 'package:backoffice/reusable_widgets/neo_avatar/model/neo_avatar_display_mode.dart';
 import 'package:backoffice/reusable_widgets/neo_avatar/neo_avatar.dart';
 
 part 'neo_avatar_builder.g.dart';

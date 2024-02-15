@@ -12,6 +12,7 @@
 
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 import 'package:backoffice/reusable_widgets/neo_text/neo_text.dart';
+import 'package:backoffice/util/constants/neo_constants.dart';
 
 part 'neo_text_builder.g.dart';
 
@@ -21,6 +22,9 @@ abstract class _NeoTextBuilder extends JsonWidgetBuilder {
 
   @JsonArgDecoder('text')
   String _decodeText({required dynamic value}) => value?.toString() ?? '';
+
+  @JsonArgDecoder('style')
+  TextStyle _decodeStyle({required dynamic value}) => NeoTextStyles.fromString(value);
 
   @JsonPositionedParam('data')
   @JsonArgAlias(alias: 'text', name: 'data')

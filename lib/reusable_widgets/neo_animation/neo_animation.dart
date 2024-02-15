@@ -12,6 +12,8 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:lottie/lottie.dart';
+import 'package:backoffice/core/dependency_injection/dependency_injection.dart';
+import 'package:backoffice/reusable_widgets/neo_animation/cache/lottie_animation_cache.dart';
 import 'package:backoffice/util/neo_util.dart';
 
 class NeoAnimation extends StatelessWidget {
@@ -49,9 +51,18 @@ class NeoAnimation extends StatelessWidget {
 
   Widget _buildAnimation(AssetUrn urn) {
     return switch (urn.location) {
-      AssetUrnLocation.local => Lottie.asset(urn.path, fit: BoxFit.fill, repeat: repeat, reverse: reverse),
+      AssetUrnLocation.local => _getLocalAnimation(urn),
       AssetUrnLocation.network => _buildEmptyAnimation,
     };
+  }
+
+  Widget _getLocalAnimation(AssetUrn urn) {
+    final cachedAnimation = getIt.get<LottieAnimationCache>().getAnimation(urn.path);
+    if (cachedAnimation != null) {
+      return Lottie(composition: cachedAnimation, fit: BoxFit.fill, repeat: repeat, reverse: reverse);
+    } else {
+      return Lottie.asset(urn.path, fit: BoxFit.fill, repeat: repeat, reverse: reverse);
+    }
   }
 
   Widget get _buildEmptyAnimation => const SizedBox.shrink();

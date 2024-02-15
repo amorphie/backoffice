@@ -14,10 +14,9 @@ part of 'neo_swipe_button_bloc.dart';
 
 class NeoSwipeButtonState extends Equatable {
   final bool isLoading;
-  final String? errorMessage;
 
-  const NeoSwipeButtonState({required this.isLoading, this.errorMessage});
+  const NeoSwipeButtonState({required this.isLoading});
 
   @override
-  List<Object?> get props => [isLoading, errorMessage];
+  List<Object?> get props => [isLoading];
 }

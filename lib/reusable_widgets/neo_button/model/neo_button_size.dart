@@ -16,6 +16,9 @@ import 'package:json_annotation/json_annotation.dart';
 
 @JsonEnum()
 enum NeoButtonSize {
+  @JsonValue('xSmall')
+  xSmall,
+
   @JsonValue('small')
   small,
 
@@ -26,6 +29,7 @@ enum NeoButtonSize {
   large;
 
   static const Map<String, NeoButtonSize> _jsonValues = {
+    'xSmall': NeoButtonSize.xSmall,
     'small': NeoButtonSize.small,
     'medium': NeoButtonSize.medium,
     'large': NeoButtonSize.large,

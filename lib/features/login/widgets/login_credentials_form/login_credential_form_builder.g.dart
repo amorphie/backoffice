@@ -63,19 +63,25 @@ class LoginCredentialFormBuilder extends _LoginCredentialFormBuilder {
     final passwordButtonRightDecoded = _decodePasswordButtonRight(
       data: data,
     );
+    final passwordValidationsDecoded = _decodePasswordValidations(
+      data: data,
+    );
+    final tcknValidationsDecoded = _decodeTcknValidations(
+      data: data,
+    );
 
     return LoginCredentialForm(
       key: key,
       padding: model.padding,
       passwordButtonRight: passwordButtonRightDecoded,
       passwordDataKey: model.passwordDataKey,
-      passwordErrorText: model.passwordErrorText,
       passwordLabelText: model.passwordLabelText,
       passwordMaxLength: model.passwordMaxLength,
-      passwordValidationRegex: model.passwordValidationRegex,
+      passwordValidations: passwordValidationsDecoded,
       tcknDataKey: model.tcknDataKey,
       tcknErrorText: model.tcknErrorText,
       tcknLabelText: model.tcknLabelText,
+      tcknValidations: tcknValidationsDecoded,
     );
   }
 }
@@ -87,26 +93,26 @@ class JsonLoginCredentialForm extends JsonWidgetData {
     this.padding = EdgeInsetsDirectional.zero,
     required this.passwordButtonRight,
     required this.passwordDataKey,
-    this.passwordErrorText,
     required this.passwordLabelText,
     this.passwordMaxLength,
-    this.passwordValidationRegex,
+    required this.passwordValidations,
     required this.tcknDataKey,
     this.tcknErrorText,
     required this.tcknLabelText,
+    required this.tcknValidations,
   }) : super(
           jsonWidgetArgs: LoginCredentialFormBuilderModel.fromDynamic(
             {
               'padding': padding,
               'passwordButtonRight': passwordButtonRight,
               'passwordDataKey': passwordDataKey,
-              'passwordErrorText': passwordErrorText,
               'passwordLabelText': passwordLabelText,
               'passwordMaxLength': passwordMaxLength,
-              'passwordValidationRegex': passwordValidationRegex,
+              'passwordValidations': passwordValidations,
               'tcknDataKey': tcknDataKey,
               'tcknErrorText': tcknErrorText,
               'tcknLabelText': tcknLabelText,
+              'tcknValidations': tcknValidations,
               ...args,
             },
             args: args,
@@ -118,13 +124,13 @@ class JsonLoginCredentialForm extends JsonWidgetData {
                 'padding': padding,
                 'passwordButtonRight': passwordButtonRight,
                 'passwordDataKey': passwordDataKey,
-                'passwordErrorText': passwordErrorText,
                 'passwordLabelText': passwordLabelText,
                 'passwordMaxLength': passwordMaxLength,
-                'passwordValidationRegex': passwordValidationRegex,
+                'passwordValidations': passwordValidations,
                 'tcknDataKey': tcknDataKey,
                 'tcknErrorText': tcknErrorText,
                 'tcknLabelText': tcknLabelText,
+                'tcknValidations': tcknValidations,
                 ...args,
               },
               args: args,
@@ -140,19 +146,19 @@ class JsonLoginCredentialForm extends JsonWidgetData {
 
   final String passwordDataKey;
 
-  final String? passwordErrorText;
-
   final String passwordLabelText;
 
   final int? passwordMaxLength;
 
-  final String? passwordValidationRegex;
+  final dynamic passwordValidations;
 
   final String tcknDataKey;
 
   final String? tcknErrorText;
 
   final String tcknLabelText;
+
+  final dynamic tcknValidations;
 }
 
 class LoginCredentialFormBuilderModel extends JsonWidgetBuilderModel {
@@ -161,13 +167,13 @@ class LoginCredentialFormBuilderModel extends JsonWidgetBuilderModel {
     this.padding = EdgeInsetsDirectional.zero,
     required this.passwordButtonRight,
     required this.passwordDataKey,
-    this.passwordErrorText,
     required this.passwordLabelText,
     this.passwordMaxLength,
-    this.passwordValidationRegex,
+    required this.passwordValidations,
     required this.tcknDataKey,
     this.tcknErrorText,
     required this.tcknLabelText,
+    required this.tcknValidations,
   });
 
   final EdgeInsetsDirectional padding;
@@ -176,19 +182,19 @@ class LoginCredentialFormBuilderModel extends JsonWidgetBuilderModel {
 
   final String passwordDataKey;
 
-  final String? passwordErrorText;
-
   final String passwordLabelText;
 
   final int? passwordMaxLength;
 
-  final String? passwordValidationRegex;
+  final dynamic passwordValidations;
 
   final String tcknDataKey;
 
   final String? tcknErrorText;
 
   final String tcknLabelText;
+
+  final dynamic tcknValidations;
 
   static LoginCredentialFormBuilderModel fromDynamic(
     dynamic map, {
@@ -243,17 +249,17 @@ class LoginCredentialFormBuilderModel extends JsonWidgetBuilderModel {
           }(),
           passwordButtonRight: map['passwordButtonRight'],
           passwordDataKey: map['passwordDataKey'],
-          passwordErrorText: map['passwordErrorText'],
           passwordLabelText: map['passwordLabelText'],
           passwordMaxLength: () {
             dynamic parsed = JsonClass.maybeParseInt(map['passwordMaxLength']);
 
             return parsed;
           }(),
-          passwordValidationRegex: map['passwordValidationRegex'],
+          passwordValidations: map['passwordValidations'],
           tcknDataKey: map['tcknDataKey'],
           tcknErrorText: map['tcknErrorText'],
           tcknLabelText: map['tcknLabelText'],
+          tcknValidations: map['tcknValidations'],
         );
       }
     }
@@ -271,13 +277,13 @@ class LoginCredentialFormBuilderModel extends JsonWidgetBuilderModel {
             ),
       'passwordButtonRight': passwordButtonRight,
       'passwordDataKey': passwordDataKey,
-      'passwordErrorText': passwordErrorText,
       'passwordLabelText': passwordLabelText,
       'passwordMaxLength': passwordMaxLength,
-      'passwordValidationRegex': passwordValidationRegex,
+      'passwordValidations': passwordValidations,
       'tcknDataKey': tcknDataKey,
       'tcknErrorText': tcknErrorText,
       'tcknLabelText': tcknLabelText,
+      'tcknValidations': tcknValidations,
       ...args,
     });
   }
@@ -285,7 +291,7 @@ class LoginCredentialFormBuilderModel extends JsonWidgetBuilderModel {
 
 class LoginCredentialFormSchema {
   static const id =
-      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/backoffice/login_credential_form.json';
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/neo_bank/login_credential_form.json';
 
   static final schema = <String, Object>{
     r'$schema': 'http://json-schema.org/draft-07/schema#',
@@ -297,13 +303,13 @@ class LoginCredentialFormSchema {
       'padding': SchemaHelper.objectSchema(EdgeInsetsDirectionalSchema.id),
       'passwordButtonRight': SchemaHelper.anySchema,
       'passwordDataKey': SchemaHelper.stringSchema,
-      'passwordErrorText': SchemaHelper.stringSchema,
       'passwordLabelText': SchemaHelper.stringSchema,
       'passwordMaxLength': SchemaHelper.numberSchema,
-      'passwordValidationRegex': SchemaHelper.stringSchema,
+      'passwordValidations': SchemaHelper.anySchema,
       'tcknDataKey': SchemaHelper.stringSchema,
       'tcknErrorText': SchemaHelper.stringSchema,
       'tcknLabelText': SchemaHelper.stringSchema,
+      'tcknValidations': SchemaHelper.anySchema,
     },
   };
 }

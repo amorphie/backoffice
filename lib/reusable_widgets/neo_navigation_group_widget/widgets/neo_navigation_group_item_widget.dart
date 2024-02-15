@@ -15,11 +15,13 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:backoffice/core/dependency_injection/dependency_injection.dart';
 import 'package:backoffice/core/navigation/models/neo_navigation_group_item_model.dart';
-import 'package:backoffice/core/navigation/navigation_helper.dart';
+import 'package:backoffice/core/navigation/neo_navigation_helper.dart';
+import 'package:backoffice/reusable_widgets/neo_badge/model/neo_badge_display_mode.dart';
+import 'package:backoffice/reusable_widgets/neo_badge/neo_badge.dart';
 import 'package:backoffice/reusable_widgets/neo_button/bloc/neo_button_bloc.dart';
 import 'package:backoffice/reusable_widgets/neo_button/i_neo_button.dart';
 import 'package:backoffice/reusable_widgets/neo_icon/neo_icon.dart';
-import 'package:backoffice/reusable_widgets/new_badge/new_badge_widget.dart';
+import 'package:backoffice/reusable_widgets/neo_text/neo_text.dart';
 import 'package:backoffice/util/neo_util.dart';
 import 'package:neo_core/core/navigation/models/neo_navigation_type.dart';
 
@@ -61,7 +63,11 @@ class NeoNavigationGroupItemWidget extends INeoButton {
             Column(
               children: [_buildIcon(), _buildText()],
             ),
-            if (model.isNew) const NewBadgeWidget(padding: EdgeInsets.zero).paddingOnly(bottom: 80, start: 40),
+            if (model.isNew)
+              const NeoBadge(
+                text: "New", // STOPSHIP: Add localization
+                displayMode: NeoBadgeDisplayMode.blackHighlighted,
+              ).paddingOnly(bottom: 80, start: 40),
           ],
         ),
       );
@@ -81,7 +87,7 @@ class NeoNavigationGroupItemWidget extends INeoButton {
   Widget _buildText() {
     return ConstrainedBox(
       constraints: const BoxConstraints(maxWidth: _Constants.textMaxWidth),
-      child: Text(
+      child: NeoText(
         model.displayName,
         maxLines: _Constants.maxLines,
         overflow: TextOverflow.ellipsis,
@@ -91,17 +97,8 @@ class NeoNavigationGroupItemWidget extends INeoButton {
     ).paddingOnly(top: NeoDimens.px8);
   }
 
-  @override
-  void onTransitionError(BuildContext context, String errorMessage) {
-    // No-op
-  }
-
   _handleNavigation(BuildContext context, {required String navigationPath}) {
-    getIt.get<NeoNavigationHelper>().navigate(
-          context: context,
-          navigationType: NeoNavigationType.push,
-          navigationPath: navigationPath,
-        );
+    getIt.get<NeoNavigationHelper>().navigate(navigationType: NeoNavigationType.push, navigationPath: navigationPath);
   }
 
   static String _parseTransitionId(String action) {

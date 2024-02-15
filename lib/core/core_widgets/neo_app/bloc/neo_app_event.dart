@@ -17,15 +17,26 @@ sealed class NeoAppEvent extends Equatable {
 }
 
 class NeoAppEventInit extends NeoAppEvent {
+  const NeoAppEventInit();
+
   @override
   List<Object?> get props => [];
 }
 
-class NeoAppEventUpdateLoggedInStatus extends NeoAppEvent {
-  final bool isLoggedIn;
+class NeoAppEventUpdateAuthStatus extends NeoAppEvent {
+  final NeoAuthStatus authStatus;
 
-  const NeoAppEventUpdateLoggedInStatus({required this.isLoggedIn});
+  const NeoAppEventUpdateAuthStatus({required this.authStatus});
 
   @override
-  List<Object?> get props => [isLoggedIn];
+  List<Object?> get props => [authStatus];
+}
+
+class NeoAppEventChangeAppTheme extends NeoAppEvent {
+  final String selectedTheme;
+
+  const NeoAppEventChangeAppTheme({required this.selectedTheme});
+
+  @override
+  List<Object?> get props => [selectedTheme];
 }

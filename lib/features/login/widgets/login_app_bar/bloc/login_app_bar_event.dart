@@ -33,3 +33,12 @@ class LoginAppBarEventShowDefaultAppBar extends LoginAppBarEvent {
   @override
   List<Object?> get props => [];
 }
+
+class LoginAppBarEventToggleActionStatus extends LoginAppBarEvent {
+  final bool isInterfaceEnabled;
+
+  const LoginAppBarEventToggleActionStatus({required this.isInterfaceEnabled});
+
+  @override
+  List<Object?> get props => [isInterfaceEnabled];
+}

@@ -67,7 +67,6 @@ class NeoPopupBuilder extends _NeoPopupBuilder {
     return NeoPopup(
       actions: actionsDecoded,
       bodyText: model.bodyText,
-      isLocalPopup: model.isLocalPopup,
       key: key,
       padding: model.padding,
       titleText: model.titleText,
@@ -82,7 +81,6 @@ class JsonNeoPopup extends JsonWidgetData {
     JsonWidgetRegistry? registry,
     required this.actions,
     this.bodyText,
-    this.isLocalPopup = false,
     this.padding = EdgeInsetsDirectional.zero,
     this.titleText,
     this.type = NeoPopupType.info,
@@ -91,7 +89,6 @@ class JsonNeoPopup extends JsonWidgetData {
             {
               'actions': actions,
               'bodyText': bodyText,
-              'isLocalPopup': isLocalPopup,
               'padding': padding,
               'titleText': titleText,
               'type': type,
@@ -105,7 +102,6 @@ class JsonNeoPopup extends JsonWidgetData {
               {
                 'actions': actions,
                 'bodyText': bodyText,
-                'isLocalPopup': isLocalPopup,
                 'padding': padding,
                 'titleText': titleText,
                 'type': type,
@@ -122,8 +118,6 @@ class JsonNeoPopup extends JsonWidgetData {
 
   final String? bodyText;
 
-  final bool isLocalPopup;
-
   final EdgeInsetsDirectional padding;
 
   final String? titleText;
@@ -136,7 +130,6 @@ class NeoPopupBuilderModel extends JsonWidgetBuilderModel {
     super.args, {
     required this.actions,
     this.bodyText,
-    this.isLocalPopup = false,
     this.padding = EdgeInsetsDirectional.zero,
     this.titleText,
     this.type = NeoPopupType.info,
@@ -145,8 +138,6 @@ class NeoPopupBuilderModel extends JsonWidgetBuilderModel {
   final dynamic actions;
 
   final String? bodyText;
-
-  final bool isLocalPopup;
 
   final EdgeInsetsDirectional padding;
 
@@ -198,10 +189,6 @@ class NeoPopupBuilderModel extends JsonWidgetBuilderModel {
           args,
           actions: map['actions'],
           bodyText: map['bodyText'],
-          isLocalPopup: JsonClass.parseBool(
-            map['isLocalPopup'],
-            whenNull: false,
-          ),
           padding: () {
             dynamic parsed = ThemeDecoder.decodeEdgeInsetsDirectional(
               map['padding'],
@@ -225,7 +212,6 @@ class NeoPopupBuilderModel extends JsonWidgetBuilderModel {
     return JsonClass.removeNull({
       'actions': actions,
       'bodyText': bodyText,
-      'isLocalPopup': false == isLocalPopup ? null : isLocalPopup,
       'padding': EdgeInsetsDirectional.zero == padding
           ? null
           : ThemeEncoder.encodeEdgeInsetsDirectional(
@@ -240,7 +226,7 @@ class NeoPopupBuilderModel extends JsonWidgetBuilderModel {
 
 class NeoPopupSchema {
   static const id =
-      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/backoffice/neo_popup.json';
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/neo_bank/neo_popup.json';
 
   static final schema = <String, Object>{
     r'$schema': 'http://json-schema.org/draft-07/schema#',
@@ -251,7 +237,6 @@ class NeoPopupSchema {
     'properties': {
       'actions': SchemaHelper.anySchema,
       'bodyText': SchemaHelper.stringSchema,
-      'isLocalPopup': SchemaHelper.boolSchema,
       'padding': SchemaHelper.objectSchema(EdgeInsetsDirectionalSchema.id),
       'titleText': SchemaHelper.stringSchema,
       'type': SchemaHelper.anySchema,

@@ -10,7 +10,7 @@ abstract class _Constants {
 }
 
 class WorkflowComponentsNetworkManager {
-  Future<NeoResponse> fetchPageComponents(String source, String pageId, String type, String json) async {
+  Future<NeoResponse> fetchPageComponents(String source, String pageId) async {
     try {
       final response = await GetIt.I<NeoNetworkManager>().call(
         NeoHttpCall(
@@ -20,8 +20,7 @@ class WorkflowComponentsNetworkManager {
             _Constants.pathParameterPageId: pageId,
           },
           queryProviders: [
-            HttpQueryProvider({"type": type}),
-            HttpQueryProvider({"json": json}),
+            HttpQueryProvider({"type": "flutterwidget"}),
           ],
         ),
       );

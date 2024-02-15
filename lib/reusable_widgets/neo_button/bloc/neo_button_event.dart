@@ -5,38 +5,32 @@ sealed class NeoButtonEvent extends Equatable {
 }
 
 class NeoButtonEventInitial extends NeoButtonEvent {
-  final bool enabled;
+  final NeoButtonEnableState enableState;
 
   const NeoButtonEventInitial({
-    required this.enabled,
+    required this.enableState,
   });
 
   @override
-  List<Object?> get props => [enabled];
+  List<Object?> get props => [enableState];
 }
 
-class NeoButtonEventStartTransition extends NeoButtonEvent {
-  final bool startWorkflow;
-  final String transitionId;
-  final Map<String, dynamic> transitionBody;
+class NeoButtonEventInitWorkflow extends NeoButtonEvent {
+  final Map<String, dynamic> initResponse;
 
-  const NeoButtonEventStartTransition({
-    required this.startWorkflow,
-    required this.transitionId,
-    required this.transitionBody,
-  });
+  const NeoButtonEventInitWorkflow({required this.initResponse});
 
   @override
-  List<Object?> get props => [startWorkflow, transitionId, transitionBody];
+  List<Object?> get props => [initResponse];
 }
 
-class NeoButtonEventChangeEnableButtonStatus extends NeoButtonEvent {
-  final bool status;
+class NeoButtonEventChangeEnableState extends NeoButtonEvent {
+  final NeoButtonEnableState enableState;
 
-  const NeoButtonEventChangeEnableButtonStatus({
-    required this.status,
+  const NeoButtonEventChangeEnableState({
+    required this.enableState,
   });
 
   @override
-  List<Object?> get props => [status];
+  List<Object?> get props => [enableState];
 }

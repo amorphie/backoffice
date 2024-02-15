@@ -13,15 +13,21 @@
 part of 'login_app_bar_bloc.dart';
 
 sealed class LoginAppBarState extends Equatable {
-  const LoginAppBarState();
+  final bool enableUserInterface;
+
+  const LoginAppBarState({this.enableUserInterface = true});
 }
 
 class LoginAppBarStateInitial extends LoginAppBarState {
+  const LoginAppBarStateInitial({super.enableUserInterface});
+
   @override
-  List<Object> get props => [];
+  List<Object> get props => [enableUserInterface];
 }
 
 class LoginAppBarStateFocused extends LoginAppBarState {
+  const LoginAppBarStateFocused({super.enableUserInterface});
+
   @override
-  List<Object> get props => [];
+  List<Object> get props => [enableUserInterface];
 }

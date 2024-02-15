@@ -14,7 +14,7 @@ import 'package:collection/collection.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:backoffice/core/navigation/models/neo_navigation_group_item_model.dart';
 import 'package:backoffice/core/navigation/models/neo_navigation_group_model.dart';
-import 'package:backoffice/core/navigation/models/neo_navigation_item_audience.dart';
+import 'package:backoffice/features/login/data/neo_auth_status.dart';
 
 part 'neo_navigation_group_config.g.dart';
 
@@ -38,7 +38,7 @@ class NeoNavigationGroupConfig {
     if (navigationItem == null) {
       return true;
     }
-    final twoFactorAuthRequirement = navigationItem.audience.contains(NeoNavigationItemAudience.twoFactorAuth);
+    final twoFactorAuthRequirement = navigationItem.audience.contains(NeoAuthStatus.twoFactorAuth);
     final isAvailableBy2FA = await navigationItem.isAvailableBy2FA;
     return twoFactorAuthRequirement && isAvailableBy2FA;
   }

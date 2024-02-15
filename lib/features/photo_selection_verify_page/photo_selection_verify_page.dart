@@ -9,44 +9,48 @@
  * of it without the prior written consent of Commencis.
  * Any reproduction of this material must contain this notice.
  */
+
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:backoffice/core/localization/models/localization_key.dart';
+import 'package:backoffice/reusable_widgets/neo_text/neo_text.dart';
 import 'package:backoffice/util/constants/neo_widget_event_keys.dart';
 import 'package:backoffice/util/neo_util.dart';
 
 class PhotoSelectionVerifyPage extends StatelessWidget {
   const PhotoSelectionVerifyPage({required this.imagePath, super.key});
+
   final String imagePath;
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Column(
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: Column(
         children: [
           Expanded(
-            child: SizedBox(child: Image.file(File(imagePath))),
+            child: kIsWeb ? SizedBox(child: Image.network(imagePath)) : SizedBox(child: Image.file(File(imagePath))),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               TextButton(
-                onPressed: () => Navigator.pop(context),
-                child: const Text(
-                  //STOPSHIP add localization
-                  'Vazgeç',
-                  style: TextStyle(color: Colors.white, fontSize: 24),
+                onPressed: () => NeoWidgetEventKeys.globalNavigationPop.sendEvent(),
+                child: NeoText(
+                  LocalizationKey.generalDismissPictureButton.loc(),
+                  style: const TextStyle(color: Colors.white, fontSize: 24),
                 ),
               ),
               TextButton(
                 onPressed: () {
                   NeoWidgetEventKeys.neoAvatarChangePhotoEventKey.sendEvent(data: imagePath);
-                  Navigator.pop(context);
+                  NeoWidgetEventKeys.globalNavigationPop.sendEvent();
                 },
-                child: const Text(
-                  //STOPSHIP add localization
-                  'Seç',
-                  style: TextStyle(color: Colors.white, fontSize: 24),
+                child: NeoText(
+                  LocalizationKey.generalSelectPlaceholder.loc(),
+                  style: const TextStyle(color: Colors.white, fontSize: 24),
                 ),
               ),
             ],

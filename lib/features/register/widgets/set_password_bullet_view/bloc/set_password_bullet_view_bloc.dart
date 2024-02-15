@@ -3,7 +3,8 @@ import 'dart:async';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:backoffice/core/dependency_injection/dependency_injection.dart';
-import 'package:backoffice/core/localization/localizable_text.dart';
+import 'package:backoffice/core/localization/models/localization_key.dart';
+import 'package:backoffice/reusable_widgets/neo_button/model/neo_button_enable_state.dart';
 import 'package:backoffice/util/constants/neo_widget_event_keys.dart';
 import 'package:neo_core/core/bus/neo_bus.dart';
 
@@ -11,19 +12,28 @@ part 'set_password_bullet_view_event.dart';
 part 'set_password_bullet_view_state.dart';
 
 abstract class _Constants {
-  static final passwordCountRegex = RegExp(r'^.{6}$');
+  static RegExp getPasswordCountRegex(int length) {
+    return RegExp('^.{$length}\$');
+  }
+
   static final passwordNumericalRegex = RegExp(r'^\d+$');
-  static final consecutiveRegex = RegExp(r'^(?:(?!012|123|234|345|456|567|678|789).)*$');
-  static final repeatedRegex = RegExp(r'(\d)\1');
+  static final consecutiveRegex = RegExp(r'^(?:(?!012|123|234|345|456|567|678|789|987|876|765|654|543|432|321|210).)*$');
+  static final repeatedRegex = RegExp(r'^(?:(?!(\d)\1{5}).)*$');
 }
 
 class SetPasswordBulletViewBloc extends Bloc<SetPasswordBulletViewEvent, SetPasswordBulletViewState> {
-  SetPasswordBulletViewBloc({required this.eventBusPasswordInputKey, required this.eventBusRepeatedPasswordInputKey}) : super(const SetPasswordBulletViewState()) {
+  SetPasswordBulletViewBloc({
+    required this.eventBusPasswordInputKey,
+    required this.eventBusRepeatedPasswordInputKey,
+    required this.passwordLength,
+  }) : super(const SetPasswordBulletViewState()) {
     _listenPasswordInput();
     on<SetPasswordBulletViewEventChangeInput>(_onChangeInput);
   }
+
   final String eventBusPasswordInputKey;
   final String eventBusRepeatedPasswordInputKey;
+  final int passwordLength;
   StreamSubscription<NeoWidgetEvent>? _neoWidgetEventSubscription;
   String password = '';
   String repeatedPassword = '';
@@ -35,9 +45,9 @@ class SetPasswordBulletViewBloc extends Bloc<SetPasswordBulletViewEvent, SetPass
     if (password.isEmpty) {
       emit(const SetPasswordBulletViewState());
     } else {
-      final isCharacterCountMatch = _Constants.passwordCountRegex.hasMatch(password);
+      final isCharacterCountMatch = _Constants.getPasswordCountRegex(passwordLength).hasMatch(password);
       final isPasswordNumerical = _Constants.passwordNumericalRegex.hasMatch(password);
-      final isNotConsecutiveAndRepeated = !_Constants.repeatedRegex.hasMatch(password) && _Constants.consecutiveRegex.hasMatch(password);
+      final isNotConsecutiveAndRepeated = _Constants.repeatedRegex.hasMatch(password) && _Constants.consecutiveRegex.hasMatch(password);
       final isPasswordsMatch = _checkPasswordsMatch();
       if (isPasswordsMatch && isCharacterCountMatch && isPasswordNumerical && isNotConsecutiveAndRepeated) {
         _changeNeoButtonEnableStatus(true);
@@ -83,11 +93,7 @@ class SetPasswordBulletViewBloc extends Bloc<SetPasswordBulletViewEvent, SetPass
         getIt.get<NeoWidgetEventBus>().addEvent(
               NeoWidgetEvent(
                 eventId: NeoWidgetEventKeys.neoTextFormFieldSetErrorMessageEventKey.name + eventBusRepeatedPasswordInputKey,
-                data: const LocalizableText(
-                  tr: "Girilen şifreler uyuşmuyor",
-                  en: "The passwords entered do not match",
-                  ar: "يكلمات السر التي تم ادخالها غير مطابقة",
-                ).localize(),
+                data: LocalizationKey.loginNewPasswordNotMatchingErrorMessage.loc(),
               ),
             );
       }
@@ -96,7 +102,8 @@ class SetPasswordBulletViewBloc extends Bloc<SetPasswordBulletViewEvent, SetPass
   }
 
   void _changeNeoButtonEnableStatus(bool status) {
-    NeoWidgetEventKeys.neoButtonChangeEnableStatusEventKey.sendEvent(data: status);
+    final enableState = status ? NeoButtonEnableState.enabled : NeoButtonEnableState.enabledWithoutOnClick;
+    NeoWidgetEventKeys.neoButtonChangeEnableStateEventKey.sendEvent(data: enableState);
   }
 
   @override

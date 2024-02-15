@@ -1,11 +1,11 @@
 import 'dart:convert';
 
-import 'package:backoffice/core/pages/neo_page_id.dart';
 import 'package:backoffice/util/neo_util.dart';
 import 'package:neo_core/core/navigation/models/neo_navigation_type.dart';
 
 import '../../../core/dependency_injection/dependency_injection.dart';
-import '../../../core/navigation/navigation_helper.dart';
+import '../../../core/navigation/neo_navigation_helper.dart';
+import '../../core/neo_bo_page_id.dart';
 import '../../models/config/neo_navigation_config_model.dart';
 import '../../widgets/neo_bo_search_datatable/neo_bo_search_datatable.dart';
 import '../../widgets/neo_bo_searchbar/neo_bo_searchbar.dart';
@@ -61,7 +61,7 @@ class BackofficeSearchPage extends StatelessWidget {
               sortableColumns: [],
               isSelected: false,
               onSelect: (item) async {
-                _handleNavigation(context, navigationPath: NeoPageId.boDetail.formatWithQueryParams({"data": json.encode(item)}));
+                _handleNavigation(context, navigationPath: NeoBoPageId.boDetail.formatWithQueryParams({"data": json.encode(item)}));
               },
             ),
           ),
@@ -72,7 +72,6 @@ class BackofficeSearchPage extends StatelessWidget {
 
   _handleNavigation(BuildContext context, {required String navigationPath}) {
     getIt.get<NeoNavigationHelper>().navigate(
-          context: context,
           navigationType: NeoNavigationType.push,
           navigationPath: navigationPath,
         );

@@ -61,6 +61,8 @@ class NeoAvatarBuilder extends _NeoAvatarBuilder {
     );
 
     return NeoAvatar(
+      axis: model.axis,
+      displayMode: model.displayMode,
       imageUrn: model.imageUrn,
       key: key,
       labelText: model.labelText,
@@ -76,6 +78,8 @@ class JsonNeoAvatar extends JsonWidgetData {
   JsonNeoAvatar({
     Map<String, dynamic> args = const {},
     JsonWidgetRegistry? registry,
+    this.axis = Axis.vertical,
+    this.displayMode = NeoAvatarDisplayMode.defaultMode,
     this.imageUrn,
     this.labelText,
     this.padding = EdgeInsetsDirectional.zero,
@@ -85,6 +89,8 @@ class JsonNeoAvatar extends JsonWidgetData {
   }) : super(
           jsonWidgetArgs: NeoAvatarBuilderModel.fromDynamic(
             {
+              'axis': axis,
+              'displayMode': displayMode,
               'imageUrn': imageUrn,
               'labelText': labelText,
               'padding': padding,
@@ -99,6 +105,8 @@ class JsonNeoAvatar extends JsonWidgetData {
           jsonWidgetBuilder: () => NeoAvatarBuilder(
             args: NeoAvatarBuilderModel.fromDynamic(
               {
+                'axis': axis,
+                'displayMode': displayMode,
                 'imageUrn': imageUrn,
                 'labelText': labelText,
                 'padding': padding,
@@ -113,6 +121,10 @@ class JsonNeoAvatar extends JsonWidgetData {
           ),
           jsonWidgetType: NeoAvatarBuilder.kType,
         );
+
+  final Axis axis;
+
+  final NeoAvatarDisplayMode displayMode;
 
   final String? imageUrn;
 
@@ -130,6 +142,8 @@ class JsonNeoAvatar extends JsonWidgetData {
 class NeoAvatarBuilderModel extends JsonWidgetBuilderModel {
   const NeoAvatarBuilderModel(
     super.args, {
+    this.axis = Axis.vertical,
+    this.displayMode = NeoAvatarDisplayMode.defaultMode,
     this.imageUrn,
     this.labelText,
     this.padding = EdgeInsetsDirectional.zero,
@@ -137,6 +151,10 @@ class NeoAvatarBuilderModel extends JsonWidgetBuilderModel {
     this.showImage = true,
     this.subText,
   });
+
+  final Axis axis;
+
+  final NeoAvatarDisplayMode displayMode;
 
   final String? imageUrn;
 
@@ -192,6 +210,16 @@ class NeoAvatarBuilderModel extends JsonWidgetBuilderModel {
         map = registry.processArgs(map, <String>{}).value;
         result = NeoAvatarBuilderModel(
           args,
+          axis: () {
+            dynamic parsed = ThemeDecoder.decodeAxis(
+              map['axis'],
+              validate: false,
+            );
+            parsed ??= Axis.vertical;
+
+            return parsed;
+          }(),
+          displayMode: map['displayMode'] ?? NeoAvatarDisplayMode.defaultMode,
           imageUrn: map['imageUrn'],
           labelText: map['labelText'],
           padding: () {
@@ -219,6 +247,13 @@ class NeoAvatarBuilderModel extends JsonWidgetBuilderModel {
   @override
   Map<String, dynamic> toJson() {
     return JsonClass.removeNull({
+      'axis': Axis.vertical == axis
+          ? null
+          : ThemeEncoder.encodeAxis(
+              axis,
+            ),
+      'displayMode':
+          NeoAvatarDisplayMode.defaultMode == displayMode ? null : displayMode,
       'imageUrn': imageUrn,
       'labelText': labelText,
       'padding': EdgeInsetsDirectional.zero == padding
@@ -236,7 +271,7 @@ class NeoAvatarBuilderModel extends JsonWidgetBuilderModel {
 
 class NeoAvatarSchema {
   static const id =
-      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/backoffice/neo_avatar.json';
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/neo_bank/neo_avatar.json';
 
   static final schema = <String, Object>{
     r'$schema': 'http://json-schema.org/draft-07/schema#',
@@ -245,6 +280,8 @@ class NeoAvatarSchema {
     'type': 'object',
     'additionalProperties': false,
     'properties': {
+      'axis': SchemaHelper.objectSchema(AxisSchema.id),
+      'displayMode': SchemaHelper.anySchema,
       'imageUrn': SchemaHelper.stringSchema,
       'labelText': SchemaHelper.stringSchema,
       'padding': SchemaHelper.objectSchema(EdgeInsetsDirectionalSchema.id),

@@ -17,7 +17,7 @@ class NeoImage extends StatelessWidget {
   final double? aspectRatio;
   final bool showGridBackground;
   final double? borderWidth;
-  final double? borderRadius;
+  final BorderRadius? borderRadius;
   final Color borderColor;
   final EdgeInsetsDirectional padding;
 
@@ -32,7 +32,7 @@ class NeoImage extends StatelessWidget {
     this.padding = EdgeInsetsDirectional.zero,
     this.borderWidth,
     this.borderColor = Colors.white,
-    this.borderRadius = 16,
+    this.borderRadius,
   });
 
   @override
@@ -57,7 +57,7 @@ class NeoImage extends StatelessWidget {
 
   Widget buildBorderedImage(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.circular(borderRadius!),
+      borderRadius: borderRadius ?? BorderRadius.zero,
       child: DecoratedBox(
         decoration: BoxDecoration(color: borderColor),
         child: buildImage(context).paddingAll(borderWidth!),
@@ -92,9 +92,9 @@ class NeoImage extends StatelessWidget {
             ),
           );
 
-    return borderRadius != null && borderRadius! > 0
+    return borderRadius != null
         ? ClipRRect(
-            borderRadius: BorderRadius.circular(borderRadius ?? 0),
+            borderRadius: borderRadius ?? BorderRadius.zero,
             child: imageWidget,
           )
         : imageWidget;

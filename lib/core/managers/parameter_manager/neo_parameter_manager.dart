@@ -16,7 +16,6 @@ import 'package:backoffice/core/managers/parameter_manager/neo_storage_parameter
 abstract class _Constant {
   static const prefixCache = "cache";
   static const prefixStorage = "storage";
-  static const prefixStatic = "static";
   static const urnSplitter = ":";
 }
 
@@ -32,7 +31,7 @@ class NeoParameterManager {
 
   Future<dynamic> read({required String keyUrn}) async {
     final splitResult = keyUrn.split(_Constant.urnSplitter);
-    if (splitResult.length < 2 && !(splitResult.length == 1 && splitResult[0] == _Constant.prefixStatic)) {
+    if (splitResult.length < 2) {
       return null;
     }
     final parameterLocation = splitResult[0];
@@ -46,10 +45,6 @@ class NeoParameterManager {
       case _Constant.prefixStorage:
         final parameterKey = splitResult[1];
         return _neoStorageParameterManager.read(parameterKey);
-
-      case _Constant.prefixStatic:
-        final parameterKey = splitResult[1];
-        return parameterKey;
       default:
         return null;
     }

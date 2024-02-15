@@ -14,6 +14,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:backoffice/features/login/widgets/login_app_bar/bloc/login_app_bar_bloc.dart';
+import 'package:neo_core/core/workflow_form/bloc/workflow_form_bloc.dart';
 
 class LoginAppBar extends StatelessWidget {
   final PreferredSizeWidget defaultAppBar;
@@ -23,11 +24,20 @@ class LoginAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<LoginAppBarBloc, LoginAppBarState>(
+    return BlocConsumer<LoginAppBarBloc, LoginAppBarState>(
       bloc: LoginAppBarBloc()..add(const LoginAppBarEventInitialize()),
-      builder: (context, state) => switch (state) {
-        LoginAppBarStateInitial _ => defaultAppBar,
-        LoginAppBarStateFocused _ => focusedAppBar,
+      listener: (context, state) {
+        switch (state) {
+          case LoginAppBarStateInitial():
+            context.read<WorkflowFormBloc>().add(const WorkflowFormEventResetFrom());
+          case LoginAppBarStateFocused():
+        }
+      },
+      builder: (context, state) {
+        return switch (state) {
+          LoginAppBarStateInitial _ => AbsorbPointer(absorbing: !state.enableUserInterface, child: defaultAppBar),
+          LoginAppBarStateFocused _ => AbsorbPointer(absorbing: !state.enableUserInterface, child: focusedAppBar),
+        };
       },
     );
   }

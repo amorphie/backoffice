@@ -4,12 +4,17 @@ sealed class WorkflowComponentTreeBuilderEvent extends Equatable {
   const WorkflowComponentTreeBuilderEvent();
 }
 
-class WorkflowComponentTreeBuilderEventFetchComponents extends WorkflowComponentTreeBuilderEvent {
+class WorkflowComponentTreeBuilderEventInit extends WorkflowComponentTreeBuilderEvent {
   final String source;
   final String pageId;
 
-  const WorkflowComponentTreeBuilderEventFetchComponents({required this.source, required this.pageId});
+  const WorkflowComponentTreeBuilderEventInit({required this.source, required this.pageId});
 
   @override
   List<Object?> get props => [source, pageId];
+}
+
+class WorkflowComponentTreeBuilderEventFetchComponents extends WorkflowComponentTreeBuilderEvent {
+  @override
+  List<Object?> get props => [];
 }

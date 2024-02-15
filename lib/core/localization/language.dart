@@ -14,8 +14,7 @@ import 'package:flutter/material.dart';
 
 enum Language {
   turkish("tr"),
-  english("en"),
-  arabic("ar");
+  english("en");
 
   final String languageCode;
 
@@ -28,7 +27,18 @@ enum Language {
     );
   }
 
-  static Language get defaultLanguage => Language.english;
+  static Language get defaultLanguage => Language.turkish;
+
+  String get languageName {
+    switch (this) {
+      case Language.turkish:
+        //STOPSHIP: add Localization
+        return "Türkçe";
+      case Language.english:
+        //STOPSHIP: add Localization
+        return "English";
+    }
+  }
 
   Locale get locale => Locale(languageCode);
 }

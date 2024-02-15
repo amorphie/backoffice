@@ -63,6 +63,7 @@ class SetPasswordBulletViewBuilder extends _SetPasswordBulletViewBuilder {
     return SetPasswordBulletView(
       key: key,
       padding: model.padding,
+      passwordLength: model.passwordLength,
       passwordWidgetEventKey: model.passwordWidgetEventKey,
       repeatedPasswordWidgetEventKey: model.repeatedPasswordWidgetEventKey,
     );
@@ -74,12 +75,14 @@ class JsonSetPasswordBulletView extends JsonWidgetData {
     Map<String, dynamic> args = const {},
     JsonWidgetRegistry? registry,
     this.padding,
+    required this.passwordLength,
     required this.passwordWidgetEventKey,
     required this.repeatedPasswordWidgetEventKey,
   }) : super(
           jsonWidgetArgs: SetPasswordBulletViewBuilderModel.fromDynamic(
             {
               'padding': padding,
+              'passwordLength': passwordLength,
               'passwordWidgetEventKey': passwordWidgetEventKey,
               'repeatedPasswordWidgetEventKey': repeatedPasswordWidgetEventKey,
               ...args,
@@ -91,6 +94,7 @@ class JsonSetPasswordBulletView extends JsonWidgetData {
             args: SetPasswordBulletViewBuilderModel.fromDynamic(
               {
                 'padding': padding,
+                'passwordLength': passwordLength,
                 'passwordWidgetEventKey': passwordWidgetEventKey,
                 'repeatedPasswordWidgetEventKey':
                     repeatedPasswordWidgetEventKey,
@@ -105,6 +109,8 @@ class JsonSetPasswordBulletView extends JsonWidgetData {
 
   final EdgeInsetsDirectional? padding;
 
+  final int passwordLength;
+
   final String passwordWidgetEventKey;
 
   final String repeatedPasswordWidgetEventKey;
@@ -114,11 +120,14 @@ class SetPasswordBulletViewBuilderModel extends JsonWidgetBuilderModel {
   const SetPasswordBulletViewBuilderModel(
     super.args, {
     this.padding,
+    required this.passwordLength,
     required this.passwordWidgetEventKey,
     required this.repeatedPasswordWidgetEventKey,
   });
 
   final EdgeInsetsDirectional? padding;
+
+  final int passwordLength;
 
   final String passwordWidgetEventKey;
 
@@ -174,6 +183,16 @@ class SetPasswordBulletViewBuilderModel extends JsonWidgetBuilderModel {
 
             return parsed;
           }(),
+          passwordLength: () {
+            dynamic parsed = JsonClass.parseInt(map['passwordLength']);
+
+            if (parsed == null) {
+              throw Exception(
+                'Null value encountered for required parameter: [passwordLength].',
+              );
+            }
+            return parsed;
+          }(),
           passwordWidgetEventKey: map['passwordWidgetEventKey'],
           repeatedPasswordWidgetEventKey: map['repeatedPasswordWidgetEventKey'],
         );
@@ -189,6 +208,7 @@ class SetPasswordBulletViewBuilderModel extends JsonWidgetBuilderModel {
       'padding': ThemeEncoder.encodeEdgeInsetsDirectional(
         padding,
       ),
+      'passwordLength': passwordLength,
       'passwordWidgetEventKey': passwordWidgetEventKey,
       'repeatedPasswordWidgetEventKey': repeatedPasswordWidgetEventKey,
       ...args,
@@ -198,7 +218,7 @@ class SetPasswordBulletViewBuilderModel extends JsonWidgetBuilderModel {
 
 class SetPasswordBulletViewSchema {
   static const id =
-      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/backoffice/set_password_bullet_view.json';
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/neo_bank/set_password_bullet_view.json';
 
   static final schema = <String, Object>{
     r'$schema': 'http://json-schema.org/draft-07/schema#',
@@ -208,6 +228,7 @@ class SetPasswordBulletViewSchema {
     'additionalProperties': false,
     'properties': {
       'padding': SchemaHelper.objectSchema(EdgeInsetsDirectionalSchema.id),
+      'passwordLength': SchemaHelper.numberSchema,
       'passwordWidgetEventKey': SchemaHelper.stringSchema,
       'repeatedPasswordWidgetEventKey': SchemaHelper.stringSchema,
     },

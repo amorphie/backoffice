@@ -24,7 +24,9 @@ class NeoScaffoldEventInitialize extends NeoScaffoldEvent {
 }
 
 class NeoScaffoldEventBackButtonPressed extends NeoScaffoldEvent {
-  const NeoScaffoldEventBackButtonPressed();
+  const NeoScaffoldEventBackButtonPressed({this.widgetEventKey});
+
+  final String? widgetEventKey;
 
   @override
   List<Object> get props => [];

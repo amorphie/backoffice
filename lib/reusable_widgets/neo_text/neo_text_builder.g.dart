@@ -63,6 +63,9 @@ class NeoTextBuilder extends _NeoTextBuilder {
     final dataDecoded = _decodeText(
       value: model.data,
     );
+    final styleDecoded = _decodeStyle(
+      value: model.style,
+    );
 
     return NeoText(
       dataDecoded,
@@ -76,8 +79,9 @@ class NeoTextBuilder extends _NeoTextBuilder {
       semanticsLabel: model.semanticsLabel,
       softWrap: model.softWrap,
       strutStyle: model.strutStyle,
-      style: model.style,
+      style: styleDecoded,
       textAlign: model.textAlign,
+      textColor: model.textColor,
       textDirection: model.textDirection,
       textHeightBehavior: model.textHeightBehavior,
       textScaler: model.textScaler,
@@ -100,8 +104,9 @@ class JsonNeoText extends JsonWidgetData {
     this.semanticsLabel,
     this.softWrap,
     this.strutStyle,
-    this.style,
+    required this.style,
     this.textAlign,
+    this.textColor,
     this.textDirection,
     this.textHeightBehavior,
     this.textScaler,
@@ -121,6 +126,7 @@ class JsonNeoText extends JsonWidgetData {
               'strutStyle': strutStyle,
               'style': style,
               'textAlign': textAlign,
+              'textColor': textColor,
               'textDirection': textDirection,
               'textHeightBehavior': textHeightBehavior,
               'textScaler': textScaler,
@@ -145,6 +151,7 @@ class JsonNeoText extends JsonWidgetData {
                 'strutStyle': strutStyle,
                 'style': style,
                 'textAlign': textAlign,
+                'textColor': textColor,
                 'textDirection': textDirection,
                 'textHeightBehavior': textHeightBehavior,
                 'textScaler': textScaler,
@@ -178,9 +185,11 @@ class JsonNeoText extends JsonWidgetData {
 
   final StrutStyle? strutStyle;
 
-  final TextStyle? style;
+  final dynamic style;
 
   final TextAlign? textAlign;
+
+  final Color? textColor;
 
   final TextDirection? textDirection;
 
@@ -204,8 +213,9 @@ class NeoTextBuilderModel extends JsonWidgetBuilderModel {
     this.semanticsLabel,
     this.softWrap,
     this.strutStyle,
-    this.style,
+    required this.style,
     this.textAlign,
+    this.textColor,
     this.textDirection,
     this.textHeightBehavior,
     this.textScaler,
@@ -232,9 +242,11 @@ class NeoTextBuilderModel extends JsonWidgetBuilderModel {
 
   final StrutStyle? strutStyle;
 
-  final TextStyle? style;
+  final dynamic style;
 
   final TextAlign? textAlign;
+
+  final Color? textColor;
 
   final TextDirection? textDirection;
 
@@ -337,17 +349,18 @@ class NeoTextBuilderModel extends JsonWidgetBuilderModel {
 
             return parsed;
           }(),
-          style: () {
-            dynamic parsed = ThemeDecoder.decodeTextStyle(
-              map['style'],
+          style: map['style'],
+          textAlign: () {
+            dynamic parsed = ThemeDecoder.decodeTextAlign(
+              map['textAlign'],
               validate: false,
             );
 
             return parsed;
           }(),
-          textAlign: () {
-            dynamic parsed = ThemeDecoder.decodeTextAlign(
-              map['textAlign'],
+          textColor: () {
+            dynamic parsed = ThemeDecoder.decodeColor(
+              map['textColor'],
               validate: false,
             );
 
@@ -414,6 +427,9 @@ class NeoTextBuilderModel extends JsonWidgetBuilderModel {
       'textAlign': ThemeEncoder.encodeTextAlign(
         textAlign,
       ),
+      'textColor': ThemeEncoder.encodeColor(
+        textColor,
+      ),
       'textDirection': ThemeEncoder.encodeTextDirection(
         textDirection,
       ),
@@ -431,7 +447,7 @@ class NeoTextBuilderModel extends JsonWidgetBuilderModel {
 
 class NeoTextSchema {
   static const id =
-      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/backoffice/neo_text.json';
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/neo_bank/neo_text.json';
 
   static final schema = <String, Object>{
     r'$schema': 'http://json-schema.org/draft-07/schema#',
@@ -452,6 +468,7 @@ class NeoTextSchema {
       'strutStyle': SchemaHelper.objectSchema(StrutStyleSchema.id),
       'style': SchemaHelper.objectSchema(TextStyleSchema.id),
       'textAlign': SchemaHelper.objectSchema(TextAlignSchema.id),
+      'textColor': SchemaHelper.objectSchema(ColorSchema.id),
       'textDirection': SchemaHelper.objectSchema(TextDirectionSchema.id),
       'textHeightBehavior':
           SchemaHelper.objectSchema(TextHeightBehaviorSchema.id),
