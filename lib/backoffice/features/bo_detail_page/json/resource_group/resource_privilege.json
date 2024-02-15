@@ -1,0 +1,44 @@
+{
+  "type": "neo_detail_page",
+  "args": {
+    "summary": {
+      "type": "neo_bo_summary_widget",
+      "args": {
+        "name": "Privilege"
+      }
+    },
+    "tabs": {
+      "type": "neo_bo_tabview",
+      "args": {
+        "data": [
+          {
+            "title": "Details",
+            "view": {
+              "type": "list_view",
+              "args": {
+                "children": [
+                  {
+                    "type": "neo_bo_detail_item_widget",
+                    "args": {
+                      "title": "State",
+                      "text": "$.data.state[0].label",
+                      "copyValue": true
+                    }
+                  },
+                  {
+                    "type": "neo_bo_detail_item_widget",
+                    "args": {
+                      "title": "Record ID",
+                      "text": "$.data.recordId",
+                      "copyValue": true
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

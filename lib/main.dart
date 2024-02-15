@@ -15,7 +15,6 @@ import 'dart:developer';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:backoffice/core/core_widgets/neo_app/bloc/neo_app_bloc.dart';
 import 'package:backoffice/core/core_widgets/neo_session_expiration_listener/neo_session_expiration_listener.dart';
@@ -47,8 +46,6 @@ import 'package:neo_core/core/widgets/neo_core_firebase_messaging/neo_core_fireb
 import 'package:neo_core/neo_core.dart';
 
 import 'backoffice/core/neo_bo_core.dart';
-import 'backoffice/core/neo_bo_page_id.dart';
-import 'backoffice/widgets/backoffice_widget_registerer.dart';
 
 abstract class _NeoCoreConstant {
   static const androidDefaultIcon = "@mipmap/ic_launcher";

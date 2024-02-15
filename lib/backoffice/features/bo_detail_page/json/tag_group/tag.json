@@ -1,0 +1,52 @@
+{
+  "type": "neo_detail_page",
+  "args": {
+    "summary": {
+      "type": "neo_bo_summary_widget",
+      "args": {
+        "name": "Resource"
+      }
+    },
+    "tabs": {
+      "type": "neo_bo_tabview",
+      "args": {
+        "data": [
+          {
+            "title": "Details",
+            "view": {
+              "type": "list_view",
+              "args": {
+                "children": [
+                  {
+                    "type": "neo_bo_detail_item_widget",
+                    "args": {
+                      "title": "Name",
+                      "text": "$.data.workflowName",
+                      "copyValue": true
+                    }
+                  },
+                  {
+                    "type": "neo_bo_detail_item_widget",
+                    "args": {
+                      "title": "Created At",
+                      "text": "$.createdAt",
+                      "copyValue": true
+                    }
+                  },
+                  {
+                    "type": "neo_bo_detail_item_widget",
+                    "args": {
+                      "title": "Created By",
+                      "text": "$.createdBy",
+                      "copyValue": true
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}
