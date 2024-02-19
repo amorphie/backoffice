@@ -27,16 +27,25 @@ class WorkflowComponentTreeBuilderBloc extends Bloc<WorkflowComponentTreeBuilder
 
     on<WorkflowComponentTreeBuilderEventFetchComponents>((event, emit) async {
       try {
-        final response = await networkManager.fetchPageComponents(_source, _pageId);
+        var response;
+        response = await networkManager.fetchPageComponents(_source, _pageId);
         if (response.isSuccess) {
           final componentsResponse = jsonEncode((response as NeoSuccessResponse).data["body"]);
           emit(
             WorkflowComponentTreeBuilderStateLoaded(componentsMap: jsonDecode(componentsResponse)),
           );
         } else {
-          emit(
-            WorkflowComponentTreeBuilderStateError(errorMessage: (response as NeoErrorResponse).error.message),
-          );
+          response = await networkManager.fetchFormioPageComponents(_source, _pageId);
+          if (response.isSuccess) {
+            final componentsResponse = (response as NeoSuccessResponse).data["body"];
+            emit(
+              WorkflowFormioBuilderStateLoaded(formioData: componentsResponse),
+            );
+          } else {
+            emit(
+              WorkflowComponentTreeBuilderStateError(errorMessage: (response as NeoErrorResponse).error.message),
+            );
+          }
         }
       } on Exception catch (e) {
         emit(WorkflowComponentTreeBuilderStateError(errorMessage: e.toString()));

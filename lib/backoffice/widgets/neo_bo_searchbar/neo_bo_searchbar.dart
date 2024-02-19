@@ -9,10 +9,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../features/bo_search_page/bloc/neo_search_page_bloc.dart';
 import 'neo_bo_textfield.dart';
 
-class NeoSearchbar extends StatelessWidget {
+class NeoBoSearchbar extends StatelessWidget {
   final String workflow;
   final NeoNavigationConfigModel config;
-  const NeoSearchbar({
+  const NeoBoSearchbar({
     Key? key,
     required this.workflow,
     required this.config,

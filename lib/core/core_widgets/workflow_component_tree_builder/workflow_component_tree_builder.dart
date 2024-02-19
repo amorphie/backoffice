@@ -4,6 +4,8 @@ import 'package:backoffice/core/core_widgets/workflow_component_tree_builder/blo
 import 'package:backoffice/core/core_widgets/workflow_component_tree_builder/network/workflow_components_network_manager.dart';
 import 'package:backoffice/core/pages/usecases/get_error_widget_usecase.dart';
 
+import '../../../backoffice/widgets/neo_web_view/neo_web_view.dart';
+
 class WorkflowComponentTreeBuilder extends StatelessWidget {
   final WorkflowComponentsNetworkManager componentsNetworkManager;
   final String source;
@@ -30,6 +32,10 @@ class WorkflowComponentTreeBuilder extends StatelessWidget {
         switch (state) {
           case WorkflowComponentTreeBuilderStateLoading _:
             return loadingWidget ?? _defaultLoadingWidget;
+          case WorkflowFormioBuilderStateLoaded _:
+            return Container(
+              child: NeoWebView(source: WebViewSource.formio(state.formioData)),
+            );
           case WorkflowComponentTreeBuilderStateLoaded _:
             return JsonWidgetData.fromDynamic(state.componentsMap).build(context: context);
           case WorkflowComponentTreeBuilderStateError _:

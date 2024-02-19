@@ -26,3 +26,12 @@ class WorkflowComponentTreeBuilderStateError extends WorkflowComponentTreeBuilde
   @override
   List<Object> get props => [errorMessage];
 }
+
+class WorkflowFormioBuilderStateLoaded extends WorkflowComponentTreeBuilderState {
+  final String formioData;
+
+  const WorkflowFormioBuilderStateLoaded({required this.formioData});
+
+  @override
+  List<Object> get props => [formioData];
+}

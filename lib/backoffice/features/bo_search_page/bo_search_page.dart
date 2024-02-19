@@ -49,7 +49,7 @@ class BackofficeSearchPage extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          NeoSearchbar(
+          NeoBoSearchbar(
             workflow: workflow,
             config: config,
           ).paddingAll(NeoDimens.px12),

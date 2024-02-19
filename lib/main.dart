@@ -102,6 +102,7 @@ class MyApp extends StatelessWidget {
                     return NeoSessionExpirationListener(
                       navigatorKey: _navigatorKey,
                       child: MaterialApp(
+                        debugShowCheckedModeBanner: false,
                         builder: FToastBuilder(),
                         navigatorKey: _navigatorKey,
                         title: 'Burgan Template',
@@ -188,7 +189,7 @@ class MyApp extends StatelessWidget {
     }
     return NeoWorkflowPage(
       source: transitionData.viewSource,
-      pageId: transitionData.pageId,
+      pageId: transitionData.navigationPath,
       initialData: transitionData.initialData,
     );
   }
