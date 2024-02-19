@@ -10,6 +10,7 @@
  * Any reproduction of this material must contain this notice.
  */
 
+import 'package:backoffice/backoffice/core/neo_bo_page_id.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -43,6 +44,8 @@ import 'package:neo_core/core/network/neo_network.dart';
 import 'package:neo_core/core/widgets/neo_core_firebase_messaging/neo_core_firebase_messaging.dart';
 import 'package:neo_core/core/widgets/neo_transition_listener/neo_transition_listener_widget.dart';
 
+import 'backoffice/core/neo_bo_core.dart';
+
 abstract class _NeoCoreConstant {
   static const androidDefaultIcon = "@mipmap/ic_launcher";
 }
@@ -55,13 +58,14 @@ void main() async {
   final splashResult = await InitAppInSplashUseCase().call(_navigatorKey);
   final authStatus = await GetInitialAuthStatusUseCase().call();
   FlutterNativeSplash.remove();
+
   runApp(
     MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => NeoAppBloc(authStatus: authStatus)..add(const NeoAppEventInit())),
         BlocProvider(create: (context) => LocalizationBloc()..add(LocalizationEventInit())),
       ],
-      child: MyApp(initialTransitionData: splashResult.initialTransitionData),
+      child: MyApp(initialTransitionData: splashResult?.initialTransitionData),
     ),
   );
 }
@@ -110,7 +114,8 @@ class MyApp extends StatelessWidget {
                         ],
                         supportedLocales: Language.values.map((e) => e.locale),
                         onGenerateRoute: _onGenerateRoutes,
-                        onGenerateInitialRoutes: (_) => [_buildWorkflowPageRoute(initialTransitionData)],
+                        initialRoute: NeoBoPageId.boHome,
+                        // onGenerateInitialRoutes: (_) => [_buildWorkflowPageRoute(initialTransitionData)],
                         navigatorObservers: NeoLogger().observers,
                       ),
                     );
@@ -127,7 +132,10 @@ class MyApp extends StatelessWidget {
   Route<dynamic>? _onGenerateRoutes(routeSettings) {
     final args = routeSettings.arguments as Map<String, String>? ?? {};
     final transitionData = args.isNotEmpty && !args[AppConstants.transitionDataKey].isNullOrBlank ? SignalrTransitionData.decode(args[AppConstants.transitionDataKey] ?? "") : null;
-
+    Route? boRoute = NeoBoCore.onBoGenerateRoutes(routeSettings);
+    if (boRoute != null) {
+      return boRoute;
+    }
     switch (transitionData?.navigationPath ?? routeSettings.name) {
       // TODO: Order pageIds alphabetically to prevent possible conflicts!
       case NeoPageId.debitCardDashboard:

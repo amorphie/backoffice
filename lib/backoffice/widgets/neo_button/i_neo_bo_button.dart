@@ -17,12 +17,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:backoffice/core/dependency_injection/dependency_injection.dart';
 import 'package:backoffice/core/mixins/neo_transitional.dart';
-import 'package:backoffice/core/navigation/navigation_helper.dart';
 import 'package:backoffice/util/neo_util.dart';
 import 'package:neo_core/core/bus/neo_bus.dart';
 import 'package:neo_core/core/navigation/models/signalr_transition_data.dart';
 import 'package:neo_core/core/workflow_form/bloc/workflow_form_bloc.dart';
 
+import '../../../core/navigation/neo_navigation_helper.dart';
 import 'bloc/neo_bo_button_bloc.dart';
 import 'model/neo_bo_button_display_mode.dart';
 import 'model/neo_bo_button_size.dart';
@@ -75,9 +75,7 @@ abstract class INeoBoButton extends StatelessWidget with NeoTransitional {
             _handleNavigation(context, state.navigationData!);
           }
         },
-        builder: (context, state) {
-          return wrapWithTransitionListener(context: context, child: childBuilder(context, state));
-        },
+        builder: (context, state) => childBuilder(context, state),
       ),
     );
   }
@@ -118,6 +116,6 @@ abstract class INeoBoButton extends StatelessWidget with NeoTransitional {
   }
 
   void _handleNavigation(BuildContext context, SignalrTransitionData navigationData) {
-    NeoNavigationHelper().navigateWithTransition(context: context, transitionData: navigationData);
+    getIt.get<NeoNavigationHelper>().navigateWithTransition(transitionData: navigationData);
   }
 }

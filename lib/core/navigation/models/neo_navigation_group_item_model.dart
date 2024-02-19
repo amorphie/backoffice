@@ -10,6 +10,8 @@
  * Any reproduction of this material must contain this notice.
  */
 
+import 'dart:convert';
+
 import 'package:expressions/expressions.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:backoffice/core/dependency_injection/dependency_injection.dart';
@@ -21,9 +23,10 @@ import 'package:neo_core/core/storage/neo_core_secure_storage.dart';
 part 'neo_navigation_group_item_model.g.dart';
 
 abstract class _Constant {
-  static const navigationParameterDataKey = "dataKey";
+  static const navigationParameterDataKey = "data";
   static const navigationParameterSourceKey = "source";
   static const navigationFilterExpressionKey = "expression";
+  static const navigationParameterTypeKey = "as";
 }
 
 @JsonSerializable(createToJson: false)
@@ -115,9 +118,20 @@ extension NeoNavigationGroupItemModelExtension on NeoNavigationGroupItemModel {
     final Map<String, dynamic> result = {};
 
     for (final parameter in parameters) {
-      result[parameter[_Constant.navigationParameterDataKey]] = await getIt.get<NeoParameterManager>().read(
+      result[parameter[_Constant.navigationParameterTypeKey]] = await getIt.get<NeoParameterManager>().read(
             keyUrn: parameter[_Constant.navigationParameterSourceKey],
           );
+    }
+    return result;
+  }
+
+  Future<Map<String, dynamic>> getConfigParameters() async {
+    final Map<String, dynamic> result = {};
+
+    for (final parameter in parameters) {
+      var data = parameter[_Constant.navigationParameterDataKey];
+
+      result[parameter[_Constant.navigationParameterTypeKey]] = data is Map ? jsonEncode(parameter[_Constant.navigationParameterDataKey]) : parameter[_Constant.navigationParameterDataKey];
     }
     return result;
   }

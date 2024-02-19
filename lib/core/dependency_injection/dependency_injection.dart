@@ -13,6 +13,8 @@ import 'package:backoffice/reusable_widgets/neo_animation/cache/lottie_animation
 import 'package:backoffice/util/app_constants.dart';
 import 'package:neo_core/neo_core.dart';
 
+import '../../backoffice/core/neo_bo_core.dart';
+
 final getIt = GetIt.instance;
 
 @InjectableInit()
@@ -23,9 +25,7 @@ Future<void> configureDependencies(GlobalKey<NavigatorState> navigatorKey) {
     ..registerSingletonAsync<NeoNetworkManager>(
       () async => NeoNetworkManager(
         secureStorage: NeoCoreSecureStorage(),
-        httpClientConfig: HttpClientConfig.fromJson(
-          json.decode(await rootBundle.loadString(NeoEnvironmentVariable.httpConfigFilePath.value)),
-        ),
+        httpClientConfig: await NeoBoCore.httpClientConfig(),
         workflowClientId: NeoEnvironmentVariable.workflowClientId.value,
         workflowClientSecret: NeoEnvironmentVariable.workflowClientSecret.value,
       ),

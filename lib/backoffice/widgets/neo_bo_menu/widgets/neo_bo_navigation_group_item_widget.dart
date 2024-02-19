@@ -13,14 +13,13 @@
 import 'package:flutter/material.dart';
 import 'package:backoffice/core/dependency_injection/dependency_injection.dart';
 import 'package:backoffice/core/navigation/models/neo_navigation_group_item_model.dart';
-import 'package:backoffice/core/navigation/navigation_helper.dart';
 import 'package:backoffice/reusable_widgets/neo_button/bloc/neo_button_bloc.dart';
 import 'package:backoffice/reusable_widgets/neo_button/i_neo_button.dart';
 import 'package:backoffice/reusable_widgets/neo_icon/neo_icon.dart';
-import 'package:backoffice/reusable_widgets/new_badge/new_badge_widget.dart';
 import 'package:backoffice/util/neo_util.dart';
 import 'package:neo_core/core/navigation/models/neo_navigation_type.dart';
 
+import '../../../../core/navigation/neo_navigation_helper.dart';
 import '../../../../reusable_widgets/neo_badge/model/neo_badge_display_mode.dart';
 import '../../../../reusable_widgets/neo_badge/neo_badge.dart';
 
@@ -102,7 +101,6 @@ class NeoBackofficeNavigationGroupItemWidget extends INeoButton {
 
   _handleNavigation(BuildContext context, {required String navigationPath}) {
     getIt.get<NeoNavigationHelper>().navigate(
-          context: context,
           navigationType: NeoNavigationType.push,
           navigationPath: navigationPath,
         );

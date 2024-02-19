@@ -29,10 +29,14 @@ import 'package:backoffice/util/neo_http_overrides.dart';
 import 'package:neo_core/core/navigation/models/signalr_transition_data.dart';
 import 'package:neo_core/neo_core.dart';
 
+import '../../../backoffice/core/neo_bo_core.dart';
+
 class InitAppInSplashUseCase {
   /// Returns isLoggedIn boolean parameter to determine whether user is logged in or not.
-  Future<SplashInitializationResult> call(GlobalKey<NavigatorState> navigatorKey) async {
+  Future<SplashInitializationResult?> call(GlobalKey<NavigatorState> navigatorKey) async {
     await _setInitialEnvironment();
+    await NeoBoCore.init();
+
     CustomWidgetRegisterer().init();
     CustomArgProcessorRegisterer().init();
     await _initBurganSDKs();
@@ -45,7 +49,9 @@ class InitAppInSplashUseCase {
       NeoCoreSecureStorage().deleteTokens(),
     ]);
 
-    return _getInitSplashResult();
+    // return _getInitSplashResult();
+    return null;
+    // splash result a ihtiyaç olmadığı için null döndürüldü.
   }
 
   Future<SplashInitializationResult> _getInitSplashResult() async {
