@@ -16,9 +16,17 @@ class NeoAvatarState extends Equatable {
   final TextStyle subTitleStyle;
   final TextStyle labelTitleStyle;
   final Uint8List? avatarImage;
+  final String? nameAndSurname;
+  final NeoAvatarDisplayMode? displayMode;
 
-  const NeoAvatarState({required this.subTitleStyle, required this.labelTitleStyle, this.avatarImage});
+  const NeoAvatarState({
+    required this.subTitleStyle,
+    required this.labelTitleStyle,
+    this.avatarImage,
+    this.nameAndSurname,
+    this.displayMode,
+  });
 
   @override
-  List<Object?> get props => [subTitleStyle, labelTitleStyle, avatarImage];
+  List<Object?> get props => [subTitleStyle, labelTitleStyle, avatarImage, nameAndSurname, displayMode];
 }

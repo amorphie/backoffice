@@ -23,6 +23,7 @@ extension NullableStringExtensions on String? {
 
 extension StringExtensions on String {
   bool get isBlank => trim().isEmpty;
+  String capitalize() => isEmpty ? this : substring(0, 1).toUpperCase() + substring(1).toLowerCase();
 
   /// Returns formatted navigation path with query parameters
   String formatWithQueryParams(Map<String, dynamic> queryParams) {
@@ -56,6 +57,22 @@ extension StringExtensions on String {
       if (dataValue is String && dataValue.isNotEmpty) {
         return replaceAll(patternToReplace, dataValue);
       }
+    }
+    return this;
+  }
+
+  String truncate(int maxLength) {
+    if (length <= maxLength) {
+      return this;
+    }
+    return '${substring(0, maxLength)}...';
+  }
+
+  String getMaskedCardNumber() {
+    final String maskedNumber = replaceAll(RegExp("[a-zA-Z]"), "*");
+    if (maskedNumber.isNotEmpty) {
+      final groupedNumber = maskedNumber.replaceAllMapped(RegExp(".{4}"), (match) => "${match.group(0)} ");
+      return groupedNumber.trim();
     }
     return this;
   }

@@ -15,6 +15,7 @@ import 'package:backoffice/reusable_widgets/neo_button/neo_button.dart';
 import 'package:backoffice/reusable_widgets/neo_icon/neo_icon.dart';
 import 'package:backoffice/reusable_widgets/neo_popup/model/neo_popup_action_model.dart';
 import 'package:backoffice/reusable_widgets/neo_popup/model/neo_popup_type.dart';
+import 'package:backoffice/reusable_widgets/neo_text/neo_text.dart';
 import 'package:backoffice/util/neo_util.dart';
 
 abstract class _Constants {
@@ -27,7 +28,6 @@ class NeoPopup extends StatelessWidget {
   final String? bodyText;
   final List<NeoPopupActionModel>? actions;
   final EdgeInsetsDirectional padding;
-  final bool isLocalPopup;
 
   const NeoPopup({
     super.key,
@@ -36,19 +36,11 @@ class NeoPopup extends StatelessWidget {
     this.bodyText,
     this.actions,
     this.padding = EdgeInsetsDirectional.zero,
-    this.isLocalPopup = false,
   });
 
   @override
   Widget build(BuildContext context) {
-    return isLocalPopup
-        ? Dialog(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(NeoRadius.px16)),
-            backgroundColor: NeoColors.textDefaultInverse,
-            surfaceTintColor: Colors.transparent,
-            child: _buildPopupContent(context),
-          )
-        : _buildPopupContent(context).padding(padding);
+    return _buildPopupContent(context).padding(padding);
   }
 
   Widget _buildPopupContent(BuildContext context) {
@@ -77,14 +69,14 @@ class NeoPopup extends StatelessWidget {
         child: Column(
           children: [
             if (titleText.isNotNull)
-              Text(
-                titleText!,
+              NeoText(
+                titleText,
                 textAlign: TextAlign.center,
                 style: NeoTextStyles.bodySixteenSemibold,
               ).paddingOnly(bottom: NeoDimens.px8),
             if (bodyText.isNotNull)
-              Text(
-                bodyText!,
+              NeoText(
+                bodyText,
                 textAlign: TextAlign.center,
                 style: NeoTextStyles.bodyFourteenMedium,
               ),
@@ -99,19 +91,17 @@ class NeoPopup extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         for (final (index, action) in actions.orEmptyList.indexed)
-          Listener(
-            onPointerDown: (_) {
+          NeoButton(
+            onTap: () {
               if (action.dismissOnAction) {
                 Navigator.of(context).pop();
               }
             },
-            child: NeoButton(
-              transitionId: action.transitionId,
-              widgetEventKey: action.widgetEventKey,
-              labelText: action.labelText,
-              displayMode: action.displayMode,
-            ).paddingOnly(bottom: index != actions!.length - 1 ? NeoDimens.px16 : NeoDimens.px0),
-          ),
+            transitionId: action.transitionId,
+            widgetEventKey: action.widgetEventKey,
+            labelText: action.labelText,
+            displayMode: action.displayMode,
+          ).paddingOnly(bottom: index != actions!.length - 1 ? NeoDimens.px16 : NeoDimens.px0),
       ],
     );
   }

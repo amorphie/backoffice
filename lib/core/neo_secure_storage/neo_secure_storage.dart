@@ -13,11 +13,13 @@
  */
 
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:backoffice/features/login/data/neo_auth_status.dart';
 
 class _Constants {
   static const StorageCipherAlgorithm storageCipherAlgorithm = StorageCipherAlgorithm.AES_GCM_NoPadding;
   static const String sharedPrefKeyProfileImage = "shared_pref_key_profile_image";
-  static const String sharedPrefKeyCustomerNameAndSurname = "shared_pref_key_customer_name_and_surname";
+  static const String sharedPrefKeyCurrentTheme = "shared_pref_key_current_theme";
+  static const String sharedPrefKeyAuthStatus = "shared_pref_key_auth_status";
 }
 
 class NeoSecureStorage {
@@ -48,22 +50,38 @@ class NeoSecureStorage {
   }
 
   Future<String?> getProfileImage() async {
-    return await _storage?.read(key: _Constants.sharedPrefKeyProfileImage);
+    if (await _storage!.containsKey(key: _Constants.sharedPrefKeyProfileImage)) {
+      return await _storage?.read(key: _Constants.sharedPrefKeyProfileImage);
+    }
+    return null;
   }
 
   Future<void> deleteProfileImage() async {
-    await _storage?.delete(key: _Constants.sharedPrefKeyProfileImage);
+    if (await _storage!.containsKey(key: _Constants.sharedPrefKeyProfileImage)) {
+      await _storage?.delete(key: _Constants.sharedPrefKeyProfileImage);
+    }
   }
 
-  Future<void> setCustomerNameAndSurname(String name, String surname) async {
-    await _storage?.write(key: _Constants.sharedPrefKeyCustomerNameAndSurname, value: "$name $surname");
+  Future<String?> getCurrentTheme() async {
+    if (await _storage!.containsKey(key: _Constants.sharedPrefKeyCurrentTheme)) {
+      return await _storage?.read(key: _Constants.sharedPrefKeyCurrentTheme);
+    }
+    return null;
   }
 
-  Future<String?> getCustomerNameAndSurname() async {
-    return await _storage?.read(key: _Constants.sharedPrefKeyCustomerNameAndSurname);
+  Future<void> setCurrentTheme(String theme) async {
+    await _storage?.write(key: _Constants.sharedPrefKeyCurrentTheme, value: theme);
   }
 
-  Future<void> deleteCustomerNameAndSurname() async {
-    await _storage?.delete(key: _Constants.sharedPrefKeyCustomerNameAndSurname);
+  Future<NeoAuthStatus> getAuthStatus() async {
+    if (await _storage!.containsKey(key: _Constants.sharedPrefKeyAuthStatus)) {
+      final authStatusKey = await _storage?.read(key: _Constants.sharedPrefKeyAuthStatus) ?? "";
+      return NeoAuthStatus.fromKey(authStatusKey);
+    }
+    return NeoAuthStatus.notLoggedIn;
+  }
+
+  Future<void> setAuthStatus(NeoAuthStatus authStatus) async {
+    await _storage?.write(key: _Constants.sharedPrefKeyAuthStatus, value: authStatus.key);
   }
 }

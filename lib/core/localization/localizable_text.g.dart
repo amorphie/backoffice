@@ -10,5 +10,4 @@ LocalizableText _$LocalizableTextFromJson(Map<String, dynamic> json) =>
     LocalizableText(
       tr: json['tr-TR'] as String? ?? '',
       en: json['en-EN'] as String? ?? '',
-      ar: json['ar-AR'] as String? ?? '',
     );

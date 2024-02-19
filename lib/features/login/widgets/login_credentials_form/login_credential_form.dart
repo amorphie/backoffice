@@ -17,8 +17,7 @@ import 'package:backoffice/features/login/widgets/login_credentials_form/bloc/lo
 import 'package:backoffice/reusable_widgets/neo_tckn_form_field/neo_tckn_form_field.dart';
 import 'package:backoffice/reusable_widgets/neo_text_form_field/model/neo_button_data_model.dart';
 import 'package:backoffice/reusable_widgets/neo_text_form_field/model/neo_keyboard_type.dart';
-import 'package:backoffice/reusable_widgets/neo_text_form_field/model/neo_text_form_field_bottom_text_message_type.dart';
-import 'package:backoffice/reusable_widgets/neo_text_form_field/model/neo_text_form_field_bottom_text_model.dart';
+import 'package:backoffice/reusable_widgets/neo_text_form_field/model/neo_text_validation_model.dart';
 import 'package:backoffice/reusable_widgets/neo_text_form_field/neo_text_form_field.dart';
 import 'package:backoffice/util/constants/neo_widget_event_keys.dart';
 import 'package:backoffice/util/neo_util.dart';
@@ -28,12 +27,12 @@ class LoginCredentialForm extends StatelessWidget {
   final String tcknDataKey;
   final String tcknLabelText;
   final String? tcknErrorText;
+  final List<NeoTextValidationModel>? tcknValidations;
   final String passwordDataKey;
   final String passwordLabelText;
-  final String? passwordErrorText;
-  final String? passwordValidationRegex;
   final NeoButtonDataModel? passwordButtonRight;
   final int? passwordMaxLength;
+  final List<NeoTextValidationModel>? passwordValidations;
 
   final EdgeInsetsDirectional padding;
   const LoginCredentialForm({
@@ -42,10 +41,10 @@ class LoginCredentialForm extends StatelessWidget {
     required this.passwordDataKey,
     required this.passwordLabelText,
     this.tcknErrorText,
-    this.passwordErrorText,
-    this.passwordValidationRegex,
+    this.tcknValidations,
     this.passwordButtonRight,
     this.passwordMaxLength,
+    this.passwordValidations,
     this.padding = EdgeInsetsDirectional.zero,
     super.key,
   });
@@ -102,6 +101,7 @@ class LoginCredentialForm extends StatelessWidget {
       labelText: tcknLabelText,
       errorText: tcknErrorText,
       focusNode: focusNode,
+      validations: tcknValidations,
     );
   }
 
@@ -113,16 +113,12 @@ class LoginCredentialForm extends StatelessWidget {
       labelText: passwordLabelText,
       buttonRight: passwordButtonRight,
       keyboardType: NeoKeyboardType.number,
-      validationRegex: passwordValidationRegex,
-      bottomText: NeoTextFormFieldBottomTextModel(
-        message: passwordErrorText,
-        messageType: NeoTextFormFieldBottomTextMessageType.error,
-      ),
       inputFormatters: [FilteringTextInputFormatter.digitsOnly],
       obscureText: true,
       enableInteractiveSelection: false,
       focusNode: focusNode,
       widgetEventKey: NeoWidgetEventKeys.neoTextFormFieldUpdateTextEventKey.name,
+      validations: passwordValidations,
     );
   }
 

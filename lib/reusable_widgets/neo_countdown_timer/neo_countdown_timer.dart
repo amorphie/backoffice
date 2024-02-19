@@ -16,6 +16,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:backoffice/reusable_widgets/neo_countdown_timer/bloc/neo_countdown_timer_bloc.dart';
 import 'package:backoffice/reusable_widgets/neo_icon/neo_icon.dart';
+import 'package:backoffice/reusable_widgets/neo_text/neo_text.dart';
 import 'package:backoffice/util/neo_util.dart';
 
 class _Constants {
@@ -46,8 +47,6 @@ class _NeoCountdownTimerState extends State<NeoCountdownTimer> {
             child: DecoratedBox(
               decoration: BoxDecoration(color: NeoColors.bgDarker, borderRadius: BorderRadius.circular(NeoRadius.px8)),
               child: Row(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   NeoIcon(
                     height: NeoDimens.px20,
@@ -55,9 +54,9 @@ class _NeoCountdownTimerState extends State<NeoCountdownTimer> {
                     color: NeoColors.iconLight,
                     iconUrn: widget.iconUrn,
                   ).paddingOnly(end: NeoDimens.px8),
-                  Text(
+                  NeoText(
                     state.duration ?? "",
-                    style: NeoTextStyles.labelFourteenSemibold.apply(color: NeoColors.colorBaseWhite),
+                    style: NeoTextStyles.labelFourteenSemibold.apply(color: NeoColors.baseWhite),
                   ),
                 ],
               ).paddingSymmetric(horizontal: NeoDimens.px12),

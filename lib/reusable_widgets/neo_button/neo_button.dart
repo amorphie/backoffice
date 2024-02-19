@@ -16,12 +16,21 @@ import 'package:flutter/material.dart';
 import 'package:backoffice/reusable_widgets/neo_button/bloc/neo_button_bloc.dart';
 import 'package:backoffice/reusable_widgets/neo_button/i_neo_button.dart';
 import 'package:backoffice/reusable_widgets/neo_button/model/neo_button_display_mode.dart';
+import 'package:backoffice/reusable_widgets/neo_button/model/neo_button_enable_state.dart';
 import 'package:backoffice/reusable_widgets/neo_button/model/neo_button_size.dart';
 import 'package:backoffice/reusable_widgets/neo_icon/neo_icon.dart';
+import 'package:backoffice/reusable_widgets/neo_text/neo_text.dart';
 import 'package:backoffice/util/neo_util.dart';
 
+abstract class _Constants {
+  static const double borderWidth = 2;
+}
+
 class NeoButton extends INeoButton {
+  final Function? onTap;
+
   const NeoButton({
+    this.onTap,
     super.transitionId,
     super.widgetEventKey,
     super.labelText,
@@ -29,7 +38,7 @@ class NeoButton extends INeoButton {
     super.iconRightUrn,
     super.size,
     super.displayMode,
-    super.enabled,
+    super.enableState,
     super.formValidationRequired,
     super.startWorkflow,
     super.autoTriggerTransition,
@@ -43,61 +52,53 @@ class NeoButton extends INeoButton {
         child: Material(
           color: Colors.transparent,
           child: InkWell(
-            customBorder: RoundedRectangleBorder(borderRadius: BorderRadius.circular(NeoRadius.px12)),
-            onTap: () => state.buttonEnabled ?? enabled ? startTransition(context) : null,
+            customBorder: RoundedRectangleBorder(borderRadius: BorderRadius.circular(NeoRadius.px8)),
+            onTap: () {
+              onTap?.call();
+              startTransition(context);
+            },
             splashColor: _getSplashColor(),
             child: Ink(
               decoration: BoxDecoration(
-                color: _getBackgroundColor(state.buttonEnabled ?? enabled),
+                color: _getBackgroundColor(_isButtonEnabled(state)),
                 borderRadius: BorderRadius.circular(NeoRadius.px8),
-                border: displayMode == NeoButtonDisplayMode.line
-                    ? Border.all(
-                        color: state.buttonEnabled ?? enabled ? NeoColors.textDefault : NeoColors.borderDisabled,
-                        width: 2,
-                      )
-                    : null,
+                border: _getBorder(_isButtonEnabled(state)),
               ),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  if (!iconLeftUrn.isNullOrBlank)
-                    NeoIcon(
-                      height: NeoDimens.px20,
-                      width: NeoDimens.px20,
-                      iconUrn: iconLeftUrn!,
-                      color: state.buttonEnabled ?? enabled
-                          ? displayMode == NeoButtonDisplayMode.primary
-                              ? NeoColors.iconPrimaryGreen
-                              : NeoColors.iconDefault
-                          : NeoColors.iconDisabled,
-                    ).paddingOnly(start: NeoDimens.px24),
-                  Text(labelText, style: _labelTextStyle(state.buttonEnabled ?? enabled)).paddingSymmetric(horizontal: NeoDimens.px12),
-                  if (!iconRightUrn.isNullOrBlank)
-                    NeoIcon(
-                      height: NeoDimens.px20,
-                      width: NeoDimens.px20,
-                      iconUrn: iconRightUrn!,
-                      color: state.buttonEnabled ?? enabled
-                          ? displayMode == NeoButtonDisplayMode.primary
-                              ? NeoColors.iconPrimaryGreen
-                              : NeoColors.iconDefault
-                          : NeoColors.iconDisabled,
-                    ).paddingOnly(end: NeoDimens.px24),
+                  if (!iconLeftUrn.isNullOrBlank) _buildIcon(iconLeftUrn!, _isButtonEnabled(state)).paddingOnly(end: _iconPadding()),
+                  Flexible(
+                    child: NeoText(
+                      labelText,
+                      style: _labelTextStyle(_isButtonEnabled(state)),
+                      maxLines: 1,
+                    ),
+                  ),
+                  if (!iconRightUrn.isNullOrBlank) _buildIcon(iconRightUrn!, _isButtonEnabled(state)).paddingOnly(start: _iconPadding()),
                 ],
-              ),
+              ).paddingSymmetric(horizontal: NeoDimens.px24),
             ),
           ),
         ),
       ).padding(padding ?? EdgeInsetsDirectional.zero);
 
-  @override
-  void onTransitionError(BuildContext context, String errorMessage) {
-    // No-op. Override if necessary
+  Widget _buildIcon(String iconUrn, bool buttonEnabled) {
+    return NeoIcon(
+      height: NeoDimens.px20,
+      width: NeoDimens.px20,
+      iconUrn: iconUrn,
+      color: _getIconColor(buttonEnabled),
+    );
+  }
+
+  double _iconPadding() {
+    return switch (size) { NeoButtonSize.xSmall => NeoDimens.px4, NeoButtonSize.small => NeoDimens.px12, NeoButtonSize.medium => NeoDimens.px12, NeoButtonSize.large => NeoDimens.px12 };
   }
 
   double _buttonHeight() {
-    return switch (size) { NeoButtonSize.small => NeoDimens.px40, NeoButtonSize.medium => NeoDimens.px44, NeoButtonSize.large => NeoDimens.px48 };
+    return switch (size) { NeoButtonSize.xSmall => NeoDimens.px28, NeoButtonSize.small => NeoDimens.px40, NeoButtonSize.medium => NeoDimens.px44, NeoButtonSize.large => NeoDimens.px48 };
   }
 
   Color? _getBackgroundColor(bool buttonEnabled) {
@@ -116,12 +117,33 @@ class NeoButton extends INeoButton {
 
   Color? _getSplashColor() {
     return switch (displayMode) {
-      NeoButtonDisplayMode.primary => NeoColors.textDefault,
+      NeoButtonDisplayMode.primary => NeoColors.bgDarker,
       NeoButtonDisplayMode.secondary => NeoColors.bgPrimaryGreenDark,
       NeoButtonDisplayMode.line => NeoColors.bgPrimaryBlackLight,
       NeoButtonDisplayMode.textBold => null,
       NeoButtonDisplayMode.textRegular => null
     };
+  }
+
+  Color _getIconColor(bool buttonEnabled) {
+    if (!buttonEnabled) {
+      return NeoColors.iconDisabled;
+    }
+    if (displayMode == NeoButtonDisplayMode.primary) {
+      return NeoColors.iconPrimaryGreen;
+    }
+    return NeoColors.iconDefault;
+  }
+
+  Border? _getBorder(bool buttonEnabled) {
+    if (displayMode == NeoButtonDisplayMode.line) {
+      return Border.all(
+        color: buttonEnabled ? NeoColors.borderDarker : NeoColors.borderDisabled,
+        width: _Constants.borderWidth,
+      );
+    }
+
+    return null;
   }
 
   TextStyle _labelTextStyle(bool buttonEnabled) {
@@ -137,9 +159,12 @@ class NeoButton extends INeoButton {
 
   TextStyle _getTextStyle(TextStyle baseStyle, Color color) {
     return switch (size) {
+      NeoButtonSize.xSmall => NeoTextStyles.bodyElevenSemibold.apply(color: color),
       NeoButtonSize.small => baseStyle.apply(color: color),
       NeoButtonSize.medium => baseStyle.apply(color: color),
       NeoButtonSize.large => NeoTextStyles.labelSixteenSemibold.apply(color: color)
     };
   }
+
+  bool _isButtonEnabled(NeoButtonState state) => state.enableState == NeoButtonEnableState.enabled || state.enableState == NeoButtonEnableState.enabledWithoutOnClick;
 }

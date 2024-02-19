@@ -60,15 +60,21 @@ class NeoAppBarBuilder extends _NeoAppBarBuilder {
       data: data,
     );
 
-    final actionListDecoded = _decodeActions(
-      data: data,
-    );
-
     return NeoAppBar(
-      actionList: actionListDecoded,
+      actions: model.actions == null
+          ? null
+          : [
+              for (var d in model.actions!)
+                d.build(
+                  childBuilder: childBuilder,
+                  context: context,
+                ),
+            ],
       backTransitionId: model.backTransitionId,
+      cachedTitleKey: model.cachedTitleKey,
       key: key,
       leftWidgetType: model.leftWidgetType,
+      statusBarIconBrightness: model.statusBarIconBrightness,
       title: model.title,
     );
   }
@@ -78,16 +84,20 @@ class JsonNeoAppBar extends JsonWidgetData {
   JsonNeoAppBar({
     Map<String, dynamic> args = const {},
     JsonWidgetRegistry? registry,
-    required this.actionList,
+    this.actions,
     this.backTransitionId,
+    this.cachedTitleKey,
     this.leftWidgetType,
+    this.statusBarIconBrightness = Brightness.dark,
     this.title,
   }) : super(
           jsonWidgetArgs: NeoAppBarBuilderModel.fromDynamic(
             {
-              'actionList': actionList,
+              'actions': actions,
               'backTransitionId': backTransitionId,
+              'cachedTitleKey': cachedTitleKey,
               'leftWidgetType': leftWidgetType,
+              'statusBarIconBrightness': statusBarIconBrightness,
               'title': title,
               ...args,
             },
@@ -97,9 +107,11 @@ class JsonNeoAppBar extends JsonWidgetData {
           jsonWidgetBuilder: () => NeoAppBarBuilder(
             args: NeoAppBarBuilderModel.fromDynamic(
               {
-                'actionList': actionList,
+                'actions': actions,
                 'backTransitionId': backTransitionId,
+                'cachedTitleKey': cachedTitleKey,
                 'leftWidgetType': leftWidgetType,
+                'statusBarIconBrightness': statusBarIconBrightness,
                 'title': title,
                 ...args,
               },
@@ -110,11 +122,15 @@ class JsonNeoAppBar extends JsonWidgetData {
           jsonWidgetType: NeoAppBarBuilder.kType,
         );
 
-  final dynamic actionList;
+  final List<JsonWidgetData>? actions;
 
   final String? backTransitionId;
 
+  final String? cachedTitleKey;
+
   final NeoAppBarLeftWidgetType? leftWidgetType;
+
+  final Brightness? statusBarIconBrightness;
 
   final String? title;
 }
@@ -122,17 +138,23 @@ class JsonNeoAppBar extends JsonWidgetData {
 class NeoAppBarBuilderModel extends JsonWidgetBuilderModel {
   const NeoAppBarBuilderModel(
     super.args, {
-    required this.actionList,
+    this.actions,
     this.backTransitionId,
+    this.cachedTitleKey,
     this.leftWidgetType,
+    this.statusBarIconBrightness = Brightness.dark,
     this.title,
   });
 
-  final dynamic actionList;
+  final List<JsonWidgetData>? actions;
 
   final String? backTransitionId;
 
+  final String? cachedTitleKey;
+
   final NeoAppBarLeftWidgetType? leftWidgetType;
+
+  final Brightness? statusBarIconBrightness;
 
   final String? title;
 
@@ -178,9 +200,28 @@ class NeoAppBarBuilderModel extends JsonWidgetBuilderModel {
         map = registry.processArgs(map, <String>{}).value;
         result = NeoAppBarBuilderModel(
           args,
-          actionList: map['actionList'],
+          actions: () {
+            dynamic parsed = JsonWidgetData.maybeFromDynamicList(
+              map['actions'],
+              registry: registry,
+            );
+
+            return parsed;
+          }(),
           backTransitionId: map['backTransitionId'],
+          cachedTitleKey: map['cachedTitleKey'],
           leftWidgetType: map['leftWidgetType'],
+          statusBarIconBrightness: () {
+            dynamic parsed = ThemeDecoder.decodeBrightness(
+              map['statusBarIconBrightness'],
+              validate: false,
+            );
+            if (!map.containsKey('statusBarIconBrightness')) {
+              parsed ??= Brightness.dark;
+            }
+
+            return parsed;
+          }(),
           title: map['title'],
         );
       }
@@ -192,9 +233,15 @@ class NeoAppBarBuilderModel extends JsonWidgetBuilderModel {
   @override
   Map<String, dynamic> toJson() {
     return JsonClass.removeNull({
-      'actionList': const [] == actionList ? null : actionList,
+      'actions': JsonClass.maybeToJsonList(actions),
       'backTransitionId': backTransitionId,
+      'cachedTitleKey': cachedTitleKey,
       'leftWidgetType': leftWidgetType,
+      'statusBarIconBrightness': Brightness.dark == statusBarIconBrightness
+          ? null
+          : ThemeEncoder.encodeBrightness(
+              statusBarIconBrightness,
+            ),
       'title': title,
       ...args,
     });
@@ -203,7 +250,7 @@ class NeoAppBarBuilderModel extends JsonWidgetBuilderModel {
 
 class NeoAppBarSchema {
   static const id =
-      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/backoffice/neo_app_bar.json';
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/neo_bank/neo_app_bar.json';
 
   static final schema = <String, Object>{
     r'$schema': 'http://json-schema.org/draft-07/schema#',
@@ -212,9 +259,11 @@ class NeoAppBarSchema {
     'type': 'object',
     'additionalProperties': false,
     'properties': {
-      'actionList': SchemaHelper.anySchema,
+      'actions': SchemaHelper.arraySchema(JsonWidgetDataSchema.id),
       'backTransitionId': SchemaHelper.stringSchema,
+      'cachedTitleKey': SchemaHelper.stringSchema,
       'leftWidgetType': SchemaHelper.anySchema,
+      'statusBarIconBrightness': SchemaHelper.objectSchema(BrightnessSchema.id),
       'title': SchemaHelper.stringSchema,
     },
   };

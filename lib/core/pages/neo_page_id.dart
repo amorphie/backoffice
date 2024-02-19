@@ -13,31 +13,18 @@
 class NeoPageId {
   NeoPageId._();
 
-  // STOPSHIP: Delete these demo pages
-  static const accountFirst = "account-first";
-  static const accountSecond = "account-second";
-  static const accountThird = "account-third";
-  static const savingAccountFirst = "create-saving-account-start";
-  static const savingAccountSecond = "create-saving-account-approval-page";
-  static const savingAccountThird = "create-saving-account-end-page";
-
-  static const splash = "/";
-  static const welcome = "welcome";
+  // TODO: Order pageIds alphabetically to prevent possible conflicts!
+  static const debitCardDashboard = "debit-card-dashboard";
+  static const debitCardTransactions = "debit-card-transactions";
   static const home = "home";
+  static const otherTransactions = "other-transactions";
+  static const otherTransactionsDocuments = "other-transactions-documents";
+  static const permissions = "permissions";
+  static const personalInformation = "personal-information";
   static const photoSelectionVerify = 'photo-selection-verify';
-  static const login = "login-start";
-  static const otpLogin = "login_otp";
-  static const otpRegister = "registerotp";
-  static const register = "openbanking-register-start";
-  static const personalInfo = "registeruserinfo";
-  static const setPassword = "registerpassword";
-  static const setSecurityQuestion = "registersecurityquestion";
-  static const setSecurityImage = "registersecurityimages";
-  static const termsAndConditions = "personel_contract_first_page";
-  static const termsAndConditionsSecond = "personel_contract_second_page";
-  static const accountDetails = "account-details";
-  static const addAddress = "add-address";
-  static const boHome = "bo-home";
-  static const boDetail = "bo-detail";
-  static const searchWorkflowWidget = "SearchWorkflowWidget";
+  static const settings = 'settings';
+  static const settingsAboutOnMobile = "settings-about-on-mobile";
+  static const settingsApplication = "settings-application";
+  static const settingsNotifications = "settings-notifications";
+  static const settingsUsedTechnologies = "settings-used-technologies";
 }

@@ -2,14 +2,23 @@ import 'dart:io';
 
 import 'package:system_proxy/system_proxy.dart';
 
-class NeoHttpOverrides extends HttpOverrides {
-  final String customProxy;
+abstract class _Constants {
+  static const defaultHost = "localhost";
+  static const defaultPort = "3100";
+}
 
-  NeoHttpOverrides(this.customProxy);
+class NeoHttpOverrides extends HttpOverrides {
+  final String host;
+  final String port;
+
+  NeoHttpOverrides({required this.host, required this.port});
 
   @override
   HttpClient createHttpClient(SecurityContext? context) {
     return super.createHttpClient(context)
+      ..findProxy = (_) {
+        return "PROXY $host:$port; DIRECT";
+      }
       ..badCertificateCallback = (X509Certificate cert, String host, int port) {
         //add your certificate verification logic here
         return true;
@@ -18,9 +27,10 @@ class NeoHttpOverrides extends HttpOverrides {
 
   static Future<void> addSystemProxy() async {
     final Map<String, String>? proxy = await SystemProxy.getProxySettings();
-    if (proxy == null) {
-      return;
-    }
-    HttpOverrides.global = NeoHttpOverrides("${proxy['host']}:${proxy['port']}");
+
+    final host = proxy != null ? proxy['host'] ?? _Constants.defaultHost : _Constants.defaultHost;
+    final port = proxy != null ? proxy['port'] ?? _Constants.defaultPort : _Constants.defaultPort;
+
+    HttpOverrides.global = NeoHttpOverrides(host: host, port: port);
   }
 }

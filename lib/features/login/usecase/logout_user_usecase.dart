@@ -17,28 +17,19 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:backoffice/core/core_widgets/neo_app/bloc/neo_app_bloc.dart';
-import 'package:backoffice/core/navigation/navigation_helper.dart';
-import 'package:backoffice/core/pages/neo_page_id.dart';
 import 'package:backoffice/features/login/data/login_network_manager.dart';
-import 'package:neo_core/core/navigation/models/neo_navigation_type.dart';
+import 'package:backoffice/features/login/data/neo_auth_status.dart';
+import 'package:backoffice/features/login/usecase/navigate_to_welcome_page_usecase.dart';
 import 'package:neo_core/core/storage/neo_core_secure_storage.dart';
 
 class LogoutUserUsecase {
-  void call(BuildContext context) {
-    context.read<NeoAppBloc>().add(const NeoAppEventUpdateLoggedInStatus(isLoggedIn: false));
-    LoginNetworkManager().tokenRevoke();
+  Future<void> call(BuildContext context) async {
+    context.read<NeoAppBloc>().add(const NeoAppEventUpdateAuthStatus(authStatus: NeoAuthStatus.notLoggedIn));
+    await LoginNetworkManager().tokenRevoke();
     _deleteTokens();
-    _navigateToWelcomePage(context);
-  }
-
-  void _navigateToWelcomePage(BuildContext context) {
-    unawaited(
-      NeoNavigationHelper().navigate(
-        context: context,
-        navigationType: NeoNavigationType.pushAsRoot,
-        navigationPath: NeoPageId.welcome,
-      ),
-    );
+    if (context.mounted) {
+      await NavigateToWelcomePageUsecase()(context);
+    }
   }
 
   void _deleteTokens() {

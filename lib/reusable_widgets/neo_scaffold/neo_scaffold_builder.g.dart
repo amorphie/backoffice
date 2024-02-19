@@ -65,6 +65,7 @@ class NeoScaffoldBuilder extends _NeoScaffoldBuilder {
         childBuilder: childBuilder,
         context: context,
       ) as PreferredSizeWidget?,
+      backWidgetEventKey: model.backWidgetEventKey,
       backgroundColor: model.backgroundColor,
       body: model.body?.build(
         childBuilder: childBuilder,
@@ -86,6 +87,7 @@ class NeoScaffoldBuilder extends _NeoScaffoldBuilder {
       drawerEdgeDragWidth: model.drawerEdgeDragWidth,
       drawerEnableOpenDragGesture: model.drawerEnableOpenDragGesture,
       drawerScrimColor: model.drawerScrimColor,
+      enableDeviceBack: model.enableDeviceBack,
       endDrawer: model.endDrawer?.build(
         childBuilder: childBuilder,
         context: context,
@@ -126,6 +128,7 @@ class JsonNeoScaffold extends JsonWidgetData {
     Map<String, dynamic> args = const {},
     JsonWidgetRegistry? registry,
     this.appBar,
+    this.backWidgetEventKey,
     this.backgroundColor,
     this.body,
     this.bottomNavigationBar,
@@ -135,6 +138,7 @@ class JsonNeoScaffold extends JsonWidgetData {
     this.drawerEdgeDragWidth,
     this.drawerEnableOpenDragGesture = true,
     this.drawerScrimColor,
+    this.enableDeviceBack = false,
     this.endDrawer,
     this.endDrawerEnableOpenDragGesture = true,
     this.extendBody = false,
@@ -155,6 +159,7 @@ class JsonNeoScaffold extends JsonWidgetData {
           jsonWidgetArgs: NeoScaffoldBuilderModel.fromDynamic(
             {
               'appBar': appBar,
+              'backWidgetEventKey': backWidgetEventKey,
               'backgroundColor': backgroundColor,
               'body': body,
               'bottomNavigationBar': bottomNavigationBar,
@@ -164,6 +169,7 @@ class JsonNeoScaffold extends JsonWidgetData {
               'drawerEdgeDragWidth': drawerEdgeDragWidth,
               'drawerEnableOpenDragGesture': drawerEnableOpenDragGesture,
               'drawerScrimColor': drawerScrimColor,
+              'enableDeviceBack': enableDeviceBack,
               'endDrawer': endDrawer,
               'endDrawerEnableOpenDragGesture': endDrawerEnableOpenDragGesture,
               'extendBody': extendBody,
@@ -189,6 +195,7 @@ class JsonNeoScaffold extends JsonWidgetData {
             args: NeoScaffoldBuilderModel.fromDynamic(
               {
                 'appBar': appBar,
+                'backWidgetEventKey': backWidgetEventKey,
                 'backgroundColor': backgroundColor,
                 'body': body,
                 'bottomNavigationBar': bottomNavigationBar,
@@ -198,6 +205,7 @@ class JsonNeoScaffold extends JsonWidgetData {
                 'drawerEdgeDragWidth': drawerEdgeDragWidth,
                 'drawerEnableOpenDragGesture': drawerEnableOpenDragGesture,
                 'drawerScrimColor': drawerScrimColor,
+                'enableDeviceBack': enableDeviceBack,
                 'endDrawer': endDrawer,
                 'endDrawerEnableOpenDragGesture':
                     endDrawerEnableOpenDragGesture,
@@ -226,6 +234,8 @@ class JsonNeoScaffold extends JsonWidgetData {
 
   final JsonWidgetData? appBar;
 
+  final String? backWidgetEventKey;
+
   final Color? backgroundColor;
 
   final JsonWidgetData? body;
@@ -243,6 +253,8 @@ class JsonNeoScaffold extends JsonWidgetData {
   final bool drawerEnableOpenDragGesture;
 
   final Color? drawerScrimColor;
+
+  final bool enableDeviceBack;
 
   final JsonWidgetData? endDrawer;
 
@@ -281,6 +293,7 @@ class NeoScaffoldBuilderModel extends JsonWidgetBuilderModel {
   const NeoScaffoldBuilderModel(
     super.args, {
     this.appBar,
+    this.backWidgetEventKey,
     this.backgroundColor,
     this.body,
     this.bottomNavigationBar,
@@ -290,6 +303,7 @@ class NeoScaffoldBuilderModel extends JsonWidgetBuilderModel {
     this.drawerEdgeDragWidth,
     this.drawerEnableOpenDragGesture = true,
     this.drawerScrimColor,
+    this.enableDeviceBack = false,
     this.endDrawer,
     this.endDrawerEnableOpenDragGesture = true,
     this.extendBody = false,
@@ -310,6 +324,8 @@ class NeoScaffoldBuilderModel extends JsonWidgetBuilderModel {
 
   final JsonWidgetData? appBar;
 
+  final String? backWidgetEventKey;
+
   final Color? backgroundColor;
 
   final JsonWidgetData? body;
@@ -327,6 +343,8 @@ class NeoScaffoldBuilderModel extends JsonWidgetBuilderModel {
   final bool drawerEnableOpenDragGesture;
 
   final Color? drawerScrimColor;
+
+  final bool enableDeviceBack;
 
   final JsonWidgetData? endDrawer;
 
@@ -410,6 +428,7 @@ class NeoScaffoldBuilderModel extends JsonWidgetBuilderModel {
 
             return parsed;
           }(),
+          backWidgetEventKey: map['backWidgetEventKey'],
           backgroundColor: () {
             dynamic parsed = ThemeDecoder.decodeColor(
               map['backgroundColor'],
@@ -477,6 +496,10 @@ class NeoScaffoldBuilderModel extends JsonWidgetBuilderModel {
 
             return parsed;
           }(),
+          enableDeviceBack: JsonClass.parseBool(
+            map['enableDeviceBack'],
+            whenNull: false,
+          ),
           endDrawer: () {
             dynamic parsed = JsonWidgetData.maybeFromDynamic(
               map['endDrawer'],
@@ -572,6 +595,7 @@ class NeoScaffoldBuilderModel extends JsonWidgetBuilderModel {
   Map<String, dynamic> toJson() {
     return JsonClass.removeNull({
       'appBar': appBar?.toJson(),
+      'backWidgetEventKey': backWidgetEventKey,
       'backgroundColor': ThemeEncoder.encodeColor(
         backgroundColor,
       ),
@@ -592,6 +616,7 @@ class NeoScaffoldBuilderModel extends JsonWidgetBuilderModel {
       'drawerScrimColor': ThemeEncoder.encodeColor(
         drawerScrimColor,
       ),
+      'enableDeviceBack': false == enableDeviceBack ? null : enableDeviceBack,
       'endDrawer': endDrawer?.toJson(),
       'endDrawerEnableOpenDragGesture': true == endDrawerEnableOpenDragGesture
           ? null
@@ -634,7 +659,7 @@ class NeoScaffoldBuilderModel extends JsonWidgetBuilderModel {
 
 class NeoScaffoldSchema {
   static const id =
-      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/backoffice/neo_scaffold.json';
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/neo_bank/neo_scaffold.json';
 
   static final schema = <String, Object>{
     r'$schema': 'http://json-schema.org/draft-07/schema#',
@@ -644,6 +669,7 @@ class NeoScaffoldSchema {
     'additionalProperties': false,
     'properties': {
       'appBar': SchemaHelper.objectSchema(JsonWidgetDataSchema.id),
+      'backWidgetEventKey': SchemaHelper.stringSchema,
       'backgroundColor': SchemaHelper.objectSchema(ColorSchema.id),
       'body': SchemaHelper.objectSchema(JsonWidgetDataSchema.id),
       'bottomNavigationBar': SchemaHelper.objectSchema(JsonWidgetDataSchema.id),
@@ -654,6 +680,7 @@ class NeoScaffoldSchema {
       'drawerEdgeDragWidth': SchemaHelper.numberSchema,
       'drawerEnableOpenDragGesture': SchemaHelper.boolSchema,
       'drawerScrimColor': SchemaHelper.objectSchema(ColorSchema.id),
+      'enableDeviceBack': SchemaHelper.boolSchema,
       'endDrawer': SchemaHelper.objectSchema(JsonWidgetDataSchema.id),
       'endDrawerEnableOpenDragGesture': SchemaHelper.boolSchema,
       'extendBody': SchemaHelper.boolSchema,

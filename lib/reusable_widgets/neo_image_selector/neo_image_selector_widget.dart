@@ -1,6 +1,10 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:backoffice/core/core_widgets/neo_toast/models/neo_toast_model.dart';
+import 'package:backoffice/core/core_widgets/neo_toast/models/neo_toast_type.dart';
+import 'package:backoffice/core/localization/models/localization_key.dart';
+import 'package:backoffice/reusable_widgets/neo_button/model/neo_button_enable_state.dart';
 import 'package:backoffice/reusable_widgets/neo_icon/neo_icon.dart';
 import 'package:backoffice/reusable_widgets/neo_image_selector/models/neo_image_selector_item_data.dart';
 import 'package:backoffice/util/constants/neo_widget_event_keys.dart';
@@ -43,16 +47,29 @@ class _NeoImageSelectorWidgetState extends State<NeoImageSelectorWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return GridView.count(
-      physics: const BouncingScrollPhysics(),
-      primary: true,
-      shrinkWrap: true,
-      childAspectRatio: _Constants.gridViewAspectRatio,
-      mainAxisSpacing: widget.mainAxisSpacing,
-      crossAxisSpacing: widget.crossAxisSpacing,
-      crossAxisCount: widget.crossAxisCount,
-      padding: widget.padding ?? EdgeInsetsDirectional.zero,
-      children: _getImageUrlList(context).mapIndexed(_buildImageWithBorder).toList(),
+    return FormField<String>(
+      builder: (_) => GridView.count(
+        physics: const BouncingScrollPhysics(),
+        primary: true,
+        shrinkWrap: true,
+        childAspectRatio: _Constants.gridViewAspectRatio,
+        mainAxisSpacing: widget.mainAxisSpacing,
+        crossAxisSpacing: widget.crossAxisSpacing,
+        crossAxisCount: widget.crossAxisCount,
+        padding: widget.padding ?? EdgeInsetsDirectional.zero,
+        children: _getImageUrlList(context).mapIndexed(_buildImageWithBorder).toList(),
+      ),
+      validator: (_) {
+        if (widget.dataKey.isNotNull && context.read<WorkflowFormBloc>().formData[widget.dataKey] == null) {
+          NeoWidgetEventKeys.globalShowToastMessage.sendEvent(
+            data: NeoToastModal(
+              message: LocalizationKey.loginSecurityPictureDetailsMissingSelectionErrorMessage.key,
+              type: NeoToastType.error,
+            ),
+          );
+        }
+        return null;
+      },
     );
   }
 
@@ -116,7 +133,7 @@ class _NeoImageSelectorWidgetState extends State<NeoImageSelectorWidget> {
             border: selectedItemIndex != itemIndex ? Border.all(color: NeoColors.borderMediumDark, width: _Constants.borderThickness) : const Border.fromBorderSide(BorderSide.none),
             borderRadius: BorderRadius.circular(NeoRadius.rounded),
           ),
-          child: selectedItemIndex != itemIndex ? const SizedBox.shrink() : NeoIcon(iconUrn: NeoAssets.check.urn, height: NeoDimens.px16, width: NeoDimens.px16).paddingAll(NeoDimens.px4),
+          child: selectedItemIndex != itemIndex ? const SizedBox.shrink() : NeoIcon(iconUrn: NeoAssets.check16px.urn).paddingAll(NeoDimens.px4),
         ),
       ),
     );
@@ -131,10 +148,11 @@ class _NeoImageSelectorWidgetState extends State<NeoImageSelectorWidget> {
             );
       }
 
-      NeoWidgetEventKeys.neoButtonChangeEnableStatusEventKey.sendEvent(data: true);
+      NeoWidgetEventKeys.neoButtonChangeEnableStateEventKey.sendEvent(data: NeoButtonEnableState.enabled);
     }
   }
 
-  List<NeoImageSelectorItemData> _getImageUrlList(BuildContext context) =>
-      (context.read<WorkflowFormBloc>().formData[_Constants.securityImagesKey] as List).map((e) => NeoImageSelectorItemData.fromJson(e)).toList();
+  List<NeoImageSelectorItemData> _getImageUrlList(BuildContext context) {
+    return (context.read<WorkflowFormBloc>().formData[_Constants.securityImagesKey] as List).map((e) => NeoImageSelectorItemData.fromJson(e)).toList();
+  }
 }

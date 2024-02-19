@@ -1,6 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:backoffice/core/localization/bloc/localization_bloc.dart';
 import 'package:backoffice/reusable_widgets/neo_hypertext/model/neo_hypertext_action_type.dart';
 import 'package:backoffice/reusable_widgets/neo_hypertext/model/neo_hypertext_highlighted_item.dart';
 import 'package:backoffice/util/neo_util.dart';
@@ -15,12 +16,14 @@ class NeoHypertext extends StatelessWidget {
   final List<NeoHypertextHighlightedItem> highlightedItems;
   final EdgeInsetsDirectional padding;
   final TextAlign textAlign;
+  final Color? textColor;
   final TextStyle? style;
 
   const NeoHypertext({
     required this.text,
     required this.highlightedItems,
     this.style,
+    this.textColor,
     this.padding = EdgeInsetsDirectional.zero,
     this.textAlign = TextAlign.start,
     super.key,
@@ -29,7 +32,7 @@ class NeoHypertext extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final parametricList = [];
-    text.splitMapJoin(
+    _loc(text)?.splitMapJoin(
       _Constants.highlightedRegex,
       onMatch: (Match match) {
         if (highlightedItems.any((element) => element.itemKey == match.group(1))) {
@@ -60,19 +63,19 @@ class NeoHypertext extends StatelessWidget {
   }
 
   TextSpan _buildDefaultText(String e) {
-    return TextSpan(text: e, style: style);
+    return TextSpan(text: e, style: style?.apply(color: textColor));
   }
 
   TextSpan _buildBoldText(BuildContext context, NeoHypertextHighlightedItem highlightedItem) {
     return TextSpan(
-      text: highlightedItem.text ?? '{${highlightedItem.itemKey}}'.formatDataWithDataKey(context, highlightedItem.itemKey),
+      text: _loc(highlightedItem.text) ?? '{${highlightedItem.itemKey}}'.formatDataWithDataKey(context, highlightedItem.itemKey),
       style: style?.copyWith(fontWeight: FontWeight.bold) ?? const TextStyle(fontWeight: FontWeight.bold),
     );
   }
 
   TextSpan _buildActionText(NeoHypertextHighlightedItem highlightedItem) {
     return TextSpan(
-      text: highlightedItem.text,
+      text: _loc(highlightedItem.text),
       style: style?.copyWith(decoration: TextDecoration.underline, fontWeight: FontWeight.bold),
       recognizer: TapGestureRecognizer()
         ..onTap = () {
@@ -101,4 +104,6 @@ class NeoHypertext extends StatelessWidget {
       throw 'Could not launch $url';
     }
   }
+
+  String? _loc(String? data) => data.orEmpty.isNotEmpty ? localize(data!) : data;
 }

@@ -82,7 +82,7 @@ class JsonNeoImage extends JsonWidgetData {
     JsonWidgetRegistry? registry,
     this.aspectRatio,
     this.borderColor = Colors.white,
-    this.borderRadius = 16,
+    this.borderRadius,
     this.borderWidth,
     this.dataKey,
     this.height,
@@ -134,7 +134,7 @@ class JsonNeoImage extends JsonWidgetData {
 
   final Color borderColor;
 
-  final double? borderRadius;
+  final BorderRadius? borderRadius;
 
   final double? borderWidth;
 
@@ -156,7 +156,7 @@ class NeoImageBuilderModel extends JsonWidgetBuilderModel {
     super.args, {
     this.aspectRatio,
     this.borderColor = Colors.white,
-    this.borderRadius = 16,
+    this.borderRadius,
     this.borderWidth,
     this.dataKey,
     this.height,
@@ -170,7 +170,7 @@ class NeoImageBuilderModel extends JsonWidgetBuilderModel {
 
   final Color borderColor;
 
-  final double? borderRadius;
+  final BorderRadius? borderRadius;
 
   final double? borderWidth;
 
@@ -243,11 +243,10 @@ class NeoImageBuilderModel extends JsonWidgetBuilderModel {
             return parsed;
           }(),
           borderRadius: () {
-            dynamic parsed = JsonClass.maybeParseDouble(map['borderRadius']);
-
-            if (!map.containsKey('borderRadius')) {
-              parsed ??= 16.0;
-            }
+            dynamic parsed = ThemeDecoder.decodeBorderRadius(
+              map['borderRadius'],
+              validate: false,
+            );
 
             return parsed;
           }(),
@@ -297,7 +296,9 @@ class NeoImageBuilderModel extends JsonWidgetBuilderModel {
           : ThemeEncoder.encodeColor(
               borderColor,
             ),
-      'borderRadius': 16 == borderRadius ? null : borderRadius,
+      'borderRadius': ThemeEncoder.encodeBorderRadius(
+        borderRadius,
+      ),
       'borderWidth': borderWidth,
       'dataKey': dataKey,
       'height': height,
@@ -317,7 +318,7 @@ class NeoImageBuilderModel extends JsonWidgetBuilderModel {
 
 class NeoImageSchema {
   static const id =
-      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/backoffice/neo_image.json';
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/neo_bank/neo_image.json';
 
   static final schema = <String, Object>{
     r'$schema': 'http://json-schema.org/draft-07/schema#',
@@ -328,7 +329,7 @@ class NeoImageSchema {
     'properties': {
       'aspectRatio': SchemaHelper.numberSchema,
       'borderColor': SchemaHelper.objectSchema(ColorSchema.id),
-      'borderRadius': SchemaHelper.numberSchema,
+      'borderRadius': SchemaHelper.objectSchema(BorderRadiusSchema.id),
       'borderWidth': SchemaHelper.numberSchema,
       'dataKey': SchemaHelper.stringSchema,
       'height': SchemaHelper.numberSchema,

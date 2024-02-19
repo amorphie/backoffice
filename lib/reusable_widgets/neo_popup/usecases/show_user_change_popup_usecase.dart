@@ -15,32 +15,29 @@ import 'package:backoffice/reusable_widgets/neo_button/model/neo_button_display_
 import 'package:backoffice/reusable_widgets/neo_popup/model/neo_popup_action_model.dart';
 import 'package:backoffice/reusable_widgets/neo_popup/model/neo_popup_type.dart';
 import 'package:backoffice/reusable_widgets/neo_popup/neo_popup.dart';
+import 'package:backoffice/reusable_widgets/neo_popup/usecases/base_show_popup_use_case.dart';
 import 'package:backoffice/util/constants/neo_widget_event_keys.dart';
 
-class ShowUserChangePopupUseCase {
-  // STOPSHIP: Add localization
-  Future<dynamic> call(BuildContext context) {
-    return showDialog(
-      context: context,
-      builder: (_) => NeoPopup(
-        type: NeoPopupType.warning,
-        titleText: "Uyarı",
-        bodyText: "Bir kullanıcı değiştirmek üzeresiniz. Farklı bir kullanıcıya giriş yaparsanız mevcut cihaz eşleşmenizden kaldırılacaktır!",
-        actions: [
-          NeoPopupActionModel(
-            widgetEventKey: NeoWidgetEventKeys.loginShowNewUserPage.name,
-            labelText: "Değiştir",
-            dismissOnAction: true,
-          ),
-          NeoPopupActionModel(
-            widgetEventKey: NeoWidgetEventKeys.commonClosePopup.name,
-            labelText: "Vazgeç",
-            displayMode: NeoButtonDisplayMode.line,
-            dismissOnAction: true,
-          ),
-        ],
-        isLocalPopup: true,
-      ),
+class ShowUserChangePopupUseCase extends BaseShowPopupUseCase {
+  @override
+  Widget build(BuildContext context) {
+    return NeoPopup(
+      type: NeoPopupType.warning,
+      titleText: "login_initial_popUp_switchUser_title",
+      bodyText: "login_initial_popUp_switchUser_text",
+      actions: [
+        NeoPopupActionModel(
+          widgetEventKey: NeoWidgetEventKeys.loginShowNewUserPage.name,
+          labelText: "login_initial_popUpFirst_switchUser_button",
+          dismissOnAction: true,
+        ),
+        NeoPopupActionModel(
+          widgetEventKey: NeoWidgetEventKeys.commonClosePopup.name,
+          labelText: "login_initial_popUpSecond_switchUser_button",
+          displayMode: NeoButtonDisplayMode.line,
+          dismissOnAction: true,
+        ),
+      ],
     );
   }
 }

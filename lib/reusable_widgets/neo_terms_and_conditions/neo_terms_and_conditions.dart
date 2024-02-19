@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:backoffice/reusable_widgets/neo_button/model/neo_button_enable_state.dart';
+import 'package:backoffice/reusable_widgets/neo_text/neo_text.dart';
 import 'package:backoffice/util/constants/neo_widget_event_keys.dart';
 import 'package:backoffice/util/neo_util.dart';
 import 'package:neo_core/core/workflow_form/bloc/workflow_form_bloc.dart';
@@ -44,13 +46,13 @@ class _NeoTermsAndConditionsState extends State<NeoTermsAndConditions> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text(
+          NeoText(
             widget.titleText,
             style: NeoTextStyles.labelSixteenSemibold,
           ).paddingOnly(bottom: NeoDimens.px12),
-          Text(
+          NeoText(
             widget.contentText,
-            style: NeoTextStyles.labelFourteenMedium.apply(color: NeoColors.colorNeutral),
+            style: NeoTextStyles.labelFourteenMedium.apply(color: NeoColors.neutral.shade900),
           ),
         ],
       ).padding(widget.padding),
@@ -64,7 +66,7 @@ class _NeoTermsAndConditionsState extends State<NeoTermsAndConditions> {
         _isButtonEnabled = true;
       });
 
-      NeoWidgetEventKeys.neoButtonChangeEnableStatusEventKey.sendEvent(data: true);
+      NeoWidgetEventKeys.neoButtonChangeEnableStateEventKey.sendEvent(data: NeoButtonEnableState.enabled);
     }
     if (widget.dataKey.isNotNull) {
       context.read<WorkflowFormBloc>().add(

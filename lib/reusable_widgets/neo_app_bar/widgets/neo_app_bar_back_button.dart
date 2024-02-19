@@ -24,14 +24,15 @@ class _NeoAppBarBackButton extends INeoButton {
             }
           },
           child: IconButton(
-            onPressed: () => startTransition(context),
-            icon: NeoIcon(iconUrn: NeoAssets.arrowLeft01.urn),
+            onPressed: () {
+              if (super.transitionId == null) {
+                NeoWidgetEventKeys.globalNavigationPop.sendEvent();
+              } else {
+                startTransition(context);
+              }
+            },
+            icon: NeoIcon(iconUrn: NeoAssets.arrowLeft24px.urn),
           ),
         ),
       );
-
-  @override
-  void onTransitionError(BuildContext context, String errorMessage) {
-    // No-op
-  }
 }

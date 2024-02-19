@@ -192,7 +192,7 @@ class SpacerBuilderModel extends JsonWidgetBuilderModel {
 
 class SpacerSchema {
   static const id =
-      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/backoffice/spacer.json';
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/neo_bank/spacer.json';
 
   static final schema = <String, Object>{
     r'$schema': 'http://json-schema.org/draft-07/schema#',

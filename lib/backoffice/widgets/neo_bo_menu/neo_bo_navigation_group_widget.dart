@@ -58,7 +58,7 @@ class NeoBackofficeNavigationGroupWidget extends StatelessWidget {
                   ),
                   child: Text(
                     showMoreText,
-                    style: const TextStyle(fontWeight: FontWeight.bold, color: NeoColors.textSuccess),
+                    style: TextStyle(fontWeight: FontWeight.bold, color: NeoColors.textSuccess),
                   ),
                 ),
               ],

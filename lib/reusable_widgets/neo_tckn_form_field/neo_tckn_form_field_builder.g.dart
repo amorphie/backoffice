@@ -60,6 +60,10 @@ class NeoTcknFormFieldBuilder extends _NeoTcknFormFieldBuilder {
       data: data,
     );
 
+    final validationsDecoded = _decodeValidations(
+      data: data,
+    );
+
     return NeoTcknFormField(
       dataKey: model.dataKey,
       enabled: model.enabled,
@@ -68,6 +72,7 @@ class NeoTcknFormFieldBuilder extends _NeoTcknFormFieldBuilder {
       key: key,
       labelText: model.labelText,
       padding: model.padding,
+      validations: validationsDecoded,
     );
   }
 }
@@ -82,6 +87,7 @@ class JsonNeoTcknFormField extends JsonWidgetData {
     this.focusNode,
     this.labelText,
     this.padding = EdgeInsetsDirectional.zero,
+    required this.validations,
   }) : super(
           jsonWidgetArgs: NeoTcknFormFieldBuilderModel.fromDynamic(
             {
@@ -91,6 +97,7 @@ class JsonNeoTcknFormField extends JsonWidgetData {
               'focusNode': focusNode,
               'labelText': labelText,
               'padding': padding,
+              'validations': validations,
               ...args,
             },
             args: args,
@@ -105,6 +112,7 @@ class JsonNeoTcknFormField extends JsonWidgetData {
                 'focusNode': focusNode,
                 'labelText': labelText,
                 'padding': padding,
+                'validations': validations,
                 ...args,
               },
               args: args,
@@ -125,6 +133,8 @@ class JsonNeoTcknFormField extends JsonWidgetData {
   final String? labelText;
 
   final EdgeInsetsDirectional padding;
+
+  final dynamic validations;
 }
 
 class NeoTcknFormFieldBuilderModel extends JsonWidgetBuilderModel {
@@ -136,6 +146,7 @@ class NeoTcknFormFieldBuilderModel extends JsonWidgetBuilderModel {
     this.focusNode,
     this.labelText,
     this.padding = EdgeInsetsDirectional.zero,
+    required this.validations,
   });
 
   final String? dataKey;
@@ -149,6 +160,8 @@ class NeoTcknFormFieldBuilderModel extends JsonWidgetBuilderModel {
   final String? labelText;
 
   final EdgeInsetsDirectional padding;
+
+  final dynamic validations;
 
   static NeoTcknFormFieldBuilderModel fromDynamic(
     dynamic map, {
@@ -209,6 +222,7 @@ class NeoTcknFormFieldBuilderModel extends JsonWidgetBuilderModel {
 
             return parsed;
           }(),
+          validations: map['validations'],
         );
       }
     }
@@ -229,6 +243,7 @@ class NeoTcknFormFieldBuilderModel extends JsonWidgetBuilderModel {
           : ThemeEncoder.encodeEdgeInsetsDirectional(
               padding,
             ),
+      'validations': validations,
       ...args,
     });
   }
@@ -236,7 +251,7 @@ class NeoTcknFormFieldBuilderModel extends JsonWidgetBuilderModel {
 
 class NeoTcknFormFieldSchema {
   static const id =
-      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/backoffice/neo_tckn_form_field.json';
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/neo_bank/neo_tckn_form_field.json';
 
   static final schema = <String, Object>{
     r'$schema': 'http://json-schema.org/draft-07/schema#',
@@ -251,6 +266,7 @@ class NeoTcknFormFieldSchema {
       'focusNode': SchemaHelper.anySchema,
       'labelText': SchemaHelper.stringSchema,
       'padding': SchemaHelper.objectSchema(EdgeInsetsDirectionalSchema.id),
+      'validations': SchemaHelper.anySchema,
     },
   };
 }

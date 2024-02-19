@@ -26,4 +26,5 @@ const _$NeoNavigationTypeEnumMap = {
   NeoNavigationType.pushAsRoot: 'push-as-root',
   NeoNavigationType.popup: 'popup',
   NeoNavigationType.bottomSheet: 'bottom-sheet',
+  NeoNavigationType.pop: 'pop',
 };

@@ -89,9 +89,7 @@ class _NeoSwipeButtonContentState extends State<_NeoSwipeButtonContent> with Sin
     return Align(
       alignment: Alignment.centerRight,
       child: NeoIcon(
-        height: NeoDimens.px24,
-        width: NeoDimens.px24,
-        iconUrn: NeoAssets.arrowRightDouble.urn,
+        iconUrn: NeoAssets.arrowRightDouble24px.urn,
         color: NeoColors.iconSecondary,
       ).paddingSymmetric(horizontal: NeoDimens.px16),
     );
@@ -99,7 +97,7 @@ class _NeoSwipeButtonContentState extends State<_NeoSwipeButtonContent> with Sin
 
   Widget _buildLoadingBackground() {
     return DecoratedBox(
-      decoration: BoxDecoration(color: NeoColors.colorBaseWhite, borderRadius: _Constants.borderRadius),
+      decoration: BoxDecoration(color: NeoColors.baseWhite, borderRadius: _Constants.borderRadius),
       child: AnimatedOpacity(
         duration: AppConstants.defaultAnimationDuration,
         opacity: _isLoading ? 1 : 0,
@@ -154,7 +152,7 @@ class _NeoSwipeButtonContentState extends State<_NeoSwipeButtonContent> with Sin
   }
 
   Widget _buildButtonText(String? label) {
-    return Text(
+    return NeoText(
       label.orEmpty,
       style: NeoTextStyles.labelSixteenSemibold,
       overflow: TextOverflow.ellipsis,

@@ -47,3 +47,14 @@ class LoginSlidableAvatarTabEventChangeActiveTabColor extends LoginSlidableAvata
   @override
   List<Object?> get props => [color];
 }
+
+class LoginSlidableAvatarTabEventChangeSlidability extends LoginSlidableAvatarTabEvent {
+  final bool isSlidable;
+
+  const LoginSlidableAvatarTabEventChangeSlidability({
+    required this.isSlidable,
+  });
+
+  @override
+  List<Object?> get props => [isSlidable];
+}

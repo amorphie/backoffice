@@ -15,30 +15,27 @@ import 'package:backoffice/reusable_widgets/neo_button/model/neo_button_display_
 import 'package:backoffice/reusable_widgets/neo_popup/model/neo_popup_action_model.dart';
 import 'package:backoffice/reusable_widgets/neo_popup/model/neo_popup_type.dart';
 import 'package:backoffice/reusable_widgets/neo_popup/neo_popup.dart';
+import 'package:backoffice/reusable_widgets/neo_popup/usecases/base_show_popup_use_case.dart';
 import 'package:backoffice/util/constants/neo_widget_event_keys.dart';
 
-class ShowLogoutConfirmationPopupUseCase {
-  Future<dynamic> call(BuildContext context) {
-    return showDialog(
-      context: context,
-      builder: (_) => NeoPopup(
-        type: NeoPopupType.warning,
-        titleText: "ON Mobil'den Çıkış Yap",
-        bodyText: "ON Mobil'deki oturumun güvenli bir şekilde kapatılacak, emin misin?",
-        actions: [
-          NeoPopupActionModel(
-            widgetEventKey: NeoWidgetEventKeys.logoutDialogConfirm.name,
-            labelText: "Onayla", // STOPSHIP: Handle localization
-            dismissOnAction: true,
-          ),
-          NeoPopupActionModel(
-            labelText: "Vazgeç", // STOPSHIP: Handle localization
-            displayMode: NeoButtonDisplayMode.line,
-            dismissOnAction: true,
-          ),
-        ],
-        isLocalPopup: true,
-      ),
+class ShowLogoutConfirmationPopupUseCase extends BaseShowPopupUseCase {
+  @override
+  Widget build(BuildContext context) {
+    return NeoPopup(
+      type: NeoPopupType.warning,
+      titleText: "logout_main_popUp_title",
+      bodyText: "logout_main_popUp_text",
+      actions: [
+        NeoPopupActionModel(
+          widgetEventKey: NeoWidgetEventKeys.globalLogoutDialogConfirm.name,
+          labelText: "logout_main_popUp_first_button",
+        ),
+        NeoPopupActionModel(
+          labelText: "logout_main_popUp_second_button",
+          displayMode: NeoButtonDisplayMode.line,
+          widgetEventKey: NeoWidgetEventKeys.globalNavigationPop.name,
+        ),
+      ],
     );
   }
 }

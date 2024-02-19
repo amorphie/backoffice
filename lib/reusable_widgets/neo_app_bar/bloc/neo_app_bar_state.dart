@@ -18,5 +18,5 @@ class NeoAppBarState extends Equatable {
   final DateTime? backButtonPressedTime;
 
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [backButtonPressedTime];
 }

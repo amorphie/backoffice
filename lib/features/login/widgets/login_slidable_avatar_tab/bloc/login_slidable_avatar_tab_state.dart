@@ -36,11 +36,13 @@ class LoginSlidableAvatarTabStateNewUser extends LoginSlidableAvatarTabState {
 
 class LoginSlidableAvatarTabStateExistingUser extends LoginSlidableAvatarTabState {
   final Color activeTabColor;
+  final bool isSlidable;
 
   const LoginSlidableAvatarTabStateExistingUser({
     required this.activeTabColor,
+    required this.isSlidable,
   });
 
   @override
-  List<Object> get props => [activeTabColor];
+  List<Object> get props => [activeTabColor, isSlidable];
 }

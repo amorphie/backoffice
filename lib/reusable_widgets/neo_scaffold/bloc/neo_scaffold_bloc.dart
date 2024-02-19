@@ -15,15 +15,16 @@ import 'dart:async';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:backoffice/util/constants/neo_colors.dart';
+import 'package:backoffice/core/dependency_injection/dependency_injection.dart';
 import 'package:backoffice/util/constants/neo_widget_event_keys.dart';
+import 'package:backoffice/util/neo_util.dart';
 import 'package:neo_core/core/bus/neo_bus.dart';
 
 part 'neo_scaffold_event.dart';
 part 'neo_scaffold_state.dart';
 
 class NeoScaffoldBloc extends Bloc<NeoScaffoldEvent, NeoScaffoldState> {
-  late final StreamSubscription<NeoWidgetEvent>? _neoWidgetEventSubscription;
+  StreamSubscription<NeoWidgetEvent>? _neoWidgetEventSubscription;
   Color? _backgroundColor;
 
   NeoScaffoldBloc() : super(const NeoScaffoldState()) {
@@ -35,7 +36,7 @@ class NeoScaffoldBloc extends Bloc<NeoScaffoldEvent, NeoScaffoldState> {
   _onInitialize(NeoScaffoldEventInitialize event, Emitter<NeoScaffoldState> emit) {
     _neoWidgetEventSubscription = [
       // STOPSHIP: Remove these events, use instead NeoWidgetEventKeys.commonNeoScaffoldChangeBackgroundColor
-      (NeoWidgetEventKeys.loginTextFieldFocused, (_) => add(const NeoScaffoldEventChangeBackgroundColor(backgroundColor: NeoColors.bgLight))),
+      (NeoWidgetEventKeys.loginTextFieldFocused, (_) => add(NeoScaffoldEventChangeBackgroundColor(backgroundColor: NeoColors.bgLight))),
       (NeoWidgetEventKeys.loginTextFieldUnfocused, (_) => add(const NeoScaffoldEventChangeBackgroundColor(backgroundColor: Colors.transparent))),
     ].listenEvents();
   }
@@ -46,7 +47,11 @@ class NeoScaffoldBloc extends Bloc<NeoScaffoldEvent, NeoScaffoldState> {
   }
 
   _onBackButtonPressed(NeoScaffoldEventBackButtonPressed event, Emitter<NeoScaffoldState> emit) {
-    NeoWidgetEventKeys.neoAppBarPressBackButton.sendEvent();
+    if (event.widgetEventKey != null) {
+      getIt.get<NeoWidgetEventBus>().addEvent(NeoWidgetEvent(eventId: event.widgetEventKey.orEmpty));
+    } else {
+      NeoWidgetEventKeys.neoAppBarPressBackButton.sendEvent();
+    }
   }
 
   @override

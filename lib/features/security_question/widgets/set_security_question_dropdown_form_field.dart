@@ -14,10 +14,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:backoffice/core/localization/localizable_text.dart';
 import 'package:backoffice/features/security_question/models/set_security_question_dropdown_item_data.dart';
-import 'package:backoffice/reusable_widgets/neo_dropdown_form_field/model/neo_dropdown_list_tile_data.dart';
-import 'package:backoffice/reusable_widgets/neo_dropdown_form_field/model/neo_dropdown_type.dart';
-import 'package:backoffice/reusable_widgets/neo_dropdown_form_field/neo_dropdown_form_field.dart';
-import 'package:backoffice/util/neo_util.dart';
+import 'package:backoffice/reusable_widgets/neo_dropdown/adapters/neo_security_question_selection_dropdown_adapter.dart';
+import 'package:backoffice/reusable_widgets/neo_dropdown/item_models/neo_dropdown_list_tile_data.dart';
+import 'package:backoffice/reusable_widgets/neo_dropdown/neo_dropdown.dart';
 import 'package:neo_core/core/workflow_form/bloc/workflow_form_bloc.dart';
 
 abstract class _Constants {
@@ -47,15 +46,14 @@ class SetSecurityQuestionDropdownFormField extends StatelessWidget {
     return padding == EdgeInsetsDirectional.zero ? _buildComponent(context) : Padding(padding: padding, child: _buildComponent(context));
   }
 
-  NeoDropdownFormField _buildComponent(BuildContext context) {
-    return NeoDropdownFormField(
-      itemList: _getSecurityQuestionList(context),
-      dropdownType: NeoDropdownType.securityQuestion,
-      labelText: labelText.orEmpty,
-      dataKey: dataKey,
-      hint: hint,
-      bottomSheetTitle: bottomSheetTitle,
-      validationErrorMessage: validationErrorMessage,
+  Widget _buildComponent(BuildContext context) {
+    return NeoDropdown(
+      adapter: NeoSecurityQuestionSelectionDropdownAdapter(
+        items: _getSecurityQuestionList(context),
+        onItemSelected: (selectedItemFormData) => context.read<WorkflowFormBloc>().add(
+              WorkflowFormEventUpdateTextFormField(key: dataKey, value: selectedItemFormData),
+            ),
+      ),
     );
   }
 
@@ -64,7 +62,7 @@ class SetSecurityQuestionDropdownFormField extends StatelessWidget {
       .map(
         (e) => NeoDropdownListTileData(
           formData: e.id,
-          displayData: LocalizableText(en: e.descriptionEn, tr: e.descriptionTr, ar: "").localize(),
+          displayData: LocalizableText(en: e.descriptionEn, tr: e.descriptionTr).localize(),
         ),
       )
       .toList();

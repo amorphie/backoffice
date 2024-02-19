@@ -22,7 +22,7 @@ WidgetbookComponent get widgetbookNeoAvatar => WidgetbookComponent(
         WidgetbookUseCase(
           name: 'Default',
           builder: (context) => NeoAvatar(
-            imageUrn: context.knobs.string(label: 'Image Urn', initialValue: NeoAssets.profileWidgetPlaceholder.urn),
+            imageUrn: context.knobs.string(label: 'Image Urn', initialValue: NeoAssets.user24px.urn),
             showImage: context.knobs.boolean(label: "Show Image", initialValue: true),
           ),
         ),

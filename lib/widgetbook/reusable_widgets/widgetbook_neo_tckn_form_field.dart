@@ -13,6 +13,7 @@
  */
 
 import 'package:backoffice/reusable_widgets/neo_tckn_form_field/neo_tckn_form_field.dart';
+import 'package:backoffice/reusable_widgets/neo_text_form_field/model/neo_text_validation_model.dart';
 import 'package:widgetbook/widgetbook.dart';
 
 WidgetbookComponent get widgetbookNeoTcknFormField => WidgetbookComponent(
@@ -23,6 +24,9 @@ WidgetbookComponent get widgetbookNeoTcknFormField => WidgetbookComponent(
           builder: (context) => NeoTcknFormField(
             labelText: context.knobs.stringOrNull(label: 'Label Text', initialValue: 'TCKN / VKN'),
             errorText: context.knobs.stringOrNull(label: 'Error Text', initialValue: 'Yanlış bilgi girdiniz, lütfen kontrol ediniz.'),
+            validations: [
+              NeoTextValidationModel(regex: r"^(?!\s*$).+", message: "Bu alan boş bırakılamaz, lütfen doldurun!"),
+            ],
           ),
         ),
       ],

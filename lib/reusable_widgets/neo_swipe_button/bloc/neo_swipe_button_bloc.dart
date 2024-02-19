@@ -39,12 +39,13 @@ class NeoSwipeButtonBloc extends Bloc<NeoSwipeButtonEvent, NeoSwipeButtonState> 
     on<NeoSwipeButtonEventShowError>((event, emit) {
       // Add event to NeoWidgetEventBus here to enable textfields
       NeoWidgetEventKeys.loginEnableUserInterface.sendEvent();
-      emit(NeoSwipeButtonState(isLoading: false, errorMessage: event.message));
+      emit(const NeoSwipeButtonState(isLoading: false));
     });
   }
 
   _listenForWidgetEvents() {
     _neoWidgetEventSubscription = [
+      (NeoWidgetEventKeys.globalSignalrNetworkError, (_) => add(const NeoSwipeButtonEventShowError())),
       (NeoWidgetEventKeys.neoSwipeButtonStopLoading, (_) => add(NeoSwipeButtonEventStopLoading())),
       (NeoWidgetEventKeys.neoSwipeButtonStartTransaction, (_) => add(NeoSwipeButtonEventStartTransaction())),
     ].listenEvents();

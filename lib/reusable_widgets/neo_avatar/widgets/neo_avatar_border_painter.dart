@@ -1,42 +1,67 @@
-part of '../neo_avatar.dart';
+import 'dart:math';
 
-class _NeoAvatarBorderPainter extends CustomPainter {
-  const _NeoAvatarBorderPainter({
+import 'package:flutter/material.dart';
+import 'package:backoffice/util/neo_util.dart';
+
+enum NeoGradientBorder {
+  green50,
+  green100;
+
+  SweepGradient get gradient => switch (this) {
+        NeoGradientBorder.green50 => SweepGradient(
+            colors: <Color>[
+              NeoColors.borderPrimaryGreen.withOpacity(0),
+              NeoColors.borderPrimaryGreen,
+              NeoColors.borderPrimaryGreen.withOpacity(0),
+              NeoColors.borderPrimaryGreen.withOpacity(0),
+              NeoColors.borderPrimaryGreen,
+              NeoColors.borderPrimaryGreen.withOpacity(0),
+            ],
+            stops: const <double>[
+              0.15,
+              0.2375,
+              0.325,
+              0.575,
+              0.7125,
+              0.85,
+            ],
+            transform: const GradientRotation(pi / 4),
+          ),
+        NeoGradientBorder.green100 => SweepGradient(
+            colors: <Color>[
+              NeoColors.borderPrimaryGreen.withOpacity(0.05),
+              NeoColors.borderPrimaryGreen,
+              NeoColors.borderPrimaryGreen.withOpacity(0.2),
+              NeoColors.borderPrimaryGreen.withOpacity(0.05),
+              NeoColors.borderPrimaryGreen,
+              NeoColors.borderPrimaryGreen.withOpacity(0.2),
+            ],
+            stops: const <double>[
+              0.15,
+              0.2375,
+              0.325,
+              0.575,
+              0.7125,
+              0.85,
+            ],
+            transform: const GradientRotation(pi / 4),
+          ),
+      };
+}
+
+class NeoGradientBorderPainter extends CustomPainter {
+  const NeoGradientBorderPainter({
     required this.width,
+    required this.borderGradient,
   });
 
   final double width;
+  final NeoGradientBorder borderGradient;
 
   @override
   void paint(Canvas canvas, Size size) {
     final rect = Rect.fromLTWH(0.0, 0.0, size.width, size.height);
-    const firstGradientStart = 0.15;
-    const firstGradientEnd = 0.325;
-    const firstGradientMiddle = (firstGradientStart + firstGradientEnd) / 2;
-    const secondGradientStart = 0.575;
-    const secondGradientEnd = 0.85;
-    const secondGradientMiddle = (secondGradientStart + secondGradientEnd) / 2;
-
-    final gradient = SweepGradient(
-      colors: <Color>[
-        NeoColors.borderPrimaryGreen.withOpacity(0),
-        NeoColors.borderPrimaryGreen,
-        NeoColors.borderPrimaryGreen.withOpacity(0),
-        NeoColors.borderPrimaryGreen.withOpacity(0),
-        NeoColors.borderPrimaryGreen,
-        NeoColors.borderPrimaryGreen.withOpacity(0),
-      ],
-      stops: const <double>[
-        firstGradientStart,
-        firstGradientMiddle,
-        firstGradientEnd,
-        secondGradientStart,
-        secondGradientMiddle,
-        secondGradientEnd,
-      ],
-      transform: const GradientRotation(pi / 4),
-    );
-
+    final gradient = borderGradient.gradient;
     final paint = Paint()
       ..shader = gradient.createShader(rect)
       ..strokeCap = StrokeCap.butt

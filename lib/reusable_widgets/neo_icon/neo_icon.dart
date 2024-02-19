@@ -20,8 +20,8 @@ class NeoIcon extends StatelessWidget {
   final String iconUrn;
   final Color? color;
   final EdgeInsetsDirectional padding;
-  final double _width;
-  final double _height;
+  final double? _width;
+  final double? _height;
 
   const NeoIcon({
     required this.iconUrn,
@@ -30,8 +30,8 @@ class NeoIcon extends StatelessWidget {
     double? width,
     double? height,
     super.key,
-  })  : _width = width ?? height ?? NeoDimens.px24,
-        _height = height ?? width ?? NeoDimens.px24;
+  })  : _width = width ?? height,
+        _height = height ?? width;
 
   @override
   Widget build(BuildContext context) {

@@ -11,40 +11,13 @@
  */
 
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get_it/get_it.dart';
 import 'package:meta/meta.dart';
-import 'package:backoffice/core/core_widgets/neo_app/bloc/neo_app_bloc.dart';
-import 'package:backoffice/core/navigation/navigation_helper.dart';
-import 'package:backoffice/util/neo_util.dart';
-import 'package:neo_core/core/util/neo_core_app_constants.dart';
-import 'package:neo_core/core/widgets/neo_transition_listener/neo_transition_listener_widget.dart';
 
 mixin NeoTransitional on Widget {
   String? get transitionId;
 
   @visibleForOverriding
-  Map<String, dynamic> get defaultTransitionParams => {};
-
-  Widget wrapWithTransitionListener({required BuildContext context, required Widget child}) {
-    if (transitionId.isNullOrBlank) {
-      return child;
-    }
-    final appConstants = GetIt.I<NeoCoreAppConstants>();
-    return NeoTransitionListenerWidget(
-      transitionId: transitionId.orEmpty,
-      signalRServerUrl: appConstants.workflowHubUrl,
-      signalRMethodName: appConstants.workflowMethodName,
-      onPageNavigation: (navigationData) => NeoNavigationHelper().navigateWithTransition(context: context, transitionData: navigationData),
-      onLoggedInSuccessfully: () => context.read<NeoAppBloc>().add(const NeoAppEventUpdateLoggedInStatus(isLoggedIn: true)),
-      onError: (errorMessage) => onTransitionError(context, errorMessage),
-      child: child,
-    );
-  }
-
-  /// Triggered when there is an error from SignalR
-  @visibleForOverriding
-  void onTransitionError(BuildContext context, String errorMessage);
+  Map<String, dynamic> getDefaultTransitionParams(BuildContext context) => {};
 
   Future startTransition(BuildContext context, {Map<String, dynamic>? transitionBody});
 }

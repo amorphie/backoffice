@@ -14,6 +14,7 @@ import '../features/bo_detail_page/bo_detail_page.dart';
 import '../features/bo_home_page/bo_home_page.dart';
 import '../features/bo_search_page/bo_search_page.dart';
 import '../models/config/neo_navigation_config_model.dart';
+import 'neo_bo_constants.dart';
 import 'neo_bo_page_id.dart';
 
 class NeoBoCore {
@@ -24,7 +25,7 @@ class NeoBoCore {
   }
 
   static Future<HttpClientConfig> httpClientConfig() async {
-    final httpClientResponse = await get(Uri.parse(AppConstants.httpConfigFilePath));
+    final httpClientResponse = await get(Uri.parse(NeoBoConstants.httpConfigFilePath));
     return HttpClientConfig.fromJson(json.decode(httpClientResponse.body));
   }
 

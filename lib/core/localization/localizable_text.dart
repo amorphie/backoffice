@@ -12,10 +12,7 @@ class LocalizableText {
   @JsonKey(name: "en-EN", defaultValue: "")
   final String en;
 
-  @JsonKey(name: "ar-AR", defaultValue: "")
-  final String ar;
-
-  const LocalizableText({required this.tr, required this.en, required this.ar});
+  const LocalizableText({required this.tr, required this.en});
 
   factory LocalizableText.fromJson(Map<String, dynamic> json) => _$LocalizableTextFromJson(json);
 
@@ -27,7 +24,6 @@ class LocalizableText {
   String _getLocalizedText(Language language) {
     return switch (language) {
       Language.turkish => tr,
-      Language.arabic => ar,
       Language.english => en,
     };
   }

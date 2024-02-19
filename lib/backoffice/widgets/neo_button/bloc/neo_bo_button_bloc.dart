@@ -73,22 +73,10 @@ class NeoBoButtonBloc extends Bloc<NeoBoButtonEvent, NeoBoButtonState> {
   void _listenButtonChangeEnableStatus() {
     _neoWidgetEventSubscription = [
       (
-        NeoWidgetEventKeys.neoButtonChangeEnableStatusEventKey,
+        NeoWidgetEventKeys.neoButtonChangeEnableStateEventKey,
         (event) {
           final status = event.data! as bool;
           add(NeoBoButtonEventChangeEnableButtonStatus(status: status));
-        }
-      ),
-      (
-        NeoWidgetEventKeys.neoButtonStartTransition,
-        (event) {
-          add(
-            NeoBoButtonEventStartTransition(
-              startWorkflow: false,
-              transitionId: event.data! as String,
-              transitionBody: const {},
-            ),
-          );
         }
       ),
     ].listenEvents();

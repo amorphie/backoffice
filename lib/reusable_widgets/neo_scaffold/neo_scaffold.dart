@@ -49,7 +49,9 @@ class NeoScaffold extends StatelessWidget {
   final bool primary;
   final bool? resizeToAvoidBottomInset;
   final String? restorationId;
+  final String? backWidgetEventKey;
   final bool useSafeArea;
+  final bool enableDeviceBack;
   final EdgeInsetsDirectional padding;
 
   const NeoScaffold({
@@ -65,6 +67,7 @@ class NeoScaffold extends StatelessWidget {
     this.drawerEnableOpenDragGesture = true,
     this.drawerScrimColor,
     this.endDrawer,
+    this.backWidgetEventKey,
     this.endDrawerEnableOpenDragGesture = true,
     this.extendBody = false,
     this.extendBodyBehindAppBar = false,
@@ -79,51 +82,58 @@ class NeoScaffold extends StatelessWidget {
     this.resizeToAvoidBottomInset,
     this.restorationId,
     this.useSafeArea = false,
+    this.enableDeviceBack = false,
     this.padding = EdgeInsetsDirectional.zero,
   });
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<NeoScaffoldBloc, NeoScaffoldState>(
-      bloc: NeoScaffoldBloc()..add(const NeoScaffoldEventInitialize()),
-      builder: (context, state) {
-        return AnimatedContainer(
-          duration: AppConstants.defaultAnimationDuration,
-          color: state.backgroundColor ?? backgroundColor,
-          child: PopScope(
-            canPop: false,
-            onPopInvoked: (didPop) {
-              context.read()<NeoScaffoldBloc>().add(const NeoScaffoldEventBackButtonPressed());
-            },
-            child: Scaffold(
-              appBar: appBar,
-              body: _buildBody(),
-              backgroundColor: backgroundColor,
-              bottomNavigationBar: bottomNavigationBar,
-              bottomSheet: bottomSheet,
-              drawer: drawer,
-              drawerDragStartBehavior: drawerDragStartBehavior,
-              drawerEdgeDragWidth: drawerEdgeDragWidth,
-              drawerEnableOpenDragGesture: drawerEnableOpenDragGesture,
-              drawerScrimColor: drawerScrimColor,
-              endDrawer: endDrawer,
-              endDrawerEnableOpenDragGesture: endDrawerEnableOpenDragGesture,
-              extendBody: extendBody,
-              extendBodyBehindAppBar: extendBodyBehindAppBar,
-              floatingActionButton: floatingActionButton,
-              floatingActionButtonAnimator: floatingActionButtonAnimator,
-              floatingActionButtonLocation: floatingActionButtonLocation,
-              onDrawerChanged: onDrawerChanged,
-              onEndDrawerChanged: onEndDrawerChanged,
-              persistentFooterAlignment: persistentFooterAlignment,
-              persistentFooterButtons: persistentFooterButtons,
-              primary: primary,
-              resizeToAvoidBottomInset: resizeToAvoidBottomInset,
-              restorationId: restorationId,
+    return BlocProvider(
+      create: (context) => NeoScaffoldBloc()..add(const NeoScaffoldEventInitialize()),
+      child: BlocBuilder<NeoScaffoldBloc, NeoScaffoldState>(
+        builder: (context, state) {
+          return AnimatedContainer(
+            duration: AppConstants.defaultAnimationDuration,
+            color: state.backgroundColor ?? backgroundColor,
+            child: PopScope(
+              canPop: enableDeviceBack,
+              onPopInvoked: (didPop) {
+                if (didPop) {
+                  // If back navigation was allowed, do nothing.
+                  return;
+                }
+                context.read<NeoScaffoldBloc>().add(NeoScaffoldEventBackButtonPressed(widgetEventKey: backWidgetEventKey));
+              },
+              child: Scaffold(
+                appBar: appBar,
+                body: _buildBody(),
+                backgroundColor: backgroundColor,
+                bottomNavigationBar: bottomNavigationBar,
+                bottomSheet: bottomSheet,
+                drawer: drawer,
+                drawerDragStartBehavior: drawerDragStartBehavior,
+                drawerEdgeDragWidth: drawerEdgeDragWidth,
+                drawerEnableOpenDragGesture: drawerEnableOpenDragGesture,
+                drawerScrimColor: drawerScrimColor,
+                endDrawer: endDrawer,
+                endDrawerEnableOpenDragGesture: endDrawerEnableOpenDragGesture,
+                extendBody: extendBody,
+                extendBodyBehindAppBar: extendBodyBehindAppBar,
+                floatingActionButton: floatingActionButton,
+                floatingActionButtonAnimator: floatingActionButtonAnimator,
+                floatingActionButtonLocation: floatingActionButtonLocation,
+                onDrawerChanged: onDrawerChanged,
+                onEndDrawerChanged: onEndDrawerChanged,
+                persistentFooterAlignment: persistentFooterAlignment,
+                persistentFooterButtons: persistentFooterButtons,
+                primary: primary,
+                resizeToAvoidBottomInset: resizeToAvoidBottomInset,
+                restorationId: restorationId,
+              ),
             ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 

@@ -11,7 +11,6 @@ part 'neo_text_form_field_event.dart';
 part 'neo_text_form_field_state.dart';
 
 class NeoTextFormFieldBloc extends Bloc<NeoTextFormFieldEvent, NeoTextFormFieldState> {
-  String? _error;
   bool? _hasFocus;
   StreamSubscription? _neoWidgetEventSubscription;
   final String? widgetEventKey;
@@ -35,7 +34,7 @@ class NeoTextFormFieldBloc extends Bloc<NeoTextFormFieldEvent, NeoTextFormFieldS
 
   void _onFocusUpdated(NeoTextFormFieldEventUpdateFocus event, Emitter<NeoTextFormFieldState> emit) {
     _hasFocus = event.focus;
-    emit(state.copyWith(hasFocus: _hasFocus, error: _error));
+    emit(state.copyWith(hasFocus: _hasFocus));
   }
 
   void _onChangeObscure(NeoTextFormFieldEventChangeObscureStatus event, Emitter<NeoTextFormFieldState> emit) {

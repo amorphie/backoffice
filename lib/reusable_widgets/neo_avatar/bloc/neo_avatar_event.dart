@@ -17,10 +17,11 @@ sealed class NeoAvatarEvent extends Equatable {
 }
 
 class NeoAvatarEventInitialize extends NeoAvatarEvent {
-  const NeoAvatarEventInitialize();
+  final NeoAvatarDisplayMode displayMode;
+  const NeoAvatarEventInitialize(this.displayMode);
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => [displayMode];
 }
 
 class NeoAvatarEventChangeTextStyles extends NeoAvatarEvent {
@@ -51,6 +52,12 @@ class NeoAvatarEventDeleteAvatarImage extends NeoAvatarEvent {
 
 class NeoAvatarEventGetAvatarImage extends NeoAvatarEvent {
   const NeoAvatarEventGetAvatarImage();
+  @override
+  List<Object?> get props => [];
+}
+
+class NeoAvatarEventGetCustomerNameAndSurname extends NeoAvatarEvent {
+  const NeoAvatarEventGetCustomerNameAndSurname();
   @override
   List<Object?> get props => [];
 }

@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:backoffice/core/navigation/navigation_helper.dart';
-import 'package:backoffice/reusable_widgets/new_badge/new_badge_widget.dart';
+import 'package:backoffice/core/dependency_injection/dependency_injection.dart';
+import 'package:backoffice/core/navigation/neo_navigation_helper.dart';
+import 'package:backoffice/reusable_widgets/neo_badge/model/neo_badge_display_mode.dart';
+import 'package:backoffice/reusable_widgets/neo_badge/neo_badge.dart';
+import 'package:backoffice/reusable_widgets/neo_text/neo_text.dart';
 import 'package:backoffice/reusable_widgets/sub_navigation/models/sub_navigation_component_details.dart';
+import 'package:backoffice/util/neo_util.dart';
 
 class SubNavigationWidget extends StatelessWidget {
   final List<SubNavigationComponentDetails> componentDetailsList;
@@ -25,11 +29,10 @@ class SubNavigationWidget extends StatelessWidget {
 
   Widget _buildNavigationItemRow(SubNavigationComponentDetails componentDetails, BuildContext context) {
     return InkWell(
-      onTap: () => NeoNavigationHelper().navigate(
-        context: context,
-        navigationType: componentDetails.navigationType,
-        navigationPath: componentDetails.navigateTo,
-      ),
+      onTap: () => getIt.get<NeoNavigationHelper>().navigate(
+            navigationType: componentDetails.navigationType,
+            navigationPath: componentDetails.navigateTo,
+          ),
       child: Card(
         elevation: 4,
         shape: RoundedRectangleBorder(
@@ -40,7 +43,7 @@ class SubNavigationWidget extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
+              NeoText(
                 componentDetails.displayName,
                 style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 18),
               ),
@@ -49,10 +52,10 @@ class SubNavigationWidget extends StatelessWidget {
                 child: Row(
                   children: [
                     if (componentDetails.displayNewBadge)
-                      const Padding(
-                        padding: EdgeInsets.only(right: 4.0),
-                        child: NewBadgeWidget(),
-                      ),
+                      const NeoBadge(
+                        text: "New", // STOPSHIP: Add localization
+                        displayMode: NeoBadgeDisplayMode.blackHighlighted,
+                      ).paddingOnly(end: 4.0),
                     const Icon(Icons.arrow_forward_ios_rounded, size: 20),
                   ],
                 ),

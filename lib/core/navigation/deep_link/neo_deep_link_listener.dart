@@ -14,18 +14,9 @@ import 'dart:async';
 
 import 'package:app_links/app_links.dart';
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
-import 'package:backoffice/core/managers/parameter_manager/neo_parameter_manager.dart';
-import 'package:backoffice/core/navigation/models/neo_navigation_group_config.dart';
-import 'package:backoffice/core/navigation/navigation_helper.dart';
-import 'package:neo_core/core/navigation/i_neo_navigation_helper.dart';
-import 'package:neo_core/core/navigation/models/neo_navigation_type.dart';
-
-abstract class _Constants {
-  static const String deepLinkSchema = "neobank://";
-  static const String loginNavigationPath = "login";
-  static const String deepLinkCachedKey = "deepLinkNavigationPath";
-}
+import 'package:backoffice/core/dependency_injection/dependency_injection.dart';
+import 'package:backoffice/core/navigation/neo_navigation_helper.dart';
+import 'package:backoffice/core/navigation/usecases/navigate_with_deeplink_usecase.dart';
 
 class NeoDeepLinkListener extends StatefulWidget {
   const NeoDeepLinkListener({required this.child, required this.navigatorKey, Key? key}) : super(key: key);
@@ -40,7 +31,7 @@ class NeoDeepLinkListener extends StatefulWidget {
 class _NeoDeepLinkListenerState extends State<NeoDeepLinkListener> {
   StreamSubscription<Uri>? _deepLinkUriStream;
   late final AppLinks appLinks;
-  late final INeoNavigationHelper neoNavigationHelper;
+  late final NeoNavigationHelper neoNavigationHelper = getIt.get<NeoNavigationHelper>();
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +42,6 @@ class _NeoDeepLinkListenerState extends State<NeoDeepLinkListener> {
   void initState() {
     super.initState();
     appLinks = AppLinks();
-    neoNavigationHelper = NeoNavigationHelper();
     _listenForDeepLinks();
   }
 
@@ -68,25 +58,7 @@ class _NeoDeepLinkListenerState extends State<NeoDeepLinkListener> {
   }
 
   Future<void> openAppLink(Uri uri) async {
-    final context = widget.navigatorKey.currentContext;
-    if (!uri.toString().startsWith(_Constants.deepLinkSchema)) {
-      return;
-    }
-    final navigationPath = uri.toString().substring(_Constants.deepLinkSchema.length);
-
-    if (context != null && navigationPath.isNotEmpty) {
-      final isLoginRequired = await GetIt.I<NeoNavigationGroupConfig>().isLoginRequired(navigationPath);
-      if (isLoginRequired) {
-        GetIt.I<NeoParameterManager>().writeToCache(_Constants.deepLinkCachedKey, navigationPath);
-      }
-      if (context.mounted) {
-        await neoNavigationHelper.navigate(
-          context: context,
-          navigationType: NeoNavigationType.pushReplacement,
-          navigationPath: isLoginRequired ? _Constants.loginNavigationPath : navigationPath,
-        );
-      }
-    }
+    await NavigateWithDeeplinkUseCase().call(widget.navigatorKey, uri.toString());
   }
 
   @override

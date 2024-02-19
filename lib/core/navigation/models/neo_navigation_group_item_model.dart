@@ -16,7 +16,7 @@ import 'package:expressions/expressions.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:backoffice/core/dependency_injection/dependency_injection.dart';
 import 'package:backoffice/core/managers/parameter_manager/neo_parameter_manager.dart';
-import 'package:backoffice/core/navigation/models/neo_navigation_item_audience.dart';
+import 'package:backoffice/features/login/data/neo_auth_status.dart';
 import 'package:backoffice/util/neo_util.dart';
 import 'package:neo_core/core/storage/neo_core_secure_storage.dart';
 
@@ -50,7 +50,7 @@ class NeoNavigationGroupItemModel {
   final String action;
 
   @JsonKey(name: "audience", defaultValue: [], fromJson: parseAudienceFromJson)
-  final List<NeoNavigationItemAudience> audience;
+  final List<NeoAuthStatus> audience;
 
   @JsonKey(name: "is-new", defaultValue: false)
   final bool isNew;
@@ -77,17 +77,17 @@ class NeoNavigationGroupItemModel {
   factory NeoNavigationGroupItemModel.fromJson(Map<String, dynamic> json) => _$NeoNavigationGroupItemModelFromJson(json);
 }
 
-List<NeoNavigationItemAudience> parseAudienceFromJson(List<dynamic> audienceMap) {
+List<NeoAuthStatus> parseAudienceFromJson(List<dynamic> audienceMap) {
   final audienceList = audienceMap.map((e) => e as String).toList();
-  return audienceList.map((e) => NeoNavigationItemAudience.values.firstWhere((element) => element.key == e)).toList();
+  return audienceList.map((e) => NeoAuthStatus.values.firstWhere((element) => element.key == e)).toList();
 }
 
 extension NeoNavigationGroupItemModelExtension on NeoNavigationGroupItemModel {
   Future<bool> get isAvailableByAudience async {
     final authToken = await NeoCoreSecureStorage().getAuthToken();
-    final notLoggedInRequirement = audience.contains(NeoNavigationItemAudience.notLogin);
+    final notLoggedInRequirement = audience.contains(NeoAuthStatus.notLoggedIn);
     final oneFactorAuthStatus = authToken.isNotNull && authToken!.isNotEmpty;
-    final onFactorAuthRequirement = audience.contains(NeoNavigationItemAudience.oneFactorAuth);
+    final onFactorAuthRequirement = audience.contains(NeoAuthStatus.oneFactorAuth);
     return notLoggedInRequirement || (oneFactorAuthStatus && onFactorAuthRequirement);
   }
 

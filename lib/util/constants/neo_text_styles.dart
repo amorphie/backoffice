@@ -1,14 +1,14 @@
 /*
  * neo_ui
- * 
+ *
  * Created on 17/11/2023.
  * Copyright (c) 2023 Commencis. All rights reserved.
- * 
+ *
  * Save to the extent permitted by law, you may not use, copy, modify,
  * distribute or create derivative works of this material or any part
  * of it without the prior written consent of Commencis.
  * Any reproduction of this material must contain this notice.
- * 
+ *
  */
 
 import 'package:flutter/material.dart';
@@ -113,4 +113,79 @@ abstract class NeoTextStyles {
   static final bodyTwelveSemibold = defaultTextStyle.copyWith(fontSize: 12.0, fontWeight: FontWeight.w600);
   static final bodyTwelveMedium = defaultTextStyle.copyWith(fontSize: 12.0, fontWeight: FontWeight.w500);
   static final bodyTwelveRegular = defaultTextStyle.copyWith(fontSize: 12.0, fontWeight: FontWeight.w400);
+
+  /// B11
+  static final bodyElevenBold = defaultTextStyle.copyWith(fontSize: 11.0, fontWeight: FontWeight.w700);
+  static final bodyElevenSemibold = defaultTextStyle.copyWith(fontSize: 11.0, fontWeight: FontWeight.w600);
+  static final bodyElevenMedium = defaultTextStyle.copyWith(fontSize: 11.0, fontWeight: FontWeight.w500);
+  static final bodyElevenRegular = defaultTextStyle.copyWith(fontSize: 11.0, fontWeight: FontWeight.w400);
+
+  static TextStyle fromString(String? string) {
+    return switch (string) {
+      "headlineOneBold" => headlineOneBold,
+      "headlineOneSemibold" => headlineOneSemibold,
+      "headlineOneMedium" => headlineOneMedium,
+      "headlineOneRegular" => headlineOneRegular,
+      "headlineTwoBold" => headlineTwoBold,
+      "headlineTwoSemibold" => headlineTwoSemibold,
+      "headlineTwoMedium" => headlineTwoMedium,
+      "headlineTwoRegular" => headlineTwoRegular,
+      "headlineThreeBold" => headlineThreeBold,
+      "headlineThreeSemibold" => headlineThreeSemibold,
+      "headlineThreeMedium" => headlineThreeMedium,
+      "headlineThreeRegular" => headlineThreeRegular,
+      "titleTwentyFourBold" => titleTwentyFourBold,
+      "titleTwentyFourSemibold" => titleTwentyFourSemibold,
+      "titleTwentyFourMedium" => titleTwentyFourMedium,
+      "titleTwentyFourRegular" => titleTwentyFourRegular,
+      "titleTwentyBold" => titleTwentyBold,
+      "titleTwentySemibold" => titleTwentySemibold,
+      "titleTwentyMedium" => titleTwentyMedium,
+      "titleTwentyRegular" => titleTwentyRegular,
+      "titleEighteenBold" => titleEighteenBold,
+      "titleEighteenSemibold" => titleEighteenSemibold,
+      "titleEighteenMedium" => titleEighteenMedium,
+      "titleEighteenRegular" => titleEighteenRegular,
+      "titleSixteenBold" => titleSixteenBold,
+      "titleSixteenSemibold" => titleSixteenSemibold,
+      "titleSixteenMedium" => titleSixteenMedium,
+      "titleSixteenRegular" => titleSixteenRegular,
+      "titleTwelveBold" => titleTwelveBold,
+      "titleTwelveSemibold" => titleTwelveSemibold,
+      "titleTwelveMedium" => titleTwelveMedium,
+      "labelEighteenBold" => labelEighteenBold,
+      "labelEighteenSemibold" => labelEighteenSemibold,
+      "labelEighteenMedium" => labelEighteenMedium,
+      "labelEighteenRegular" => labelEighteenRegular,
+      "labelSixteenBold" => labelSixteenBold,
+      "labelSixteenSemibold" => labelSixteenSemibold,
+      "labelSixteenMedium" => labelSixteenMedium,
+      "labelSixteenRegular" => labelSixteenRegular,
+      "labelFourteenBold" => labelFourteenBold,
+      "labelFourteenSemibold" => labelFourteenSemibold,
+      "labelFourteenMedium" => labelFourteenMedium,
+      "labelFourteenRegular" => labelFourteenRegular,
+      "bodyEighteenBold" => bodyEighteenBold,
+      "bodyEighteenSemibold" => bodyEighteenSemibold,
+      "bodyEighteenMedium" => bodyEighteenMedium,
+      "bodyEighteenRegular" => bodyEighteenRegular,
+      "bodySixteenBold" => bodySixteenBold,
+      "bodySixteenSemibold" => bodySixteenSemibold,
+      "bodySixteenMedium" => bodySixteenMedium,
+      "bodySixteenRegular" => bodySixteenRegular,
+      "bodyFourteenBold" => bodyFourteenBold,
+      "bodyFourteenSemibold" => bodyFourteenSemibold,
+      "bodyFourteenMedium" => bodyFourteenMedium,
+      "bodyFourteenRegular" => bodyFourteenRegular,
+      "bodyTwelveBold" => bodyTwelveBold,
+      "bodyTwelveSemibold" => bodyTwelveSemibold,
+      "bodyTwelveMedium" => bodyTwelveMedium,
+      "bodyTwelveRegular" => bodyTwelveRegular,
+      "bodyElevenBold" => bodyElevenBold,
+      "bodyElevenSemibold" => bodyElevenSemibold,
+      "bodyElevenMedium" => bodyElevenMedium,
+      "bodyElevenRegular" => bodyElevenRegular,
+      _ => defaultTextStyle,
+    };
+  }
 }

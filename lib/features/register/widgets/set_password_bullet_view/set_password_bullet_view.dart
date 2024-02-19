@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:backoffice/core/localization/localizable_text.dart';
+import 'package:backoffice/core/localization/models/localization_key.dart';
 import 'package:backoffice/features/register/widgets/set_password_bullet_view/bloc/set_password_bullet_view_bloc.dart';
 import 'package:backoffice/reusable_widgets/neo_icon/neo_icon.dart';
+import 'package:backoffice/reusable_widgets/neo_text/neo_text.dart';
 import 'package:backoffice/util/constants/neo_constants.dart';
 import 'package:backoffice/util/extensions/widget_extensions.dart';
 import 'package:backoffice/util/neo_assets.dart';
@@ -10,16 +11,20 @@ import 'package:backoffice/util/neo_assets.dart';
 abstract class _Constants {
   static const double dotSize = 6;
   static const int itemMaxLines = 3;
+  static const int loginPasswordLength = 6;
+  static const int debitCardPinLength = 4;
 }
 
 class SetPasswordBulletView extends StatelessWidget {
   final EdgeInsetsDirectional? padding;
   final String passwordWidgetEventKey;
   final String repeatedPasswordWidgetEventKey;
+  final int passwordLength;
 
   const SetPasswordBulletView({
     required this.passwordWidgetEventKey,
     required this.repeatedPasswordWidgetEventKey,
+    required this.passwordLength,
     super.key,
     this.padding,
   });
@@ -30,33 +35,22 @@ class SetPasswordBulletView extends StatelessWidget {
       create: (context) => SetPasswordBulletViewBloc(
         eventBusPasswordInputKey: passwordWidgetEventKey,
         eventBusRepeatedPasswordInputKey: repeatedPasswordWidgetEventKey,
+        passwordLength: passwordLength,
       ),
       child: BlocBuilder<SetPasswordBulletViewBloc, SetPasswordBulletViewState>(
         builder: (context, state) {
           return Column(
             children: [
               _buildBulletItemRow(
-                bulletText: const LocalizableText(
-                  tr: "Şifreniz 6 karakter olmalıdır.",
-                  en: "Your password must be 6 characters.",
-                  ar: "يجب أن تتكون كلمة المرور الخاصة بك من 6 أحرف.",
-                ).localize(),
+                bulletText: getBulletTextForCharLengthRule(passwordLength),
                 bulletStatus: state.isCharacterCountMatch,
               ),
               _buildBulletItemRow(
-                bulletText: const LocalizableText(
-                  tr: "Şifreniz numerik olmalıdır.",
-                  en: "Your password must be numeric.",
-                  ar: "كلمة المرور الخاصة بك يجب أن تكون رقمية.",
-                ).localize(),
+                bulletText: LocalizationKey.loginNewPasswordRule2Text.loc(),
                 bulletStatus: state.isPasswordNumerical,
               ),
               _buildBulletItemRow(
-                bulletText: const LocalizableText(
-                  tr: "Şifreniz ardışık ve tekrar rakamlar içermemelidir.",
-                  en: "Your password should not contain consecutive and repeated digits.",
-                  ar: "يجب ألا تحتوي كلمة المرور الخاصة بك على أرقام متتالية ومتكررة.",
-                ).localize(),
+                bulletText: LocalizationKey.loginNewPasswordRule3Text.loc(),
                 bulletStatus: state.isNotConsecutiveAndRepeated,
               ),
             ],
@@ -71,24 +65,34 @@ class SetPasswordBulletView extends StatelessWidget {
       children: [
         if (bulletStatus != null)
           NeoIcon(
-            iconUrn: bulletStatus ? NeoAssets.tick01.urn : NeoAssets.cancel01.urn,
-            width: NeoDimens.px20,
+            iconUrn: bulletStatus ? NeoAssets.check20px.urn : NeoAssets.close20px.urn,
             color: bulletStatus ? NeoColors.iconSuccess : NeoColors.iconDanger,
           )
         else
           Container(
             width: _Constants.dotSize,
             height: _Constants.dotSize,
-            decoration: const BoxDecoration(shape: BoxShape.circle, color: NeoColors.bgDark),
-          ).paddingOnly(end: NeoDimens.px4),
+            decoration: const BoxDecoration(shape: BoxShape.circle, color: NeoColors.bgDarker),
+          ).paddingOnly(end: NeoDimens.px8),
         Flexible(
-          child: Text(
+          child: NeoText(
             bulletText,
             maxLines: _Constants.itemMaxLines,
-            style: NeoTextStyles.bodyTwelveMedium.apply(color: NeoColors.textNeutral),
+            style: NeoTextStyles.bodyTwelveMedium,
           ),
         ),
       ],
     ).paddingSymmetric(vertical: NeoDimens.px4);
+  }
+
+  String getBulletTextForCharLengthRule(int passwordLength) {
+    switch (passwordLength) {
+      case _Constants.loginPasswordLength:
+        return LocalizationKey.loginNewPasswordRule1Text.loc();
+      case _Constants.debitCardPinLength:
+        return LocalizationKey.debitCardSettingsPinChangeCharacterText.loc();
+      default:
+        return LocalizationKey.loginNewPasswordRule1Text.loc();
+    }
   }
 }

@@ -36,11 +36,9 @@ class NeoSuccessPage extends StatelessWidget {
               Expanded(
                 child: DecoratedBox(
                   decoration: BoxDecoration(
-                    color: NeoColors.colorBaseWhite,
+                    color: NeoColors.baseWhite,
                     borderRadius: BorderRadius.circular(NeoDimens.px20),
-                    boxShadow: const [
-                      BoxShadow(color: NeoColors.borderDarker, blurRadius: NeoDimens.px4),
-                    ],
+                    boxShadow: const [NeoShadows.xl],
                   ),
                   child: Column(
                     children: [

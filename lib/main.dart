@@ -10,40 +10,39 @@
  * Any reproduction of this material must contain this notice.
  */
 
-import 'dart:developer';
-
-import 'package:flutter/foundation.dart';
+import 'package:backoffice/backoffice/core/neo_bo_page_id.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:backoffice/core/core_widgets/neo_app/bloc/neo_app_bloc.dart';
 import 'package:backoffice/core/core_widgets/neo_session_expiration_listener/neo_session_expiration_listener.dart';
+import 'package:backoffice/core/core_widgets/neo_widget_event_listener/neo_widget_event_listener.dart';
 import 'package:backoffice/core/dependency_injection/dependency_injection.dart';
-import 'package:backoffice/core/dynamic_widget_system/registerers/custom_arg_processor_registerer.dart';
-import 'package:backoffice/core/dynamic_widget_system/registerers/custom_widget_registerer.dart';
+import 'package:backoffice/core/environment_variables/neo_environment_variable.dart';
+import 'package:backoffice/core/handlers/wf_loading_overlay_handler.dart';
 import 'package:backoffice/core/localization/bloc/localization_bloc.dart';
 import 'package:backoffice/core/localization/language.dart';
 import 'package:backoffice/core/navigation/deep_link/neo_deep_link_listener.dart';
-import 'package:backoffice/core/navigation/navigation_helper.dart';
+import 'package:backoffice/core/navigation/neo_navigation_helper.dart';
 import 'package:backoffice/core/navigation/route_builder/back_navigation_page_route_builder.dart';
-import 'package:backoffice/core/neo_secure_storage/neo_secure_storage.dart';
+import 'package:backoffice/core/navigation/usecases/navigate_with_deeplink_usecase.dart';
 import 'package:backoffice/core/pages/neo_component_page.dart';
 import 'package:backoffice/core/pages/neo_page_id.dart';
 import 'package:backoffice/core/pages/neo_workflow_page.dart';
-import 'package:backoffice/features/account_details/account_details_page_route.dart';
-import 'package:backoffice/features/home/routing/home_page_route.dart';
+import 'package:backoffice/features/login/data/neo_auth_status.dart';
+import 'package:backoffice/features/login/usecase/get_initial_auth_status_usecase.dart';
 import 'package:backoffice/features/photo_selection_verify_page/photo_selection_verify_page_route.dart';
-import 'package:backoffice/features/splash/splash_page_route.dart';
-import 'package:backoffice/features/welcome_page/welcome_page_route.dart';
-import 'package:backoffice/util/neo_environment.dart';
-import 'package:backoffice/util/neo_http_overrides.dart';
+import 'package:backoffice/features/splash/usecases/init_app_in_splash_usecase.dart';
+import 'package:backoffice/reusable_widgets/neo_popup/usecases/show_general_error_popup_usecase.dart';
+import 'package:backoffice/util/constants/neo_widget_event_keys.dart';
 import 'package:backoffice/util/neo_util.dart';
 import 'package:neo_core/core/analytics/neo_logger.dart';
 import 'package:neo_core/core/navigation/models/signalr_transition_data.dart';
-import 'package:neo_core/core/util/neo_core_app_constants.dart';
-import 'package:neo_core/core/widgets/neo_core_app/neo_core_app.dart';
+import 'package:neo_core/core/network/neo_network.dart';
 import 'package:neo_core/core/widgets/neo_core_firebase_messaging/neo_core_firebase_messaging.dart';
-import 'package:neo_core/neo_core.dart';
+import 'package:neo_core/core/widgets/neo_transition_listener/neo_transition_listener_widget.dart';
 
 import 'backoffice/core/neo_bo_core.dart';
 
@@ -51,96 +50,82 @@ abstract class _NeoCoreConstant {
   static const androidDefaultIcon = "@mipmap/ic_launcher";
 }
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  final flavor = await Environment.getEnvironment();
-  if (flavor != EnvironmentType.prod) {
-    await NeoHttpOverrides.addSystemProxy();
-  }
-  await NeoBoCore.init();
+final _navigatorKey = GlobalKey<NavigatorState>();
 
-  await configureDependencies();
-  await _initBurganSDKs();
-  CustomWidgetRegisterer().init();
-  CustomArgProcessorRegisterer().init();
-  final isLoggedIn = await NeoCoreSecureStorage().getAuthToken() != null;
+void main() async {
+  final WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  final splashResult = await InitAppInSplashUseCase().call(_navigatorKey);
+  final authStatus = await GetInitialAuthStatusUseCase().call();
+  FlutterNativeSplash.remove();
+
   runApp(
     MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => NeoAppBloc(isLoggedIn: isLoggedIn)),
+        BlocProvider(create: (context) => NeoAppBloc(authStatus: authStatus)..add(const NeoAppEventInit())),
         BlocProvider(create: (context) => LocalizationBloc()..add(LocalizationEventInit())),
       ],
-      child: MyApp(),
+      child: MyApp(initialTransitionData: splashResult?.initialTransitionData),
     ),
   );
 }
 
-Future _initBurganSDKs() async {
-  try {
-    await NeoCore.init();
-    await NeoSecureStorage().init();
-  } catch (e) {
-    log("NeoCore init Error", name: "NeoCore");
-  }
-  if (kDebugMode) {
-    await NeoLogger().init();
-  } else {
-    await NeoLogger().init(enableCrashlytics: true, enablePosthog: true);
-  }
-}
-
 class MyApp extends StatelessWidget {
-  MyApp({super.key});
+  const MyApp({super.key, this.initialTransitionData});
 
-  final navigatorKey = GlobalKey<NavigatorState>();
+  final SignalrTransitionData? initialTransitionData;
 
   @override
   Widget build(BuildContext context) {
-    return NeoCoreApp(
-      appConstants: NeoCoreAppConstants(
-        workflowHubUrl: AppConstants.workflowHubUrl,
-        workflowMethodName: AppConstants.workflowMethodName,
-      ),
-      neoNavigationHelper: NeoNavigationHelper(),
-      child: BlocBuilder<NeoAppBloc, NeoAppState>(
-        builder: (context, state) {
-          return NeoDeepLinkListener(
-            navigatorKey: navigatorKey,
-            child: NeoCoreFirebaseMessaging(
-              onTokenChange: (String token) {
-                // STOPSHIP: Send token to BFF
-                if (kDebugMode) {
-                  print("TOKEN: ");
-                  print(token);
-                }
-              },
-              androidDefaultIcon: _NeoCoreConstant.androidDefaultIcon,
-              child: BlocBuilder<LocalizationBloc, LocalizationState>(
-                builder: (context, state) {
-                  return NeoSessionExpirationListener(
-                    navigatorKey: navigatorKey,
-                    child: MaterialApp(
-                      debugShowCheckedModeBanner: false,
-                      navigatorKey: navigatorKey,
-                      title: 'Burgan Template',
-                      theme: AppTheme.light(context),
-                      locale: state.language.locale,
-                      localizationsDelegates: const [
-                        GlobalMaterialLocalizations.delegate,
-                        GlobalWidgetsLocalizations.delegate,
-                        GlobalCupertinoLocalizations.delegate,
-                      ],
-                      supportedLocales: Language.values.map((e) => e.locale),
-                      initialRoute: NeoPageId.splash,
-                      onGenerateRoute: _onGenerateRoutes,
-                      navigatorObservers: NeoLogger().observers,
-                    ),
-                  );
-                },
+    return NeoTransitionListenerWidget(
+      neoNetworkManager: getIt.get<NeoNetworkManager>(),
+      signalRServerUrl: NeoEnvironmentVariable.workflowHubUrl.value,
+      signalRMethodName: NeoEnvironmentVariable.workflowMethodName.value,
+      onPageNavigation: _handleTransitionNavigation,
+      onLoggedInSuccessfully: () => _navigatorKey.currentContext?.read<NeoAppBloc>().add(const NeoAppEventUpdateAuthStatus(authStatus: NeoAuthStatus.twoFactorAuth)),
+      onError: _handleTransitionError,
+      onLoadingStatusChanged: _onLoadingStatusChanged,
+      child: NeoWidgetEventListener(
+        navigatorKey: _navigatorKey,
+        child: BlocBuilder<NeoAppBloc, NeoAppState>(
+          buildWhen: (context, state) => false,
+          builder: (context, state) {
+            return NeoDeepLinkListener(
+              navigatorKey: _navigatorKey,
+              child: NeoCoreFirebaseMessaging(
+                networkManager: getIt.get<NeoNetworkManager>(),
+                androidDefaultIcon: _NeoCoreConstant.androidDefaultIcon,
+                onDeeplinkNavigation: (deeplinkUri) => NavigateWithDeeplinkUseCase().call(_navigatorKey, deeplinkUri),
+                child: BlocBuilder<LocalizationBloc, LocalizationState>(
+                  buildWhen: (previousState, currentState) => previousState.language != currentState.language,
+                  builder: (context, state) {
+                    return NeoSessionExpirationListener(
+                      navigatorKey: _navigatorKey,
+                      child: MaterialApp(
+                        debugShowCheckedModeBanner: false,
+                        builder: FToastBuilder(),
+                        navigatorKey: _navigatorKey,
+                        title: 'Burgan Template',
+                        theme: AppTheme.light(context),
+                        locale: state.language.locale,
+                        localizationsDelegates: const [
+                          GlobalMaterialLocalizations.delegate,
+                          GlobalWidgetsLocalizations.delegate,
+                          GlobalCupertinoLocalizations.delegate,
+                        ],
+                        supportedLocales: Language.values.map((e) => e.locale),
+                        onGenerateRoute: _onGenerateRoutes,
+                        initialRoute: NeoBoPageId.boHome,
+                        // onGenerateInitialRoutes: (_) => [_buildWorkflowPageRoute(initialTransitionData)],
+                        navigatorObservers: NeoLogger().observers,
+                      ),
+                    );
+                  },
+                ),
               ),
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     );
   }
@@ -153,40 +138,36 @@ class MyApp extends StatelessWidget {
       return boRoute;
     }
     switch (transitionData?.navigationPath ?? routeSettings.name) {
-      // STOPSHIP: Delete this demo pages
-      case NeoPageId.accountFirst:
-        return MaterialPageRoute(
-          builder: (context) => const NeoComponentPage(pageId: NeoPageId.accountFirst),
-        );
-      case NeoPageId.accountSecond:
-        return MaterialPageRoute(
-          builder: (context) => const NeoWorkflowPage(source: "state", pageId: "Flutter-Component-account-create-test2"),
-        );
-      case NeoPageId.accountThird:
-        return MaterialPageRoute(
-          builder: (context) => const NeoWorkflowPage(
-            source: "state",
-            pageId: "Flutter-component-account-create-approval",
-          ),
-        );
-      case NeoPageId.accountDetails:
-        return MaterialPageRoute(
-          builder: (context) => AccountDetailsPageRoute(
-            arguments: args,
-          ),
-        );
-
-      case NeoPageId.splash:
-        return MaterialPageRoute(builder: (context) => const SplashPageRoute());
-      case NeoPageId.welcome:
-        return MaterialPageRoute(builder: (context) => const WelcomePageRoute());
+      // TODO: Order pageIds alphabetically to prevent possible conflicts!
+      case NeoPageId.debitCardDashboard:
+        return MaterialPageRoute(builder: (context) => const NeoComponentPage(pageId: NeoPageId.debitCardDashboard));
+      case NeoPageId.debitCardTransactions:
+        return MaterialPageRoute(builder: (context) => const NeoComponentPage(pageId: NeoPageId.debitCardTransactions));
       case NeoPageId.home:
-        return MaterialPageRoute(builder: (context) => const HomePageRoute());
-      case NeoPageId.photoSelectionVerify:
+        return MaterialPageRoute(builder: (context) => const NeoComponentPage(pageId: NeoPageId.home));
+      case NeoPageId.otherTransactions:
+        return MaterialPageRoute(builder: (context) => const NeoComponentPage(pageId: NeoPageId.otherTransactions));
+      case NeoPageId.otherTransactionsDocuments:
         return MaterialPageRoute(
-          builder: (context) => PhotoSelectionVerifyPageRoute(
-            arguments: args,
-          ),
+          builder: (context) => const NeoComponentPage(pageId: NeoPageId.otherTransactionsDocuments),
+        );
+      case NeoPageId.permissions:
+        return MaterialPageRoute(builder: (context) => const NeoComponentPage(pageId: NeoPageId.permissions));
+      case NeoPageId.personalInformation:
+        return MaterialPageRoute(builder: (context) => const NeoComponentPage(pageId: NeoPageId.personalInformation));
+      case NeoPageId.photoSelectionVerify:
+        return MaterialPageRoute(builder: (context) => PhotoSelectionVerifyPageRoute(arguments: args));
+      case NeoPageId.settings:
+        return MaterialPageRoute(builder: (context) => const NeoComponentPage(pageId: NeoPageId.settings));
+      case NeoPageId.settingsAboutOnMobile:
+        return MaterialPageRoute(builder: (context) => const NeoComponentPage(pageId: NeoPageId.settingsAboutOnMobile));
+      case NeoPageId.settingsApplication:
+        return MaterialPageRoute(builder: (context) => const NeoComponentPage(pageId: NeoPageId.settingsApplication));
+      case NeoPageId.settingsNotifications:
+        return MaterialPageRoute(builder: (context) => const NeoComponentPage(pageId: NeoPageId.settingsNotifications));
+      case NeoPageId.settingsUsedTechnologies:
+        return MaterialPageRoute(
+          builder: (context) => const NeoComponentPage(pageId: NeoPageId.settingsUsedTechnologies),
         );
       default:
         return _buildWorkflowPageRoute(transitionData);
@@ -211,5 +192,27 @@ class MyApp extends StatelessWidget {
       pageId: transitionData.navigationPath,
       initialData: transitionData.initialData,
     );
+  }
+
+  void _handleTransitionNavigation(navigationData) {
+    getIt.get<NeoNavigationHelper>().navigateWithTransition(transitionData: navigationData);
+  }
+
+  void _handleTransitionError(NeoError neoError) {
+    NeoWidgetEventKeys.globalSignalrNetworkError.sendEvent(data: neoError);
+    if (_navigatorKey.currentContext != null) {
+      ShowGeneralErrorPopupUseCase(neoError: neoError).call(_navigatorKey.currentContext!);
+    }
+  }
+
+  void _onLoadingStatusChanged({required bool displayLoading}) {
+    if (displayLoading) {
+      final context = _navigatorKey.currentContext;
+      if (context != null) {
+        WfLoadingOverlayHandler.showOverlay(context);
+      }
+    } else {
+      WfLoadingOverlayHandler.hide();
+    }
   }
 }

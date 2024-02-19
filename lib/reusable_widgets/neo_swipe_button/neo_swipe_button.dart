@@ -19,6 +19,7 @@ import 'package:backoffice/reusable_widgets/neo_button/i_neo_button.dart';
 import 'package:backoffice/reusable_widgets/neo_icon/neo_icon.dart';
 import 'package:backoffice/reusable_widgets/neo_swipe_button/bloc/neo_swipe_button_bloc.dart';
 import 'package:backoffice/reusable_widgets/neo_swipe_button/widgets/gradiant_circular_loading_indicator.dart';
+import 'package:backoffice/reusable_widgets/neo_text/neo_text.dart';
 import 'package:backoffice/util/constants/neo_widget_event_keys.dart';
 import 'package:backoffice/util/neo_util.dart';
 import 'package:neo_core/core/workflow_form/bloc/workflow_form_bloc.dart';
@@ -109,10 +110,5 @@ class _NeoTransitionSwipeButton extends INeoButton {
   }
 
   @override
-  void onTransitionError(BuildContext context, String errorMessage) {
-    context.read<NeoSwipeButtonBloc>().add(NeoSwipeButtonEventShowError(message: errorMessage));
-  }
-
-  @override
-  Map<String, dynamic> get defaultTransitionParams => {...super.defaultTransitionParams, ...transitionParams};
+  Map<String, dynamic> getDefaultTransitionParams(BuildContext context) => {...super.getDefaultTransitionParams(context), ...transitionParams};
 }

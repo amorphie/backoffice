@@ -63,12 +63,13 @@ class NeoButtonBuilder extends _NeoButtonBuilder {
     return NeoButton(
       autoTriggerTransition: model.autoTriggerTransition,
       displayMode: model.displayMode,
-      enabled: model.enabled,
+      enableState: model.enableState,
       formValidationRequired: model.formValidationRequired,
       iconLeftUrn: model.iconLeftUrn,
       iconRightUrn: model.iconRightUrn,
       key: key,
       labelText: model.labelText,
+      onTap: model.onTap,
       padding: model.padding,
       size: model.size,
       startWorkflow: model.startWorkflow,
@@ -84,11 +85,12 @@ class JsonNeoButton extends JsonWidgetData {
     JsonWidgetRegistry? registry,
     this.autoTriggerTransition = true,
     this.displayMode = NeoButtonDisplayMode.primary,
-    this.enabled = true,
+    this.enableState = NeoButtonEnableState.enabled,
     this.formValidationRequired = false,
     this.iconLeftUrn,
     this.iconRightUrn,
     this.labelText = "",
+    this.onTap,
     this.padding,
     this.size = NeoButtonSize.medium,
     this.startWorkflow = false,
@@ -99,11 +101,12 @@ class JsonNeoButton extends JsonWidgetData {
             {
               'autoTriggerTransition': autoTriggerTransition,
               'displayMode': displayMode,
-              'enabled': enabled,
+              'enableState': enableState,
               'formValidationRequired': formValidationRequired,
               'iconLeftUrn': iconLeftUrn,
               'iconRightUrn': iconRightUrn,
               'labelText': labelText,
+              'onTap': onTap,
               'padding': padding,
               'size': size,
               'startWorkflow': startWorkflow,
@@ -119,11 +122,12 @@ class JsonNeoButton extends JsonWidgetData {
               {
                 'autoTriggerTransition': autoTriggerTransition,
                 'displayMode': displayMode,
-                'enabled': enabled,
+                'enableState': enableState,
                 'formValidationRequired': formValidationRequired,
                 'iconLeftUrn': iconLeftUrn,
                 'iconRightUrn': iconRightUrn,
                 'labelText': labelText,
+                'onTap': onTap,
                 'padding': padding,
                 'size': size,
                 'startWorkflow': startWorkflow,
@@ -142,7 +146,7 @@ class JsonNeoButton extends JsonWidgetData {
 
   final NeoButtonDisplayMode displayMode;
 
-  final bool enabled;
+  final NeoButtonEnableState enableState;
 
   final bool formValidationRequired;
 
@@ -151,6 +155,8 @@ class JsonNeoButton extends JsonWidgetData {
   final String? iconRightUrn;
 
   final String labelText;
+
+  final Function? onTap;
 
   final EdgeInsetsDirectional? padding;
 
@@ -168,11 +174,12 @@ class NeoButtonBuilderModel extends JsonWidgetBuilderModel {
     super.args, {
     this.autoTriggerTransition = true,
     this.displayMode = NeoButtonDisplayMode.primary,
-    this.enabled = true,
+    this.enableState = NeoButtonEnableState.enabled,
     this.formValidationRequired = false,
     this.iconLeftUrn,
     this.iconRightUrn,
     this.labelText = "",
+    this.onTap,
     this.padding,
     this.size = NeoButtonSize.medium,
     this.startWorkflow = false,
@@ -184,7 +191,7 @@ class NeoButtonBuilderModel extends JsonWidgetBuilderModel {
 
   final NeoButtonDisplayMode displayMode;
 
-  final bool enabled;
+  final NeoButtonEnableState enableState;
 
   final bool formValidationRequired;
 
@@ -193,6 +200,8 @@ class NeoButtonBuilderModel extends JsonWidgetBuilderModel {
   final String? iconRightUrn;
 
   final String labelText;
+
+  final Function? onTap;
 
   final EdgeInsetsDirectional? padding;
 
@@ -251,10 +260,7 @@ class NeoButtonBuilderModel extends JsonWidgetBuilderModel {
             whenNull: true,
           ),
           displayMode: map['displayMode'] ?? NeoButtonDisplayMode.primary,
-          enabled: JsonClass.parseBool(
-            map['enabled'],
-            whenNull: true,
-          ),
+          enableState: map['enableState'] ?? NeoButtonEnableState.enabled,
           formValidationRequired: JsonClass.parseBool(
             map['formValidationRequired'],
             whenNull: false,
@@ -262,6 +268,7 @@ class NeoButtonBuilderModel extends JsonWidgetBuilderModel {
           iconLeftUrn: map['iconLeftUrn'],
           iconRightUrn: map['iconRightUrn'],
           labelText: map['labelText'] ?? "",
+          onTap: map['onTap'],
           padding: () {
             dynamic parsed = ThemeDecoder.decodeEdgeInsetsDirectional(
               map['padding'],
@@ -291,12 +298,14 @@ class NeoButtonBuilderModel extends JsonWidgetBuilderModel {
           true == autoTriggerTransition ? null : autoTriggerTransition,
       'displayMode':
           NeoButtonDisplayMode.primary == displayMode ? null : displayMode,
-      'enabled': true == enabled ? null : enabled,
+      'enableState':
+          NeoButtonEnableState.enabled == enableState ? null : enableState,
       'formValidationRequired':
           false == formValidationRequired ? null : formValidationRequired,
       'iconLeftUrn': iconLeftUrn,
       'iconRightUrn': iconRightUrn,
       'labelText': "" == labelText ? null : labelText,
+      'onTap': onTap,
       'padding': ThemeEncoder.encodeEdgeInsetsDirectional(
         padding,
       ),
@@ -311,7 +320,7 @@ class NeoButtonBuilderModel extends JsonWidgetBuilderModel {
 
 class NeoButtonSchema {
   static const id =
-      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/backoffice/neo_button.json';
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/neo_bank/neo_button.json';
 
   static final schema = <String, Object>{
     r'$schema': 'http://json-schema.org/draft-07/schema#',
@@ -322,11 +331,12 @@ class NeoButtonSchema {
     'properties': {
       'autoTriggerTransition': SchemaHelper.boolSchema,
       'displayMode': SchemaHelper.anySchema,
-      'enabled': SchemaHelper.boolSchema,
+      'enableState': SchemaHelper.anySchema,
       'formValidationRequired': SchemaHelper.boolSchema,
       'iconLeftUrn': SchemaHelper.stringSchema,
       'iconRightUrn': SchemaHelper.stringSchema,
       'labelText': SchemaHelper.stringSchema,
+      'onTap': SchemaHelper.anySchema,
       'padding': SchemaHelper.objectSchema(EdgeInsetsDirectionalSchema.id),
       'size': SchemaHelper.anySchema,
       'startWorkflow': SchemaHelper.boolSchema,

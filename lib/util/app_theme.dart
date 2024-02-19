@@ -11,12 +11,15 @@
  * 
  */
 
-import 'package:flutter/material.dart';
+import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 import 'package:backoffice/util/constants/neo_colors.dart';
 import 'package:backoffice/util/constants/neo_text_styles.dart';
 
 class AppTheme {
   static ThemeData light(BuildContext context) {
-    return ThemeData(fontFamily: NeoTextStyles.fontFamily, scaffoldBackgroundColor: NeoColors.bgLight);
+    return ThemeData(
+      fontFamily: NeoTextStyles.fontFamily,
+      scaffoldBackgroundColor: NeoColors.bgLight,
+    );
   }
 }

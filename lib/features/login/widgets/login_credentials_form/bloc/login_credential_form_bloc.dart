@@ -15,6 +15,7 @@ import 'dart:async';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:backoffice/features/login/widgets/login_credentials_form/usecases/unlink_customer_from_device_usecase.dart';
 import 'package:backoffice/util/constants/neo_widget_event_keys.dart';
 import 'package:backoffice/util/neo_util.dart';
 import 'package:neo_core/core/bus/widget_event_bus/neo_widget_event.dart';
@@ -39,6 +40,7 @@ class LoginCredentialFormBloc extends Bloc<LoginCredentialFormEvent, LoginCreden
   }
 
   Future<String> get _getCustomerId async => await _storage?.getCustomerId() ?? "";
+
   Future<bool> get _isUserExist async => !(await _getCustomerId).isBlank;
 
   _onInitialize(LoginCredentialFormEventInitialize event, Emitter<LoginCredentialFormState> emit) async {
@@ -96,15 +98,16 @@ class LoginCredentialFormBloc extends Bloc<LoginCredentialFormEvent, LoginCreden
     LoginCredentialFormEventToggleActionStatus event,
     Emitter<LoginCredentialFormState> emit,
   ) async {
-    if (await _isUserExist) {
+    final currentState = state;
+    if (currentState is LoginCredentialFormStateExistingUserForm) {
       emit(
         LoginCredentialFormStateExistingUserForm(
-          customerId: await _getCustomerId,
+          customerId: currentState.customerId,
           focusNodePassword: _focusNodePassword,
           enableUserInterface: event.disabled,
         ),
       );
-    } else {
+    } else if (currentState is LoginCredentialFormStateNewUserForm) {
       emit(
         LoginCredentialFormStateNewUserForm(
           focusNodeTckn: _focusNodeTckn,
@@ -134,8 +137,7 @@ class LoginCredentialFormBloc extends Bloc<LoginCredentialFormEvent, LoginCreden
       (
         NeoWidgetEventKeys.loginShowNewUserPage,
         (_) {
-          // STOPSHIP: Delete customer profile image
-          unawaited(NeoCoreSecureStorage().deleteCustomer());
+          _unlinkCustomerFromDevice();
           add(const LoginCredentialFormEventShowNewUserForm());
         }
       ),
@@ -147,13 +149,20 @@ class LoginCredentialFormBloc extends Bloc<LoginCredentialFormEvent, LoginCreden
         (event) {
           final data = event.data;
           if (data is String) {
-            if (data.length == _passwordMaxLength) {
+            if (!isButtonSwipedOnce && data.length == _passwordMaxLength) {
               NeoWidgetEventKeys.neoSwipeButtonStartTransaction.sendEvent();
+              isButtonSwipedOnce = true;
             }
           }
         }
       ),
     ].listenEvents();
+  }
+
+  Future<void> _unlinkCustomerFromDevice() async {
+    // STOPSHIP: Delete customer profile image
+    await UnlinkCustomerFromDeviceUseCase().call();
+    unawaited(NeoCoreSecureStorage().deleteCustomer());
   }
 
   @override

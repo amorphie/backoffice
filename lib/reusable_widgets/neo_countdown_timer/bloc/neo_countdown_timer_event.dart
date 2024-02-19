@@ -28,11 +28,20 @@ class NeoCountdownTimerEventStartTimer extends NeoCountdownTimerEvent {
 }
 
 class NeoCountdownTimerEventTimerTick extends NeoCountdownTimerEvent {
+  final int duration;
+
+  const NeoCountdownTimerEventTimerTick({required this.duration});
+
+  @override
+  List<Object?> get props => [duration];
+}
+
+class NeoCountdownTimerEventTimerFinished extends NeoCountdownTimerEvent {
   @override
   List<Object?> get props => [];
 }
 
-class NeoCountdownTimerEventTimerFinished extends NeoCountdownTimerEvent {
+class NeoCountdownTimerEventRestartTimer extends NeoCountdownTimerEvent {
   @override
   List<Object?> get props => [];
 }

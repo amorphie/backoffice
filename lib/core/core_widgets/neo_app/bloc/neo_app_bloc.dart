@@ -12,20 +12,34 @@
 
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:backoffice/core/neo_secure_storage/neo_secure_storage.dart';
+import 'package:backoffice/features/login/data/neo_auth_status.dart';
+import 'package:backoffice/reusable_widgets/neo_theme_selector/neo_theme_selector.dart';
 
 part 'neo_app_event.dart';
 part 'neo_app_state.dart';
 
 class NeoAppBloc extends Bloc<NeoAppEvent, NeoAppState> {
-  late bool _isLoggedIn;
+  final NeoSecureStorage _neoSecureStorage;
+  late NeoAuthStatus authStatus;
 
-  bool get isLoggedIn => _isLoggedIn;
+  NeoAppBloc({required this.authStatus})
+      : _neoSecureStorage = NeoSecureStorage(),
+        super(NeoAppState(authStatus: authStatus)) {
+    on<NeoAppEventInit>((event, emit) async {
+      final String? savedTheme = await _neoSecureStorage.getCurrentTheme();
+      emit(NeoAppState(authStatus: authStatus, appTheme: savedTheme ?? ThemeMode.light.name));
+    });
 
-  NeoAppBloc({required bool isLoggedIn}) : super(NeoAppState(isLoggedIn: isLoggedIn)) {
-    _isLoggedIn = isLoggedIn;
+    on<NeoAppEventUpdateAuthStatus>((event, emit) async {
+      authStatus = event.authStatus;
+      await _neoSecureStorage.setAuthStatus(authStatus);
+      emit(NeoAppState(authStatus: authStatus));
+    });
 
-    on<NeoAppEventUpdateLoggedInStatus>((event, emit) {
-      _isLoggedIn = event.isLoggedIn;
+    on<NeoAppEventChangeAppTheme>((NeoAppEventChangeAppTheme event, Emitter<NeoAppState> emit) async {
+      await _neoSecureStorage.setCurrentTheme(event.selectedTheme);
+      emit(NeoAppState(authStatus: authStatus, appTheme: event.selectedTheme));
     });
   }
 }

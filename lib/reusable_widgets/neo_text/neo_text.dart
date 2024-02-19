@@ -13,6 +13,7 @@
 import 'dart:ui' as ui show TextHeightBehavior;
 
 import 'package:flutter/widgets.dart';
+import 'package:backoffice/core/localization/bloc/localization_bloc.dart';
 import 'package:backoffice/util/neo_util.dart';
 
 class NeoText extends StatefulWidget {
@@ -23,6 +24,7 @@ class NeoText extends StatefulWidget {
     this.strutStyle,
     this.textAlign,
     this.textDirection,
+    this.textColor,
     this.locale,
     this.softWrap,
     this.overflow,
@@ -41,6 +43,7 @@ class NeoText extends StatefulWidget {
   final TextStyle? style;
   final StrutStyle? strutStyle;
   final TextAlign? textAlign;
+  final Color? textColor;
   final TextDirection? textDirection;
   final Locale? locale;
   final bool? softWrap;
@@ -58,11 +61,13 @@ class NeoText extends StatefulWidget {
 }
 
 class _NeoTextState extends State<NeoText> {
+  String? get data => widget.data.orEmpty.isNotEmpty ? localize(widget.data!) : widget.data;
+
   @override
   Widget build(BuildContext context) {
     return Text(
-      widget.data.isNotNull && widget.dataKey.isNotNull ? widget.data!.formatDataWithDataKey(context, widget.dataKey) : widget.data.orEmpty,
-      style: widget.style,
+      data.isNotNull && widget.dataKey.isNotNull ? data!.formatDataWithDataKey(context, widget.dataKey) : data.orEmpty,
+      style: widget.style?.apply(color: widget.textColor),
       strutStyle: widget.strutStyle,
       textAlign: widget.textAlign,
       textDirection: widget.textDirection,

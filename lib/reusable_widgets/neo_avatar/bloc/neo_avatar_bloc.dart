@@ -17,11 +17,14 @@ import 'dart:typed_data';
 
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:backoffice/core/neo_secure_storage/neo_secure_storage.dart';
+import 'package:backoffice/reusable_widgets/neo_avatar/model/neo_avatar_display_mode.dart';
 import 'package:backoffice/util/constants/neo_widget_event_keys.dart';
 import 'package:backoffice/util/neo_util.dart';
 import 'package:neo_core/core/bus/neo_bus.dart';
+import 'package:neo_core/core/storage/neo_core_secure_storage.dart';
 
 part 'neo_avatar_event.dart';
 part 'neo_avatar_state.dart';
@@ -38,11 +41,13 @@ class NeoAvatarBloc extends Bloc<NeoAvatarEvent, NeoAvatarState> {
   TextStyle _subTitleStyle = _Constants.subTitleInitialStyle;
   TextStyle _labelTitleStyle = _Constants.labelTitleInitialStyle;
   Uint8List? _avatarImage;
-  final NeoSecureStorage _neoSecureStorage;
+  String? _nameAndSurname;
+  NeoAvatarDisplayMode? _displayMode;
+  final NeoSecureStorage _neoSecureStorage = NeoSecureStorage();
+  final NeoCoreSecureStorage _neoCoreSecureStorage = NeoCoreSecureStorage();
 
   NeoAvatarBloc()
-      : _neoSecureStorage = NeoSecureStorage(),
-        super(
+      : super(
           NeoAvatarState(
             subTitleStyle: _Constants.subTitleInitialStyle,
             labelTitleStyle: _Constants.labelTitleInitialStyle,
@@ -53,9 +58,12 @@ class NeoAvatarBloc extends Bloc<NeoAvatarEvent, NeoAvatarState> {
     on<NeoAvatarEventSaveAvatarImage>(_onSaveAvatarImage);
     on<NeoAvatarEventDeleteAvatarImage>(_onDeleteAvatarImage);
     on<NeoAvatarEventGetAvatarImage>(_onGetAvatarImage);
+    on<NeoAvatarEventGetCustomerNameAndSurname>(_onGetCustomerNameAndSurname);
   }
 
   _onInitialize(NeoAvatarEventInitialize event, Emitter<NeoAvatarState> emit) {
+    _displayMode = event.displayMode;
+
     _neoWidgetEventSubscription = [
       // STOPSHIP: Remove this events, use instead NeoWidgetEventKeys.commonNeoAvatarChangeTextStyles
       (
@@ -79,6 +87,24 @@ class NeoAvatarBloc extends Bloc<NeoAvatarEvent, NeoAvatarState> {
       (NeoWidgetEventKeys.neoAvatarChangePhotoEventKey, (event) => add(NeoAvatarEventSaveAvatarImage(event.data ?? ''))),
       (NeoWidgetEventKeys.neoAvatarDeletePhotoEventKey, (_) => add(const NeoAvatarEventDeleteAvatarImage())),
     ].listenEvents();
+
+    if (_displayMode == NeoAvatarDisplayMode.defaultMode) {
+      _subTitleStyle = _Constants.subTitleFocusedStyle;
+      _labelTitleStyle = _Constants.labelTitleFocusedStyle;
+    } else {
+      _subTitleStyle = _Constants.subTitleInitialStyle;
+      _labelTitleStyle = _Constants.labelTitleInitialStyle;
+    }
+
+    emit(
+      NeoAvatarState(
+        subTitleStyle: _subTitleStyle,
+        labelTitleStyle: _labelTitleStyle,
+        avatarImage: _avatarImage,
+        nameAndSurname: _nameAndSurname,
+        displayMode: _displayMode,
+      ),
+    );
   }
 
   _onChangeTextStyles(NeoAvatarEventChangeTextStyles event, Emitter<NeoAvatarState> emit) {
@@ -88,12 +114,23 @@ class NeoAvatarBloc extends Bloc<NeoAvatarEvent, NeoAvatarState> {
     if (event.labelTitleStyle != null) {
       _labelTitleStyle = event.labelTitleStyle!;
     }
-    emit(NeoAvatarState(subTitleStyle: _subTitleStyle, labelTitleStyle: _labelTitleStyle, avatarImage: _avatarImage));
+    emit(
+      NeoAvatarState(
+        subTitleStyle: _subTitleStyle,
+        labelTitleStyle: _labelTitleStyle,
+        avatarImage: _avatarImage,
+        nameAndSurname: _nameAndSurname,
+      ),
+    );
   }
 
   Future<void> _onSaveAvatarImage(NeoAvatarEventSaveAvatarImage event, Emitter<NeoAvatarState> emit) async {
+    if (kIsWeb) {
+      return;
+    }
     final bytes = File(event.imagePath).readAsBytesSync();
-    final String img64 = base64Encode(bytes);
+    final String img64;
+    img64 = base64Encode(bytes);
     await _neoSecureStorage.setProfileImage(img64);
     add(const NeoAvatarEventGetAvatarImage());
   }
@@ -115,6 +152,22 @@ class NeoAvatarBloc extends Bloc<NeoAvatarEvent, NeoAvatarState> {
         subTitleStyle: _subTitleStyle,
         labelTitleStyle: _labelTitleStyle,
         avatarImage: _avatarImage,
+        nameAndSurname: _nameAndSurname,
+      ),
+    );
+  }
+
+  Future<void> _onGetCustomerNameAndSurname(
+    NeoAvatarEventGetCustomerNameAndSurname event,
+    Emitter<NeoAvatarState> emit,
+  ) async {
+    _nameAndSurname = await _neoCoreSecureStorage.getCustomerNameAndSurname();
+    emit(
+      NeoAvatarState(
+        subTitleStyle: _subTitleStyle,
+        labelTitleStyle: _labelTitleStyle,
+        avatarImage: _avatarImage,
+        nameAndSurname: _nameAndSurname,
       ),
     );
   }

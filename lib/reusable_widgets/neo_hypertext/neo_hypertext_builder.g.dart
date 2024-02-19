@@ -63,14 +63,18 @@ class NeoHypertextWidgetBuilder extends _NeoHypertextWidgetBuilder {
     final highlightedItemsDecoded = _decodeHighlightedItemtList(
       data: data,
     );
+    final styleDecoded = _decodeStyle(
+      value: model.style,
+    );
 
     return NeoHypertext(
       highlightedItems: highlightedItemsDecoded,
       key: key,
       padding: model.padding,
-      style: model.style,
+      style: styleDecoded,
       text: model.text,
       textAlign: model.textAlign,
+      textColor: model.textColor,
     );
   }
 }
@@ -81,9 +85,10 @@ class JsonNeoHypertext extends JsonWidgetData {
     JsonWidgetRegistry? registry,
     required this.highlightedItems,
     this.padding = EdgeInsetsDirectional.zero,
-    this.style,
+    required this.style,
     required this.text,
     this.textAlign = TextAlign.start,
+    this.textColor,
   }) : super(
           jsonWidgetArgs: NeoHypertextWidgetBuilderModel.fromDynamic(
             {
@@ -92,6 +97,7 @@ class JsonNeoHypertext extends JsonWidgetData {
               'style': style,
               'text': text,
               'textAlign': textAlign,
+              'textColor': textColor,
               ...args,
             },
             args: args,
@@ -105,6 +111,7 @@ class JsonNeoHypertext extends JsonWidgetData {
                 'style': style,
                 'text': text,
                 'textAlign': textAlign,
+                'textColor': textColor,
                 ...args,
               },
               args: args,
@@ -118,11 +125,13 @@ class JsonNeoHypertext extends JsonWidgetData {
 
   final EdgeInsetsDirectional padding;
 
-  final TextStyle? style;
+  final dynamic style;
 
   final String text;
 
   final TextAlign textAlign;
+
+  final Color? textColor;
 }
 
 class NeoHypertextWidgetBuilderModel extends JsonWidgetBuilderModel {
@@ -130,20 +139,23 @@ class NeoHypertextWidgetBuilderModel extends JsonWidgetBuilderModel {
     super.args, {
     required this.highlightedItems,
     this.padding = EdgeInsetsDirectional.zero,
-    this.style,
+    required this.style,
     required this.text,
     this.textAlign = TextAlign.start,
+    this.textColor,
   });
 
   final dynamic highlightedItems;
 
   final EdgeInsetsDirectional padding;
 
-  final TextStyle? style;
+  final dynamic style;
 
   final String text;
 
   final TextAlign textAlign;
+
+  final Color? textColor;
 
   static NeoHypertextWidgetBuilderModel fromDynamic(
     dynamic map, {
@@ -197,14 +209,7 @@ class NeoHypertextWidgetBuilderModel extends JsonWidgetBuilderModel {
 
             return parsed;
           }(),
-          style: () {
-            dynamic parsed = ThemeDecoder.decodeTextStyle(
-              map['style'],
-              validate: false,
-            );
-
-            return parsed;
-          }(),
+          style: map['style'],
           text: map['text'],
           textAlign: () {
             dynamic parsed = ThemeDecoder.decodeTextAlign(
@@ -212,6 +217,14 @@ class NeoHypertextWidgetBuilderModel extends JsonWidgetBuilderModel {
               validate: false,
             );
             parsed ??= TextAlign.start;
+
+            return parsed;
+          }(),
+          textColor: () {
+            dynamic parsed = ThemeDecoder.decodeColor(
+              map['textColor'],
+              validate: false,
+            );
 
             return parsed;
           }(),
@@ -240,6 +253,9 @@ class NeoHypertextWidgetBuilderModel extends JsonWidgetBuilderModel {
           : ThemeEncoder.encodeTextAlign(
               textAlign,
             ),
+      'textColor': ThemeEncoder.encodeColor(
+        textColor,
+      ),
       ...args,
     });
   }
@@ -247,7 +263,7 @@ class NeoHypertextWidgetBuilderModel extends JsonWidgetBuilderModel {
 
 class NeoHypertextSchema {
   static const id =
-      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/backoffice/neo_hypertext.json';
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/neo_bank/neo_hypertext.json';
 
   static final schema = <String, Object>{
     r'$schema': 'http://json-schema.org/draft-07/schema#',
@@ -261,6 +277,7 @@ class NeoHypertextSchema {
       'style': SchemaHelper.objectSchema(TextStyleSchema.id),
       'text': SchemaHelper.stringSchema,
       'textAlign': SchemaHelper.objectSchema(TextAlignSchema.id),
+      'textColor': SchemaHelper.objectSchema(ColorSchema.id),
     },
   };
 }

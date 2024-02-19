@@ -13,10 +13,11 @@
 part of 'neo_app_bloc.dart';
 
 class NeoAppState extends Equatable {
-  final bool isLoggedIn;
+  final NeoAuthStatus authStatus;
+  final String? appTheme;
 
-  const NeoAppState({required this.isLoggedIn});
+  const NeoAppState({required this.authStatus, this.appTheme});
 
   @override
-  List<Object?> get props => [isLoggedIn];
+  List<Object?> get props => [authStatus, appTheme];
 }

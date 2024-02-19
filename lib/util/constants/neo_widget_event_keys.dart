@@ -16,20 +16,42 @@ import 'package:backoffice/core/dependency_injection/dependency_injection.dart';
 import 'package:neo_core/core/bus/widget_event_bus/neo_widget_event.dart';
 import 'package:neo_core/core/bus/widget_event_bus/neo_widget_event_bus.dart';
 
+// TODO: Order enum values alphabetically to prevent possible conflicts!
 enum NeoWidgetEventKeys {
   commonClosePopup,
+  componentTreeBuilderRetryFetchingComponents,
+  globalDisplayLogoutPopup,
+  globalLogoutDialogConfirm,
+  globalNavigateToWelcomePage,
+  globalNavigationPop,
+  globalNavigationPopUntil,
+  globalNavigationPush,
+  globalNavigationPushAsRoot,
+  globalNavigationPushReplacement,
+  globalPickImageFromCamera,
+  globalPickImageFromGallery,
+
+  /// In order to display a toast message, you HAVE TO pass [NeoToastModal] as a data when sending an event.
+  /// Example usage;
+  /// NeoWidgetEventKeys.globalShowToastMessage.sendEvent(
+  ///   data: NeoToastModal(message: "Example toast message", type: NeoToastType.success),
+  /// );
+  globalShowToastMessage,
+  globalSignalrNetworkError,
   loginDisableUserInterface,
   loginEnableUserInterface,
   loginShowNewUserPage,
   loginShowExistUserPage,
   loginTextFieldFocused,
   loginTextFieldUnfocused,
-  logoutDialogConfirm,
+  loginDisabledPopupClosed,
   neoAppBarPressBackButton,
   neoAvatarChangePhotoEventKey,
   neoAvatarDeletePhotoEventKey,
-  neoButtonChangeEnableStatusEventKey,
-  neoButtonStartTransition,
+  neoButtonChangeEnableStateEventKey,
+  neoBottomNavigationSelectHomeTab,
+  neoCountdownTimerRestartTimer,
+  neoSegmentedButtonChangeLanguage,
   neoSwipeButtonStartTransaction,
   neoSwipeButtonStopLoading,
   neoTextFormFieldSetErrorMessageEventKey,

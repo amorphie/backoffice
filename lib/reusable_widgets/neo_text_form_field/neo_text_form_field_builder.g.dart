@@ -60,18 +60,23 @@ class NeoTextFormFieldBuilder extends _NeoTextFormFieldBuilder {
       data: data,
     );
 
+    final inputFormattersDecoded = _decodeInputFormatters(
+      data: data,
+    );
+    final validationsDecoded = _decodeValidations(
+      data: data,
+    );
+
     return NeoTextFormField(
       bottomText: model.bottomText,
       buttonRight: model.buttonRight,
       dataKey: model.dataKey,
-      dropdownLeft: model.dropdownLeft,
-      dropdownRight: model.dropdownRight,
       enableInteractiveSelection: model.enableInteractiveSelection,
       enabled: model.enabled,
       focusNode: model.focusNode,
       iconLeftUrn: model.iconLeftUrn,
       iconRightUrn: model.iconRightUrn,
-      inputFormatters: model.inputFormatters,
+      inputFormatters: inputFormattersDecoded,
       key: key,
       keyboardType: model.keyboardType,
       labelInitialText: model.labelInitialText,
@@ -83,7 +88,7 @@ class NeoTextFormFieldBuilder extends _NeoTextFormFieldBuilder {
       subtitleText: model.subtitleText,
       titleIconUrn: model.titleIconUrn,
       titleText: model.titleText,
-      validationRegex: model.validationRegex,
+      validations: validationsDecoded,
       widgetEventKey: model.widgetEventKey,
     );
   }
@@ -96,14 +101,12 @@ class JsonNeoTextFormField extends JsonWidgetData {
     this.bottomText,
     this.buttonRight,
     this.dataKey,
-    this.dropdownLeft,
-    this.dropdownRight,
     this.enableInteractiveSelection,
     this.enabled = true,
     this.focusNode,
     this.iconLeftUrn,
     this.iconRightUrn,
-    this.inputFormatters,
+    required this.inputFormatters,
     this.keyboardType,
     this.labelInitialText = '',
     this.labelText,
@@ -114,7 +117,7 @@ class JsonNeoTextFormField extends JsonWidgetData {
     this.subtitleText = '',
     this.titleIconUrn,
     this.titleText = '',
-    this.validationRegex,
+    required this.validations,
     this.widgetEventKey,
   }) : super(
           jsonWidgetArgs: NeoTextFormFieldBuilderModel.fromDynamic(
@@ -122,8 +125,6 @@ class JsonNeoTextFormField extends JsonWidgetData {
               'bottomText': bottomText,
               'buttonRight': buttonRight,
               'dataKey': dataKey,
-              'dropdownLeft': dropdownLeft,
-              'dropdownRight': dropdownRight,
               'enableInteractiveSelection': enableInteractiveSelection,
               'enabled': enabled,
               'focusNode': focusNode,
@@ -140,7 +141,7 @@ class JsonNeoTextFormField extends JsonWidgetData {
               'subtitleText': subtitleText,
               'titleIconUrn': titleIconUrn,
               'titleText': titleText,
-              'validationRegex': validationRegex,
+              'validations': validations,
               'widgetEventKey': widgetEventKey,
               ...args,
             },
@@ -153,8 +154,6 @@ class JsonNeoTextFormField extends JsonWidgetData {
                 'bottomText': bottomText,
                 'buttonRight': buttonRight,
                 'dataKey': dataKey,
-                'dropdownLeft': dropdownLeft,
-                'dropdownRight': dropdownRight,
                 'enableInteractiveSelection': enableInteractiveSelection,
                 'enabled': enabled,
                 'focusNode': focusNode,
@@ -171,7 +170,7 @@ class JsonNeoTextFormField extends JsonWidgetData {
                 'subtitleText': subtitleText,
                 'titleIconUrn': titleIconUrn,
                 'titleText': titleText,
-                'validationRegex': validationRegex,
+                'validations': validations,
                 'widgetEventKey': widgetEventKey,
                 ...args,
               },
@@ -188,10 +187,6 @@ class JsonNeoTextFormField extends JsonWidgetData {
 
   final String? dataKey;
 
-  final NeoDropdownDataModel? dropdownLeft;
-
-  final NeoDropdownDataModel? dropdownRight;
-
   final bool? enableInteractiveSelection;
 
   final bool enabled;
@@ -202,7 +197,7 @@ class JsonNeoTextFormField extends JsonWidgetData {
 
   final String? iconRightUrn;
 
-  final List<TextInputFormatter>? inputFormatters;
+  final dynamic inputFormatters;
 
   final NeoKeyboardType? keyboardType;
 
@@ -224,7 +219,7 @@ class JsonNeoTextFormField extends JsonWidgetData {
 
   final String titleText;
 
-  final String? validationRegex;
+  final dynamic validations;
 
   final String? widgetEventKey;
 }
@@ -235,14 +230,12 @@ class NeoTextFormFieldBuilderModel extends JsonWidgetBuilderModel {
     this.bottomText,
     this.buttonRight,
     this.dataKey,
-    this.dropdownLeft,
-    this.dropdownRight,
     this.enableInteractiveSelection,
     this.enabled = true,
     this.focusNode,
     this.iconLeftUrn,
     this.iconRightUrn,
-    this.inputFormatters,
+    required this.inputFormatters,
     this.keyboardType,
     this.labelInitialText = '',
     this.labelText,
@@ -253,7 +246,7 @@ class NeoTextFormFieldBuilderModel extends JsonWidgetBuilderModel {
     this.subtitleText = '',
     this.titleIconUrn,
     this.titleText = '',
-    this.validationRegex,
+    required this.validations,
     this.widgetEventKey,
   });
 
@@ -262,10 +255,6 @@ class NeoTextFormFieldBuilderModel extends JsonWidgetBuilderModel {
   final NeoButtonDataModel? buttonRight;
 
   final String? dataKey;
-
-  final NeoDropdownDataModel? dropdownLeft;
-
-  final NeoDropdownDataModel? dropdownRight;
 
   final bool? enableInteractiveSelection;
 
@@ -277,7 +266,7 @@ class NeoTextFormFieldBuilderModel extends JsonWidgetBuilderModel {
 
   final String? iconRightUrn;
 
-  final List<TextInputFormatter>? inputFormatters;
+  final dynamic inputFormatters;
 
   final NeoKeyboardType? keyboardType;
 
@@ -299,7 +288,7 @@ class NeoTextFormFieldBuilderModel extends JsonWidgetBuilderModel {
 
   final String titleText;
 
-  final String? validationRegex;
+  final dynamic validations;
 
   final String? widgetEventKey;
 
@@ -348,8 +337,6 @@ class NeoTextFormFieldBuilderModel extends JsonWidgetBuilderModel {
           bottomText: map['bottomText'],
           buttonRight: map['buttonRight'],
           dataKey: map['dataKey'],
-          dropdownLeft: map['dropdownLeft'],
-          dropdownRight: map['dropdownRight'],
           enableInteractiveSelection: JsonClass.maybeParseBool(
             map['enableInteractiveSelection'],
           ),
@@ -388,7 +375,7 @@ class NeoTextFormFieldBuilderModel extends JsonWidgetBuilderModel {
           subtitleText: map['subtitleText'] ?? '',
           titleIconUrn: map['titleIconUrn'],
           titleText: map['titleText'] ?? '',
-          validationRegex: map['validationRegex'],
+          validations: map['validations'],
           widgetEventKey: map['widgetEventKey'],
         );
       }
@@ -403,8 +390,6 @@ class NeoTextFormFieldBuilderModel extends JsonWidgetBuilderModel {
       'bottomText': bottomText,
       'buttonRight': buttonRight,
       'dataKey': dataKey,
-      'dropdownLeft': dropdownLeft,
-      'dropdownRight': dropdownRight,
       'enableInteractiveSelection': enableInteractiveSelection,
       'enabled': true == enabled ? null : enabled,
       'focusNode': focusNode,
@@ -425,7 +410,7 @@ class NeoTextFormFieldBuilderModel extends JsonWidgetBuilderModel {
       'subtitleText': '' == subtitleText ? null : subtitleText,
       'titleIconUrn': titleIconUrn,
       'titleText': '' == titleText ? null : titleText,
-      'validationRegex': validationRegex,
+      'validations': validations,
       'widgetEventKey': widgetEventKey,
       ...args,
     });
@@ -434,7 +419,7 @@ class NeoTextFormFieldBuilderModel extends JsonWidgetBuilderModel {
 
 class NeoTextFormFieldSchema {
   static const id =
-      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/backoffice/neo_text_form_field.json';
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/neo_bank/neo_text_form_field.json';
 
   static final schema = <String, Object>{
     r'$schema': 'http://json-schema.org/draft-07/schema#',
@@ -446,8 +431,6 @@ class NeoTextFormFieldSchema {
       'bottomText': SchemaHelper.anySchema,
       'buttonRight': SchemaHelper.anySchema,
       'dataKey': SchemaHelper.stringSchema,
-      'dropdownLeft': SchemaHelper.anySchema,
-      'dropdownRight': SchemaHelper.anySchema,
       'enableInteractiveSelection': SchemaHelper.boolSchema,
       'enabled': SchemaHelper.boolSchema,
       'focusNode': SchemaHelper.anySchema,
@@ -464,7 +447,7 @@ class NeoTextFormFieldSchema {
       'subtitleText': SchemaHelper.stringSchema,
       'titleIconUrn': SchemaHelper.stringSchema,
       'titleText': SchemaHelper.stringSchema,
-      'validationRegex': SchemaHelper.stringSchema,
+      'validations': SchemaHelper.anySchema,
       'widgetEventKey': SchemaHelper.stringSchema,
     },
   };

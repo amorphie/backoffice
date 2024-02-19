@@ -1,0 +1,2378 @@
+{
+  "passengerSeparation_desktopWeb_title": {
+    "TR": null,
+    "EN": null
+  },
+  "pushNotifications_schedule_startDate_title": {
+    "TR": null,
+    "EN": null
+  },
+  "pushNotifications_schedule_startDate_errorMessage": {
+    "TR": null,
+    "EN": null
+  },
+  "payment_taxPayment_ios_taxDateSelection_title": {
+    "TR": "Vergi Tarihi",
+    "EN": "Tax Date"
+  },
+  "geofences_geofenceImport_tag_addNewTag_label": {
+    "TR": "Yeni Tag Ekle",
+    "EN": "Add New Tag"
+  },
+  "seatRefundReissue_refund_web_refund_button": {
+    "TR": "İade",
+    "EN": "Refund"
+  },
+  "passengerSelection_native_passengersSelected_text": {
+    "TR": "{0} yolcu eklendi.",
+    "EN": "{0} passengers added."
+  },
+  "geofences_createGeofence_raidus_placeholder": {
+    "TR": "{0} m.",
+    "EN": null
+  },
+  "general_tckn_placeholder": {
+    "TR": "TCKN/VKN",
+    "EN": "TCKN/VKN"
+  },
+  "general_tcknInvalid_errorMessage": {
+    "TR": "Yanlış bilgi girdiniz, lütfen kontrol ediniz.",
+    "EN": "You entered incorrect information, please check."
+  },
+  "general_phoneNumber_label": {
+    "TR": "Cep Telefonu",
+    "EN": "Mobile Phone Number"
+  },
+  "general_phoneNumber_countryCode_label": {
+    "TR": "Ülke Kodu",
+    "EN": "Country Code"
+  },
+  "general_phoneNumber_areaCode_label": {
+    "TR": "Alan Kodu",
+    "EN": "Area Code"
+  },
+  "general_phoneNumberValidation_missingPhoneNumber_errorMessage": {
+    "TR": "Lütfen eksik girdiğiniz telefon numaranızı kontrol ediniz.",
+    "EN": "Please check the phone number you entered incompletely."
+  },
+  "general_phoneNumberValidation_invalidPhoneNumber_errorMessage": {
+    "TR": "Lütfen telefon numarınızı kontrol edip tekrar deneyiniz.",
+    "EN": "Please check your phone number and try again."
+  },
+  "general_iban_label": {
+    "TR": "IBAN",
+    "EN": "IBAN"
+  },
+  "general_invalidIban_errorMessage": {
+    "TR": "Geçersiz IBAN",
+    "EN": "Invalid IBAN"
+  },
+  "general_email_label": {
+    "TR": "E-posta",
+    "EN": "E-mail"
+  },
+  "general_invalidEmail_errorMessage": {
+    "TR": "Geçersiz e-posta adresi",
+    "EN": "Invalid E-mail adress"
+  },
+  "general_password_placeholder": {
+    "TR": "Şifre",
+    "EN": "PASSWORD"
+  },
+  "general_missing_password_errorMessage": {
+    "TR": "Şifreniz 6 karakterli olmalıdır.",
+    "EN": "Your password must be 6 characters long."
+  },
+  "general_invalid_password_errorMessage": {
+    "TR": "Yanlış şifre girdiniz, lütfen tekrar deneyiniz.",
+    "EN": "You entered the wrong password, please try again."
+  },
+  "general_forgot_password_button": {
+    "TR": "Unuttum",
+    "EN": "Forgot Password"
+  },
+  "general_edit_picture_title": {
+    "TR": "Fotoğrafı Düzenle",
+    "EN": "Edit Picture"
+  },
+  "general_take_picture_button": {
+    "TR": "Fotoğraf Çek",
+    "EN": "Take Photo"
+  },
+  "general_select_picture_button": {
+    "TR": "Kütüphaneden Seç",
+    "EN": "Choose From Library"
+  },
+  "general_remove_picture_button": {
+    "TR": "Fotoğrafı Kaldır",
+    "EN": "Delete"
+  },
+  "general_dismiss_picture_button": {
+    "TR": "Vazgeç",
+    "EN": "Cancel"
+  },
+  "general_galleryAccess_popup_picture_title": {
+    "TR": "Uyarı",
+    "EN": "Warning"
+  },
+  "general_galleryAccess_popup_picture_text": {
+    "TR": "Galeri erişimine izin vermek için telefon ayarlarına gidiniz.",
+    "EN": "[EN] Galeri erişimine izin vermek için telefon ayarlarına gidiniz."
+  },
+  "general_galleryAccess_popup_picture_button": {
+    "TR": "Tamam",
+    "EN": "Okay"
+  },
+  "general_cameraAccess_popup_picture_title": {
+    "TR": "Uyarı",
+    "EN": "Warning"
+  },
+  "general_cameraAccess_popup_picture_text": {
+    "TR": "Kamera erişimine izin vermek için telefon ayarlarına gidiniz.",
+    "EN": "[EN] Kamera erişimine izin vermek için telefon ayarlarına gidiniz."
+  },
+  "general_cameraAccess_popup_picture_button": {
+    "TR": "Tamam",
+    "EN": "Okay"
+  },
+  "general_continue_button": {
+    "TR": "Devam",
+    "EN": "Continue"
+  },
+  "general_select_placeholder": {
+    "TR": "Seçin",
+    "EN": "Select"
+  },
+  "general_search_placeholder": {
+    "TR": "Arama",
+    "EN": "Search"
+  },
+  "general_continueWithSelection_button": {
+    "TR": "Seçim ile Devam Et",
+    "EN": "Continue with Selection"
+  },
+  "general_yes_text": {
+    "TR": "Evet",
+    "EN": "Yes"
+  },
+  "general_no_button": {
+    "TR": "Hayır",
+    "EN": "No"
+  },
+  "general_unexpectedError_errorMessage": {
+    "TR": "Beklenmeyen bir hata oluştu. Lütfen daha sonra tekrar deneyin.",
+    "EN": "Unexpected error occured. Please try again later."
+  },
+  "general_tryAgain_button": {
+    "TR": "Tekrar Dene",
+    "EN": "Try Again"
+  },
+  "general_confirm_button": {
+    "TR": "Onayla",
+    "EN": "Confirm"
+  },
+  "general_goToDashboard_button": {
+    "TR": "Ana Sayfaya Git",
+    "EN": "Go to Dashboard"
+  },
+  "general_transactionNotCompleted_title": {
+    "TR": "İşlem Tamamlanamadı",
+    "EN": "Transaction Not Completed"
+  },
+  "general_transactionNotCompleted_text": {
+    "TR": "Teknik sebeplerden dolayı işleme devam edemiyoruz. Daha sonra tekrar deneyiniz.",
+    "EN": "[EN] Teknik sebeplerden dolayı işleme devam edemiyoruz. Daha sonra tekrar deneyiniz."
+  },
+  "general_saveChanges_title": {
+    "TR": "Değişiklikleri Kaydet",
+    "EN": null
+  },
+  "general_save_button": {
+    "TR": "KAYDET",
+    "EN": "SAVE"
+  },
+  "general_explanation_placeholder": {
+    "TR": "Açıklama",
+    "EN": "Explanation"
+  },
+  "general_transactionCompleted_title": {
+    "TR": "İşleminiz Başarıyla Tamamlanmıştır.",
+    "EN": null
+  },
+  "general_transactionSummary_title": {
+    "TR": "İşlem Özeti",
+    "EN": "Summary"
+  },
+  "general_returnDashboard_button": {
+    "TR": "Ana Sayfaya Dön",
+    "EN": "Return to Dashboard"
+  },
+  "general_select_button": {
+    "TR": "Seçiniz",
+    "EN": null
+  },
+  "general_datePicker_title": {
+    "TR": "Ay Seçimi",
+    "EN": null
+  },
+  "general_homePage_menu_button": {
+    "TR": "Ana Sayfa",
+    "EN": "Home Page"
+  },
+  "general_transfer_menu_button": {
+    "TR": "Transfer",
+    "EN": "Transfer"
+  },
+  "general_accounts_menu_button": {
+    "TR": "Hesaplar",
+    "EN": "Accounts"
+  },
+  "general_cards_menu_button": {
+    "TR": "Kartlar",
+    "EN": "Cards"
+  },
+  "general_email _title": {
+    "TR": "E-posta",
+    "EN": "[EN] E-posta"
+  },
+  "general_email _errorMessage": {
+    "TR": "Lütfen geçerli bir e-posta giriniz.",
+    "EN": "[EN] Lütfen geçerli bir e-posta giriniz."
+  },
+  "general_okay_button": {
+    "TR": "Tamam",
+    "EN": "[EN] Tamam"
+  },
+  "general_noResponse_title": {
+    "TR": "İşlem Tamamlanamadı",
+    "EN": "[EN] İşlem Tamamlanamadı"
+  },
+  "general_noResponse_text": {
+    "TR": "Teknik sebeplerden dolayı işleme devam edemiyoruz. Daha sonra tekrar deneyiniz.",
+    "EN": "[EN] Teknik sebeplerden dolayı işleme devam edemiyoruz. Daha sonra tekrar deneyiniz."
+  },
+  "login_initial_welcome_title": {
+    "TR": "Hoş geldin!",
+    "EN": "[EN] Hoş geldin!"
+  },
+  "login_initial_button": {
+    "TR": "Giriş Yap",
+    "EN": "[EN] Giriş Yap"
+  },
+  "login_initial_empty_errorMessage": {
+    "TR": "Bu alan boş bırakılamaz, lütfen doldurun.",
+    "EN": "[EN] Bu alan boş bırakılamaz, lütfen doldurun."
+  },
+  "login_initial_loading_button": {
+    "TR": "GİRİŞ YAPILIYOR",
+    "EN": "[EN] GİRİŞ YAPILIYOR"
+  },
+  "login_initial_popUp_switchUser_title": {
+    "TR": "Uyarı",
+    "EN": "[EN] Uyarı"
+  },
+  "login_initial_popUp_switchUser_text": {
+    "TR": "Kullanıcı değiştirmek üzeresiniz. Farklı bir kullanıcıyla giriş yaparsanız mevcut cihaz eşleşmeniz kaldırılacaktır.",
+    "EN": "[EN] Kullanıcı değiştirmek üzeresiniz. Farklı bir kullanıcıyla giriş yaparsanız mevcut cihaz eşleşmeniz kaldırılacaktır."
+  },
+  "login_initial_popUpFirst_switchUser_button": {
+    "TR": "Kullanıcı Değiştir",
+    "EN": "[EN] Değiştir"
+  },
+  "login_initial_popUpSecond_switchUser_button": {
+    "TR": "Vazgeç",
+    "EN": "[EN] Vazgeç"
+  },
+  "login_initial_language_button": {
+    "TR": "EN",
+    "EN": "TR"
+  },
+  "login_popUp_blockedPassword_title": {
+    "TR": "Hatalı Şifre",
+    "EN": "[EN] Hatalı Şifre"
+  },
+  "login_popUp_wrongPassword_title": {
+    "TR": "Hatalı Şifre",
+    "EN": "[EN] Hatalı Şifre"
+  },
+  "login_popUp_blockedPassword_text": {
+    "TR": "Şifreyi 5 kere yanlış girdiğiniz için giriş yapılamıyor. Şifremi Unuttum butonuna basarak yeni şifre alabilir, ON’a giriş yapabilirsiniz.",
+    "EN": "[EN] Şifreyi 5 kere yanlış girdiğiniz için giriş yapılamıyor. Şifremi Unuttum butonuna basarak yeni şifre alabilir, ON’a giriş yapabilirsiniz."
+  },
+  "login_popUp_wrongPassword_text": {
+    "TR": "Yanlış şifre girdiniz, lütfen tekrar deneyin.",
+    "EN": "[EN] Yanlış şifre girdiniz, lütfen tekrar deneyin."
+  },
+  "login_popUpFirst_blockedPassword_button": {
+    "TR": "Şifremi Unuttum",
+    "EN": "[EN] Şifremi Unuttum"
+  },
+  "login_popUpSecond_blockedPassword_button": {
+    "TR": "Tamam",
+    "EN": "[EN] Tamam"
+  },
+  "login_popUpFirst_wrongPassword_button": {
+    "TR": "Şifremi Unuttum",
+    "EN": "[EN] Şifremi Unuttum"
+  },
+  "login_popUpSecond_wrongPassword_button": {
+    "TR": "Tamam",
+    "EN": "[EN] Tamam"
+  },
+  "login_initial_newUser_label": {
+    "TR": "Yeni Kullanıcı",
+    "EN": "[EN] Yeni Kullanıcı"
+  },
+  "login_contractApproval_title": {
+    "TR": "Sözleşme İzni Güncelleme",
+    "EN": "[EN] Sözleşme İzni Güncelleme"
+  },
+  "login_contractApproval_button": {
+    "TR": "Onaylıyorum",
+    "EN": "[EN] Onaylıyorum"
+  },
+  "login_securityPicture_title": {
+    "TR": "Güvenlik Resmi Tercihi",
+    "EN": "[EN] Güvenlik Resmi Tercihi"
+  },
+  "login_securityPicture_details_title": {
+    "TR": "Güvenlik Resmi",
+    "EN": "[EN] Güvenlik Resmi"
+  },
+  "login_securityPicture_details_text": {
+    "TR": "Şifre güvenliğiniz için güvenlik resimlerinden birini seçiniz.",
+    "EN": "[EN] Şifre güvenliğiniz için güvenlik resimlerinden birini seçiniz."
+  },
+  "login_securityPicture_details_button": {
+    "TR": "Onayla",
+    "EN": "[EN] Onayla"
+  },
+  "login_securityPicture_details_missingSelection_errorMessage": {
+    "TR": "Lütfen bir seçim yapın.",
+    "EN": "[EN] Lütfen bir seçim yapın."
+  },
+  "login_newPassword_title": {
+    "TR": "Şifre Belirleme",
+    "EN": "[EN] Şifre Belirleme"
+  },
+  "login_newPassword_first_placeholder": {
+    "TR": "Yeni Şifre",
+    "EN": "[EN] Yeni Şifre"
+  },
+  "login_newPassword_second_placeholder": {
+    "TR": "Yeni Şifre Tekrar",
+    "EN": "[EN] Yeni Şifre Tekrar"
+  },
+  "login_newPassword_rule1_text": {
+    "TR": "Şifreniz 6 karakter olmalıdır.",
+    "EN": "[EN] Şifreniz 6 karakter olmalıdır."
+  },
+  "login_newPassword_rule2_text": {
+    "TR": "Şifreniz numerik olmalıdır.",
+    "EN": "[EN] Şifreniz numerik olmalıdır."
+  },
+  "login_newPassword_rule3_text": {
+    "TR": "Şifreniz ardışık ve tekrar rakamlar içermemelidir.",
+    "EN": "[EN] Şifreniz ardışık ve tekrar rakamlar içermemelidir."
+  },
+  "login_newPassword_notMatching_errorMessage": {
+    "TR": "Yazdığınız şifre eşleşmiyor, lütfen tekrar girin.",
+    "EN": "[EN] Yazdığınız şifre eşleşmiyor, lütfen tekrar girin."
+  },
+  "login_newPassword_continue_button": {
+    "TR": "Onayla",
+    "EN": "[EN] Onayla"
+  },
+  "login_newPassword_oldPassword_popup_title": {
+    "TR": "Hatalı Şifre",
+    "EN": "[EN] Hatalı Şifre"
+  },
+  "login_newPassword_oldPassword_popup_text": {
+    "TR": "Önceki 5 şifrenizi tekrar kullanamazsınız, lütfen başka bir şifre belirleyin.",
+    "EN": "[EN] Önceki 5 şifrenizi tekrar kullanamazsınız, lütfen başka bir şifre belirleyin."
+  },
+  "login_newPassword_oldPassword_popupFirst_button": {
+    "TR": "Yeniden Dene",
+    "EN": "[EN] Yeniden Dene"
+  },
+  "login_newPassword_oldPassword_popupSecond_button": {
+    "TR": "Giriş Ekranına Dön",
+    "EN": "[EN] Giriş Ekranına Dön"
+  },
+  "login_newPassword_empty_errorMessage": {
+    "TR": "Bu alan boş bırakılamaz, lütfen doldurun.",
+    "EN": "[EN] Bu alan boş bırakılamaz, lütfen doldurun."
+  },
+  "login_securityQuestion_title": {
+    "TR": "Güvenlik Sorusu Güncelleme",
+    "EN": "[EN] Güvenlik Sorusu Güncelleme"
+  },
+  "login_securityQuestion_details_title": {
+    "TR": "Güvenlik Sorusu",
+    "EN": "[EN] Güvenlik Sorusu"
+  },
+  "login_securityQuestion_details_text": {
+    "TR": "Güvenliğiniz için güvenlik sorularından birini seçerek yanıtlayınız. Yanıtınız teyid amaçlı kullanacağı için yanıtınızı unutmayın ve kimseyle paylaşmayınız.",
+    "EN": "[EN] Güvenliğiniz için güvenlik sorularından birini seçerek yanıtlayınız. Yanıtınız teyid amaçlı kullanacağı için yanıtınızı unutmayın ve kimseyle paylaşmayınız."
+  },
+  "login_securityQuestion_question_placeholder": {
+    "TR": "Seçin",
+    "EN": "[EN] Seçin"
+  },
+  "login_securityQuestion_question_title": {
+    "TR": "Güvenlik Sorusu",
+    "EN": "[EN] Güvenlik Sorusu"
+  },
+  "login_securityQuestion_answer_title": {
+    "TR": "Cevap",
+    "EN": "[EN] Cevap"
+  },
+  "login_securityQuestion_answer_missing_errorMessage": {
+    "TR": "Güvenlik sorusunun yanıtı en az 3 karakter olmalıdır.",
+    "EN": "[EN] Güvenlik sorusunun yanıtı en az 3 karakter olmalıdır."
+  },
+  "login_securityQuestion_continue_button": {
+    "TR": "Onayla",
+    "EN": "[EN] Onayla"
+  },
+  "login_securityQuestion_selection_errorMessage": {
+    "TR": "Bu alan boş bırakılamaz, lütfen seçim yapın.",
+    "EN": "[EN] Bu alan boş bırakılamaz, lütfen seçim yapın."
+  },
+  "login_securityQuestion_answer_errorMessage": {
+    "TR": "Bu alan boş bırakılamaz, lütfen doldurun.",
+    "EN": "[EN] Bu alan boş bırakılamaz, lütfen doldurun."
+  },
+  "OTP_main_title": {
+    "TR": "SMS DOĞRULAMA",
+    "EN": "[EN] SMS DOĞRULAMA"
+  },
+  "OTP_main_subtitle": {
+    "TR": "Şifre Doğrulama",
+    "EN": "[EN] Şifre Doğrulama"
+  },
+  "OTP_main_text": {
+    "TR": "{phoneNumber} numaralı cep telefonunuza gelen doğrulama kodunu yazarak işleme devam edin.",
+    "EN": "[EN]  {phoneNumber} numaralı cep telefonunuza gelen doğrulama kodunu yazarak işleme devam edin."
+  },
+  "OTP_main_security_first_text": {
+    "TR": "Güvenlik resmini kontrol edin.",
+    "EN": "[EN] Güvenlik resmini kontrol edin."
+  },
+  "OTP_main_security_second_text": {
+    "TR": "Seçtiğiniz güvenlik resmi bu değilse lütfen {callNumber} arayın.",
+    "EN": "[EN] Seçtiğiniz güvenlik resmi bu değilse lütfen {callNumber} arayın."
+  },
+  "OTP_main_securityLink_text": {
+    "TR": "iletişim merkezini",
+    "EN": "[EN] iletişim merkezini"
+  },
+  "OTP_main_securityLink_number_text": {
+    "TR": "0850 222 8 222",
+    "EN": "[EN] 0850 222 8 222"
+  },
+  "OTP_main_inputField_label": {
+    "TR": "Şifre Doğrulama Kodu",
+    "EN": "[EN] Şifre Doğrulama Kodu"
+  },
+  "OTP_main_continue_button": {
+    "TR": "DEVAM",
+    "EN": "[EN] DEVAM"
+  },
+  "OTP_main_incompletePopup_title": {
+    "TR": "Uyarı",
+    "EN": "[EN] Uyarı"
+  },
+  "OTP_main_incompletePopup_text": {
+    "TR": "Şifre doğrulama kodu girmeniz gereken süre dolmuştur.",
+    "EN": "[EN] Şifre doğrulama kodu girmeniz gereken süre dolmuştur."
+  },
+  "OTP_main_firstButton_incompletePopup_button": {
+    "TR": "Yeniden Gönder",
+    "EN": "[EN] Yeniden Gönder"
+  },
+  "OTP_main_secondButton_incompletePopup_button": {
+    "TR": "Giriş Ekranına Dön",
+    "EN": "[EN] Giriş Ekranına Dön"
+  },
+  "OTP_secondButton_incompletePopup_button": {
+    "TR": "Giriş Ekranına Dön",
+    "EN": "[EN] Giriş Ekranına Dön"
+  },
+  "OTP_main_inputField_missing_errorMessage": {
+    "TR": "Şifreniz 6 haneli olmalıdır.",
+    "EN": "[EN] Şifreniz 6 haneli olmalıdır."
+  },
+  "OTP_main_wrongPopup_title": {
+    "TR": "Hatalı Şifre",
+    "EN": "[EN] Hatalı Şifre"
+  },
+  "OTP_main_wrongPopup_text": {
+    "TR": "Şifre doğrulama kodunu hatalı girdiniz, yeniden deneyin.",
+    "EN": "[EN] Şifre doğrulama kodunu hatalı girdiniz, yeniden deneyin."
+  },
+  "OTP_main_wrongPopupFirst_button": {
+    "TR": "Yeniden Dene",
+    "EN": "[EN] Yeniden Dene"
+  },
+  "OTP_main_wrongPopupSecond_button": {
+    "TR": "Giriş Ekranına Dön",
+    "EN": "[EN] Giriş Ekranına Dön"
+  },
+  "logout_main_popUp_text": {
+    "TR": "ON’dan çıkış yapıyorsunuz, emin misiniz?",
+    "EN": "[EN] ON’dan çıkış yapıyorsunuz, emin misiniz?"
+  },
+  "logout_main_popUp_first_button": {
+    "TR": "Çıkış Yap",
+    "EN": "[EN] Çıkış Yap"
+  },
+  "logout_main_popUp_second_button": {
+    "TR": "Vazgeç",
+    "EN": "[EN] Vazgeç"
+  },
+  "logout_main_popUp_title": {
+    "TR": "Uyarı",
+    "EN": "[EN] Uyarı"
+  },
+  "logout_main_timeoutPopUp_title": {
+    "TR": "Uyarı",
+    "EN": "[EN] Uyarı"
+  },
+  "logout_main_timeoutPopUp_text": {
+    "TR": "Uzun süredir işlem yapmadığınız için oturum sonlandırıldı. Tekrar giriş yaparak işlemlerinize devam edebilirsiniz.",
+    "EN": "[EN] Uzun süredir işlem yapmadığınız için oturum sonlandırıldı. Tekrar giriş yaparak işlemlerinize devam edebilirsiniz."
+  },
+  "logout_main_timeoutPopUp_first_button": {
+    "TR": "Tamam",
+    "EN": "[EN] Tamam"
+  },
+  "accounts_checking_text": {
+    "TR": "Vadesiz",
+    "EN": null
+  },
+  "accounts_on_text": {
+    "TR": "ON",
+    "EN": null
+  },
+  "accounts_saving_text": {
+    "TR": "Vadeli",
+    "EN": null
+  },
+  "accounts_funded_text": {
+    "TR": "Fonlu Mevduat",
+    "EN": null
+  },
+  "accounts_exchangeRateProtected_text": {
+    "TR": "Kur Korumalı Mevduat",
+    "EN": null
+  },
+  "accounts_foreignCurrencyExchangeRateProtected_text": {
+    "TR": "Dövizden Dönüşümlü Kur Korumalı Mevduat",
+    "EN": null
+  },
+  "accounts_account_text": {
+    "TR": "Hesap",
+    "EN": null
+  },
+  "accounts_accountBalance_label": {
+    "TR": "Hesap Bakiyesi:",
+    "EN": null
+  },
+  "accounts_accountSelection_continueWithSelection_button": {
+    "TR": "Seçim ile Devam Et",
+    "EN": null
+  },
+  "accounts_accountList_screen_title": {
+    "TR": "Hesaplar",
+    "EN": null
+  },
+  "accounts_accountList_bottomsheet_title": {
+    "TR": "Yeni Hesap",
+    "EN": null
+  },
+  "accounts_accountList_onHesap_bottomsheet_button": {
+    "TR": "ON Hesap",
+    "EN": null
+  },
+  "accounts_accountList_fonluMevduat_bottomsheet_button": {
+    "TR": "Fonlu Mevduat Hesap",
+    "EN": null
+  },
+  "accounts_accountList_vadeliHesap_bottomsheet_button": {
+    "TR": "Vadeli Hesap",
+    "EN": null
+  },
+  "accounts_accountList_vadesizHesap_bottomsheet_button": {
+    "TR": "Vadesiz Hesap",
+    "EN": null
+  },
+  "accounts_accountList_digerBanka_bottomsheet_button": {
+    "TR": "Diğer Banka Hesapları",
+    "EN": null
+  },
+  "accounts_checkingAccountOpening_screen_title": {
+    "TR": "Vadesiz Hesap Açılışı",
+    "EN": null
+  },
+  "accounts_checkingAccountOpening_subtitle": {
+    "TR": "Hesap Bilgileri",
+    "EN": null
+  },
+  "accounts_checkingAccountOpening_text": {
+    "TR": "Açmak istediğiniz hesabın bilgilerini girin.",
+    "EN": null
+  },
+  "accounts_checkingAccountOpening_accountName_label": {
+    "TR": "Hesap Adı",
+    "EN": null
+  },
+  "accounts_accountOpening_currencyType_label": {
+    "TR": "Para Birimi",
+    "EN": null
+  },
+  "accounts_accountOpening_currencyType_placeholder": {
+    "TR": null,
+    "EN": null
+  },
+  "accounts_accountOpening_paraBirimi_bottomSheet_subtitle": {
+    "TR": null,
+    "EN": null
+  },
+  "accounts_accountOpening_branch_label": {
+    "TR": "Şube",
+    "EN": null
+  },
+  "accounts_checkingAccountOpening_accountName_text": {
+    "TR": "Vadesiz hesabım",
+    "EN": null
+  },
+  "accounts_accountList_onmobil_bankaSecim_button": {
+    "TR": "On Mobil",
+    "EN": null
+  },
+  "accounts_accountList_digerBanka_bankaSecim_button": {
+    "TR": "On Mobil",
+    "EN": null
+  },
+  "accounts_accountList_onAccounts_title": {
+    "TR": "On Hesap",
+    "EN": null
+  },
+  "accounts_accountList_onAccounts_noAccount_title": {
+    "TR": "On ile paranızı değerlendirin!",
+    "EN": null
+  },
+  "accounts_accountList_onAccounts_noAccount_text": {
+    "TR": "Gündüz vadesiz, gece vadeli ON hesap açın.",
+    "EN": null
+  },
+  "accounts_accountList_noAccount_button": {
+    "TR": "Hesap aç",
+    "EN": null
+  },
+  "accounts_accountList_checkingAccounts_title": {
+    "TR": "Vadesiz Hesap",
+    "EN": null
+  },
+  "accounts_accountList_fundedAccounts_title": {
+    "TR": "Fonlu Mevduat Hesap",
+    "EN": null
+  },
+  "accounts_accountList_fundedAccounts_noAccount_title": {
+    "TR": "Hem vadeli hem fon mevduat!",
+    "EN": null
+  },
+  "accounts_accountList_fundedAccounts_noAccount_text": {
+    "TR": "Vadeli ve fon mevduat bir arada olan fon mevduat hesabı açın.",
+    "EN": null
+  },
+  "accounts_accountList_savingAccounts_title": {
+    "TR": "Vadeli Hesap",
+    "EN": null
+  },
+  "accounts_accountList_savingAccounts_noAccount_title": {
+    "TR": "Yüksek faiz oranlarından faydalanın!",
+    "EN": null
+  },
+  "accounts_accountList_savingAccounts_noAccount_text": {
+    "TR": "Yüksek faiz oranlı e-mevduat hesabı açın.",
+    "EN": null
+  },
+  "accounts_accountList_exchangeAccounts_title": {
+    "TR": "Vadeli Hesap",
+    "EN": null
+  },
+  "accounts_account_accountBalance_label": {
+    "TR": "Hesap Bakiyesi",
+    "EN": null
+  },
+  "accounts_accountInformation_screen_title": {
+    "TR": "Hesap Bilgisi",
+    "EN": null
+  },
+  "accounts_accountInformation_debitCard_text": {
+    "TR": "Bu hesaba bağlı {debitcard} bulunuyor.",
+    "EN": null
+  },
+  "accounts_accountInformation_debitCard_clickable_text": {
+    "TR": "debit kartınız",
+    "EN": null
+  },
+  "accounts_accountInformation_accountTransaction_button": {
+    "TR": "Hesap Hareketleri",
+    "EN": null
+  },
+  "accounts_accountInformation_moneyTransfer_button": {
+    "TR": "Para Transferi",
+    "EN": null
+  },
+  "accounts_accountInformation_payment_button": {
+    "TR": "Ödeme Yap",
+    "EN": null
+  },
+  "accounts_accountInformation_buyCurrency_button": {
+    "TR": "Döviz Al",
+    "EN": null
+  },
+  "accounts_accountInformation_addKolas_button": {
+    "TR": "Kolay Adres Ekle",
+    "EN": null
+  },
+  "accounts_accountInformation_addKmh_button": {
+    "TR": "Süper Ek Hesap Ekle",
+    "EN": null
+  },
+  "accounts_accountInformation_kmh_button": {
+    "TR": "Süper Ek Hesap",
+    "EN": null
+  },
+  "accounts_accountInformation_accountActions_button": {
+    "TR": "Hesap İşlemleri",
+    "EN": null
+  },
+  "accounts_accountInformation_details_blockage_label": {
+    "TR": "Blokeli",
+    "EN": null
+  },
+  "accounts_accountInformation_details_partner_label": {
+    "TR": "Ortak",
+    "EN": null
+  },
+  "accounts_accountInformation_details_blockagePartner_label": {
+    "TR": "Ortak - Blokeli",
+    "EN": null
+  },
+  "accounts_accountInformation_details_startDate_label": {
+    "TR": "Açılış Tarihi",
+    "EN": null
+  },
+  "accounts_accountInformation_balanceDetails_balance_label": {
+    "TR": "Hesap Bakiyesi",
+    "EN": null
+  },
+  "accounts_accountInformation_balanceDetails_availableBalance_label": {
+    "TR": "Kullanılabilir Bakiye",
+    "EN": null
+  },
+  "accounts_accountInformation_balanceDetails_kmhLimit_label": {
+    "TR": "Süper Ek Hesap Limit",
+    "EN": null
+  },
+  "accounts_accountInformation_balanceDetails_blockageAmount_label": {
+    "TR": "Blokeli Bakiye",
+    "EN": null
+  },
+  "accounts_accountInformation_balanceDetails_onCheckingBalance_label": {
+    "TR": "Vadesiz Bakiye",
+    "EN": null
+  },
+  "accounts_accountInformation_balanceDetails_onSavingBalance_label": {
+    "TR": "Vadeli Bakiye",
+    "EN": null
+  },
+  "accounts_accountInformation_buySellCurrency_button": {
+    "TR": "Döviz Al / Sat",
+    "EN": null
+  },
+  "accounts_accountInformation_buySellGold_button": {
+    "TR": "Altın Al / Sat",
+    "EN": null
+  },
+  "accounts_accountInformation_buySellSilver_button": {
+    "TR": "Altın Al / Sat",
+    "EN": null
+  },
+  "accounts_accountInformation_interestDetails_interestRate_button": {
+    "TR": "Faiz Oranı",
+    "EN": null
+  },
+  "debitCard_application_screen_title": {
+    "TR": "ON Banka Kartı Başvurusu",
+    "EN": "ON Debit Card Application"
+  },
+  "debitCard_application_cardInformation_subtitle": {
+    "TR": "Kart Bilgileri",
+    "EN": "Debit Card Information"
+  },
+  "debitCard_application_cardInformation_text": {
+    "TR": "Lütfen {0} kartının bağlanacağı ana hesabı ve kartınızın teslimatı için adresinizi seçin.",
+    "EN": null
+  },
+  "debitCard_application_onBank_text": {
+    "TR": "ON Banka",
+    "EN": "ON Bank"
+  },
+  "debitCard_application_permissions_subtitle": {
+    "TR": "Kullanım İzinleri",
+    "EN": "Permissions"
+  },
+  "debitCard_application_permissions_text": {
+    "TR": "Lütfen {0} kartınız için kullanım izinlerinizi seçin.",
+    "EN": null
+  },
+  "debitCard_application_mainAccount_label": {
+    "TR": "Kartın Bağlanacağı Ana Hesap",
+    "EN": null
+  },
+  "debitCard_application_deliveryAddress_label": {
+    "TR": "Teslimat Adresi",
+    "EN": "Delivery Address"
+  },
+  "debitCard_application_applicationSummary_title": {
+    "TR": "Başvuru Özeti",
+    "EN": "Application Summary"
+  },
+  "debitCard_application_applicationSummary_text": {
+    "TR": "{0} kartınız için girmiş olduğunuz bilgileri ve tercihlerinizi kontrol edip onaylayabilirsiniz.",
+    "EN": null
+  },
+  "debitCard_application_nameOnCard_label": {
+    "TR": "Kart Üzerindeki Ad Soyad",
+    "EN": "Name on Card"
+  },
+  "debitCard_application_iban_label": {
+    "TR": "IBAN",
+    "EN": "IBAN"
+  },
+  "debitCard_application_cardDeliveryAddress_label": {
+    "TR": "Kart Teslim Adresi",
+    "EN": "Card Delivery Address"
+  },
+  "debitCard_application_abroadUse_label": {
+    "TR": "Yurtdışı Kullanım",
+    "EN": "Abroad Use"
+  },
+  "debitCard_application_moto_label": {
+    "TR": "Telefon / Posta Yoluyla Alışveriş",
+    "EN": "MO/TO"
+  },
+  "debitCard_application_internetUse_label": {
+    "TR": "İnternet Üzerinden Alışveriş",
+    "EN": "Shopping via Internet"
+  },
+  "debitCard_application_success_title": {
+    "TR": "ON Banka Kartı Başvurunuz Başarıyla Alınmıştır.",
+    "EN": "ON Bank Card application has been successfully received."
+  },
+  "debitCard_application_success1_text": {
+    "TR": "Adresinize teslimat gerçekleşene kadar kartınızı Dijital Banka Kartı olarak online alışverişlerinizde kullanmaya başlayabilirsiniz.",
+    "EN": "[EN] Adresinize teslimat gerçekleşene kadar kartınızı Dijital Banka Kartı olarak online alışverişlerinizde kullanmaya başlayabilirsiniz."
+  },
+  "debitCard_application_success2_text": {
+    "TR": "Kartınızın takip sürecini Banka Kartım ekranında yer alan {0} alanından takip edebilirsiniz.",
+    "EN": "[EN] Kartınızın takip sürecini Banka Kartım ekranında yer alan {0} alanından takip edebilirsiniz."
+  },
+  "debitCard_application_whereIsMyCard_text": {
+    "TR": "\"Kartım Nerede\"",
+    "EN": "[EN] \"Kartım Nerede\""
+  },
+  "debitCard_application_onBankCard_button": {
+    "TR": "ON Banka Kartı",
+    "EN": "[EN] ON Banka Kartı"
+  },
+  "debitCard_application_cards_button": {
+    "TR": "Kartlar",
+    "EN": "[EN] Kartlar"
+  },
+  "debitCard_application_transactionNotCompleted_text": {
+    "TR": "ON Banka Kartı başvurunuz tamamlanamadı.",
+    "EN": "[EN] ON Banka Kartı başvurunuz tamamlanamadı."
+  },
+  "debitCard_application_applyAgain_button": {
+    "TR": "Yeniden Başvur",
+    "EN": "[EN] Yeniden Başvur"
+  },
+  "debitCard_details_onBankCard_title": {
+    "TR": "ON Banka Kartı",
+    "EN": "[EN] ON Banka Kartı"
+  },
+  "debitCard_details_availableBalance_label": {
+    "TR": "Kullanılabilir Bakiye",
+    "EN": "[EN] Kullanılabilir Bakiye"
+  },
+  "debitCard_details_currentBalance_label": {
+    "TR": "Güncel Bakiye",
+    "EN": "[EN] Güncel Bakiye"
+  },
+  "debitCard_details_overdraftLimit_label": {
+    "TR": "Süper Ek Hesap Limiti",
+    "EN": "[EN] Süper Ek Hesap Limiti"
+  },
+  "debitCard_details_connectedAccount_label": {
+    "TR": "Bağlı Hesap",
+    "EN": "[EN] Bağlı Hesap"
+  },
+  "debitCard_details_onBankCard_button": {
+    "TR": "Kart Bilgilerini Gör",
+    "EN": "[EN] Kart Bilgilerini Gör"
+  },
+  "debitCard_details_cardActivities_button": {
+    "TR": "Kart Hareketleri / Ekstre",
+    "EN": "[EN] Kart Hareketleri / Ekstre"
+  },
+  "debitCard_details_accountTransactions_button": {
+    "TR": "Hesap İşlemleri",
+    "EN": "[EN] Hesap İşlemleri"
+  },
+  "debitCard_details_cardTransactions_button": {
+    "TR": "Kart İşlemleri",
+    "EN": "[EN] Kart İşlemleri"
+  },
+  "debitCard_details_virtualCard_title": {
+    "TR": "Sanal Kart",
+    "EN": "[EN] Sanal Kart"
+  },
+  "debitCard_details_cardInformation_title": {
+    "TR": "Kart Bilgileri",
+    "EN": "[EN] Kart Bilgileri"
+  },
+  "debitCard_information_nameOnCard_title": {
+    "TR": "Kart Üzerindeki Ad Soyad",
+    "EN": "[EN] Kart Üzerindeki Ad Soyad"
+  },
+  "debitCard_information_accountNumber_label": {
+    "TR": "Hesap Numarası",
+    "EN": "[EN] Hesap Numarası"
+  },
+  "debitCard_information_branch_label": {
+    "TR": "Şube",
+    "EN": "[EN] Şube"
+  },
+  "debitCard_settings_cardTransactions_title": {
+    "TR": "Kart İşlemleri",
+    "EN": "[EN] Kart İşlemleri"
+  },
+  "debitCard_settings_authorizationsAndLimits_button": {
+    "TR": "Yetki ve Limitler",
+    "EN": "[EN] Yetki ve Limitler"
+  },
+  "debitCard_settings_masterpassSettings_button": {
+    "TR": "Masterpass İşlemleri",
+    "EN": "[EN] Masterpass İşlemleri"
+  },
+  "debitCard_settings_digitalSlip_button": {
+    "TR": "Dijital Slip Tercihleri",
+    "EN": "[EN] Dijital Slip Tercihleri"
+  },
+  "debitCard_settings_lostAndStolen_button": {
+    "TR": "Kart Kayıp / Çalıntı / İptal",
+    "EN": "[EN] Kart Kayıp / Çalıntı / İptal"
+  },
+  "debitCard_settings_pin_button": {
+    "TR": "Şifre İşlemleri",
+    "EN": "[EN] Şifre İşlemleri"
+  },
+  "debitCard_settings_cancellation_button": {
+    "TR": "Kart İptali",
+    "EN": "[EN] Kart İptali"
+  },
+  "debitCard_settings_masterpassInformation_text": {
+    "TR": "Kartınızı Mastercard’ın dijital ödeme çözümü olan Masterpass’e kaydederek alışverişlerinizde kart bilgilerini yazma derdi olmadan hızlı, kolay ve keyifli bir şekilde ödeme yapabilirsiniz.",
+    "EN": "[EN] Kartınızı Mastercard’ın dijital ödeme çözümü olan Masterpass’e kaydederek alışverişlerinizde kart bilgilerini yazma derdi olmadan hızlı, kolay ve keyifli bir şekilde ödeme yapabilirsiniz."
+  },
+  "debitCard_settings_masterpassDetailedInformation_text": {
+    "TR": "Masterpass ile ilgili detaylı bilgi ve üye iş yerleri listesi için {0}.",
+    "EN": "[EN] Masterpass ile ilgili detaylı bilgi ve üye iş yerleri listesi için {0}."
+  },
+  "debitCard_settings_masterpassDetailedInformationLink_text": {
+    "TR": "tıklayınız",
+    "EN": "[EN] tıklayınız"
+  },
+  "debitCard_settings_masterpassTermsOfUse_text": {
+    "TR": "Kartını Masterpass’e kaydederek {0}nı da onaylamış olacaksın. Kart bilgilerin ve cep telefonu numaran Masterpass ile paylaşılarak Masterpass altyapısında saklanacaktır.",
+    "EN": "[EN] Kartını Masterpass’e kaydederek {0}nı da onaylamış olacaksın. Kart bilgilerin ve cep telefonu numaran Masterpass ile paylaşılarak Masterpass altyapısında saklanacaktır."
+  },
+  "debitCard_settings_masterpassTermsOfUseLink_text": {
+    "TR": "Kullanım Koşulları",
+    "EN": "[EN] Kullanım Koşulları"
+  },
+  "debitCard_settings_masterpass_masterpassTermsOfUse_title": {
+    "TR": "Masterpass Kullanım Koşulları",
+    "EN": "[EN] Masterpass Kullanım Koşulları"
+  },
+  "debitCard_settings_masterpass_masterpassTermsOfUse_text": {
+    "TR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Magnis dis parturient montes nascetur ridiculus mus mauris vitae ultricies. Vel turpis nunc eget lorem dolor. Est sit amet facilisis magna etiam tempor orci eu lobortis. Neque viverra justo nec ultrices dui sapien eget mi proin. Varius duis at consectetur lorem donec massa sapien faucibus. Elit ut aliquam purus sit amet luctus. Proin libero nunc consequat interdum varius sit amet mattis. Massa placerat duis ultricies lacus sed turpis tincidunt id. Dapibus ultrices in iaculis nunc sed augue lacus. Mauris ultrices eros in cursus turpis. Purus non enim praesent elementum. Egestas egestas fringilla phasellus faucibus scelerisque. Eget arcu dictum varius duis at consectetur lorem. Iaculis eu non diam phasellus vestibulum lorem. Mi eget mauris pharetra et ultrices neque ornare aenean euismod. Ac ut consequat semper viverra nam libero. Eget mi proin sed libero enim sed faucibus turpis. Sit amet nisl suscipit adipiscing.\n\nTurpis egestas pretium aenean pharetra magna ac placerat vestibulum lectus. Mattis enim ut tellus elementum sagittis. Cursus risus at ultrices mi tempus. Viverra nam libero justo laoreet sit amet cursus. Orci dapibus ultrices in iaculis. Condimentum lacinia quis vel eros. Malesuada nunc vel risus commodo viverra. Quis imperdiet massa tincidunt nunc pulvinar sapien. Morbi tristique senectus et netus et malesuada fames ac turpis. Neque egestas congue quisque egestas diam in arcu cursus. Vivamus at augue eget arcu dictum varius duis. Porta lorem mollis aliquam ut. Orci a scelerisque purus semper eget duis at tellus.",
+    "EN": "[EN] Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Magnis dis parturient montes nascetur ridiculus mus mauris vitae ultricies. Vel turpis nunc eget lorem dolor. Est sit amet facilisis magna etiam tempor orci eu lobortis. Neque viverra justo nec ultrices dui sapien eget mi proin. Varius duis at consectetur lorem donec massa sapien faucibus. Elit ut aliquam purus sit amet luctus. Proin libero nunc consequat interdum varius sit amet mattis. Massa placerat duis ultricies lacus sed turpis tincidunt id. Dapibus ultrices in iaculis nunc sed augue lacus. Mauris ultrices eros in cursus turpis. Purus non enim praesent elementum. Egestas egestas fringilla phasellus faucibus scelerisque. Eget arcu dictum varius duis at consectetur lorem. Iaculis eu non diam phasellus vestibulum lorem. Mi eget mauris pharetra et ultrices neque ornare aenean euismod. Ac ut consequat semper viverra nam libero. Eget mi proin sed libero enim sed faucibus turpis. Sit amet nisl suscipit adipiscing.\n\nTurpis egestas pretium aenean pharetra magna ac placerat vestibulum lectus. Mattis enim ut tellus elementum sagittis. Cursus risus at ultrices mi tempus. Viverra nam libero justo laoreet sit amet cursus. Orci dapibus ultrices in iaculis. Condimentum lacinia quis vel eros. Malesuada nunc vel risus commodo viverra. Quis imperdiet massa tincidunt nunc pulvinar sapien. Morbi tristique senectus et netus et malesuada fames ac turpis. Neque egestas congue quisque egestas diam in arcu cursus. Vivamus at augue eget arcu dictum varius duis. Porta lorem mollis aliquam ut. Orci a scelerisque purus semper eget duis at tellus."
+  },
+  "debitCard_settings_masterpass_success_title": {
+    "TR": "Kartınız Masterpass’e Başarıyla Kaydedildi.",
+    "EN": "[EN] Kartınız Masterpass’e Başarıyla Kaydedildi."
+  },
+  "debitCard_settings_masterpass_success_text": {
+    "TR": "Masterpass üye iş yerlerinde hızlı ve keyifli alışverişin keyfini çıkarın.",
+    "EN": "[EN] Masterpass üye iş yerlerinde hızlı ve keyifli alışverişin keyfini çıkarın."
+  },
+  "debitCard_cardDetails_button": {
+    "TR": "Kart Detayları",
+    "EN": "[EN] Kart Detayları"
+  },
+  "debitCard_settings_lostAndStolen_screen_title": {
+    "TR": "Kart Kayıp / Çalıntı",
+    "EN": "[EN] Kart Kayıp / Çalıntı"
+  },
+  "debitCard_settings_lostAndStolen_cardStatus_subtitle": {
+    "TR": "Kart Durumu",
+    "EN": "[EN] Kart Durumu"
+  },
+  "debitCard_settings_lostAndStolen_cardStatus_text": {
+    "TR": "ON Banka Kartınızla ilgili hangi sebeple işlem yapmak istediğinizi seçin.",
+    "EN": "[EN] ON Banka Kartınızla ilgili hangi sebeple işlem yapmak istediğinizi seçin."
+  },
+  "debitCard_settings_lostAndStolen_lost_text": {
+    "TR": "Kayıp",
+    "EN": "[EN] Kayıp"
+  },
+  "debitCard_settings_lostAndStolen_stolen_text": {
+    "TR": "Çalıntı",
+    "EN": "[EN] Çalıntı"
+  },
+  "debitCard_settings_lostAndStolen_transactionType_subtitle": {
+    "TR": "İşlem Tipi",
+    "EN": "[EN] İşlem Tipi"
+  },
+  "debitCard_settings_lostAndStolen_transactionType_text": {
+    "TR": "ON Banka Kartınız için yapmak istediğiniz işlem tipini seçin.",
+    "EN": "[EN] ON Banka Kartınız için yapmak istediğiniz işlem tipini seçin."
+  },
+  "debitCard_settings_lostAndStolen_cardCancellation_text": {
+    "TR": "Kart İptali",
+    "EN": "[EN] Kart İptali"
+  },
+  "debitCard_settings_lostAndStolen_temporarilyCancellation_text": {
+    "TR": "Geçici Kapama",
+    "EN": "[EN] Geçici Kapama"
+  },
+  "debitCard_settings_lostAndStolen_temporarilyCancellationSubtext_text": {
+    "TR": "Kartınız XX saat süreyle kullanıma kapatılır.",
+    "EN": "[EN] Kartınız XX saat süreyle kullanıma kapatılır."
+  },
+  "debitCard_settings_lostAndStolen_cancellationSwitch_text": {
+    "TR": "Kartımın yenilenerek gönderilmesini istiyorum.",
+    "EN": "[EN] Kartımın yenilenerek gönderilmesini istiyorum."
+  },
+  "debitCard_settings_lostAndStolen_temporarilyCancellationSuccess_text": {
+    "TR": "ON Banka Kartınız XX saat süreyle geçici olarak kullanıma kapatılmıştır. Bu süre zarfında tekrar kullanıma açmak isterseniz kayıp / çalıntı ekranından açabilirsiniz. Herhangi bir işlem yapmadığınız takdirde 24 saat sonra kartınız iptal edilecektir.",
+    "EN": "[EN] ON Banka Kartınız XX saat süreyle geçici olarak kullanıma kapatılmıştır. Bu süre zarfında tekrar kullanıma açmak isterseniz kayıp / çalıntı ekranından açabilirsiniz. Herhangi bir işlem yapmadığınız takdirde 24 saat sonra kartınız iptal edilecektir."
+  },
+  "debitCard_settings_lostAndStolen_cancellationSuccess_text": {
+    "TR": "ON Banka Kartınız iptal edilmiştir. Yeni kartınız en kısa zamanda size teslim edilecektir.",
+    "EN": "[EN] ON Banka Kartınız iptal edilmiştir. Yeni kartınız en kısa zamanda size teslim edilecektir."
+  },
+  "debitCard_settings_lostAndStolen_cancellationSuccessWithoutRenewal_text": {
+    "TR": "ON Banka Kartınız iptal edilmiştir.",
+    "EN": "[EN] ON Banka Kartınız iptal edilmiştir."
+  },
+  "debitCard_goToCards_button": {
+    "TR": "Kartlara Git",
+    "EN": "[EN] Kartlara Git"
+  },
+  "debitCard_settings_setPin_title": {
+    "TR": "Şifre İşlemleri",
+    "EN": "[EN] Şifre İşlemleri"
+  },
+  "debitCard_settings_setPin_subtitle": {
+    "TR": "Şifreni Belirle",
+    "EN": "[EN] Şifreni Belirle"
+  },
+  "debitCard_settings_setPin_setNewPin_button": {
+    "TR": "Yeni Şifre Oluştur",
+    "EN": "[EN] Yeni Şifre Oluştur"
+  },
+  "debitCard_settings_digitalSlip_title": {
+    "TR": "Dijital Slip Tercihi",
+    "EN": "[EN] Dijital Slip Tercihi"
+  },
+  "debitCard_settings_digitalSlip_protectNature_title": {
+    "TR": "Doğayı Koru",
+    "EN": "[EN] Doğayı Koru"
+  },
+  "debitCard_settings_digitalSlip_protectNature_subtitle": {
+    "TR": "Sen de dijital slip özelliğini aç, işlem arşivini mobilden kolayca görüntüle.",
+    "EN": "[EN] Sen de dijital slip özelliğini aç, işlem arşivini mobilden kolayca görüntüle."
+  },
+  "debitCard_settings_digitalSlip_allOperation_button": {
+    "TR": "Tüm işlemlerde dijital slip almak istiyorum.",
+    "EN": "[EN] Tüm işlemlerde dijital slip almak istiyorum."
+  },
+  "debitCard_settings_digitalSlip_contactlessUsage_button": {
+    "TR": "Temassız gerçekleştirdiğim şifresiz işlemlerimde Dijital Slip almak istiyorum.",
+    "EN": "[EN] Temassız gerçekleştirdiğim şifresiz işlemlerimde Dijital Slip almak istiyorum."
+  },
+  "debitCard_settings_digitalSlip_never_button": {
+    "TR": "Tüm POS işlemlerimde Basılı Slip almak istiyorum",
+    "EN": "[EN] Tüm POS işlemlerimde Basılı Slip almak istiyorum"
+  },
+  "debitCard_settings_digitalSlip_success_text": {
+    "TR": "Dijital Slip Tercihiniz Başarıyla Alınmıştır.",
+    "EN": "[EN] Dijital Slip Tercihiniz Başarıyla Alınmıştır."
+  },
+  "debitCard_settings_permissionAndLimit_title": {
+    "TR": "Yetki ve Limitler",
+    "EN": "[EN] Yetki ve Limitler"
+  },
+  "debitCard_settings_permissionAndLimit_domestic_title": {
+    "TR": "Yurt İçi Kullanım İşlem Yetkileri",
+    "EN": "[EN] Yurt İçi Kullanım İşlem Yetkileri"
+  },
+  "debitCard_settings_permissionAndLimit_domesticInternet_button": {
+    "TR": "İnternet Üzerinden Alışveriş",
+    "EN": "[EN] İnternet Üzerinden Alışveriş"
+  },
+  "debitCard_settings_permissionAndLimit_domesticPhone_button": {
+    "TR": "Telefon/Posta Yolu ile Alışveriş",
+    "EN": "[EN] Telefon/Posta Yolu ile Alışveriş"
+  },
+  "debitCard_settings_permissionAndLimit_abroad_title": {
+    "TR": "Yurt Dışı Kullanım İşlem Yetkileri",
+    "EN": "[EN] Yurt Dışı Kullanım İşlem Yetkileri"
+  },
+  "debitCard_settings_permissionAndLimit_abroadUsage_button": {
+    "TR": "Yurt Dışı Kullanım",
+    "EN": "[EN] Yurt Dışı Kullanım"
+  },
+  "debitCard_settings_permissionAndLimit_abroadInternet_button": {
+    "TR": "İnternet Üzerinden Alışveriş",
+    "EN": "[EN] İnternet Üzerinden Alışveriş"
+  },
+  "debitCard_settings_permissionAndLimit_abroadPhone_button": {
+    "TR": "Telefon/Posta Yolu ile Alışveriş",
+    "EN": "[EN] Telefon/Posta Yolu ile Alışveriş"
+  },
+  "debitCard_settings_permissionAndLimit_abroadFxUsage_button": {
+    "TR": "Döviz Hesapları Kullanımı",
+    "EN": "[EN] Döviz Hesapları Kullanımı"
+  },
+  "debitCard_settings_permissionAndLimit_abroadFxUsage_text": {
+    "TR": "USD, EUR ve GBP vadesiz hesabınız varsa orjinal işlemin döviz cinsine göre ilgili hesaptan tahsilat yapılır. Yoksa kartınıza bağlı ana TL hesabınız kullanılır.",
+    "EN": "[EN] USD, EUR ve GBP vadesiz hesabınız varsa orjinal işlemin döviz cinsine göre ilgili hesaptan tahsilat yapılır. Yoksa kartınıza bağlı ana TL hesabınız kullanılır."
+  },
+  "debitCard_settings_permissionAndLimit_usage_title": {
+    "TR": "Kullanım İşlem Yetkileri",
+    "EN": "[EN] Kullanım İşlem Yetkileri"
+  },
+  "debitCard_settings_permissionAndLimit_withdrawMoney_button": {
+    "TR": "Para Çekme Yetkisi",
+    "EN": "[EN] Para Çekme Yetkisi"
+  },
+  "debitCard_settings_permissionAndLimit_contactlessUsage_button": {
+    "TR": "Temassız Kullanım Yetkisi",
+    "EN": "[EN] Temassız Kullanım Yetkisi"
+  },
+  "debitCard_settings_permissionAndLimit_posLimit_title": {
+    "TR": "Günlük POS Alışveriş Limiti",
+    "EN": "[EN] Günlük POS Alışveriş Limiti"
+  },
+  "debitCard_settings_permissionAndLimit_atmLimit_title": {
+    "TR": "Günlük ATM Para Çekme Limiti",
+    "EN": "[EN] Günlük ATM Para Çekme Limiti"
+  },
+  "debitCard_settings_permissionAndLimit_maxLimit_text": {
+    "TR": "Limit Tutarı",
+    "EN": "[EN] Limit Tutarı"
+  },
+  "debitCard_settings_permissionAndLimit_availableLimit_text": {
+    "TR": "Kullanılabilir Limit",
+    "EN": "[EN] Kullanılabilir Limit"
+  },
+  "debitCard_settings_permissionAndLimit_maxLimitError_text": {
+    "TR": "Belirtilen limit tutarı, üst limit tutarını geçmektedir.",
+    "EN": "[EN] Belirtilen limit tutarı, üst limit tutarını geçmektedir."
+  },
+  "debitCard_cardList_title": {
+    "TR": "Kartlar",
+    "EN": "[EN] Kartlar"
+  },
+  "debitCard_cardList_debitCard_subtitle": {
+    "TR": "Banka Kartları",
+    "EN": "[EN] Banka Kartları"
+  },
+  "debitCard_cardList_onBankCard_text": {
+    "TR": "On Banka Kartı",
+    "EN": "[EN] On Banka Kartı"
+  },
+  "debitCard_cardList_digitalCard_text": {
+    "TR": "Dijital Kart",
+    "EN": "[EN] Dijital Kart"
+  },
+  "debitCard_cardList_totalBalance_text": {
+    "TR": "Toplam Kullanılabilir Bakiye",
+    "EN": "[EN] Toplam Kullanılabilir Bakiye"
+  },
+  "debitCard_cardList_creditCartBanner_text": {
+    "TR": "On Kredi Kartın ayrıcalıkları seni bekliyor.",
+    "EN": "[EN] On Kredi Kartın ayrıcalıkları seni bekliyor."
+  },
+  "debitCard_cardList_applyNow_text": {
+    "TR": "Hemen başvur",
+    "EN": "[EN] Hemen başvur"
+  },
+  "debitCard_setPin_confirmPinChanges_text": {
+    "TR": "Şifren değiştirilecektir, onaylıyor musun?",
+    "EN": "[EN] Şifren değiştirilecektir, onaylıyor musun?"
+  },
+  "debitCard_cardList_applyDebitCard_title": {
+    "TR": "On'la Rahat!",
+    "EN": "[EN] On'la Rahat!"
+  },
+  "debitCard_cardList_applyDebitCard_text": {
+    "TR": "{0} Kartıyla alışverişlerinde harcadıkça kazanmak artık çok kolay!",
+    "EN": "[EN] {0} Kartıyla alışverişlerinde harcadıkça kazanmak artık çok kolay!"
+  },
+  "debitCard_cardList_onDebit_text": {
+    "TR": "On Debit",
+    "EN": "[EN] On Debit"
+  },
+  "debitCard_cardDetails_editRelatedAccounts_button": {
+    "TR": "Bağlı Hesap Düzenle",
+    "EN": "[EN] Bağlı Hesap Düzenle"
+  },
+  "debitCard_cardDetails_temporaryClosed_text": {
+    "TR": "Kartınız Geçici Olarak Kapatılmıştır.",
+    "EN": "[EN] Kartınız Geçici Olarak Kapatılmıştır."
+  },
+  "debitCard_cardList_noFee_text": {
+    "TR": "Kart aidati yok.",
+    "EN": "[EN] Kart aidati yok."
+  },
+  "debitCard_cardList_contactlessUsage_text": {
+    "TR": "Temassız özellik ile yurtiçi ve yurtdışı POS ve ATM'lerde işlem yapabilirsin.",
+    "EN": "[EN] Temassız özellik ile yurtiçi ve yurtdışı POS ve ATM'lerde işlem yapabilirsin."
+  },
+  "debitCard_cardList_totalLimit_text": {
+    "TR": "Toplam Kullanılabilir Limit",
+    "EN": "[EN] Toplam Kullanılabilir Limit"
+  },
+  "debitCard_cardList_virtualCard_subtitle": {
+    "TR": "Sanal Kart",
+    "EN": "[EN] Sanal Kart"
+  },
+  "debitCard_cardDetails_atmMaxLimit_label": {
+    "TR": "Günlük ATM Üst Limit",
+    "EN": "[EN] Günlük ATM Üst Limit"
+  },
+  "debitCard_cardDetails_posMaxLimit_label": {
+    "TR": "Günlük POS Üst Limit",
+    "EN": "[EN] Günlük POS Üst Limit"
+  },
+  "debitCard_cardBottomsheet_title": {
+    "TR": "Yeni Kart Başvurusu",
+    "EN": "[EN] Yeni Kart Başvurusu"
+  },
+  "debitCard_cardBottomsheet_creditCard_label": {
+    "TR": "ON Kredi Kartı",
+    "EN": "[EN] ON Kredi Kartı"
+  },
+  "debitCard_cardBottomsheet_debitCard_label": {
+    "TR": "ON Banka Kartı",
+    "EN": "[EN] ON Banka Kartı"
+  },
+  "debitCard_cardBottomsheet_virtualCard_label": {
+    "TR": "ON Sanal Kart",
+    "EN": "[EN] ON Sanal Kart"
+  },
+  "debitCard_transactionFiltering_title": {
+    "TR": "Filtre Seçimi",
+    "EN": "[EN] Filtre Seçimi"
+  },
+  "debitCard_transactionFiltering_sectorFilter_title": {
+    "TR": "Sektör Seçimi",
+    "EN": "[EN] Sektör Seçimi"
+  },
+  "debitCard_transactionFiltering_showMore_label": {
+    "TR": "Daha Fazla",
+    "EN": "[EN] Daha Fazla"
+  },
+  "debitCard_transactionFiltering_showLess_label": {
+    "TR": "Daha Az",
+    "EN": "[EN] Daha Az"
+  },
+  "debitCard_transactionFiltering_transactionTypeFilter_title": {
+    "TR": "İşlem Tipi",
+    "EN": "[EN] İşlem Tipi"
+  },
+  "debitCard_transactionFiltering_transactionTypeAll_label": {
+    "TR": "Tümü",
+    "EN": "[EN] Tümü"
+  },
+  "debitCard_transactionFiltering_transactionTypePending_label": {
+    "TR": "Beklemede",
+    "EN": "[EN] Beklemede"
+  },
+  "debitCard_transactionFiltering_transactionTypeCashWithdrawal_label": {
+    "TR": "Nakit Çekim",
+    "EN": "[EN] Nakit Çekim"
+  },
+  "debitCard_transactionFiltering_transactionTypeShopping_label": {
+    "TR": "Alışveriş",
+    "EN": "[EN] Alışveriş"
+  },
+  "debitCard_transactionFiltering_amountFilter_title": {
+    "TR": "İşlem Tutarı",
+    "EN": "[EN] İşlem Tutarı"
+  },
+  "debitCard_transactionFiltering_minAmount_label": {
+    "TR": "Minimum Tutar",
+    "EN": "[EN] Minimum Tutar"
+  },
+  "debitCard_transactionFiltering_maxAmount_label": {
+    "TR": "Maksimum Tutar",
+    "EN": "[EN] Maksimum Tutar"
+  },
+  "debitCard_transactionFiltering_applyAll_label": {
+    "TR": "Filtreyi Uygula",
+    "EN": "[EN] Filtreyi Uygula"
+  },
+  "debitCard_transactionFiltering_popup_title": {
+    "TR": "Filtreleme Gerçekleştirilemedi",
+    "EN": "[EN] Filtreleme Gerçekleştirilemedi"
+  },
+  "debitCard_transactionFiltering_popup_text": {
+    "TR": "Girdiğiniz minimum tutar maksimum tutardan büyük olamaz.",
+    "EN": "[EN] Girdiğiniz minimum tutar maksimum tutardan büyük olamaz."
+  },
+  "debitCard_transactionFiltering_popupRetry_button": {
+    "TR": "Yeniden Dene",
+    "EN": "[EN] Yeniden Dene"
+  },
+  "debitCard_transactionFiltering_popupDiscard_button": {
+    "TR": "Vazgeç",
+    "EN": "[EN] Vazgeç"
+  },
+  "debitCard_transactionFiltering_sectorFilterInfo_title": {
+    "TR": "Sektör Seçimi",
+    "EN": "[EN] Sektör Seçimi"
+  },
+  "debitCard_transactionFiltering_sectorFilterInfo_text": {
+    "TR": "İşlem kategorileri işyeri bankalarının tanımlamalarına göre farklılık gösterebilir.",
+    "EN": "[EN] İşlem kategorileri işyeri bankalarının tanımlamalarına göre farklılık gösterebilir."
+  },
+  "debitCard_cardList_virtualBankCard_text": {
+    "TR": "ON Sanal Banka Kartı",
+    "EN": "[EN] ON Sanal Banka Kartı"
+  },
+  "debitCard_masterpass_kvkk_text": {
+    "TR": "{0} ni okudum, onaylıyorum.",
+    "EN": "[EN] {0} ni okudum, onaylıyorum."
+  },
+  "debitCard_masterpass_kvkkUrl_text": {
+    "TR": "Kişisel Verilerin İşlenmesine Yönelik Aydınlatma Metni",
+    "EN": "[EN] Kişisel Verilerin İşlenmesine Yönelik Aydınlatma Metni"
+  },
+  "debitCard_masterpass_termsAndConditions_title": {
+    "TR": "Sözleşme Onayı",
+    "EN": "[EN] Sözleşme Onayı"
+  },
+  "debitCard_masterpass_acceptTc_button": {
+    "TR": "Okudum, onaylıyorum",
+    "EN": "[EN] Okudum, onaylıyorum"
+  },
+  "debitCard_transactionDetails_screen_title": {
+    "TR": "İşlem Detayı",
+    "EN": "[EN] İşlem Detayı"
+  },
+  "debitCard_transactionDetails_amount_title": {
+    "TR": "İşlem Tutarı",
+    "EN": "[EN] İşlem Tutarı"
+  },
+  "debitCard_transactionDetails_date_title": {
+    "TR": "İşlem Tarihi",
+    "EN": "[EN] İşlem Tarihi"
+  },
+  "debitCard_transactionDetails_merchant_title": {
+    "TR": "Açıklama",
+    "EN": "[EN] Açıklama"
+  },
+  "debitCard_transactionDetails_mcc_title": {
+    "TR": "Sektör",
+    "EN": "[EN] Sektör"
+  },
+  "debitCard_transactionDetails_sourceAccount_title": {
+    "TR": "İşlemin Yapıldığı Hesap",
+    "EN": "[EN] İşlemin Yapıldığı Hesap"
+  },
+  "debitCard_transactionDetails_digitalSlipDisplay_button": {
+    "TR": "Dijital Slip Görüntüle",
+    "EN": "[EN] Dijital Slip Görüntüle"
+  },
+  "debitCard_settings_lostStolen_transactionType_label": {
+    "TR": "İşlem Tipi",
+    "EN": null
+  },
+  "debitCard_settings_lostStolen_cardInfo_label": {
+    "TR": "Kart bilgisi",
+    "EN": null
+  },
+  "debitCard_settings_lostStolen_renewCard_label": {
+    "TR": "Kartım Yenilenerek Gelsin",
+    "EN": null
+  },
+  "debitCard_transactionList_title": {
+    "TR": "Kart Hareketleri",
+    "EN": null
+  },
+  "debitCard_settings_masterpass_button": {
+    "TR": "Kartı Masterpass'e Kaydet",
+    "EN": null
+  },
+  "debitCard_settings_permissionAndLimit_success_text": {
+    "TR": "Yetki ve Limit Ayarlarınız Kaydedilmiştir",
+    "EN": null
+  },
+  "debitCard_masterAccount_title": {
+    "TR": "Ana Hesabı Değiştir",
+    "EN": null
+  },
+  "debitCard_masterAccount_currentAccount_title": {
+    "TR": "Mevcut Karta Bağlı Ana Hesap",
+    "EN": null
+  },
+  "debitCard_masterAccount_changeAccount_title": {
+    "TR": "Değiştirilmek İstenen Hesap",
+    "EN": null
+  },
+  "debitCard_settings_pinChange_numeric_text": {
+    "TR": "Şifreniz numerik olmalıdır.",
+    "EN": null
+  },
+  "debitCard_settings_pinChange_character_text": {
+    "TR": "Şifreniz 4 karakter olmalıdır.",
+    "EN": null
+  },
+  "debitCard_settings_pinChange_consecutive_text": {
+    "TR": "Şifreniz ardışık ve tekrar rakamlar içermemelidir.",
+    "EN": null
+  },
+  "debitCard_changeRelatedAccount_title": {
+    "TR": "Bağlı Hesap Düzenle",
+    "EN": null
+  },
+  "debitCard_changeRelatedAccount_masterAccount_subtitle": {
+    "TR": "Ana Hesap",
+    "EN": null
+  },
+  "debitCard_changeRelatedAccount_relatedAccount_subtitle": {
+    "TR": "Bağlı Hesaplarım",
+    "EN": null
+  },
+  "debitCard_changeRelatedAccount_addRelatedAccount": {
+    "TR": "Yeni Hesap Bağla",
+    "EN": null
+  },
+  "debitCard_changeRelatedAccount_noRelatedAccount_text": {
+    "TR": "Ana hesap dışında kartınıza bağlı başka bir hesap bulunmamaktadır.",
+    "EN": null
+  },
+  "debitCard_changeRelatedAccount_removeRelatedAccount_button": {
+    "TR": "Bağlı Hesap Sil",
+    "EN": null
+  },
+  "debitCard_changeRelatedAccount_addRelatedAccount_button": {
+    "TR": "Hesap Seçin",
+    "EN": null
+  },
+  "debitCard_removeRelatedAccount_title": {
+    "TR": "Bağlı Hesap Sil",
+    "EN": null
+  },
+  "debitCard_addRelatedAccount_title": {
+    "TR": "Hesap Bağla",
+    "EN": null
+  },
+  "debitCard_goOnCard_button": {
+    "TR": "On Banka Kartına Git",
+    "EN": null
+  },
+  "debitCard_masterAccount_success_title": {
+    "TR": "Ana Hesabınız Başarıyla Değiştirilmiştir",
+    "EN": null
+  },
+  "debitCard_masterAccount_success_text": {
+    "TR": "Bağlı hesaplarınızı hesaplarınız altından dilediğiniz zaman yönetebilirsiniz.",
+    "EN": null
+  },
+  "debitCard_removeRelatedAccount_success_title": {
+    "TR": "Bağlı Hesabınız Başarıyla Silinmiştir",
+    "EN": null
+  },
+  "debitCard_addRelatedAccount_success_title": {
+    "TR": "Yeni Hesap Bağlama Başarıyla Tamamlanmıştır",
+    "EN": null
+  },
+  "debitCard_addRelatedAccount_noMore_text": {
+    "TR": "Bağlayabileceğiniz başka bir hesabınız bulunmamaktadır.",
+    "EN": null
+  },
+  "debitCard_addRelatedAccount_notAvailable_text": {
+    "TR": "Ana hesabınız dışında kartınıza bağlayabileceğiniz başka bir hesabınız bulunmamaktadır.",
+    "EN": null
+  },
+  "debitCard_addRelatedAccount_confirmation_title": {
+    "TR": "Hesap Bağla",
+    "EN": null
+  },
+  "debitCard_removeRelatedAccount_confirmation_title": {
+    "TR": "Bağlı Hesap Silme",
+    "EN": null
+  },
+  "debitCard_changeRelatedAccount_accountName_text": {
+    "TR": "Hesap Adı",
+    "EN": null
+  },
+  "debitCard_changeRelatedAccount_accountType_text": {
+    "TR": "Hesap Türü",
+    "EN": null
+  },
+  "debitCard_changeRelatedAccount_accountNumber_text": {
+    "TR": "Hesap Numarası",
+    "EN": null
+  },
+  "debitCard_masterAccount_confirmation_title": {
+    "TR": "Ana Hesabı Değiştirme",
+    "EN": null
+  },
+  "profileAndSettings_homeAddress_title": {
+    "TR": "Evim",
+    "EN": "[EN] Evim"
+  },
+  "profileAndSettings_businessAddress_title": {
+    "TR": "Ofisim",
+    "EN": "[EN] Ofisim"
+  },
+  "profileAndSettings_main_screen_title": {
+    "TR": "Profil ve Ayarlar",
+    "EN": "[EN] Profil ve Ayarlar"
+  },
+  "profileAndSettings_main_exit_popUp_label": {
+    "TR": "Çıkış Yap",
+    "EN": "[EN] Çıkış Yap"
+  },
+  "profileAndSettings_main_exit_popUp_text": {
+    "TR": "ON Mobildeki oturumun güvenli bir şekilde kapatılacak, onaylıyor musun?",
+    "EN": "[EN] ON Mobildeki oturumun güvenli bir şekilde kapatılacak, onaylıyor musun?"
+  },
+  "profileAndSettings_main_exit_popUp_button": {
+    "TR": "Onayla",
+    "EN": "[EN] Onayla"
+  },
+  "profileAndSettings_main_error_popUp_title": {
+    "TR": "İşlemini Şu Anda Gerçekleştiremiyoruz.",
+    "EN": "[EN] İşlemini Şu Anda Gerçekleştiremiyoruz."
+  },
+  "profileAndSettings_main_error_popUpTryAgain_button": {
+    "TR": "Yeniden Dene",
+    "EN": "[EN] Yeniden Dene"
+  },
+  "profileAndSettings_main_error_popUpClose_button": {
+    "TR": "Vazgeç",
+    "EN": "[EN] Vazgeç"
+  },
+  "profileAndSettings_main_popUp_close_button": {
+    "TR": "Vazgeç",
+    "EN": "[EN] Vazgeç"
+  },
+  "profileAndSettings_main_entrance_text": {
+    "TR": "Hoş geldin,",
+    "EN": "[EN] Hoş geldin,"
+  },
+  "profileAndSettings_main_morning_entrance_text": {
+    "TR": "Günaydın,",
+    "EN": "[EN] Günaydın,"
+  },
+  "profileAndSettings_main_afternoon_entrance_text": {
+    "TR": "İyi günler,",
+    "EN": "[EN] İyi günler,"
+  },
+  "profileAndSettings_main_evening_entrance_text": {
+    "TR": "İyi akşamlar,",
+    "EN": "[EN] İyi akşamlar,"
+  },
+  "profileAndSettings_main_night_entrance_text": {
+    "TR": "İyi geceler,",
+    "EN": "[EN] İyi geceler,"
+  },
+  "profileAndSettings_main_personalInformation_title": {
+    "TR": "Kişisel Bilgiler",
+    "EN": "[EN] Kişisel Bilgiler"
+  },
+  "profileAndSettings_main_personalInformation_subtitle": {
+    "TR": "İletişim adresleri ve tercihler",
+    "EN": "[EN] İletişim adresleri ve tercihler"
+  },
+  "profileAndSettings_main_settings_title": {
+    "TR": "Ayarlar",
+    "EN": "[EN] Ayarlar"
+  },
+  "profileAndSettings_main_settings_subtitle": {
+    "TR": "Bildirim, güvenlik, uygulama, giriş ve ekstre tercih ayarları",
+    "EN": "[EN] Bildirim, güvenlik, uygulama, giriş ve ekstre tercih ayarları"
+  },
+  "profileAndSettings_main_permissions_title": {
+    "TR": "İzinler",
+    "EN": "[EN] İzinler"
+  },
+  "profileAndSettings_main_permissions_subtitle": {
+    "TR": "Veri paylaşımı, pazarlama ve iletişim ve diğer banka izinleri",
+    "EN": "[EN] Veri paylaşımı, pazarlama ve iletişim ve diğer banka izinleri"
+  },
+  "profileAndSettings_main_others_title": {
+    "TR": "Diğer İşlemler",
+    "EN": "[EN] Diğer İşlemler"
+  },
+  "profileAndSettings_main_others_subtitle": {
+    "TR": "Kolay adres, iptal talebi, belge görüntüleme",
+    "EN": "[EN] Kolay adres, iptal talebi, belge görüntüleme"
+  },
+  "profileAndSettings_main_failedLogin_title": {
+    "TR": "Son başarısız giriş:",
+    "EN": "[EN] Son başarısız giriş:"
+  },
+  "profileAndSettings_main_all_failedLogin_title": {
+    "TR": "Tümünü Gör",
+    "EN": "[EN] Tümünü Gör"
+  },
+  "profileAndSettings_main_eDevlet_popUp_label": {
+    "TR": "E-devlete giriş",
+    "EN": "[EN] E-devlete giriş"
+  },
+  "profileAndSettings_main_eDevlet_popUp_text": {
+    "TR": "E-Devlet Kapısı'na şifresiz giriş\nyapabilmen için T.C. kimlik numaran/ yabancı kimlik numaran ve bankamız kayıtlarında yer alan cep telefonu bilgin www.turkiye.gov.tr ile\npaylaşılacaktır.",
+    "EN": "[EN] E-Devlet Kapısı'na şifresiz giriş\nyapabilmen için T.C. kimlik numaran/ yabancı kimlik numaran ve bankamız kayıtlarında yer alan cep telefonu bilgin www.turkiye.gov.tr ile\npaylaşılacaktır."
+  },
+  "profileAndSettings_main_eDevlet_popUp_button": {
+    "TR": "E-Devlete Giriş Yap",
+    "EN": "[EN] E-Devlete Giriş Yap"
+  },
+  "profileAndSettings_save_button": {
+    "TR": "Kaydet",
+    "EN": "[EN] Kaydet"
+  },
+  "profileAndSettings_proceed_button": {
+    "TR": "İlerle",
+    "EN": "[EN] İlerle"
+  },
+  "profileAndSettings_settings_screen_title": {
+    "TR": "Ayarlar",
+    "EN": "[EN] Ayarlar"
+  },
+  "profileAndSettings_settings_notifications_title": {
+    "TR": "Bildirim Ayarları",
+    "EN": "[EN] Bildirim Ayarları"
+  },
+  "profileAndSettings_settings_notifications_subtitle": {
+    "TR": "E-posta, SMS ve mobil cihaz bildirimleri",
+    "EN": "[EN] E-posta, SMS ve mobil cihaz bildirimleri"
+  },
+  "profileAndSettings_settings_security_title": {
+    "TR": "Güvenlik",
+    "EN": "[EN] Güvenlik"
+  },
+  "profileAndSettings_settings_security_subtitle": {
+    "TR": "İşlem limitleri ve ON ürünlerinin güvenliği",
+    "EN": "[EN] İşlem limitleri ve ON ürünlerinin güvenliği"
+  },
+  "profileAndSettings_settings_app_title": {
+    "TR": "Uygulama Ayarları",
+    "EN": "[EN] Uygulama Ayarları"
+  },
+  "profileAndSettings_settings_app_subtitle": {
+    "TR": "Dil ve tema",
+    "EN": "[EN] Dil ve tema"
+  },
+  "profileAndSettings_settings_login_title": {
+    "TR": "Giriş",
+    "EN": "[EN] Giriş"
+  },
+  "profileAndSettings_settings_login_subtitle": {
+    "TR": "Şifre, giriş geçmişleri ve eşleşmiş cihaz",
+    "EN": "[EN] Şifre, giriş geçmişleri ve eşleşmiş cihaz"
+  },
+  "profileAndSettings_settings_extractPreferences_title": {
+    "TR": "Ekstre tercihleri",
+    "EN": "[EN] Ekstre tercihleri"
+  },
+  "profileAndSettings_settings_extractPreferences_subtitle": {
+    "TR": "Ekstre alma tercihleri",
+    "EN": "[EN] Ekstre alma tercihleri"
+  },
+  "profileAndSettings_permissions_screen_title": {
+    "TR": "İzinler",
+    "EN": "[EN] İzinler"
+  },
+  "profileAndSettings_permissions_dataSharing_title": {
+    "TR": "Veri Paylaşım İzni",
+    "EN": "[EN] Veri Paylaşım İzni"
+  },
+  "profileAndSettings_permissions_dataSharing_subtitle": {
+    "TR": "Cihaz bilgileri, cihaz ve internet aktivitesi, uygulama vb bilgiler",
+    "EN": "[EN] Cihaz bilgileri, cihaz ve internet aktivitesi, uygulama vb bilgiler"
+  },
+  "profileAndSettings_permissions_others_title": {
+    "TR": "Diğer Banka İzinleri",
+    "EN": "[EN] Diğer Banka İzinleri"
+  },
+  "profileAndSettings_permissions_others_subtitle": {
+    "TR": "Açık bankacılık",
+    "EN": "[EN] Açık bankacılık"
+  },
+  "profileAndSettings_permissions_communicationAndMarketing_title": {
+    "TR": "İletişim ve Pazarlama İzni",
+    "EN": "[EN] İletişim ve Pazarlama İzni"
+  },
+  "profileAndSettings_permissions_communicationAndMarketing_subtitle": {
+    "TR": "ON Mobil'in teklif ve avantajlarıyla ilgili anlık bilgilere ulaş.",
+    "EN": "[EN] ON Mobil'in teklif ve avantajlarıyla ilgili anlık bilgilere ulaş."
+  },
+  "profileAndSettings_dataSharingPermission_screen_title": {
+    "TR": "Veri Paylaşım İzni",
+    "EN": "[EN] Veri Paylaşım İzni"
+  },
+  "profileAndSettings_dataSharingPermission_switch_label": {
+    "TR": "Veri Paylaşım İzni",
+    "EN": "[EN] Veri Paylaşım İzni"
+  },
+  "profileAndSettings_dataSharingPermission_switch_text": {
+    "TR": "Cihaz bilgileri, cihaz ve internet aktivitesi, uygulama vb bilgiler",
+    "EN": "[EN] Cihaz bilgileri, cihaz ve internet aktivitesi, uygulama vb bilgiler"
+  },
+  "profileAndSettings_dataSharingPermission_information1_text": {
+    "TR": "ON Mobil'in performansını güçlendirerek size daha iyi bir dijital bankacılık deneyimi yaşatmak için bazı verilere ihtiyacımız var.",
+    "EN": "[EN] ON Mobil'in performansını güçlendirerek size daha iyi bir dijital bankacılık deneyimi yaşatmak için bazı verilere ihtiyacımız var."
+  },
+  "profileAndSettings_dataSharingPermission_details_button": {
+    "TR": "Detaylar",
+    "EN": "[EN] Detaylar"
+  },
+  "profileAndSettings_dataSharingPermission_information_button": {
+    "TR": "Bilgilendirme metni için tıklayın.",
+    "EN": "[EN] Bilgilendirme metni için tıklayın."
+  },
+  "profileAndSettings_dataSharingPermission_link_text": {
+    "TR": "https://on.com.tr/dijital-hizmetler/on-internet-subesi/guvenlik",
+    "EN": "[EN] https://on.com.tr/dijital-hizmetler/on-internet-subesi/guvenlik"
+  },
+  "profileAndSettings_dataSharingPermission_hide_button": {
+    "TR": "Gizle",
+    "EN": "[EN] Gizle"
+  },
+  "profileAndSettings_dataSharingPermission_information2_text": {
+    "TR": "Sizi takip etmemize izin verdiğiniz durumda paylaşılacak veriler şunlardır:\n• IP adresi, Mac adresi ve Cihaz ID'si\n• Kullandığın cihaz ve web aktivite bilgisi\n• Uygulama event ve token bilgisi\n• Adjust'ın SDK versiyonu ve uygulamayı kullandığın ülke, dili yerel ayarlar, işletim sistemi versiyonu bilgilerini içeren HTTP header bilgisi",
+    "EN": "[EN] Sizi takip etmemize izin verdiğiniz durumda paylaşılacak veriler şunlardır:\n• IP adresi, Mac adresi ve Cihaz ID'si\n• Kullandığın cihaz ve web aktivite bilgisi\n• Uygulama event ve token bilgisi\n• Adjust'ın SDK versiyonu ve uygulamayı kullandığın ülke, dili yerel ayarlar, işletim sistemi versiyonu bilgilerini içeren HTTP header bilgisi"
+  },
+  "profileAndSettings_dataSharingPermission_warning1_text": {
+    "TR": "Veri Paylaşım İzni'ni değiştirmek için lütfen cihazın ayarlarından",
+    "EN": "[EN] Veri Paylaşım İzni'ni değiştirmek için lütfen cihazın ayarlarından"
+  },
+  "profileAndSettings_dataSharingPermission_warning2_text": {
+    "TR": "Ayarlar > Gizlilik ve Güvenlik > Takip Etme",
+    "EN": "[EN] Ayarlar > Gizlilik ve Güvenlik > Takip Etme"
+  },
+  "profileAndSettings_dataSharingPermission_warning3_text": {
+    "TR": "adımlarını izleyerek ON Mobil'e izin verin.",
+    "EN": "[EN] adımlarını izleyerek ON Mobil'e izin verin."
+  },
+  "profileAndSettings_otherTransactions_screen_title": {
+    "TR": "Diğer İşlemler",
+    "EN": "[EN] Diğer İşlemler"
+  },
+  "profileAndSettings_otherTransactions_kolayAdres_title": {
+    "TR": "Kolay Adres",
+    "EN": "[EN] Kolay Adres"
+  },
+  "profileAndSettings_otherTransactions_kolayAdres_subtitle": {
+    "TR": "Hesabınız için kolay adres belirleyin",
+    "EN": "[EN] Hesabınız için kolay adres belirleyin"
+  },
+  "profileAndSettings_otherTransactions_reverseRequest_title": {
+    "TR": "İptal Talebi",
+    "EN": "[EN] İptal Talebi"
+  },
+  "profileAndSettings_otherTransactions_reverseRequest_subtitle": {
+    "TR": "Henüz tamamlanmamış işlemlerin iptali",
+    "EN": "[EN] Henüz tamamlanmamış işlemlerin iptali"
+  },
+  "profileAndSettings_otherTransactions_documents_title": {
+    "TR": "Belgeler",
+    "EN": "[EN] Belgeler"
+  },
+  "profileAndSettings_otherTransactions_documents_subtitle": {
+    "TR": "ON ürünlerini kullanmak için onayladığınız belgeler",
+    "EN": "[EN] ON ürünlerini kullanmak için onayladığınız belgeler"
+  },
+  "profileAndSettings_documents_screen_title": {
+    "TR": "Belgeler",
+    "EN": "[EN] Belgeler"
+  },
+  "profileAndSettings_documents_approvedDocuments_label": {
+    "TR": "Onayladığın Belgeler",
+    "EN": "[EN] Onayladığın Belgeler"
+  },
+  "profileAndSettings_documents_approvedDocuments_text": {
+    "TR": "ON ürünlerini kullanmak için onayladığınız sözleşmeler ve belgeler",
+    "EN": "[EN] ON ürünlerini kullanmak için onayladığınız sözleşmeler ve belgeler"
+  },
+  "profileAndSettings_documents_others_label": {
+    "TR": "Diğer Belge İşlemleri",
+    "EN": "[EN] Diğer Belge İşlemleri"
+  },
+  "profileAndSettings_documents_others_text": {
+    "TR": "Sermaye Piyasası İşlemleri",
+    "EN": "[EN] Sermaye Piyasası İşlemleri"
+  },
+  "profileAndSettings_notificationSettings_screen_title": {
+    "TR": "Bildirim Ayarları",
+    "EN": "[EN] Bildirim Ayarları"
+  },
+  "profileAndSettings_notificationSettings_showWithoutLogin_title": {
+    "TR": "Oturum açmadan bildirimleri gör",
+    "EN": "[EN] Oturum açmadan bildirimleri gör"
+  },
+  "profileAndSettings_notificationSettings_showWithoutLogin_text": {
+    "TR": "ON Mobil üzerinden iletilen mobil bildirimleri giriş yapmadan görebilirsiniz.",
+    "EN": "[EN] ON Mobil üzerinden iletilen mobil bildirimleri giriş yapmadan görebilirsiniz."
+  },
+  "profileAndSettings_notificationSettings_productInformation_title": {
+    "TR": "Ürün Bilgilendirmeleri",
+    "EN": "[EN] Ürün Bilgilendirmeleri"
+  },
+  "profileAndSettings_notificationSettings_accounts_title": {
+    "TR": "Hesaplar",
+    "EN": "[EN] Hesaplar"
+  },
+  "profileAndSettings_notificationSettings_accounts_moneyEntry_title": {
+    "TR": "Hesaba Para Girişi",
+    "EN": "[EN] Hesaba Para Girişi"
+  },
+  "profileAndSettings_notificationSettings_accounts_moneyExit_title": {
+    "TR": "Hesaptan Para Çıkışı",
+    "EN": "[EN] Hesaptan Para Çıkışı"
+  },
+  "profileAndSettings_notificationSettings_accounts_lowerLimit_title": {
+    "TR": "Hesap Bakiyesinin Alt Limite Düşmesi",
+    "EN": "[EN] Hesap Bakiyesinin Alt Limite Düşmesi"
+  },
+  "profileAndSettings_notificationSettings_accounts_amount_lowerLimit_label": {
+    "TR": "Alt Limit Tutarı",
+    "EN": "[EN] Alt Limit Tutarı"
+  },
+  "profileAndSettings_notificationSettings_accounts_upperLimit_title": {
+    "TR": "Hesap Bakiyesinin Üst Limite Çıkması",
+    "EN": "[EN] Hesap Bakiyesinin Üst Limite Çıkması"
+  },
+  "profileAndSettings_notificationSettings_accounts_amount_upperLimit_label": {
+    "TR": "Üst Limit Tutarı",
+    "EN": "[EN] Üst Limit Tutarı"
+  },
+  "profileAndSettings_notificationSettings_payments_title": {
+    "TR": "Ödemeler",
+    "EN": "[EN] Ödemeler"
+  },
+  "profileAndSettings_notificationSettings_accounts_savingAccountDateReturn_title": {
+    "TR": "32 Gün ve Üzeri Vadeli Hesap Dönüşü",
+    "EN": "[EN] 32 Gün ve Üzeri Vadeli Hesap Dönüşü"
+  },
+  "profileAndSettings_notificationSettings_payments_riskyPayments_title": {
+    "TR": "Bakiye Yetersizliği Nedeniyle Ödenmeme Riski Taşıyan İleri Tarihli Para Transferleri ve Ödemeler",
+    "EN": "[EN] Bakiye Yetersizliği Nedeniyle Ödenmeme Riski Taşıyan İleri Tarihli Para Transferleri ve Ödemeler"
+  },
+  "profileAndSettings_notificationSettings_payments_cardRecurring_title": {
+    "TR": "Banka Kartıyla Yapılan Talimatlı Ödemeler",
+    "EN": "[EN] Banka Kartıyla Yapılan Talimatlı Ödemeler"
+  },
+  "profileAndSettings_notificationSettings_cards_title": {
+    "TR": "Kartlar",
+    "EN": "[EN] Kartlar"
+  },
+  "profileAndSettings_notificationSettings_cards_cardRefund_title": {
+    "TR": "Banka Kartına İade",
+    "EN": "[EN] Banka Kartına İade"
+  },
+  "profileAndSettings_notificationSettings_toastMessage_text": {
+    "TR": "Bildirim Ayarları kaydedildi.",
+    "EN": "[EN] Bildirim Ayarları kaydedildi."
+  },
+  "profileAndSettings_notificationSettingsComponent_mobile_label": {
+    "TR": "Mobil Bildirim",
+    "EN": "[EN] Mobil Bildirim"
+  },
+  "profileAndSettings_notificationSettingsComponent_email_label": {
+    "TR": "E-posta",
+    "EN": "[EN] E-posta"
+  },
+  "profileAndSettings_notificationSettingsComponent_SMS_label": {
+    "TR": "SMS",
+    "EN": "[EN] SMS"
+  },
+  "profileAndSettings_reverseRequest_back_popUp_title": {
+    "TR": "İptal talebiniz kaydedilmeyecek.",
+    "EN": "[EN] İptal talebiniz kaydedilmeyecek."
+  },
+  "profileAndSettings_reverseRequest_back_popUp_text": {
+    "TR": "Kaydetmeden çıkmayı onaylıyor musunuz?",
+    "EN": "[EN] Kaydetmeden çıkmayı onaylıyor musunuz?"
+  },
+  "profileAndSettings_reverseRequest_back_popUpContinue_button": {
+    "TR": "İşleme devam et",
+    "EN": "[EN] İşleme devam et"
+  },
+  "profileAndSettings_reverseRequest_screen_title": {
+    "TR": "İşlem İptal Talebi",
+    "EN": "[EN] İşlem İptal Talebi"
+  },
+  "profileAndSettings_reverseRequest_information_text": {
+    "TR": "Fatura ödeme, SGK/Bağkur Ödeme, Kredi taksit\nödeme ve kredi ara ödeme işlemleri için yalnızca\naynı gün iptal talebi yapılabilir. Bu işlemler için\naynı gün içinde oluşturulmamış olan talepler\nişleme alınmaz.",
+    "EN": "[EN] Fatura ödeme, SGK/Bağkur Ödeme, Kredi taksit\nödeme ve kredi ara ödeme işlemleri için yalnızca\naynı gün iptal talebi yapılabilir. Bu işlemler için\naynı gün içinde oluşturulmamış olan talepler\nişleme alınmaz."
+  },
+  "profileAndSettings_reverseRequest_dropdown_transaction_title": {
+    "TR": "İptal Talep Edeceğiniz İşlem",
+    "EN": "[EN] İptal Talep Edeceğiniz İşlem"
+  },
+  "profileAndSettings_reverseRequest_dropdown_placeholder": {
+    "TR": "Seçin",
+    "EN": "[EN] Seçin"
+  },
+  "profileAndSettings_reverseRequestSuccess_title": {
+    "TR": "İptal Talebiniz Alındı",
+    "EN": "[EN] İptal Talebiniz Alındı"
+  },
+  "profileAndSettings_reverseRequestSuccess_text": {
+    "TR": "Talebiniz tamamlandığında SMS ile bilgilendirileceksiniz.",
+    "EN": "[EN] Talebiniz tamamlandığında SMS ile bilgilendirileceksiniz."
+  },
+  "profileAndSettings_reverseRequestSuccess_mainPage_button": {
+    "TR": "Ana Sayfaya Git",
+    "EN": "[EN] Ana Sayfaya Git"
+  },
+  "profileAndSettings_securitySettings_screen_title": {
+    "TR": "Güvenlik Ayarları",
+    "EN": "[EN] Güvenlik Ayarları"
+  },
+  "profileAndSettings_securitySettings_loginSecurity_title": {
+    "TR": "Giriş Güvenliği",
+    "EN": "[EN] Giriş Güvenliği"
+  },
+  "profileAndSettings_securitySettings_loginHistory_label": {
+    "TR": "Giriş Geçmişi",
+    "EN": "[EN] Giriş Geçmişi"
+  },
+  "profileAndSettings_securitySettings_passwordChange_label": {
+    "TR": "Şifre Değişikliği",
+    "EN": "[EN] Şifre Değişikliği"
+  },
+  "profileAndSettings_securitySettings_securityQuestion_label": {
+    "TR": "Güvenlik Sorusu",
+    "EN": "[EN] Güvenlik Sorusu"
+  },
+  "profileAndSettings_securitySettings_securityImage_label": {
+    "TR": "Güvenlik Resmi",
+    "EN": "[EN] Güvenlik Resmi"
+  },
+  "profileAndSettings_securitySettings_device_label": {
+    "TR": "Eşleşmiş Cihaz",
+    "EN": "[EN] Eşleşmiş Cihaz"
+  },
+  "profileAndSettings_securitySettings_roleManagement_label": {
+    "TR": "Yetki Yönetimi",
+    "EN": "[EN] Yetki Yönetimi"
+  },
+  "profileAndSettings_securitySettings_transactionSecurity_title": {
+    "TR": "İşlem Güvenliği",
+    "EN": "[EN] İşlem Güvenliği"
+  },
+  "profileAndSettings_securitySettings_limit_label": {
+    "TR": "Limitler",
+    "EN": "[EN] Limitler"
+  },
+  "profileAndSettings_passwordChange_screen_title": {
+    "TR": "Şifre Değişikliği",
+    "EN": "[EN] Şifre Değişikliği"
+  },
+  "profileAndSettings_passwordChange_newPassword_title": {
+    "TR": "Yeni şifre",
+    "EN": "[EN] Yeni şifre"
+  },
+  "profileAndSettings_passwordChange_newPassword_text": {
+    "TR": "Yeni belirleyeceğiniz şifre öncekilerden farklı olmalı ve güvenliğiniz için kimseyle paylaşılmamalıdır.",
+    "EN": "[EN] Yeni belirleyeceğiniz şifre öncekilerden farklı olmalı ve güvenliğiniz için kimseyle paylaşılmamalıdır."
+  },
+  "profileAndSettings_passwordChange_currentPassword_label": {
+    "TR": "Mevcut Şifre",
+    "EN": "[EN] Mevcut Şifre"
+  },
+  "profileAndSettings_passwordChange_newPassword_label": {
+    "TR": "Yeni Şifre",
+    "EN": "[EN] Yeni Şifre"
+  },
+  "profileAndSettings_passwordChange_again_newPassword_label": {
+    "TR": "Yeni Şifre Tekrar",
+    "EN": "[EN] Yeni Şifre Tekrar"
+  },
+  "profileAndSettings_passwordChange_rule1_text": {
+    "TR": "Şifreniz 6 karakter olmalıdır.",
+    "EN": "[EN] Şifreniz 6 karakter olmalıdır."
+  },
+  "profileAndSettings_passwordChange_rule2_text": {
+    "TR": "Şifreniz numerik olmalıdır.",
+    "EN": "[EN] Şifreniz numerik olmalıdır."
+  },
+  "profileAndSettings_passwordChange_rule3_text": {
+    "TR": "Şifreniz ardışık ve tekrar rakamlar içermemelidir.",
+    "EN": "[EN] Şifreniz ardışık ve tekrar rakamlar içermemelidir."
+  },
+  "profileAndSettings_passwordChange_notMatching_errorMessage": {
+    "TR": "Yazdığınız şifre eşleşmiyor, lütfen tekrar girin.",
+    "EN": "[EN] Yazdığınız şifre eşleşmiyor, lütfen tekrar girin."
+  },
+  "profileAndSettings_passwordChange_toastMessage_text": {
+    "TR": "Şifre başarıyla güncellendi.",
+    "EN": "[EN] Şifre başarıyla güncellendi."
+  },
+  "profileAndSettings_securityQuestion_screen_title": {
+    "TR": "Güvenlik Sorusu Güncelleme",
+    "EN": "[EN] Güvenlik Sorusu Güncelleme"
+  },
+  "profileAndSettings_securityQuestion_title": {
+    "TR": "Güvenlik Sorusu",
+    "EN": "[EN] Güvenlik Sorusu"
+  },
+  "profileAndSettings_securityQuestion_text": {
+    "TR": "Güvenliğiniz için aşağıdaki sorulardan birini seçerek yanıtlayın. Yanıtınız teyid amaçlı kullanılacağı için yanıtınızı unutmayın ve kimseyle paylaşmayın.",
+    "EN": "[EN] Güvenliğiniz için aşağıdaki sorulardan birini seçerek yanıtlayın. Yanıtınız teyid amaçlı kullanılacağı için yanıtınızı unutmayın ve kimseyle paylaşmayın."
+  },
+  "profileAndSettings_securityQuestion_question_label": {
+    "TR": "Güvenlik Sorusu",
+    "EN": "[EN] Güvenlik Sorusu"
+  },
+  "profileAndSettings_securityQuestion_newQuestion_label": {
+    "TR": "Güvenlik Sorusu",
+    "EN": "[EN] Güvenlik Sorusu"
+  },
+  "profileAndSettings_securityQuestion_newQuestion_placeholder": {
+    "TR": "Seç",
+    "EN": "[EN] Seç"
+  },
+  "profileAndSettings_securityQuestion_answer_label": {
+    "TR": "Cevap",
+    "EN": "[EN] Cevap"
+  },
+  "profileAndSettings_securityQuestion_short_answer_errorMessage": {
+    "TR": "Güvenlik sorusunun yanıtı en az 3 karakter olmalıdır.",
+    "EN": "[EN] Güvenlik sorusunun yanıtı en az 3 karakter olmalıdır."
+  },
+  "profileAndSettings_securityQuestion_missing_question_errorMessage": {
+    "TR": "Bu alan boş bırakılamaz, lütfen seçim yapın.",
+    "EN": "[EN] Bu alan boş bırakılamaz, lütfen seçim yapın."
+  },
+  "profileAndSettings_securityQuestion_missing_answer_errorMessage": {
+    "TR": "Bu alan boş bırakılamaz, lütfen doldurun.",
+    "EN": "[EN] Bu alan boş bırakılamaz, lütfen doldurun."
+  },
+  "profileAndSettings_securityQuestion_toastMessage_text": {
+    "TR": "Güvenlik sorusu güncellendi.",
+    "EN": "[EN] Güvenlik sorusu güncellendi."
+  },
+  "profileAndSettings_pairedDevice_screen_title": {
+    "TR": "Eşleşmiş Cihaz",
+    "EN": "[EN] Eşleşmiş Cihaz"
+  },
+  "profileAndSettings_pairedDevice_text": {
+    "TR": "Bilgi ve varlıklarınızın güvenliği için ON Mobil uygulamasına yalnızca bir adet eşleşmiş cihaz ile giriş yapabilirsiniz. Başka bir cihazda oturum açmak için bu cihaza gelen güvenlik bildirimlerini ve diğer adımları tamamlayarak işlemini gerçekleştirebilirsiniz.",
+    "EN": "[EN] Bilgi ve varlıklarınızın güvenliği için ON Mobil uygulamasına yalnızca bir adet eşleşmiş cihaz ile giriş yapabilirsiniz. Başka bir cihazda oturum açmak için bu cihaza gelen güvenlik bildirimlerini ve diğer adımları tamamlayarak işlemini gerçekleştirebilirsiniz."
+  },
+  "profileAndSettings_pairedDevice_unpair_button": {
+    "TR": "Eşleşmeyi kaldır",
+    "EN": "[EN] Eşleşmeyi kaldır"
+  },
+  "profileAndSettings_pairedDevice_popUp_unpairDevice_title": {
+    "TR": "Cihaz Eşleşmesini Kaldır",
+    "EN": "[EN] Cihaz Eşleşmesini Kaldır"
+  },
+  "profileAndSettings_pairedDevice_popUp_unpairDevice_text": {
+    "TR": "Bu cihazda veya başka bir cihazda yeniden oturum açmak için yeniden güvenlik adımlarını kullanmanız gerekecek. Onaylıyor musunuz?",
+    "EN": "[EN] Bu cihazda veya başka bir cihazda yeniden oturum açmak için yeniden güvenlik adımlarını kullanmanız gerekecek. Onaylıyor musunuz?"
+  },
+  "profileAndSettings_securityImage_screen_title": {
+    "TR": "Güvenlik Resmi",
+    "EN": "[EN] Güvenlik Resmi"
+  },
+  "profileAndSettings_securityImage_title": {
+    "TR": "Güvenlik Resmi",
+    "EN": "[EN] Güvenlik Resmi"
+  },
+  "profileAndSettings_securityImage_information_text": {
+    "TR": "Giriş güvenliğiniz için güvenlik resimlerinden birini seçin.",
+    "EN": "[EN] Giriş güvenliğiniz için güvenlik resimlerinden birini seçin."
+  },
+  "profileAndSettings_securityImage_toastMessage_text": {
+    "TR": "Güvenlik resmi güncellendi.",
+    "EN": "[EN] Güvenlik resmi güncellendi."
+  },
+  "profileAndSettings_securityImage_approve_button": {
+    "TR": "Onayla",
+    "EN": "[EN] Onayla"
+  },
+  "profileAndSettings_securityImage_missingSelection_errorMessage": {
+    "TR": "Lütfen bir seçim yapın.",
+    "EN": "[EN] Lütfen bir seçim yapın."
+  },
+  "profileAndSettings_roleManagement_screen_title": {
+    "TR": "Yetki Yönetimi",
+    "EN": "[EN] Yetki Yönetimi"
+  },
+  "profileAndSettings_roleManagement_information1_text": {
+    "TR": "ON Mobil ve ON İnternet Şubesi'nde yapabileceğiniz işlemler için yetkilerinizi belirleyebilirsiniz. Tüm yetki yönetimi ayarlarını değiştirmek için",
+    "EN": "[EN] ON Mobil ve ON İnternet Şubesi'nde yapabileceğiniz işlemler için yetkilerinizi belirleyebilirsiniz. Tüm yetki yönetimi ayarlarını değiştirmek için"
+  },
+  "profileAndSettings_roleManagement_information2_text": {
+    "TR": "0850 222 2910",
+    "EN": "[EN] 0850 222 2910"
+  },
+  "profileAndSettings_roleManagement_information3_text": {
+    "TR": "numaralı İletişim Merkezi'mizle iletişime geçebilirsiniz.",
+    "EN": "[EN] numaralı İletişim Merkezi'mizle iletişime geçebilirsiniz."
+  },
+  "profileAndSettings_roleManagement_roleType_label": {
+    "TR": "Yetki Çeşidi",
+    "EN": "[EN] Yetki Çeşidi"
+  },
+  "profileAndSettings_roleManagement_authorized_label": {
+    "TR": "Tam Yetkili",
+    "EN": "[EN] Tam Yetkili"
+  },
+  "profileAndSettings_roleManagement_authorized_text": {
+    "TR": "Herhangi bir yetki kısıtlaması olmadan tüm işlemleri kendiniz gerçekleştirebilirsiniz.",
+    "EN": "[EN] Herhangi bir yetki kısıtlaması olmadan tüm işlemleri kendiniz gerçekleştirebilirsiniz."
+  },
+  "profileAndSettings_roleManagement_observer_label": {
+    "TR": "Gözlemci",
+    "EN": "[EN] Gözlemci"
+  },
+  "profileAndSettings_roleManagement_observer_text": {
+    "TR": "Giriş yapabilir ancak işlem yapamazsınız, yalnızca görüntüleyebilirsiniz.",
+    "EN": "[EN] Giriş yapabilir ancak işlem yapamazsınız, yalnızca görüntüleyebilirsiniz."
+  },
+  "profileAndSettings_roleManagement_restricted_label": {
+    "TR": "Erişimimi Kısıtla",
+    "EN": "[EN] Erişimimi Kısıtla"
+  },
+  "profileAndSettings_roleManagement_restricted_text": {
+    "TR": "ON Mobil ve İnternet Şube için giriş yetkileriniz kaldırılır. Yeniden erişim için Müşteri İletişim merkezi ile iletişime geçmeniz gerekir.",
+    "EN": "[EN] ON Mobil ve İnternet Şube için giriş yetkileriniz kaldırılır. Yeniden erişim için Müşteri İletişim merkezi ile iletişime geçmeniz gerekir."
+  },
+  "profileAndSettings_appSettings_screen_title": {
+    "TR": "Uygulama Ayarları",
+    "EN": "[EN] Uygulama Ayarları"
+  },
+  "profileAndSettings_appSettings_theme_label": {
+    "TR": "Tema",
+    "EN": "[EN] Tema"
+  },
+  "profileAndSettings_appSettings_light_theme_label": {
+    "TR": "Açık",
+    "EN": "[EN] Açık"
+  },
+  "profileAndSettings_appSettings_dark_theme_label": {
+    "TR": "Koyu",
+    "EN": "[EN] Koyu"
+  },
+  "profileAndSettings_appSettings_system_theme_label": {
+    "TR": "Sistem",
+    "EN": "[EN] Sistem"
+  },
+  "profileAndSettings_appSettings_language_label": {
+    "TR": "Dil",
+    "EN": "[EN] Dil"
+  },
+  "profileAndSettings_appSettings_Turkish_language_label": {
+    "TR": "Türkçe",
+    "EN": "[EN] Türkçe"
+  },
+  "profileAndSettings_appSettings_English_language_label": {
+    "TR": "İngilizce",
+    "EN": "[EN] İngilizce"
+  },
+  "profileAndSettings_appSettings_version_title": {
+    "TR": "ON Mobil Hakkında",
+    "EN": "[EN] ON Mobil Hakkında"
+  },
+  "profileAndSettings_appSettings_version_label": {
+    "TR": "Sürüm",
+    "EN": "[EN] Sürüm"
+  },
+  "profileAndSettings_aboutOnMobil_screen_title": {
+    "TR": "ON Mobil Hakkında",
+    "EN": "[EN] ON Mobil Hakkında"
+  },
+  "profileAndSettings_aboutOnMobil_information_title": {
+    "TR": "Dokuzla Yetinmeyenlerin Bankası",
+    "EN": "[EN] Dokuzla Yetinmeyenlerin Bankası"
+  },
+  "profileAndSettings_aboutOnMobil_information_text": {
+    "TR": "ON, bir Burgan Bank markası olup yenilikçi, dinamik, çözüm odaklı ve herkesin\nihtiyaçlarını karşılayabilme modelini\nmerkezine koyan bankadır.\nŞubesiz bankacılık anlayış ile yarattığımız\nON'da kolay ve anlaşılabilir bir dijital bankacılık hizmet verirken sıradan olanla\nyetinmiyoruz.\n\"Kendinin banka olmak isteyen\"\nmüşterilerimizin her geçen gün değişen talep ve ihtiyaçlarına hızlı ve kazançlı çözümler\nüretiyor hep daha fazlasını sunmaya özen\ngösteriyoruz.",
+    "EN": "[EN] ON, bir Burgan Bank markası olup yenilikçi, dinamik, çözüm odaklı ve herkesin\nihtiyaçlarını karşılayabilme modelini\nmerkezine koyan bankadır.\nŞubesiz bankacılık anlayış ile yarattığımız\nON'da kolay ve anlaşılabilir bir dijital bankacılık hizmet verirken sıradan olanla\nyetinmiyoruz.\n\"Kendinin banka olmak isteyen\"\nmüşterilerimizin her geçen gün değişen talep ve ihtiyaçlarına hızlı ve kazançlı çözümler\nüretiyor hep daha fazlasını sunmaya özen\ngösteriyoruz."
+  },
+  "profileAndSettings_aboutOnMobil_technologies_title": {
+    "TR": "ON Mobil'in Kullanıldığı Teknolojiler",
+    "EN": "[EN] ON Mobil'in Kullanıldığı Teknolojiler"
+  },
+  "profileAndSettings_aboutOnMobil_technologies_text": {
+    "TR": "ON Mobil'de kullanılan açık kaynak kodlarıyla ilgili bilgileri görebilirsiniz",
+    "EN": "[EN] ON Mobil'de kullanılan açık kaynak kodlarıyla ilgili bilgileri görebilirsiniz"
+  },
+  "profileAndSettings_transactionLimits_screen_title": {
+    "TR": "İşlem Limitleri",
+    "EN": "[EN] İşlem Limitleri"
+  },
+  "profileAndSettings_transactionLimits_information1_text": {
+    "TR": "ON Mobil uygulamasını kullanarak yalnızca günlük işlem limitlerini düşürme işlemi gerçekleştirilebilir. Limit arttırma işlemini",
+    "EN": "[EN] ON Mobil uygulamasını kullanarak yalnızca günlük işlem limitlerini düşürme işlemi gerçekleştirilebilir. Limit arttırma işlemini"
+  },
+  "profileAndSettings_transactionLimits_information2_text": {
+    "TR": "0850 222 2910",
+    "EN": "[EN] 0850 222 2910"
+  },
+  "profileAndSettings_transactionLimits_information3_text": {
+    "TR": "numaralı İletişim Merkezi'ni arayarak yapabilirsiniz.",
+    "EN": "[EN] numaralı İletişim Merkezi'ni arayarak yapabilirsiniz."
+  },
+  "profileAndSettings_transactionLimits_dailyLimits_title": {
+    "TR": "Günlük Limitler",
+    "EN": "[EN] Günlük Limitler"
+  },
+  "profileAndSettings_transactionLimits_amount_minLimitError_text": {
+    "TR": "Belirlenen limit alt limit tutarının altında kalmaktadır.",
+    "EN": "[EN] Belirlenen limit alt limit tutarının altında kalmaktadır."
+  },
+  "profileAndSettings_transactionLimits_eCommerce_title": {
+    "TR": "E-ticaret'te Havale İle Alışveriş",
+    "EN": "[EN] E-ticaret'te Havale İle Alışveriş"
+  },
+  "profileAndSettings_transactionLimits_foreignCurrencyBuy_title": {
+    "TR": "Döviz Alış",
+    "EN": "[EN] Döviz Alış"
+  },
+  "profileAndSettings_transactionLimits_foreignCurrencySell_title": {
+    "TR": "Döviz Satış",
+    "EN": "[EN] Döviz Satış"
+  },
+  "profileAndSettings_transactionLimits_EFT_title": {
+    "TR": "EFT",
+    "EN": "[EN] EFT"
+  },
+  "profileAndSettings_transactionLimits_goldBuy_title": {
+    "TR": "Altın Alış",
+    "EN": "[EN] Altın Alış"
+  },
+  "profileAndSettings_transactionLimits_havale_title": {
+    "TR": "Havale",
+    "EN": "[EN] Havale"
+  },
+  "profileAndSettings_transactionLimits_silverBuy_title": {
+    "TR": "Gümüş Alış",
+    "EN": "[EN] Gümüş Alış"
+  },
+  "profileAndSettings_transactionLimits_silverSell_title": {
+    "TR": "Gümüş Satış",
+    "EN": "[EN] Gümüş Satış"
+  },
+  "profileAndSettings_transactionLimits_SWIFT_title": {
+    "TR": "SWIFT",
+    "EN": "[EN] SWIFT"
+  },
+  "profileAndSettings_transactionLimits_toastMessage_text": {
+    "TR": "Limit güncellendi.",
+    "EN": "[EN] Limit güncellendi."
+  },
+  "profileAndSettings_transactionLimitComponent_amount_limit_label": {
+    "TR": "Limit Tutarı",
+    "EN": "[EN] Limit Tutarı"
+  },
+  "profileAndSettings_transactionLimitComponent_amount_remaining_label": {
+    "TR": "Kalan Limit",
+    "EN": "[EN] Kalan Limit"
+  },
+  "profileAndSettings_personalInformation_screen_title": {
+    "TR": "Kişisel Bilgiler",
+    "EN": "[EN] Kişisel Bilgiler"
+  },
+  "profileAndSettings_personalInformation_phoneNumber_title": {
+    "TR": "Telefon Numaram",
+    "EN": "[EN] Telefon Numaram"
+  },
+  "profileAndSettings_personalInformation_email_title": {
+    "TR": "E-postam",
+    "EN": "[EN] E-postam"
+  },
+  "profileAndSettings_personalInformation_address_title": {
+    "TR": "Posta Adresim",
+    "EN": "[EN] Posta Adresim"
+  },
+  "profileAndSettings_phoneNumberAddition_screen_title": {
+    "TR": "Başka Telefon Ekle",
+    "EN": "[EN] Başka Telefon Ekle"
+  },
+  "profileAndSettings_phoneNumberEdit_screen_title": {
+    "TR": "Telefon Numaramı Düzenle",
+    "EN": "[EN] Telefon Numaramı Düzenle"
+  },
+  "profileAndSettings_phoneNumberEdit_mobilePhone_label": {
+    "TR": "Cep Telefonum",
+    "EN": "[EN] Cep Telefonum"
+  },
+  "profileAndSettings_mailEdit_screen_title": {
+    "TR": "E-posta Düzenle",
+    "EN": "[EN] E-posta Düzenle"
+  },
+  "profileAndSettings_mailEdit_personalMail_title": {
+    "TR": "Kişisel E-posta",
+    "EN": "[EN] Kişisel E-posta"
+  },
+  "profileAndSettings_mailEdit_businessMail_title": {
+    "TR": "İş E-postası",
+    "EN": "[EN] İş E-postası"
+  },
+  "profileAndSettings_mailEdit_otherMail_title": {
+    "TR": "Diğer E-posta",
+    "EN": "[EN] Diğer E-posta"
+  },
+  "url_masterpass_text": {
+    "TR": "https://www.mastercard.com.tr/tr-tr/sikca-sorulan-sorular.html",
+    "EN": null
+  },
+  "url_businessAddress_title": {
+    "TR": "Ofisim",
+    "EN": null
+  },
+  "url_kvkk": {
+    "TR": "https://www.burgan.com.tr/kisisel-verilerin-korunmasi-hakkinda",
+    "EN": null
+  },
+  "url_masterpassTc": {
+    "TR": "https://www.masterpassturkiye.com/terms-and-conditions",
+    "EN": null
+  },
+  "url_masterpassMerchantList": {
+    "TR": "https://www.mastercard.com.tr/tr-tr/tuketiciler/odeme-secenekleri/masterpass/is-yerleri.html",
+    "EN": null
+  }
+}

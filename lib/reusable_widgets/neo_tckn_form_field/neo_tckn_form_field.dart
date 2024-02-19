@@ -15,7 +15,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:backoffice/core/localization/bloc/localization_bloc.dart';
 import 'package:backoffice/reusable_widgets/neo_tckn_form_field/bloc/neo_tckn_form_field_bloc.dart';
+import 'package:backoffice/reusable_widgets/neo_text_form_field/model/neo_text_validation_model.dart';
 import 'package:backoffice/util/neo_util.dart';
 import 'package:neo_core/core/workflow_form/bloc/workflow_form_bloc.dart';
 
@@ -26,6 +28,7 @@ class NeoTcknFormField extends StatefulWidget {
   final String? errorText;
   final bool enabled;
   final FocusNode? focusNode;
+  final List<NeoTextValidationModel>? validations;
 
   const NeoTcknFormField({
     super.key,
@@ -35,6 +38,7 @@ class NeoTcknFormField extends StatefulWidget {
     this.errorText,
     this.enabled = true,
     this.focusNode,
+    this.validations,
   });
 
   @override
@@ -130,20 +134,20 @@ class _NeoTcknFormFieldState extends State<NeoTcknFormField> {
       disabledBorder: _borderBuilder(state),
       focusedBorder: _borderBuilder(state),
       enabledBorder: _borderBuilder(state),
-      labelText: widget.labelText,
+      labelText: _loc(widget.labelText),
       labelStyle: NeoTextStyles.labelFourteenMedium.apply(color: !widget.enabled ? NeoColors.textDisabled : NeoColors.textPlaceholder),
       floatingLabelBehavior: FloatingLabelBehavior.never,
       contentPadding: const EdgeInsets.all(NeoDimens.px16),
       counterText: '',
       filled: true,
-      fillColor: !widget.enabled ? NeoColors.bgMediumDark : NeoColors.colorBaseWhite,
+      fillColor: !widget.enabled ? NeoColors.bgMediumDark : NeoColors.baseWhite,
     );
   }
 
   InputBorder _borderBuilder(NeoTcknFormFieldState state) {
     return OutlineInputBorder(
       borderRadius: BorderRadius.circular(NeoRadius.px8),
-      borderSide: BorderSide(color: _isEditingComplete && state.hasError ? NeoColors.textDanger : NeoColors.borderMediumDark),
+      borderSide: BorderSide(color: NeoColors.borderMediumDark),
     );
   }
 
@@ -152,11 +156,18 @@ class _NeoTcknFormFieldState extends State<NeoTcknFormField> {
   }
 
   String? _inputValidator(String? text, BuildContext context) {
-    final isValid = context.read<NeoTcknFormFieldBloc>().isValidTcknOrVkn(text.orEmpty);
-    if (isValid) {
-      return null;
-    } else {
-      return widget.errorText;
+    final invalidValidationModel = widget.validations?.where((e) => !RegExp(e.regex).hasMatch(text.orEmpty)).firstOrNull;
+    if (invalidValidationModel != null) {
+      return _loc(invalidValidationModel.message);
     }
+
+    final isValid = context.read<NeoTcknFormFieldBloc>().isValidTcknOrVkn(text.orEmpty);
+    if (!isValid) {
+      return _loc(widget.errorText);
+    }
+
+    return null;
   }
+
+  String? _loc(String? data) => data.orEmpty.isNotEmpty ? localize(data!) : data;
 }
