@@ -111,6 +111,7 @@ class LoginCredentialForm extends StatelessWidget {
       dataKey: passwordDataKey,
       maxLength: passwordMaxLength,
       labelText: passwordLabelText,
+      enableInitialValue: false,
       buttonRight: passwordButtonRight,
       keyboardType: NeoKeyboardType.number,
       inputFormatters: [FilteringTextInputFormatter.digitsOnly],

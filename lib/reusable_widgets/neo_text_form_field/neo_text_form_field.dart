@@ -38,6 +38,7 @@ class NeoTextFormField extends StatefulWidget {
   final String subtitleText;
   final String? labelText;
   final String labelInitialText;
+  final bool enableInitialValue;
   final int? maxLength;
   final NeoTextFormFieldBottomTextModel? bottomText;
   final bool enabled;
@@ -62,6 +63,7 @@ class NeoTextFormField extends StatefulWidget {
     this.dataKey,
     this.subtitleText = '',
     this.labelInitialText = '',
+    this.enableInitialValue = true,
     this.maxLength,
     this.bottomText,
     this.enabled = true,
@@ -314,7 +316,7 @@ class _NeoTextFormFieldState extends State<NeoTextFormField> {
   String _getInitialLabelText(BuildContext context, Map<String, dynamic> formData) {
     final dataKey = widget.dataKey;
 
-    if (dataKey != null && dataKey.isNotEmpty) {
+    if (widget.enableInitialValue && dataKey != null && dataKey.isNotEmpty) {
       final initialFormData = formData[dataKey];
       if (initialFormData is String && initialFormData.isNotEmpty) {
         return initialFormData;

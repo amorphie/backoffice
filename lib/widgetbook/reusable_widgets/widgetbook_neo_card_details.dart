@@ -21,6 +21,7 @@ WidgetbookComponent get widgetbookNeoCardDetails => WidgetbookComponent(
         WidgetbookUseCase(
           name: "Default",
           builder: (context) => NeoCardDetails(
+            navigationPath: "",
             displayMode: context.knobs.list(
               label: "Display Mode",
               options: NeoCardDetailsDisplayMode.values,

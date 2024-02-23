@@ -2,6 +2,9 @@ main.dart
     main()
       await NeoBoCore.init();
 
+MaterialApp 
+    initialPage: NeoBoPageId.boHome
+
     _onGenerateRoute()
         Route ? boRoute = NeoBoCore.onBoGenerateRoutes(routeSettings);
         if (boRoute != null) {
@@ -118,3 +121,11 @@ lib/reusable_widgets/neo_button/bloc/neo_button_bloc.dart
                 ),
                 );
             }
+
+
+/Users/ertugruldagli/.pub-cache/git/flutter.core-4b8f1eb05497e35974bebb5e8287a13a8b12b070/lib/core/network/models/neo_signalr_transition.dart
+        data ve record id bilgilerini ekleme
+
+/Users/ertugruldagli/.pub-cache/git/flutter.core-4b8f1eb05497e35974bebb5e8287a13a8b12b070/lib/core/network/managers/signalr_connection_manager.dart
+
+transition completed ve worker completed beraber çalışması

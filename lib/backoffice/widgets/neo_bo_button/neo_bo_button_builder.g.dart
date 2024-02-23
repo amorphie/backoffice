@@ -63,12 +63,15 @@ class NeoBoButtonBuilder extends _NeoBoButtonBuilder {
     return NeoBoButton(
       autoTriggerTransition: model.autoTriggerTransition,
       displayMode: model.displayMode,
-      enabled: model.enabled,
+      enableState: model.enableState,
       formValidationRequired: model.formValidationRequired,
       iconLeftUrn: model.iconLeftUrn,
       iconRightUrn: model.iconRightUrn,
       key: key,
       labelText: model.labelText,
+      navigationPath: model.navigationPath,
+      navigationType: model.navigationType,
+      onTap: model.onTap,
       padding: model.padding,
       size: model.size,
       startWorkflow: model.startWorkflow,
@@ -84,11 +87,14 @@ class JsonNeoBoButton extends JsonWidgetData {
     JsonWidgetRegistry? registry,
     this.autoTriggerTransition = true,
     this.displayMode = NeoBoButtonDisplayMode.primary,
-    this.enabled = true,
+    this.enableState = NeoBoButtonEnableState.enabled,
     this.formValidationRequired = false,
     this.iconLeftUrn,
     this.iconRightUrn,
     this.labelText = "",
+    this.navigationPath,
+    this.navigationType = NeoNavigationType.push,
+    this.onTap,
     this.padding,
     this.size = NeoBoButtonSize.medium,
     this.startWorkflow = false,
@@ -99,11 +105,14 @@ class JsonNeoBoButton extends JsonWidgetData {
             {
               'autoTriggerTransition': autoTriggerTransition,
               'displayMode': displayMode,
-              'enabled': enabled,
+              'enableState': enableState,
               'formValidationRequired': formValidationRequired,
               'iconLeftUrn': iconLeftUrn,
               'iconRightUrn': iconRightUrn,
               'labelText': labelText,
+              'navigationPath': navigationPath,
+              'navigationType': navigationType,
+              'onTap': onTap,
               'padding': padding,
               'size': size,
               'startWorkflow': startWorkflow,
@@ -119,11 +128,14 @@ class JsonNeoBoButton extends JsonWidgetData {
               {
                 'autoTriggerTransition': autoTriggerTransition,
                 'displayMode': displayMode,
-                'enabled': enabled,
+                'enableState': enableState,
                 'formValidationRequired': formValidationRequired,
                 'iconLeftUrn': iconLeftUrn,
                 'iconRightUrn': iconRightUrn,
                 'labelText': labelText,
+                'navigationPath': navigationPath,
+                'navigationType': navigationType,
+                'onTap': onTap,
                 'padding': padding,
                 'size': size,
                 'startWorkflow': startWorkflow,
@@ -142,7 +154,7 @@ class JsonNeoBoButton extends JsonWidgetData {
 
   final NeoBoButtonDisplayMode displayMode;
 
-  final bool enabled;
+  final NeoBoButtonEnableState enableState;
 
   final bool formValidationRequired;
 
@@ -151,6 +163,12 @@ class JsonNeoBoButton extends JsonWidgetData {
   final String? iconRightUrn;
 
   final String labelText;
+
+  final String? navigationPath;
+
+  final NeoNavigationType navigationType;
+
+  final Function? onTap;
 
   final EdgeInsetsDirectional? padding;
 
@@ -168,11 +186,14 @@ class NeoBoButtonBuilderModel extends JsonWidgetBuilderModel {
     super.args, {
     this.autoTriggerTransition = true,
     this.displayMode = NeoBoButtonDisplayMode.primary,
-    this.enabled = true,
+    this.enableState = NeoBoButtonEnableState.enabled,
     this.formValidationRequired = false,
     this.iconLeftUrn,
     this.iconRightUrn,
     this.labelText = "",
+    this.navigationPath,
+    this.navigationType = NeoNavigationType.push,
+    this.onTap,
     this.padding,
     this.size = NeoBoButtonSize.medium,
     this.startWorkflow = false,
@@ -184,7 +205,7 @@ class NeoBoButtonBuilderModel extends JsonWidgetBuilderModel {
 
   final NeoBoButtonDisplayMode displayMode;
 
-  final bool enabled;
+  final NeoBoButtonEnableState enableState;
 
   final bool formValidationRequired;
 
@@ -193,6 +214,12 @@ class NeoBoButtonBuilderModel extends JsonWidgetBuilderModel {
   final String? iconRightUrn;
 
   final String labelText;
+
+  final String? navigationPath;
+
+  final NeoNavigationType navigationType;
+
+  final Function? onTap;
 
   final EdgeInsetsDirectional? padding;
 
@@ -251,10 +278,7 @@ class NeoBoButtonBuilderModel extends JsonWidgetBuilderModel {
             whenNull: true,
           ),
           displayMode: map['displayMode'] ?? NeoBoButtonDisplayMode.primary,
-          enabled: JsonClass.parseBool(
-            map['enabled'],
-            whenNull: true,
-          ),
+          enableState: map['enableState'] ?? NeoBoButtonEnableState.enabled,
           formValidationRequired: JsonClass.parseBool(
             map['formValidationRequired'],
             whenNull: false,
@@ -262,6 +286,9 @@ class NeoBoButtonBuilderModel extends JsonWidgetBuilderModel {
           iconLeftUrn: map['iconLeftUrn'],
           iconRightUrn: map['iconRightUrn'],
           labelText: map['labelText'] ?? "",
+          navigationPath: map['navigationPath'],
+          navigationType: map['navigationType'] ?? NeoNavigationType.push,
+          onTap: map['onTap'],
           padding: () {
             dynamic parsed = ThemeDecoder.decodeEdgeInsetsDirectional(
               map['padding'],
@@ -287,13 +314,21 @@ class NeoBoButtonBuilderModel extends JsonWidgetBuilderModel {
   @override
   Map<String, dynamic> toJson() {
     return JsonClass.removeNull({
-      'autoTriggerTransition': true == autoTriggerTransition ? null : autoTriggerTransition,
-      'displayMode': NeoBoButtonDisplayMode.primary == displayMode ? null : displayMode,
-      'enabled': true == enabled ? null : enabled,
-      'formValidationRequired': false == formValidationRequired ? null : formValidationRequired,
+      'autoTriggerTransition':
+          true == autoTriggerTransition ? null : autoTriggerTransition,
+      'displayMode':
+          NeoBoButtonDisplayMode.primary == displayMode ? null : displayMode,
+      'enableState':
+          NeoBoButtonEnableState.enabled == enableState ? null : enableState,
+      'formValidationRequired':
+          false == formValidationRequired ? null : formValidationRequired,
       'iconLeftUrn': iconLeftUrn,
       'iconRightUrn': iconRightUrn,
       'labelText': "" == labelText ? null : labelText,
+      'navigationPath': navigationPath,
+      'navigationType':
+          NeoNavigationType.push == navigationType ? null : navigationType,
+      'onTap': onTap,
       'padding': ThemeEncoder.encodeEdgeInsetsDirectional(
         padding,
       ),
@@ -307,7 +342,8 @@ class NeoBoButtonBuilderModel extends JsonWidgetBuilderModel {
 }
 
 class NeoBoButtonSchema {
-  static const id = 'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/backoffice/neo_button.json';
+  static const id =
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/backoffice/neo_bo_button.json';
 
   static final schema = <String, Object>{
     r'$schema': 'http://json-schema.org/draft-07/schema#',
@@ -318,11 +354,14 @@ class NeoBoButtonSchema {
     'properties': {
       'autoTriggerTransition': SchemaHelper.boolSchema,
       'displayMode': SchemaHelper.anySchema,
-      'enabled': SchemaHelper.boolSchema,
+      'enableState': SchemaHelper.anySchema,
       'formValidationRequired': SchemaHelper.boolSchema,
       'iconLeftUrn': SchemaHelper.stringSchema,
       'iconRightUrn': SchemaHelper.stringSchema,
       'labelText': SchemaHelper.stringSchema,
+      'navigationPath': SchemaHelper.stringSchema,
+      'navigationType': SchemaHelper.anySchema,
+      'onTap': SchemaHelper.anySchema,
       'padding': SchemaHelper.objectSchema(EdgeInsetsDirectionalSchema.id),
       'size': SchemaHelper.anySchema,
       'startWorkflow': SchemaHelper.boolSchema,

@@ -37,6 +37,7 @@ class FetchAppsInitialTransitionUseCase {
         viewSource: response["view-source"],
         initialData: {},
         isBackNavigation: false,
+        transitionId: response["transition"].first["transition"],
       );
     } catch (e) {
       return null;

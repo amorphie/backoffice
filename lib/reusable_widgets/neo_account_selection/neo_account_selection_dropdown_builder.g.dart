@@ -190,7 +190,7 @@ class NeoAccountSelectionDropdownBuilderModel extends JsonWidgetBuilderModel {
 
 class NeoAccountSelectionDropdownSchema {
   static const id =
-      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/neo_bank/neo_account_selection_dropdown.json';
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/backoffice/neo_account_selection_dropdown.json';
 
   static final schema = <String, Object>{
     r'$schema': 'http://json-schema.org/draft-07/schema#',

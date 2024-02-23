@@ -13,9 +13,11 @@
  */
 
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
-
 import 'model/neo_bo_button_display_mode.dart';
+import 'model/neo_bo_button_enable_state.dart';
 import 'model/neo_bo_button_size.dart';
+import 'package:neo_core/core/navigation/models/neo_navigation_type.dart';
+
 import 'neo_bo_button.dart';
 
 part 'neo_bo_button_builder.g.dart';

@@ -33,11 +33,13 @@ class NeoBoCore {
     final args = routeSettings.arguments as Map<String, String>? ?? {};
     final transitionData = args.isNotEmpty && !args[AppConstants.transitionDataKey].isNullOrBlank ? SignalrTransitionData.decode(args[AppConstants.transitionDataKey] ?? "") : null;
 
+    var data = json.decode(args["data"] ?? "{}");
+
     switch (transitionData?.navigationPath ?? routeSettings.name) {
       case NeoBoPageId.boDetail:
         return MaterialPageRoute(
             builder: (context) => BoDetailPage(
-                  data: args["data"].isNullOrBlank ? {} : json.decode(args["data"]!),
+                  data: data,
                 ));
       case NeoBoPageId.searchWorkflowWidget:
         return MaterialPageRoute(

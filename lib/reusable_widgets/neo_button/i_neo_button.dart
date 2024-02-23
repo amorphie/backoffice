@@ -24,6 +24,7 @@ import 'package:backoffice/reusable_widgets/neo_button/model/neo_button_enable_s
 import 'package:backoffice/reusable_widgets/neo_button/model/neo_button_size.dart';
 import 'package:backoffice/util/neo_util.dart';
 import 'package:neo_core/core/bus/neo_bus.dart';
+import 'package:neo_core/core/navigation/models/neo_navigation_type.dart';
 import 'package:neo_core/core/navigation/models/signalr_transition_data.dart';
 import 'package:neo_core/core/widgets/neo_transition_listener/bloc/neo_transition_listener_bloc.dart';
 import 'package:neo_core/core/workflow_form/bloc/workflow_form_bloc.dart';
@@ -32,12 +33,14 @@ abstract class INeoButton extends StatelessWidget with NeoTransitional {
   const INeoButton({
     this.transitionId,
     this.widgetEventKey,
+    this.navigationPath,
     this.labelText = "",
     this.iconLeftUrn,
     this.iconRightUrn,
     this.size = NeoButtonSize.medium,
     this.displayMode = NeoButtonDisplayMode.primary,
     this.enableState = NeoButtonEnableState.enabled,
+    this.navigationType = NeoNavigationType.push,
     this.startWorkflow = false,
     this.autoTriggerTransition = true,
     this.formValidationRequired = false,
@@ -48,6 +51,7 @@ abstract class INeoButton extends StatelessWidget with NeoTransitional {
   @override
   final String? transitionId;
   final String? widgetEventKey;
+  final String? navigationPath;
   final bool startWorkflow;
   final bool autoTriggerTransition;
   final String labelText;
@@ -56,6 +60,7 @@ abstract class INeoButton extends StatelessWidget with NeoTransitional {
   final NeoButtonSize size;
   final NeoButtonDisplayMode displayMode;
   final NeoButtonEnableState enableState;
+  final NeoNavigationType navigationType;
   final bool formValidationRequired;
   final EdgeInsetsDirectional? padding;
 

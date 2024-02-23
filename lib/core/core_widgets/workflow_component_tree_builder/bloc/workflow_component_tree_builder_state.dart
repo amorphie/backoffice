@@ -29,9 +29,18 @@ class WorkflowComponentTreeBuilderStateError extends WorkflowComponentTreeBuilde
 
 class WorkflowFormioBuilderStateLoaded extends WorkflowComponentTreeBuilderState {
   final String formioData;
-
-  const WorkflowFormioBuilderStateLoaded({required this.formioData});
+  final String transitionId;
+  const WorkflowFormioBuilderStateLoaded({required this.formioData, required this.transitionId});
 
   @override
-  List<Object> get props => [formioData];
+  List<Object> get props => [formioData, transitionId];
+}
+
+class WorkflowHtmlBuilderStateLoaded extends WorkflowComponentTreeBuilderState {
+  final String htmlData;
+
+  const WorkflowHtmlBuilderStateLoaded({required this.htmlData});
+
+  @override
+  List<Object> get props => [htmlData];
 }

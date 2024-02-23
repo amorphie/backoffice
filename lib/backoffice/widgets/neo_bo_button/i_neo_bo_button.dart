@@ -17,26 +17,30 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:backoffice/core/dependency_injection/dependency_injection.dart';
 import 'package:backoffice/core/mixins/neo_transitional.dart';
-import 'package:backoffice/util/neo_util.dart';
-import 'package:neo_core/core/bus/neo_bus.dart';
-import 'package:neo_core/core/navigation/models/signalr_transition_data.dart';
-import 'package:neo_core/core/workflow_form/bloc/workflow_form_bloc.dart';
-
-import '../../../core/navigation/neo_navigation_helper.dart';
+import 'package:backoffice/core/navigation/neo_navigation_helper.dart';
 import 'bloc/neo_bo_button_bloc.dart';
 import 'model/neo_bo_button_display_mode.dart';
+import 'model/neo_bo_button_enable_state.dart';
 import 'model/neo_bo_button_size.dart';
+import 'package:backoffice/util/neo_util.dart';
+import 'package:neo_core/core/bus/neo_bus.dart';
+import 'package:neo_core/core/navigation/models/neo_navigation_type.dart';
+import 'package:neo_core/core/navigation/models/signalr_transition_data.dart';
+import 'package:neo_core/core/widgets/neo_transition_listener/bloc/neo_transition_listener_bloc.dart';
+import 'package:neo_core/core/workflow_form/bloc/workflow_form_bloc.dart';
 
 abstract class INeoBoButton extends StatelessWidget with NeoTransitional {
   const INeoBoButton({
     this.transitionId,
     this.widgetEventKey,
+    this.navigationPath,
     this.labelText = "",
     this.iconLeftUrn,
     this.iconRightUrn,
     this.size = NeoBoButtonSize.medium,
     this.displayMode = NeoBoButtonDisplayMode.primary,
-    this.enabled = true,
+    this.enableState = NeoBoButtonEnableState.enabled,
+    this.navigationType = NeoNavigationType.push,
     this.startWorkflow = false,
     this.autoTriggerTransition = true,
     this.formValidationRequired = false,
@@ -47,6 +51,7 @@ abstract class INeoBoButton extends StatelessWidget with NeoTransitional {
   @override
   final String? transitionId;
   final String? widgetEventKey;
+  final String? navigationPath;
   final bool startWorkflow;
   final bool autoTriggerTransition;
   final String labelText;
@@ -54,13 +59,14 @@ abstract class INeoBoButton extends StatelessWidget with NeoTransitional {
   final String? iconRightUrn;
   final NeoBoButtonSize size;
   final NeoBoButtonDisplayMode displayMode;
-  final bool enabled;
+  final NeoBoButtonEnableState enableState;
+  final NeoNavigationType navigationType;
   final bool formValidationRequired;
   final EdgeInsetsDirectional? padding;
 
   @override
   @visibleForOverriding
-  Map<String, dynamic> get defaultTransitionParams => {};
+  Map<String, dynamic> getDefaultTransitionParams(BuildContext context) => {};
 
   abstract final Widget Function(BuildContext, NeoBoButtonState) childBuilder;
 
@@ -68,7 +74,7 @@ abstract class INeoBoButton extends StatelessWidget with NeoTransitional {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => NeoBoButtonBloc()..add(NeoBoButtonEventInitial(enabled: enabled)),
+      create: (context) => NeoBoButtonBloc()..add(NeoBoButtonEventInitial(enableState: enableState)),
       child: BlocConsumer<NeoBoButtonBloc, NeoBoButtonState>(
         listener: (context, state) {
           if (state.navigationData.isNotNull) {
@@ -92,15 +98,27 @@ abstract class INeoBoButton extends StatelessWidget with NeoTransitional {
         return;
       }
     }
+    if (context.read<NeoBoButtonBloc>().state.enableState != NeoBoButtonEnableState.enabled) {
+      return;
+    }
     if (!transitionId.isNullOrBlank && autoTriggerTransition) {
-      context.read<NeoBoButtonBloc>().add(
-            NeoBoButtonEventStartTransition(
-              startWorkflow: startWorkflow,
-              transitionId: transitionId.orEmpty,
-              transitionBody: (transitionBody ?? _getFormParametersIfExist(context))..addAll(defaultTransitionParams),
-            ),
-          );
-    } else if (!widgetEventKey.isNullOrBlank) {
+      final neoButtonBloc = context.read<NeoBoButtonBloc>();
+      final neoTransitionListenerBloc = context.read<NeoTransitionListenerBloc>();
+      final transitionBodyWithParams = (transitionBody ?? _getFormParametersIfExist(context))..addAll(getDefaultTransitionParams(context));
+
+      if (startWorkflow) {
+        final initWorkflowResponse = await neoTransitionListenerBloc.initWorkflow(transitionId.orEmpty);
+        neoButtonBloc.add(NeoBoButtonEventInitWorkflow(initResponse: initWorkflowResponse));
+      } else {
+        neoTransitionListenerBloc.add(
+          NeoTransitionListenerEventPostTransition(
+            transitionName: transitionId.orEmpty,
+            body: transitionBodyWithParams,
+          ),
+        );
+      }
+    }
+    if (!widgetEventKey.isNullOrBlank) {
       getIt.get<NeoWidgetEventBus>().addEvent(NeoWidgetEvent(eventId: widgetEventKey!, data: DateTime.now()));
     }
   }

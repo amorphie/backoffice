@@ -227,7 +227,7 @@ class NeoBadgeBuilderModel extends JsonWidgetBuilderModel {
 
 class NeoBadgeSchema {
   static const id =
-      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/neo_bank/neo_badge.json';
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/backoffice/neo_badge.json';
 
   static final schema = <String, Object>{
     r'$schema': 'http://json-schema.org/draft-07/schema#',

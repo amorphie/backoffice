@@ -35,7 +35,7 @@ enum NeoCardDetailsDisplayMode {
 
 // STOPSHIP: Update this extension when the services are finalized
 extension NeoCardDetailsDisplayModeExtension on NeoCardDetailsDisplayMode {
-  bool get shouldCallAccountDetailsService {
+  bool get shouldCallDebitCardDetailService {
     return this == NeoCardDetailsDisplayMode.defaultMode;
   }
 

@@ -21,15 +21,7 @@
                     "type": "neo_bo_detail_item_widget",
                     "args": {
                       "title": "Name",
-                      "text": "$.data.displayNames[0].label",
-                      "copyValue": true
-                    }
-                  },
-                  {
-                    "type": "neo_bo_detail_item_widget",
-                    "args": {
-                      "title": "Created At",
-                      "text": "$.createdAt",
+                      "text": "$.data.name",
                       "copyValue": true
                     }
                   },
@@ -37,8 +29,15 @@
                     "type": "neo_bo_detail_item_widget",
                     "args": {
                       "title": "Description",
-                      "text": "$.data.data[1].label",
+                      "text": "$.data.description",
                       "copyValue": true
+                    }
+                  },
+                  {
+                    "type": "neo_bo_detail_item_widget",
+                    "args": {
+                      "title": "Created At",
+                      "text": "$.createdAt"
                     }
                   }
                 ]

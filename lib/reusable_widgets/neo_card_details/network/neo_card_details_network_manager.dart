@@ -20,10 +20,8 @@ import 'package:neo_core/neo_core.dart';
 
 abstract class _Constants {
   static const String cardDetailsEndpoint = "get-card-details-by-card-number";
-  static const String accountDetailsEndpoint = "get-account-details-by-iban";
 
   static const String pathParameterCardId = "CARD_ID";
-  static const String pathParameterIban = "IBAN";
 }
 
 class NeoCardDetailsNetworkManager {
@@ -35,22 +33,6 @@ class NeoCardDetailsNetworkManager {
           endpoint: _Constants.cardDetailsEndpoint,
           pathParameters: {
             _Constants.pathParameterCardId: cardId,
-          },
-        ),
-      );
-      return NeoResponse.success(response);
-    } on NeoException catch (exception) {
-      return NeoResponse.error(exception.error);
-    }
-  }
-
-  Future<NeoResponse> fetchAccountDetails(String iban) async {
-    try {
-      final response = await GetIt.I<NeoNetworkManager>().call(
-        NeoHttpCall(
-          endpoint: _Constants.accountDetailsEndpoint,
-          pathParameters: {
-            _Constants.pathParameterIban: iban,
           },
         ),
       );

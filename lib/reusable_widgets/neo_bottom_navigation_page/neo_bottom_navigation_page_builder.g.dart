@@ -170,7 +170,7 @@ class NeoBottomNavigationPageBuilderModel extends JsonWidgetBuilderModel {
 
 class NeoBottomNavigationPageSchema {
   static const id =
-      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/neo_bank/neo_bottom_navigation_page.json';
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/backoffice/neo_bottom_navigation_page.json';
 
   static final schema = <String, Object>{
     r'$schema': 'http://json-schema.org/draft-07/schema#',

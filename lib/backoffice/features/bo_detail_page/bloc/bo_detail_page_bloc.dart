@@ -14,10 +14,17 @@ class BoDetailPageBloc extends Bloc<BoDetailPageEvent, BoDetailPageState> {
     var list = JsonPath(path).read(data);
 
     if (list.isNotEmpty) {
-      return list.first.value.toString();
+      return _print(list.first.value);
     } else {
       return "";
     }
+  }
+
+  String _print(dynamic item) {
+    if (item is List)
+      return item.join(", ");
+    else
+      return item.toString();
   }
 
   BoDetailPageBloc({required this.networkManager, required this.data}) : super(const BoDetailPageStateViewLoading()) {

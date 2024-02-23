@@ -24,12 +24,3 @@ class NeoCardDetailsEventFetchCardDetails extends NeoCardDetailsEvent {
   @override
   List<Object?> get props => [];
 }
-
-class NeoCardDetailsEventFetchAccountDetails extends NeoCardDetailsEvent {
-  final String iban;
-
-  const NeoCardDetailsEventFetchAccountDetails({required this.iban});
-
-  @override
-  List<Object?> get props => [iban];
-}

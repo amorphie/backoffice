@@ -14,6 +14,9 @@ NeoAccountDetailsResponseData _$NeoAccountDetailsResponseDataFromJson(
       balance: json['balance'] == null
           ? null
           : NeoAccountBalance.fromJson(json['balance'] as Map<String, dynamic>),
+      branch: json['branch'] == null
+          ? null
+          : NeoAccountBranch.fromJson(json['branch'] as Map<String, dynamic>),
     );
 
 const _$NeoAccountSubTypeEnumMap = {

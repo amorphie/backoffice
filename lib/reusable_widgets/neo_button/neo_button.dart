@@ -13,6 +13,7 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:backoffice/core/navigation/usecases/navigate_with_event_bus_navigation_handler_usecase.dart';
 import 'package:backoffice/reusable_widgets/neo_button/bloc/neo_button_bloc.dart';
 import 'package:backoffice/reusable_widgets/neo_button/i_neo_button.dart';
 import 'package:backoffice/reusable_widgets/neo_button/model/neo_button_display_mode.dart';
@@ -31,6 +32,8 @@ class NeoButton extends INeoButton {
 
   const NeoButton({
     this.onTap,
+    super.navigationPath,
+    super.navigationType,
     super.transitionId,
     super.widgetEventKey,
     super.labelText,
@@ -56,33 +59,40 @@ class NeoButton extends INeoButton {
             onTap: () {
               onTap?.call();
               startTransition(context);
+              if (!navigationPath.isNullOrBlank) {
+                NavigateWithEventBusNavigationHandlerUseCase.call(navigationType, navigationPath!);
+              }
             },
             splashColor: _getSplashColor(),
-            child: Ink(
-              decoration: BoxDecoration(
-                color: _getBackgroundColor(_isButtonEnabled(state)),
-                borderRadius: BorderRadius.circular(NeoRadius.px8),
-                border: _getBorder(_isButtonEnabled(state)),
-              ),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  if (!iconLeftUrn.isNullOrBlank) _buildIcon(iconLeftUrn!, _isButtonEnabled(state)).paddingOnly(end: _iconPadding()),
-                  Flexible(
-                    child: NeoText(
-                      labelText,
-                      style: _labelTextStyle(_isButtonEnabled(state)),
-                      maxLines: 1,
-                    ),
-                  ),
-                  if (!iconRightUrn.isNullOrBlank) _buildIcon(iconRightUrn!, _isButtonEnabled(state)).paddingOnly(start: _iconPadding()),
-                ],
-              ).paddingSymmetric(horizontal: NeoDimens.px24),
-            ),
+            child: _buildNeoButton(state),
           ),
         ),
       ).padding(padding ?? EdgeInsetsDirectional.zero);
+
+  Widget _buildNeoButton(NeoButtonState state) {
+    return Ink(
+      decoration: BoxDecoration(
+        color: _getBackgroundColor(_isButtonEnabled(state)),
+        borderRadius: BorderRadius.circular(NeoRadius.px8),
+        border: _getBorder(_isButtonEnabled(state)),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          if (!iconLeftUrn.isNullOrBlank) _buildIcon(iconLeftUrn!, _isButtonEnabled(state)).paddingOnly(end: _iconPadding()),
+          Flexible(
+            child: NeoText(
+              labelText,
+              style: _labelTextStyle(_isButtonEnabled(state)),
+              maxLines: 1,
+            ),
+          ),
+          if (!iconRightUrn.isNullOrBlank) _buildIcon(iconRightUrn!, _isButtonEnabled(state)).paddingOnly(start: _iconPadding()),
+        ],
+      ).paddingSymmetric(horizontal: NeoDimens.px24),
+    );
+  }
 
   Widget _buildIcon(String iconUrn, bool buttonEnabled) {
     return NeoIcon(

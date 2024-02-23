@@ -13,6 +13,7 @@
  */
 
 import 'package:json_annotation/json_annotation.dart';
+import 'package:backoffice/reusable_widgets/neo_account_selection/models/neo_account_branch.dart';
 import 'package:backoffice/reusable_widgets/neo_account_widget/models/neo_account_balance.dart';
 import 'package:backoffice/reusable_widgets/neo_account_widget/models/neo_account_sub_type.dart';
 
@@ -24,11 +25,10 @@ class NeoAccountDetailsResponseData {
   final NeoAccountSubType? accountSubType;
   @JsonKey(name: "balance")
   final NeoAccountBalance? balance;
+  @JsonKey(name: "branch")
+  final NeoAccountBranch? branch;
 
-  NeoAccountDetailsResponseData({
-    this.accountSubType,
-    this.balance,
-  });
+  NeoAccountDetailsResponseData({this.accountSubType, this.balance, this.branch});
 
   factory NeoAccountDetailsResponseData.fromJson(Map<String, dynamic> json) => _$NeoAccountDetailsResponseDataFromJson(json);
 }

@@ -69,6 +69,8 @@ class NeoButtonBuilder extends _NeoButtonBuilder {
       iconRightUrn: model.iconRightUrn,
       key: key,
       labelText: model.labelText,
+      navigationPath: model.navigationPath,
+      navigationType: model.navigationType,
       onTap: model.onTap,
       padding: model.padding,
       size: model.size,
@@ -90,6 +92,8 @@ class JsonNeoButton extends JsonWidgetData {
     this.iconLeftUrn,
     this.iconRightUrn,
     this.labelText = "",
+    this.navigationPath,
+    this.navigationType = NeoNavigationType.push,
     this.onTap,
     this.padding,
     this.size = NeoButtonSize.medium,
@@ -106,6 +110,8 @@ class JsonNeoButton extends JsonWidgetData {
               'iconLeftUrn': iconLeftUrn,
               'iconRightUrn': iconRightUrn,
               'labelText': labelText,
+              'navigationPath': navigationPath,
+              'navigationType': navigationType,
               'onTap': onTap,
               'padding': padding,
               'size': size,
@@ -127,6 +133,8 @@ class JsonNeoButton extends JsonWidgetData {
                 'iconLeftUrn': iconLeftUrn,
                 'iconRightUrn': iconRightUrn,
                 'labelText': labelText,
+                'navigationPath': navigationPath,
+                'navigationType': navigationType,
                 'onTap': onTap,
                 'padding': padding,
                 'size': size,
@@ -156,6 +164,10 @@ class JsonNeoButton extends JsonWidgetData {
 
   final String labelText;
 
+  final String? navigationPath;
+
+  final NeoNavigationType navigationType;
+
   final Function? onTap;
 
   final EdgeInsetsDirectional? padding;
@@ -179,6 +191,8 @@ class NeoButtonBuilderModel extends JsonWidgetBuilderModel {
     this.iconLeftUrn,
     this.iconRightUrn,
     this.labelText = "",
+    this.navigationPath,
+    this.navigationType = NeoNavigationType.push,
     this.onTap,
     this.padding,
     this.size = NeoButtonSize.medium,
@@ -200,6 +214,10 @@ class NeoButtonBuilderModel extends JsonWidgetBuilderModel {
   final String? iconRightUrn;
 
   final String labelText;
+
+  final String? navigationPath;
+
+  final NeoNavigationType navigationType;
 
   final Function? onTap;
 
@@ -268,6 +286,8 @@ class NeoButtonBuilderModel extends JsonWidgetBuilderModel {
           iconLeftUrn: map['iconLeftUrn'],
           iconRightUrn: map['iconRightUrn'],
           labelText: map['labelText'] ?? "",
+          navigationPath: map['navigationPath'],
+          navigationType: map['navigationType'] ?? NeoNavigationType.push,
           onTap: map['onTap'],
           padding: () {
             dynamic parsed = ThemeDecoder.decodeEdgeInsetsDirectional(
@@ -305,6 +325,9 @@ class NeoButtonBuilderModel extends JsonWidgetBuilderModel {
       'iconLeftUrn': iconLeftUrn,
       'iconRightUrn': iconRightUrn,
       'labelText': "" == labelText ? null : labelText,
+      'navigationPath': navigationPath,
+      'navigationType':
+          NeoNavigationType.push == navigationType ? null : navigationType,
       'onTap': onTap,
       'padding': ThemeEncoder.encodeEdgeInsetsDirectional(
         padding,
@@ -320,7 +343,7 @@ class NeoButtonBuilderModel extends JsonWidgetBuilderModel {
 
 class NeoButtonSchema {
   static const id =
-      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/neo_bank/neo_button.json';
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/backoffice/neo_button.json';
 
   static final schema = <String, Object>{
     r'$schema': 'http://json-schema.org/draft-07/schema#',
@@ -336,6 +359,8 @@ class NeoButtonSchema {
       'iconLeftUrn': SchemaHelper.stringSchema,
       'iconRightUrn': SchemaHelper.stringSchema,
       'labelText': SchemaHelper.stringSchema,
+      'navigationPath': SchemaHelper.stringSchema,
+      'navigationType': SchemaHelper.anySchema,
       'onTap': SchemaHelper.anySchema,
       'padding': SchemaHelper.objectSchema(EdgeInsetsDirectionalSchema.id),
       'size': SchemaHelper.anySchema,

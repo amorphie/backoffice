@@ -15,4 +15,14 @@ NeoDebitCardItemDataMasterAccount _$NeoDebitCardItemDataMasterAccountFromJson(
       suffix: json['suffix'] as int?,
       currency: json['currency'] as String?,
       balance: (json['balance'] as num?)?.toDouble(),
+      accountDetails: json['accountDetails'] == null
+          ? null
+          : NeoAccountDetailsResponseData.fromJson(
+              json['accountDetails'] as Map<String, dynamic>),
+      transactionLimits: (json['transactionLimits'] as List<dynamic>?)
+          ?.map((e) => e == null
+              ? null
+              : NeoTransactionsLimitsResponseData.fromJson(
+                  e as Map<String, dynamic>))
+          .toList(),
     );

@@ -71,6 +71,7 @@ class NeoTextFormFieldBuilder extends _NeoTextFormFieldBuilder {
       bottomText: model.bottomText,
       buttonRight: model.buttonRight,
       dataKey: model.dataKey,
+      enableInitialValue: model.enableInitialValue,
       enableInteractiveSelection: model.enableInteractiveSelection,
       enabled: model.enabled,
       focusNode: model.focusNode,
@@ -101,6 +102,7 @@ class JsonNeoTextFormField extends JsonWidgetData {
     this.bottomText,
     this.buttonRight,
     this.dataKey,
+    this.enableInitialValue = true,
     this.enableInteractiveSelection,
     this.enabled = true,
     this.focusNode,
@@ -125,6 +127,7 @@ class JsonNeoTextFormField extends JsonWidgetData {
               'bottomText': bottomText,
               'buttonRight': buttonRight,
               'dataKey': dataKey,
+              'enableInitialValue': enableInitialValue,
               'enableInteractiveSelection': enableInteractiveSelection,
               'enabled': enabled,
               'focusNode': focusNode,
@@ -154,6 +157,7 @@ class JsonNeoTextFormField extends JsonWidgetData {
                 'bottomText': bottomText,
                 'buttonRight': buttonRight,
                 'dataKey': dataKey,
+                'enableInitialValue': enableInitialValue,
                 'enableInteractiveSelection': enableInteractiveSelection,
                 'enabled': enabled,
                 'focusNode': focusNode,
@@ -186,6 +190,8 @@ class JsonNeoTextFormField extends JsonWidgetData {
   final NeoButtonDataModel? buttonRight;
 
   final String? dataKey;
+
+  final bool enableInitialValue;
 
   final bool? enableInteractiveSelection;
 
@@ -230,6 +236,7 @@ class NeoTextFormFieldBuilderModel extends JsonWidgetBuilderModel {
     this.bottomText,
     this.buttonRight,
     this.dataKey,
+    this.enableInitialValue = true,
     this.enableInteractiveSelection,
     this.enabled = true,
     this.focusNode,
@@ -255,6 +262,8 @@ class NeoTextFormFieldBuilderModel extends JsonWidgetBuilderModel {
   final NeoButtonDataModel? buttonRight;
 
   final String? dataKey;
+
+  final bool enableInitialValue;
 
   final bool? enableInteractiveSelection;
 
@@ -337,6 +346,10 @@ class NeoTextFormFieldBuilderModel extends JsonWidgetBuilderModel {
           bottomText: map['bottomText'],
           buttonRight: map['buttonRight'],
           dataKey: map['dataKey'],
+          enableInitialValue: JsonClass.parseBool(
+            map['enableInitialValue'],
+            whenNull: true,
+          ),
           enableInteractiveSelection: JsonClass.maybeParseBool(
             map['enableInteractiveSelection'],
           ),
@@ -390,6 +403,8 @@ class NeoTextFormFieldBuilderModel extends JsonWidgetBuilderModel {
       'bottomText': bottomText,
       'buttonRight': buttonRight,
       'dataKey': dataKey,
+      'enableInitialValue':
+          true == enableInitialValue ? null : enableInitialValue,
       'enableInteractiveSelection': enableInteractiveSelection,
       'enabled': true == enabled ? null : enabled,
       'focusNode': focusNode,
@@ -419,7 +434,7 @@ class NeoTextFormFieldBuilderModel extends JsonWidgetBuilderModel {
 
 class NeoTextFormFieldSchema {
   static const id =
-      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/neo_bank/neo_text_form_field.json';
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/backoffice/neo_text_form_field.json';
 
   static final schema = <String, Object>{
     r'$schema': 'http://json-schema.org/draft-07/schema#',
@@ -431,6 +446,7 @@ class NeoTextFormFieldSchema {
       'bottomText': SchemaHelper.anySchema,
       'buttonRight': SchemaHelper.anySchema,
       'dataKey': SchemaHelper.stringSchema,
+      'enableInitialValue': SchemaHelper.boolSchema,
       'enableInteractiveSelection': SchemaHelper.boolSchema,
       'enabled': SchemaHelper.boolSchema,
       'focusNode': SchemaHelper.anySchema,

@@ -39,7 +39,7 @@ class WorkflowComponentTreeBuilderBloc extends Bloc<WorkflowComponentTreeBuilder
           if (response.isSuccess) {
             final componentsResponse = (response as NeoSuccessResponse).data["body"];
             emit(
-              WorkflowFormioBuilderStateLoaded(formioData: componentsResponse),
+              WorkflowFormioBuilderStateLoaded(formioData: componentsResponse, transitionId: _pageId),
             );
           } else {
             emit(

@@ -226,7 +226,7 @@ class DebitCardPermissionsContinueButtonBuilderModel
 
 class DebitCardPermissionsContinueButtonSchema {
   static const id =
-      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/neo_bank/debit_card_permissions_continue_button.json';
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/backoffice/debit_card_permissions_continue_button.json';
 
   static final schema = <String, Object>{
     r'$schema': 'http://json-schema.org/draft-07/schema#',

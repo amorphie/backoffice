@@ -17,6 +17,7 @@ import 'package:backoffice/reusable_widgets/neo_button/model/neo_button_display_
 import 'package:backoffice/reusable_widgets/neo_button/model/neo_button_enable_state.dart';
 import 'package:backoffice/reusable_widgets/neo_button/model/neo_button_size.dart';
 import 'package:backoffice/reusable_widgets/neo_button/neo_button.dart';
+import 'package:neo_core/core/navigation/models/neo_navigation_type.dart';
 
 part 'neo_button_builder.g.dart';
 

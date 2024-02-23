@@ -37,7 +37,7 @@ class BoDetailPage extends StatelessWidget {
         children: [
           Expanded(
             child: RenderWidget(
-              template: testRenderTemplateData,
+              template: item["body"].isNotEmpty ? item["body"] : testRenderTemplateData,
             ),
           ),
         ],

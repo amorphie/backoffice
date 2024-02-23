@@ -63,8 +63,8 @@ class NeoCardDetailsBuilder extends _NeoCardDetailsBuilder {
     return NeoCardDetails(
       displayMode: model.displayMode,
       key: key,
+      navigationPath: model.navigationPath,
       padding: model.padding,
-      transitionId: model.transitionId,
     );
   }
 }
@@ -74,14 +74,14 @@ class JsonNeoCardDetails extends JsonWidgetData {
     Map<String, dynamic> args = const {},
     JsonWidgetRegistry? registry,
     this.displayMode = NeoCardDetailsDisplayMode.defaultMode,
+    required this.navigationPath,
     this.padding = EdgeInsetsDirectional.zero,
-    this.transitionId,
   }) : super(
           jsonWidgetArgs: NeoCardDetailsBuilderModel.fromDynamic(
             {
               'displayMode': displayMode,
+              'navigationPath': navigationPath,
               'padding': padding,
-              'transitionId': transitionId,
               ...args,
             },
             args: args,
@@ -91,8 +91,8 @@ class JsonNeoCardDetails extends JsonWidgetData {
             args: NeoCardDetailsBuilderModel.fromDynamic(
               {
                 'displayMode': displayMode,
+                'navigationPath': navigationPath,
                 'padding': padding,
-                'transitionId': transitionId,
                 ...args,
               },
               args: args,
@@ -104,24 +104,24 @@ class JsonNeoCardDetails extends JsonWidgetData {
 
   final NeoCardDetailsDisplayMode displayMode;
 
-  final EdgeInsetsDirectional padding;
+  final String? navigationPath;
 
-  final String? transitionId;
+  final EdgeInsetsDirectional padding;
 }
 
 class NeoCardDetailsBuilderModel extends JsonWidgetBuilderModel {
   const NeoCardDetailsBuilderModel(
     super.args, {
     this.displayMode = NeoCardDetailsDisplayMode.defaultMode,
+    required this.navigationPath,
     this.padding = EdgeInsetsDirectional.zero,
-    this.transitionId,
   });
 
   final NeoCardDetailsDisplayMode displayMode;
 
-  final EdgeInsetsDirectional padding;
+  final String? navigationPath;
 
-  final String? transitionId;
+  final EdgeInsetsDirectional padding;
 
   static NeoCardDetailsBuilderModel fromDynamic(
     dynamic map, {
@@ -167,6 +167,7 @@ class NeoCardDetailsBuilderModel extends JsonWidgetBuilderModel {
           args,
           displayMode:
               map['displayMode'] ?? NeoCardDetailsDisplayMode.defaultMode,
+          navigationPath: map['navigationPath'],
           padding: () {
             dynamic parsed = ThemeDecoder.decodeEdgeInsetsDirectional(
               map['padding'],
@@ -176,7 +177,6 @@ class NeoCardDetailsBuilderModel extends JsonWidgetBuilderModel {
 
             return parsed;
           }(),
-          transitionId: map['transitionId'],
         );
       }
     }
@@ -190,12 +190,12 @@ class NeoCardDetailsBuilderModel extends JsonWidgetBuilderModel {
       'displayMode': NeoCardDetailsDisplayMode.defaultMode == displayMode
           ? null
           : displayMode,
+      'navigationPath': navigationPath,
       'padding': EdgeInsetsDirectional.zero == padding
           ? null
           : ThemeEncoder.encodeEdgeInsetsDirectional(
               padding,
             ),
-      'transitionId': transitionId,
       ...args,
     });
   }
@@ -203,7 +203,7 @@ class NeoCardDetailsBuilderModel extends JsonWidgetBuilderModel {
 
 class NeoCardDetailsSchema {
   static const id =
-      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/neo_bank/neo_card_details.json';
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/backoffice/neo_card_details.json';
 
   static final schema = <String, Object>{
     r'$schema': 'http://json-schema.org/draft-07/schema#',
@@ -213,8 +213,8 @@ class NeoCardDetailsSchema {
     'additionalProperties': false,
     'properties': {
       'displayMode': SchemaHelper.anySchema,
+      'navigationPath': SchemaHelper.stringSchema,
       'padding': SchemaHelper.objectSchema(EdgeInsetsDirectionalSchema.id),
-      'transitionId': SchemaHelper.stringSchema,
     },
   };
 }

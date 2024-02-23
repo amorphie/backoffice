@@ -14,15 +14,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:backoffice/core/localization/models/localization_key.dart';
+import 'package:backoffice/core/navigation/usecases/navigate_with_event_bus_navigation_handler_usecase.dart';
 import 'package:backoffice/core/pages/usecases/get_loading_widget_usecase.dart';
 import 'package:backoffice/reusable_widgets/neo_account_widget/models/neo_account_sub_type.dart';
 import 'package:backoffice/reusable_widgets/neo_amount_widget/neo_amount_widget.dart';
-import 'package:backoffice/reusable_widgets/neo_button/bloc/neo_button_bloc.dart';
-import 'package:backoffice/reusable_widgets/neo_button/i_neo_button.dart';
 import 'package:backoffice/reusable_widgets/neo_card_details/bloc/neo_card_details_bloc.dart';
 import 'package:backoffice/reusable_widgets/neo_card_details/bloc/neo_card_details_event.dart';
 import 'package:backoffice/reusable_widgets/neo_card_details/bloc/neo_card_details_state.dart';
-import 'package:backoffice/reusable_widgets/neo_card_details/model/neo_account_details_response_data.dart';
 import 'package:backoffice/reusable_widgets/neo_card_details/model/neo_card_details_display_mode.dart';
 import 'package:backoffice/reusable_widgets/neo_card_details/network/neo_card_details_network_manager.dart';
 import 'package:backoffice/reusable_widgets/neo_debit_card/model/neo_debit_card_item_data.dart';
@@ -30,8 +28,7 @@ import 'package:backoffice/reusable_widgets/neo_icon/neo_icon.dart';
 import 'package:backoffice/reusable_widgets/neo_image/neo_image.dart';
 import 'package:backoffice/reusable_widgets/neo_text/neo_text.dart';
 import 'package:backoffice/util/neo_util.dart';
-
-part 'widgets/neo_card_information_button.dart';
+import 'package:neo_core/core/navigation/models/neo_navigation_type.dart';
 
 abstract class _Constants {
   static const dividerHeight = 1.0;
@@ -40,12 +37,12 @@ abstract class _Constants {
 }
 
 class NeoCardDetails extends StatelessWidget {
-  final String? transitionId;
+  final String? navigationPath;
   final NeoCardDetailsDisplayMode displayMode;
   final EdgeInsetsDirectional padding;
 
   const NeoCardDetails({
-    this.transitionId,
+    required this.navigationPath,
     this.displayMode = NeoCardDetailsDisplayMode.defaultMode,
     this.padding = EdgeInsetsDirectional.zero,
     super.key,
@@ -64,32 +61,19 @@ class NeoCardDetails extends StatelessWidget {
                 // TODO: Show loading widget throughout the entire page where this widget is used
                 return _buildLoadingWidget();
               } else {
-                if (displayMode.shouldCallAccountDetailsService) {
+                if (displayMode.shouldCallDebitCardDetailService) {
                   // Build default and temporarily closed mode
                   if (cardDetailsSnapshot.data?.masterAccount?.iban != null) {
-                    context.read<NeoCardDetailsBloc>().add(
-                          NeoCardDetailsEventFetchAccountDetails(
-                            iban: cardDetailsSnapshot.data?.masterAccount?.iban ?? "",
-                          ),
-                        );
-                    return StreamBuilder<NeoAccountDetailsResponseData>(
-                      stream: context.read<NeoCardDetailsBloc>().accountDetailsStream,
-                      builder: (context, accountDetailsSnapshot) {
-                        if (accountDetailsSnapshot.data.isNull) {
-                          // TODO: Show loading widget throughout the entire page where this widget is used
-                          return _buildLoadingWidget();
-                        } else {
-                          return _buildCardImageAndInformationBox(
-                            cardNumber: cardDetailsSnapshot.data?.cardNumber.orEmpty.getMaskedCardNumber() ?? "",
-                            shouldShowTemporaryClosure: cardDetailsSnapshot.data?.statusCode == _Constants.temporaryClosureStatusCode,
-                            superAdditionalAccountLimit:
-                                (accountDetailsSnapshot.data?.balance?.credits.isNotEmpty ?? false) ? accountDetailsSnapshot.data?.balance?.credits.first.availableAmount : null,
-                            availableBalanceNonCredit: accountDetailsSnapshot.data?.balance?.availableBalanceNonCredit ?? 0,
-                            accountName: "${accountDetailsSnapshot.data?.accountSubType?.getSubTypeName()} ${accountDetailsSnapshot.data?.balance?.currencyCode}",
-                            currency: accountDetailsSnapshot.data?.balance?.currencyCode ?? "",
-                          );
-                        }
-                      },
+                    return _buildCardImageAndInformationBox(
+                      cardNumber: cardDetailsSnapshot.data?.cardNumber.orEmpty.getMaskedCardNumber() ?? "",
+                      shouldShowTemporaryClosure: cardDetailsSnapshot.data?.statusCode == _Constants.temporaryClosureStatusCode,
+                      superAdditionalAccountLimit: (cardDetailsSnapshot.data?.masterAccount?.accountDetails?.balance?.credits.isNotEmpty ?? false)
+                          ? cardDetailsSnapshot.data?.masterAccount?.accountDetails?.balance?.credits.first.availableAmount
+                          : null,
+                      availableBalanceNonCredit: cardDetailsSnapshot.data?.masterAccount?.accountDetails?.balance?.availableBalanceNonCredit ?? 0,
+                      accountName:
+                          "${cardDetailsSnapshot.data?.masterAccount?.accountDetails?.accountSubType?.getSubTypeName()} ${cardDetailsSnapshot.data?.masterAccount?.accountDetails?.balance?.currencyCode}",
+                      currency: cardDetailsSnapshot.data?.masterAccount?.accountDetails?.balance?.currencyCode ?? "",
                     );
                   } else {
                     /// Could not find iban
@@ -208,12 +192,37 @@ class NeoCardDetails extends StatelessWidget {
                   currency,
                 ).paddingOnly(bottom: NeoDimens.px12),
               _buildLinkedMainAccount(accountName).paddingOnly(bottom: NeoDimens.px24),
-              _NeoCardInformationButton(transitionId: transitionId.orEmpty),
+              _buildCardInformationButton(),
             ],
           ).paddingAll(NeoDimens.px24),
         ),
         if (shouldShowTemporaryClosure) _buildTemporaryClosureBottomBox(),
       ],
+    );
+  }
+
+  Widget _buildCardInformationButton() {
+    return InkWell(
+      onTap: () {
+        if (!navigationPath.isNullOrBlank) {
+          NavigateWithEventBusNavigationHandlerUseCase.call(NeoNavigationType.push, navigationPath!);
+        }
+      },
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            children: [
+              NeoIcon(iconUrn: NeoAssets.creditCard20px.urn).paddingOnly(end: NeoDimens.px8),
+              NeoText(
+                LocalizationKey.debitCardDetailsCardInformationTitle.loc(),
+                style: NeoTextStyles.bodyTwelveSemibold,
+              ),
+            ],
+          ),
+          NeoIcon(iconUrn: NeoAssets.arrowRight20px.urn),
+        ],
+      ),
     );
   }
 
@@ -276,12 +285,11 @@ class NeoCardDetails extends StatelessWidget {
     );
   }
 
-  // STOPSHIP: Apply localization
   Widget _buildLinkedMainAccount(String accountName) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        NeoText("Bağlı Ana Hesap", style: NeoTextStyles.bodyTwelveMedium),
+        NeoText(LocalizationKey.debitCardDetailsConnectedAccountLabel.loc(), style: NeoTextStyles.bodyTwelveMedium),
         NeoText(accountName.orEmpty, style: NeoTextStyles.bodyTwelveSemibold),
       ],
     );

@@ -41,6 +41,7 @@ class NeoButtonBloc extends Bloc<NeoButtonEvent, NeoButtonState> {
           viewSource: response["view-source"],
           initialData: {},
           isBackNavigation: false,
+          transitionId: response["transition"].first["transition"],
         ),
       ),
     );

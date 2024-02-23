@@ -202,7 +202,7 @@ class NeoNavigationButtonBuilderModel extends JsonWidgetBuilderModel {
 
 class NeoNavigationButtonSchema {
   static const id =
-      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/neo_bank/neo_navigation_button.json';
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/backoffice/neo_navigation_button.json';
 
   static final schema = <String, Object>{
     r'$schema': 'http://json-schema.org/draft-07/schema#',

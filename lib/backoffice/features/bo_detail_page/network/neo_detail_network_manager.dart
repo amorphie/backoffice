@@ -11,7 +11,7 @@ abstract class _Constants {
 
   static const workflowViewSource = "state";
   static const workflowViewSourceName = "SOURCE";
-  static const workflowViewPageKeyName = "PAGE_KEY";
+  static const workflowViewPageKeyName = "PAGE_ID";
   static const workflowDataInstanceIdName = "INSTANCE_ID";
 }
 

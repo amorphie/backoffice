@@ -291,7 +291,7 @@ class LoginCredentialFormBuilderModel extends JsonWidgetBuilderModel {
 
 class LoginCredentialFormSchema {
   static const id =
-      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/neo_bank/login_credential_form.json';
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/backoffice/login_credential_form.json';
 
   static final schema = <String, Object>{
     r'$schema': 'http://json-schema.org/draft-07/schema#',

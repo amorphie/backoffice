@@ -11,6 +11,8 @@ import 'package:neo_core/core/navigation/models/signalr_transition_data.dart';
 import 'package:neo_core/core/network/managers/neo_network_manager.dart';
 import 'package:neo_core/core/workflow_form/neo_workflow_manager.dart';
 
+import '../model/neo_bo_button_enable_state.dart';
+
 part 'neo_bo_button_event.dart';
 part 'neo_bo_button_state.dart';
 
@@ -21,53 +23,52 @@ class NeoBoButtonBloc extends Bloc<NeoBoButtonEvent, NeoBoButtonState> {
   NeoBoButtonBloc() : super(const NeoBoButtonState()) {
     _listenButtonChangeEnableStatus();
     on<NeoBoButtonEventInitial>(_onInitial);
-    on<NeoBoButtonEventStartTransition>(_onStartTransition);
-    on<NeoBoButtonEventChangeEnableButtonStatus>(_onChangeEnableButtonStatus);
+    on<NeoBoButtonEventInitWorkflow>(_onInitWorkflow);
+    on<NeoBoButtonEventChangeEnableState>(_onChangeEnableState);
   }
 
   void _onInitial(NeoBoButtonEventInitial event, Emitter<NeoBoButtonState> emit) {
-    emit(NeoBoButtonState(buttonEnabled: event.enabled));
+    emit(NeoBoButtonState(enableState: event.enableState));
   }
 
-  Future _onStartTransition(NeoBoButtonEventStartTransition event, Emitter<NeoBoButtonState> emit) async {
-    if (event.startWorkflow) {
-      final response = await neoWorkflowManager.initWorkflow(workflowName: event.transitionId);
-      if (response["view-source"] == "transition") {
-        var transition = (response["transition"] as List).firstWhereOrNull((element) => element["type"] == "Forward");
-        if (transition != null) {
-          emit(
-            NeoBoButtonState(
-              navigationData: SignalrTransitionData(
-                navigationPath: transition["transition"],
-                // STOPSHIP: Get from API
-                navigationType: NeoNavigationType.push,
-                pageId: response["state"],
-                viewSource: response["view-source"],
-                initialData: {},
-                isBackNavigation: false,
-              ),
-            ),
-          );
-        }
-      } else {
+  Future _onInitWorkflow(NeoBoButtonEventInitWorkflow event, Emitter<NeoBoButtonState> emit) async {
+    final response = event.initResponse;
+    if (response["view-source"] == "transition") {
+      var transition = (response["transition"] as List).firstWhereOrNull((element) => element["type"] == "Forward");
+      if (transition != null) {
         emit(
-          NeoBoButtonState(
+          state.copyWith(
             navigationData: SignalrTransitionData(
-              navigationPath: response["state"],
+              navigationPath: transition["transition"],
               // STOPSHIP: Get from API
               navigationType: NeoNavigationType.push,
               pageId: response["state"],
               viewSource: response["view-source"],
               initialData: {},
               isBackNavigation: false,
+              transitionId: response["transition"].first["transition"],
             ),
           ),
         );
       }
-      emit(const NeoBoButtonState()); // Clear the navigation path to prevent back button bugs from navigated page
     } else {
-      await neoWorkflowManager.postTransition(transitionName: event.transitionId, body: event.transitionBody);
+      emit(
+        state.copyWith(
+          navigationData: SignalrTransitionData(
+            navigationPath: response["init-page-name"],
+            // STOPSHIP: Get from API
+            navigationType: NeoNavigationType.push,
+            pageId: response["state"],
+            viewSource: response["view-source"],
+            initialData: {},
+            isBackNavigation: false,
+            transitionId: response["transition"].first["transition"],
+          ),
+        ),
+      );
     }
+    // Clear the navigation path to prevent back button bugs from navigated page
+    emit(state.clearNavigationData());
   }
 
   void _listenButtonChangeEnableStatus() {
@@ -75,15 +76,15 @@ class NeoBoButtonBloc extends Bloc<NeoBoButtonEvent, NeoBoButtonState> {
       (
         NeoWidgetEventKeys.neoButtonChangeEnableStateEventKey,
         (event) {
-          final status = event.data! as bool;
-          add(NeoBoButtonEventChangeEnableButtonStatus(status: status));
+          final enableState = event.data! as NeoBoButtonEnableState;
+          add(NeoBoButtonEventChangeEnableState(enableState: enableState));
         }
       ),
     ].listenEvents();
   }
 
-  void _onChangeEnableButtonStatus(NeoBoButtonEventChangeEnableButtonStatus event, Emitter<NeoBoButtonState> emit) {
-    emit(NeoBoButtonState(buttonEnabled: event.status));
+  void _onChangeEnableState(NeoBoButtonEventChangeEnableState event, Emitter<NeoBoButtonState> emit) {
+    emit(NeoBoButtonState(enableState: event.enableState));
   }
 
   @override

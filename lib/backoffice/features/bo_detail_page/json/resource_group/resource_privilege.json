@@ -20,17 +20,31 @@
                   {
                     "type": "neo_bo_detail_item_widget",
                     "args": {
-                      "title": "State",
-                      "text": "$.data.state[0].label",
+                      "title": "Url",
+                      "text": "$.data.url",
                       "copyValue": true
                     }
                   },
                   {
                     "type": "neo_bo_detail_item_widget",
                     "args": {
-                      "title": "Record ID",
-                      "text": "$.data.recordId",
+                      "title": "TTL",
+                      "text": "$.data.ttl",
                       "copyValue": true
+                    }
+                  },
+                  {
+                    "type": "neo_bo_detail_item_widget",
+                    "args": {
+                      "title": "Status",
+                      "text": "$.data.status"
+                    }
+                  },
+                  {
+                    "type": "neo_bo_detail_item_widget",
+                    "args": {
+                      "title": "Created At",
+                      "text": "$.data.createdAt"
                     }
                   }
                 ]

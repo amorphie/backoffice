@@ -30,7 +30,6 @@ class NeoCardDetailsBloc extends Bloc<NeoCardDetailsEvent, NeoCardDetailsState> 
 
   NeoCardDetailsBloc({required this.networkManager}) : super(const NeoCardDetailsState()) {
     on<NeoCardDetailsEventFetchCardDetails>(_onFetchCardDetails);
-    on<NeoCardDetailsEventFetchAccountDetails>(_onFetchAccountDetails);
   }
 
   Future<void> _onFetchCardDetails(
@@ -42,23 +41,6 @@ class NeoCardDetailsBloc extends Bloc<NeoCardDetailsEvent, NeoCardDetailsState> 
       if (response.isSuccess) {
         final NeoDebitCardItemData cardDetails = NeoDebitCardItemData.fromJson((response as NeoSuccessResponse).data);
         cardDetailsStream.add(cardDetails);
-      } else {
-        //TODO: handle error
-      }
-    } on Exception catch (_) {
-      //TODO: handle exception
-    }
-  }
-
-  Future<void> _onFetchAccountDetails(
-    NeoCardDetailsEventFetchAccountDetails event,
-    Emitter<NeoCardDetailsState> emit,
-  ) async {
-    try {
-      final response = await networkManager.fetchAccountDetails(event.iban);
-      if (response.isSuccess) {
-        final NeoAccountDetailsResponseData accountDetails = NeoAccountDetailsResponseData.fromJson((response as NeoSuccessResponse).data);
-        accountDetailsStream.add(accountDetails);
       } else {
         //TODO: handle error
       }

@@ -255,7 +255,7 @@ class NeoAccountWidgetBuilderModel extends JsonWidgetBuilderModel {
 
 class NeoAccountWidgetSchema {
   static const id =
-      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/neo_bank/neo_account_widget.json';
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/backoffice/neo_account_widget.json';
 
   static final schema = <String, Object>{
     r'$schema': 'http://json-schema.org/draft-07/schema#',

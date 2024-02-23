@@ -224,7 +224,7 @@ class LoginAttemptListItemWidgetBuilderModel extends JsonWidgetBuilderModel {
 
 class LoginAttemptListItemWidgetSchema {
   static const id =
-      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/neo_bank/login_attempt_list_item_widget.json';
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/backoffice/login_attempt_list_item_widget.json';
 
   static final schema = <String, Object>{
     r'$schema': 'http://json-schema.org/draft-07/schema#',

@@ -214,7 +214,7 @@ class NeoSwipeCardItemWidgetBuilderModel extends JsonWidgetBuilderModel {
 
 class NeoSwipeCardItemWidgetSchema {
   static const id =
-      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/neo_bank/neo_swipe_card_item_widget.json';
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/backoffice/neo_swipe_card_item_widget.json';
 
   static final schema = <String, Object>{
     r'$schema': 'http://json-schema.org/draft-07/schema#',

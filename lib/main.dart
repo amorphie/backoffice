@@ -54,6 +54,8 @@ final _navigatorKey = GlobalKey<NavigatorState>();
 
 void main() async {
   final WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+
+  await NeoBoCore.init();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   final splashResult = await InitAppInSplashUseCase().call(_navigatorKey);
   final authStatus = await GetInitialAuthStatusUseCase().call();

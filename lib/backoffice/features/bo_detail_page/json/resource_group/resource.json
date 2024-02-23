@@ -20,9 +20,40 @@
                   {
                     "type": "neo_bo_detail_item_widget",
                     "args": {
+                      "title": "Name",
+                      "text": "$.data.displayNames..label",
+                      "copyValue": true
+                    }
+                  },
+                  {
+                    "type": "neo_bo_detail_item_widget",
+                    "args": {
+                      "title": "Description",
+                      "text": "$.data.descriptions..label",
+                      "copyValue": true
+                    }
+                  },
+                  {
+                    "type": "neo_bo_detail_item_widget",
+                    "args": {
                       "title": "URL",
                       "text": "$.data.url",
                       "copyValue": true
+                    }
+                  },
+                  {
+                    "type": "neo_bo_detail_item_widget",
+                    "args": {
+                      "title": "Tags",
+                      "text": "$.data.tags",
+                      "copyValue": true
+                    }
+                  },
+                  {
+                    "type": "neo_bo_detail_item_widget",
+                    "args": {
+                      "title": "Status",
+                      "text": "$.data.status"
                     }
                   }
                 ]

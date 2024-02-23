@@ -178,7 +178,7 @@ class SegmentedLanguageSwitchBuilderModel extends JsonWidgetBuilderModel {
 
 class SegmentedLanguageSwitchSchema {
   static const id =
-      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/neo_bank/segmented_language_switch.json';
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/backoffice/segmented_language_switch.json';
 
   static final schema = <String, Object>{
     r'$schema': 'http://json-schema.org/draft-07/schema#',

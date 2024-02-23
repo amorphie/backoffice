@@ -73,7 +73,7 @@
   },
   "general_invalidEmail_errorMessage": {
     "TR": "Geçersiz e-posta adresi",
-    "EN": "Invalid E-mail adress"
+    "EN": "Invalid E-mail address"
   },
   "general_password_placeholder": {
     "TR": "Şifre",
@@ -167,6 +167,10 @@
     "TR": "Tekrar Dene",
     "EN": "Try Again"
   },
+  "general_quit_button": {
+    "TR": "Vazgeç",
+    "EN": "[EN]Vazgeç"
+  },
   "general_confirm_button": {
     "TR": "Onayla",
     "EN": "Confirm"
@@ -185,7 +189,7 @@
   },
   "general_saveChanges_title": {
     "TR": "Değişiklikleri Kaydet",
-    "EN": null
+    "EN": "[EN] Değişiklikleri Kaydet"
   },
   "general_save_button": {
     "TR": "KAYDET",
@@ -197,7 +201,7 @@
   },
   "general_transactionCompleted_title": {
     "TR": "İşleminiz Başarıyla Tamamlanmıştır.",
-    "EN": null
+    "EN": "[EN] İşleminiz Başarıyla Tamamlanmıştır."
   },
   "general_transactionSummary_title": {
     "TR": "İşlem Özeti",
@@ -205,31 +209,31 @@
   },
   "general_returnDashboard_button": {
     "TR": "Ana Sayfaya Dön",
-    "EN": "Return to Dashboard"
+    "EN": "[EN] Ana Sayfaya Dön"
   },
   "general_select_button": {
     "TR": "Seçiniz",
-    "EN": null
+    "EN": "[EN] Seçiniz"
   },
   "general_datePicker_title": {
     "TR": "Ay Seçimi",
-    "EN": null
+    "EN": "[EN] Ay Seçimi"
   },
   "general_homePage_menu_button": {
     "TR": "Ana Sayfa",
-    "EN": "Home Page"
+    "EN": "[EN] Ana Sayfa"
   },
   "general_transfer_menu_button": {
     "TR": "Transfer",
-    "EN": "Transfer"
+    "EN": "[EN] Transfer"
   },
   "general_accounts_menu_button": {
     "TR": "Hesaplar",
-    "EN": "Accounts"
+    "EN": "[EN] Hesaplar"
   },
   "general_cards_menu_button": {
     "TR": "Kartlar",
-    "EN": "Cards"
+    "EN": "[EN] Kartlar"
   },
   "general_email _title": {
     "TR": "E-posta",
@@ -250,6 +254,30 @@
   "general_noResponse_text": {
     "TR": "Teknik sebeplerden dolayı işleme devam edemiyoruz. Daha sonra tekrar deneyiniz.",
     "EN": "[EN] Teknik sebeplerden dolayı işleme devam edemiyoruz. Daha sonra tekrar deneyiniz."
+  },
+  "general_failure_text": {
+    "TR": "Teknik bir sebepten dolayı işleme devam edilememektedir.",
+    "EN": "[EN] Teknik bir sebepten dolayı işleme devam edilememektedir."
+  },
+  "general_failureFullScreen_label": {
+    "TR": "Bu İşleme Devam Edilemiyor",
+    "EN": "[EN] Bu İşleme Devam Edilemiyor"
+  },
+  "general_retry_failureFullScreen_button": {
+    "TR": "Tekrar Dene",
+    "EN": "[EN] Tekrar Dene"
+  },
+  "general_return_failureFullScreen_button": {
+    "TR": "Ana Sayfaya Dön",
+    "EN": "[EN] Ana Sayfaya Dön"
+  },
+  "general_failure_title": {
+    "TR": "İşleminiz Tamamlanamamıştır",
+    "EN": "[EN] İşleminiz Tamamlanamamıştır"
+  },
+  "general_nullInput_text": {
+    "TR": "Bu alan boş geçilemez.",
+    "EN": "[EN] Bu alan boş geçilemez."
   },
   "login_initial_welcome_title": {
     "TR": "Hoş geldin!",
@@ -549,263 +577,719 @@
   },
   "accounts_checking_text": {
     "TR": "Vadesiz",
-    "EN": null
+    "EN": "[EN] Vadesiz"
   },
   "accounts_on_text": {
     "TR": "ON",
-    "EN": null
+    "EN": "[EN] ON"
   },
   "accounts_saving_text": {
     "TR": "Vadeli",
-    "EN": null
+    "EN": "[EN] Vadeli"
   },
   "accounts_funded_text": {
     "TR": "Fonlu Mevduat",
-    "EN": null
+    "EN": "[EN] Fonlu Mevduat"
   },
   "accounts_exchangeRateProtected_text": {
     "TR": "Kur Korumalı Mevduat",
-    "EN": null
+    "EN": "[EN] Kur Korumalı Mevduat"
   },
   "accounts_foreignCurrencyExchangeRateProtected_text": {
     "TR": "Dövizden Dönüşümlü Kur Korumalı Mevduat",
-    "EN": null
+    "EN": "[EN] Dövizden Dönüşümlü Kur Korumalı Mevduat"
   },
   "accounts_account_text": {
     "TR": "Hesap",
-    "EN": null
+    "EN": "[EN] Hesap"
   },
   "accounts_accountBalance_label": {
     "TR": "Hesap Bakiyesi:",
-    "EN": null
+    "EN": "[EN] Hesap Bakiyesi:"
   },
   "accounts_accountSelection_continueWithSelection_button": {
     "TR": "Seçim ile Devam Et",
-    "EN": null
+    "EN": "[EN] Seçim ile Devam Et"
   },
   "accounts_accountList_screen_title": {
     "TR": "Hesaplar",
-    "EN": null
+    "EN": "[EN] Hesaplar"
   },
   "accounts_accountList_bottomsheet_title": {
     "TR": "Yeni Hesap",
-    "EN": null
+    "EN": "[EN] Yeni Hesap"
   },
   "accounts_accountList_onHesap_bottomsheet_button": {
     "TR": "ON Hesap",
-    "EN": null
+    "EN": "[EN] ON Hesap"
   },
   "accounts_accountList_fonluMevduat_bottomsheet_button": {
     "TR": "Fonlu Mevduat Hesap",
-    "EN": null
+    "EN": "[EN] Fonlu Mevduat Hesap"
   },
   "accounts_accountList_vadeliHesap_bottomsheet_button": {
     "TR": "Vadeli Hesap",
-    "EN": null
+    "EN": "[EN] Vadeli Hesap"
   },
   "accounts_accountList_vadesizHesap_bottomsheet_button": {
     "TR": "Vadesiz Hesap",
-    "EN": null
+    "EN": "[EN] Vadesiz Hesap"
   },
   "accounts_accountList_digerBanka_bottomsheet_button": {
     "TR": "Diğer Banka Hesapları",
-    "EN": null
+    "EN": "[EN] Diğer Banka Hesapları"
   },
   "accounts_checkingAccountOpening_screen_title": {
     "TR": "Vadesiz Hesap Açılışı",
-    "EN": null
+    "EN": "[EN] Vadesiz Hesap Açılışı"
   },
   "accounts_checkingAccountOpening_subtitle": {
     "TR": "Hesap Bilgileri",
-    "EN": null
+    "EN": "[EN] Hesap Bilgileri"
   },
   "accounts_checkingAccountOpening_text": {
     "TR": "Açmak istediğiniz hesabın bilgilerini girin.",
-    "EN": null
+    "EN": "[EN] Açmak istediğiniz hesabın bilgilerini girin."
   },
   "accounts_checkingAccountOpening_accountName_label": {
     "TR": "Hesap Adı",
-    "EN": null
+    "EN": "[EN] Hesap Adı"
+  },
+  "accounts_checkingAccountOpening_optional_accountName_text": {
+    "TR": "Opsiyonel",
+    "EN": "[EN] Opsiyonel"
   },
   "accounts_accountOpening_currencyType_label": {
     "TR": "Para Birimi",
-    "EN": null
+    "EN": "[EN] Para Birimi"
   },
   "accounts_accountOpening_currencyType_placeholder": {
-    "TR": null,
-    "EN": null
+    "TR": "Seçin",
+    "EN": "[EN] Seçin"
   },
-  "accounts_accountOpening_paraBirimi_bottomSheet_subtitle": {
-    "TR": null,
-    "EN": null
+  "accounts_accountOpening_currencyCode_bottomSheet_subtitle": {
+    "TR": "Para Birimi",
+    "EN": "[EN] Para Birimi"
   },
   "accounts_accountOpening_branch_label": {
     "TR": "Şube",
-    "EN": null
+    "EN": "[EN] Şube"
+  },
+  "accounts_accountOpening_branch_placeholder": {
+    "TR": "Seçin",
+    "EN": "[EN] Seçin"
+  },
+  "accounts_accountOpening_branch_bottomSheet_subtitle": {
+    "TR": "Şube Tercihi",
+    "EN": "[EN] Şube Tercihi"
   },
   "accounts_checkingAccountOpening_accountName_text": {
     "TR": "Vadesiz hesabım",
-    "EN": null
+    "EN": "[EN] Vadesiz hesabım"
+  },
+  "accounts_checkingAccountOpening_resultPage_title": {
+    "TR": "Vadesiz Hesap Açılışı",
+    "EN": "[EN] Vadesiz Hesap Açılışı"
+  },
+  "accounts_checkingAccountOpening_resultPage_subtitle": {
+    "TR": "İşlem Onayı",
+    "EN": "[EN] İşlem Onayı"
+  },
+  "accounts_checkingAccountOpening_resultPage_text": {
+    "TR": "Vadesiz hesap açılışı için girdiğiniz bilgileri kontrol edip işlemi onaylayın",
+    "EN": "[EN] Vadesiz hesap açılışı için girdiğiniz bilgileri kontrol edip işlemi onaylayın"
+  },
+  "accounts_checkingAccountOpening_resultPage_accountName_label": {
+    "TR": "Hesap Adı (Opsiyonel)",
+    "EN": "[EN] Hesap Adı (Opsiyonel)"
+  },
+  "accounts_checkingAccountOpening_resultPage_currencyType_label": {
+    "TR": "Para Birimi",
+    "EN": "[EN] Para Birimi"
+  },
+  "accounts_checkingAccountOpening_resultPage_branch_label": {
+    "TR": "Şube",
+    "EN": "[EN] Şube"
+  },
+  "accounts_checkingAccountOpening_resultPage_info_text": {
+    "TR": "Hesap cüzdanını bankanın herhangi bir şubesinden alabilirsin. Hesap cüzdanının hukuken ispatlayıcı bir belge olma özelliğinden dolayı teslim almanı tavsiye ederiz. {} bu bildirimi kabul etmiş olursun.",
+    "EN": "[EN] Hesap cüzdanını bankanın herhangi bir şubesinden alabilirsin. Hesap cüzdanının hukuken ispatlayıcı bir belge olma özelliğinden dolayı teslim almanı tavsiye ederiz. {} bu bildirimi kabul etmiş olursun."
+  },
+  "accounts_checkingAccountOpening_resultPage_infoBold_text": {
+    "TR": "İşlemi onaylarken",
+    "EN": "[EN] İşlemi onaylarken"
+  },
+  "accounts_checkingAccountOpening_resultPage_approve_button": {
+    "TR": "Onayla",
+    "EN": "[EN] Onayla"
+  },
+  "accounts_checkingAccountOpening_resultPage_errorPage_title": {
+    "TR": "İşlem Gerçekleştirilemedi",
+    "EN": "[EN] İşlem Gerçekleştirilemedi"
+  },
+  "accounts_checkingAccountOpening_displayAccount_button": {
+    "TR": "Hesabını Görüntüle",
+    "EN": "[EN] Hesabını Görüntüle"
+  },
+  "accounts_checkingAccountOpening_inline_currencyType_errorMessage": {
+    "TR": "Bu alan boş bırakılamaz, lütfen seçim yapın.",
+    "EN": "[EN] Bu alan boş bırakılamaz, lütfen seçim yapın."
+  },
+  "accounts_checkingAccountOpening_inline_branch_errorMessage": {
+    "TR": "Bu alan boş bırakılamaz, lütfen seçim yapın.",
+    "EN": "[EN] Bu alan boş bırakılamaz, lütfen seçim yapın."
+  },
+  "accounts_checkingAccountOpening_fullScreen_errorPage_label": {
+    "TR": "Bu işleme devam edilemiyor.",
+    "EN": "[EN] Bu işleme devam edilemiyor."
+  },
+  "accounts_checkingAccountOpening_fullScreen_errorPage_button": {
+    "TR": "Ana Sayfaya Dön",
+    "EN": "[EN] Ana Sayfaya Dön"
+  },
+  "accounts_depositAccountOpening_amount_label": {
+    "TR": "Tutar",
+    "EN": "[EN] Tutar"
+  },
+  "accounts_depositAccountOpening_allBalance_button": {
+    "TR": "Tüm Bakiye",
+    "EN": "[EN] Tüm Bakiye"
+  },
+  "accounts_onAccountOpening_screen_title": {
+    "TR": "ON Hesap Açılışı",
+    "EN": "[EN] ON Hesap Açılışı"
+  },
+  "accounts_onAccountOpening_subtitle": {
+    "TR": "Hesap Bilgileri",
+    "EN": "[EN] Hesap Bilgileri"
+  },
+  "accounts_onAccountOpening_text": {
+    "TR": "Açmak istediğiniz ON hesabın bilgilerini girin.",
+    "EN": "[EN] Açmak istediğiniz ON hesabın bilgilerini girin."
+  },
+  "accounts_onAccountOpening_accountName_label": {
+    "TR": "Hesap Adı",
+    "EN": "[EN] Hesap Adı"
+  },
+  "accounts_onAccountOpening_currencyCode_label": {
+    "TR": "Para Birimi",
+    "EN": "[EN] Para Birimi"
+  },
+  "accounts_onAccountOpening_currencyCode_placeholder": {
+    "TR": "Seçin",
+    "EN": "[EN] Seçin"
+  },
+  "accounts_onAccountOpening_inline_currencyCode_errorMessage": {
+    "TR": "Bu alan boş bırakılamaz, lütfen seçim yapın.",
+    "EN": "[EN] Bu alan boş bırakılamaz, lütfen seçim yapın."
+  },
+  "accounts_onAccountOpening_branch_label": {
+    "TR": "Şube",
+    "EN": "[EN] Şube"
+  },
+  "accounts_onAccountOpening_dropdown_interestAndLimit_label": {
+    "TR": "Faiz - Limit Bilgilendirme",
+    "EN": "[EN] Faiz - Limit Bilgilendirme"
+  },
+  "accounts_onAccountOpening_info_text": {
+    "TR": "Her para biriminden bir adet ON hesabı oluşturulabilir.",
+    "EN": "[EN] Her para biriminden bir adet ON hesabı oluşturulabilir."
+  },
+  "accounts_onAccountOpening_resultPage_subtitle": {
+    "TR": "İşlem Onayı",
+    "EN": "[EN] İşlem Onayı"
+  },
+  "accounts_onAccountOpening_resultPage_text": {
+    "TR": "Açmak istediğiniz ON hesabın bilgilerini girin.",
+    "EN": "[EN] Açmak istediğiniz ON hesabın bilgilerini girin."
+  },
+  "accounts_onAccountOpening_resultPage_info _text": {
+    "TR": "Hesap cüzdanını bankanın herhangi bir şubesinden alabilirsin. Hesap cüzdanının hukuken ispatlayıcı bir belge olma özelliğinden dolayı teslim almanı tavsiye ederiz. İşlemi onaylarken bu bildirimi kabul etmiş olursun.",
+    "EN": "[EN] Hesap cüzdanını bankanın herhangi bir şubesinden alabilirsin. Hesap cüzdanının hukuken ispatlayıcı bir belge olma özelliğinden dolayı teslim almanı tavsiye ederiz. İşlemi onaylarken bu bildirimi kabul etmiş olursun."
+  },
+  "accounts_onAccountOpening_resultPage_error _title": {
+    "TR": "İşlem Tamamlanamadı.",
+    "EN": "[EN] İşlem Tamamlanamadı."
   },
   "accounts_accountList_onmobil_bankaSecim_button": {
     "TR": "On Mobil",
-    "EN": null
+    "EN": "[EN] On Mobil"
   },
   "accounts_accountList_digerBanka_bankaSecim_button": {
     "TR": "On Mobil",
-    "EN": null
+    "EN": "[EN] On Mobil"
   },
   "accounts_accountList_onAccounts_title": {
     "TR": "On Hesap",
-    "EN": null
+    "EN": "[EN] On Hesap"
   },
   "accounts_accountList_onAccounts_noAccount_title": {
     "TR": "On ile paranızı değerlendirin!",
-    "EN": null
+    "EN": "[EN] On ile paranızı değerlendirin!"
+  },
+  "accounts_accountList_checkingAccounts_noAccount_title": {
+    "TR": "Birikiminizi güvenle ON'da saklayın!",
+    "EN": "[EN] Birikiminizi güvenle ON'da saklayın!"
+  },
+  "accounts_accountList_checkingAccounts_noAccount_text": {
+    "TR": "Bankacılık işlemlerinizi kolaylıkla yapacağınız vadesiz hesap açın.",
+    "EN": "[EN] Bankacılık işlemlerinizi kolaylıkla yapacağınız vadesiz hesap açın."
   },
   "accounts_accountList_onAccounts_noAccount_text": {
     "TR": "Gündüz vadesiz, gece vadeli ON hesap açın.",
-    "EN": null
+    "EN": "[EN] Gündüz vadesiz, gece vadeli ON hesap açın."
   },
   "accounts_accountList_noAccount_button": {
     "TR": "Hesap aç",
-    "EN": null
+    "EN": "[EN] Hesap aç"
   },
   "accounts_accountList_checkingAccounts_title": {
     "TR": "Vadesiz Hesap",
-    "EN": null
+    "EN": "[EN] Vadesiz Hesap"
   },
   "accounts_accountList_fundedAccounts_title": {
     "TR": "Fonlu Mevduat Hesap",
-    "EN": null
+    "EN": "[EN] Fonlu Mevduat Hesap"
   },
   "accounts_accountList_fundedAccounts_noAccount_title": {
     "TR": "Hem vadeli hem fon mevduat!",
-    "EN": null
+    "EN": "[EN] Hem vadeli hem fon mevduat!"
   },
   "accounts_accountList_fundedAccounts_noAccount_text": {
     "TR": "Vadeli ve fon mevduat bir arada olan fon mevduat hesabı açın.",
-    "EN": null
+    "EN": "[EN] Vadeli ve fon mevduat bir arada olan fon mevduat hesabı açın."
   },
   "accounts_accountList_savingAccounts_title": {
     "TR": "Vadeli Hesap",
-    "EN": null
+    "EN": "[EN] Vadeli Hesap"
   },
   "accounts_accountList_savingAccounts_noAccount_title": {
     "TR": "Yüksek faiz oranlarından faydalanın!",
-    "EN": null
+    "EN": "[EN] Yüksek faiz oranlarından faydalanın!"
   },
   "accounts_accountList_savingAccounts_noAccount_text": {
     "TR": "Yüksek faiz oranlı e-mevduat hesabı açın.",
-    "EN": null
+    "EN": "[EN] Yüksek faiz oranlı e-mevduat hesabı açın."
   },
   "accounts_accountList_exchangeAccounts_title": {
     "TR": "Vadeli Hesap",
-    "EN": null
+    "EN": "[EN] Vadeli Hesap"
   },
   "accounts_account_accountBalance_label": {
     "TR": "Hesap Bakiyesi",
-    "EN": null
+    "EN": "[EN] Hesap Bakiyesi"
   },
   "accounts_accountInformation_screen_title": {
     "TR": "Hesap Bilgisi",
-    "EN": null
+    "EN": "[EN] Hesap Bilgisi"
   },
   "accounts_accountInformation_debitCard_text": {
     "TR": "Bu hesaba bağlı {debitcard} bulunuyor.",
-    "EN": null
+    "EN": "[EN] Bu hesaba bağlı {debitcard} bulunuyor."
   },
   "accounts_accountInformation_debitCard_clickable_text": {
     "TR": "debit kartınız",
-    "EN": null
+    "EN": "[EN] debit kartınız"
   },
   "accounts_accountInformation_accountTransaction_button": {
     "TR": "Hesap Hareketleri",
-    "EN": null
+    "EN": "[EN] Hesap Hareketleri"
   },
   "accounts_accountInformation_moneyTransfer_button": {
     "TR": "Para Transferi",
-    "EN": null
+    "EN": "[EN] Para Transferi"
   },
   "accounts_accountInformation_payment_button": {
     "TR": "Ödeme Yap",
-    "EN": null
+    "EN": "[EN] Ödeme Yap"
   },
   "accounts_accountInformation_buyCurrency_button": {
     "TR": "Döviz Al",
-    "EN": null
+    "EN": "[EN] Döviz Al"
   },
   "accounts_accountInformation_addKolas_button": {
     "TR": "Kolay Adres Ekle",
-    "EN": null
+    "EN": "[EN] Kolay Adres Ekle"
   },
   "accounts_accountInformation_addKmh_button": {
     "TR": "Süper Ek Hesap Ekle",
-    "EN": null
+    "EN": "[EN] Süper Ek Hesap Ekle"
   },
   "accounts_accountInformation_kmh_button": {
     "TR": "Süper Ek Hesap",
-    "EN": null
+    "EN": "[EN] Süper Ek Hesap"
   },
   "accounts_accountInformation_accountActions_button": {
     "TR": "Hesap İşlemleri",
-    "EN": null
+    "EN": "[EN] Hesap İşlemleri"
   },
   "accounts_accountInformation_details_blockage_label": {
     "TR": "Blokeli",
-    "EN": null
+    "EN": "[EN] Blokeli"
   },
   "accounts_accountInformation_details_partner_label": {
     "TR": "Ortak",
-    "EN": null
+    "EN": "[EN] Ortak"
   },
   "accounts_accountInformation_details_blockagePartner_label": {
     "TR": "Ortak - Blokeli",
-    "EN": null
+    "EN": "[EN] Ortak - Blokeli"
+  },
+  "accounts_accountInformation_details_branch_label": {
+    "TR": "Şube",
+    "EN": "[EN] Şube"
   },
   "accounts_accountInformation_details_startDate_label": {
     "TR": "Açılış Tarihi",
-    "EN": null
+    "EN": "[EN] Açılış Tarihi"
   },
   "accounts_accountInformation_balanceDetails_balance_label": {
     "TR": "Hesap Bakiyesi",
-    "EN": null
+    "EN": "[EN] Hesap Bakiyesi"
   },
   "accounts_accountInformation_balanceDetails_availableBalance_label": {
     "TR": "Kullanılabilir Bakiye",
-    "EN": null
+    "EN": "[EN] Kullanılabilir Bakiye"
   },
   "accounts_accountInformation_balanceDetails_kmhLimit_label": {
     "TR": "Süper Ek Hesap Limit",
-    "EN": null
+    "EN": "[EN] Süper Ek Hesap Limit"
   },
   "accounts_accountInformation_balanceDetails_blockageAmount_label": {
     "TR": "Blokeli Bakiye",
-    "EN": null
+    "EN": "[EN] Blokeli Bakiye"
   },
   "accounts_accountInformation_balanceDetails_onCheckingBalance_label": {
     "TR": "Vadesiz Bakiye",
-    "EN": null
+    "EN": "[EN] Vadesiz Bakiye"
   },
   "accounts_accountInformation_balanceDetails_onSavingBalance_label": {
     "TR": "Vadeli Bakiye",
-    "EN": null
+    "EN": "[EN] Vadeli Bakiye"
   },
   "accounts_accountInformation_buySellCurrency_button": {
     "TR": "Döviz Al / Sat",
-    "EN": null
+    "EN": "[EN] Döviz Al / Sat"
   },
   "accounts_accountInformation_buySellGold_button": {
     "TR": "Altın Al / Sat",
-    "EN": null
+    "EN": "[EN] Altın Al / Sat"
   },
   "accounts_accountInformation_buySellSilver_button": {
     "TR": "Altın Al / Sat",
-    "EN": null
+    "EN": "[EN] Altın Al / Sat"
   },
-  "accounts_accountInformation_interestDetails_interestRate_button": {
+  "accounts_accountInformation_interestDetails_interestRate_label": {
     "TR": "Faiz Oranı",
-    "EN": null
+    "EN": "[EN] Faiz Oranı"
+  },
+  "accounts_accountInformation_interestDetails_earnedInterest_label": {
+    "TR": "Kazanılan Net Faiz",
+    "EN": "[EN] Kazanılan Net Faiz"
+  },
+  "accounts_accountInformation_tcbmReference_referenceCurrency_button": {
+    "TR": "TCBM Referans Döviz Cinsi",
+    "EN": "[EN] TCBM Referans Döviz Cinsi"
+  },
+  "accounts_accountInformation_tcbmReference_referenceAmount_button": {
+    "TR": "Açılıştaki TCBM Referans Kur",
+    "EN": "[EN] Açılıştaki TCBM Referans Kur"
+  },
+  "accounts_accountInformation_balanceDetails_interestRate_label": {
+    "TR": "Faiz Oranı",
+    "EN": "[EN] Faiz Oranı"
+  },
+  "accounts_accountInformation_balanceDetails_interestDuration_label": {
+    "TR": "Vade",
+    "EN": "[EN] Vade"
+  },
+  "accounts_accountInformation_balanceDetails_interestEndDate_label": {
+    "TR": "Vade Bitiş Tarihi",
+    "EN": "[EN] Vade Bitiş Tarihi"
+  },
+  "accounts_accountInformation_balanceDetails_day_label": {
+    "TR": "Gün",
+    "EN": "[EN] Gün"
+  },
+  "accounts_accountInformation_fundDetails_fundCode_label": {
+    "TR": "Fon Kodu",
+    "EN": "[EN] Fon Kodu"
+  },
+  "accounts_accountInformation_fundDetails_fundValue_label": {
+    "TR": "Fon Değeri",
+    "EN": "[EN] Fon Değeri"
+  },
+  "accounts_accountInformation_fundDetails_fundAmount_label": {
+    "TR": "Fon Adedi",
+    "EN": "[EN] Fon Adedi"
+  },
+  "accounts_interest_interestDetails_title": {
+    "TR": "Faiz Detayları",
+    "EN": "[EN] Faiz Detayları"
+  },
+  "accounts_interest_interestDetails_earnedInterest_title": {
+    "TR": "Kazanılan Faiz",
+    "EN": "[EN] Kazanılan Faiz"
+  },
+  "accounts_interest_interestDetails_earnedInterestBottomsheet_title": {
+    "TR": "Kazanılan Faiz",
+    "EN": "[EN] Kazanılan Faiz"
+  },
+  "accounts_interest_interestDetails_earnedInterestBottomsheet_text": {
+    "TR": "ON hesabınızdan istediğiniz tarih aralığı veya berlirli periyodlar için geçmişte elde ettiğiniz faiz getirilerini görüntüleyebilirsiniz.",
+    "EN": "[EN] ON hesabınızdan istediğiniz tarih aralığı veya berlirli periyodlar için geçmişte elde ettiğiniz faiz getirilerini görüntüleyebilirsiniz."
+  },
+  "accounts_interest_interestDetails_earnedInterest_text": {
+    "TR": "Dönem bilgisi girerek ON hesabınız ile kazandığınız faiz getirisini görüntüleyin.",
+    "EN": "[EN] Dönem bilgisi girerek ON hesabınız ile kazandığınız faiz getirisini görüntüleyin."
+  },
+  "accounts_interest_interestDetails_earnedInterestInterval_title": {
+    "TR": "Dönem",
+    "EN": "[EN] Dönem"
+  },
+  "accounts_interest_interestDetails_earnedInterestInterval_placeholder": {
+    "TR": "Seçin",
+    "EN": "[EN] Seçin"
+  },
+  "accounts_interest_interestDetails_earnedInterestStart_title": {
+    "TR": "Başlangıç Tarihi",
+    "EN": "[EN] Başlangıç Tarihi"
+  },
+  "accounts_interest_interestDetails_earnedInterestEnd_title": {
+    "TR": "Bitiş Tarihi",
+    "EN": "[EN] Bitiş Tarihi"
+  },
+  "accounts_interest_interestDetails_earnedGrossInterest_text": {
+    "TR": "Brüt Faiz Tutarı",
+    "EN": "[EN] Brüt Faiz Tutarı"
+  },
+  "accounts_interest_interestDetails_earnedInterestTax_text": {
+    "TR": "Stopaj",
+    "EN": "[EN] Stopaj"
+  },
+  "accounts_interest_interestDetails_earnedNetInterest_text": {
+    "TR": "Net Faiz Tutarı",
+    "EN": "[EN] Net Faiz Tutarı"
+  },
+  "accounts_interest_interestLimit_title": {
+    "TR": "Faiz - Limit Bilgilendirme",
+    "EN": "[EN] Faiz - Limit Bilgilendirme"
+  },
+  "accounts_interest_interestLimit_text": {
+    "TR": "Faiz getirisi hesabınızın alt ve üst limit dahilindeki tutar üzerinden kazanılır. ON Hesap alt ve üst limit tutarları {website}’nde detaylandırılmış olup aşağıda yer almaktadır.",
+    "EN": "[EN] Faiz getirisi hesabınızın alt ve üst limit dahilindeki tutar üzerinden kazanılır. ON Hesap alt ve üst limit tutarları {website}’nde detaylandırılmış olup aşağıda yer almaktadır."
+  },
+  "accounts_interest_interestLimit_website_text": {
+    "TR": "ON İnternet Sitesi'nde",
+    "EN": "[EN] ON İnternet Sitesi'nde"
+  },
+  "accounts_interest_interestLimit_minAmount_subtitle": {
+    "TR": "Alt Limit",
+    "EN": "[EN] Alt Limit"
+  },
+  "accounts_interest_interestLimit_maxAmount_subtitle": {
+    "TR": "Üst Limit",
+    "EN": "[EN] Üst Limit"
+  },
+  "accounts_accountInformation_action_title": {
+    "TR": "Hesap İşlemleri",
+    "EN": "[EN] Hesap İşlemleri"
+  },
+  "accounts_accountInformation_action_accountDetails_button": {
+    "TR": "Hesap İşlemleri",
+    "EN": "[EN] Hesap İşlemleri"
+  },
+  "accounts_accountInformation_action_statementSelection_button": {
+    "TR": "Hesap Cüzdan Tercihi",
+    "EN": "[EN] Hesap Cüzdan Tercihi"
+  },
+  "accounts_accountInformation_action_closeAccount_button": {
+    "TR": "Hesabı Kapat",
+    "EN": "[EN] Hesabı Kapat"
+  },
+  "accounts_accountInformation_action_statementSelectionErrorPopup_text": {
+    "TR": "Ortak müşterek hesapların hesap cüzdan tercihi bireysel olarak değiştirilemez. Hesap cüzdan tercihini değiştirmek için ortaklarla beraber şubeye başvurunuz.",
+    "EN": "[EN] Ortak müşterek hesapların hesap cüzdan tercihi bireysel olarak değiştirilemez. Hesap cüzdan tercihini değiştirmek için ortaklarla beraber şubeye başvurunuz."
+  },
+  "accounts_accountDetails_title": {
+    "TR": "Hesap Detayı",
+    "EN": "[EN] Hesap Detayı"
+  },
+  "accounts_accountInformation_doveDetails_currencyRate_label": {
+    "TR": "TCBM Referans Döviz Cinsi",
+    "EN": "[EN] TCBM Referans Döviz Cinsi"
+  },
+  "accounts_accountInformation_doveDetails_referenceCurrency_label": {
+    "TR": "Açılıştaki TCBM Referans Kur",
+    "EN": "[EN] Açılıştaki TCBM Referans Kur"
+  },
+  "accounts_interest_interestDetails_webview_title": {
+    "TR": "ON Hesap | Burgan Bank",
+    "EN": "[EN] ON Hesap | Burgan Bank"
+  },
+  "accounts_accountInformation_action_closeAccountPopup_title": {
+    "TR": "İşlem Tamamlanmadı",
+    "EN": "[EN] İşlem Tamamlanmadı"
+  },
+  "accounts_accountInformation_action_closeVdltldeAccountPopup_text": {
+    "TR": "Dövizden Dönüşümlü Kur Korumalı TL Vadeli Mevduat Hesabınızı İnternet Bankacılığı üzerinden veya şubelerimizden kapatabilirsiniz.",
+    "EN": "[EN] Dövizden Dönüşümlü Kur Korumalı TL Vadeli Mevduat Hesabınızı İnternet Bankacılığı üzerinden veya şubelerimizden kapatabilirsiniz."
+  },
+  "accounts_accountInformation_action_closeAccountPopup_button": {
+    "TR": "Tamam",
+    "EN": "[EN] Tamam"
+  },
+  "accounts_accountInformation_action_closeFullBlockedAccountPopup_text": {
+    "TR": "Hesabınızdaki bakiyenin tamamı blokeli olduğu için bu işlem şu an gerçekleştirilemiyor. Hesabınız kapatmak için önce blokeyi kaldırmalısınız.",
+    "EN": "[EN] Hesabınızdaki bakiyenin tamamı blokeli olduğu için bu işlem şu an gerçekleştirilemiyor. Hesabınız kapatmak için önce blokeyi kaldırmalısınız."
+  },
+  "accounts_accountInformation_action_closePartialBlockedAccountPopup_text": {
+    "TR": "Hesabınızdaki bakiyede {blockage} {currencyCode} blokeli olduğu için bu işlem şu an gerçekleştirilemiyor. Hesabınız kapatmak için önce blokeyi kaldırmalısınız.",
+    "EN": "[EN] Hesabınızdaki bakiyede {blockage} {currencyCode} blokeli olduğu için bu işlem şu an gerçekleştirilemiyor. Hesabınız kapatmak için önce blokeyi kaldırmalısınız."
+  },
+  "accounts_accountDetails_accountName_title": {
+    "TR": "Hesap Adı",
+    "EN": "[EN] Hesap Adı"
+  },
+  "accounts_accountDetails_accountName_errorMessage": {
+    "TR": "Hesap ismi en az 3 karakter olmalıdır.",
+    "EN": "[EN] Hesap ismi en az 3 karakter olmalıdır."
+  },
+  "accounts_accountDetails_accountType_title": {
+    "TR": "Hesap Türü",
+    "EN": "[EN] Hesap Türü"
+  },
+  "accounts_accountDetails_balance_title": {
+    "TR": "Bakiye",
+    "EN": "[EN] Bakiye"
+  },
+  "accounts_accountDetails_availableBalance_title": {
+    "TR": "Kullanılabilir Bakiye",
+    "EN": "[EN] Kullanılabilir Bakiye"
+  },
+  "accounts_accountDetails_iban_title": {
+    "TR": "IBAN",
+    "EN": "[EN] IBAN"
+  },
+  "accounts_accountDetails_blockageBalance_title": {
+    "TR": "Blokeli Bakiye",
+    "EN": "[EN] Blokeli Bakiye"
+  },
+  "accounts_accountDetails_branchCodeName_title": {
+    "TR": "Şube Kodu/Adı",
+    "EN": "[EN] Şube Kodu/Adı"
+  },
+  "accounts_accountDetails_accountNumber_title": {
+    "TR": "Hesap Numarası",
+    "EN": "[EN] Hesap Numarası"
+  },
+  "accounts_accountDetails_startDate_title": {
+    "TR": "Hesap Açılış Tarihi",
+    "EN": "[EN] Hesap Açılış Tarihi"
+  },
+  "accounts_accountDetails_on_checkingBalance_title": {
+    "TR": "Vadesiz Bakiye",
+    "EN": "[EN] Vadesiz Bakiye"
+  },
+  "accounts_accountDetails_on_savingBalance_title": {
+    "TR": "Vadeli Bakiye",
+    "EN": "[EN] Vadeli Bakiye"
+  },
+  "accounts_accountDetails_on_checkingAccountNumber_title": {
+    "TR": "Vadesiz Hesap Numarası",
+    "EN": "[EN] Vadesiz Hesap Numarası"
+  },
+  "accounts_accountDetails_on_savingAccountNumber_title": {
+    "TR": "Vadeli Hesap Numarası",
+    "EN": "[EN] Vadeli Hesap Numarası"
+  },
+  "accounts_accountDetails_interestRate_title": {
+    "TR": "Faiz Oranı",
+    "EN": "[EN] Faiz Oranı"
+  },
+  "accounts_accountDetails_earnedInterest_title": {
+    "TR": "Bugüne Kadar Kazanılan Net Faiz",
+    "EN": "[EN] Bugüne Kadar Kazanılan Net Faiz"
+  },
+  "accounts_accountDetails_kkm_referenceCurrency_title": {
+    "TR": "TCMB Referans Döviz Cinsi",
+    "EN": "[EN] TCMB Referans Döviz Cinsi"
+  },
+  "accounts_accountDetails_kkm_referenceCurrencyAmount_title": {
+    "TR": "Hesap Açılışındaki TCMB Referans Kur",
+    "EN": "[EN] Hesap Açılışındaki TCMB Referans Kur"
+  },
+  "accounts_accountDetails_kkm_todayReferenceCurrencyAmount_title": {
+    "TR": "Güncel TCMB Referans Kur",
+    "EN": "[EN] Güncel TCMB Referans Kur"
+  },
+  "accounts_accountDetails_dayAmount_title": {
+    "TR": "Vade",
+    "EN": "[EN] Vade"
+  },
+  "accounts_accountDetails_remainingDayAmount_title": {
+    "TR": "Vade Sonuna Kalan Gün Sayısı",
+    "EN": "[EN] Vade Sonuna Kalan Gün Sayısı"
+  },
+  "accounts_accountDetails_grossEarnedInterest_title": {
+    "TR": "Vade Sonu Brüt Gelir",
+    "EN": "[EN] Vade Sonu Brüt Gelir"
+  },
+  "accounts_accountDetails_netEarnedInterest_title": {
+    "TR": "Vade Sonu Net Gelir",
+    "EN": "[EN] Vade Sonu Net Gelir"
+  },
+  "accounts_accountDetails_interestStartDate_title": {
+    "TR": "Vade Başlangıç Tarihi",
+    "EN": "[EN] Vade Başlangıç Tarihi"
+  },
+  "accounts_accountDetails_interestEndDate_title": {
+    "TR": "Vade Bitiş Tarihi",
+    "EN": "[EN] Vade Bitiş Tarihi"
+  },
+  "accounts_accountDetails_interestAction_title": {
+    "TR": "Vade Sonu Yenileme",
+    "EN": "[EN] Vade Sonu Yenileme"
+  },
+  "accounts_accountDetails_interestActionDate_title": {
+    "TR": "Vade Sonu Yenileme Tarihi",
+    "EN": "[EN] Vade Sonu Yenileme Tarihi"
+  },
+  "accounts_accountDetails_fund_percentage_title": {
+    "TR": "Açılış Dağılımı",
+    "EN": "[EN] Açılış Dağılımı"
+  },
+  "accounts_accountDetails_fund_fundDefinition_text": {
+    "TR": "Fon",
+    "EN": "[EN] Fon"
+  },
+  "accounts_accountDetails_fund_savingDefinition_text": {
+    "TR": "Mevduat",
+    "EN": "[EN] Mevduat"
+  },
+  "accounts_accountDetails_fund_fundCode_title": {
+    "TR": "Fon Kodu",
+    "EN": "[EN] Fon Kodu"
+  },
+  "accounts_accountDetails_fund_fundName_title": {
+    "TR": "Fon Ünvanı",
+    "EN": "[EN] Fon Ünvanı"
+  },
+  "accounts_accountDetails_fund_fundValue_title": {
+    "TR": "Fon Değeri",
+    "EN": "[EN] Fon Değeri"
+  },
+  "accounts_accountDetails_fund_fundAmount_title": {
+    "TR": "Fon Adedi",
+    "EN": "[EN] Fon Adedi"
+  },
+  "accounts_accountDetails_kmh_availableBalance_title": {
+    "TR": "Ek Hesaplı Kullanılabilir Bakiye",
+    "EN": "[EN] Ek Hesaplı Kullanılabilir Bakiye"
+  },
+  "accounts_accountDetails_kmh_creditAmount_title": {
+    "TR": "Süper Ek Hesap Limiti",
+    "EN": "[EN] Süper Ek Hesap Limiti"
   },
   "debitCard_application_screen_title": {
     "TR": "ON Banka Kartı Başvurusu",
@@ -817,63 +1301,63 @@
   },
   "debitCard_application_cardInformation_text": {
     "TR": "Lütfen {0} kartının bağlanacağı ana hesabı ve kartınızın teslimatı için adresinizi seçin.",
-    "EN": null
+    "EN": "[EN] Lütfen {0} kartının bağlanacağı ana hesabı ve kartınızın teslimatı için adresinizi seçin."
   },
   "debitCard_application_onBank_text": {
     "TR": "ON Banka",
-    "EN": "ON Bank"
+    "EN": "[EN] ON Banka"
   },
   "debitCard_application_permissions_subtitle": {
     "TR": "Kullanım İzinleri",
-    "EN": "Permissions"
+    "EN": "[EN] Kullanım İzinleri"
   },
   "debitCard_application_permissions_text": {
     "TR": "Lütfen {0} kartınız için kullanım izinlerinizi seçin.",
-    "EN": null
+    "EN": "[EN] Lütfen {0} kartınız için kullanım izinlerinizi seçin."
   },
   "debitCard_application_mainAccount_label": {
     "TR": "Kartın Bağlanacağı Ana Hesap",
-    "EN": null
+    "EN": "[EN] Kartın Bağlanacağı Ana Hesap"
   },
   "debitCard_application_deliveryAddress_label": {
     "TR": "Teslimat Adresi",
-    "EN": "Delivery Address"
+    "EN": "[EN] Teslimat Adresi"
   },
   "debitCard_application_applicationSummary_title": {
     "TR": "Başvuru Özeti",
-    "EN": "Application Summary"
+    "EN": "[EN] Başvuru Özeti"
   },
   "debitCard_application_applicationSummary_text": {
     "TR": "{0} kartınız için girmiş olduğunuz bilgileri ve tercihlerinizi kontrol edip onaylayabilirsiniz.",
-    "EN": null
+    "EN": "[EN] {0} kartınız için girmiş olduğunuz bilgileri ve tercihlerinizi kontrol edip onaylayabilirsiniz."
   },
   "debitCard_application_nameOnCard_label": {
     "TR": "Kart Üzerindeki Ad Soyad",
-    "EN": "Name on Card"
+    "EN": "[EN] Kart Üzerindeki Ad Soyad"
   },
   "debitCard_application_iban_label": {
     "TR": "IBAN",
-    "EN": "IBAN"
+    "EN": "[EN] IBAN"
   },
   "debitCard_application_cardDeliveryAddress_label": {
     "TR": "Kart Teslim Adresi",
-    "EN": "Card Delivery Address"
+    "EN": "[EN] Kart Teslim Adresi"
   },
   "debitCard_application_abroadUse_label": {
     "TR": "Yurtdışı Kullanım",
-    "EN": "Abroad Use"
+    "EN": "[EN] Yurtdışı Kullanım"
   },
   "debitCard_application_moto_label": {
     "TR": "Telefon / Posta Yoluyla Alışveriş",
-    "EN": "MO/TO"
+    "EN": "[EN] Telefon / Posta Yoluyla Alışveriş"
   },
   "debitCard_application_internetUse_label": {
     "TR": "İnternet Üzerinden Alışveriş",
-    "EN": "Shopping via Internet"
+    "EN": "[EN] İnternet Üzerinden Alışveriş"
   },
   "debitCard_application_success_title": {
     "TR": "ON Banka Kartı Başvurunuz Başarıyla Alınmıştır.",
-    "EN": "ON Bank Card application has been successfully received."
+    "EN": "[EN] ON Banka Kartı Başvurunuz Başarıyla Alınmıştır."
   },
   "debitCard_application_success1_text": {
     "TR": "Adresinize teslimat gerçekleşene kadar kartınızı Dijital Banka Kartı olarak online alışverişlerinizde kullanmaya başlayabilirsiniz.",
@@ -920,8 +1404,8 @@
     "EN": "[EN] Süper Ek Hesap Limiti"
   },
   "debitCard_details_connectedAccount_label": {
-    "TR": "Bağlı Hesap",
-    "EN": "[EN] Bağlı Hesap"
+    "TR": "Ana Hesap",
+    "EN": "[EN] Ana Hesap"
   },
   "debitCard_details_onBankCard_button": {
     "TR": "Kart Bilgilerini Gör",
@@ -952,8 +1436,8 @@
     "EN": "[EN] Kart Üzerindeki Ad Soyad"
   },
   "debitCard_information_accountNumber_label": {
-    "TR": "Hesap Numarası",
-    "EN": "[EN] Hesap Numarası"
+    "TR": "Hesap No",
+    "EN": "[EN] Hesap No"
   },
   "debitCard_information_branch_label": {
     "TR": "Şube",
@@ -1417,139 +1901,171 @@
   },
   "debitCard_settings_lostStolen_transactionType_label": {
     "TR": "İşlem Tipi",
-    "EN": null
+    "EN": "[EN] İşlem Tipi"
   },
   "debitCard_settings_lostStolen_cardInfo_label": {
     "TR": "Kart bilgisi",
-    "EN": null
+    "EN": "[EN] Kart bilgisi"
   },
   "debitCard_settings_lostStolen_renewCard_label": {
     "TR": "Kartım Yenilenerek Gelsin",
-    "EN": null
+    "EN": "[EN] Kartım Yenilenerek Gelsin"
   },
   "debitCard_transactionList_title": {
     "TR": "Kart Hareketleri",
-    "EN": null
+    "EN": "[EN] Kart Hareketleri"
   },
   "debitCard_settings_masterpass_button": {
     "TR": "Kartı Masterpass'e Kaydet",
-    "EN": null
+    "EN": "[EN] Kartı Masterpass'e Kaydet"
   },
   "debitCard_settings_permissionAndLimit_success_text": {
     "TR": "Yetki ve Limit Ayarlarınız Kaydedilmiştir",
-    "EN": null
+    "EN": "[EN] Yetki ve Limit Ayarlarınız Kaydedilmiştir"
   },
   "debitCard_masterAccount_title": {
     "TR": "Ana Hesabı Değiştir",
-    "EN": null
+    "EN": "[EN] Ana Hesabı Değiştir"
   },
   "debitCard_masterAccount_currentAccount_title": {
     "TR": "Mevcut Karta Bağlı Ana Hesap",
-    "EN": null
+    "EN": "[EN] Mevcut Karta Bağlı Ana Hesap"
   },
   "debitCard_masterAccount_changeAccount_title": {
     "TR": "Değiştirilmek İstenen Hesap",
-    "EN": null
+    "EN": "[EN] Değiştirilmek İstenen Hesap"
   },
   "debitCard_settings_pinChange_numeric_text": {
     "TR": "Şifreniz numerik olmalıdır.",
-    "EN": null
+    "EN": "[EN] Şifreniz numerik olmalıdır."
   },
   "debitCard_settings_pinChange_character_text": {
     "TR": "Şifreniz 4 karakter olmalıdır.",
-    "EN": null
+    "EN": "[EN] Şifreniz 4 karakter olmalıdır."
   },
   "debitCard_settings_pinChange_consecutive_text": {
     "TR": "Şifreniz ardışık ve tekrar rakamlar içermemelidir.",
-    "EN": null
+    "EN": "[EN] Şifreniz ardışık ve tekrar rakamlar içermemelidir."
   },
   "debitCard_changeRelatedAccount_title": {
     "TR": "Bağlı Hesap Düzenle",
-    "EN": null
+    "EN": "[EN] Bağlı Hesap Düzenle"
   },
   "debitCard_changeRelatedAccount_masterAccount_subtitle": {
     "TR": "Ana Hesap",
-    "EN": null
+    "EN": "[EN] Ana Hesap"
   },
   "debitCard_changeRelatedAccount_relatedAccount_subtitle": {
     "TR": "Bağlı Hesaplarım",
-    "EN": null
+    "EN": "[EN] Bağlı Hesaplarım"
   },
   "debitCard_changeRelatedAccount_addRelatedAccount": {
     "TR": "Yeni Hesap Bağla",
-    "EN": null
+    "EN": "[EN] Yeni Hesap Bağla"
   },
   "debitCard_changeRelatedAccount_noRelatedAccount_text": {
     "TR": "Ana hesap dışında kartınıza bağlı başka bir hesap bulunmamaktadır.",
-    "EN": null
+    "EN": "[EN] Ana hesap dışında kartınıza bağlı başka bir hesap bulunmamaktadır."
   },
   "debitCard_changeRelatedAccount_removeRelatedAccount_button": {
     "TR": "Bağlı Hesap Sil",
-    "EN": null
+    "EN": "[EN] Bağlı Hesap Sil"
   },
   "debitCard_changeRelatedAccount_addRelatedAccount_button": {
     "TR": "Hesap Seçin",
-    "EN": null
+    "EN": "[EN] Hesap Seçin"
   },
   "debitCard_removeRelatedAccount_title": {
     "TR": "Bağlı Hesap Sil",
-    "EN": null
+    "EN": "[EN] Bağlı Hesap Sil"
   },
   "debitCard_addRelatedAccount_title": {
     "TR": "Hesap Bağla",
-    "EN": null
+    "EN": "[EN] Hesap Bağla"
   },
   "debitCard_goOnCard_button": {
     "TR": "On Banka Kartına Git",
-    "EN": null
+    "EN": "[EN] On Banka Kartına Git"
   },
   "debitCard_masterAccount_success_title": {
     "TR": "Ana Hesabınız Başarıyla Değiştirilmiştir",
-    "EN": null
+    "EN": "[EN] Ana Hesabınız Başarıyla Değiştirilmiştir"
   },
   "debitCard_masterAccount_success_text": {
     "TR": "Bağlı hesaplarınızı hesaplarınız altından dilediğiniz zaman yönetebilirsiniz.",
-    "EN": null
+    "EN": "[EN] Bağlı hesaplarınızı hesaplarınız altından dilediğiniz zaman yönetebilirsiniz."
   },
   "debitCard_removeRelatedAccount_success_title": {
     "TR": "Bağlı Hesabınız Başarıyla Silinmiştir",
-    "EN": null
+    "EN": "[EN] Bağlı Hesabınız Başarıyla Silinmiştir"
   },
   "debitCard_addRelatedAccount_success_title": {
     "TR": "Yeni Hesap Bağlama Başarıyla Tamamlanmıştır",
-    "EN": null
+    "EN": "[EN] Yeni Hesap Bağlama Başarıyla Tamamlanmıştır"
   },
   "debitCard_addRelatedAccount_noMore_text": {
     "TR": "Bağlayabileceğiniz başka bir hesabınız bulunmamaktadır.",
-    "EN": null
+    "EN": "[EN] Bağlayabileceğiniz başka bir hesabınız bulunmamaktadır."
   },
   "debitCard_addRelatedAccount_notAvailable_text": {
     "TR": "Ana hesabınız dışında kartınıza bağlayabileceğiniz başka bir hesabınız bulunmamaktadır.",
-    "EN": null
+    "EN": "[EN] Ana hesabınız dışında kartınıza bağlayabileceğiniz başka bir hesabınız bulunmamaktadır."
   },
   "debitCard_addRelatedAccount_confirmation_title": {
     "TR": "Hesap Bağla",
-    "EN": null
+    "EN": "[EN] Hesap Bağla"
   },
   "debitCard_removeRelatedAccount_confirmation_title": {
     "TR": "Bağlı Hesap Silme",
-    "EN": null
+    "EN": "[EN] Bağlı Hesap Silme"
   },
   "debitCard_changeRelatedAccount_accountName_text": {
     "TR": "Hesap Adı",
-    "EN": null
+    "EN": "[EN] Hesap Adı"
   },
   "debitCard_changeRelatedAccount_accountType_text": {
     "TR": "Hesap Türü",
-    "EN": null
+    "EN": "[EN] Hesap Türü"
   },
   "debitCard_changeRelatedAccount_accountNumber_text": {
     "TR": "Hesap Numarası",
-    "EN": null
+    "EN": "[EN] Hesap Numarası"
   },
   "debitCard_masterAccount_confirmation_title": {
     "TR": "Ana Hesabı Değiştirme",
-    "EN": null
+    "EN": "[EN] Ana Hesabı Değiştirme"
+  },
+  "debitCard_settings_digitalSlip_failure_title": {
+    "TR": "Dijital Slip Tercihiniz Alınamamıştır",
+    "EN": "[EN] Dijital Slip Tercihiniz Alınamamıştır"
+  },
+  "debitCard_application_failure_title": {
+    "TR": "On Banka Kartı Başvurunuz Alınamamıştır",
+    "EN": "[EN] On Banka Kartı Başvurunuz Alınamamıştır"
+  },
+  "debitCard_changePin_success_title": {
+    "TR": "Yeni Şifreniz Başarıyla Oluşturulmuştur",
+    "EN": "[EN] Yeni Şifreniz Başarıyla Oluşturulmuştur"
+  },
+  "debitCard_changePin_success_text": {
+    "TR": "Yeni şifrenizle ON Banka Kartı işlemlerinizi başarıyla gerçekleştirebilirsiniz.",
+    "EN": "[EN] Yeni şifrenizle ON Banka Kartı işlemlerinizi başarıyla gerçekleştirebilirsiniz."
+  },
+  "debitCard_changePin_failure_title": {
+    "TR": "Şifreniz Oluşturulamamıştır",
+    "EN": "[EN] Şifreniz Oluşturulamamıştır"
+  },
+  "debitCard_changePin_invalidPin_title": {
+    "TR": "Geçersiz Şifre",
+    "EN": "[EN] Geçersiz Şifre"
+  },
+  "debitCard_changePin_invalidPin_text": {
+    "TR": "Girmiş olduğunuz şifre belirtilen kurallara uymamaktadır.",
+    "EN": "[EN] Girmiş olduğunuz şifre belirtilen kurallara uymamaktadır."
+  },
+  "debitCard_changePin_invalidPin_button": {
+    "TR": "Yeni Şifre Belirle",
+    "EN": "[EN] Yeni Şifre Belirle"
   },
   "profileAndSettings_homeAddress_title": {
     "TR": "Evim",
@@ -1662,6 +2178,38 @@
   "profileAndSettings_main_eDevlet_popUp_button": {
     "TR": "E-Devlete Giriş Yap",
     "EN": "[EN] E-Devlete Giriş Yap"
+  },
+  "profileAndSettings_general_serviceFailurePopUp_okay_button": {
+    "TR": "Tamam",
+    "EN": "[EN] Tamam"
+  },
+  "profileAndSettings_general_fullScreen_returnMainPage_button": {
+    "TR": "Ana Sayfaya Dön",
+    "EN": "[EN] Ana Sayfaya Dön"
+  },
+  "profileAndSettings_dropdown_placeholder": {
+    "TR": "Seçin",
+    "EN": "[EN] Seçin"
+  },
+  "profileAndSettings_general_serviceFullScreenError_label": {
+    "TR": "Bu İşleme Devam Edilemiyor",
+    "EN": "[EN] Bu İşleme Devam Edilemiyor"
+  },
+  "profileAndSettings_general_serviceFullScreenError_button": {
+    "TR": "Profil ve Ayarlara Dön",
+    "EN": "[EN] Profil ve Ayarlara Dön"
+  },
+  "profileAndSettings_general_serviceFullScreenError_text": {
+    "TR": "Lütfen daha sonra yeniden deneyin.",
+    "EN": "[EN] Lütfen daha sonra yeniden deneyin."
+  },
+  "profileAndSettings_general_approve_confirmationPopUp_button": {
+    "TR": "Onayla",
+    "EN": "[EN] Onayla"
+  },
+  "profileAndSettings_general_cancel_confirmationPopUp_button": {
+    "TR": "Vazgeç",
+    "EN": "[EN] Vazgeç"
   },
   "profileAndSettings_save_button": {
     "TR": "Kaydet",
@@ -1839,6 +2387,50 @@
     "TR": "Sermaye Piyasası İşlemleri",
     "EN": "[EN] Sermaye Piyasası İşlemleri"
   },
+  "profileAndSettings_approvedDocuments_screen_title": {
+    "TR": "Onaylanan Belgeler",
+    "EN": "[EN] Onaylanan Belgeler"
+  },
+  "profileAndSettings_approvedDocuments_category_label": {
+    "TR": "Kategori",
+    "EN": "[EN] Kategori"
+  },
+  "profileAndSettings_approvedDocuments_documents_label": {
+    "TR": "Belgeler",
+    "EN": "[EN] Belgeler"
+  },
+  "profileAndSettings_approvedDocuments_dateInterval_label": {
+    "TR": "Tarih Aralığı",
+    "EN": "[EN] Tarih Aralığı"
+  },
+  "profileAndSettings_approvedDocuments_optional_label": {
+    "TR": "(Opsiyonel)",
+    "EN": "[EN] (Opsiyonel)"
+  },
+  "profileAndSettings_approvedDocuments_startDate_label": {
+    "TR": "Başlangıç",
+    "EN": "[EN] Başlangıç"
+  },
+  "profileAndSettings_approvedDocuments_date_placeholder": {
+    "TR": "GG.AA.YYYY",
+    "EN": "[EN] GG.AA.YYYY"
+  },
+  "profileAndSettings_approvedDocuments_endDate_label": {
+    "TR": "Bitiş",
+    "EN": "[EN] Bitiş"
+  },
+  "profileAndSettings_approvedDocumentsDetail_screen_title": {
+    "TR": "Onaylanan Belgeler",
+    "EN": "[EN] Onaylanan Belgeler"
+  },
+  "profileAndSettings_approvedDocumentsDetail_date_text": {
+    "TR": "Onay Tarihi",
+    "EN": "[EN] Onay Tarihi"
+  },
+  "profileAndSettings_approvedDocumentsDetail_show_button": {
+    "TR": "Görüntüle",
+    "EN": "[EN] Görüntüle"
+  },
   "profileAndSettings_notificationSettings_screen_title": {
     "TR": "Bildirim Ayarları",
     "EN": "[EN] Bildirim Ayarları"
@@ -1907,9 +2499,13 @@
     "TR": "Banka Kartına İade",
     "EN": "[EN] Banka Kartına İade"
   },
-  "profileAndSettings_notificationSettings_toastMessage_text": {
-    "TR": "Bildirim Ayarları kaydedildi.",
-    "EN": "[EN] Bildirim Ayarları kaydedildi."
+  "profileAndSettings_notificationSettings_confirmationPopUp_title": {
+    "TR": "Bildirim Ayarları Kaydedilecek",
+    "EN": "[EN] Bildirim Ayarları Kaydedilecek"
+  },
+  "profileAndSettings_notificationSettings_confirmationPopUp_text": {
+    "TR": "Değişiklikleri onaylıyor musunuz?",
+    "EN": "[EN] Değişiklikleri onaylıyor musunuz?"
   },
   "profileAndSettings_notificationSettingsComponent_mobile_label": {
     "TR": "Mobil Bildirim",
@@ -1950,6 +2546,14 @@
   "profileAndSettings_reverseRequest_dropdown_placeholder": {
     "TR": "Seçin",
     "EN": "[EN] Seçin"
+  },
+  "profileAndSettings_reverseRequest_confirmationPopUp_title": {
+    "TR": "İptal Talebi Oluşturulacak",
+    "EN": "[EN] İptal Talebi Oluşturulacak"
+  },
+  "profileAndSettings_reverseRequest_confirmationPopUp_text": {
+    "TR": "Seçtiğiniz işlemin iptal edilmesini onaylıyor musunuz?",
+    "EN": "[EN] Seçtiğiniz işlemin iptal edilmesini onaylıyor musunuz?"
   },
   "profileAndSettings_reverseRequestSuccess_title": {
     "TR": "İptal Talebiniz Alındı",
@@ -2043,9 +2647,21 @@
     "TR": "Yazdığınız şifre eşleşmiyor, lütfen tekrar girin.",
     "EN": "[EN] Yazdığınız şifre eşleşmiyor, lütfen tekrar girin."
   },
-  "profileAndSettings_passwordChange_toastMessage_text": {
-    "TR": "Şifre başarıyla güncellendi.",
-    "EN": "[EN] Şifre başarıyla güncellendi."
+  "profileAndSettings_passwordChange_noInput_errorMessage": {
+    "TR": "Bu alan boş bırakılamaz, lütfen doldurun.",
+    "EN": "[EN] Bu alan boş bırakılamaz, lütfen doldurun."
+  },
+  "profileAndSettings_passwordChange_confirmationPopUp_title": {
+    "TR": "Şifreniz Güncellenecek",
+    "EN": "[EN] Şifreniz Güncellenecek"
+  },
+  "profileAndSettings_passwordChange_confirmationPopUp_text": {
+    "TR": "Şifre değişikliği işlemini onaylıyor musunuz?",
+    "EN": "[EN] Şifre değişikliği işlemini onaylıyor musunuz?"
+  },
+  "profileAndSettings_passwordChange_serviceFailurePopUp_button": {
+    "TR": "Başka Bir Şifre Belirle",
+    "EN": "[EN] Başka Bir Şifre Belirle"
   },
   "profileAndSettings_securityQuestion_screen_title": {
     "TR": "Güvenlik Sorusu Güncelleme",
@@ -2086,10 +2702,6 @@
   "profileAndSettings_securityQuestion_missing_answer_errorMessage": {
     "TR": "Bu alan boş bırakılamaz, lütfen doldurun.",
     "EN": "[EN] Bu alan boş bırakılamaz, lütfen doldurun."
-  },
-  "profileAndSettings_securityQuestion_toastMessage_text": {
-    "TR": "Güvenlik sorusu güncellendi.",
-    "EN": "[EN] Güvenlik sorusu güncellendi."
   },
   "profileAndSettings_pairedDevice_screen_title": {
     "TR": "Eşleşmiş Cihaz",
@@ -2135,6 +2747,10 @@
     "TR": "Lütfen bir seçim yapın.",
     "EN": "[EN] Lütfen bir seçim yapın."
   },
+  "profileAndSettings_roleManagement_backToastMessage_text": {
+    "TR": "Yetki Yönetiminde değişiklik yapmadınız.",
+    "EN": "[EN] Yetki Yönetiminde değişiklik yapmadınız."
+  },
   "profileAndSettings_roleManagement_screen_title": {
     "TR": "Yetki Yönetimi",
     "EN": "[EN] Yetki Yönetimi"
@@ -2178,6 +2794,22 @@
   "profileAndSettings_roleManagement_restricted_text": {
     "TR": "ON Mobil ve İnternet Şube için giriş yetkileriniz kaldırılır. Yeniden erişim için Müşteri İletişim merkezi ile iletişime geçmeniz gerekir.",
     "EN": "[EN] ON Mobil ve İnternet Şube için giriş yetkileriniz kaldırılır. Yeniden erişim için Müşteri İletişim merkezi ile iletişime geçmeniz gerekir."
+  },
+  "profileAndSettings_roleManagement_lastDate_label": {
+    "TR": "Tercihim Bu Tarihe Kadar Geçerli Olsun",
+    "EN": "[EN] Tercihim Bu Tarihe Kadar Geçerli Olsun"
+  },
+  "profileAndSettings_roleManagement_datePicker_label": {
+    "TR": "Yetkinin Son Tarihi",
+    "EN": "[EN] Yetkinin Son Tarihi"
+  },
+  "profileAndSettings_roleManagement_confirmationPopUp_label": {
+    "TR": "Yetki Yönetimini Güncelle",
+    "EN": "[EN] Yetki Yönetimini Güncelle"
+  },
+  "profileAndSettings_roleManagement_confirmationPopUp_text": {
+    "TR": "Değişikliklerin uygulanması için ONMobil yeniden başlatılacaktır. Onaylıyor musunuz?",
+    "EN": "[EN] Değişikliklerin uygulanması için ONMobil yeniden başlatılacaktır. Onaylıyor musunuz?"
   },
   "profileAndSettings_appSettings_screen_title": {
     "TR": "Uygulama Ayarları",
@@ -2303,6 +2935,14 @@
     "TR": "Limit güncellendi.",
     "EN": "[EN] Limit güncellendi."
   },
+  "profileAndSettings_transactionLimits_confirmationPopUp_title": {
+    "TR": "Günlük Limitleriniz Güncellenecek.",
+    "EN": "[EN] Günlük Limitleriniz Güncellenecek."
+  },
+  "profileAndSettings_transactionLimits_confirmationPopUp_text": {
+    "TR": "İşlem limit değişikliğini onaylıyor musunuz?",
+    "EN": "[EN] İşlem limit değişikliğini onaylıyor musunuz?"
+  },
   "profileAndSettings_transactionLimitComponent_amount_limit_label": {
     "TR": "Limit Tutarı",
     "EN": "[EN] Limit Tutarı"
@@ -2310,6 +2950,14 @@
   "profileAndSettings_transactionLimitComponent_amount_remaining_label": {
     "TR": "Kalan Limit",
     "EN": "[EN] Kalan Limit"
+  },
+  "profileAndSettings_transactionLimitsSuccessPage_label": {
+    "TR": "İşlem Limitleri Başarıyla Güncellendi",
+    "EN": "[EN] İşlem Limitleri Başarıyla Güncellendi"
+  },
+  "profileAndSettings_transactionLimitsSuccessPage_text": {
+    "TR": "Günlük işlem limitlerini dilediğiniz zaman düzenleyebilirsiniz.",
+    "EN": "[EN] Günlük işlem limitlerini dilediğiniz zaman düzenleyebilirsiniz."
   },
   "profileAndSettings_personalInformation_screen_title": {
     "TR": "Kişisel Bilgiler",
@@ -2373,6 +3021,10 @@
   },
   "url_masterpassMerchantList": {
     "TR": "https://www.mastercard.com.tr/tr-tr/tuketiciler/odeme-secenekleri/masterpass/is-yerleri.html",
+    "EN": null
+  },
+  "url_onHesap": {
+    "TR": "https://on.com.tr/on-mevduat/on-hesap",
     "EN": null
   }
 }

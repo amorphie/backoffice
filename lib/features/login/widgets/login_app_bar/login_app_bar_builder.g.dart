@@ -205,7 +205,7 @@ class LoginAppBarBuilderModel extends JsonWidgetBuilderModel {
 
 class LoginAppBarSchema {
   static const id =
-      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/neo_bank/login_app_bar.json';
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/backoffice/login_app_bar.json';
 
   static final schema = <String, Object>{
     r'$schema': 'http://json-schema.org/draft-07/schema#',

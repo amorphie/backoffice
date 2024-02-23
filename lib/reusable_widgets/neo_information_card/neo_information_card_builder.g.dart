@@ -238,7 +238,7 @@ class NeoInformationCardBuilderModel extends JsonWidgetBuilderModel {
 
 class NeoInformationCardSchema {
   static const id =
-      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/neo_bank/neo_information_card.json';
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/backoffice/neo_information_card.json';
 
   static final schema = <String, Object>{
     r'$schema': 'http://json-schema.org/draft-07/schema#',

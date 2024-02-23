@@ -246,7 +246,7 @@ class NeoDebitCardListViewBuilderModel extends JsonWidgetBuilderModel {
 
 class NeoDebitCardListViewSchema {
   static const id =
-      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/neo_bank/neo_debit_card_list_view.json';
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/backoffice/neo_debit_card_list_view.json';
 
   static final schema = <String, Object>{
     r'$schema': 'http://json-schema.org/draft-07/schema#',

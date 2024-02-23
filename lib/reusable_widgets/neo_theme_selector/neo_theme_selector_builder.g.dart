@@ -200,7 +200,7 @@ class NeoThemeSelectorBuilderModel extends JsonWidgetBuilderModel {
 
 class NeoThemeSelectorSchema {
   static const id =
-      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/neo_bank/neo_theme_selector.json';
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/backoffice/neo_theme_selector.json';
 
   static final schema = <String, Object>{
     r'$schema': 'http://json-schema.org/draft-07/schema#',
