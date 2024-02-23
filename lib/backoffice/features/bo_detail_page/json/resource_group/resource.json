@@ -20,24 +20,8 @@
                   {
                     "type": "neo_bo_detail_item_widget",
                     "args": {
-                      "title": "Name",
-                      "text": "$.data.displayNames[0].label",
-                      "copyValue": true
-                    }
-                  },
-                  {
-                    "type": "neo_bo_detail_item_widget",
-                    "args": {
                       "title": "URL",
                       "text": "$.data.url",
-                      "copyValue": true
-                    }
-                  },
-                  {
-                    "type": "neo_bo_detail_item_widget",
-                    "args": {
-                      "title": "Description",
-                      "text": "$.data.descriptions[0].label",
                       "copyValue": true
                     }
                   }

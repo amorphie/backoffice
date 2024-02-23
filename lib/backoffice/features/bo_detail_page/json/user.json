@@ -4,7 +4,7 @@
         "summary": {
             "type": "neo_bo_summary_widget",
             "args": {
-                "name": "Test Kullanıcısı"
+                "name": "Resource"
             }
         },
         "tabs": {
