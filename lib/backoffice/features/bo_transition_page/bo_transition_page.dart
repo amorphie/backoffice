@@ -49,7 +49,7 @@ class _BackofficeTransitionPageState extends State<BackofficeTransitionPage> {
             child: NeoWebView(
               source: source,
               onSubmit: (transitionParams) {
-                listenerTransition.add(transitionParams);
+                listenerTransition.add(json.decode(transitionParams));
               },
             ),
           ),
