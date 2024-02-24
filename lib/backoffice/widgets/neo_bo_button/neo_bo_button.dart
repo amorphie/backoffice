@@ -34,6 +34,7 @@ class NeoBoButton extends INeoBoButton {
 
   const NeoBoButton({
     this.onTap,
+    super.listenerTransition,
     super.navigationPath,
     super.navigationType,
     super.transitionId,

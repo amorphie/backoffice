@@ -5,11 +5,12 @@ import 'package:backoffice/backoffice/widgets/neo_web_view/neo_web_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 import 'package:neo_core/core/workflow_form/bloc/workflow_form_bloc.dart';
+import 'package:rxdart/rxdart.dart';
 
 import '../../core/bo_transition_type_enum.dart';
 import '../../widgets/neo_bo_button/neo_bo_button.dart';
 
-class BackofficeTransitionPage extends StatelessWidget {
+class BackofficeTransitionPage extends StatefulWidget {
   final BoTransitionType type;
   final String data;
   final String transitionId;
@@ -21,14 +22,20 @@ class BackofficeTransitionPage extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<BackofficeTransitionPage> createState() => _BackofficeTransitionPageState();
+}
+
+class _BackofficeTransitionPageState extends State<BackofficeTransitionPage> {
+  final BehaviorSubject<Map<String, dynamic>> listenerTransition = BehaviorSubject<Map<String, dynamic>>();
+  @override
   Widget build(BuildContext context) {
-    switch (type) {
+    switch (widget.type) {
       case BoTransitionType.FlutterWidget:
-        return JsonWidgetData.fromDynamic(jsonDecode(data)).build(context: context);
+        return JsonWidgetData.fromDynamic(jsonDecode(widget.data)).build(context: context);
       case BoTransitionType.Formio:
-        return _webViewPage(context, WebViewSource.formio(data));
+        return _webViewPage(context, WebViewSource.formio(widget.data));
       case BoTransitionType.Html:
-        return _webViewPage(context, WebViewSource.html(data));
+        return _webViewPage(context, WebViewSource.html(widget.data));
     }
   }
 
@@ -42,7 +49,7 @@ class BackofficeTransitionPage extends StatelessWidget {
             child: NeoWebView(
               source: source,
               onSubmit: (transitionParams) {
-                postWorkflowTransition(context, json.decode(transitionParams));
+                listenerTransition.add(transitionParams);
               },
             ),
           ),
@@ -50,8 +57,9 @@ class BackofficeTransitionPage extends StatelessWidget {
             onTap: () async {
               await source.callJsMethod!("onSubmit", []);
             },
+            listenerTransition: listenerTransition,
             labelText: "Send",
-            transitionId: transitionId,
+            transitionId: widget.transitionId,
           ),
         ],
       ),

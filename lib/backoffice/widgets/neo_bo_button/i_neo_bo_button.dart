@@ -18,6 +18,7 @@ import 'package:meta/meta.dart';
 import 'package:backoffice/core/dependency_injection/dependency_injection.dart';
 import 'package:backoffice/core/mixins/neo_transitional.dart';
 import 'package:backoffice/core/navigation/neo_navigation_helper.dart';
+import 'package:rxdart/rxdart.dart';
 import 'bloc/neo_bo_button_bloc.dart';
 import 'model/neo_bo_button_display_mode.dart';
 import 'model/neo_bo_button_enable_state.dart';
@@ -31,6 +32,7 @@ import 'package:neo_core/core/workflow_form/bloc/workflow_form_bloc.dart';
 
 abstract class INeoBoButton extends StatelessWidget with NeoTransitional {
   const INeoBoButton({
+    this.listenerTransition,
     this.transitionId,
     this.widgetEventKey,
     this.navigationPath,
@@ -48,6 +50,7 @@ abstract class INeoBoButton extends StatelessWidget with NeoTransitional {
     Key? key,
   }) : super(key: key);
 
+  final BehaviorSubject<Map<String, dynamic>>? listenerTransition;
   @override
   final String? transitionId;
   final String? widgetEventKey;
@@ -104,18 +107,30 @@ abstract class INeoBoButton extends StatelessWidget with NeoTransitional {
     if (!transitionId.isNullOrBlank && autoTriggerTransition) {
       final neoButtonBloc = context.read<NeoBoButtonBloc>();
       final neoTransitionListenerBloc = context.read<NeoTransitionListenerBloc>();
-      final transitionBodyWithParams = (transitionBody ?? _getFormParametersIfExist(context))..addAll(getDefaultTransitionParams(context));
 
       if (startWorkflow) {
         final initWorkflowResponse = await neoTransitionListenerBloc.initWorkflow(transitionId.orEmpty);
         neoButtonBloc.add(NeoBoButtonEventInitWorkflow(initResponse: initWorkflowResponse));
       } else {
-        neoTransitionListenerBloc.add(
-          NeoTransitionListenerEventPostTransition(
-            transitionName: transitionId.orEmpty,
-            body: transitionBodyWithParams,
-          ),
-        );
+        if (listenerTransition != null) {
+          listenerTransition!.stream.listen((event) {
+            neoTransitionListenerBloc.add(
+              NeoTransitionListenerEventPostTransition(
+                transitionName: transitionId.orEmpty,
+                body: event,
+              ),
+            );
+          });
+        } else {
+          final transitionBodyWithParams = (transitionBody ?? _getFormParametersIfExist(context))..addAll(getDefaultTransitionParams(context));
+
+          neoTransitionListenerBloc.add(
+            NeoTransitionListenerEventPostTransition(
+              transitionName: transitionId.orEmpty,
+              body: transitionBodyWithParams,
+            ),
+          );
+        }
       }
     }
     if (!widgetEventKey.isNullOrBlank) {

@@ -1,21 +1,26 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:backoffice/backoffice/features/bo_detail_page/bloc/bo_detail_page_bloc.dart';
 import 'package:backoffice/backoffice/features/bo_detail_page/bloc/bo_detail_page_event.dart';
 import 'package:backoffice/backoffice/features/bo_detail_page/network/neo_detail_network_manager.dart';
 import 'package:backoffice/backoffice/widgets/render_widget.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../widgets/test_render_template.dart';
 import 'bloc/bo_detail_page_state.dart';
 
 class BoDetailPage extends StatelessWidget {
   final Map<String, dynamic> data;
-  const BoDetailPage({super.key, required this.data});
+  const BoDetailPage({
+    Key? key,
+    required this.data,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (ctx) => BoDetailPageBloc(networkManager: NeoDetailNetworkManager(), data: data)..add(const BoDetailPageEventSetItem()),
+    return BlocProvider<BoDetailPageBloc>(
+      create: (ct) => BoDetailPageBloc(networkManager: NeoDetailNetworkManager(), data: data)..add(const BoDetailPageEventSetItem()),
       child: BlocBuilder<BoDetailPageBloc, BoDetailPageState>(builder: (context, state) {
         switch (state) {
           case BoDetailPageStateViewLoading _:

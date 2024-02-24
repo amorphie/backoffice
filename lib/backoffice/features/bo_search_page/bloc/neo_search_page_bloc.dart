@@ -8,45 +8,47 @@ import 'neo_search_page_state.dart';
 
 class NeoSearchPageViewBloc extends Bloc<NeoSearchPageEvent, NeoSearchPageState> {
   final NeoSearchNetworkManager networkManager;
-  final itemListStream = BehaviorSubject<List<Map<String, dynamic>>>();
+  final itemList = <Map<String, dynamic>>[];
   final String workflowName;
 
-  NeoSearchPageViewBloc({required this.networkManager, required this.workflowName}) : super(const NeoSearchPageListViewState()) {
+  NeoSearchPageViewBloc({required this.networkManager, required this.workflowName}) : super(const NeoSearchPageListViewStateLoading()) {
     on<NeoSearchPageListViewEventFetchItemList>((event, emit) async {
       try {
+        emit(const NeoSearchPageListViewStateLoading());
         final response = await networkManager.fetchItemList(workflowName);
         if (response.isSuccess) {
-          List<Map<String, dynamic>> itemList = [];
           for (var item in (response as NeoSuccessResponse).data["data"]) {
             itemList.add(item);
           }
-
-          itemListStream.add(itemList);
+          emit(NeoSearchPageListViewStateLoaded(itemList: itemList));
         } else {
-          //TODO: handle error
+          emit(const NeoSearchPageListViewStateError());
         }
       } on Exception catch (_) {
-        //TODO: handle exception
-        print(_);
+        emit(const NeoSearchPageListViewStateError());
       }
     });
     on<NeoSearchPageListViewSearchEvent>((event, emit) async {
       try {
+        emit(const NeoSearchPageListViewStateLoading());
+
         final response = await networkManager.fetchItemList(workflowName, event.keyword);
         if (response.isSuccess) {
           List<Map<String, dynamic>> itemList = [];
           for (var item in (response as NeoSuccessResponse).data["data"]) {
             itemList.add(item);
           }
-
-          itemListStream.add(itemList);
+          emit(NeoSearchPageListViewStateLoaded(itemList: itemList));
         } else {
-          //TODO: handle error
+          emit(const NeoSearchPageListViewStateError());
         }
       } on Exception catch (_) {
-        //TODO: handle exception
-        print(_);
+        emit(const NeoSearchPageListViewStateError());
       }
     });
+  }
+
+  Map<String, dynamic> getItemBy(String value, [String key = "id"]) {
+    return itemList.firstWhere((element) => element[key] == value);
   }
 }

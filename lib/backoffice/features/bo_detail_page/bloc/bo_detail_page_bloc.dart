@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:json_path/json_path.dart';
 import 'package:neo_core/neo_core.dart';
 
+import '../../bo_search_page/bloc/neo_search_page_bloc.dart';
 import 'bo_detail_page_event.dart';
 import 'bo_detail_page_state.dart';
 
@@ -37,6 +38,7 @@ class BoDetailPageBloc extends Bloc<BoDetailPageEvent, BoDetailPageState> {
           if (dataResponse.isSuccess) {
             data["data"] = (dataResponse as NeoSuccessResponse).data;
           }
+          // emit(const BoDetailPageStateViewError());
           emit(BoDetailPageStateViewLoaded(item: responseData));
         } else {
           emit(const BoDetailPageStateViewError());

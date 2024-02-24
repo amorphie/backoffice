@@ -36,6 +36,7 @@ class _NeoDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
+      padding: const EdgeInsets.all(8),
       children: [
         Container(
           color: Colors.black,

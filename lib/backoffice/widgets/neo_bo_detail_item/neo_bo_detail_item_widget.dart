@@ -20,22 +20,22 @@ class NeoBoDetailItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(3),
+      padding: const EdgeInsets.all(3),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(title, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14, color: Colors.black)),
+          Text(title, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14, color: Colors.black)),
           Padding(
             padding: const EdgeInsets.all(2.0),
             child: Row(
               children: [
-                Text(context.watch<BoDetailPageBloc>().dataWidthPath(text), style: TextStyle(fontWeight: FontWeight.w400, fontSize: 14, color: Colors.black)),
+                Text(context.watch<BoDetailPageBloc>().dataWidthPath(text), style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 14, color: Colors.black)),
                 if (copyValue)
                   IconButton(
                     onPressed: () async {
                       await Clipboard.setData(ClipboardData(text: text));
                     },
-                    icon: Icon(Icons.copy),
+                    icon: const Icon(Icons.copy),
                   ),
               ],
             ),
