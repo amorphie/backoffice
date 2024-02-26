@@ -20,24 +20,32 @@
                   {
                     "type": "neo_bo_detail_item_widget",
                     "args": {
+                      "title": "ID",
+                      "text": "$.data.id",
+                      "copyValue": true
+                    }
+                  },
+                  {
+                    "type": "neo_bo_detail_item_widget",
+                    "args": {
+                      "title": "URL",
+                      "text": "$.data.url",
+                      "copyValue": true
+                    }
+                  },
+                  {
+                    "type": "neo_bo_detail_item_widget",
+                    "args": {
+                      "title": "TTL",
+                      "text": "$.data.ttl",
+                      "copyValue": true
+                    }
+                  },
+                  {
+                    "type": "neo_bo_detail_item_widget",
+                    "args": {
                       "title": "Name",
-                      "text": "$.data.workflowName",
-                      "copyValue": true
-                    }
-                  },
-                  {
-                    "type": "neo_bo_detail_item_widget",
-                    "args": {
-                      "title": "Created At",
-                      "text": "$.createdAt",
-                      "copyValue": true
-                    }
-                  },
-                  {
-                    "type": "neo_bo_detail_item_widget",
-                    "args": {
-                      "title": "Created By",
-                      "text": "$.createdBy",
+                      "text": "$.data.name",
                       "copyValue": true
                     }
                   }

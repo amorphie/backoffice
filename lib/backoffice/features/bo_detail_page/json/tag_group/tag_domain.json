@@ -20,6 +20,14 @@
                   {
                     "type": "neo_bo_detail_item_widget",
                     "args": {
+                      "title": "ID",
+                      "text": "$.data.id",
+                      "copyValue": true
+                    }
+                  },
+                  {
+                    "type": "neo_bo_detail_item_widget",
+                    "args": {
                       "title": "Name",
                       "text": "$.data.name",
                       "copyValue": true

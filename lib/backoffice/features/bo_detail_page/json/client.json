@@ -28,16 +28,48 @@
                   {
                     "type": "neo_bo_detail_item_widget",
                     "args": {
-                      "title": "Description",
-                      "text": "$.data.tags",
+                      "title": "Status",
+                      "text": "$.data.status",
                       "copyValue": true
                     }
                   },
                   {
                     "type": "neo_bo_detail_item_widget",
                     "args": {
-                      "title": "Flow Type",
-                      "text": "$.data.flows[0].label",
+                      "title": "Return URL",
+                      "text": "$.data.returnUrl",
+                      "copyValue": true
+                    }
+                  },
+                  {
+                    "type": "neo_bo_detail_item_widget",
+                    "args": {
+                      "title": "Login URL",
+                      "text": "$.data.loginUrl",
+                      "copyValue": true
+                    }
+                  },
+                  {
+                    "type": "neo_bo_detail_item_widget",
+                    "args": {
+                      "title": "Logout URL",
+                      "text": "$.data.logoutUrl",
+                      "copyValue": true
+                    }
+                  },
+                  {
+                    "type": "neo_bo_detail_item_widget",
+                    "args": {
+                      "title": "Pkce",
+                      "text": "$.data.pkce",
+                      "copyValue": true
+                    }
+                  },
+                  {
+                    "type": "neo_bo_detail_item_widget",
+                    "args": {
+                      "title": "Description",
+                      "text": "$.data.tags",
                       "copyValue": true
                     }
                   }

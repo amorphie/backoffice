@@ -20,24 +20,38 @@
                   {
                     "type": "neo_bo_detail_item_widget",
                     "args": {
+                      "title": "ID",
+                      "text": "$.data.id"
+                    }
+                  },
+                  {
+                    "type": "neo_bo_detail_item_widget",
+                    "args": {
                       "title": "Name",
-                      "text": "$.data.name",
+                      "text": "$.data.entityName"
+                    }
+                  },
+                  {
+                    "type": "neo_bo_detail_item_widget",
+                    "args": {
+                      "title": "Entity ID",
+                      "text": "$.data.entityId",
                       "copyValue": true
                     }
                   },
                   {
                     "type": "neo_bo_detail_item_widget",
                     "args": {
-                      "title": "Description",
-                      "text": "$.data.description",
+                      "title": "Field",
+                      "text": "$.data.field",
                       "copyValue": true
                     }
                   },
                   {
                     "type": "neo_bo_detail_item_widget",
                     "args": {
-                      "title": "Created At",
-                      "text": "$.createdAt"
+                      "title": "TTL",
+                      "text": "$.data.ttl"
                     }
                   }
                 ]
