@@ -18,6 +18,30 @@
               "args": {
                 "children": [
                   {
+                    "type": "neo_bo_datagrid_widget",
+                    "args": {
+                      "title": "Flows",
+                      "columns": [
+                        {
+                          "type": "Type",
+                          "workflow": "Workflow",
+                          "tokenDuration": "Token Duration"
+                        }
+                      ],
+                      "data": "$.data.flows"
+                    }
+                  },
+                  {
+                    "type": "neo_bo_expanded_row_widget",
+                    "args": {
+                      "data": [
+                        "type",
+                        "workflow",
+                        "tokenDuration"
+                      ]
+                    }
+                  },
+                  {
                     "type": "neo_bo_detail_item_widget",
                     "args": {
                       "title": "Created At",
