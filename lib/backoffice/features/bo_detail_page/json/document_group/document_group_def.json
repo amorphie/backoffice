@@ -1,11 +1,10 @@
-String testRenderTemplateData = """
 {
   "type": "neo_detail_page",
   "args": {
     "summary": {
       "type": "neo_bo_summary_widget",
       "args": {
-        "name": "Client"
+        "name": "Document Group Defination"
       }
     },
     "tabs": {
@@ -19,24 +18,26 @@ String testRenderTemplateData = """
               "args": {
                 "children": [
                   {
-                    "type": "neo_bo_datagrid_widget",
+                    "type": "neo_bo_detail_item_widget",
                     "args": {
-                      "title": "Flows",
-                      "columns": [
-                        {
-                          "type": "Type",
-                          "workflow": "Workflow",
-                          "tokenDuration": "Token Duration"
-                        }
-                      ],
-                      "data": "\$.data.flows"
+                      "title": "ID",
+                      "text": "$.data.id",
+                      "copyValue": true
                     }
                   },
                   {
                     "type": "neo_bo_detail_item_widget",
                     "args": {
-                      "title": "Created At",
-                      "text": "\$.data.createdAt",
+                      "title": "Name",
+                      "text": "$.data.name",
+                      "copyValue": true
+                    }
+                  },
+                  {
+                    "type": "neo_bo_detail_item_widget",
+                    "args": {
+                      "title": "Code",
+                      "text": "$.data.code",
                       "copyValue": true
                     }
                   },
@@ -44,39 +45,31 @@ String testRenderTemplateData = """
                     "type": "neo_bo_detail_item_widget",
                     "args": {
                       "title": "Status",
-                      "text": "\$.data.status",
+                      "text": "$.data.status",
                       "copyValue": true
                     }
                   },
                   {
                     "type": "neo_bo_detail_item_widget",
                     "args": {
-                      "title": "Return URL",
-                      "text": "\$.data.returnUrl",
+                      "title": "Semver",
+                      "text": "$.data.semver",
                       "copyValue": true
                     }
                   },
                   {
                     "type": "neo_bo_detail_item_widget",
                     "args": {
-                      "title": "Login URL",
-                      "text": "\$.data.loginUrl",
+                      "title": "Base Status",
+                      "text": "$.data.baseStatus",
                       "copyValue": true
                     }
                   },
                   {
                     "type": "neo_bo_detail_item_widget",
                     "args": {
-                      "title": "Logout URL",
-                      "text": "\$.data.logoutUrl",
-                      "copyValue": true
-                    }
-                  },
-                  {
-                    "type": "neo_bo_detail_item_widget",
-                    "args": {
-                      "title": "Pkce",
-                      "text": "\$.data.pkce",
+                      "title": "Multilanguage Text",
+                      "text": "$.data.multilanguageText[1].label",
                       "copyValue": true
                     }
                   },
@@ -84,7 +77,31 @@ String testRenderTemplateData = """
                     "type": "neo_bo_detail_item_widget",
                     "args": {
                       "title": "Tags",
-                      "text": "\$.data.tags",
+                      "text": "$.data.tags",
+                      "copyValue": true
+                    }
+                  },
+                  {
+                    "type": "neo_bo_detail_item_widget",
+                    "args": {
+                      "title": "Entity Properties",
+                      "text": "$.data.entityProperties",
+                      "copyValue": true
+                    }
+                  },
+                  {
+                    "type": "neo_bo_detail_item_widget",
+                    "args": {
+                      "title": "Document Optimize",
+                      "text": "$.data.documentOptimize",
+                      "copyValue": true
+                    }
+                  },
+                  {
+                    "type": "neo_bo_detail_item_widget",
+                    "args": {
+                      "title": "Document Operations",
+                      "text": "$.data.documentOperations",
                       "copyValue": true
                     }
                   }
@@ -97,15 +114,3 @@ String testRenderTemplateData = """
     }
   }
 }
-""";
-// String _testRenderTemplate = """
-// {
-//     "type": "title_description_area_widget",
-//     "args": {
-//         "title": "Title",
-//         "text": "text",
-//         "copyValue": true
-//     }
-// }
-// """;
-// dynamic get testRenderTemplateData => json.decode(testRenderTemplate);

@@ -20,6 +20,21 @@
                   {
                     "type": "neo_bo_detail_item_widget",
                     "args": {
+                      "title": "ID",
+                      "text": "$.data.id",
+                      "copyValue": true
+                    }
+                  },
+                  {
+                    "type": "neo_bo_detail_item_widget",
+                    "args": {
+                      "title": "Status",
+                      "text": "$.data.status"
+                    }
+                  },
+                  {
+                    "type": "neo_bo_detail_item_widget",
+                    "args": {
                       "title": "Tags",
                       "text": "$.data.tags",
                       "copyValue": true
@@ -31,6 +46,13 @@
                       "title": "Titles",
                       "text": "$.data.titles..label",
                       "copyValue": true
+                    }
+                  },
+                  {
+                    "type": "neo_bo_detail_item_widget",
+                    "args": {
+                      "title": "Status",
+                      "text": "$.data.status"
                     }
                   }
                 ]
