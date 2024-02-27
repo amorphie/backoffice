@@ -1,3 +1,4 @@
+import 'package:backoffice/backoffice/widgets/neo_bo_datagrid/datagrid_column_arg_processor.dart';
 import 'package:backoffice/backoffice/widgets/neo_bo_listview/neo_bo_listview.dart';
 import 'package:backoffice/backoffice/widgets/neo_bo_pdf_view/neo_bo_pdf_view.dart';
 import 'package:backoffice/backoffice/widgets/neo_detail_page/neo_detail_page.dart';
@@ -39,5 +40,6 @@ class BackofficeWidgetRegisterer {
       buildersMap[pair.type] = JsonWidgetBuilderContainer(builder: pair.func);
     }
     registry.registerCustomBuilders(buildersMap);
+    registry.registerArgProcessors([DatagridColumnArgProcessor()]);
   }
 }

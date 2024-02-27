@@ -5,7 +5,7 @@ String testRenderTemplateData = """
     "summary": {
       "type": "neo_bo_summary_widget",
       "args": {
-        "name": "Client"
+        "name": "Resource"
       }
     },
     "tabs": {
@@ -22,21 +22,30 @@ String testRenderTemplateData = """
                     "type": "neo_bo_datagrid_widget",
                     "args": {
                       "title": "Flows",
-                      "columns": 
+                      "columns":
                         {
                           "type": "Type",
                           "workflow": "Workflow",
                           "tokenDuration": "Token Duration"
-                        }
-                      ,
+                        },
                       "data": "\$.data.flows"
+                    }
+                  },
+                  {
+                    "type": "neo_bo_expanded_row_widget",
+                    "args": {
+                      "data": [
+                        "type",
+                        "workflow",
+                        "tokenDuration"
+                      ]
                     }
                   },
                   {
                     "type": "neo_bo_detail_item_widget",
                     "args": {
                       "title": "Created At",
-                      "text": "\$.data.createdAt",
+                      "text": "\$.createdAt",
                       "copyValue": true
                     }
                   },
@@ -83,7 +92,7 @@ String testRenderTemplateData = """
                   {
                     "type": "neo_bo_detail_item_widget",
                     "args": {
-                      "title": "Tags",
+                      "title": "Description",
                       "text": "\$.data.tags",
                       "copyValue": true
                     }

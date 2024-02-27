@@ -102,7 +102,7 @@ class JsonNeoBoDatagridWidget extends JsonWidgetData {
           jsonWidgetType: NeoBoDatagrid.kType,
         );
 
-  final Map<String, dynamic> columns;
+  final dynamic columns;
 
   final String data;
 
@@ -117,7 +117,7 @@ class NeoBoDatagridModel extends JsonWidgetBuilderModel {
     required this.title,
   });
 
-  final Map<String, dynamic> columns;
+  final dynamic columns;
 
   final String data;
 
@@ -187,8 +187,7 @@ class NeoBoDatagridModel extends JsonWidgetBuilderModel {
 }
 
 class NeoBoDatagridWidgetSchema {
-  static const id =
-      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/backoffice/neo_bo_datagrid_widget.json';
+  static const id = 'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/backoffice/neo_bo_datagrid_widget.json';
 
   static final schema = <String, Object>{
     r'$schema': 'http://json-schema.org/draft-07/schema#',
