@@ -21,6 +21,19 @@ class BoDetailPageBloc extends Bloc<BoDetailPageEvent, BoDetailPageState> {
     }
   }
 
+  List<Map<String, dynamic>> listDataWithPath(String path) {
+    var list = JsonPath(path).read(data);
+    var listData = <Map<String, dynamic>>[];
+    if (list.isNotEmpty) {
+      for (var item in list) {
+        listData.add(item.value as Map<String, dynamic>);
+      }
+      return listData;
+    } else {
+      return listData;
+    }
+  }
+
   String _print(dynamic item) {
     if (item is List)
       return item.join(", ");

@@ -68,8 +68,8 @@ class NeoBoExpandedRow extends _NeoBoExpandedRow {
   }
 }
 
-class JsonExpandedRowAreaWidget extends JsonWidgetData {
-  JsonExpandedRowAreaWidget({
+class JsonNeoBoExpandedRowWidget extends JsonWidgetData {
+  JsonNeoBoExpandedRowWidget({
     Map<String, dynamic> args = const {},
     JsonWidgetRegistry? registry,
     required this.data,
@@ -127,7 +127,7 @@ class NeoBoExpandedRowModel extends JsonWidgetBuilderModel {
 
     if (result == null) {
       throw Exception(
-        '[ExpandedRowArea]: requested to parse from dynamic, but the input is null.',
+        '[NeoBoExpandedRow]: requested to parse from dynamic, but the input is null.',
       );
     }
 
@@ -178,13 +178,14 @@ class NeoBoExpandedRowModel extends JsonWidgetBuilderModel {
   }
 }
 
-class ExpandedRowAreaWidgetSchema {
-  static const id = 'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/admin/expanded_row_area_widget.json';
+class NeoBoExpandedRowWidgetSchema {
+  static const id =
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/backoffice/neo_bo_expanded_row_widget.json';
 
   static final schema = <String, Object>{
     r'$schema': 'http://json-schema.org/draft-07/schema#',
     r'$id': id,
-    'title': 'ExpandedRowAreaWidget',
+    'title': 'NeoBoExpandedRowWidget',
     'type': 'object',
     'additionalProperties': false,
     'properties': {

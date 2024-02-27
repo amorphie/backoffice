@@ -22,13 +22,13 @@ String testRenderTemplateData = """
                     "type": "neo_bo_datagrid_widget",
                     "args": {
                       "title": "Flows",
-                      "columns": [
+                      "columns": 
                         {
                           "type": "Type",
                           "workflow": "Workflow",
                           "tokenDuration": "Token Duration"
                         }
-                      ],
+                      ,
                       "data": "\$.data.flows"
                     }
                   },
