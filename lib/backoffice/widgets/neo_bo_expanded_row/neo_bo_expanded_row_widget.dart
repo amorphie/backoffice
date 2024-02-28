@@ -18,7 +18,7 @@ class NeoBoExpandedRowWidget extends StatelessWidget {
         children: data
             .map((e) => Expanded(
                     child: Text(
-                  e,
+                  e ?? "$e",
                   style: TextStyle(fontWeight: isTitle ? FontWeight.bold : FontWeight.w400),
                 )))
             .toList(),

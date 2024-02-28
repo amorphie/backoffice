@@ -41,12 +41,27 @@ String testRenderTemplateData = """
                       ]
                     }
                   },
-                  {
-                    "type": "neo_bo_detail_item_widget",
+                   {
+                    "type": "neo_bo_datagrid_widget",
                     "args": {
-                      "title": "Created At",
-                      "text": "\$.createdAt",
-                      "copyValue": true
+                      "title": "Tokens",
+                      "columns": 
+                        {
+                          "type": "Type",
+                          "clientId": "Client ID",
+                          "defaultDuration": "Duration"
+                        },
+                      "data": "\$.data.tokens"
+                    }
+                  },
+                  {
+                    "type": "neo_bo_expanded_row_widget",
+                    "args": {
+                      "data": [
+                        "type",
+                        "clientId",
+                        "defaultDuration"
+                      ]
                     }
                   },
                   {
