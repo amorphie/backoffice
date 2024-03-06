@@ -1,3 +1,4 @@
+import 'package:admin/ui/environment.dart';
 import 'package:http/http.dart' as http;
 
 import '../../ui/helpers/exporter.dart';
@@ -9,7 +10,7 @@ class Services {
 
   Future<Map<String, EntityModel>> getEntityData() async {
     Map<String, EntityModel> map = {};
-    var response = await http.get(Uri.parse((dotenv.env["FIREBASE_URL"] ?? "") + "/v1/entities.json"));
+    var response = await http.get(Uri.parse((dotenv.env["FIREBASE_URL"] ?? "") + "/v2/${Environment.type.name.toString()}/entities.json"));
     var data = json.decode(response.body);
     // var response = await getJson("entities");
     // var data = json.decode(response);
@@ -20,7 +21,7 @@ class Services {
   }
 
   Future<UIModel> getUiData() async {
-    var response = await http.get(Uri.parse((dotenv.env["FIREBASE_URL"] ?? "") + "/v1/ui.json"));
+    var response = await http.get(Uri.parse((dotenv.env["FIREBASE_URL"] ?? "") + "/v2/${Environment.type.name.toString()}/ui.json"));
     var data = json.decode(response.body);
 
     // var response = await getJson("ui");

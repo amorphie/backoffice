@@ -1,5 +1,7 @@
 import 'dart:developer';
 
+import 'package:admin/ui/environment.dart';
+
 import '../helpers/exporter.dart';
 
 class HomePage extends StatelessWidget {
@@ -101,7 +103,7 @@ class HomePage extends StatelessWidget {
                   children: [
                     Expanded(child: Dashboard()),
                     // Expanded(child: Center(child: Text("HomePage"))),
-                    Text("v1.0.5"),
+                    Text("${Environment.type.name.toString()} v1.0.6"),
                   ],
                 ),
               );
