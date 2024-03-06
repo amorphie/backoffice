@@ -52,6 +52,7 @@ dependency_overrides:
   uuid: ^3.0.4
   device_info_plus: ^9.1.0
   image_editor_plus: ^0.2.6
+  web: 0.5.1 
 
 
 dev_dependencies:
