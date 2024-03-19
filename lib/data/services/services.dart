@@ -54,14 +54,14 @@ class Services {
 
   Future<ResponseModel> getTag(String name) async {
     return await Executer.get(
-      endpoint: "https://test-amorphie-tag.${dotenv.env["PROJECT_HOST"]}/Tag/getTag/$name",
+      endpoint: "https://${Environment.type.name}-amorphie-tag.${dotenv.env["PROJECT_HOST"]}/Tag/getTag/$name",
       headers: {'accept': '*/*'},
     );
   }
 
   Future<ResponseModel> getTemplate({required Map<String, dynamic> data}) async {
     return await Executer.post(
-      endpoint: "https://test-template-engine.${dotenv.env["PROJECT_HOST"]}/Template/Render",
+      endpoint: "https://${Environment.type.name}-template-engine.${dotenv.env["PROJECT_HOST"]}/Template/Render",
       data: data,
       headers: {
         "Content-Type": "application/json",
@@ -72,7 +72,7 @@ class Services {
 
   Future<ResponseModel> getHistory({required String entity, required String recordId}) async {
     return await Executer.get(
-      endpoint: "https://test-amorphie-workflow.${dotenv.env["PROJECT_HOST"]}/workflow/consumer/${entity}/record/${recordId}/history",
+      endpoint: "https://${Environment.type.name}-amorphie-workflow.${dotenv.env["PROJECT_HOST"]}/workflow/consumer/${entity}/record/${recordId}/history",
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json",
@@ -83,7 +83,7 @@ class Services {
 
   Future<ResponseModel> getTransitions({required String entity, required String recordId}) async {
     return await Executer.get(
-      endpoint: "https://test-amorphie-workflow.${dotenv.env["PROJECT_HOST"]}/workflow/consumer/${entity}/record/${recordId}/transition",
+      endpoint: "https://${Environment.type.name}-amorphie-workflow.${dotenv.env["PROJECT_HOST"]}/workflow/consumer/${entity}/record/${recordId}/transition",
       headers: {
         "Accept": "application/json",
         "Accept-Language": "en-EN",
@@ -99,7 +99,7 @@ class Services {
     required Map<String, String> headers,
   }) async {
     return await Executer.post(
-      endpoint: "https://test-amorphie-workflow.${dotenv.env["PROJECT_HOST"]}/workflow/consumer/${entity}/record/${recordId}/transition/${transition}",
+      endpoint: "https://${Environment.type.name}-amorphie-workflow.${dotenv.env["PROJECT_HOST"]}/workflow/consumer/${entity}/record/${recordId}/transition/${transition}",
       data: data,
       headers: headers,
     );

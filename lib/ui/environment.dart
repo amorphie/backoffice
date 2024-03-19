@@ -1,7 +1,7 @@
 enum EnvType {
-  dev("dev-amorphie-backoffice.burgan.com.tr"),
-  preprod("preprod-amorphie-backoffice.burgan.com.tr"),
-  test("test-amorphie-backoffice.burgan.com.tr");
+  dev("dev-amorphie-backoffice"),
+  preprod("preprod-amorphie-backoffice"),
+  test("test-amorphie-backoffice");
 
   final String url;
 
