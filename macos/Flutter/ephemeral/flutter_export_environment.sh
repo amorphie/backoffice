@@ -1,7 +1,7 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
 export "FLUTTER_ROOT=/Users/ertugruldagli/fvm/versions/3.16.1"
-export "FLUTTER_APPLICATION_PATH=/Users/ertugruldagli/Developer/GitHub/backoffice/lib/widgetbook"
+export "FLUTTER_APPLICATION_PATH=/Users/ertugruldagli/Developer/GitHub/backoffice"
 export "COCOAPODS_PARALLEL_CODE_SIGN=true"
 export "FLUTTER_BUILD_DIR=build"
 export "FLUTTER_BUILD_NAME=1.0.0"

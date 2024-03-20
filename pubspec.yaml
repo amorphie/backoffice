@@ -11,14 +11,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  neo_core:
-    git:
-      url: https://github.com/amorphie/flutter.core
-      ref: 0.0.29
-  burgan_ui:
-    git:
-      url: https://github.com/amorphie/flutter.ui
-      ref: 0.0.5
   cupertino_icons: ^1.0.3
 
   #business_logic:
