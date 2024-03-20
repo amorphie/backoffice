@@ -1,0 +1,71 @@
+{
+    "type": "list_view",
+    "args": {
+        "children": [
+            {
+                "type": "title_description_area_widget",
+                "args": {
+                    "title": "Name",
+                    "text": "{{data.name}}",
+                    "copyValue": true
+                }
+            },
+            {
+                "type": "title_description_area_widget",
+                "args": {
+                    "title": "ID",
+                    "text": "{{data.id}}",
+                    "copyValue": true
+                }
+            },
+            {
+                "type": "title_description_area_widget",
+                "args": {
+                    "title": "Code",
+                    "text": "{{data.code}}",
+                    "copyValue": true
+                }
+            },
+            {
+                "type": "title_description_area_widget",
+                "args": {
+                    "title": "Status",
+                    "text": "{{data.status}}"
+                }
+            },
+            {
+                "type": "detail_title_widget",
+                "args": {
+                    "title": "Document Definitions"
+                }
+            },
+            {
+                "type": "expanded_row_area_widget",
+                "args": {
+                    "data": [
+                        "Name",
+                        "Code",
+                        "Status"
+                    ],
+                    "isTitle": true
+                }
+            },{{for def in data.documentDefinitionList}}
+            {
+                "type": "expanded_row_area_widget",
+                "args": {
+                    "data": [
+                        "{{def.name}}",
+                        "{{def.code}}",
+                        "{{def.status}}"
+                    ]
+                }
+            },{{ end }}
+            {
+                "type": "sized_box",
+                "args": {
+                    "height": 2
+                }
+            }
+        ]
+    }
+}
