@@ -1,0 +1,90 @@
+{
+  "type": "list_view",
+  "args": {
+    "children": [
+      {
+        "type": "title_description_area_widget",
+        "args": {
+          "title": "Entity",
+          "text": "{{data.entity}}",
+          "copyValue": true
+        }
+      },
+      {
+        "type": "title_description_area_widget",
+        "args": {
+          "title": "Workflow",
+          "text": "{{data.workflow}}",
+          "copyValue": true
+        }
+      },
+      {
+        "type": "title_description_area_widget",
+        "args": {
+          "title": "State",
+          "text": "{{data.state.name}} - {{data.state.title.label}}",
+          "copyValue": true
+        }
+      },
+      {
+        "type": "detail_title_widget",
+        "args": {
+          "title": "Transitions"
+        }
+      },{{for transition in data.state.transitions}}
+      {
+        "type": "title_description_area_widget",
+        "args": {
+          "title": "",
+          "text": "{{transition.name}}",
+          "copyValue": true
+        }
+      },
+      {
+        "type": "title_description_area_widget",
+        "args": {
+          "title": "",
+          "text": "{{transition.title.label}}",
+          "copyValue": true
+        }
+      },
+      {
+        "type": "title_description_area_widget",
+        "args": {
+          "title": "",
+          "text": "{{transition.toState}}",
+          "copyValue": true
+        }
+      },
+      {
+        "type": "title_description_area_widget",
+        "args": {
+          "title": "",
+          "text": "{{transition.form.label}}",
+          "copyValue": true
+        }
+      },
+      {
+        "type": "title_description_area_widget",
+        "args": {
+          "title": "",
+          "text": "{{transition.fromState}}",
+          "copyValue": true
+        }
+      },
+      {
+        "type": "title_description_area_widget",
+        "args": {
+          "title": "Created At",
+          "text": "{{data.createdAt}}"
+        }
+      },{{end}}
+      {
+        "type": "sized_box",
+        "args": {
+            "height": 6
+        }
+    }
+    ]
+  }
+}

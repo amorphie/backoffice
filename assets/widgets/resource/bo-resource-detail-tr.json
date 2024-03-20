@@ -1,0 +1,60 @@
+{
+  "type": "list_view",
+  "args": {
+    "children": [
+      {
+        "type": "title_description_area_widget",
+        "args": {
+          "title": "ID",
+          "text": "{{data.id}}",
+          "copyValue": true
+        }
+      },
+      {
+        "type": "title_description_area_widget",
+        "args": {
+          "title": "Display Names",
+          "text": "{{data.displayNames.label}} {{data.displayNames.language}}"
+        }
+      },
+      {
+        "type": "title_description_area_widget",
+        "args": {
+          "title": "Type",
+          "text": "{{data.type}}",
+          "copyValue": true
+        }
+      },
+      {
+        "type": "title_description_area_widget",
+        "args": {
+          "title": "URL",
+          "text": "{{data.url}}",
+          "copyValue": true
+        }
+      },
+      {
+        "type": "title_description_area_widget",
+        "args": {
+          "title": "Display Names",
+          "text": "{{data.descriptions.label}} {{data.descriptions.language}}"
+        }
+      },
+      {
+        "type": "title_description_area_widget",
+        "args": {
+          "title": "Tags",
+          "text": "{{data.tags}}",
+          "copyValue": true
+        }
+      },
+      {
+        "type": "title_description_area_widget",
+        "args": {
+          "title": "Status",
+          "text": "{{data.status}}"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "type": "list_view",
+  "args": {
+    "children": [
+      {
+        "type": "title_description_area_widget",
+        "args": {
+          "title": "ID",
+          "text": "{{data.id}}",
+          "copyValue": true
+        }
+      },
+      {
+        "type": "title_description_area_widget",
+        "args": {
+          "title": "Titles",
+          "text": "{{comma=null}}{{for d in data.titles}}{{if comma}}, {{end}}{{d.label}}{{comma=1}}{{end}}"
+        }
+      },
+      {
+        "type": "title_description_area_widget",
+        "args": {
+          "title": "Status",
+          "text": "{{data.status}}"
+        }
+      }
+    ]
+  }
+}
